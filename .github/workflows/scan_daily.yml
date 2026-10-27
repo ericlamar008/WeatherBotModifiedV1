@@ -41,6 +41,11 @@ jobs:
       - name: دریافت کد پروژه
         uses: actions/checkout@v4
 
+      - name: همگام‌سازی با آخرین کامیت واقعی ریموت (بعد از خروج از صف concurrency)
+        run: |
+          git fetch origin "${{ github.ref_name }}"
+          git reset --hard "origin/${{ github.ref_name }}"
+
       - name: نصب پایتون
         uses: actions/setup-python@v5
         with:
@@ -56,32 +61,68 @@ jobs:
       - name: ساخت داشبورد سادهٔ تعاملی
         run: python dashboard_simple.py
 
-      - name: انتشار داشبورد تعاملی در GitHub Pages
+      - name: انتشار داشبورد تعاملی در GitHub Pages (بدون تداخل و بدون CONFLICT)
         run: |
-          mkdir -p docs
+          REF="${{ github.ref_name }}"
           DASHBOARD_FILE="simple-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.html"
-          cp simple.html "docs/${DASHBOARD_FILE}"
-          # مسیر ثابت برای bookmarkهای قدیمی نگه داشته می‌شود؛ لینک تلگرام
-          # فقط به نسخهٔ یکتای بالا اشاره خواهد کرد.
-          cp simple.html docs/simple.html
-          cp data/lock_history.csv docs/lock_history.csv || echo "هنوز CSV ای وجود ندارد"
-          touch docs/.nojekyll
           echo "DASHBOARD_FILE=${DASHBOARD_FILE}" >> "$GITHUB_ENV"
+
+          # پشتیبان‌گیری از خروجی‌های اسکن سنگین تا اگر در حین اسکن کامیت جدیدی روی
+          # ریموت آمده بود، بدون git rebase (که روی فایل‌های JSON/HTML همیشه
+          # CONFLICT می‌دهد) خروجی اسکن را مستقیماً روی آخرین نسخهٔ ریموت بنشانیم.
+          rm -rf /tmp/scan_backup
+          mkdir -p /tmp/scan_backup/data
+          cp -a data/. /tmp/scan_backup/data/
+          rm -f /tmp/scan_backup/data/locked_signals.json /tmp/scan_backup/data/lock_history.csv
+          if [ -f city_calibration_history.json ]; then
+            cp -a city_calibration_history.json /tmp/scan_backup/
+          fi
+
+          prepare_docs_and_stage() {
+            mkdir -p docs
+            cp simple.html "docs/${DASHBOARD_FILE}"
+            cp simple.html docs/simple.html
+            cp data/lock_history.csv docs/lock_history.csv || echo "هنوز CSV ای وجود ندارد"
+            touch docs/.nojekyll
+            git rm -r -q --cached __pycache__ 2>/dev/null || true
+            git add -A -- . ':(exclude)__pycache__' ':(exclude)*.pyc'
+          }
 
           git config user.name "weatherbot-ci"
           git config user.email "ci@users.noreply.github.com"
-          git rm -r -q --cached __pycache__ 2>/dev/null || true
-          git add -A -- . ':(exclude)__pycache__' ':(exclude)*.pyc'
+
+          prepare_docs_and_stage
           git commit -m "بروزرسانی خودکار روزانه" || echo "چیزی برای کامیت نبود"
 
           PUSHED=false
           for i in 1 2 3 4 5; do
-            if git pull --rebase origin "${{ github.ref_name }}" && git push; then
-              PUSHED=true
-              break
+            if [ "$i" -eq 1 ]; then
+              if git push origin "HEAD:${REF}"; then
+                PUSHED=true
+                break
+              fi
+            else
+              echo "=== تلاش $i: اعمال مستقیم خروجی اسکن روی آخرین نسخهٔ ریموت (بدون rebase) ==="
+              git rebase --abort 2>/dev/null || true
+              git fetch origin "$REF"
+              git reset --hard "origin/${REF}"
+              cp -a /tmp/scan_backup/data/. data/
+              if [ -f /tmp/scan_backup/city_calibration_history.json ]; then
+                cp -a /tmp/scan_backup/city_calibration_history.json .
+              fi
+              python dashboard_simple.py
+              prepare_docs_and_stage
+              if git diff --cached --quiet; then
+                PUSHED=true
+                break
+              fi
+              git commit -m "بروزرسانی خودکار روزانه"
+              if git push origin "HEAD:${REF}"; then
+                PUSHED=true
+                break
+              fi
             fi
-            echo "تلاش $i برای push ناموفق بود -- لغو rebase نیمه‌کاره، ۵ ثانیه صبر و تلاش دوباره..."
-            git rebase --abort 2>/dev/null || true
+            echo "تلاش $i برای push ناموفق بود -- ۵ ثانیه صبر و تلاش دوباره..."
             sleep 5
           done
 

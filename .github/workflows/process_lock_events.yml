@@ -62,6 +62,11 @@ jobs:
       - name: دریافت کد پروژه
         uses: actions/checkout@v4
 
+      - name: همگام‌سازی با آخرین کامیت واقعی ریموت (بعد از خروج از صف concurrency)
+        run: |
+          git fetch origin "${{ github.ref_name }}"
+          git reset --hard "origin/${{ github.ref_name }}"
+
       - name: نصب پایتون
         uses: actions/setup-python@v5
         with:
@@ -78,8 +83,14 @@ jobs:
 
       - name: ثبت امن داده‌های قفل (بدون ساخت یا انتشار داشبورد -- آن کار برعهدهٔ monitor_locks.yml هر ۱۰ دقیقه است)
         run: |
+          REF="${{ github.ref_name }}"
           git config user.name "weatherbot-ci"
           git config user.email "ci@users.noreply.github.com"
+
+          rm -rf /tmp/lock_backup
+          mkdir -p /tmp/lock_backup
+          cp -a data/locked_signals.json /tmp/lock_backup/ 2>/dev/null || true
+          cp -a data/lock_history.csv /tmp/lock_backup/ 2>/dev/null || true
 
           git add data/locked_signals.json data/lock_history.csv
 
@@ -92,15 +103,27 @@ jobs:
 
           PUSHED=false
           for i in 1 2 3 4 5; do
-            # پاک‌سازی هر تغییر کاریِ کامیت‌نشدهٔ باقی‌مانده (معمولاً فقط
-            # نویزِ نرمال‌سازی کاراکتر پایان خط، نه دادهٔ باارزش -- دادهٔ
-            # باارزش ما همین الان در کامیت بالا ذخیره شده) تا rebase گیر
-            # نکند.
-            git checkout -- .
-
-            if git pull --rebase origin "${{ github.ref_name }}" && git push; then
-              PUSHED=true
-              break
+            if [ "$i" -eq 1 ]; then
+              if git push origin "HEAD:${REF}"; then
+                PUSHED=true
+                break
+              fi
+            else
+              git rebase --abort 2>/dev/null || true
+              git fetch origin "$REF"
+              git reset --hard "origin/${REF}"
+              cp -a /tmp/lock_backup/locked_signals.json data/ 2>/dev/null || true
+              cp -a /tmp/lock_backup/lock_history.csv data/ 2>/dev/null || true
+              git add data/locked_signals.json data/lock_history.csv
+              if git diff --cached --quiet; then
+                PUSHED=true
+                break
+              fi
+              git commit -m "بروزرسانی قفل‌ها"
+              if git push origin "HEAD:${REF}"; then
+                PUSHED=true
+                break
+              fi
             fi
             echo "تلاش $i برای push داده‌های قفل ناموفق بود -- ۵ ثانیه صبر و تلاش دوباره..."
             sleep 5
