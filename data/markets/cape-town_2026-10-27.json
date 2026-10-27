@@ -3,14 +3,14 @@
   "city_name": "Cape Town",
   "date": "2026-10-27",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-10-26T02:20:37.517435+00:00",
   "committed_allocation": null,
-  "hours_left": 1.0,
+  "hours_left": 0.5,
   "time_status": "local_day_open",
   "local_day_end_utc": "2026-10-27T22:00:00+00:00",
   "event_end_date": "2026-10-27T12:00:00Z",
-  "last_scan": "2026-10-27T20:46:45.023927+00:00",
+  "last_scan": "2026-10-27T21:30:22.828500+00:00",
   "horizon_days": 0,
   "forecast_mean": 23.13,
   "sigma": 1.75,
@@ -466,7 +466,10 @@
       "market_prob": 0.998,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.996
+      "sell_value": 0.996,
+      "won": true,
+      "pnl_units": 0.06,
+      "user_entered": false
     },
     {
       "market_id": "6175379",
@@ -482,7 +485,10 @@
       "market_prob": 0.002,
       "role": "scenario_hedge",
       "units": 0.04,
-      "sell_value": null
+      "sell_value": null,
+      "won": false,
+      "pnl_units": -0.04,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -495,5 +501,50 @@
   "balance_units": 100,
   "strategy_version": "auto-0f00f0b73d4fe276",
   "last_price_refresh": "2026-10-27T21:24:17.663679+00:00",
-  "last_lite_refresh": "2026-10-27T20:59:30.181675+00:00"
+  "last_lite_refresh": "2026-10-27T20:59:30.181675+00:00",
+  "actual_temp": 23.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.02,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6175379",
+      "question": "Will the highest temperature in Cape Town be 23°C on October 27?",
+      "range": [
+        23.0,
+        23.0
+      ],
+      "side": "YES",
+      "price": 0.998,
+      "model_prob": 0.2128,
+      "ev": -0.5114,
+      "market_prob": 0.998,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.996,
+      "won": true,
+      "pnl_units": 0.06,
+      "user_entered": false
+    },
+    {
+      "market_id": "6175379",
+      "question": "Will the highest temperature in Cape Town be 23°C on October 27? (NO)",
+      "range": [
+        23.0,
+        23.0
+      ],
+      "side": "NO",
+      "price": 0.002,
+      "model_prob": 0.7872,
+      "ev": 255.2,
+      "market_prob": 0.002,
+      "role": "scenario_hedge",
+      "units": 0.04,
+      "sell_value": null,
+      "won": false,
+      "pnl_units": -0.04,
+      "user_entered": false
+    }
+  ]
 }
