@@ -6,18 +6,19 @@
   "status": "open",
   "created_at": "2026-10-27T20:46:45.023927+00:00",
   "committed_allocation": null,
-  "hours_left": 6.5,
+  "hours_left": 6.3,
   "time_status": "local_day_open",
   "local_day_end_utc": "2026-10-28T04:00:00+00:00",
   "event_end_date": "2026-10-27T12:00:00Z",
-  "last_scan": "2026-10-27T21:30:22.828500+00:00",
+  "last_scan": "2026-10-27T21:43:38.249062+00:00",
   "horizon_days": 0,
   "forecast_mean": 10.05,
   "sigma": 0.753,
-  "forecast_mean_shadow": 10.02,
+  "forecast_mean_shadow": 9.95,
   "model_means_raw": {
     "ecmwf": 10.15,
-    "gfs": 9.89
+    "gfs": 9.89,
+    "gem": 9.82
   },
   "full_distribution": [
     {
@@ -262,8 +263,8 @@
         10.0
       ],
       "yes_price": 0.9915,
-      "no_price": 0.007,
-      "volume": 6426.0,
+      "no_price": 0.0085,
+      "volume": 6520.0,
       "spread": 0.0,
       "yes_token_id": "7218987618107913944747730994029578827134719864903998674832673164498328725695",
       "no_token_id": "92079297183691525069719063474794708453181786824083394566356142277783645767673",
@@ -285,10 +286,10 @@
       "prev_10m_yes_price": 0.993,
       "yes_price_10m_change": -0.0015,
       "yes_price_10m_pct_change": -0.2,
-      "prev_scan6h_yes_price": 0.915,
+      "prev_scan6h_yes_price": 0.993,
       "yes_price_6h_change": -0.0015,
       "yes_price_6h_pct_change": -0.2,
-      "scan6h_yes_price": 0.993,
+      "scan6h_yes_price": 0.9915,
       "prev_yes_price": 0.993,
       "yes_price_change": -0.0015,
       "yes_price_pct_change": -0.2
@@ -302,7 +303,7 @@
       ],
       "yes_price": 0.0045,
       "no_price": 0.9955,
-      "volume": 3877.0,
+      "volume": 3962.0,
       "spread": 0.0,
       "yes_token_id": "53113555153912351152392739711314652049977415188671374364895324905352208919203",
       "no_token_id": "95669366440113694527943257507780788199496370597065939651128326354341438190911",
@@ -328,9 +329,9 @@
       "yes_price_6h_change": -0.069,
       "yes_price_6h_pct_change": -93.9,
       "scan6h_yes_price": 0.0045,
-      "prev_yes_price": 0.0125,
-      "yes_price_change": -0.008,
-      "yes_price_pct_change": -64.0
+      "prev_yes_price": 0.0735,
+      "yes_price_change": -0.069,
+      "yes_price_pct_change": -93.9
     },
     {
       "question": "Will the highest temperature in Toronto be 12°C on October 27?",
@@ -341,7 +342,7 @@
       ],
       "yes_price": 0.0035,
       "no_price": 0.9965,
-      "volume": 2943.0,
+      "volume": 2993.0,
       "spread": 0.0,
       "yes_token_id": "78648708770553471569368922060956317906984157343194344739313474256495152209025",
       "no_token_id": "94763393978455858972600275546929035649328418346123612181705411228236778449918",
@@ -367,9 +368,9 @@
       "yes_price_6h_change": -0.002,
       "yes_price_6h_pct_change": -36.4,
       "scan6h_yes_price": 0.0035,
-      "prev_yes_price": 0.004,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -12.5
+      "prev_yes_price": 0.0055,
+      "yes_price_change": -0.002,
+      "yes_price_pct_change": -36.4
     },
     {
       "question": "Will the highest temperature in Toronto be 13°C on October 27?",
@@ -459,10 +460,10 @@
         10.0
       ],
       "side": "YES",
-      "price": 0.993,
+      "price": 0.9915,
       "model_prob": 0.463,
-      "ev": -0.3469,
-      "market_prob": 0.993,
+      "ev": -0.3464,
+      "market_prob": 0.9915,
       "role": "main_signal",
       "units": 30.0,
       "sell_value": 0.987
@@ -475,20 +476,20 @@
         10.0
       ],
       "side": "NO",
-      "price": 0.007,
+      "price": 0.0085,
       "model_prob": 0.537,
-      "ev": 49.2143,
-      "market_prob": 0.007,
+      "ev": 40.4118,
+      "market_prob": 0.0085,
       "role": "scenario_hedge",
-      "units": 0.14,
+      "units": 0.17,
       "sell_value": 0.004
     }
   ],
-  "total_allocated_units": 30.1,
-  "portfolio_score": -0.029957,
-  "worst_case_loss_frac": 0.1014,
-  "best_case_pnl_units": 0.07,
-  "worst_case_pnl_units": -10.14,
+  "total_allocated_units": 30.2,
+  "portfolio_score": -0.029941,
+  "worst_case_loss_frac": 0.1017,
+  "best_case_pnl_units": 0.09,
+  "worst_case_pnl_units": -10.17,
   "success_probability": 0.715,
   "confidence": 1.0,
   "balance_units": 100,
