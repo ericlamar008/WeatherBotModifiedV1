@@ -38,7 +38,7 @@ except ImportError:
         "july", "august", "september", "october", "november", "december",
     ]
 
-GITHUB_REPO = "ericlamar008/weatherbot"
+GITHUB_REPO = os.environ.get("GITHUB_REPOSITORY") or "ericlamar008/WeatherBotModifiedV1"
 DATA_DIR = Path("data")
 MARKETS_DIR = DATA_DIR / "markets"
 LOCKS_FILE = DATA_DIR / "locked_signals.json"
@@ -661,9 +661,20 @@ function setLockStatus(marketId, text, color) {
   var el = document.getElementById("lockstatus-" + marketId);
   if (el) { el.textContent = text; el.style.color = color || "#9aa0a6"; }
 }
+function getGitHubRepo() {
+  var fallback = "GITHUB_REPO_PLACEHOLDER";
+  try {
+    var m = window.location.hostname.match(/^([^.]+)\.github\.io$/i);
+    var parts = window.location.pathname.split("/").filter(Boolean);
+    if (m && parts.length > 0) {
+      return m[1] + "/" + parts[0];
+    }
+  } catch (e) {}
+  return fallback;
+}
 function lockBucket(city, cityName, date, marketId, tokenId, side, price, label, marketType) {
   setLockStatus(marketId, "⏳ در حال باز شدن گیت‌هاب...", "#eab308");
-  var repo = "GITHUB_REPO_PLACEHOLDER";
+  var repo = getGitHubRepo();
   var payload = { city: city, date: date, market_id: marketId + "|" + tokenId, side: side, price: price, market_type: (marketType || "max") };
   var title = encodeURIComponent("LOCK " + cityName + " " + date + " " + label + " " + side + " @ " + price);
   var body = encodeURIComponent(JSON.stringify(payload));
@@ -677,7 +688,7 @@ function lockBucket(city, cityName, date, marketId, tokenId, side, price, label,
 }
 function unlockBucket(city, cityName, date, marketId, label) {
   setLockStatus(marketId, "⏳ در حال باز شدن گیت‌هاب...", "#eab308");
-  var repo = "GITHUB_REPO_PLACEHOLDER";
+  var repo = getGitHubRepo();
   var payload = { city: city, date: date, market_id: marketId };
   var title = encodeURIComponent("UNLOCK " + cityName + " " + date + " " + label);
   var body = encodeURIComponent(JSON.stringify(payload));

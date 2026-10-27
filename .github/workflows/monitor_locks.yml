@@ -234,19 +234,41 @@ jobs:
           # اسکن روزانه (سایزینگ): فقط جبران کنسل و هشدار؛ تلاش مجدد خودکار ندارد
           rescue scan_daily.yml 93600 false 1 "اسکن روزانه"
 
-      - name: انتظار برای انتشار واقعی نسخهٔ یکتا در GitHub Pages
+      - name: انتظار برای انتشار واقعی نسخهٔ یکتا در GitHub Pages (با تشخیص خودکار نام مخزن و پوشهٔ Pages)
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          DASHBOARD_FILE: ${{ env.DASHBOARD_FILE }}
         run: |
-          URL="https://ericlamar008.github.io/weatherbot/${{ env.DASHBOARD_FILE }}"
+          OWNER="${GITHUB_REPOSITORY%%/*}"
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          URL_DOCS="https://${OWNER}.github.io/${REPO_NAME}/${DASHBOARD_FILE}"
+          URL_ROOT="https://${OWNER}.github.io/${REPO_NAME}/docs/${DASHBOARD_FILE}"
+
           for i in $(seq 1 30); do
-            CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
-            if [ "$CODE" = "200" ]; then
-              echo "منتشر شد: $URL"
+            CODE_DOCS=$(curl -s -o /dev/null -w "%{http_code}" "$URL_DOCS")
+            if [ "$CODE_DOCS" = "200" ]; then
+              echo "منتشر شد (/docs mode): $URL_DOCS"
               echo "PAGES_READY=true" >> "$GITHUB_ENV"
+              echo "FINAL_DASHBOARD_URL=$URL_DOCS" >> "$GITHUB_ENV"
               exit 0
             fi
-            echo "هنوز منتشر نشده (کد $CODE) -- تلاش $i از ۳۰، ۱۰ ثانیه صبر..."
+            CODE_ROOT=$(curl -s -o /dev/null -w "%{http_code}" "$URL_ROOT")
+            if [ "$CODE_ROOT" = "200" ]; then
+              echo "منتشر شد (root mode): $URL_ROOT"
+              echo "PAGES_READY=true" >> "$GITHUB_ENV"
+              echo "FINAL_DASHBOARD_URL=$URL_ROOT" >> "$GITHUB_ENV"
+              exit 0
+            fi
+            echo "هنوز منتشر نشده (docs=$CODE_DOCS, root=$CODE_ROOT) -- تلاش $i از ۳۰، ۱۰ ثانیه صبر..."
             sleep 10
           done
+
+          PROBE_CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://${OWNER}.github.io/${REPO_NAME}/docs/simple.html")
+          if [ "$PROBE_CODE" = "200" ]; then
+            echo "FINAL_DASHBOARD_URL=$URL_ROOT" >> "$GITHUB_ENV"
+          else
+            echo "FINAL_DASHBOARD_URL=$URL_DOCS" >> "$GITHUB_ENV"
+          fi
           echo "::warning::نسخهٔ یکتا تا ۵ دقیقه در GitHub Pages منتشر نشد (داده‌ها قبلاً push شده‌اند) -- پیام تلگرام با یادداشت ارسال می‌شود."
           echo "PAGES_READY=false" >> "$GITHUB_ENV"
           exit 0
@@ -255,7 +277,9 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
           DASHBOARD_FILE: ${{ env.DASHBOARD_FILE }}
+          FINAL_DASHBOARD_URL: ${{ env.FINAL_DASHBOARD_URL }}
           PAGES_READY: ${{ env.PAGES_READY }}
         run: |
           python3 - <<'PY'
@@ -265,8 +289,10 @@ jobs:
 
           token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
           chat = os.environ.get("TELEGRAM_CHAT_ID", "")
+          gh_repo = os.environ.get("GITHUB_REPOSITORY", "ericlamar008/WeatherBotModifiedV1")
+          owner, repo_name = gh_repo.split("/", 1) if "/" in gh_repo else ("ericlamar008", gh_repo)
           dashboard_file = os.environ["DASHBOARD_FILE"]
-          link = f"https://ericlamar008.github.io/weatherbot/{dashboard_file}"
+          link = os.environ.get("FINAL_DASHBOARD_URL") or f"https://{owner}.github.io/{repo_name}/{dashboard_file}"
 
           status_file = Path("data/last_price_status.txt")
           if status_file.exists():
