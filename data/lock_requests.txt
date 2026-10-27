@@ -1,0 +1,14 @@
+# ============================================================================
+# lock_requests.txt -- WeatherBet v3 manual COMMIT log
+# ============================================================================
+#
+# This file is written AUTOMATICALLY by the dashboard's "Lock this moment"
+# button (via the browser's File System Access API) -- you normally never
+# need to edit it by hand.
+#
+# Each line is: city_slug_YYYY-MM-DD=<timestamp>
+# On the next scan, the bot freezes that market's CURRENT live prices,
+# probabilities and allocation into "committed_allocation", which is what
+# accuracy/PnL is graded against once the market resolves.
+# ============================================================================
+

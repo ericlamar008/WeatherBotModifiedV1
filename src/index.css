@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: "Vazirmatn", "IRANSans", "Segoe UI", Tahoma, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.ltr-inline {
+  direction: ltr;
+  unicode-bidi: embed;
+  display: inline-block;
+}
+
+td.ltr-inline,
+th.ltr-inline {
+  display: table-cell;
+}
+

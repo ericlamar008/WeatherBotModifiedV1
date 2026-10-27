@@ -1,0 +1,363 @@
+{
+  "city": "houston",
+  "city_name": "Houston",
+  "date": "2026-09-23",
+  "unit": "F",
+  "status": "resolved",
+  "created_at": "2026-09-22T02:20:39.575397+00:00",
+  "committed_allocation": null,
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
+  "local_day_end_utc": "2026-09-24T05:00:00+00:00",
+  "event_end_date": "2026-09-23T12:00:00Z",
+  "last_scan": "2026-09-24T02:20:43.505142+00:00",
+  "horizon_days": 0,
+  "forecast_mean": 94.65,
+  "sigma": 1.731,
+  "forecast_mean_shadow": 94.79,
+  "model_means_raw": {
+    "ecmwf": 94.25,
+    "gfs": 95.9,
+    "gem": 94.89
+  },
+  "full_distribution": [
+    {
+      "question": "Will the highest temperature in Houston be 85°F or below on September 23?",
+      "market_id": "4784540",
+      "range": [
+        -999.0,
+        85.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 246.0,
+      "spread": 0.0,
+      "yes_token_id": "85914897310246374471582480863789961804266483010282263240749283020701190256477",
+      "no_token_id": "74350582573928846624938519602128256767771593637279905869611195742268273461596",
+      "model_prob": 0.0032,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0021,
+      "ev": 3.6,
+      "kelly": 0.0005,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Houston be between 86-87°F on September 23?",
+      "market_id": "4784541",
+      "range": [
+        86.0,
+        87.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 95.0,
+      "spread": 0.0,
+      "yes_token_id": "98192390582234725576484385334360649585276385113512093309918976958105753436265",
+      "no_token_id": "65746320218848519318579721816821305405983680906498709523005573978291542155197",
+      "model_prob": 0.0028,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0018,
+      "ev": 3.0,
+      "kelly": 0.0004,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Houston be between 88-89°F on September 23?",
+      "market_id": "4784542",
+      "range": [
+        88.0,
+        89.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 274.0,
+      "spread": 0.0,
+      "yes_token_id": "39243789059437100748779401911361516493388696246938966804260016504958652751616",
+      "no_token_id": "83938835133353973426276151106175250165886515386539871644057570917253666705960",
+      "model_prob": 0.0102,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0066,
+      "ev": 12.6,
+      "kelly": 0.0016,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Houston be between 90-91°F on September 23?",
+      "market_id": "4784543",
+      "range": [
+        90.0,
+        91.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 2660.0,
+      "spread": 0.0,
+      "yes_token_id": "67117481083824032939287565256336967788004614322473352319235360000984819205651",
+      "no_token_id": "87306094534777846532216259423420629090277749434894063278602996661311556563702",
+      "model_prob": 0.0451,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0293,
+      "ev": 58.0,
+      "kelly": 0.0073,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Houston be between 92-93°F on September 23?",
+      "market_id": "4784544",
+      "range": [
+        92.0,
+        93.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 2853.0,
+      "spread": 0.0,
+      "yes_token_id": "54980598091409444705424991247923605708206841830067506238568885539514426594479",
+      "no_token_id": "71910149204352862896291751682148818658592484460623860312298538946644105485307",
+      "model_prob": 0.1971,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.1281,
+      "ev": 255.6,
+      "kelly": 0.032,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Houston be between 94-95°F on September 23?",
+      "market_id": "4784545",
+      "range": [
+        94.0,
+        95.0
+      ],
+      "yes_price": 1.0,
+      "no_price": 0.0005,
+      "volume": 5866.0,
+      "spread": 0.0,
+      "yes_token_id": "55936047111628469672788234179584343458997421078961771343897168351294306336844",
+      "no_token_id": "84678370022997894655657712375106032505426035473124438942855975734488667930896",
+      "model_prob": 0.4279,
+      "side": "YES",
+      "ask": 0.9995,
+      "market_prob": 0.9995,
+      "belief_prob": 0.6281,
+      "ev": -0.3717,
+      "kelly": 0.0,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Houston be between 96-97°F on September 23?",
+      "market_id": "4784546",
+      "range": [
+        96.0,
+        97.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 4429.0,
+      "spread": 0.0,
+      "yes_token_id": "37555781832605164076453471912509569156850131379346949294638551782036145364961",
+      "no_token_id": "7413056002950116886618683000936726070256432889014233167240561729727625239094",
+      "model_prob": 0.2372,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.1542,
+      "ev": 307.8,
+      "kelly": 0.0385,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Houston be between 98-99°F on September 23?",
+      "market_id": "4784547",
+      "range": [
+        98.0,
+        99.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 1812.0,
+      "spread": 0.0,
+      "yes_token_id": "17898447032772561221077394592985604153308383821341141549670477263147932914109",
+      "no_token_id": "34610036500347442601305804683647951001068703185376715010269732053605446184768",
+      "model_prob": 0.0569,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.037,
+      "ev": 73.4,
+      "kelly": 0.0092,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Houston be between 100-101°F on September 23?",
+      "market_id": "4784548",
+      "range": [
+        100.0,
+        101.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 443.0,
+      "spread": 0.0,
+      "yes_token_id": "35389455210541987142908997707338224390752853877349813852818460858696315887448",
+      "no_token_id": "18601124499826142951602534428904972253553642932745290463444249022188414621157",
+      "model_prob": 0.0126,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0082,
+      "ev": 15.8,
+      "kelly": 0.002,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Houston be between 102-103°F on September 23?",
+      "market_id": "4784549",
+      "range": [
+        102.0,
+        103.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 384.0,
+      "spread": 0.0,
+      "yes_token_id": "65131038591321406022206241160250433301499272988347381003914434426292388937009",
+      "no_token_id": "5145049690352566146339883245482354930005550777982306092674651562486243356106",
+      "model_prob": 0.0033,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0021,
+      "ev": 3.6,
+      "kelly": 0.0005,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Houston be 104°F or higher on September 23?",
+      "market_id": "4784550",
+      "range": [
+        104.0,
+        999.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 152.0,
+      "spread": 0.0,
+      "yes_token_id": "72115711345097789313994297039801354182917041377815231995424507449095916820650",
+      "no_token_id": "44228714115845798893450688152587453138952388678817330766518213944011504503566",
+      "model_prob": 0.0037,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0024,
+      "ev": 4.2,
+      "kelly": 0.0005,
+      "sell_value": null
+    }
+  ],
+  "live_allocation": [
+    {
+      "market_id": "4784545",
+      "question": "Will the highest temperature in Houston be between 94-95°F on September 23?",
+      "range": [
+        94.0,
+        95.0
+      ],
+      "side": "YES",
+      "price": 0.9995,
+      "model_prob": 0.4279,
+      "ev": -0.3717,
+      "market_prob": 0.9995,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.999,
+      "won": true,
+      "pnl_units": 0.02,
+      "user_entered": false
+    },
+    {
+      "market_id": "4784545",
+      "question": "Will the highest temperature in Houston be between 94-95°F on September 23? (NO)",
+      "range": [
+        94.0,
+        95.0
+      ],
+      "side": "NO",
+      "price": 0.0005,
+      "model_prob": 0.5721,
+      "ev": 743.0,
+      "market_prob": 0.0005,
+      "role": "scenario_hedge",
+      "units": 0.01,
+      "sell_value": null,
+      "won": false,
+      "pnl_units": -0.01,
+      "user_entered": false
+    }
+  ],
+  "total_allocated_units": 30.0,
+  "portfolio_score": -0.04156,
+  "worst_case_loss_frac": 0.1001,
+  "best_case_pnl_units": 0.01,
+  "worst_case_pnl_units": -10.01,
+  "success_probability": 0.6057,
+  "confidence": 1.0,
+  "balance_units": 100,
+  "strategy_version": "auto-a3881f500456e540",
+  "last_price_refresh": "2026-09-24T08:07:22.374143+00:00",
+  "last_lite_refresh": "2026-09-24T08:20:51.102284+00:00",
+  "actual_temp": 94.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.01,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "4784545",
+      "question": "Will the highest temperature in Houston be between 94-95°F on September 23?",
+      "range": [
+        94.0,
+        95.0
+      ],
+      "side": "YES",
+      "price": 0.9995,
+      "model_prob": 0.4279,
+      "ev": -0.3717,
+      "market_prob": 0.9995,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.999,
+      "won": true,
+      "pnl_units": 0.02,
+      "user_entered": false
+    },
+    {
+      "market_id": "4784545",
+      "question": "Will the highest temperature in Houston be between 94-95°F on September 23? (NO)",
+      "range": [
+        94.0,
+        95.0
+      ],
+      "side": "NO",
+      "price": 0.0005,
+      "model_prob": 0.5721,
+      "ev": 743.0,
+      "market_prob": 0.0005,
+      "role": "scenario_hedge",
+      "units": 0.01,
+      "sell_value": null,
+      "won": false,
+      "pnl_units": -0.01,
+      "user_entered": false
+    }
+  ]
+}

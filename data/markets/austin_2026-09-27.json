@@ -1,0 +1,363 @@
+{
+  "city": "austin",
+  "city_name": "Austin",
+  "date": "2026-09-27",
+  "unit": "F",
+  "status": "resolved",
+  "created_at": "2026-09-26T02:20:38.408641+00:00",
+  "committed_allocation": null,
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
+  "local_day_end_utc": "2026-09-28T05:00:00+00:00",
+  "event_end_date": "2026-09-27T12:00:00Z",
+  "last_scan": "2026-09-28T02:20:38.032066+00:00",
+  "horizon_days": 0,
+  "forecast_mean": 97.33,
+  "sigma": 1.231,
+  "forecast_mean_shadow": 96.92,
+  "model_means_raw": {
+    "ecmwf": 96.85,
+    "gfs": 96.66,
+    "gem": 95.59
+  },
+  "full_distribution": [
+    {
+      "question": "Will the highest temperature in Austin be 89°F or below on September 27?",
+      "market_id": "4945274",
+      "range": [
+        -999.0,
+        89.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 443.0,
+      "spread": 0.0,
+      "yes_token_id": "9024429932018622695587645704004776118185982398141715346453902951490951854874",
+      "no_token_id": "47389453888823100463106049509938789611391025207481063018861487327274263927537",
+      "model_prob": 0.0014,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0009,
+      "ev": 1.2,
+      "kelly": 0.0002,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Austin be between 90-91°F on September 27?",
+      "market_id": "4945275",
+      "range": [
+        90.0,
+        91.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 460.0,
+      "spread": 0.0,
+      "yes_token_id": "75946575563068250531554519998412341129850648962572230246132867042627291706572",
+      "no_token_id": "29271519147647956160556842200191897116823323951623171031986869439883839224484",
+      "model_prob": 0.0017,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0011,
+      "ev": 1.6,
+      "kelly": 0.0002,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Austin be between 92-93°F on September 27?",
+      "market_id": "4945276",
+      "range": [
+        92.0,
+        93.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 366.0,
+      "spread": 0.0,
+      "yes_token_id": "53572548272913342837670705000646035854964692945100826468761498728010382219938",
+      "no_token_id": "18630489103381965064752221818358953998152598875175516100047717809052089547208",
+      "model_prob": 0.0095,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0062,
+      "ev": 11.6,
+      "kelly": 0.0015,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Austin be between 94-95°F on September 27?",
+      "market_id": "4945277",
+      "range": [
+        94.0,
+        95.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 4378.0,
+      "spread": 0.0,
+      "yes_token_id": "38761150552699296821025690803935256600528379128640867519281745477783110462863",
+      "no_token_id": "77176832200532019103302360339689056724823508488980250004339849839180475021365",
+      "model_prob": 0.0748,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0486,
+      "ev": 96.6,
+      "kelly": 0.0121,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Austin be between 96-97°F on September 27?",
+      "market_id": "4945278",
+      "range": [
+        96.0,
+        97.0
+      ],
+      "yes_price": 1.0,
+      "no_price": 0.0005,
+      "volume": 7142.0,
+      "spread": 0.0,
+      "yes_token_id": "28893980501848423721460020858663758863857878871282681894208339768750561110117",
+      "no_token_id": "97009542458894142803949297678324734445333234317683535135901222954192764075340",
+      "model_prob": 0.4728,
+      "side": "YES",
+      "ask": 0.9995,
+      "market_prob": 0.9995,
+      "belief_prob": 0.6573,
+      "ev": -0.3426,
+      "kelly": 0.0,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Austin be between 98-99°F on September 27?",
+      "market_id": "4945279",
+      "range": [
+        98.0,
+        99.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 6490.0,
+      "spread": 0.0,
+      "yes_token_id": "45264764730541439122936123707806455710379053407049659805393680210858615052221",
+      "no_token_id": "79186507027265334878958312892182016021496666221922684447542198448139775818501",
+      "model_prob": 0.3789,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.2463,
+      "ev": 492.0,
+      "kelly": 0.0615,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Austin be between 100-101°F on September 27?",
+      "market_id": "4945280",
+      "range": [
+        100.0,
+        101.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 2143.0,
+      "spread": 0.0,
+      "yes_token_id": "104181759469752405677980410122607497951766644635012846451335670510414637853211",
+      "no_token_id": "23936914898363205541838125719289523168430589756729788379869886691285756993273",
+      "model_prob": 0.0518,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0337,
+      "ev": 66.6,
+      "kelly": 0.0083,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Austin be between 102-103°F on September 27?",
+      "market_id": "4945281",
+      "range": [
+        102.0,
+        103.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 2193.0,
+      "spread": 0.0,
+      "yes_token_id": "106286751407967134304204175452085322013199435333935566578597078528019234955562",
+      "no_token_id": "36232094513843520291857601380083547482629079032148138002821304422448740836445",
+      "model_prob": 0.0069,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0045,
+      "ev": 8.4,
+      "kelly": 0.0011,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Austin be between 104-105°F on September 27?",
+      "market_id": "4945282",
+      "range": [
+        104.0,
+        105.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 61.0,
+      "spread": 0.0,
+      "yes_token_id": "40410384437962459609437260224699427033942416657165255926772146105594621328969",
+      "no_token_id": "99191763260499787793100075288409799755352249768745067616070807398058380096446",
+      "model_prob": 0.0013,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0008,
+      "ev": 1.0,
+      "kelly": 0.0001,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Austin be between 106-107°F on September 27?",
+      "market_id": "4945283",
+      "range": [
+        106.0,
+        107.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 215.0,
+      "spread": 0.0,
+      "yes_token_id": "25421868428329979011248491719499051648944449857128984053142916060862184288521",
+      "no_token_id": "113332246959089131661375389845595207170128586367905744095291892135148495942576",
+      "model_prob": 0.0004,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0003,
+      "ev": -0.2,
+      "kelly": 0.0,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Austin be 108°F or higher on September 27?",
+      "market_id": "4945284",
+      "range": [
+        108.0,
+        999.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 231.0,
+      "spread": 0.0,
+      "yes_token_id": "97823019029654272279525665746362340909919095942453187113679935108432431087384",
+      "no_token_id": "111848784546463599343492942643149301648976817860058776504898849636275630725685",
+      "model_prob": 0.0004,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0003,
+      "ev": -0.2,
+      "kelly": 0.0,
+      "sell_value": null
+    }
+  ],
+  "live_allocation": [
+    {
+      "market_id": "4945278",
+      "question": "Will the highest temperature in Austin be between 96-97°F on September 27?",
+      "range": [
+        96.0,
+        97.0
+      ],
+      "side": "YES",
+      "price": 0.9995,
+      "model_prob": 0.4728,
+      "ev": -0.3426,
+      "market_prob": 0.9995,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.999,
+      "won": true,
+      "pnl_units": 0.02,
+      "user_entered": false
+    },
+    {
+      "market_id": "4945278",
+      "question": "Will the highest temperature in Austin be between 96-97°F on September 27? (NO)",
+      "range": [
+        96.0,
+        97.0
+      ],
+      "side": "NO",
+      "price": 0.0005,
+      "model_prob": 0.5272,
+      "ev": 684.8,
+      "market_prob": 0.0005,
+      "role": "scenario_hedge",
+      "units": 0.01,
+      "sell_value": null,
+      "won": false,
+      "pnl_units": -0.01,
+      "user_entered": false
+    }
+  ],
+  "total_allocated_units": 30.0,
+  "portfolio_score": -0.039435,
+  "worst_case_loss_frac": 0.1001,
+  "best_case_pnl_units": 0.01,
+  "worst_case_pnl_units": -10.01,
+  "success_probability": 0.6258,
+  "confidence": 0.7771,
+  "balance_units": 100,
+  "strategy_version": "auto-a3881f500456e540",
+  "last_price_refresh": "2026-09-28T08:07:22.319545+00:00",
+  "last_lite_refresh": "2026-09-28T08:20:37.449225+00:00",
+  "actual_temp": 96.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.01,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "4945278",
+      "question": "Will the highest temperature in Austin be between 96-97°F on September 27?",
+      "range": [
+        96.0,
+        97.0
+      ],
+      "side": "YES",
+      "price": 0.9995,
+      "model_prob": 0.4728,
+      "ev": -0.3426,
+      "market_prob": 0.9995,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.999,
+      "won": true,
+      "pnl_units": 0.02,
+      "user_entered": false
+    },
+    {
+      "market_id": "4945278",
+      "question": "Will the highest temperature in Austin be between 96-97°F on September 27? (NO)",
+      "range": [
+        96.0,
+        97.0
+      ],
+      "side": "NO",
+      "price": 0.0005,
+      "model_prob": 0.5272,
+      "ev": 684.8,
+      "market_prob": 0.0005,
+      "role": "scenario_hedge",
+      "units": 0.01,
+      "sell_value": null,
+      "won": false,
+      "pnl_units": -0.01,
+      "user_entered": false
+    }
+  ]
+}

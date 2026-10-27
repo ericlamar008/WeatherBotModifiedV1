@@ -1,0 +1,73 @@
+{
+  "city": "denver",
+  "city_name": "Denver",
+  "date": "2026-10-21",
+  "unit": "F",
+  "status": "resolved_no_signal",
+  "market_type": "min",
+  "created_at": "2026-10-20T02:20:39.609795+00:00",
+  "committed_allocation": null,
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
+  "local_day_end_utc": "2026-10-22T06:00:00+00:00",
+  "event_end_date": "2026-10-21T12:00:00Z",
+  "last_scan": "2026-10-26T02:20:37.517435+00:00",
+  "skipped_reason": "event volume 25 < min_volume 500",
+  "last_lite_refresh": "2026-10-22T08:20:43.529573+00:00",
+  "forecast_mean": 46.45,
+  "sigma": 2.548,
+  "full_distribution": [
+    {
+      "question": "Will the lowest temperature in Denver be between 50-51°F on October 21?",
+      "market_id": "5917324",
+      "range": [
+        50.0,
+        51.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 15.0,
+      "spread": 0.0,
+      "yes_token_id": "67596853005943014737299607925304934768248188718300495220154629425798579347132",
+      "no_token_id": "15892865082951305365117701878509614124049716131231077176956634279752362422820",
+      "model_prob": 0.922,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.5993,
+      "ev": 1198.0,
+      "kelly": 0.1498,
+      "sell_value": null,
+      "model_prob_change": -0.0086,
+      "yes_price_change": 0.0
+    },
+    {
+      "question": "Will the lowest temperature in Denver be 58°F or higher on October 21?",
+      "market_id": "5917328",
+      "range": [
+        58.0,
+        999.0
+      ],
+      "yes_price": 0.0,
+      "no_price": 0.9995,
+      "volume": 10.0,
+      "spread": 0.0,
+      "yes_token_id": "6771735769220197952176685759553739370898661692245295280329182244451637802694",
+      "no_token_id": "30222397196603559617860071841635774122615172197762756849519839472201810146042",
+      "model_prob": 0.078,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0507,
+      "ev": 100.8,
+      "kelly": 0.0126,
+      "sell_value": null,
+      "model_prob_change": 0.0086,
+      "yes_price_change": 0.0
+    }
+  ],
+  "last_price_refresh": "2026-10-22T08:07:22.128968+00:00",
+  "actual_temp": null,
+  "pnl_units": null,
+  "my_pnl_units": null
+}

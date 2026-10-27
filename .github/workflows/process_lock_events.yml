@@ -1,0 +1,112 @@
+# مسیر واقعی: .github/workflows/process_lock_events.yml
+
+# نسخهٔ نهایی برای این مرحله:
+# - workflow_dispatch اضافه شده تا دکمهٔ «Run workflow» در تب Actions باشد
+# (برای پردازش دستیِ issueهای قدیمیِ گیرکرده یا تست).
+# - بر خلاف تلاش قبلی، اینجا دیگر بعد از هر قفل/حذف‌قفل، یک لینک یکتا
+# ساخته و در تلگرام فرستاده نمی‌شود -- چون وقتی چند شهر پشت‌سرهم قفل شوند
+# (هر issue = یک اجرای جدا)، همان تعداد پیام/لینک جداگانه در تلگرام
+# ایجاد می‌شد. لینک‌های یکتا و پیام تلگرام همچنان فقط در scan_daily.yml،
+# heartbeat_dashboard_link.yml و monitor_locks.yml (اسکن‌های زمان‌بندی‌شده)
+# باقی می‌مانند.
+
+# --- PATCH (رفع خطای "unresolved conflict" هنگام چند قفل پشت‌سرهم) -----------
+# این Workflow دیگر اصلاً داشبورد نمی‌سازد و docs/ را لمس نمی‌کند -- فقط
+# پردازش قفل/حذف‌قفل و ثبت امن نتیجه در data/locked_signals.json +
+# data/lock_history.csv (با git add دقیق فقط روی همین دو فایل). ساخت و
+# انتشار داشبورد به‌طور کامل برعهدهٔ monitor_locks.yml (هر ۳۰ دقیقه) است.
+
+# --- PATCH این نسخه (رفع خطای واقعی "cannot pull with rebase: You have
+# unstaged changes") -----------------------------------------------------------
+# مشاهده شد که این خطا نه فقط روی UNLOCK (که به data/lock_history.csv هم
+# ردیف اضافه می‌کند)، بلکه حتی روی یک LOCK سادهٔ تک‌فایلی (که فقط
+# data/locked_signals.json را تغییر می‌دهد) هم رخ می‌داد. این ثابت کرد که
+# علت، محتوای مشخصی از فایل‌های خودمان نیست -- به‌احتمال زیاد یک یا چند
+# فایل دیگر در ریپو (نامرتبط با قفل‌ها) به‌خاطر ناسازگاری کاراکتر پایان خط
+# بین آنچه گیت هنگام checkout نرمال‌سازی می‌کند و آنچه واقعاً روی دیسک
+# runner قرار می‌گیرد، همیشه بعد از checkout به‌عنوان «تغییریافته» دیده
+# می‌شود -- کاملاً مستقل از این‌که lock_manager.py چه چیزی نوشته است.
+#
+# به‌جای تعقیب فایل‌به‌فایل این ناسازگاری در کل ریپو، یک لایهٔ دفاعی به
+# Workflow اضافه شد: درست قبل از هر تلاش برای git pull --rebase، دستور
+# `git checkout -- .` هر تغییر کاریِ کامیت‌نشده (که همیشه فقط «نویز»ی از
+# جنس نرمال‌سازی است، نه دادهٔ باارزش ما) را پاک می‌کند. این کاملاً بی‌خطر
+# است چون تغییر واقعی و باارزش ما (قفل/حذف‌قفل) پیش از این مرحله از قبل در
+# یک کامیت واقعی (HEAD) ذخیره شده -- این دستور فقط working tree را با HEAD
+# یکی می‌کند، هیچ کامیتی را دور نمی‌ریزد یا از دست نمی‌دهد.
+
+name: WeatherBet - پردازش فوری قفل و حذف قفل
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: weatherbot-data-writer
+  cancel-in-progress: false
+
+env:
+  # جلوگیری از ساخت __pycache__/*.pyc (فایل باینری که هر اجرا فرق می‌کند و
+  # در rebase/merge همیشه CONFLICT غیرقابل‌حل می‌سازد)
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    steps:
+      - name: دریافت کد پروژه
+        uses: actions/checkout@v4
+
+      - name: نصب پایتون
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: نصب پیش‌نیازها
+        run: pip install requests
+
+      - name: پردازش قفل‌ها و حذف‌قفل‌های تازه + ساخت CSV تاریخچه
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python lock_manager.py
+
+      - name: ثبت امن داده‌های قفل (بدون ساخت یا انتشار داشبورد -- آن کار برعهدهٔ monitor_locks.yml هر ۱۰ دقیقه است)
+        run: |
+          git config user.name "weatherbot-ci"
+          git config user.email "ci@users.noreply.github.com"
+
+          git add data/locked_signals.json data/lock_history.csv
+
+          if git diff --cached --quiet; then
+            echo "تغییری در داده‌های قفل نبود -- چیزی برای کامیت نیست."
+            exit 0
+          fi
+
+          git commit -m "بروزرسانی قفل‌ها"
+
+          PUSHED=false
+          for i in 1 2 3 4 5; do
+            # پاک‌سازی هر تغییر کاریِ کامیت‌نشدهٔ باقی‌مانده (معمولاً فقط
+            # نویزِ نرمال‌سازی کاراکتر پایان خط، نه دادهٔ باارزش -- دادهٔ
+            # باارزش ما همین الان در کامیت بالا ذخیره شده) تا rebase گیر
+            # نکند.
+            git checkout -- .
+
+            if git pull --rebase origin "${{ github.ref_name }}" && git push; then
+              PUSHED=true
+              break
+            fi
+            echo "تلاش $i برای push داده‌های قفل ناموفق بود -- ۵ ثانیه صبر و تلاش دوباره..."
+            sleep 5
+          done
+
+          if [ "$PUSHED" != "true" ]; then
+            echo "::error::داده‌های قفل بعد از ۵ تلاش push نشد. لطفاً به‌صورت دستی بررسی کنید."
+            exit 1
+          fi

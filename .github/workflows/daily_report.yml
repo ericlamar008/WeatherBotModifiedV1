@@ -1,0 +1,48 @@
+# مسیر واقعی: .github/workflows/daily_report.yml
+#
+# ورک‌فلوی کاملاً جدید و مستقل برای گزارش روزانهٔ سود/زیان در تلگرام
+# (درخواست کاربر). هیچ فایلی از data/ را commit یا تغییر نمی‌دهد --
+# daily_report.py فقط data/locked_signals.json را می‌خواند و یک پیام
+# تلگرام می‌فرستد. به همین دلیل:
+#   - هیچ concurrency group لازم ندارد (چون هیچ نوشتنی روی گیت انجام
+#     نمی‌شود، نمی‌تواند با process_lock_events.yml یا monitor_locks.yml
+#     که هر دو از گروه weatherbot-data-writer استفاده می‌کنند تداخل کند).
+#   - permissions فقط contents: read است (نه write) -- ریسک صفر.
+#
+# زمان‌بندی: هر شب ساعت ۲۳:۴۷ به وقت ایران (= ۲۰:۱۷ UTC، چون ایران
+# UTC+۳:۳۰ است). عمداً یک دقیقهٔ غیرگرد انتخاب شده (نه ۰۰:۰۰ یا ۰۰:۳۰)
+# تا با ساعات شلوغ رایج زمان‌بندی گیت‌هاب (که اکثر کاربران دنیا دقیقاً
+# سر ساعت‌های گرد UTC زمان‌بندی می‌کنند) برخورد نکند. علاوه بر
+# زمان‌بندی خودکار، workflow_dispatch هم فعال است تا در صورت نیاز
+# دستی هم قابل اجرا باشد.
+
+name: WeatherBet - گزارش روزانه
+
+on:
+  schedule:
+    - cron: "17 20 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: دریافت کد پروژه
+        uses: actions/checkout@v4
+
+      - name: نصب پایتون
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: نصب پیش‌نیازها
+        run: pip install requests
+
+      - name: ارسال گزارش روزانه به تلگرام
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python daily_report.py

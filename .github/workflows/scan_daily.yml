@@ -1,0 +1,141 @@
+# مسیر واقعی: .github/workflows/scan_daily.yml
+#
+# PATCH نهایی: کرون داخلی گیت‌هاب (schedule) حذف شد چون زمان‌بندی این
+# Workflow از این به بعد کاملاً بر عهدهٔ زمان‌بند خارجی (cron-job.org) است
+# که هر روز یک بار (ساعت ۰۲:۲۰ به‌وقت UTC) با فراخوانی workflow_dispatch
+# این Workflow را اجرا می‌کند. اگر کرون داخلی همزمان فعال می‌ماند، این
+# Workflow دوبار در بازه‌های نزدیک به هم اجرا می‌شد.
+#
+# PATCH (رفع CONFLICT مکرر در push): PYTHONDONTWRITEBYTECODE=1 و حذف
+# __pycache__ از git add (فایل‌های .pyc باینری‌اند و در rebase همیشه conflict
+# غیرقابل‌حل می‌سازند)، لغو rebase نیمه‌کاره بعد از هر تلاش ناموفق (تا
+# تلاش‌های بعدی با «unmerged files» الکی شکست نخورند)، docs/.nojekyll و cache
+# برای pip. عمداً به reset --hard نرفتیم: خروجی «اسکن کامل با سایزینگ» نباید
+# دور ریخته شود.
+# PATCH (dead man's switch): checkout پیش‌فرض فقط ۱ کامیت دارد و در آن
+# `git log -- data/locked_signals.json` همیشه زمان همان کامیت را برمی‌گرداند
+# (یعنی هشدار هرگز فعال نمی‌شد). حالا قبل از بررسی، ۱۰۰ کامیت اخیر گرفته می‌شود.
+# بقیهٔ منطق (اسکن کامل، انتشار، پیام تلگرام) تغییری نکرده.
+
+name: WeatherBet - اسکن روزانه
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weatherbot-data-writer
+  cancel-in-progress: false
+
+env:
+  # جلوگیری از ساخت __pycache__/*.pyc (فایل باینری که هر اجرا فرق می‌کند و
+  # در rebase/merge همیشه CONFLICT غیرقابل‌حل می‌سازد)
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  daily-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: دریافت کد پروژه
+        uses: actions/checkout@v4
+
+      - name: نصب پایتون
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: نصب پیش‌نیازها
+        run: pip install -r requirements.txt
+
+      - name: اجرای یک دور کامل ربات
+        run: python weatherbot_v3.py once
+
+      - name: ساخت داشبورد سادهٔ تعاملی
+        run: python dashboard_simple.py
+
+      - name: انتشار داشبورد تعاملی در GitHub Pages
+        run: |
+          mkdir -p docs
+          DASHBOARD_FILE="simple-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.html"
+          cp simple.html "docs/${DASHBOARD_FILE}"
+          # مسیر ثابت برای bookmarkهای قدیمی نگه داشته می‌شود؛ لینک تلگرام
+          # فقط به نسخهٔ یکتای بالا اشاره خواهد کرد.
+          cp simple.html docs/simple.html
+          cp data/lock_history.csv docs/lock_history.csv || echo "هنوز CSV ای وجود ندارد"
+          touch docs/.nojekyll
+          echo "DASHBOARD_FILE=${DASHBOARD_FILE}" >> "$GITHUB_ENV"
+
+          git config user.name "weatherbot-ci"
+          git config user.email "ci@users.noreply.github.com"
+          git rm -r -q --cached __pycache__ 2>/dev/null || true
+          git add -A -- . ':(exclude)__pycache__' ':(exclude)*.pyc'
+          git commit -m "بروزرسانی خودکار روزانه" || echo "چیزی برای کامیت نبود"
+
+          PUSHED=false
+          for i in 1 2 3 4 5; do
+            if git pull --rebase origin "${{ github.ref_name }}" && git push; then
+              PUSHED=true
+              break
+            fi
+            echo "تلاش $i برای push ناموفق بود -- لغو rebase نیمه‌کاره، ۵ ثانیه صبر و تلاش دوباره..."
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+
+          if [ "$PUSHED" != "true" ]; then
+            echo "::error::انتشار تغییرات بعد از ۵ تلاش ناموفق بود."
+            exit 1
+          fi
+
+      - name: بررسی سلامت اسکن ۱۰ دقیقه‌ای قفل‌ها (dead man's switch)
+        id: deadman
+        run: |
+          git fetch --quiet --depth=100 origin "${{ github.ref_name }}" || echo "نشد تاریخچه را بگیرم -- بررسی با اطلاعات موجود انجام می‌شود."
+          LAST_TS=$(git log -1 --format=%ct -- data/locked_signals.json 2>/dev/null || echo 0)
+          NOW_TS=$(date +%s)
+          DIFF_H=$(( (NOW_TS - LAST_TS) / 3600 ))
+          echo "hours_since_last_lock_update=$DIFF_H" >> "$GITHUB_OUTPUT"
+          if [ "$LAST_TS" = "0" ]; then
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+          elif [ "$DIFF_H" -ge 4 ]; then
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: ارسال لینک داشبورد تعاملی در تلگرام
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DASHBOARD_FILE: ${{ env.DASHBOARD_FILE }}
+          DEADMAN_STALE: ${{ steps.deadman.outputs.stale }}
+          DEADMAN_HOURS: ${{ steps.deadman.outputs.hours_since_last_lock_update }}
+        run: |
+          python - <<'PY'
+          import os, requests
+          token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+          chat = os.environ.get("TELEGRAM_CHAT_ID", "")
+          base = "https://ericlamar008.github.io/weatherbot"
+          stale = os.environ.get("DEADMAN_STALE", "false") == "true"
+          hours_since = os.environ.get("DEADMAN_HOURS", "?")
+          warning = (
+              f"\n\n⚠️ هشدار: اسکن ۱۰ دقیقه‌ای قفل‌ها حدود {hours_since} ساعت است commit تازه نداشته -- "
+              f"احتمالاً monitor_locks.yml اجرا نشده."
+          ) if stale else ""
+          text = (
+              "داشبورد امروز آماده است:\n"
+              f"داشبورد تعاملی (قفل): {base}/{os.environ.get('DASHBOARD_FILE', 'simple.html')}"
+              f"{warning}"
+          )
+          if token and chat:
+              requests.post(
+                  f"https://api.telegram.org/bot{token}/sendMessage",
+                  json={"chat_id": chat, "text": text},
+                  timeout=15,
+              )
+          else:
+              print("توکن یا چت آیدی تلگرام تنظیم نشده:", text)
+          PY

@@ -1,0 +1,296 @@
+# مسیر واقعی: .github/workflows/monitor_locks.yml
+#
+# PATCH این نسخه (رفع خطای واقعی "unresolved conflict" روی
+# data/markets/*.json و simple.html که باعث شد این Workflow از حدود ۵ ساعت
+# پیش دیگر با موفقیت کامل نشود) -----------------------------------------------
+#
+# ریشهٔ اصلی خطا: دقیقاً همون الگوی مشکل‌داری که در process_lock_events.yml
+# پیدا و رفع کردیم -- این Workflow یک‌بار simple.html/data/markets/*.json را
+# می‌ساخت، یک کامیت می‌ساخت، و فقط تلاش می‌کرد اون یک کامیت رو با
+# git pull --rebase روی آخرین نسخهٔ ریموت اعمال کنه. چون هم simple.html
+# (بازسازی کامل هر بار) و هم فایل‌های data/markets/*.json که
+# weatherbot_v3.py price_refresh هر بار کامل بازنویسی می‌کند، وقتی دو اجرای
+# پشت‌سرهم (هر ۳۰ دقیقه) با هم تداخل زمانی پیدا کنند، تقریباً حتمی است که
+# rebase با "unresolved conflict" شکست بخورد.
+#
+# چرا این‌بار شدیدتر شد: یک اجرا (احتمالاً هم‌زمان با آپلود حجم زیادی از
+# فایل‌های قدیمی data/markets/ به ریپو) کندتر از حد معمول طول کشید، دقیقاً
+# با اجرای زمان‌بندی‌شدهٔ بعدی (۱۰ دقیقه بعد) تداخل پیدا کرد، و طبق تنظیم
+# concurrency، گیت‌هاب اجرای قدیمی‌تر را کنسل کرد -- این باعث یک چرخهٔ
+# خودتکرارشونده از conflict/کنسل‌شدن شد که از آن لحظه تا الان ادامه داشته.
+#
+# راه‌حل: برخلاف process_lock_events.yml، این Workflow هیچ عملیات
+# یک‌بارمصرف و برگشت‌ناپذیر ندارد (هیچ GitHub Issue ای نمی‌بندد -- فقط
+# قیمت‌ها را می‌خواند و داشبورد می‌سازد). پس کاملاً امن است که *کل* مراحل
+# (price_monitor.py + price_refresh + dashboard_simple.py + انتشار) داخل
+# یک حلقهٔ retry قرار بگیرند که هر تلاش، اول با git fetch + git reset --hard
+# دقیقاً روی آخرین نسخهٔ واقعی ریموت می‌ایستد و سپس همه‌چیز را از صفر روی
+# همان نسخه بازسازی می‌کند -- هیچ‌وقت یک کامیت قدیمی روی تاریخچهٔ جدید
+# rebase نمی‌شود، پس تناقض متنی اصلاً رخ نمی‌دهد.
+#
+# منطق داخلی price_monitor.py، weatherbot_v3.py، و dashboard_simple.py
+# هیچ‌کدام تغییر نکرده‌اند -- فقط نحوهٔ فراخوانی/کامیت آن‌ها در این فایل
+# YAML بازطراحی شده است.
+
+# PATCH (رفع کاستی‌های مشاهده‌شده در لاگ‌ها):
+#  1) PYTHONDONTWRITEBYTECODE=1 و حذف __pycache__ از git add.
+#  2) مرتب‌سازی نسخه‌های docs بر اساس شمارهٔ run (نه زمان فایل) + docs/.nojekyll
+#     و cache برای pip.
+#  3) مرحلهٔ انتظار برای GitHub Pages دیگر کل اسکن را fail نمی‌کند (داده قبلاً
+#     با موفقیت push شده است)؛ فقط هشدار می‌دهد و پیام تلگرام همیشه ارسال
+#     می‌شود، با یادداشتی که لینک ممکن است چند دقیقه دیگر باز شود.
+#  4) شبکهٔ ایمنی: چون همهٔ Workflowهای نویسنده در یک گروه concurrency‌اند و
+#     GitHub فقط «یک» اجرای منتظر را نگه می‌دارد، اسکن ۶ساعته/روزانه ممکن است
+#     وقتی منتظر است با اجرای تازه‌تری جایگزین و کنسل شود. این Workflow هر
+#     ۱۰ دقیقه چک می‌کند: کنسل‌شده -> دوباره درخواست می‌شود؛ اسکن ۶ساعتهٔ
+#     ناموفق -> حداکثر ۲ بار تلاش مجدد؛ اسکن روزانهٔ ناموفق -> فقط هشدار تلگرام.
+# منطق fetch + reset --hard + بازسازی در هر تلاش بدون تغییر ماند.
+
+name: WeatherBet - اسکن ۱۰ دقیقه‌ای قفل‌ها
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  actions: write   # فقط برای شبکهٔ ایمنی (درخواست دوبارهٔ اسکن کنسل/ناموفق)
+
+concurrency:
+  group: weatherbot-data-writer
+  cancel-in-progress: false
+
+env:
+  # جلوگیری از ساخت __pycache__/*.pyc (فایل باینری که هر اجرا فرق می‌کند و
+  # در rebase/merge همیشه CONFLICT غیرقابل‌حل می‌سازد)
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: دریافت کد پروژه
+        uses: actions/checkout@v4
+
+      - name: نصب پایتون
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: نصب پیش‌نیازها
+        run: pip install -r requirements.txt
+
+      - name: اجرای اسکن سبک ۱۰ دقیقه‌ای (قیمت پنل و قفل‌ها) و انتشار امن (با بازسازی کامل از روی آخرین نسخه در هر تلاش)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          git config user.name "weatherbot-ci"
+          git config user.email "ci@users.noreply.github.com"
+
+          PUSHED=false
+          DASHBOARD_FILE=""
+
+          for i in 1 2 3 4 5; do
+            echo "=== تلاش $i ==="
+
+            # همیشه دقیقاً روی آخرین نسخهٔ واقعی ریموت می‌ایستیم -- نه rebase
+            # یک کامیت قدیمی، بلکه شروع تازه از جدیدترین تاریخچه. این
+            # Workflow هیچ عملیات برگشت‌ناپذیری (مثل بستن Issue) ندارد، پس
+            # این کار کاملاً بی‌خطر است.
+            git fetch origin
+            git reset --hard "origin/${{ github.ref_name }}"
+
+            python price_monitor.py
+            python weatherbot_v3.py price_refresh
+            python dashboard_simple.py
+
+            mkdir -p docs
+            DASHBOARD_FILE="simple-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${i}.html"
+            cp simple.html "docs/${DASHBOARD_FILE}"
+            cp simple.html docs/simple.html
+            cp data/lock_history.csv docs/lock_history.csv || echo "هنوز CSV ای وجود ندارد"
+
+            touch docs/.nojekyll
+
+            mapfile -t OLD_DASHBOARDS < <(ls -1 docs/simple-*.html 2>/dev/null | sort -t- -k2,2nr -k3,3nr -k4,4nr | tail -n +61 || true)
+            if [ "${#OLD_DASHBOARDS[@]}" -gt 0 ]; then
+              printf 'حذف نسخه‌های قدیمی داشبورد:\n%s\n' "${OLD_DASHBOARDS[@]}"
+              rm -- "${OLD_DASHBOARDS[@]}"
+            fi
+
+            git rm -r -q --cached __pycache__ 2>/dev/null || true
+            git add -A -- . ':(exclude)__pycache__' ':(exclude)*.pyc'
+
+            if git diff --cached --quiet; then
+              echo "چیزی برای کامیت نبود -- احتمالاً یک اجرای دیگر همین لحظه را قبلاً پردازش کرده."
+              PUSHED=true
+              break
+            fi
+
+            git commit -m "بروزرسانی اسکن ۱۰ دقیقه‌ای قفل‌ها"
+
+            if git push; then
+              PUSHED=true
+              break
+            fi
+
+            echo "push در تلاش $i ناموفق بود (احتمالاً یک اجرای دیگر هم‌زمان push زد) -- ۵ ثانیه صبر و تلاش دوباره از روی آخرین نسخه..."
+            sleep 5
+          done
+
+          if [ "$PUSHED" != "true" ]; then
+            echo "::error::انتشار تغییرات بعد از ۵ تلاش ناموفق بود."
+            exit 1
+          fi
+
+          echo "DASHBOARD_FILE=${DASHBOARD_FILE}" >> "$GITHUB_ENV"
+
+      - name: شبکهٔ ایمنی -- جبران اسکن ۶ساعته/روزانهٔ کنسل‌شده یا ناموفق
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          REF="${{ github.ref_name }}"
+
+          notify() {
+            if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
+              curl -s -m 15 -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+                --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+                --data-urlencode "text=$1" > /dev/null || true
+            fi
+          }
+
+          # rescue <workflow> <بازهٔ مجاز به ثانیه> <تلاش مجدد برای ناموفق؟ true/false> <حداکثر شکست پیاپی> <نام>
+          #
+          # قاعده (فقط روی اجراهای «تمام‌شدهٔ غیرکنسل» و «فعال»):
+          #  - اگر اجرایی در صف یا در حال اجراست: کاری نکن.
+          #  - اگر آخرین اجرای معتبر موفق بوده و در بازهٔ مجاز است: کاری نکن.
+          #  - اگر هیچ اجرای معتبری در بازهٔ مجاز نیست (مثلاً کنسل شده): دوباره درخواست بده.
+          #  - اگر آخرین اجرای معتبر ناموفق بوده:
+          #      * اگر تلاش مجدد فعال است و شکست‌های پیاپی کمتر از سقف است: دوباره درخواست بده.
+          #      * وگرنه فقط یک‌بار هشدار تلگرام بفرست (نه هر ۱۵ دقیقه).
+          rescue() {
+            WF="$1"; MAX_SECONDS="$2"; RETRY_FAILED="$3"; MAX_FAILS="$4"; LABEL="$5"
+
+            RUNS=$(gh run list --workflow "$WF" --limit 20 --json createdAt,updatedAt,conclusion,status) || {
+              echo "::warning::نشد وضعیت $WF را بخوانم -- این بار بررسی رد شد."
+              return 0
+            }
+
+            ACTIVE=$(echo "$RUNS" | jq '[.[] | select(.status != "completed")] | length')
+            if [ "$ACTIVE" -gt 0 ]; then
+              echo "$WF در صف یا در حال اجراست -- نیازی به جبران نیست."
+              return 0
+            fi
+
+            VALID=$(echo "$RUNS" | jq -c '[.[] | select(.conclusion != "cancelled" and .conclusion != "skipped")]')
+            LAST=$(echo "$VALID" | jq -c '.[0] // empty')
+
+            if [ -z "$LAST" ]; then
+              echo "::notice::هیچ اجرای معتبری برای $WF پیدا نشد -- درخواست اجرا."
+              gh workflow run "$WF" --ref "$REF" || echo "::warning::درخواست اجرای $WF ناموفق بود."
+              return 0
+            fi
+
+            AGE=$(echo "$LAST" | jq '(now - (.createdAt | fromdateiso8601)) | floor')
+            DONE_AGE=$(echo "$LAST" | jq '(now - (.updatedAt | fromdateiso8601)) | floor')
+            CONCLUSION=$(echo "$LAST" | jq -r '.conclusion')
+
+            if [ "$AGE" -ge "$MAX_SECONDS" ]; then
+              echo "::notice::آخرین اجرای معتبر $WF قدیمی است (${AGE}s) -- احتمالاً کنسل شده؛ درخواست اجرا."
+              gh workflow run "$WF" --ref "$REF" || echo "::warning::درخواست اجرای $WF ناموفق بود."
+              return 0
+            fi
+
+            if [ "$CONCLUSION" = "success" ]; then
+              echo "$WF اخیراً موفق اجرا شده -- نیازی به جبران نیست."
+              return 0
+            fi
+
+            FAILS=$(echo "$VALID" | jq '(map(.conclusion == "success") | index(true)) as $i | if $i == null then length else $i end')
+
+            if [ "$RETRY_FAILED" = "true" ] && [ "$FAILS" -lt "$MAX_FAILS" ]; then
+              echo "::notice::$WF ناموفق بود (شکست پیاپی: $FAILS از $MAX_FAILS) -- تلاش مجدد خودکار."
+              if gh workflow run "$WF" --ref "$REF"; then
+                notify "🔁 ${LABEL} ناموفق بود (شکست پیاپی: ${FAILS}) -- تلاش مجدد خودکار درخواست شد."
+              fi
+              return 0
+            fi
+
+            # تلاش مجدد غیرفعال است یا به سقف رسیده -- فقط یک‌بار هشدار بده
+            if [ "$DONE_AGE" -lt 1500 ]; then
+              notify "⚠️ ${LABEL} ناموفق بود (شکست پیاپی: ${FAILS}) و تلاش خودکار انجام نمی‌شود. لطفاً لاگ Actions را بررسی کنید."
+            fi
+            echo "::warning::$WF ناموفق است و تلاش خودکار انجام نمی‌شود."
+          }
+
+          # اسکن ۶ساعته: بی‌خطر برای تکرار (فقط تازه‌سازی) -- تا ۲ بار تلاش مجدد
+          rescue heartbeat_dashboard_link.yml 23400 true 3 "اسکن ۶ساعته"
+          # اسکن روزانه (سایزینگ): فقط جبران کنسل و هشدار؛ تلاش مجدد خودکار ندارد
+          rescue scan_daily.yml 93600 false 1 "اسکن روزانه"
+
+      - name: انتظار برای انتشار واقعی نسخهٔ یکتا در GitHub Pages
+        run: |
+          URL="https://ericlamar008.github.io/weatherbot/${{ env.DASHBOARD_FILE }}"
+          for i in $(seq 1 30); do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+            if [ "$CODE" = "200" ]; then
+              echo "منتشر شد: $URL"
+              echo "PAGES_READY=true" >> "$GITHUB_ENV"
+              exit 0
+            fi
+            echo "هنوز منتشر نشده (کد $CODE) -- تلاش $i از ۳۰، ۱۰ ثانیه صبر..."
+            sleep 10
+          done
+          echo "::warning::نسخهٔ یکتا تا ۵ دقیقه در GitHub Pages منتشر نشد (داده‌ها قبلاً push شده‌اند) -- پیام تلگرام با یادداشت ارسال می‌شود."
+          echo "PAGES_READY=false" >> "$GITHUB_ENV"
+          exit 0
+
+      - name: ارسال یک پیام واحد (وضعیت + لینک تازه) -- همیشه
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DASHBOARD_FILE: ${{ env.DASHBOARD_FILE }}
+          PAGES_READY: ${{ env.PAGES_READY }}
+        run: |
+          python3 - <<'PY'
+          import os, requests
+          from pathlib import Path
+          from datetime import datetime, timezone
+
+          token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+          chat = os.environ.get("TELEGRAM_CHAT_ID", "")
+          dashboard_file = os.environ["DASHBOARD_FILE"]
+          link = f"https://ericlamar008.github.io/weatherbot/{dashboard_file}"
+
+          status_file = Path("data/last_price_status.txt")
+          if status_file.exists():
+              body = status_file.read_text(encoding="utf-8")
+          else:
+              now_str = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+              body = f"\U0001F4CA \u0648\u0636\u0639\u06CC\u062A \u0642\u0641\u0644\u200C\u0647\u0627 \u2014 {now_str} UTC\n\n\u0647\u06CC\u0686 \u0642\u0641\u0644 \u0628\u0627\u0632 \u0641\u0639\u0627\u0644\u06CC \u0648\u062C\u0648\u062F \u0646\u062F\u0627\u0631\u062F."
+
+          text = body + f"\n\n\U0001F517 \u062F\u0627\u0634\u0628\u0648\u0631\u062F \u0628\u0647-\u0631\u0648\u0632:\n{link}"
+
+          if os.environ.get("PAGES_READY", "true") == "false":
+              text += "\n\n\u23F3 \u0627\u0646\u062A\u0634\u0627\u0631 GitHub Pages \u06A9\u0646\u062F \u0627\u0633\u062A \u2014 \u0627\u06AF\u0631 \u0644\u06CC\u0646\u06A9 \u0628\u0627\u0632 \u0646\u0634\u062F \u0686\u0646\u062F \u062F\u0642\u06CC\u0642\u0647 \u0628\u0639\u062F \u062F\u0648\u0628\u0627\u0631\u0647 \u0627\u0645\u062A\u062D\u0627\u0646 \u06A9\u0646\u06CC\u062F."
+
+          if token and chat:
+              requests.post(
+                  f"https://api.telegram.org/bot{token}/sendMessage",
+                  json={
+                      "chat_id": chat,
+                      "text": text,
+                      "parse_mode": "HTML",
+                      "disable_web_page_preview": True,
+                  },
+                  timeout=15,
+              )
+          else:
+              print("توکن یا چت آیدی تلگرام تنظیم نشده:", text)
+          PY

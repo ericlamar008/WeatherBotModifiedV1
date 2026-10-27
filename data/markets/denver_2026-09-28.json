@@ -1,0 +1,363 @@
+{
+  "city": "denver",
+  "city_name": "Denver",
+  "date": "2026-09-28",
+  "unit": "F",
+  "status": "resolved",
+  "created_at": "2026-09-27T02:20:43.900237+00:00",
+  "committed_allocation": null,
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
+  "local_day_end_utc": "2026-09-29T06:00:00+00:00",
+  "event_end_date": "2026-09-28T12:00:00Z",
+  "last_scan": "2026-09-29T02:20:36.807366+00:00",
+  "horizon_days": 0,
+  "forecast_mean": 71.09,
+  "sigma": 2.5,
+  "forecast_mean_shadow": 72.31,
+  "model_means_raw": {
+    "ecmwf": 71.22,
+    "gfs": 70.88,
+    "gem": 74.82
+  },
+  "full_distribution": [
+    {
+      "question": "Will the highest temperature in Denver be 67°F or below on September 28?",
+      "market_id": "4975078",
+      "range": [
+        -999.0,
+        67.0
+      ],
+      "yes_price": 0.0005,
+      "no_price": 0.9995,
+      "volume": 2361.0,
+      "spread": 0.0,
+      "yes_token_id": "67483175241254315076285070869048541578528300438770784709327647404057578834114",
+      "no_token_id": "89864333994949981579810095212034681678354814148456196194183928677883027845702",
+      "model_prob": 0.1897,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.1235,
+      "ev": 246.0,
+      "kelly": 0.0308,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Denver be between 68-69°F on September 28?",
+      "market_id": "4975079",
+      "range": [
+        68.0,
+        69.0
+      ],
+      "yes_price": 0.9995,
+      "no_price": 0.0005,
+      "volume": 5503.0,
+      "spread": 0.0,
+      "yes_token_id": "27046790613401908024029988017515957878096721552675210613506180716780927992147",
+      "no_token_id": "12696107632458736199434700601833914878240968056802593193965815205973035862364",
+      "model_prob": 0.1531,
+      "side": "YES",
+      "ask": 0.9995,
+      "market_prob": 0.9995,
+      "belief_prob": 0.4493,
+      "ev": -0.5505,
+      "kelly": 0.0,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Denver be between 70-71°F on September 28?",
+      "market_id": "4975080",
+      "range": [
+        70.0,
+        71.0
+      ],
+      "yes_price": 0.0005,
+      "no_price": 0.9995,
+      "volume": 6145.0,
+      "spread": 0.0,
+      "yes_token_id": "67202825794568554676889442886292429367975856945915846567197653185311187046687",
+      "no_token_id": "40196578663060400633643446960735216548705499342262004496973224157210519979415",
+      "model_prob": 0.2628,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.171,
+      "ev": 341.0,
+      "kelly": 0.0426,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Denver be between 72-73°F on September 28?",
+      "market_id": "4975081",
+      "range": [
+        72.0,
+        73.0
+      ],
+      "yes_price": 0.0005,
+      "no_price": 0.9995,
+      "volume": 6647.0,
+      "spread": 0.0,
+      "yes_token_id": "84166141573212988716722220564670996976308046027926293807522487336410921627233",
+      "no_token_id": "102094335121975944367090847916416020106134715810177030174720189756055014872739",
+      "model_prob": 0.2266,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.1475,
+      "ev": 294.0,
+      "kelly": 0.0368,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Denver be between 74-75°F on September 28?",
+      "market_id": "4975082",
+      "range": [
+        74.0,
+        75.0
+      ],
+      "yes_price": 0.0005,
+      "no_price": 0.9995,
+      "volume": 4563.0,
+      "spread": 0.0,
+      "yes_token_id": "67580721308557644675471837364253743720014950304427322354992918477084552211386",
+      "no_token_id": "89904521750296544520502032824044727579750602501170890041391169292655855554106",
+      "model_prob": 0.1067,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0695,
+      "ev": 138.0,
+      "kelly": 0.0173,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Denver be between 76-77°F on September 28?",
+      "market_id": "4975083",
+      "range": [
+        76.0,
+        77.0
+      ],
+      "yes_price": 0.0005,
+      "no_price": 0.9995,
+      "volume": 6057.0,
+      "spread": 0.0,
+      "yes_token_id": "105117663417448214521278043943619491543744969068703730567654152322115581603167",
+      "no_token_id": "35320696999335880890923533999623551018775762774890110363851911900228598752306",
+      "model_prob": 0.0381,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0249,
+      "ev": 48.8,
+      "kelly": 0.0061,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Denver be between 78-79°F on September 28?",
+      "market_id": "4975084",
+      "range": [
+        78.0,
+        79.0
+      ],
+      "yes_price": 0.0005,
+      "no_price": 0.9995,
+      "volume": 4076.0,
+      "spread": 0.0,
+      "yes_token_id": "96778557993506654200093219904430420556713577066314606588887251005683056469643",
+      "no_token_id": "19740066930007844502197340059809492978586530467988386963443866155013584028782",
+      "model_prob": 0.0132,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0088,
+      "ev": 16.6,
+      "kelly": 0.0021,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Denver be between 80-81°F on September 28?",
+      "market_id": "4975085",
+      "range": [
+        80.0,
+        81.0
+      ],
+      "yes_price": 0.0005,
+      "no_price": 0.9995,
+      "volume": 3437.0,
+      "spread": 0.0,
+      "yes_token_id": "15860084901195713851804402423688865614914585340511076231586328706717897666982",
+      "no_token_id": "7154978529615265982800832152772532432420910174281813093675948312378089411022",
+      "model_prob": 0.0049,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0034,
+      "ev": 5.8,
+      "kelly": 0.0007,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Denver be between 82-83°F on September 28?",
+      "market_id": "4975086",
+      "range": [
+        82.0,
+        83.0
+      ],
+      "yes_price": 0.0005,
+      "no_price": 0.9995,
+      "volume": 4981.0,
+      "spread": 0.0,
+      "yes_token_id": "77442178157706248188953121618476006841029409925423381582625333122900988691594",
+      "no_token_id": "68429691447997082460279835950927083676626248847382964752351019794699528102906",
+      "model_prob": 0.002,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0015,
+      "ev": 2.0,
+      "kelly": 0.0003,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Denver be between 84-85°F on September 28?",
+      "market_id": "4975087",
+      "range": [
+        84.0,
+        85.0
+      ],
+      "yes_price": 0.0005,
+      "no_price": 0.9995,
+      "volume": 1185.0,
+      "spread": 0.0,
+      "yes_token_id": "44812396206369357741378987103186858140093847919912646353544362193172003119027",
+      "no_token_id": "5073864648065724120767756468482425790595451592470570671886702448803383309360",
+      "model_prob": 0.0009,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0008,
+      "ev": 0.6,
+      "kelly": 0.0001,
+      "sell_value": null
+    },
+    {
+      "question": "Will the highest temperature in Denver be 86°F or higher on September 28?",
+      "market_id": "4975088",
+      "range": [
+        86.0,
+        999.0
+      ],
+      "yes_price": 0.0005,
+      "no_price": 0.9995,
+      "volume": 1760.0,
+      "spread": 0.0,
+      "yes_token_id": "101555281927771209650589550708922827269256192305033024134262000227520128977090",
+      "no_token_id": "41906502803562690703747801247848162930331615243110052576092425223650274401648",
+      "model_prob": 0.002,
+      "side": "YES",
+      "ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0015,
+      "ev": 2.0,
+      "kelly": 0.0003,
+      "sell_value": null
+    }
+  ],
+  "live_allocation": [
+    {
+      "market_id": "4975079",
+      "question": "Will the highest temperature in Denver be between 68-69°F on September 28?",
+      "range": [
+        68.0,
+        69.0
+      ],
+      "side": "YES",
+      "price": 0.9995,
+      "model_prob": 0.1531,
+      "ev": -0.5505,
+      "market_prob": 0.9995,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.999,
+      "won": true,
+      "pnl_units": 0.02,
+      "user_entered": false
+    },
+    {
+      "market_id": "4975079",
+      "question": "Will the highest temperature in Denver be between 68-69°F on September 28? (NO)",
+      "range": [
+        68.0,
+        69.0
+      ],
+      "side": "NO",
+      "price": 0.0005,
+      "model_prob": 0.8469,
+      "ev": 1100.4,
+      "market_prob": 0.0005,
+      "role": "scenario_hedge",
+      "units": 0.01,
+      "sell_value": null,
+      "won": false,
+      "pnl_units": -0.01,
+      "user_entered": false
+    }
+  ],
+  "total_allocated_units": 30.0,
+  "portfolio_score": -0.048737,
+  "worst_case_loss_frac": 0.1001,
+  "best_case_pnl_units": 0.01,
+  "worst_case_pnl_units": -10.01,
+  "success_probability": 0.5377,
+  "confidence": 0.7517,
+  "balance_units": 100,
+  "strategy_version": "auto-a3881f500456e540",
+  "last_price_refresh": "2026-09-29T08:07:26.251106+00:00",
+  "last_lite_refresh": "2026-09-29T08:20:41.136916+00:00",
+  "actual_temp": 68.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.01,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "4975079",
+      "question": "Will the highest temperature in Denver be between 68-69°F on September 28?",
+      "range": [
+        68.0,
+        69.0
+      ],
+      "side": "YES",
+      "price": 0.9995,
+      "model_prob": 0.1531,
+      "ev": -0.5505,
+      "market_prob": 0.9995,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.999,
+      "won": true,
+      "pnl_units": 0.02,
+      "user_entered": false
+    },
+    {
+      "market_id": "4975079",
+      "question": "Will the highest temperature in Denver be between 68-69°F on September 28? (NO)",
+      "range": [
+        68.0,
+        69.0
+      ],
+      "side": "NO",
+      "price": 0.0005,
+      "model_prob": 0.8469,
+      "ev": 1100.4,
+      "market_prob": 0.0005,
+      "role": "scenario_hedge",
+      "units": 0.01,
+      "sell_value": null,
+      "won": false,
+      "pnl_units": -0.01,
+      "user_entered": false
+    }
+  ]
+}
