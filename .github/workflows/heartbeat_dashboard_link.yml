@@ -157,18 +157,46 @@ jobs:
             exit 1
           fi
 
-      - name: ارسال لینک نسخه‌ای داشبورد در تلگرام
+      - name: ارسال لینک نسخه‌ای داشبورد در تلگرام (با تشخیص خودکار آدرس GitHub Pages مخزن)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
           DASHBOARD_FILE: ${{ env.DASHBOARD_FILE }}
         run: |
           python3 - <<'PY'
-          import os, requests
+          import os, time, requests
           token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
           chat = os.environ.get("TELEGRAM_CHAT_ID", "")
+          gh_repo = os.environ.get("GITHUB_REPOSITORY", "ericlamar008/WeatherBotModifiedV1")
+          owner, repo_name = gh_repo.split("/", 1) if "/" in gh_repo else ("ericlamar008", gh_repo)
           dashboard_file = os.environ["DASHBOARD_FILE"]
-          link = f"https://ericlamar008.github.io/weatherbot/{dashboard_file}"
+
+          url_docs_mode = f"https://{owner}.github.io/{repo_name}/{dashboard_file}"
+          url_root_mode = f"https://{owner}.github.io/{repo_name}/docs/{dashboard_file}"
+
+          link = None
+          for attempt in range(1, 31):
+              for candidate in (url_docs_mode, url_root_mode):
+                  try:
+                      r = requests.head(candidate, timeout=6)
+                      if r.status_code == 200:
+                          link = candidate
+                          break
+                  except Exception:
+                      pass
+              if link:
+                  print(f"لینک فعال تایید شد (تلاش {attempt}): {link}")
+                  break
+              time.sleep(6)
+
+          if not link:
+              try:
+                  r = requests.head(f"https://{owner}.github.io/{repo_name}/docs/simple.html", timeout=6)
+                  link = url_root_mode if r.status_code == 200 else url_docs_mode
+              except Exception:
+                  link = url_docs_mode
+
           text = f"\U0001F504 بروزرسانی ۶ساعته -- داشبورد تعاملی تازه‌سازی شد:\n{link}"
           if token and chat:
               requests.post(

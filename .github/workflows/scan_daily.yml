@@ -147,19 +147,53 @@ jobs:
             echo "stale=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: ارسال لینک داشبورد تعاملی در تلگرام
+      - name: ارسال لینک داشبورد تعاملی در تلگرام (با تشخیص خودکار آدرس GitHub Pages مخزن)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
           DASHBOARD_FILE: ${{ env.DASHBOARD_FILE }}
           DEADMAN_STALE: ${{ steps.deadman.outputs.stale }}
           DEADMAN_HOURS: ${{ steps.deadman.outputs.hours_since_last_lock_update }}
         run: |
           python - <<'PY'
-          import os, requests
+          import os, time, requests
           token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
           chat = os.environ.get("TELEGRAM_CHAT_ID", "")
-          base = "https://ericlamar008.github.io/weatherbot"
+          gh_repo = os.environ.get("GITHUB_REPOSITORY", "ericlamar008/WeatherBotModifiedV1")
+          owner, repo_name = gh_repo.split("/", 1) if "/" in gh_repo else ("ericlamar008", gh_repo)
+          dash_file = os.environ.get("DASHBOARD_FILE", "simple.html")
+
+          # پشتیبانی خودکار از هر دو حالت تنظیمات GitHub Pages:
+          # ۱) اگر Folder روی /docs باشد -> https://{owner}.github.io/{repo_name}/{dash_file}
+          # ۲) اگر Folder روی / (root) باشد -> https://{owner}.github.io/{repo_name}/docs/{dash_file}
+          url_docs_mode = f"https://{owner}.github.io/{repo_name}/{dash_file}"
+          url_root_mode = f"https://{owner}.github.io/{repo_name}/docs/{dash_file}"
+
+          live_link = None
+          for attempt in range(1, 31):
+              for candidate in (url_docs_mode, url_root_mode):
+                  try:
+                      r = requests.head(candidate, timeout=6)
+                      if r.status_code == 200:
+                          live_link = candidate
+                          break
+                  except Exception:
+                      pass
+              if live_link:
+                  print(f"لینک فعال تایید شد (تلاش {attempt}): {live_link}")
+                  break
+              print(f"در انتظار انتشار GitHub Pages (تلاش {attempt} از ۳۰)...")
+              time.sleep(6)
+
+          if not live_link:
+              # تشخیص بر اساس مسیر simple.html ثابت
+              try:
+                  r = requests.head(f"https://{owner}.github.io/{repo_name}/docs/simple.html", timeout=6)
+                  live_link = url_root_mode if r.status_code == 200 else url_docs_mode
+              except Exception:
+                  live_link = url_docs_mode
+
           stale = os.environ.get("DEADMAN_STALE", "false") == "true"
           hours_since = os.environ.get("DEADMAN_HOURS", "?")
           warning = (
@@ -168,7 +202,7 @@ jobs:
           ) if stale else ""
           text = (
               "داشبورد امروز آماده است:\n"
-              f"داشبورد تعاملی (قفل): {base}/{os.environ.get('DASHBOARD_FILE', 'simple.html')}"
+              f"داشبورد تعاملی (قفل): {live_link}"
               f"{warning}"
           )
           if token and chat:
