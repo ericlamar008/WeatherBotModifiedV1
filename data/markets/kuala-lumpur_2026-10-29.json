@@ -56,7 +56,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 28°C on October 29?",
@@ -182,7 +183,7 @@
         31.0,
         31.0
       ],
-      "yes_price": 0.405,
+      "yes_price": 0.4,
       "no_price": 0.595,
       "volume": 2442.0,
       "spread": 0.0,
@@ -190,10 +191,10 @@
       "no_token_id": "71391634273849384690872512335705124499265858821205637871540200686796504524688",
       "model_prob": 0.4394,
       "side": "YES",
-      "ask": 0.405,
-      "market_prob": 0.405,
-      "belief_prob": 0.4274,
-      "ev": 0.0553,
+      "ask": 0.4,
+      "market_prob": 0.4,
+      "belief_prob": 0.4256,
+      "ev": 0.064,
       "kelly": 0.0094,
       "sell_value": null,
       "prev_scan6h_model_prob": 0.3694,
@@ -203,16 +204,16 @@
       "prev_model_prob": 0.3694,
       "model_prob_change": 0.07,
       "model_prob_pct_change": 18.9,
-      "prev_10m_yes_price": 0.4,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 1.2,
+      "prev_10m_yes_price": 0.405,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.2,
       "prev_scan6h_yes_price": 0.4,
-      "yes_price_6h_change": 0.005,
-      "yes_price_6h_pct_change": 1.2,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -1.2,
       "scan6h_yes_price": 0.405,
-      "prev_yes_price": 0.4,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 1.2
+      "prev_yes_price": 0.405,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.2
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 32°C on October 29?",
@@ -508,6 +509,6 @@
   "confidence": 0.0301,
   "balance_units": 100,
   "strategy_version": "auto-0f00f0b73d4fe276",
-  "last_price_refresh": "2026-10-27T21:52:21.251933+00:00",
+  "last_price_refresh": "2026-10-28T21:52:24.332062+00:00",
   "last_lite_refresh": "2026-10-27T20:59:30.181675+00:00"
 }
