@@ -16,6 +16,7 @@ dashboard_simple.py -- می‌سازد simple.html (و docs/simple.html):
 import csv
 import json
 import math
+import os
 import shutil
 from collections import defaultdict
 from datetime import datetime, timezone
