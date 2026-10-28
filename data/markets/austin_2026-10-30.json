@@ -65,7 +65,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Austin be between 70-71°F on October 30?",
@@ -76,9 +77,9 @@
       ],
       "yes_price": 0.31,
       "no_price": 0.69,
-      "best_bid": 0.24,
-      "best_ask": 0.38,
-      "bid_ask_spread": 0.14,
+      "best_bid": 0.25,
+      "best_ask": 0.37,
+      "bid_ask_spread": 0.12,
       "volume": 354.0,
       "spread": 0.14,
       "yes_token_id": "11693370343953754485051351596384102211919715343323548714872883722760119237073",
@@ -87,13 +88,13 @@
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.31,
-      "effective_ask": 0.3705,
+      "effective_ask": 0.3595,
       "market_prob": 0.31,
       "belief_prob": 0.1749,
-      "ev": -0.5279,
+      "ev": -0.5135,
       "kelly": 0.0,
-      "swing_edge": -0.2684,
-      "swing_upside_pct": -72.4,
+      "swing_edge": -0.2079,
+      "swing_upside_pct": -67.1,
       "sell_value": 0.24,
       "scan6h_model_prob": 0.1021,
       "prev_scan6h_model_prob": 0.1021,
@@ -109,7 +110,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.31
     },
     {
       "question": "Will the highest temperature in Austin be between 82-83°F on October 30?",
@@ -153,7 +155,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Austin be between 84-85°F on October 30?",
@@ -197,7 +200,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Austin be 86°F or higher on October 30?",
@@ -241,7 +245,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -286,5 +291,6 @@
   "success_probability": 0.5107,
   "confidence": 0.6729,
   "balance_units": 100,
-  "strategy_version": "auto-bb76bea385d114be"
+  "strategy_version": "auto-bb76bea385d114be",
+  "last_price_refresh": "2026-10-28T22:52:27.102051+00:00"
 }
