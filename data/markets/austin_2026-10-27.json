@@ -3,14 +3,14 @@
   "city_name": "Austin",
   "date": "2026-10-27",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-10-26T02:20:37.517435+00:00",
   "committed_allocation": null,
-  "hours_left": 7.3,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-28T05:00:00+00:00",
   "event_end_date": "2026-10-27T12:00:00Z",
-  "last_scan": "2026-10-27T21:43:38.249062+00:00",
+  "last_scan": "2026-10-28T21:41:01.810187+00:00",
   "horizon_days": 0,
   "forecast_mean": 80.74,
   "sigma": 2.494,
@@ -466,7 +466,10 @@
       "market_prob": 0.986,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.98
+      "sell_value": 0.98,
+      "won": true,
+      "pnl_units": 0.43,
+      "user_entered": false
     },
     {
       "market_id": "6181566",
@@ -482,7 +485,10 @@
       "market_prob": 0.014,
       "role": "scenario_hedge",
       "units": 0.28,
-      "sell_value": 0.01
+      "sell_value": 0.01,
+      "won": false,
+      "pnl_units": -0.28,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.3,
@@ -497,5 +503,50 @@
   "last_price_refresh": "2026-10-27T21:52:21.251933+00:00",
   "last_lite_refresh": "2026-10-27T20:59:30.181675+00:00",
   "forecast_mean_legacy": 80.66,
-  "calibration_repaired": true
+  "calibration_repaired": true,
+  "actual_temp": 82.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.15,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6181566",
+      "question": "Will the highest temperature in Austin be between 82-83°F on October 27?",
+      "range": [
+        82.0,
+        83.0
+      ],
+      "side": "YES",
+      "price": 0.986,
+      "model_prob": 0.2229,
+      "ev": -0.503,
+      "market_prob": 0.986,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.98,
+      "won": true,
+      "pnl_units": 0.43,
+      "user_entered": false
+    },
+    {
+      "market_id": "6181566",
+      "question": "Will the highest temperature in Austin be between 82-83°F on October 27? (NO)",
+      "range": [
+        82.0,
+        83.0
+      ],
+      "side": "NO",
+      "price": 0.014,
+      "model_prob": 0.7771,
+      "ev": 35.4286,
+      "market_prob": 0.014,
+      "role": "scenario_hedge",
+      "units": 0.28,
+      "sell_value": 0.01,
+      "won": false,
+      "pnl_units": -0.28,
+      "user_entered": false
+    }
+  ]
 }

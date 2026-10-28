@@ -3,14 +3,14 @@
   "city_name": "Atlanta",
   "date": "2026-10-27",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-10-26T02:20:37.517435+00:00",
   "committed_allocation": null,
-  "hours_left": 6.3,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-28T04:00:00+00:00",
   "event_end_date": "2026-10-27T12:00:00Z",
-  "last_scan": "2026-10-27T21:43:38.249062+00:00",
+  "last_scan": "2026-10-28T21:41:01.810187+00:00",
   "horizon_days": 0,
   "forecast_mean": 72.5,
   "sigma": 2.445,
@@ -466,7 +466,10 @@
       "market_prob": 0.9885,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.99
+      "sell_value": 0.99,
+      "won": true,
+      "pnl_units": 0.35,
+      "user_entered": false
     },
     {
       "market_id": "6181530",
@@ -482,7 +485,10 @@
       "market_prob": 0.0115,
       "role": "scenario_hedge",
       "units": 0.23,
-      "sell_value": 0.003
+      "sell_value": 0.003,
+      "won": false,
+      "pnl_units": -0.23,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.2,
@@ -497,5 +503,50 @@
   "last_price_refresh": "2026-10-27T21:52:21.251933+00:00",
   "last_lite_refresh": "2026-10-27T20:59:30.181675+00:00",
   "forecast_mean_legacy": 72.24,
-  "calibration_repaired": true
+  "calibration_repaired": true,
+  "actual_temp": 74.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.12,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6181530",
+      "question": "Will the highest temperature in Atlanta be between 74-75°F on October 27?",
+      "range": [
+        74.0,
+        75.0
+      ],
+      "side": "YES",
+      "price": 0.9885,
+      "model_prob": 0.2085,
+      "ev": -0.5129,
+      "market_prob": 0.9885,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.99,
+      "won": true,
+      "pnl_units": 0.35,
+      "user_entered": false
+    },
+    {
+      "market_id": "6181530",
+      "question": "Will the highest temperature in Atlanta be between 74-75°F on October 27? (NO)",
+      "range": [
+        74.0,
+        75.0
+      ],
+      "side": "NO",
+      "price": 0.0115,
+      "model_prob": 0.7915,
+      "ev": 44.087,
+      "market_prob": 0.0115,
+      "role": "scenario_hedge",
+      "units": 0.23,
+      "sell_value": 0.003,
+      "won": false,
+      "pnl_units": -0.23,
+      "user_entered": false
+    }
+  ]
 }

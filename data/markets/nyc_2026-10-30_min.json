@@ -1,0 +1,102 @@
+{
+  "city": "nyc",
+  "city_name": "New York",
+  "date": "2026-10-30",
+  "unit": "F",
+  "status": "open",
+  "market_type": "min",
+  "created_at": "2026-10-28T21:41:01.810187+00:00",
+  "committed_allocation": null,
+  "hours_left": 54.3,
+  "time_status": "local_day_open",
+  "local_day_end_utc": "2026-10-31T04:00:00+00:00",
+  "event_end_date": "2026-10-30T12:00:00Z",
+  "last_scan": "2026-10-28T21:41:01.810187+00:00",
+  "horizon_days": 2,
+  "forecast_mean": 53.89,
+  "sigma": 1.414,
+  "full_distribution": [
+    {
+      "question": "Will the lowest temperature in New York City be between 54-55°F on October 30?",
+      "market_id": "6335481",
+      "range": [
+        54.0,
+        55.0
+      ],
+      "yes_price": 0.4,
+      "no_price": 0.675,
+      "volume": 611.0,
+      "spread": 0.0,
+      "yes_token_id": "21998113218344138689697664026139428734361129197625696024644993884726994783207",
+      "no_token_id": "74830804628885355938614055355467790678921428509463660382040212437089747224048",
+      "model_prob": 0.4718,
+      "side": "YES",
+      "ask": 0.4,
+      "market_prob": 0.4,
+      "belief_prob": 0.4467,
+      "ev": 0.1167,
+      "kelly": 0.0353,
+      "sell_value": null,
+      "scan6h_model_prob": 0.4718,
+      "prev_scan6h_model_prob": 0.4718,
+      "prev_model_prob": 0.4718,
+      "model_prob_6h_change": 0.0,
+      "model_prob_change": 0.0,
+      "model_prob_pct_change": 0.0,
+      "scan6h_yes_price": 0.325,
+      "prev_scan6h_yes_price": 0.325,
+      "prev_yes_price": 0.45,
+      "yes_price_10m_change": -0.05,
+      "yes_price_10m_pct_change": -11.1,
+      "yes_price_6h_change": 0.075,
+      "yes_price_6h_pct_change": 23.1,
+      "yes_price_change": -0.05,
+      "yes_price_pct_change": -11.1,
+      "prev_10m_yes_price": 0.45
+    }
+  ],
+  "live_allocation": [
+    {
+      "market_id": "6335481",
+      "question": "Will the lowest temperature in New York City be between 54-55°F on October 30?",
+      "range": [
+        54.0,
+        55.0
+      ],
+      "side": "YES",
+      "price": 0.325,
+      "model_prob": 0.4718,
+      "ev": 0.2935,
+      "market_prob": 0.325,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.27
+    },
+    {
+      "market_id": "6335481",
+      "question": "Will the lowest temperature in New York City be between 54-55°F on October 30? (NO)",
+      "range": [
+        54.0,
+        55.0
+      ],
+      "side": "NO",
+      "price": 0.675,
+      "model_prob": 0.5282,
+      "ev": -0.1413,
+      "market_prob": 0.675,
+      "role": "scenario_hedge",
+      "units": 41.54,
+      "sell_value": 0.62
+    }
+  ],
+  "total_allocated_units": 71.5,
+  "portfolio_score": 0.076915,
+  "worst_case_loss_frac": 0.1,
+  "best_case_pnl_units": 20.77,
+  "worst_case_pnl_units": -10.0,
+  "success_probability": 0.6199,
+  "confidence": 1.0,
+  "balance_units": 100,
+  "strategy_version": "auto-0f00f0b73d4fe276",
+  "last_price_refresh": "2026-10-28T22:37:22.278820+00:00"
+}
