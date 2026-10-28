@@ -3,14 +3,14 @@
   "city_name": "Mexico City",
   "date": "2026-10-27",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-10-27T20:46:45.023927+00:00",
   "committed_allocation": null,
-  "hours_left": 8.3,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-28T06:00:00+00:00",
   "event_end_date": "2026-10-27T12:00:00Z",
-  "last_scan": "2026-10-27T21:43:38.249062+00:00",
+  "last_scan": "2026-10-28T21:41:01.810187+00:00",
   "horizon_days": 0,
   "forecast_mean": 23.63,
   "sigma": 1.946,
@@ -466,7 +466,10 @@
       "market_prob": 0.585,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.1
+      "sell_value": 0.1,
+      "won": false,
+      "pnl_units": -30.0,
+      "user_entered": false
     },
     {
       "market_id": "6192062",
@@ -482,7 +485,10 @@
       "market_prob": 0.415,
       "role": "scenario_hedge",
       "units": 14.19,
-      "sell_value": 0.84
+      "sell_value": 0.84,
+      "won": true,
+      "pnl_units": 20.0,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 44.2,
@@ -495,5 +501,50 @@
   "balance_units": 100,
   "strategy_version": "auto-0f00f0b73d4fe276",
   "last_price_refresh": "2026-10-27T21:52:21.251933+00:00",
-  "last_lite_refresh": "2026-10-27T20:59:30.181675+00:00"
+  "last_lite_refresh": "2026-10-27T20:59:30.181675+00:00",
+  "actual_temp": 23.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "loss",
+  "pnl_units": -10.0,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6192062",
+      "question": "Will the highest temperature in Mexico City be 24°C or higher on October 27?",
+      "range": [
+        24.0,
+        999.0
+      ],
+      "side": "YES",
+      "price": 0.585,
+      "model_prob": 0.5253,
+      "ev": -0.0663,
+      "market_prob": 0.585,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.1,
+      "won": false,
+      "pnl_units": -30.0,
+      "user_entered": false
+    },
+    {
+      "market_id": "6192062",
+      "question": "Will the highest temperature in Mexico City be 24°C or higher on October 27? (NO)",
+      "range": [
+        24.0,
+        999.0
+      ],
+      "side": "NO",
+      "price": 0.415,
+      "model_prob": 0.4747,
+      "ev": 0.0935,
+      "market_prob": 0.415,
+      "role": "scenario_hedge",
+      "units": 14.19,
+      "sell_value": 0.84,
+      "won": true,
+      "pnl_units": 20.0,
+      "user_entered": false
+    }
+  ]
 }
