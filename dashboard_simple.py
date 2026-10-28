@@ -213,13 +213,20 @@ def _build_city_form_profiles(all_markets):
         calibrated_hit_pct = round(cal_hits / len(cal_errs) * 100, 1) if len(cal_errs) >= 2 else None
 
         submodel_maes = {}
+        submodel_rmses = {}
         submodel_weights = {}
         best_submodel, worst_submodel = None, None
         best_mae, worst_mae = 999.0, -1.0
         for mname, errs in submodel_errs.items():
             if len(errs) >= 2:
-                m_mae = round(sum(errs) / len(errs), 2)
+                # وزن‌دهی نمایی (EWMA) با اولویت روزهای اخیر برای محاسبه RMSE و BMA
+                n_e = len(errs)
+                ew_w = [math.exp(-0.10 * (n_e - 1 - idx)) for idx in range(n_e)]
+                w_tot = sum(ew_w) or 1.0
+                m_mae = round(sum(e * w for e, w in zip(errs, ew_w)) / w_tot, 2)
+                m_rmse = round(math.sqrt(sum((e * e) * w for e, w in zip(errs, ew_w)) / w_tot), 2)
                 submodel_maes[mname] = m_mae
+                submodel_rmses[mname] = m_rmse
                 if m_mae < best_mae:
                     best_mae = m_mae
                     best_submodel = mname
@@ -227,10 +234,10 @@ def _build_city_form_profiles(all_markets):
                     worst_mae = m_mae
                     worst_submodel = mname
 
-        if submodel_maes:
-            inv_sum = sum(1.0 / max(0.25, v * v) for v in submodel_maes.values())
-            for mname, v in submodel_maes.items():
-                submodel_weights[mname] = round((1.0 / max(0.25, v * v)) / inv_sum, 3)
+        if submodel_rmses:
+            inv_sum = sum(1.0 / (v * v + 0.15) for v in submodel_rmses.values())
+            for mname, v in submodel_rmses.items():
+                submodel_weights[mname] = round((1.0 / (v * v + 0.15)) / inv_sum, 3)
 
         sign_flip = bool(
             old_bias is not None and abs(old_bias) >= 0.45 and abs(r_bias) >= 0.45 and (old_bias * r_bias < 0)
@@ -300,51 +307,157 @@ def _enrich_market_with_smart_gate(m, profile):
     f_cal = m.get("forecast_mean")
     f_sh = m.get("forecast_mean_shadow")
     models_raw = m.get("model_means_raw") or {}
-    sigma = float(m.get("sigma") or (1.8 if m.get("unit") == "F" else 1.2))
+    unit = m.get("unit") or "C"
+    base_sigma = float(m.get("sigma") or (1.8 if unit == "F" else 1.2))
     smart_mean = f_cal
+
+    # ۱) وزن‌دهی بیزین پویا (Dynamic BMA) و انحراف معیار پویا (Dynamic Sigma)
+    bma_weights = (profile.get("submodel_weights") if profile else None) or {}
+    valid_models = {mk: float(mv) for mk, mv in models_raw.items() if mv is not None}
+    bma_mean = None
+    model_spread = m.get("model_spread")
+
+    if valid_models:
+        w_sum, v_sum = 0.0, 0.0
+        for mk, mv in valid_models.items():
+            w = float(bma_weights.get(mk, 1.0 / len(valid_models)))
+            v_sum += mv * w
+            w_sum += w
+        if w_sum > 0:
+            bma_mean = v_sum / w_sum
+            if model_spread is None and len(valid_models) >= 2:
+                var_s = sum((float(bma_weights.get(mk, 1.0 / len(valid_models))) / w_sum) * ((mv - bma_mean) ** 2) for mk, mv in valid_models.items())
+                model_spread = round(math.sqrt(max(0.0, var_s)), 3)
+
+    m["model_spread"] = model_spread
 
     if profile and f_cal is not None:
         gd = profile["gate_decision"]
         if gd == "revert_to_shadow" and f_sh is not None:
             smart_mean = round(float(f_sh), 2)
-        elif gd == "smart_submodel_blend" and models_raw:
-            w_sum, v_sum = 0.0, 0.0
-            for mk, mv in models_raw.items():
-                if mv is not None:
-                    w = profile["submodel_weights"].get(mk, 0.25)
-                    v_sum += float(mv) * w
-                    w_sum += w
-            if w_sum > 0:
-                smart_mean = round(0.5 * float(f_cal) + 0.5 * (v_sum / w_sum), 2)
+        elif gd == "smart_submodel_blend" and bma_mean is not None:
+            smart_mean = round(0.45 * float(f_cal) + 0.55 * float(bma_mean), 2)
         elif gd == "sign_flip_damped":
             if f_sh is not None:
                 smart_mean = round(0.5 * float(f_cal) + 0.5 * float(f_sh), 2)
             else:
                 smart_mean = round(float(f_cal) + profile["recent_bias"] * 0.4, 2)
+        elif bma_mean is not None:
+            smart_mean = round(0.65 * float(f_cal) + 0.35 * float(bma_mean), 2)
+
+    # تعدیل پویا بر اساس واگرایی زیرمدل‌ها (Dynamic Sigma)
+    sigma = base_sigma
+    if model_spread is not None and model_spread > 0:
+        spread_thresh = 1.1 if unit == "F" else 0.6
+        if model_spread > spread_thresh:
+            infl = min(0.50, 0.22 * (model_spread - spread_thresh))
+            sigma = round(base_sigma * (1.0 + infl), 2)
 
     m["smart_forecast_mean"] = smart_mean
     m["smart_sigma"] = sigma
 
+    is_min = (m.get("market_type") == "min")
+    obs_bound = m.get("observed_intraday_temp")
+    comp_sigma = max(0.55 if unit == "C" else 0.95, sigma * 0.78)
+    raw_consensus = (sum(valid_models.values()) / len(valid_models)) if valid_models else None
+    cal_shift = (float(smart_mean) - raw_consensus) if (smart_mean is not None and raw_consensus is not None) else 0.0
+
     full_dist = m.get("full_distribution") or []
     if full_dist and smart_mean is not None:
         raw_probs = []
+        eliminated_flags = []
         for b in full_dist:
             rng = b.get("range") or [-999, 999]
             low, high = rng[0], rng[1]
+
+            # ۲) فیلتر کف/سقف دمای واقعی ثبت‌شده در روز جاری (Intraday METAR Floor/Ceiling)
+            already_elim = bool(b.get("intraday_eliminated", False))
+            if not already_elim and obs_bound is not None:
+                try:
+                    ob_val = float(obs_bound)
+                    if not is_min and high < 998 and (high + 0.49) < ob_val:
+                        already_elim = True
+                    elif is_min and low > -998 and (low - 0.49) > ob_val:
+                        already_elim = True
+                except Exception:
+                    pass
+
+            if already_elim:
+                eliminated_flags.append(True)
+                raw_probs.append(0.0)
+                continue
+
+            eliminated_flags.append(False)
             c_high = 1.0 if high >= 998 else _student_t_cdf5((high + 0.5 - smart_mean) / sigma)
             c_low = 0.0 if low <= -998 else _student_t_cdf5((low - 0.5 - smart_mean) / sigma)
-            raw_probs.append(max(0.0005, c_high - c_low))
-        p_sum = sum(raw_probs) or 1.0
+            p_cons = max(0.0005, c_high - c_low)
+
+            # ۳) توزیع ترکیبی چندمدلی (Multi-Model Mixture / GMM) برای حفظ دوکوهانگی
+            if len(valid_models) >= 2:
+                p_mix_sub = 0.0
+                w_tot = 0.0
+                for mk, mv in valid_models.items():
+                    w = float(bma_weights.get(mk, 1.0 / len(valid_models)))
+                    m_loc = mv + cal_shift
+                    ch_m = 1.0 if high >= 998 else _student_t_cdf5((high + 0.5 - m_loc) / comp_sigma)
+                    cl_m = 0.0 if low <= -998 else _student_t_cdf5((low - 0.5 - m_loc) / comp_sigma)
+                    p_mix_sub += w * max(0.0005, ch_m - cl_m)
+                    w_tot += w
+                if w_tot > 0:
+                    p_mix_sub /= w_tot
+                    p_final = 0.55 * p_cons + 0.45 * p_mix_sub
+                else:
+                    p_final = p_cons
+            else:
+                p_final = p_cons
+
+            raw_probs.append(max(0.0005, p_final))
+
+        p_sum = sum(raw_probs)
         best_id, best_belief = None, -1.0
         for idx, b in enumerate(full_dist):
-            smp = round(raw_probs[idx] / p_sum, 4)
+            is_elim = eliminated_flags[idx]
+            b["intraday_eliminated"] = is_elim
+            if is_elim:
+                smp = 0.0
+            elif p_sum > 0:
+                smp = round(raw_probs[idx] / p_sum, 4)
+            else:
+                smp = round(float(b.get("model_prob") or 0.0), 4)
+
             yp = float(b.get("yes_price") or b.get("ask") or 0.001)
-            sbp = round(0.5 * smp + 0.5 * yp, 4)
-            sev = round((sbp - yp) / yp, 4) if yp > 0.001 else b.get("ev")
+            best_bid = b.get("best_bid")
+            best_ask = b.get("best_ask")
+            spread = b.get("bid_ask_spread")
+            if spread is None and best_bid is not None and best_ask is not None:
+                try:
+                    spread = round(max(0.0, float(best_ask) - float(best_bid)), 4)
+                except Exception:
+                    spread = 0.0
+            b["bid_ask_spread"] = spread or 0.0
+
+            # ۴) جریمه اسپرد اردربوک و محاسبه پتانسیل رشد نوسان‌گیری (Swing Upside)
+            eff_ask = float(b.get("effective_ask") or yp)
+            if spread and spread > 0.03 and eff_ask <= yp:
+                eff_ask = min(0.99, round(yp + 0.35 * (spread - 0.03), 4))
+
+            if is_elim:
+                sbp = 0.0
+                sev = -1.0
+                swing_edge = round(-yp, 4)
+                swing_upside_pct = -100.0
+            else:
+                sbp = round(0.5 * smp + 0.5 * yp, 4)
+                sev = round((sbp - eff_ask) / eff_ask, 4) if eff_ask > 0.001 else b.get("ev")
+                swing_edge = round(smp - yp, 4)
+                swing_upside_pct = round((swing_edge / yp) * 100.0, 1) if yp >= 0.01 else 0.0
+
             b["smart_model_prob"] = smp
             b["smart_belief_prob"] = sbp
             b["smart_ev"] = sev
-            if sbp > best_belief:
+            b["swing_edge"] = swing_edge
+            b["swing_upside_pct"] = swing_upside_pct
+            if not is_elim and sbp > best_belief:
                 best_belief = sbp
                 best_id = str(b.get("market_id"))
         m["smart_main_market_id"] = best_id
@@ -506,8 +619,7 @@ tr:last-child td{border-bottom:none}
     <span class="brand-meta">آخرین آپدیت: LASTUPDATE (ایران) | <span class="time-note relative-time" data-ts="LASTSCANISO" data-kind="LASTSCANKIND">LASTSCANFALLBACK</span></span>
   </div>
   <div class="nav-tabs">
-    <button id="tabBtnSimple" class="tab-btn active-blue" onclick="switchTab('simple')">داشبورد ساده (Simple)</button>
-    <button id="tabBtnPro" class="tab-btn" onclick="switchTab('pro')">داشبورد پیشرفته (v3 Pro)</button>
+    <button id="tabBtnSimple" class="tab-btn active-blue" onclick="switchTab('simple')">داشبورد ساده (نوسان‌گیری باکت‌ها)</button>
     <button id="tabBtnAccuracy" class="tab-btn" onclick="switchTab('accuracy')">📊 دقت شهرها و کالیبراسیون هوشمند</button>
     <button id="refreshBtn" class="refresh-btn" onclick="refreshDashboardNow()">↻ بروزرسانی</button>
   </div>
@@ -518,8 +630,8 @@ tr:last-child td{border-bottom:none}
   <div id="view-simple">
     <div class="smart-bar">
       <div>
-        <b style="font-size:13.5px">🛡️ گیت کالیبراسیون هوشمند ۱۴ روزه + ردیابی دوگانه تغییرات (۱۰ دقیقه‌ای و ۶ ساعته)</b>
-        <div style="font-size:11.5px;color:var(--text-dim)">در هر آپدیت سبک و سنگین، درصد تغییرات احتمال مدل، احتمال بازار و قیمت YES در داخل پرانتز (نسبت به اسکن ۱۰ دقیقه‌ای قبلی و اسکن ۶ ساعته قبلی) نمایش داده می‌شود.</div>
+        <b style="font-size:13.5px">🛡️ موتور نوسان‌گیری پیش از Resolve (ترکیب بیزین BMA + توزیع چندمدلی GMM + فیلتر زنده METAR + مشاور سیو سود)</b>
+        <div style="font-size:11.5px;color:var(--text-dim)">طراحی‌شده ویژهٔ شکار باکت‌های جامانده از ارزش منصفانه مدل و سیو سود پیش از تسویه نهایی (بدون قمار صفر و صدی روی Resolve).</div>
       </div>
       <div class="smart-toggles">
         <label class="toggle-label" style="border-color:#16a34a66">
@@ -565,12 +677,7 @@ tr:last-child td{border-bottom:none}
     </div>
   </div>
 
-  <!-- TAB 2: PRO TERMINAL DASHBOARD -->
-  <div id="view-pro" style="display:none">
-    PRO_TAB_HTML
-  </div>
-
-  <!-- TAB 3: ACCURACY & SMART CALIBRATION -->
+  <!-- TAB 2: ACCURACY & SMART CALIBRATION -->
   <div id="view-accuracy" style="display:none">
     ACCURACY_TAB_HTML
   </div>
@@ -579,16 +686,12 @@ tr:last-child td{border-bottom:none}
 <script>
 function switchTab(mode) {
   var vs = document.getElementById('view-simple');
-  var vp = document.getElementById('view-pro');
   var va = document.getElementById('view-accuracy');
   var bs = document.getElementById('tabBtnSimple');
-  var bp = document.getElementById('tabBtnPro');
   var ba = document.getElementById('tabBtnAccuracy');
   vs.style.display = (mode === 'simple') ? '' : 'none';
-  if (vp) vp.style.display = (mode === 'pro') ? '' : 'none';
   va.style.display = (mode === 'accuracy') ? '' : 'none';
   bs.className = (mode === 'simple') ? 'tab-btn active-blue' : 'tab-btn';
-  if (bp) bp.className = (mode === 'pro') ? 'tab-btn active-blue' : 'tab-btn';
   ba.className = (mode === 'accuracy') ? 'tab-btn active-purple' : 'tab-btn';
 }
 function refreshDashboardNow() {
@@ -907,16 +1010,18 @@ def _format_pct_paren(pct_val, pct_6h_val=None):
 
 
 def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locked_keys, main_signal_id, market_type="max"):
-    """جدول باکت‌ها همراه با نمایش دقیق تغییرات درصدی در داخل پرانتز (۱۰ دقیقه‌ای و ۶ ساعته)."""
+    """جدول باکت‌ها همراه با تغییرات درصدی (۱۰ دقیقه‌ای و ۶ ساعته)، اسپرد اردربوک،
+    وضعیت حذف زنده METAR و پتانسیل نوسان‌گیری تا ارزش منصفانه مدل."""
     if not full_distribution:
         return '<div class="empty">داده‌ای موجود نیست.</div>'
 
     rows = [
-        "<table><tr><th>باکت</th><th>احتمال مدل</th><th>احتمال بازار (YES)</th>"
-        "<th>قیمت YES</th><th>باور نهایی</th><th>EV</th><th>عملیات</th></tr>"
+        "<table><tr><th>باکت</th><th>احتمال مدل (GMM+BMA)</th><th>احتمال بازار (YES)</th>"
+        "<th>قیمت YES و اسپرد</th><th>باور نهایی</th><th>EV</th><th>پتانسیل نوسان‌گیری / هدف مدل</th><th>عملیات</th></tr>"
     ]
     has_visible = False
     for b in full_distribution:
+        is_elim = bool(b.get("intraday_eliminated", False))
         is_plausible = max(b.get("smart_model_prob") or b.get("model_prob") or 0.0, b.get("yes_price") or 0.0) >= BUCKET_PLAUSIBILITY_MIN
         if is_plausible:
             has_visible = True
@@ -973,6 +1078,17 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
         if yes_price is not None and (p_10m_pct is not None or p_6h_pct is not None):
             price_str += _format_pct_paren(p_10m_pct, p_6h_pct)
 
+        best_bid = b.get("best_bid")
+        best_ask = b.get("best_ask")
+        spread = float(b.get("bid_ask_spread") or 0.0)
+        if best_bid is not None and best_ask is not None:
+            sp_c = round(spread * 100)
+            sp_color = "var(--amber)" if sp_c >= 5 else "var(--text-dim)"
+            price_str += (
+                f'<div style="font-size:10px;color:{sp_color};margin-top:2px;direction:ltr">'
+                f'Bid/Ask: {round(float(best_bid)*100)}¢/{round(float(best_ask)*100)}¢ (اسپرد {sp_c}¢)</div>'
+            )
+
         belief_val = b.get("smart_belief_prob") if b.get("smart_belief_prob") is not None else b.get("belief_prob")
         belief_str = f"{belief_val * 100:.1f}%" if belief_val is not None else "-"
 
@@ -985,11 +1101,28 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
             ev_sign = "+" if ev_pct > 0 else ""
             ev_str = f'<span class="{ev_css}">{ev_sign}{ev_pct:.1f}%</span>' if ev_css else f"{ev_pct:.1f}%"
 
+        # ستون پتانسیل نوسان‌گیری و هدف ارزش منصفانه مدل (ویژه سیو سود پیش از Resolve)
+        fair_c = round(float(model_prob) * 100) if model_prob is not None else None
+        curr_c = round(float(yes_price) * 100) if yes_price is not None else None
+        if is_elim:
+            swing_html = '<span class="signal-badge" style="background:var(--red-bg);color:var(--red);border-color:#dc262655">❌ رد شده با دمای فعلی (METAR)</span>'
+        elif fair_c is not None and curr_c is not None:
+            diff_fair = fair_c - curr_c
+            upside_pct = round((diff_fair / max(1, curr_c)) * 100)
+            if fair_c >= 8 and curr_c >= 2 and diff_fair >= 5:
+                swing_html = f'<span class="signal-badge signal-green">🎯 مستعد رشد تا {fair_c}¢ (+{upside_pct}%)</span>'
+            elif curr_c >= 8 and curr_c >= fair_c + 4:
+                swing_html = f'<span class="signal-badge" style="background:var(--amber-bg);color:var(--amber);border-color:#b4530955">💰 اشباع قیمت (ارزش مدل: {fair_c}¢)</span>'
+            else:
+                swing_html = f'<span style="font-size:11.5px;color:var(--text-dim)">ارزش مدل: <b>{fair_c}¢</b></span>'
+        else:
+            swing_html = "-"
+
         market_id = str(b.get("market_id", ""))
         yes_token = b.get("yes_token_id", "")
 
-        is_main = main_signal_id is not None and market_id == main_signal_id
-        label_html = f'<span class="ltr-inline">{label}</span> ' + _signal_badge_html(is_main, ev_val)
+        is_main = (not is_elim) and main_signal_id is not None and market_id == main_signal_id
+        label_html = f'<span class="ltr-inline">{label}</span> ' + (_signal_badge_html(is_main, ev_val) if not is_elim else "")
 
         is_locked = (city_slug, date, market_id) in locked_keys
         action_html = ""
@@ -1016,7 +1149,8 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
         row_cls = "" if is_plausible else " class='low-plausibility-row' style='display:none'"
         rows.append(
             f"<tr{row_cls}><td>{label_html}</td><td class='ltr-inline'>{model_str}</td><td class='ltr-inline'>{market_str}</td>"
-            f"<td class='ltr-inline'>{price_str}</td><td class='ltr-inline'>{belief_str}</td><td class='ltr-inline'>{ev_str}</td><td>{action_html}</td></tr>"
+            f"<td class='ltr-inline'>{price_str}</td><td class='ltr-inline'>{belief_str}</td><td class='ltr-inline'>{ev_str}</td>"
+            f"<td>{swing_html}</td><td>{action_html}</td></tr>"
         )
     if not has_visible:
         return '<div class="empty">داده‌ای موجود نیست.</div>'
@@ -1056,6 +1190,7 @@ def _locked_signals_section_html(locks):
         city = l.get("city", "")
         date = l.get("date", "")
         is_min = l.get("market_type") == "min"
+        side = l.get("side", "YES")
 
         mkt = _load_market_by_key_min(city, date) if is_min else _load_market_by_key(city, date)
         if mkt is not None and mkt.get("status") in RESOLVED_LIKE_STATUSES:
@@ -1065,6 +1200,13 @@ def _locked_signals_section_html(locks):
         unit_sym = mkt.get("unit", "") if mkt else ""
         bucket_label = _find_locked_bucket_label(mkt, l.get("market_id"), unit_sym)
 
+        bucket_obj = None
+        if mkt:
+            for b in mkt.get("full_distribution", []) or []:
+                if str(b.get("market_id")) == str(l.get("market_id")):
+                    bucket_obj = b
+                    break
+
         name = LOCATIONS.get(city, {}).get("name", city)
         link = _build_polymarket_url_min(city, date) if is_min else _build_polymarket_url(city, date)
         name_html = f'<a href="{link}" target="_blank" rel="noopener">{name}</a>'
@@ -1072,14 +1214,46 @@ def _locked_signals_section_html(locks):
         entry = l.get("entry_price")
         entry_str = f"{entry:.3f}" if entry is not None else "-"
         last = l.get("last_price")
+        if last is None and bucket_obj is not None and bucket_obj.get("yes_price") is not None:
+            yp_b = float(bucket_obj["yes_price"])
+            last = (1.0 - yp_b) if side == "NO" else yp_b
         last_str = f"{last:.3f}" if last is not None else "-"
 
         pct = l.get("last_pct")
+        if pct is None and entry and last is not None and float(entry) > 0:
+            pct = round(((float(last) - float(entry)) / float(entry)) * 100.0, 1)
         if pct is None:
             pct_html = "-"
         else:
             css = "win" if pct >= 0 else "loss"
             pct_html = f'<span class="{css}">{pct:+.1f}%</span>'
+
+        # مشاور هوشمند سیو سود و مقایسه با ارزش منصفانه مدل
+        raw_mp = (bucket_obj.get("smart_model_prob") or bucket_obj.get("model_prob")) if bucket_obj else None
+        is_elim = bool(bucket_obj.get("intraday_eliminated", False)) if bucket_obj else False
+        entry_c = round(float(entry) * 100) if entry is not None else None
+        curr_c = round(float(last) * 100) if last is not None else None
+        if raw_mp is not None:
+            fair_p = (1.0 - float(raw_mp)) if side == "NO" else float(raw_mp)
+            fair_c = round(fair_p * 100)
+        else:
+            fair_c = l.get("model_fair_cents")
+
+        if is_elim and side == "YES":
+            advisor_html = '<span class="signal-badge" style="background:var(--red-bg);color:var(--red);border-color:#dc262655">🚨 خروج فوری (رد شده با METAR)</span>'
+        elif fair_c is not None and curr_c is not None and entry_c is not None:
+            if curr_c > entry_c and curr_c >= fair_c and (pct or 0) >= 10:
+                advisor_html = f'<span class="signal-badge signal-green">💰 پیشنهاد سیو سود قطعی! (هدف مدل: {fair_c}¢)</span>'
+            elif (pct or 0) >= 20:
+                advisor_html = f'<span class="signal-badge signal-green">🎯 در ناحیه سیو سود (ارزش مدل: {fair_c}¢)</span>'
+            elif fair_c <= entry_c - 5 and fair_c < curr_c:
+                advisor_html = f'<span class="signal-badge" style="background:var(--amber-bg);color:var(--amber);border-color:#b4530955">⚠️ تضعیف مدل به {fair_c}¢ (زیر ورود)</span>'
+            elif fair_c >= curr_c + 4:
+                advisor_html = f'<span class="signal-badge signal-blue">⏳ نگهداری تا هدف مدل: {fair_c}¢ (+{fair_c - curr_c}¢)</span>'
+            else:
+                advisor_html = f'<span style="font-size:11.5px;color:var(--text-dim)">ارزش منصفانه مدل: <b>{fair_c}¢</b></span>'
+        else:
+            advisor_html = "-"
 
         last_checked = l.get("last_checked_at")
         if last_checked:
@@ -1099,7 +1273,7 @@ def _locked_signals_section_html(locks):
         visible_rows.append(
             f"<tr><td>{name_html}</td><td>{date}</td><td>{bucket_label}</td>"
             f"<td>{entry_str}</td><td>{last_str}</td><td>{pct_html}</td>"
-            f"<td>{time_str}</td><td>{updated_html}</td><td>{action_html}</td></tr>"
+            f"<td>{advisor_html}</td><td>{time_str}</td><td>{updated_html}</td><td>{action_html}</td></tr>"
         )
 
     if not visible_rows:
@@ -1108,14 +1282,14 @@ def _locked_signals_section_html(locks):
     rows = [
         "<table><tr><th>شهر</th><th>تاریخ</th><th>دمای سیگنال قفل‌شده</th>"
         "<th>قیمت قفل‌شده</th><th>قیمت فعلی</th><th>درصد تغییر</th>"
-        "<th>تا پایان روز محلی</th><th>آخرین به‌روزرسانی</th><th>عملیات</th></tr>"
+        "<th>مشاور سیو سود و ارزش مدل</th><th>تا پایان روز محلی</th><th>آخرین به‌روزرسانی</th><th>عملیات</th></tr>"
     ] + visible_rows
     rows.append("</table>")
     table_html = "".join(rows)
 
     return (
         "<details class='city-block locked-section' open>"
-        f"<summary><b>\U0001F512 سیگنال‌های قفل‌شدهٔ فعال</b> ({len(visible_rows)})</summary>"
+        f"<summary><b>\U0001F512 سیگنال‌های قفل‌شدهٔ فعال و مشاور سیو سود</b> ({len(visible_rows)})</summary>"
         f"<div class='table-scroll'>{table_html}</div>"
         "</details>"
     )
@@ -1125,11 +1299,14 @@ def _submodel_bar_html(m):
     models_raw = m.get("model_means_raw") or {}
     prof = m.get("city_form")
     unit_sym = m.get("unit", "")
-    if not models_raw and not prof:
+    model_spread = m.get("model_spread")
+    obs_temp = m.get("observed_intraday_temp")
+    if not models_raw and not prof and obs_temp is None:
         return ""
     chips = []
     best_m = prof.get("best_submodel") if prof else None
     worst_m = prof.get("worst_submodel") if prof else None
+    weights = (prof.get("submodel_weights") if prof else None) or {}
     for mname, mval in models_raw.items():
         if mval is None:
             continue
@@ -1138,8 +1315,13 @@ def _submodel_bar_html(m):
             cls += " sm-best"
         elif worst_m == mname and best_m != mname:
             cls += " sm-worst"
-        chips.append(f'<span class="{cls}">{mname.upper()}: {float(mval):.1f}{unit_sym}</span>')
-    left_html = f"<div><b>زیرمدل‌های هواشناسی:</b> {''.join(chips)}</div>" if chips else ""
+        w_pct = f" ({round(float(weights[mname])*100)}%)" if mname in weights else ""
+        chips.append(f'<span class="{cls}">{mname.upper()}: {float(mval):.1f}{unit_sym}{w_pct}</span>')
+    if model_spread is not None and float(model_spread) > 0:
+        chips.append(f'<span class="sm-chip" style="border-color:#9333ea55;color:var(--purple)">پراکندگی مدل‌ها: ±{float(model_spread):.2f}{unit_sym}</span>')
+    if obs_temp is not None:
+        chips.append(f'<span class="sm-chip" style="background:var(--amber-bg);color:var(--amber);border-color:#b4530955;font-weight:700">🌡️ دمای ثبت‌شده امروز (METAR): {float(obs_temp):.1f}{unit_sym}</span>')
+    left_html = f"<div><b>زیرمدل‌ها (وزن BMA):</b> {''.join(chips)}</div>" if chips else ""
     right_html = f"<div>💡 <b>وضعیت گیت:</b> {prof['gate_reason']}</div>" if prof else ""
     return f'<div class="submodel-bar">{left_html}{right_html}</div>'
 
@@ -1156,12 +1338,16 @@ def _date_block_common_html(m, city_slug, city_name, locked_keys, market_type="m
 
     f_legacy = m.get("forecast_mean")
     f_smart = m.get("smart_forecast_mean", f_legacy)
+    s_sigma = m.get("smart_sigma", m.get("sigma"))
+    obs_temp = m.get("observed_intraday_temp")
     mean_html = ""
     if f_smart is not None:
         corr_html = ""
         if f_legacy is not None and abs(float(f_smart) - float(f_legacy)) >= 0.08:
-            corr_html = f' <span style="color:var(--purple);font-weight:600">← اصلاح از {float(f_legacy):.1f}{unit_sym}</span>'
-        mean_html = f' <span style="font-size:12px;color:var(--text-dim)">(پیش‌بینی هوشمند: <b class="ltr-inline" style="color:var(--text)">{float(f_smart):.1f}{unit_sym}</b>{corr_html})</span>'
+            corr_html = f' <span style="color:var(--purple);font-weight:600">← اصلاح BMA از {float(f_legacy):.1f}{unit_sym}</span>'
+        sigma_html = f' | σ={float(s_sigma):.2f}' if s_sigma is not None else ''
+        obs_html = f' | <b style="color:var(--amber)">ثبت‌شده امروز: {float(obs_temp):.1f}{unit_sym}</b>' if obs_temp is not None else ''
+        mean_html = f' <span style="font-size:12px;color:var(--text-dim)">(پیش‌بینی هوشمند: <b class="ltr-inline" style="color:var(--text)">{float(f_smart):.1f}{unit_sym}</b>{corr_html}{sigma_html}{obs_html})</span>'
 
     summary = (
         f'<a href="{link}" target="_blank" rel="noopener">{city_name} ↗</a> \u2014 {date}'
@@ -1540,7 +1726,6 @@ def build_simple_dashboard():
 
     history_html, history_city_options, history_date_options = _history_table_html(locks)
     daily_pnl_html = _daily_pnl_section_html(locks)
-    pro_tab_html = _build_pro_tab_html(all_max + all_min, markets, min_markets, profiles)
     accuracy_tab_html = _build_accuracy_tab_html(profiles)
 
     scan_iso, scan_kind = _latest_scan_info()
@@ -1557,7 +1742,6 @@ def build_simple_dashboard():
     html = html.replace("HISTORYHTML", history_html)
     html = html.replace("HISTORYCITYOPTIONS", history_city_options)
     html = html.replace("HISTORYDATEOPTIONS", history_date_options)
-    html = html.replace("PRO_TAB_HTML", pro_tab_html)
     html = html.replace("ACCURACY_TAB_HTML", accuracy_tab_html)
     html = html.replace("GITHUB_REPO_PLACEHOLDER", GITHUB_REPO)
 

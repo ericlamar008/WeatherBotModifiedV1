@@ -158,6 +158,23 @@ def fuse_belief(model_prob, market_prob, params):
     w = params["belief_model_weight"]
     return round(w * model_prob + (1.0 - w) * market_prob, 4)
 
+def _effective_entry_price(display_price, best_bid, best_ask):
+    """اعمال جریمهٔ اسپرد اردربوک (Bid-Ask Spread Penalty):
+    اگر اسپرد بین بهترین خریدار (Bid) و بهترین فروشنده (Ask) باز باشد، قیمت مؤثر ورود
+    به سمت Best Ask تعدیل می‌شود تا باکت‌های کم‌عمق با اسپرد باز EV کاذب نگیرند."""
+    if display_price is None or display_price <= 0 or display_price >= 1:
+        return display_price, 0.0
+    if best_bid is not None and best_ask is not None and 0 <= best_bid <= best_ask < 1:
+        spread = round(float(best_ask) - float(best_bid), 4)
+        # اگر اسپرد بیش از ۳ سنت باشد، بخشی از اسپرد به عنوان هزینهٔ ورود و خروج نوسان‌گیری لحاظ می‌شود
+        if spread > 0.03:
+            penalty = min(0.08, (spread - 0.03) * 0.55)
+            eff = min(0.99, max(float(display_price), float(display_price) + penalty))
+            return round(eff, 4), spread
+        return float(display_price), spread
+    return float(display_price), 0.0
+
+
 def build_candidate_set(outcomes_with_prob, params):
     candidates = []
     kf = params["kelly_fraction"]
@@ -165,28 +182,48 @@ def build_candidate_set(outcomes_with_prob, params):
         model_p = b.get("model_prob")
         if model_p is None:
             continue
+        eliminated = bool(b.get("intraday_eliminated"))
         yes_price = b.get("yes_price")
         no_price = b.get("no_price")
+        best_bid = b.get("best_bid")
+        best_ask = b.get("best_ask")
+        eff_yes_price, spread_yes = _effective_entry_price(yes_price, best_bid, best_ask)
         market_p_yes = yes_price if (yes_price is not None and 0 < yes_price < 1) else None
-        belief_yes = fuse_belief(model_p, market_p_yes, params)
+        belief_yes = 0.0 if eliminated else fuse_belief(model_p, market_p_yes, params)
         if yes_price is not None and 0 < yes_price < 1 and belief_yes is not None:
+            ev_yes = -1.0 if eliminated else calc_ev(belief_yes, eff_yes_price)
+            kelly_yes = 0.0 if eliminated else calc_kelly(belief_yes, eff_yes_price, kf)
+            swing_edge = round(float(model_p) - float(eff_yes_price), 4)
+            swing_upside_pct = (
+                round((float(model_p) - float(eff_yes_price)) / float(eff_yes_price) * 100.0, 1)
+                if float(eff_yes_price) >= 0.01 else 0.0
+            )
             candidates.append({
                 **b, "side": "YES", "ask": yes_price,
+                "effective_ask": eff_yes_price,
+                "bid_ask_spread": spread_yes,
                 "model_prob": model_p, "market_prob": market_p_yes,
                 "belief_prob": belief_yes,
-                "ev": calc_ev(belief_yes, yes_price),
-                "kelly": calc_kelly(belief_yes, yes_price, kf),
-                "sell_value": b.get("yes_sell_value"),
+                "ev": ev_yes,
+                "kelly": kelly_yes,
+                "swing_edge": swing_edge,
+                "swing_upside_pct": swing_upside_pct,
+                "sell_value": b.get("yes_sell_value") if b.get("yes_sell_value") is not None else best_bid,
             })
         belief_no = round(1.0 - belief_yes, 4) if belief_yes is not None else None
         if no_price is not None and 0 < no_price < 1 and belief_no is not None:
+            no_bid = round(1.0 - float(best_ask), 4) if (best_ask is not None and 0 < best_ask < 1) else None
+            no_ask = round(1.0 - float(best_bid), 4) if (best_bid is not None and 0 < best_bid < 1) else None
+            eff_no_price, spread_no = _effective_entry_price(no_price, no_bid, no_ask)
             candidates.append({
                 "market_id": b["market_id"], "question": b["question"] + " (NO)",
                 "range": b["range"], "side": "NO", "ask": no_price,
+                "effective_ask": eff_no_price,
+                "bid_ask_spread": spread_no,
                 "model_prob": round(1.0 - model_p, 4), "market_prob": no_price,
-                "belief_prob": belief_no, "ev": calc_ev(belief_no, no_price),
-                "kelly": calc_kelly(belief_no, no_price, kf),
-                "sell_value": b.get("no_sell_value"),
+                "belief_prob": belief_no, "ev": calc_ev(belief_no, eff_no_price),
+                "kelly": calc_kelly(belief_no, eff_no_price, kf),
+                "sell_value": b.get("no_sell_value") if b.get("no_sell_value") is not None else no_bid,
             })
     return candidates
 

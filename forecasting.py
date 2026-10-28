@@ -75,6 +75,7 @@ import threading
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 DATA_DIR = Path("data")
 DATA_DIR.mkdir(exist_ok=True)
@@ -310,14 +311,15 @@ def _fetch_ensemble(lat, lon, tz, unit, models, forecast_days=7, variable="tempe
     return result
 
 def prefetch_ensembles(locations, max_cities=None, min_cities=None, workers=4):
-    """آدرس‌های یکتای مورد نیاز اسکن را با چند کار همزمان می‌گیرد و در حافظه می‌گذارد.
-    max_cities/min_cities: مجموعهٔ slug شهرها (None یعنی همهٔ شهرها).
-    هیچ استثنایی بیرون نمی‌دهد؛ هر شکستی فقط یعنی آن آدرس بعداً توسط خود حلقه
-    (مثل قبل) گرفته می‌شود."""
+    """آدرس‌های یکتای مورد نیاز اسکن (Open-Meteo + ایستگاه‌های METAR روز جاری D0)
+    را با چند کار همزمان می‌گیرد و در حافظه می‌گذارد تا هیچ تاخیری به حلقهٔ اسکن اضافه نشود."""
     tasks = []
+    now_utc = datetime.now(timezone.utc)
     for slug, loc in locations.items():
         args = (loc["lat"], loc["lon"], loc["tz"], loc["unit"])
-        if max_cities is None or slug in max_cities:
+        need_max = (max_cities is None or slug in max_cities)
+        need_min = (min_cities is None or slug in min_cities)
+        if need_max:
             tasks.append((get_ecmwf_ensemble, args))
             tasks.append((get_gefs_ensemble, args))
             for extra in _active_extra_models(loc):
@@ -325,9 +327,15 @@ def prefetch_ensembles(locations, max_cities=None, min_cities=None, workers=4):
                     tasks.append((get_gem_ensemble, args))
                 elif extra == "icon_eu":
                     tasks.append((get_icon_eu_ensemble, args))
-        if min_cities is None or slug in min_cities:
+        if need_min:
             tasks.append((get_ecmwf_ensemble_min, args))
             tasks.append((get_gefs_ensemble_min, args))
+        if (need_max or need_min) and loc.get("station"):
+            try:
+                local_today = now_utc.astimezone(ZoneInfo(loc["tz"])).strftime("%Y-%m-%d")
+            except Exception:
+                local_today = now_utc.strftime("%Y-%m-%d")
+            tasks.append((get_intraday_observed_bound, (loc, local_today, False)))
 
     def _run(task):
         fn, args = task
@@ -462,67 +470,172 @@ def build_combined_distribution_full(city_slug, loc, date_str):
 # فاز ۳+۴: مهارت هرمدل + میانگین وزن‌دار «سایه» (بدون اثر روی سیگنال زنده)
 # =============================================================================
 
+_MODEL_SKILL_MEM_CACHE = None
+
+
 def load_model_skill():
+    global _MODEL_SKILL_MEM_CACHE
+    if _MODEL_SKILL_MEM_CACHE is not None:
+        return _MODEL_SKILL_MEM_CACHE
     if MODEL_SKILL_FILE.exists():
         try:
-            return json.loads(MODEL_SKILL_FILE.read_text(encoding="utf-8"))
+            _MODEL_SKILL_MEM_CACHE = json.loads(MODEL_SKILL_FILE.read_text(encoding="utf-8"))
+            return _MODEL_SKILL_MEM_CACHE
         except Exception:
             return {}
     return {}
 
 
 def save_model_skill(skill):
+    global _MODEL_SKILL_MEM_CACHE
+    _MODEL_SKILL_MEM_CACHE = skill
     MODEL_SKILL_FILE.write_text(json.dumps(skill, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def get_model_weights(city_slug, model_names, min_n=MIN_MODEL_SKILL_SAMPLES):
-    """وزن‌دهی معکوس-خطا بین هر تعداد مدل. اگر حتی یکی از مدل‌های
-    خواسته‌شده مهارت کافی ثبت‌شده نداشت، None برمی‌گرداند (یعنی: میانگین
-    مساوی، نه وزن‌دهی) -- امن، هرگز یک مدل بی‌داده را با وزن نادرست جریمه
-    نمی‌کند."""
-    skill = load_model_skill().get(city_slug, {})
-    maes = {}
+_DYNAMIC_BMA_CACHE = None
+
+
+def _compute_bma_skill_from_markets():
+    """محاسبهٔ پویا و کش‌شدهٔ خطای زیرمدل‌ها (EWMA RMSE/MAE در ۳۰ روز اخیر)
+    از روی فایل‌های data/markets/*.json برای زمانی که model_skill.json کامل نیست."""
+    global _DYNAMIC_BMA_CACHE
+    if _DYNAMIC_BMA_CACHE is not None:
+        return _DYNAMIC_BMA_CACHE
+
+    result = {}
+    markets_dir = DATA_DIR / "markets"
+    if not markets_dir.exists():
+        _DYNAMIC_BMA_CACHE = result
+        return result
+
+    by_city = {}
+    for p in markets_dir.glob("*.json"):
+        try:
+            m = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if m.get("status") not in ("resolved", "resolved_no_signal"):
+            continue
+        if m.get("actual_temp") is None or not isinstance(m.get("model_means_raw"), dict):
+            continue
+        c_key = f"{m.get('city')}_min" if m.get("market_type") == "min" else str(m.get("city"))
+        by_city.setdefault(c_key, []).append(m)
+
+    for c_key, items in by_city.items():
+        items.sort(key=lambda x: str(x.get("date", "")))
+        recent = items[-30:]
+        model_names = set()
+        for m in recent:
+            model_names.update(m["model_means_raw"].keys())
+        c_skill = {}
+        for mname in model_names:
+            errs_sq, errs_abs, w_list = [], [], []
+            valid = [m for m in recent if m["model_means_raw"].get(mname) is not None]
+            if len(valid) < 3:
+                continue
+            n_val = len(valid)
+            for idx, m in enumerate(valid):
+                age = (n_val - 1) - idx
+                w = 0.90 ** age
+                err = abs(float(m["model_means_raw"][mname]) - float(m["actual_temp"]))
+                errs_abs.append(err * w)
+                errs_sq.append((err ** 2) * w)
+                w_list.append(w)
+            w_sum = sum(w_list) or 1.0
+            ewma_mae = sum(errs_abs) / w_sum
+            ewma_rmse = math.sqrt(sum(errs_sq) / w_sum)
+            c_skill[mname] = {
+                "mae": round(ewma_mae, 3),
+                "rmse": round(ewma_rmse, 3),
+                "n": n_val,
+            }
+        if c_skill:
+            result[c_key] = c_skill
+
+    _DYNAMIC_BMA_CACHE = result
+    return result
+
+
+def get_model_weights(city_slug, model_names, min_n=3, is_min=False):
+    """وزن‌دهی پویا به روش Bayesian / Inverse-RMSE² (BMA) به تفکیک هر شهر.
+    اگر برخی زیرمدل‌ها دادهٔ تاریخی کمتری داشته باشند، به جای حذف کامل وزن‌دهی،
+    میانگین خطای شهر به عنوان prior برای آن زیرمدل لحاظ می‌شود تا همیشه مدل‌های
+    دقیق‌تر آن شهر وزن بالاتری بگیرند."""
+    if not model_names:
+        return None
+    lookup_key = f"{city_slug}_min" if is_min else city_slug
+    file_skill = load_model_skill()
+    dyn_skill = _compute_bma_skill_from_markets()
+    skill = {**dyn_skill.get(city_slug, {}), **file_skill.get(city_slug, {}), **dyn_skill.get(lookup_key, {}), **file_skill.get(lookup_key, {})}
+
+    scores = {}
     for m in model_names:
         entry = skill.get(m, {})
-        mae, n = entry.get("mae"), entry.get("n", 0)
-        if mae and n >= min_n:
-            maes[m] = mae
-    if len(maes) == len(model_names) and len(maes) > 0:
-        inv = {m: 1.0 / v for m, v in maes.items()}
-        total = sum(inv.values())
-        return {m: round(v / total, 4) for m, v in inv.items()}
-    return None
+        err_metric = entry.get("rmse") or entry.get("mae")
+        n = entry.get("n", 0)
+        if err_metric and n >= min_n:
+            # Inverse-variance (1 / (RMSE^2 + 0.15)) gives sharper BMA separation
+            scores[m] = 1.0 / ((float(err_metric) ** 2) + 0.15)
+
+    if not scores:
+        return None
+
+    # اگر زیرمدل جدیدی (مثل gem یا icon_eu) هنوز به حد نصاب نرسیده، وزن میانه بگیرد
+    vals = sorted(scores.values())
+    median_score = vals[len(vals) // 2]
+    for m in model_names:
+        if m not in scores:
+            scores[m] = median_score * 0.85
+
+    total = sum(scores.values()) or 1.0
+    return {m: round(scores[m] / total, 4) for m in model_names}
 
 
-def build_shadow_mean(model_members, city_slug, horizon_days, unit):
-    """میانگین وزن‌دار «سایه» -- هر تعداد مدل در model_members (dict) را
-    قبول می‌کند. sigma دست‌نخورده می‌ماند (از build_calibrated_distribution
-    موجود). خروجی: (shadow_mean, raw_means_dict) یا (None, {})."""
+def compute_model_spread(raw_means, weights=None):
+    """محاسبهٔ واگرایی (Spread) بین زیرمدل‌ها برای کالیبراسیون پویای Sigma و تشخیص دوقله‌ای."""
+    if not raw_means or len(raw_means) < 2:
+        return 0.0
+    vals = [float(v) for v in raw_means.values() if v is not None]
+    if len(vals) < 2:
+        return 0.0
+    if weights:
+        w_vals = [float(weights.get(k, 1.0 / len(vals))) for k in raw_means if raw_means[k] is not None]
+        w_sum = sum(w_vals) or 1.0
+        mean_v = sum(v * w for v, w in zip(vals, w_vals)) / w_sum
+        var = sum(w * ((v - mean_v) ** 2) for v, w in zip(vals, w_vals)) / w_sum
+        std_spread = math.sqrt(max(0.0, var))
+    else:
+        mean_v = sum(vals) / len(vals)
+        var = sum((v - mean_v) ** 2 for v in vals) / len(vals)
+        std_spread = math.sqrt(max(0.0, var))
+    range_spread = (max(vals) - min(vals)) * 0.5
+    return round(max(std_spread, range_spread), 3)
+
+
+def build_shadow_mean(model_members, city_slug, horizon_days, unit, is_min=False):
+    """میانگین وزن‌دار پویا (BMA) روی زیرمدل‌های هواشناسی (ECMWF, GFS, GEM, ICON-EU)."""
     raw_means = {}
-    for model_name, members in model_members.items():
+    for model_name, members in (model_members or {}).items():
         if members:
             raw_means[model_name] = sum(members) / len(members)
 
     if not raw_means:
         return None, {}
 
-    weights = get_model_weights(city_slug, list(raw_means.keys()))
+    weights = get_model_weights(city_slug, list(raw_means.keys()), is_min=is_min)
     if weights is None:
         raw_shadow_mean = sum(raw_means.values()) / len(raw_means)
     else:
         raw_shadow_mean = sum(weights[m] * raw_means[m] for m in raw_means)
 
-    bias = get_bias(city_slug, horizon_days, unit)
+    bias = get_bias_min(city_slug, horizon_days, unit) if is_min else get_bias(city_slug, horizon_days, unit)
     shadow_mean = round(raw_shadow_mean + bias, 2)
     raw_means_rounded = {m: round(v, 2) for m, v in raw_means.items()}
     return shadow_mean, raw_means_rounded
 
 
 def update_model_skill_from_live(markets, locations):
-    """مشابه دقیق update_calibration_from_live -- برای مهارت هرمدل جدا.
-    نیاز به فیلد model_means_raw (dict) در مارکت‌های resolve‌شده دارد
-    (weatherbot_v3.py آن را ذخیره می‌کند). مارکت‌های بدون این فیلد
-    (قدیمی‌تر) سایلنت رد می‌شوند -- هرگز crash نمی‌کند."""
+    """به‌روزرسانی مهارت هر زیرمدل با وزن‌دهی نمایی به روزهای اخیر (EWMA RMSE & MAE)."""
     skill = load_model_skill()
     resolved = [
         m for m in markets
@@ -530,21 +643,33 @@ def update_model_skill_from_live(markets, locations):
         and m.get("actual_temp") is not None
         and m.get("model_means_raw")
     ]
+    resolved.sort(key=lambda x: str(x.get("date", "")))
     all_model_names = set()
     for m in resolved:
         all_model_names.update(m["model_means_raw"].keys())
 
     for city_slug in locations:
-        group = [m for m in resolved if m["city"] == city_slug]
+        group = [m for m in resolved if m["city"] == city_slug][-30:]
         for model_name in all_model_names:
             samples = [m for m in group if m["model_means_raw"].get(model_name) is not None]
-            if len(samples) < MIN_MODEL_SKILL_SAMPLES:
+            if len(samples) < 3:
                 continue
-            abs_errors = [abs(m["model_means_raw"][model_name] - m["actual_temp"]) for m in samples]
-            mae = sum(abs_errors) / len(abs_errors)
+            n_s = len(samples)
+            errs_abs, errs_sq, weights = [], [], []
+            for idx, m in enumerate(samples):
+                w = 0.90 ** ((n_s - 1) - idx)
+                err = abs(float(m["model_means_raw"][model_name]) - float(m["actual_temp"]))
+                errs_abs.append(err * w)
+                errs_sq.append((err ** 2) * w)
+                weights.append(w)
+            w_sum = sum(weights) or 1.0
+            mae = sum(errs_abs) / w_sum
+            rmse = math.sqrt(sum(errs_sq) / w_sum)
             entry = skill.setdefault(city_slug, {})
             entry[model_name] = {
-                "mae": round(mae, 3), "n": len(abs_errors),
+                "mae": round(mae, 3),
+                "rmse": round(rmse, 3),
+                "n": n_s,
                 "updated_at": datetime.now(timezone.utc).isoformat(),
             }
     save_model_skill(skill)
@@ -948,13 +1073,25 @@ def backfill_calibration_min(locations, lookback_days=180):
     return cal
 
 
+_CALIBRATION_MEM_CACHE = None
+
+
 def load_calibration():
+    global _CALIBRATION_MEM_CACHE
+    if _CALIBRATION_MEM_CACHE is not None:
+        return _CALIBRATION_MEM_CACHE
     if CALIBRATION_FILE.exists():
-        return json.loads(CALIBRATION_FILE.read_text(encoding="utf-8"))
+        try:
+            _CALIBRATION_MEM_CACHE = json.loads(CALIBRATION_FILE.read_text(encoding="utf-8"))
+            return _CALIBRATION_MEM_CACHE
+        except Exception:
+            return {}
     return {}
 
 
 def save_calibration(cal):
+    global _CALIBRATION_MEM_CACHE
+    _CALIBRATION_MEM_CACHE = cal
     CALIBRATION_FILE.write_text(json.dumps(cal, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
@@ -1135,7 +1272,57 @@ def get_bias_min(city_slug, horizon_days, unit):
 # PROBABILITY DISTRIBUTION FROM ENSEMBLE + CALIBRATED SIGMA/BIAS
 # =============================================================================
 
-def build_calibrated_distribution(members, city_slug, horizon_days, unit):
+_INTRADAY_METAR_CACHE = {}
+_INTRADAY_METAR_LOCK = threading.Lock()
+
+
+def get_intraday_observed_bound(loc, date_str, is_min=False):
+    """فیلتر دمای لحظه‌ای روز بازار (D0 Intraday METAR Floor/Ceiling):
+    برای بازارهای روز جاری (D0)، دمای ثبت‌شده تا این لحظه در ایستگاه فرودگاهی
+    (METAR) را با تایم‌اوت کوتاه می‌گیرد و هر دو کران (بیشینه و کمینه) را با هم در
+    کش مشترک ذخیره می‌کند تا بازارهای Max و Min فقط یک بار ایستگاه را بخوانند."""
+    station = (loc or {}).get("station")
+    unit = (loc or {}).get("unit", "C")
+    if not station or not date_str:
+        return None
+
+    cache_key = (station, date_str)
+    now_ts = time.time()
+    with _INTRADAY_METAR_LOCK:
+        cached = _INTRADAY_METAR_CACHE.get(cache_key)
+    if cached and (now_ts - cached[0] < 900):
+        max_c, min_c = cached[1], cached[2]
+        raw_c = min_c if is_min else max_c
+        if raw_c is None:
+            return None
+        return round(raw_c * 9.0 / 5.0 + 32.0, 1) if unit == "F" else round(raw_c, 1)
+
+    url = (
+        f"https://aviationweather.gov/api/data/metar"
+        f"?ids={station}&format=json&date={date_str.replace('-', '')}"
+    )
+    max_c, min_c = None, None
+    try:
+        r = requests.get(url, timeout=(2, 3))
+        data = r.json()
+        if isinstance(data, list) and data:
+            temps = [float(d.get("temp")) for d in data if d.get("temp") is not None]
+            if temps:
+                max_c = max(temps)
+                min_c = min(temps)
+    except Exception:
+        max_c, min_c = None, None
+
+    with _INTRADAY_METAR_LOCK:
+        _INTRADAY_METAR_CACHE[cache_key] = (now_ts, max_c, min_c)
+
+    raw_c = min_c if is_min else max_c
+    if raw_c is None:
+        return None
+    return round(raw_c * 9.0 / 5.0 + 32.0, 1) if unit == "F" else round(raw_c, 1)
+
+
+def build_calibrated_distribution(members, city_slug, horizon_days, unit, model_members=None):
     calibrated_sigma = get_sigma(city_slug, horizon_days, unit)
     bias = get_bias(city_slug, horizon_days, unit)
 
@@ -1143,6 +1330,18 @@ def build_calibrated_distribution(members, city_slug, horizon_days, unit):
         return None, calibrated_sigma
 
     raw_mean = sum(members) / len(members)
+
+    # اگر زیرمدل‌ها (ECMWF, GFS, GEM, ICON) موجود باشند، میانگین BMA وزن‌دار را با میانگین انسمبل ترکیب می‌کنیم
+    model_spread = 0.0
+    if model_members and isinstance(model_members, dict):
+        raw_means = {k: (sum(v) / len(v)) for k, v in model_members.items() if v}
+        if raw_means:
+            weights = get_model_weights(city_slug, list(raw_means.keys()), is_min=False)
+            if weights:
+                bma_raw = sum(weights[m] * raw_means[m] for m in raw_means)
+                raw_mean = 0.45 * raw_mean + 0.55 * bma_raw
+            model_spread = compute_model_spread(raw_means, weights)
+
     corrected_mean = raw_mean + bias
 
     if len(members) > 1:
@@ -1150,23 +1349,61 @@ def build_calibrated_distribution(members, city_slug, horizon_days, unit):
     else:
         raw_sigma = calibrated_sigma
 
-    final_sigma = max(raw_sigma, calibrated_sigma)
+    base_sigma = max(raw_sigma, calibrated_sigma)
+
+    # کالیبراسیون پویای Sigma بر اساس واگرایی زیرمدل‌ها (Dynamic Spread-Skill Sigma)
+    if model_spread > 0:
+        tight_thresh = 1.0 if unit == "F" else 0.55
+        wide_thresh = 2.0 if unit == "F" else 1.10
+        if model_spread <= tight_thresh:
+            final_sigma = max(0.55 if unit == "C" else 0.95, base_sigma * 0.93)
+        elif model_spread >= wide_thresh:
+            final_sigma = math.sqrt(base_sigma ** 2 + (0.55 * model_spread) ** 2)
+        else:
+            final_sigma = base_sigma
+    else:
+        final_sigma = base_sigma
+
     return round(corrected_mean, 2), round(final_sigma, 3)
 
 
-def build_calibrated_distribution_min(members, city_slug, horizon_days, unit):
-    """(فاز ۶) معادل build_calibrated_distribution برای کمینه."""
+def build_calibrated_distribution_min(members, city_slug, horizon_days, unit, model_members=None):
+    """(فاز ۶) معادل build_calibrated_distribution برای کمینه همراه با BMA و Dynamic Sigma."""
     calibrated_sigma = get_sigma_min(city_slug, horizon_days, unit)
     bias = get_bias_min(city_slug, horizon_days, unit)
     if not members:
         return None, calibrated_sigma
     raw_mean = sum(members) / len(members)
-    corrected_mean = raw_mean + bias
+
+    model_spread = 0.0
+    if model_members and isinstance(model_members, dict):
+        raw_means = {k: (sum(v) / len(v)) for k, v in model_members.items() if v}
+        if raw_means:
+            weights = get_model_weights(city_slug, list(raw_means.keys()), is_min=True)
+            if weights:
+                bma_raw = sum(weights[m] * raw_means[m] for m in raw_means)
+                raw_mean = 0.45 * raw_mean + 0.55 * bma_raw
+            model_spread = compute_model_spread(raw_means, weights)
+
     if len(members) > 1:
         raw_sigma = (sum((x - raw_mean) ** 2 for x in members) / (len(members) - 1)) ** 0.5
     else:
         raw_sigma = calibrated_sigma
-    final_sigma = max(raw_sigma, calibrated_sigma)
+    base_sigma = max(raw_sigma, calibrated_sigma)
+
+    if model_spread > 0:
+        tight_thresh = 1.0 if unit == "F" else 0.55
+        wide_thresh = 2.0 if unit == "F" else 1.10
+        if model_spread <= tight_thresh:
+            final_sigma = max(0.55 if unit == "C" else 0.95, base_sigma * 0.93)
+        elif model_spread >= wide_thresh:
+            final_sigma = math.sqrt(base_sigma ** 2 + (0.55 * model_spread) ** 2)
+        else:
+            final_sigma = base_sigma
+    else:
+        final_sigma = base_sigma
+
+    corrected_mean = raw_mean + bias
     return round(corrected_mean, 2), round(final_sigma, 3)
 
 
@@ -1183,15 +1420,85 @@ def bucket_probability(mean, sigma, t_low, t_high):
     return student_t_cdf((hi - mean) / s) - student_t_cdf((lo - mean) / s)
 
 
-def full_bucket_distribution(mean, sigma, outcomes):
+def full_bucket_distribution(
+    mean,
+    sigma,
+    outcomes,
+    model_means_raw=None,
+    city_slug=None,
+    horizon_days=0,
+    unit="C",
+    is_min=False,
+    observed_bound=None,
+):
+    """محاسبهٔ توزیع احتمال باکت‌ها با دو ارتقای کلیدی برای نوسان‌گیری:
+    ۱) توزیع مخلوط چندمدلی (Multi-Model Mixture / GMM) با وزن‌های BMA:
+       وقتی زیرمدل‌ها (ECMWF, GFS, GEM, ICON) اختلاف نظر دارند، به جای ایجاد یک قلهٔ کاذب
+       در وسط، ۴۵٪ وزن احتمال مستقیماً از ترکیب منحنی‌های مستقل هر زیرمدل ساخته می‌شود.
+    ۲) فیلتر دمای لحظه‌ای روز بازار (Intraday METAR Floor/Ceiling برای افق D0):
+       در بازارهای امروز، باکت‌هایی که دمای ثبت‌شدهٔ فعلی ایستگاه قبلاً از آن‌ها عبور کرده
+       prob=0.0 و برچسب intraday_eliminated=True می‌گیرند و احتمال بین باکت‌های زنده بازتوزیع می‌شود."""
+    # آماده‌سازی اجزای مخلوط چندمدلی (GMM) در صورت وجود زیرمدل‌ها
+    gmm_components = []
+    if model_means_raw and isinstance(model_means_raw, dict) and len(model_means_raw) >= 2:
+        valid_models = {k: float(v) for k, v in model_means_raw.items() if v is not None}
+        if len(valid_models) >= 2:
+            weights = get_model_weights(city_slug, list(valid_models.keys()), is_min=is_min) if city_slug else None
+            if not weights:
+                weights = {k: 1.0 / len(valid_models) for k in valid_models}
+            bias = (
+                (get_bias_min(city_slug, horizon_days, unit) if is_min else get_bias(city_slug, horizon_days, unit))
+                if city_slug else 0.0
+            )
+            comp_sigma = max(0.45 if unit == "C" else 0.85, sigma * 0.82)
+            for m_name, raw_v in valid_models.items():
+                gmm_components.append((raw_v + bias, comp_sigma, float(weights.get(m_name, 0.25))))
+
     raw = []
+    eliminated_flags = []
     for o in outcomes:
         t_low, t_high = o["range"]
-        raw.append(bucket_probability(mean, sigma, t_low, t_high))
-    total = sum(raw) or 1.0
+
+        # بررسی حذف باکت با دمای ثبت‌شدهٔ لحظه‌ای در روز بازار (D0)
+        eliminated = False
+        if observed_bound is not None:
+            # در Polymarket دما به عدد صحیح گرد می‌شود؛ حاشیهٔ امن ۰.۳ درجه برای گزارش‌های ساعتی METAR
+            if not is_min and t_high < 998:
+                if float(t_high) < math.floor(float(observed_bound) - 0.3 + 0.5):
+                    eliminated = True
+            elif is_min and t_low > -998:
+                if float(t_low) > math.ceil(float(observed_bound) + 0.3 - 0.5):
+                    eliminated = True
+
+        if eliminated:
+            raw.append(0.0)
+            eliminated_flags.append(True)
+            continue
+
+        eliminated_flags.append(False)
+        p_consensus = bucket_probability(mean, sigma, t_low, t_high)
+        if gmm_components:
+            p_gmm = sum(w * bucket_probability(m_mu, m_sig, t_low, t_high) for (m_mu, m_sig, w) in gmm_components)
+            p_blended = 0.55 * p_consensus + 0.45 * p_gmm
+        else:
+            p_blended = p_consensus
+        raw.append(p_blended)
+
+    # اگر همهٔ باکت‌ها به هر دلیلی صفر شدند، بدون حذف محاسبه کن تا تقسیم بر صفر نشود
+    total = sum(raw)
+    if total <= 1e-9:
+        raw = [bucket_probability(mean, sigma, o["range"][0], o["range"][1]) for o in outcomes]
+        eliminated_flags = [False for _ in outcomes]
+        total = sum(raw) or 1.0
+
     dist = []
-    for o, p in zip(outcomes, raw):
-        dist.append({**o, "model_prob": round(p / total, 4)})
+    for o, p, elim in zip(outcomes, raw, eliminated_flags):
+        item = {
+            **o,
+            "model_prob": round(p / total, 4),
+            "intraday_eliminated": bool(elim),
+        }
+        dist.append(item)
     return dist
 
 

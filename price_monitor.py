@@ -104,13 +104,17 @@ def _load_market_min(city, date):
     except Exception:
         return None
 
-def _find_range(market, market_id):
+def _find_bucket(market, market_id):
     if not market:
         return None
     for b in market.get("full_distribution", []):
         if str(b.get("market_id")) == str(market_id):
-            return b.get("range")
+            return b
     return None
+
+def _find_range(market, market_id):
+    b = _find_bucket(market, market_id)
+    return b.get("range") if b else None
 
 def _label_for_range(rng, unit_sym):
     if not rng:
@@ -284,14 +288,25 @@ def _build_city_blocks(locks_subset, now, is_min):
             entry_c, curr_c, diff_cents, pct, pct_int = _calc_cent_consistent_pct(entry, current)
             l["last_pct"] = pct
 
+            bucket_obj = _find_bucket(market, l["market_id"])
+            raw_model_prob = bucket_obj.get("model_prob") if bucket_obj else None
+            intraday_elim = bool(bucket_obj.get("intraday_eliminated", False)) if bucket_obj else False
+            if raw_model_prob is not None:
+                fair_prob = (1.0 - float(raw_model_prob)) if side == "NO" else float(raw_model_prob)
+                fair_c = _to_cents(fair_prob)
+            else:
+                fair_c = None
+            l["model_fair_cents"] = fair_c
+            l["intraday_eliminated"] = intraday_elim
+
             triggered = pct >= TAKE_PROFIT_PCT or pct <= -STOP_LOSS_PCT
-            if triggered:
+            if triggered or (intraday_elim and side == "YES") or (fair_c is not None and curr_c is not None and diff_cents > 0 and curr_c >= fair_c and pct_int >= 10):
                 star = True
 
             arrow = "\u2191" if diff_cents >= 0 else "\u2193"
             color = "\U0001F7E2" if diff_cents >= 0 else "\U0001F534"
 
-            rng = _find_range(market, l["market_id"])
+            rng = bucket_obj.get("range") if bucket_obj else _find_range(market, l["market_id"])
             unit_sym = market.get("unit", "") if market else ""
             label = _label_for_range(rng, unit_sym)
 
@@ -301,9 +316,38 @@ def _build_city_blocks(locks_subset, now, is_min):
                 f"{curr_c}\u00a2 ({pct_sign}{pct_int}% {arrow})"
             )
 
+            # مشاور هوشمند سیو سود و نوسان‌گیری پیش از Resolve
+            if intraday_elim and side == "YES":
+                lines.append("    \U0001F6A8 هشدار خروج فوری: دمای ثبت‌شدهٔ امروز از این باکت عبور کرد! (احتمال مدل: 0\u00a2)")
+            elif fair_c is not None and curr_c is not None and entry_c is not None:
+                if diff_cents > 0 and curr_c >= fair_c and pct_int >= 10:
+                    lines.append(
+                        f"    \U0001F4B0 پیشنهاد سیو سود قطعی: قیمت بازار ({curr_c}\u00a2) به ارزش منصفانه مدل ({fair_c}\u00a2) رسید!"
+                    )
+                elif pct_int >= TAKE_PROFIT_PCT:
+                    lines.append(
+                        f"    \U0001F3AF در ناحیه سیو سود (+{pct_int}% سود | ارزش منصفانه مدل: {fair_c}\u00a2)"
+                    )
+                elif fair_c <= entry_c - 5 and fair_c < curr_c:
+                    lines.append(
+                        f"    \u26A0\uFE0F هشدار تضعیف مدل: ارزش مدل به {fair_c}\u00a2 (زیر قیمت ورود {entry_c}\u00a2) کاهش یافت"
+                    )
+                elif fair_c >= curr_c + 4:
+                    lines.append(
+                        f"    \u23F3 ارزش منصفانه مدل: {fair_c}\u00a2 (پتانسیل رشد تا هدف مدل: +{fair_c - curr_c}\u00a2)"
+                    )
+                else:
+                    lines.append(f"    \u2022 ارزش منصفانه مدل: {fair_c}\u00a2")
+
             forecast_mean = market.get("forecast_mean") if market else None
+            obs_temp = market.get("observed_intraday_temp") if market else None
             if forecast_mean is not None:
-                lines.append(f"    \u2022 دمای پیش‌بینی مدل: {forecast_mean:.1f}{unit_sym}")
+                if obs_temp is not None:
+                    lines.append(
+                        f"    \u2022 پیش‌بینی مدل: {forecast_mean:.1f}{unit_sym} | ثبت‌شدهٔ امروز تا این لحظه: {obs_temp:.1f}{unit_sym}"
+                    )
+                else:
+                    lines.append(f"    \u2022 دمای پیش‌بینی مدل: {forecast_mean:.1f}{unit_sym}")
 
         marks = ("\u2B50" if star else "") + (" \u23F0" if near_resolve else "")
         name = LOCATIONS.get(city, {}).get("name", city)

@@ -74,7 +74,10 @@ from market_time import local_day_status
 import forecasting as fc
 import strategy as strat
 import resolution as res
-from clob_utils import get_clob_book_bid, get_gamma_event_prices, get_gamma_event_prices_min
+from clob_utils import (
+    get_clob_book_bid, get_gamma_event_prices, get_gamma_event_prices_min,
+    get_gamma_event_quotes, get_gamma_event_quotes_min,
+)
 import export_accuracy_report as accuracy_report
 
 # =============================================================================
@@ -427,7 +430,7 @@ def _refresh_local_day_timing(mkt, loc, now, event_end_date=None):
     return timing
 
 def fetch_outcomes(event):
-    """Fast market extraction. Does NOT fetch CLOB bids here."""
+    """Fast market extraction including Gamma orderbook bestBid/bestAsk (zero extra HTTP calls)."""
     outcomes = []
     for market in event.get("markets", []):
         question = market.get("question", "")
@@ -450,12 +453,35 @@ def fetch_outcomes(event):
         except Exception:
             yes_token_id, no_token_id = None, None
 
+        best_bid = None
+        best_ask = None
+        for k, attr in (("bestBid", "bid"), ("bestAsk", "ask")):
+            raw_v = market.get(k)
+            if raw_v is not None:
+                try:
+                    fv = float(raw_v)
+                    if 0.0 <= fv <= 1.0:
+                        if attr == "bid":
+                            best_bid = round(fv, 4)
+                        else:
+                            best_ask = round(fv, 4)
+                except Exception:
+                    pass
+
+        if best_bid is not None and best_ask is not None and best_ask >= best_bid:
+            real_spread = round(best_ask - best_bid, 4)
+        else:
+            real_spread = round(abs((yes_price + no_price) - 1.0), 4)
+
         outcomes.append({
             "question": question, "market_id": mid, "range": rng,
             "yes_price": round(yes_price, 4),
             "no_price": round(no_price, 4),
+            "best_bid": best_bid,
+            "best_ask": best_ask,
+            "bid_ask_spread": real_spread,
             "volume": round(volume, 0),
-            "spread": round(abs((yes_price + no_price) - 1.0), 4),
+            "spread": real_spread,
             "yes_token_id": yes_token_id,
             "no_token_id": no_token_id,
         })
@@ -765,10 +791,11 @@ def discover_new_signals(now, state):
                 save_market(mkt)
                 continue
 
-            # (فاز ۳+۴) build_combined_distribution_full جایگزین نقطهٔ
-            # فراخوانی قدیمی شد -- members دقیقاً همان مقدار قبلی است.
+            # (فاز ۳+۴ + BMA + GMM + METAR Intraday)
             members, model_members = fc.build_combined_distribution_full(city_slug, loc, date)
-            mean, sigma = fc.build_calibrated_distribution(members, city_slug, i, loc["unit"])
+            mean, sigma = fc.build_calibrated_distribution(
+                members, city_slug, i, loc["unit"], model_members=model_members
+            )
             shadow_mean, model_means_raw = fc.build_shadow_mean(model_members, city_slug, i, loc["unit"])
             if fc.get_gate_status(city_slug, i) == "revert_to_shadow" and shadow_mean is not None:
                 mean = round(float(shadow_mean), 2)
@@ -778,7 +805,19 @@ def discover_new_signals(now, state):
                 save_market(mkt)
                 continue
 
-            dist = fc.full_bucket_distribution(mean, sigma, outcomes)
+            observed_bound = fc.get_intraday_observed_bound(loc, date, is_min=False) if i == 0 else None
+            model_weights = fc.get_model_weights(city_slug, list((model_means_raw or {}).keys()))
+            model_spread = fc.compute_model_spread(model_means_raw, model_weights)
+
+            dist = fc.full_bucket_distribution(
+                mean, sigma, outcomes,
+                model_means_raw=model_means_raw,
+                city_slug=city_slug,
+                horizon_days=i,
+                unit=loc["unit"],
+                is_min=False,
+                observed_bound=observed_bound,
+            )
 
             tradable_dist = [d for d in dist if d["volume"] > 0]
             if not tradable_dist:
@@ -804,6 +843,8 @@ def discover_new_signals(now, state):
             mkt.update({
                 "horizon_days": i, "forecast_mean": mean, "sigma": sigma,
                 "forecast_mean_shadow": shadow_mean, "model_means_raw": model_means_raw,
+                "model_spread": model_spread,
+                "observed_intraday_temp": observed_bound,
                 "full_distribution": portfolio["full_distribution"],
                 "live_allocation": portfolio["allocation"],
                 "total_allocated_units": portfolio.get("total_allocated_units"),
@@ -911,7 +952,16 @@ def discover_new_min_signals(now, state):
                 save_market_min(mkt)
                 continue
 
-            dist = fc.full_bucket_distribution(mean, sigma, outcomes)
+            observed_bound = fc.get_intraday_observed_bound(loc, date, is_min=True) if i == 0 else None
+
+            dist = fc.full_bucket_distribution(
+                mean, sigma, outcomes,
+                city_slug=city_slug,
+                horizon_days=i,
+                unit=loc["unit"],
+                is_min=True,
+                observed_bound=observed_bound,
+            )
             tradable_dist = [d for d in dist if d["volume"] > 0]
             if not tradable_dist:
                 save_market_min(mkt)
@@ -934,6 +984,7 @@ def discover_new_min_signals(now, state):
 
             mkt.update({
                 "horizon_days": i, "forecast_mean": mean, "sigma": sigma,
+                "observed_intraday_temp": observed_bound,
                 "full_distribution": portfolio["full_distribution"],
                 "live_allocation": portfolio["allocation"],
                 "total_allocated_units": portfolio.get("total_allocated_units"),
@@ -1079,7 +1130,9 @@ def refresh_open_market_info(now):
 
         try:
             members, model_members = fc.build_combined_distribution_full(mkt["city"], loc, mkt["date"])
-            mean, sigma = fc.build_calibrated_distribution(members, mkt["city"], horizon_days, loc["unit"])
+            mean, sigma = fc.build_calibrated_distribution(
+                members, mkt["city"], horizon_days, loc["unit"], model_members=model_members
+            )
             shadow_mean, model_means_raw = fc.build_shadow_mean(model_members, mkt["city"], horizon_days, loc["unit"])
             if fc.get_gate_status(mkt["city"], horizon_days) == "revert_to_shadow" and shadow_mean is not None:
                 mean = round(float(shadow_mean), 2)
@@ -1089,7 +1142,19 @@ def refresh_open_market_info(now):
         if mean is None:
             continue
 
-        dist = fc.full_bucket_distribution(mean, sigma, tradable_outcomes)
+        observed_bound = fc.get_intraday_observed_bound(loc, mkt["date"], is_min=False) if horizon_days == 0 else None
+        model_weights = fc.get_model_weights(mkt["city"], list((model_means_raw or {}).keys()))
+        model_spread = fc.compute_model_spread(model_means_raw, model_weights)
+
+        dist = fc.full_bucket_distribution(
+            mean, sigma, tradable_outcomes,
+            model_means_raw=model_means_raw,
+            city_slug=mkt["city"],
+            horizon_days=horizon_days,
+            unit=loc["unit"],
+            is_min=False,
+            observed_bound=observed_bound,
+        )
         tradable_dist = [d for d in dist if d["volume"] > 0]
         if not tradable_dist:
             continue
@@ -1112,6 +1177,8 @@ def refresh_open_market_info(now):
         mkt["sigma"] = sigma
         mkt["forecast_mean_shadow"] = shadow_mean
         mkt["model_means_raw"] = model_means_raw
+        mkt["model_spread"] = model_spread
+        mkt["observed_intraday_temp"] = observed_bound
         mkt["full_distribution"] = full_distribution
         mkt["last_lite_refresh"] = now.isoformat()
         save_market(mkt)
@@ -1179,7 +1246,16 @@ def refresh_open_market_info_min(now):
         if mean is None:
             continue
 
-        dist = fc.full_bucket_distribution(mean, sigma, tradable_outcomes)
+        observed_bound = fc.get_intraday_observed_bound(loc, mkt["date"], is_min=True) if horizon_days == 0 else None
+
+        dist = fc.full_bucket_distribution(
+            mean, sigma, tradable_outcomes,
+            city_slug=mkt["city"],
+            horizon_days=horizon_days,
+            unit=loc["unit"],
+            is_min=True,
+            observed_bound=observed_bound,
+        )
         tradable_dist = [d for d in dist if d["volume"] > 0]
         if not tradable_dist:
             continue
@@ -1200,6 +1276,7 @@ def refresh_open_market_info_min(now):
 
         mkt["forecast_mean"] = mean
         mkt["sigma"] = sigma
+        mkt["observed_intraday_temp"] = observed_bound
         mkt["full_distribution"] = full_distribution
         mkt["last_lite_refresh"] = now.isoformat()
         save_market_min(mkt)
@@ -1208,12 +1285,11 @@ def refresh_open_market_info_min(now):
     return refreshed
 
 def refresh_all_open_market_prices(now):
-    """فاز ۳ نقشه‌راه، زیرگام ۳-الف: فقط قیمت بازار (yes_price) همهٔ
-    باکت‌های موجود در full_distribution همهٔ مارکت‌های open را از Gamma API
-    تازه می‌کند -- و هم‌زمان تغییرات قیمت (yes_price_change و
-    yes_price_pct_change)، باور نهایی (belief_prob) و EV را دقیق به‌روزرسانی
-    می‌کند تا در هر آپدیت ۱۰ دقیقه‌ای هم تغییرات در پرانتز داشبورد نمایش داده
-    شود."""
+    """فاز ۳ نقشه‌راه، زیرگام ۳-الف: فقط قیمت بازار (yes_price) و اسپرد سفارشات
+    (bestBid/bestAsk) همهٔ باکت‌های موجود در full_distribution همهٔ مارکت‌های open
+    را از Gamma API تازه می‌کند -- و هم‌زمان تغییرات قیمت، پتانسیل رشد نوسان‌گیری
+    (swing_edge / swing_upside_pct)، باور نهایی (belief_prob) و EV را دقیق
+    به‌روزرسانی می‌کند."""
     open_markets = [m for m in load_all_markets() if m.get("status") == "open"]
     if not open_markets:
         return 0
@@ -1222,29 +1298,29 @@ def refresh_all_open_market_prices(now):
 
     event_keys = {(m["city"], m["date"]) for m in open_markets}
 
-    def _fetch_prices(key):
+    def _fetch_quotes(key):
         city, date = key
         try:
             dt = datetime.strptime(date, "%Y-%m-%d")
-            return get_gamma_event_prices(city, MONTHS[dt.month - 1], dt.day, dt.year)
+            return get_gamma_event_quotes(city, MONTHS[dt.month - 1], dt.day, dt.year)
         except Exception:
             return {}
 
-    prices_by_event = {}
+    quotes_by_event = {}
     with ThreadPoolExecutor(max_workers=EVENT_FETCH_WORKERS) as pool:
-        future_to_key = {pool.submit(_fetch_prices, key): key for key in event_keys}
+        future_to_key = {pool.submit(_fetch_quotes, key): key for key in event_keys}
         for future in as_completed(future_to_key):
             key = future_to_key[future]
             try:
-                prices_by_event[key] = future.result()
+                quotes_by_event[key] = future.result()
             except Exception:
-                prices_by_event[key] = {}
+                quotes_by_event[key] = {}
 
     refreshed = 0
     for mkt in open_markets:
         key = (mkt["city"], mkt["date"])
-        prices = prices_by_event.get(key)
-        if not prices:
+        quotes = quotes_by_event.get(key)
+        if not quotes:
             continue
 
         full_dist = mkt.get("full_distribution")
@@ -1255,18 +1331,29 @@ def refresh_all_open_market_prices(now):
         changed = False
         for bucket in full_dist:
             mid = str(bucket.get("market_id", ""))
-            new_yes_price = prices.get(mid)
-            if new_yes_price is None:
+            q_info = quotes.get(mid)
+            if not q_info or q_info.get("price") is None:
                 continue
-            new_p = round(float(new_yes_price), 4)
+            new_p = round(float(q_info["price"]), 4)
+            best_bid = q_info.get("bid")
+            best_ask = q_info.get("ask")
+            eff_ask, spread = strat._effective_entry_price(new_p, best_bid, best_ask)
             bucket["yes_price"] = new_p
             bucket["ask"] = new_p
+            bucket["effective_ask"] = eff_ask
+            bucket["best_bid"] = round(float(best_bid), 4) if best_bid is not None else bucket.get("best_bid")
+            bucket["best_ask"] = round(float(best_ask), 4) if best_ask is not None else bucket.get("best_ask")
+            bucket["bid_ask_spread"] = spread
             bucket["market_prob"] = new_p
             model_prob = bucket.get("model_prob")
+            if model_prob is not None:
+                swing_edge = round(float(model_prob) - new_p, 4)
+                bucket["swing_edge"] = swing_edge
+                bucket["swing_upside_pct"] = round((swing_edge / new_p) * 100.0, 1) if new_p >= 0.01 else 0.0
             belief_prob = strat.fuse_belief(model_prob, new_p, merged_params)
             bucket["belief_prob"] = belief_prob
-            if new_p > 0.001 and belief_prob is not None:
-                bucket["ev"] = round((belief_prob - new_p) / new_p, 4)
+            if eff_ask > 0.001 and belief_prob is not None:
+                bucket["ev"] = round((belief_prob - eff_ask) / eff_ask, 4)
             changed = True
 
         if changed:
@@ -1286,9 +1373,7 @@ def refresh_all_open_market_prices(now):
 
 
 def refresh_all_open_market_prices_min(now):
-    """معادل کامل refresh_all_open_market_prices ولی برای بازار کمینه --
-    علاوه بر yes_price/belief_prob، مقادیر yes_price_change،
-    yes_price_pct_change و ev را هم در هر اسکن ۱۰ دقیقه‌ای به‌روز می‌کند."""
+    """معادل کامل refresh_all_open_market_prices ولی برای بازار کمینه."""
     open_markets = [m for m in load_all_min_markets() if m.get("status") == "open"]
     if not open_markets:
         return 0
@@ -1297,29 +1382,29 @@ def refresh_all_open_market_prices_min(now):
 
     event_keys = {(m["city"], m["date"]) for m in open_markets}
 
-    def _fetch_prices_min(key):
+    def _fetch_quotes_min(key):
         city, date = key
         try:
             dt = datetime.strptime(date, "%Y-%m-%d")
-            return get_gamma_event_prices_min(city, MONTHS[dt.month - 1], dt.day, dt.year)
+            return get_gamma_event_quotes_min(city, MONTHS[dt.month - 1], dt.day, dt.year)
         except Exception:
             return {}
 
-    prices_by_event = {}
+    quotes_by_event = {}
     with ThreadPoolExecutor(max_workers=EVENT_FETCH_WORKERS) as pool:
-        future_to_key = {pool.submit(_fetch_prices_min, key): key for key in event_keys}
+        future_to_key = {pool.submit(_fetch_quotes_min, key): key for key in event_keys}
         for future in as_completed(future_to_key):
             key = future_to_key[future]
             try:
-                prices_by_event[key] = future.result()
+                quotes_by_event[key] = future.result()
             except Exception:
-                prices_by_event[key] = {}
+                quotes_by_event[key] = {}
 
     refreshed = 0
     for mkt in open_markets:
         key = (mkt["city"], mkt["date"])
-        prices = prices_by_event.get(key)
-        if not prices:
+        quotes = quotes_by_event.get(key)
+        if not quotes:
             continue
 
         full_dist = mkt.get("full_distribution")
@@ -1330,18 +1415,29 @@ def refresh_all_open_market_prices_min(now):
         changed = False
         for bucket in full_dist:
             mid = str(bucket.get("market_id", ""))
-            new_yes_price = prices.get(mid)
-            if new_yes_price is None:
+            q_info = quotes.get(mid)
+            if not q_info or q_info.get("price") is None:
                 continue
-            new_p = round(float(new_yes_price), 4)
+            new_p = round(float(q_info["price"]), 4)
+            best_bid = q_info.get("bid")
+            best_ask = q_info.get("ask")
+            eff_ask, spread = strat._effective_entry_price(new_p, best_bid, best_ask)
             bucket["yes_price"] = new_p
             bucket["ask"] = new_p
+            bucket["effective_ask"] = eff_ask
+            bucket["best_bid"] = round(float(best_bid), 4) if best_bid is not None else bucket.get("best_bid")
+            bucket["best_ask"] = round(float(best_ask), 4) if best_ask is not None else bucket.get("best_ask")
+            bucket["bid_ask_spread"] = spread
             bucket["market_prob"] = new_p
             model_prob = bucket.get("model_prob")
+            if model_prob is not None:
+                swing_edge = round(float(model_prob) - new_p, 4)
+                bucket["swing_edge"] = swing_edge
+                bucket["swing_upside_pct"] = round((swing_edge / new_p) * 100.0, 1) if new_p >= 0.01 else 0.0
             belief_prob = strat.fuse_belief(model_prob, new_p, merged_params)
             bucket["belief_prob"] = belief_prob
-            if new_p > 0.001 and belief_prob is not None:
-                bucket["ev"] = round((belief_prob - new_p) / new_p, 4)
+            if eff_ask > 0.001 and belief_prob is not None:
+                bucket["ev"] = round((belief_prob - eff_ask) / eff_ask, 4)
             changed = True
 
         if changed:
