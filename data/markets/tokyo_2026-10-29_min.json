@@ -3,16 +3,16 @@
   "city_name": "Tokyo",
   "date": "2026-10-29",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-10-27T20:46:45.023927+00:00",
   "committed_allocation": null,
-  "hours_left": 0.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-29T15:00:00+00:00",
   "event_end_date": "2026-10-29T12:00:00Z",
   "last_scan": "2026-10-29T02:20:40.624801+00:00",
-  "last_lite_refresh": "2026-10-29T14:20:46.294465+00:00",
+  "last_lite_refresh": "2026-10-29T20:20:44.104486+00:00",
   "forecast_mean": 10.51,
   "sigma": 1.999,
   "full_distribution": [
@@ -540,7 +540,10 @@
       "market_prob": 0.96,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.93
+      "sell_value": 0.93,
+      "won": true,
+      "pnl_units": 1.25,
+      "user_entered": false
     },
     {
       "market_id": "6289295",
@@ -556,7 +559,10 @@
       "market_prob": 0.04,
       "role": "scenario_hedge",
       "units": 0.83,
-      "sell_value": 0.01
+      "sell_value": 0.01,
+      "won": false,
+      "pnl_units": -0.83,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.8,
@@ -568,5 +574,50 @@
   "confidence": 0.8155,
   "balance_units": 100,
   "strategy_version": "auto-bb76bea385d114be",
-  "observed_intraday_temp": 14.0
+  "observed_intraday_temp": 14.0,
+  "actual_temp": 13.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.42,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6289295",
+      "question": "Will the lowest temperature in Tokyo be 13°C on October 29?",
+      "range": [
+        13.0,
+        13.0
+      ],
+      "side": "YES",
+      "price": 0.96,
+      "model_prob": 0.0994,
+      "ev": -0.5898,
+      "market_prob": 0.96,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.93,
+      "won": true,
+      "pnl_units": 1.25,
+      "user_entered": false
+    },
+    {
+      "market_id": "6289295",
+      "question": "Will the lowest temperature in Tokyo be 13°C on October 29? (NO)",
+      "range": [
+        13.0,
+        13.0
+      ],
+      "side": "NO",
+      "price": 0.04,
+      "model_prob": 0.9006,
+      "ev": 9.6088,
+      "market_prob": 0.04,
+      "role": "scenario_hedge",
+      "units": 0.83,
+      "sell_value": 0.01,
+      "won": false,
+      "pnl_units": -0.83,
+      "user_entered": false
+    }
+  ]
 }
