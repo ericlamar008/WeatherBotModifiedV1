@@ -6,7 +6,7 @@
   "status": "open",
   "created_at": "2026-10-28T21:41:01.810187+00:00",
   "committed_allocation": null,
-  "hours_left": 51.7,
+  "hours_left": 51.1,
   "time_status": "local_day_open",
   "local_day_end_utc": "2026-10-31T06:00:00+00:00",
   "event_end_date": "2026-10-30T12:00:00Z",
@@ -339,9 +339,9 @@
       "yes_price_6h_change": -0.001,
       "yes_price_6h_pct_change": -14.3,
       "scan6h_yes_price": 0.006,
-      "prev_yes_price": 0.0065,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -7.7
+      "prev_yes_price": 0.007,
+      "yes_price_change": -0.001,
+      "yes_price_pct_change": -14.3
     },
     {
       "question": "Will the highest temperature in Mexico City be 23°C on October 30?",
@@ -431,9 +431,9 @@
       "yes_price_6h_change": -0.005,
       "yes_price_6h_pct_change": -16.4,
       "scan6h_yes_price": 0.0255,
-      "prev_yes_price": 0.0275,
-      "yes_price_change": -0.002,
-      "yes_price_pct_change": -7.3
+      "prev_yes_price": 0.0305,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -16.4
     },
     {
       "question": "Will the highest temperature in Mexico City be 25°C on October 30?",
@@ -443,12 +443,12 @@
         25.0
       ],
       "yes_price": 0.19,
-      "no_price": 0.815,
+      "no_price": 0.81,
       "best_bid": 0.17,
       "best_ask": 0.21,
       "bid_ask_spread": 0.04,
       "volume": 369.0,
-      "spread": 0.03,
+      "spread": 0.04,
       "yes_token_id": "90820203204381375492786349819364088686577898230704801484121654157698105510029",
       "no_token_id": "51009439367252692733488488096762745234147627024660031719171572584573197649443",
       "model_prob": 0.123,
@@ -460,8 +460,8 @@
       "belief_prob": 0.1464,
       "ev": -0.2512,
       "kelly": 0.0,
-      "swing_edge": -0.067,
-      "swing_upside_pct": -35.3,
+      "swing_edge": -0.0725,
+      "swing_upside_pct": -37.1,
       "sell_value": 0.17,
       "prev_scan6h_model_prob": 0.1181,
       "model_prob_6h_change": 0.0049,
@@ -473,10 +473,10 @@
       "prev_10m_yes_price": 0.185,
       "yes_price_10m_change": 0.005,
       "yes_price_10m_pct_change": 2.7,
-      "prev_scan6h_yes_price": 0.13,
+      "prev_scan6h_yes_price": 0.185,
       "yes_price_6h_change": 0.005,
       "yes_price_6h_pct_change": 2.7,
-      "scan6h_yes_price": 0.185,
+      "scan6h_yes_price": 0.19,
       "prev_yes_price": 0.185,
       "yes_price_change": 0.005,
       "yes_price_pct_change": 2.7
@@ -489,12 +489,12 @@
         999.0
       ],
       "yes_price": 0.77,
-      "no_price": 0.195,
+      "no_price": 0.23,
       "best_bid": 0.74,
       "best_ask": 0.8,
       "bid_ask_spread": 0.06,
       "volume": 381.0,
-      "spread": 0.03,
+      "spread": 0.06,
       "yes_token_id": "5514434523606097258538442626453593926366362408538127700186593128567262685330",
       "no_token_id": "104660015502321165215312934952870188008529688202875195202871949939520509291777",
       "model_prob": 0.4483,
@@ -506,9 +506,9 @@
       "belief_prob": 0.5609,
       "ev": -0.2868,
       "kelly": 0.0,
-      "swing_edge": -0.3217,
-      "swing_upside_pct": -41.8,
-      "sell_value": 0.79,
+      "swing_edge": -0.3382,
+      "swing_upside_pct": -43.0,
+      "sell_value": 0.74,
       "prev_scan6h_model_prob": 0.4562,
       "model_prob_6h_change": -0.0079,
       "model_prob_6h_pct_change": -1.7,
@@ -519,13 +519,13 @@
       "prev_10m_yes_price": 0.775,
       "yes_price_10m_change": -0.005,
       "yes_price_10m_pct_change": -0.6,
-      "prev_scan6h_yes_price": 0.82,
+      "prev_scan6h_yes_price": 0.805,
       "yes_price_6h_change": -0.035,
       "yes_price_6h_pct_change": -4.3,
-      "scan6h_yes_price": 0.805,
-      "prev_yes_price": 0.775,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -0.6
+      "scan6h_yes_price": 0.77,
+      "prev_yes_price": 0.805,
+      "yes_price_change": -0.035,
+      "yes_price_pct_change": -4.3
     }
   ],
   "live_allocation": [
@@ -573,5 +573,6 @@
   "strategy_version": "auto-bb76bea385d114be",
   "last_price_refresh": "2026-10-29T02:52:25.202604+00:00",
   "model_spread": 2.555,
-  "observed_intraday_temp": null
+  "observed_intraday_temp": null,
+  "last_lite_refresh": "2026-10-29T02:53:19.012174+00:00"
 }
