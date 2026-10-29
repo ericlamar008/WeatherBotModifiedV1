@@ -43,7 +43,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -247,9 +247,9 @@
       "yes_price_6h_change": 0.001,
       "yes_price_6h_pct_change": 5.6,
       "scan6h_yes_price": 0.019,
-      "prev_yes_price": 0.018,
-      "yes_price_change": 0.001,
-      "yes_price_pct_change": 5.6
+      "prev_yes_price": 0.0195,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -2.6
     },
     {
       "question": "Will the highest temperature in Jeddah be 34°C on October 29?",
@@ -293,9 +293,9 @@
       "yes_price_6h_change": 0.025,
       "yes_price_6h_pct_change": 9.6,
       "scan6h_yes_price": 0.285,
-      "prev_yes_price": 0.26,
-      "yes_price_change": 0.025,
-      "yes_price_pct_change": 9.6
+      "prev_yes_price": 0.28,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.8
     },
     {
       "question": "Will the highest temperature in Jeddah be 35°C on October 29?",
@@ -339,9 +339,9 @@
       "yes_price_6h_change": -0.025,
       "yes_price_6h_pct_change": -4.3,
       "scan6h_yes_price": 0.555,
-      "prev_yes_price": 0.58,
-      "yes_price_change": -0.025,
-      "yes_price_pct_change": -4.3
+      "prev_yes_price": 0.56,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -0.9
     },
     {
       "question": "Will the highest temperature in Jeddah be 36°C on October 29?",
@@ -385,9 +385,9 @@
       "yes_price_6h_change": 0.005,
       "yes_price_6h_pct_change": 3.4,
       "scan6h_yes_price": 0.15,
-      "prev_yes_price": 0.145,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 3.4
+      "prev_yes_price": 0.155,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -3.2
     },
     {
       "question": "Will the highest temperature in Jeddah be 37°C on October 29?",
@@ -396,11 +396,11 @@
         37.0,
         37.0
       ],
-      "yes_price": 0.018,
+      "yes_price": 0.0135,
       "no_price": 0.982,
-      "best_bid": 0.015,
-      "best_ask": 0.021,
-      "bid_ask_spread": 0.006,
+      "best_bid": 0.012,
+      "best_ask": 0.015,
+      "bid_ask_spread": 0.003,
       "volume": 782.0,
       "spread": 0.006,
       "yes_token_id": "1268350623658730619343723436765561537791618446093296868384075004296647038212",
@@ -408,14 +408,14 @@
       "model_prob": 0.127,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.018,
-      "effective_ask": 0.018,
-      "market_prob": 0.018,
-      "belief_prob": 0.0888,
-      "ev": 3.9333,
+      "ask": 0.0135,
+      "effective_ask": 0.0135,
+      "market_prob": 0.0135,
+      "belief_prob": 0.0873,
+      "ev": 5.4667,
       "kelly": 0.018,
-      "swing_edge": 0.109,
-      "swing_upside_pct": 605.6,
+      "swing_edge": 0.1135,
+      "swing_upside_pct": 840.7,
       "sell_value": 0.015,
       "prev_scan6h_model_prob": 0.11,
       "model_prob_6h_change": 0.017,
@@ -424,16 +424,16 @@
       "prev_model_prob": 0.11,
       "model_prob_change": 0.017,
       "model_prob_pct_change": 15.5,
-      "prev_10m_yes_price": 0.0185,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -2.7,
+      "prev_10m_yes_price": 0.018,
+      "yes_price_10m_change": -0.0045,
+      "yes_price_10m_pct_change": -25.0,
       "prev_scan6h_yes_price": 0.014,
-      "yes_price_6h_change": 0.004,
-      "yes_price_6h_pct_change": 28.6,
+      "yes_price_6h_change": -0.0045,
+      "yes_price_6h_pct_change": -25.0,
       "scan6h_yes_price": 0.018,
-      "prev_yes_price": 0.014,
-      "yes_price_change": 0.004,
-      "yes_price_pct_change": 28.6
+      "prev_yes_price": 0.018,
+      "yes_price_change": -0.0045,
+      "yes_price_pct_change": -25.0
     },
     {
       "question": "Will the highest temperature in Jeddah be 38°C on October 29?",
@@ -571,7 +571,7 @@
   "confidence": 0.1106,
   "balance_units": 100,
   "strategy_version": "auto-bb76bea385d114be",
-  "last_price_refresh": "2026-10-29T02:07:22.762897+00:00",
+  "last_price_refresh": "2026-10-29T02:26:56.345845+00:00",
   "last_lite_refresh": "2026-10-27T20:59:30.181675+00:00",
   "model_spread": 2.555,
   "observed_intraday_temp": 30.0
