@@ -253,11 +253,17 @@ def _build_city_blocks(locks_subset, now, is_min):
             else:
                 quote_mid = None
 
-            if sell_price is None and quote_mid is None:
-                lines.append(" \u26AA قیمت فعلی در دسترس نیست")
-                continue
-
+            bucket_obj = _find_bucket(market, l["market_id"])
             entry = float(l["entry_price"])
+            if sell_price is None and quote_mid is None:
+                fallback_p = l.get("last_price")
+                if fallback_p is None and bucket_obj is not None and bucket_obj.get("yes_price") is not None:
+                    yp_f = float(bucket_obj["yes_price"])
+                    fallback_p = round(1.0 - yp_f, 4) if side == "NO" else round(yp_f, 4)
+                if fallback_p is None:
+                    fallback_p = entry
+                quote_mid = float(fallback_p)
+                price_source = "cached_fallback"
             entry_mid = float(l.get("entry_mid", entry))
             entry_bid = l.get("entry_bid")
 
@@ -372,8 +378,8 @@ def build_message(now, locks):
     if not open_locks:
         return None
 
-    open_locks_max = [l for l in open_locks if l.get("market_type", "max") == "max"]
-    open_locks_min = [l for l in open_locks if l.get("market_type") == "min"]
+    open_locks_max = [l for l in open_locks if (l.get("market_type") or "max") != "min"]
+    open_locks_min = [l for l in open_locks if (l.get("market_type") or "max") == "min"]
 
     city_blocks_max = _build_city_blocks(open_locks_max, now, is_min=False)
     city_blocks_min = _build_city_blocks(open_locks_min, now, is_min=True)
@@ -425,6 +431,19 @@ def check_all():
     Workflow آن را با لینک یکتای تازهٔ داشبورد ترکیب و یک‌جا ارسال کند.
     اگر هیچ قفل بازی نباشد، این فایل (در صورت وجود از قبل) پاک می‌شود."""
     now = datetime.now(timezone.utc)
+
+    # همگام‌سازی خودکار Issueهای باز قفل/حذف‌قفل از گیت‌هاب پیش از ساخت گزارش تلگرام:
+    # اگر قفلی در گیت‌هاب ثبت شده باشد ولی workflow مربوط به Issue هنوز اجرا نشده
+    # یا به خاطر تشابه شمارهٔ Issue با تاریخچهٔ ریپوی قبلی رد شده باشد، همین‌جا ثبت می‌شود.
+    try:
+        import lock_manager
+        n_new_locks = lock_manager.process_lock_issues()
+        n_new_unlocks = lock_manager.process_unlock_issues()
+        if n_new_locks or n_new_unlocks:
+            print(f"[price_monitor] همگام‌سازی خودکار از GitHub Issues: +{n_new_locks} قفل جدید، -{n_new_unlocks} حذف قفل")
+    except Exception as e:
+        print(f"[price_monitor] هشدار در همگام‌سازی GitHub Issues: {e}")
+
     locks = _load_locks()
 
     n_resolved = history_manager.check_and_close_resolved_locks(locks, now)

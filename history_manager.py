@@ -140,13 +140,19 @@ def _label_for_range(rng, unit_sym):
 
 def check_and_close_resolved_locks(locks, now=None):
     """
-    قفل‌های بازی که بازارشان قبلاً resolve شده را می‌بندد. اگر پلی‌مارکت در
-    دسترس نبود یا آن باکت خاص هنوز settle نشده، همان‌طور باز رها می‌شود.
-    برمی‌گرداند تعداد قفل‌هایی که در همین دور بسته شدند.
-
-    (فاز ۶) settlement_fn و market بر اساس market_type هر قفل انتخاب
-    می‌شوند -- بدون تغییر رفتار برای قفل‌های حداکثر موجود.
+    قفل‌های بازی که بازارشان واقعاً resolve شده را می‌بندد.
+    شروط ایمنی (جلوگیری از بسته شدن کاذب باکت‌های ارزان <= 2¢ در طول روز باز):
+      ۱) روز محلی شهر به پایان رسیده باشد (یا کمتر از ۳۰ دقیقه به پایان روز مانده باشد).
+      ۲) در رویداد Polymarket حداقل یک باکت برندهٔ قطعی (settled[mid] == True، یعنی >= 98¢)
+         ثبت شده باشد؛ چون تا وقتی هیچ باکتی برنده نشده، قیمت‌های <= 2¢ صرفاً قیمت
+         معاملاتی زندهٔ باکت‌های کم‌احتمال هستند نه تسویهٔ رسمی بازار.
     """
+    try:
+        from market_time import local_day_status
+    except ImportError:
+        local_day_status = None
+
+    ref_now = now or datetime.now(timezone.utc)
     closed_count = 0
     for l in locks:
         if l.get("status") != "open":
@@ -158,6 +164,15 @@ def check_and_close_resolved_locks(locks, now=None):
         except Exception:
             continue
 
+        if local_day_status is not None:
+            loc = LOCATIONS.get(city, {})
+            timing = local_day_status(date, loc, ref_now)
+            if timing.get("kind") == "local_day_open" and timing.get("remaining_seconds", 0) > 1800:
+                continue
+
+        if res is None:
+            continue
+
         settlement_fn = res.get_polymarket_settlement_min if l.get("market_type") == "min" else res.get_polymarket_settlement
         try:
             settlement = settlement_fn(city, MONTHS[dt.month - 1], dt.day, dt.year)
@@ -165,6 +180,9 @@ def check_and_close_resolved_locks(locks, now=None):
             settlement = None
 
         if not settlement:
+            continue
+        # تا زمانی که هیچ باکتی در این رویداد برندهٔ نهایی (True) نشده، رویداد هنوز تسویه نشده است
+        if not any(v is True for v in settlement.values()):
             continue
         if market_id not in settlement:
             continue
@@ -180,7 +198,7 @@ def check_and_close_resolved_locks(locks, now=None):
 
         l["status"] = "closed_resolved"
         l["exit_price"] = 1.0 if won else 0.0
-        l["closed_at"] = (now or datetime.now(timezone.utc)).isoformat()
+        l["closed_at"] = ref_now.isoformat()
         l["close_reason"] = "auto_resolved"
         l["actual_temp"] = actual_temp
         closed_count += 1

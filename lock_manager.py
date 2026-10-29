@@ -65,15 +65,14 @@ except ImportError:
         "july", "august", "september", "october", "november", "december",
     ]
 
-GITHUB_REPOSITORY = os.environ.get("GITHUB_REPOSITORY", "USERNAME/weatherbot")
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+GITHUB_REPOSITORY = os.environ.get("GITHUB_REPOSITORY") or "ericlamar008/WeatherBotModifiedV1"
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "").strip()
 API_BASE = f"https://api.github.com/repos/{GITHUB_REPOSITORY}"
 LOCKS_FILE = Path("data/locked_signals.json")
 
-HEADERS = {
-    "Authorization": f"Bearer {GITHUB_TOKEN}",
-    "Accept": "application/vnd.github+json",
-}
+HEADERS = {"Accept": "application/vnd.github+json"}
+if GITHUB_TOKEN:
+    HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
 
 
 def _load_locks():
@@ -92,7 +91,7 @@ def _save_locks(locks):
 
 def _fetch_open_issues():
     """همهٔ Issueهای باز ریپو را برمی‌گرداند (بدون فیلتر لیبل -- به دلیل
-    غیرقابل‌اتکا ��ودن پارامتر labels= در لینک ایجاد issue، دیگر روی آن
+    غیرقابل‌اتکا بودن پارامتر labels= در لینک ایجاد issue، دیگر روی آن
     تکیه نمی‌کنیم). تشخیص نوع درخواست بر عهدهٔ توابع فراخواننده است."""
     issues = []
     page = 1
@@ -151,6 +150,8 @@ def _fetch_live_exit_price(city, date, market_id, side, market_type="max", token
         return None, None
 
 def _close_issue(number, comment=None, extra_label="processed"):
+    if not GITHUB_TOKEN:
+        return
     try:
         if comment:
             requests.post(
@@ -178,21 +179,56 @@ def _close_issue(number, comment=None, extra_label="processed"):
 def _has_open_lock(locks, city, date, market_id):
     return any(
         l.get("city") == city and l.get("date") == date
-        and l.get("market_id") == market_id and l.get("status") == "open"
+        and str(l.get("market_id")) == str(market_id) and l.get("status") == "open"
         for l in locks
     )
 
 
+def _is_already_processed_lock_issue(locks, issue, city, date, market_id):
+    """بررسی اینکه آیا دقیقاً همین Issue قبلاً پردازش شده است یا خیر.
+    از issue_id یکتای گیت‌هاب و تطابق کامل (repo + issue_number + city + date + market_id)
+    استفاده می‌کند تا در صورت انتقال پروژه به ریپوی جدید (که شمارهٔ Issueها دوباره از ۱
+    شروع می‌شود)، هرگز قفل‌های جدید به خاطر تشابه شماره با تاریخچهٔ قدیمی رد نشوند."""
+    issue_id = issue.get("id")
+    number = issue.get("number")
+    for l in locks:
+        if issue_id and l.get("issue_id") == issue_id:
+            return True
+        if (
+            l.get("repo") == GITHUB_REPOSITORY
+            and l.get("issue_number") == number
+            and l.get("city") == city
+            and l.get("date") == date
+            and str(l.get("market_id")) == str(market_id)
+        ):
+            return True
+    return False
+
+
+def _is_already_processed_unlock_issue(locks, issue, city, date, market_id):
+    """معادل _is_already_processed_lock_issue برای درخواست‌های حذف قفل (UNLOCK)."""
+    issue_id = issue.get("id")
+    number = issue.get("number")
+    for l in locks:
+        if issue_id and l.get("unlock_issue_id") == issue_id:
+            return True
+        if (
+            l.get("repo") == GITHUB_REPOSITORY
+            and l.get("unlock_issue_number") == number
+            and l.get("city") == city
+            and l.get("date") == date
+            and str(l.get("market_id")) == str(market_id)
+        ):
+            return True
+    return False
+
+
 def process_lock_issues():
     locks = _load_locks()
-    existing_numbers = {l.get("issue_number") for l in locks}
     new_count = 0
 
     for issue in _fetch_open_issues():
         number = issue["number"]
-        if number in existing_numbers:
-            continue
-
         title = issue.get("title") or ""
         if not title.startswith("LOCK "):
             # این issue مربوط به قفل نیست (مثلاً یک باگ‌ریپورت دستی) --
@@ -205,12 +241,16 @@ def process_lock_issues():
             market_id, _, token_id = market_id_raw.partition("|")
             city, date = data["city"], data["date"]
             dashboard_price = float(data["price"])
-            market_type = data.get("market_type", "max")  # (فاز ۶) پیش‌فرض "max"
+            market_type = data.get("market_type") or "max"  # (فاز ۶) پیش‌فرض "max"
         except Exception as e:
             _close_issue(
                 number,
                 f"\u26a0\ufe0f فرمت این درخواست قفل قابل خواندن نبود ({e}). لطفاً فقط از دکمهٔ «قفل کن» در simple.html استفاده کنید.",
             )
+            continue
+
+        if _is_already_processed_lock_issue(locks, issue, city, date, market_id):
+            _close_issue(number, "\u2139\ufe0f این درخواست قفل قبلاً ثبت شده بود و بسته شد.")
             continue
 
         if _has_open_lock(locks, city, date, market_id):
@@ -230,6 +270,8 @@ def process_lock_issues():
 
         entry = {
             "issue_number": number,
+            "issue_id": issue.get("id"),
+            "repo": GITHUB_REPOSITORY,
             "city": city,
             "date": date,
             "market_id": market_id,
@@ -268,14 +310,10 @@ def process_lock_issues():
 
 def process_unlock_issues():
     locks = _load_locks()
-    already_unlocked_issue_numbers = {l.get("unlock_issue_number") for l in locks if l.get("unlock_issue_number")}
     closed_count = 0
 
     for issue in _fetch_open_issues():
         number = issue["number"]
-        if number in already_unlocked_issue_numbers:
-            continue
-
         title = issue.get("title") or ""
         if not title.startswith("UNLOCK "):
             continue
@@ -284,14 +322,18 @@ def process_unlock_issues():
             data = json.loads(issue["body"])
             city = data["city"]
             date = data["date"]
-            market_id = str(data["market_id"])
+            market_id, _, _ = str(data["market_id"]).partition("|")
         except Exception as e:
             _close_issue(number, f"\u26a0\ufe0f فرمت این درخواست حذف قفل قابل خواندن نبود ({e}).")
             continue
 
+        if _is_already_processed_unlock_issue(locks, issue, city, date, market_id):
+            _close_issue(number, "\u2139\ufe0f این درخواست حذف قفل قبلاً اعمال شده بود و بسته شد.")
+            continue
+
         target = None
         for l in locks:
-            if l.get("city") == city and l.get("date") == date and l.get("market_id") == market_id and l.get("status") == "open":
+            if l.get("city") == city and l.get("date") == date and str(l.get("market_id")) == market_id and l.get("status") == "open":
                 target = l
                 break
 
@@ -333,6 +375,8 @@ def process_unlock_issues():
         target["closed_at"] = datetime.now(timezone.utc).isoformat()
         target["close_reason"] = "manual_unlock"
         target["unlock_issue_number"] = number
+        target["unlock_issue_id"] = issue.get("id")
+        target["repo"] = GITHUB_REPOSITORY
 
         entry_price = target["entry_price"]
         pct = (current_price - entry_price) / entry_price * 100 if entry_price else 0.0
