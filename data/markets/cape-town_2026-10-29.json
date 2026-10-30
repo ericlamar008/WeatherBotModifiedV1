@@ -3,14 +3,14 @@
   "city_name": "Cape Town",
   "date": "2026-10-29",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-10-27T20:46:45.023927+00:00",
   "committed_allocation": null,
-  "hours_left": 1.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-29T22:00:00+00:00",
   "event_end_date": "2026-10-29T12:00:00Z",
-  "last_scan": "2026-10-29T02:20:40.624801+00:00",
+  "last_scan": "2026-10-30T02:20:41.334441+00:00",
   "horizon_days": 0,
   "forecast_mean": 25.35,
   "sigma": 1.702,
@@ -543,7 +543,10 @@
       "market_prob": 0.031,
       "role": "main_signal",
       "units": 23.2,
-      "sell_value": 0.025
+      "sell_value": 0.025,
+      "won": false,
+      "pnl_units": -23.2,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 23.2,
@@ -558,5 +561,31 @@
   "last_price_refresh": "2026-10-30T02:07:23.749656+00:00",
   "last_lite_refresh": "2026-10-29T20:20:44.104486+00:00",
   "model_spread": 1.33,
-  "observed_intraday_temp": 17.0
+  "observed_intraday_temp": 17.0,
+  "actual_temp": 24.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "loss",
+  "pnl_units": -23.2,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6290443",
+      "question": "Will the highest temperature in Cape Town be 29°C or higher on October 29?",
+      "range": [
+        29.0,
+        999.0
+      ],
+      "side": "YES",
+      "price": 0.031,
+      "model_prob": 0.4316,
+      "ev": 8.4,
+      "market_prob": 0.031,
+      "role": "main_signal",
+      "units": 23.2,
+      "sell_value": 0.025,
+      "won": false,
+      "pnl_units": -23.2,
+      "user_entered": false
+    }
+  ]
 }
