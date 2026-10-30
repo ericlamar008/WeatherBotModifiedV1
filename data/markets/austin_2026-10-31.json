@@ -65,7 +65,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.0125
     },
     {
       "question": "Will the highest temperature in Austin be between 74-75°F on October 31?",
@@ -74,11 +75,11 @@
         74.0,
         75.0
       ],
-      "yes_price": 0.17,
+      "yes_price": 0.185,
       "no_price": 0.83,
       "best_bid": 0.16,
-      "best_ask": 0.18,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.21,
+      "bid_ask_spread": 0.05,
       "volume": 69.0,
       "spread": 0.02,
       "yes_token_id": "1304702625537366977297107538051317621150257204892394530061806800079150515417",
@@ -86,14 +87,14 @@
       "model_prob": 0.1031,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.17,
-      "effective_ask": 0.17,
-      "market_prob": 0.17,
-      "belief_prob": 0.1265,
-      "ev": -0.2559,
+      "ask": 0.185,
+      "effective_ask": 0.196,
+      "market_prob": 0.185,
+      "belief_prob": 0.1318,
+      "ev": -0.3276,
       "kelly": 0.0,
-      "swing_edge": -0.0669,
-      "swing_upside_pct": -39.4,
+      "swing_edge": -0.0819,
+      "swing_upside_pct": -44.3,
       "sell_value": 0.16,
       "scan6h_model_prob": 0.1031,
       "prev_scan6h_model_prob": 0.1031,
@@ -104,12 +105,13 @@
       "scan6h_yes_price": 0.17,
       "prev_scan6h_yes_price": 0.17,
       "prev_yes_price": 0.17,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_10m_change": 0.015,
+      "yes_price_10m_pct_change": 8.8,
+      "yes_price_6h_change": 0.015,
+      "yes_price_6h_pct_change": 8.8,
+      "yes_price_change": 0.015,
+      "yes_price_pct_change": 8.8,
+      "prev_10m_yes_price": 0.17
     },
     {
       "question": "Will the highest temperature in Austin be between 76-77°F on October 31?",
@@ -153,7 +155,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.39
     },
     {
       "question": "Will the highest temperature in Austin be between 78-79°F on October 31?",
@@ -197,7 +200,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.26
     },
     {
       "question": "Will the highest temperature in Austin be between 80-81°F on October 31?",
@@ -224,8 +228,8 @@
       "belief_prob": 0.1492,
       "ev": 0.745,
       "kelly": 0.0174,
-      "swing_edge": 0.1009,
-      "swing_upside_pct": 118.0,
+      "swing_edge": 0.1064,
+      "swing_upside_pct": 133.0,
       "sell_value": 0.06,
       "scan6h_model_prob": 0.1864,
       "prev_scan6h_model_prob": 0.1864,
@@ -241,7 +245,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.08
     },
     {
       "question": "Will the highest temperature in Austin be between 82-83°F on October 31?",
@@ -285,7 +290,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.0315
     },
     {
       "question": "Will the highest temperature in Austin be 90°F or higher on October 31?",
@@ -329,7 +335,8 @@
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "prev_10m_yes_price": 0.009
     }
   ],
   "live_allocation": [],
@@ -341,5 +348,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-bb76bea385d114be"
+  "strategy_version": "auto-bb76bea385d114be",
+  "last_price_refresh": "2026-10-30T02:25:54.111648+00:00"
 }
