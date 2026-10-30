@@ -3,12 +3,12 @@
   "city_name": "Tokyo",
   "date": "2026-10-30",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-10-28T21:41:01.810187+00:00",
   "committed_allocation": null,
-  "hours_left": 0.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-30T15:00:00+00:00",
   "event_end_date": "2026-10-30T12:00:00Z",
   "last_scan": "2026-10-30T02:20:41.334441+00:00",
@@ -538,7 +538,10 @@
       "market_prob": 0.9605,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.95
+      "sell_value": 0.95,
+      "won": true,
+      "pnl_units": 1.23,
+      "user_entered": false
     },
     {
       "market_id": "6331400",
@@ -554,7 +557,10 @@
       "market_prob": 0.0395,
       "role": "scenario_hedge",
       "units": 0.82,
-      "sell_value": 0.029
+      "sell_value": 0.029,
+      "won": false,
+      "pnl_units": -0.82,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.8,
@@ -568,5 +574,50 @@
   "strategy_version": "auto-bb76bea385d114be",
   "last_price_refresh": "2026-10-30T20:07:24.101119+00:00",
   "observed_intraday_temp": 16.0,
-  "last_lite_refresh": "2026-10-30T14:20:42.437462+00:00"
+  "last_lite_refresh": "2026-10-30T20:20:43.148822+00:00",
+  "actual_temp": 14.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.41,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6331400",
+      "question": "Will the lowest temperature in Tokyo be 14°C on October 30?",
+      "range": [
+        14.0,
+        14.0
+      ],
+      "side": "YES",
+      "price": 0.9605,
+      "model_prob": 0.1481,
+      "ev": -0.5498,
+      "market_prob": 0.9605,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.95,
+      "won": true,
+      "pnl_units": 1.23,
+      "user_entered": false
+    },
+    {
+      "market_id": "6331400",
+      "question": "Will the lowest temperature in Tokyo be 14°C on October 30? (NO)",
+      "range": [
+        14.0,
+        14.0
+      ],
+      "side": "NO",
+      "price": 0.0395,
+      "model_prob": 0.8519,
+      "ev": 13.3696,
+      "market_prob": 0.0395,
+      "role": "scenario_hedge",
+      "units": 0.82,
+      "sell_value": 0.029,
+      "won": false,
+      "pnl_units": -0.82,
+      "user_entered": false
+    }
+  ]
 }

@@ -3,12 +3,12 @@
   "city_name": "Seoul",
   "date": "2026-10-30",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-10-28T21:41:01.810187+00:00",
   "committed_allocation": null,
-  "hours_left": 0.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-30T15:00:00+00:00",
   "event_end_date": "2026-10-30T12:00:00Z",
   "last_scan": "2026-10-30T02:20:41.334441+00:00",
@@ -538,7 +538,10 @@
       "market_prob": 0.945,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.896
+      "sell_value": 0.896,
+      "won": true,
+      "pnl_units": 1.75,
+      "user_entered": false
     },
     {
       "market_id": "6331332",
@@ -554,7 +557,10 @@
       "market_prob": 0.055,
       "role": "scenario_hedge",
       "units": 1.16,
-      "sell_value": 0.006
+      "sell_value": 0.006,
+      "won": false,
+      "pnl_units": -1.16,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 31.2,
@@ -568,5 +574,50 @@
   "strategy_version": "auto-bb76bea385d114be",
   "last_price_refresh": "2026-10-30T20:07:24.101119+00:00",
   "observed_intraday_temp": 14.0,
-  "last_lite_refresh": "2026-10-30T14:20:42.437462+00:00"
+  "last_lite_refresh": "2026-10-30T20:20:43.148822+00:00",
+  "actual_temp": 8.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.59,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6331332",
+      "question": "Will the lowest temperature in Seoul (Incheon) be 8°C on October 30?",
+      "range": [
+        8.0,
+        8.0
+      ],
+      "side": "YES",
+      "price": 0.945,
+      "model_prob": 0.1278,
+      "ev": -0.5788,
+      "market_prob": 0.945,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.896,
+      "won": true,
+      "pnl_units": 1.75,
+      "user_entered": false
+    },
+    {
+      "market_id": "6331332",
+      "question": "Will the lowest temperature in Seoul (Incheon) be 8°C on October 30? (NO)",
+      "range": [
+        8.0,
+        8.0
+      ],
+      "side": "NO",
+      "price": 0.055,
+      "model_prob": 0.8722,
+      "ev": 5.3442,
+      "market_prob": 0.055,
+      "role": "scenario_hedge",
+      "units": 1.16,
+      "sell_value": 0.006,
+      "won": false,
+      "pnl_units": -1.16,
+      "user_entered": false
+    }
+  ]
 }
