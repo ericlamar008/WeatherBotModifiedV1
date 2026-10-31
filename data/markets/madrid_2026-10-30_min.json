@@ -3,15 +3,15 @@
   "city_name": "Madrid",
   "date": "2026-10-30",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-10-28T21:41:01.810187+00:00",
   "committed_allocation": null,
-  "hours_left": 2.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-30T23:00:00+00:00",
   "event_end_date": "2026-10-30T12:00:00Z",
-  "last_scan": "2026-10-30T02:20:41.334441+00:00",
+  "last_scan": "2026-10-31T02:20:41.141510+00:00",
   "last_lite_refresh": "2026-10-30T20:20:43.148822+00:00",
   "forecast_mean": 10.38,
   "sigma": 2.271,
@@ -541,7 +541,10 @@
       "market_prob": 0.3,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.03
+      "sell_value": 0.03,
+      "won": true,
+      "pnl_units": 70.0,
+      "user_entered": false
     },
     {
       "market_id": "6331443",
@@ -557,7 +560,10 @@
       "market_prob": 0.7,
       "role": "scenario_hedge",
       "units": 46.67,
-      "sell_value": 0.43
+      "sell_value": 0.43,
+      "won": false,
+      "pnl_units": -46.67,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 76.7,
@@ -568,5 +574,50 @@
   "success_probability": 0.3884,
   "confidence": 0.1443,
   "balance_units": 100,
-  "strategy_version": "auto-bb76bea385d114be"
+  "strategy_version": "auto-bb76bea385d114be",
+  "actual_temp": 9.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 23.33,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6331443",
+      "question": "Will the lowest temperature in Madrid be 9°C on October 30?",
+      "range": [
+        9.0,
+        9.0
+      ],
+      "side": "YES",
+      "price": 0.3,
+      "model_prob": 0.4813,
+      "ev": 0.0995,
+      "market_prob": 0.3,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.03,
+      "won": true,
+      "pnl_units": 70.0,
+      "user_entered": false
+    },
+    {
+      "market_id": "6331443",
+      "question": "Will the lowest temperature in Madrid be 9°C on October 30? (NO)",
+      "range": [
+        9.0,
+        9.0
+      ],
+      "side": "NO",
+      "price": 0.7,
+      "model_prob": 0.5187,
+      "ev": -0.2536,
+      "market_prob": 0.7,
+      "role": "scenario_hedge",
+      "units": 46.67,
+      "sell_value": 0.43,
+      "won": false,
+      "pnl_units": -46.67,
+      "user_entered": false
+    }
+  ]
 }
