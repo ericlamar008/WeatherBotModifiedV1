@@ -3,11 +3,11 @@
   "city_name": "Dallas",
   "date": "2026-10-30",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-10-28T21:41:01.810187+00:00",
   "committed_allocation": null,
-  "hours_left": 2.1,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-31T05:00:00+00:00",
   "event_end_date": "2026-10-30T12:00:00Z",
   "last_scan": "2026-10-31T02:20:41.141510+00:00",
@@ -543,7 +543,10 @@
       "market_prob": 0.998,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.997
+      "sell_value": 0.997,
+      "won": true,
+      "pnl_units": 0.06,
+      "user_entered": false
     },
     {
       "market_id": "6335351",
@@ -559,7 +562,10 @@
       "market_prob": 0.002,
       "role": "scenario_hedge",
       "units": 0.04,
-      "sell_value": 0.001
+      "sell_value": 0.001,
+      "won": false,
+      "pnl_units": -0.04,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -574,5 +580,50 @@
   "last_price_refresh": "2026-10-31T08:07:24.880980+00:00",
   "model_spread": 2.06,
   "observed_intraday_temp": 69.1,
-  "last_lite_refresh": "2026-10-31T02:53:20.277654+00:00"
+  "last_lite_refresh": "2026-10-31T08:20:42.894151+00:00",
+  "actual_temp": 74.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.02,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6335351",
+      "question": "Will the highest temperature in Dallas be between 74-75°F on October 30?",
+      "range": [
+        74.0,
+        75.0
+      ],
+      "side": "YES",
+      "price": 0.998,
+      "model_prob": 0.2421,
+      "ev": -0.4923,
+      "market_prob": 0.998,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.997,
+      "won": true,
+      "pnl_units": 0.06,
+      "user_entered": false
+    },
+    {
+      "market_id": "6335351",
+      "question": "Will the highest temperature in Dallas be between 74-75°F on October 30? (NO)",
+      "range": [
+        74.0,
+        75.0
+      ],
+      "side": "NO",
+      "price": 0.002,
+      "model_prob": 0.7579,
+      "ev": 245.65,
+      "market_prob": 0.002,
+      "role": "scenario_hedge",
+      "units": 0.04,
+      "sell_value": 0.001,
+      "won": false,
+      "pnl_units": -0.04,
+      "user_entered": false
+    }
+  ]
 }
