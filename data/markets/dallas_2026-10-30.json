@@ -6,7 +6,7 @@
   "status": "open",
   "created_at": "2026-10-28T21:41:01.810187+00:00",
   "committed_allocation": null,
-  "hours_left": 2.7,
+  "hours_left": 2.1,
   "time_status": "local_day_open",
   "local_day_end_utc": "2026-10-31T05:00:00+00:00",
   "event_end_date": "2026-10-30T12:00:00Z",
@@ -43,7 +43,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0002,
+      "belief_prob": 0.0,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -63,9 +63,9 @@
       "yes_price_6h_change": -0.001,
       "yes_price_6h_pct_change": -66.7,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.001,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "prev_yes_price": 0.0015,
+      "yes_price_change": -0.001,
+      "yes_price_pct_change": -66.7
     },
     {
       "question": "Will the highest temperature in Dallas be between 66-67°F on October 30?",
@@ -89,7 +89,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0002,
+      "belief_prob": 0.0,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -155,9 +155,9 @@
       "yes_price_6h_change": -0.0015,
       "yes_price_6h_pct_change": -75.0,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.011,
-      "yes_price_change": -0.0105,
-      "yes_price_pct_change": -95.5
+      "prev_yes_price": 0.002,
+      "yes_price_change": -0.0015,
+      "yes_price_pct_change": -75.0
     },
     {
       "question": "Will the highest temperature in Dallas be between 70-71°F on October 30?",
@@ -175,7 +175,7 @@
       "spread": 0.0,
       "yes_token_id": "29252124740392462510723809732938546372193465576497914999239048779058063569444",
       "no_token_id": "6074182398390780064809807202384295336572651434428798364908302477896259586710",
-      "model_prob": 0.0666,
+      "model_prob": 0.0667,
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.0005,
@@ -184,13 +184,13 @@
       "belief_prob": 0.0435,
       "ev": 86.0,
       "kelly": 0.0108,
-      "swing_edge": 0.0661,
+      "swing_edge": 0.0662,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "prev_scan6h_model_prob": 0.0233,
       "model_prob_6h_change": 0.0433,
       "model_prob_6h_pct_change": 185.8,
-      "scan6h_model_prob": 0.0666,
+      "scan6h_model_prob": 0.0667,
       "prev_model_prob": 0.0233,
       "model_prob_change": 0.0433,
       "model_prob_pct_change": 185.8,
@@ -201,9 +201,9 @@
       "yes_price_6h_change": -0.0205,
       "yes_price_6h_pct_change": -97.6,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0145,
-      "yes_price_change": -0.014,
-      "yes_price_pct_change": -96.6
+      "prev_yes_price": 0.021,
+      "yes_price_change": -0.0205,
+      "yes_price_pct_change": -97.6
     },
     {
       "question": "Will the highest temperature in Dallas be between 72-73°F on October 30?",
@@ -263,7 +263,7 @@
       "best_bid": 0.997,
       "best_ask": 0.999,
       "bid_ask_spread": 0.002,
-      "volume": 7259.0,
+      "volume": 7610.0,
       "spread": 0.002,
       "yes_token_id": "71834994435826570554866138263362884855113933097959300910373923506644671627490",
       "no_token_id": "92416332355404857581792760227838698309993708053188819869834235502842881002047",
@@ -293,9 +293,9 @@
       "yes_price_6h_change": 0.163,
       "yes_price_6h_pct_change": 19.5,
       "scan6h_yes_price": 0.998,
-      "prev_yes_price": 0.9985,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "prev_yes_price": 0.835,
+      "yes_price_change": 0.163,
+      "yes_price_pct_change": 19.5
     },
     {
       "question": "Will the highest temperature in Dallas be between 76-77°F on October 30?",
@@ -309,7 +309,7 @@
       "best_bid": null,
       "best_ask": 0.002,
       "bid_ask_spread": 0.0,
-      "volume": 8157.0,
+      "volume": 8164.0,
       "spread": 0.0,
       "yes_token_id": "57384500784513061712558172252650834556049721920239492281922022765221637253135",
       "no_token_id": "41251057634179177587695940491896538465229108858581706612847819769944492930021",
@@ -339,9 +339,9 @@
       "yes_price_6h_change": -0.149,
       "yes_price_6h_pct_change": -99.3,
       "scan6h_yes_price": 0.001,
-      "prev_yes_price": 0.002,
-      "yes_price_change": -0.001,
-      "yes_price_pct_change": -50.0
+      "prev_yes_price": 0.15,
+      "yes_price_change": -0.149,
+      "yes_price_pct_change": -99.3
     },
     {
       "question": "Will the highest temperature in Dallas be between 78-79°F on October 30?",
@@ -359,7 +359,7 @@
       "spread": 0.0,
       "yes_token_id": "103210273260290077049728524751589497355614123996949323000070454874570371449751",
       "no_token_id": "44814960065607581615576509016517277640420466071728625144885849189110298953659",
-      "model_prob": 0.1513,
+      "model_prob": 0.1512,
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.0005,
@@ -368,13 +368,13 @@
       "belief_prob": 0.0985,
       "ev": 196.0,
       "kelly": 0.0245,
-      "swing_edge": 0.1508,
+      "swing_edge": 0.1507,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "prev_scan6h_model_prob": 0.1435,
       "model_prob_6h_change": 0.0078,
       "model_prob_6h_pct_change": 5.4,
-      "scan6h_model_prob": 0.1513,
+      "scan6h_model_prob": 0.1512,
       "prev_model_prob": 0.1435,
       "model_prob_change": 0.0078,
       "model_prob_pct_change": 5.4,
@@ -385,9 +385,9 @@
       "yes_price_6h_change": -0.005,
       "yes_price_6h_pct_change": -90.9,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.001,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "prev_yes_price": 0.0055,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -90.9
     },
     {
       "question": "Will the highest temperature in Dallas be between 80-81°F on October 30?",
@@ -405,7 +405,7 @@
       "spread": 0.0,
       "yes_token_id": "37083874700980000042382537039702309756327089712133799224597934152653859890187",
       "no_token_id": "36170086514693841223571980617970138322060850300889835664009207896637836063132",
-      "model_prob": 0.0621,
+      "model_prob": 0.062,
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.0005,
@@ -414,13 +414,13 @@
       "belief_prob": 0.0405,
       "ev": 80.0,
       "kelly": 0.01,
-      "swing_edge": 0.0616,
+      "swing_edge": 0.0615,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "prev_scan6h_model_prob": 0.0335,
       "model_prob_6h_change": 0.0286,
       "model_prob_6h_pct_change": 85.4,
-      "scan6h_model_prob": 0.0621,
+      "scan6h_model_prob": 0.062,
       "prev_model_prob": 0.0335,
       "model_prob_change": 0.0286,
       "model_prob_pct_change": 85.4,
@@ -431,9 +431,9 @@
       "yes_price_6h_change": -0.0055,
       "yes_price_6h_pct_change": -91.7,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0015,
-      "yes_price_change": -0.001,
-      "yes_price_pct_change": -66.7
+      "prev_yes_price": 0.006,
+      "yes_price_change": -0.0055,
+      "yes_price_pct_change": -91.7
     },
     {
       "question": "Will the highest temperature in Dallas be between 82-83°F on October 30?",
@@ -574,5 +574,5 @@
   "last_price_refresh": "2026-10-31T02:52:26.505041+00:00",
   "model_spread": 2.06,
   "observed_intraday_temp": 69.1,
-  "last_lite_refresh": "2026-10-30T20:20:43.148822+00:00"
+  "last_lite_refresh": "2026-10-31T02:53:20.277654+00:00"
 }
