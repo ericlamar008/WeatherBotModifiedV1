@@ -6704,7 +6704,8 @@
     "intraday_eliminated": false,
     "exit_price_source": "last",
     "unlock_issue_number": 22,
-    "unlock_issue_id": 6133703513
+    "unlock_issue_id": 6133703513,
+    "notified_close": true
   },
   {
     "issue_number": 11,
@@ -6790,7 +6791,8 @@
     "intraday_eliminated": false,
     "exit_price_source": "bid",
     "unlock_issue_number": 23,
-    "unlock_issue_id": 6133705120
+    "unlock_issue_id": 6133705120,
+    "notified_close": true
   },
   {
     "issue_number": 14,
@@ -6900,12 +6902,17 @@
     "entry_bid": 0.406,
     "locked_at": "2026-10-31T10:17:53.160125+00:00",
     "status": "open",
-    "last_price": null,
-    "last_pct": null,
+    "last_price": 0.372,
+    "last_pct": -24.5,
     "exit_price": null,
     "closed_at": null,
     "close_reason": null,
-    "actual_temp": null
+    "actual_temp": null,
+    "last_price_source": "bid",
+    "last_mid": 0.4285,
+    "last_checked_at": "2026-10-31T10:22:25.570913+00:00",
+    "model_fair_cents": 21,
+    "intraday_eliminated": false
   },
   {
     "issue_number": 25,
@@ -6922,11 +6929,43 @@
     "entry_bid": 0.45,
     "locked_at": "2026-10-31T10:18:40.236065+00:00",
     "status": "open",
-    "last_price": null,
-    "last_pct": null,
+    "last_price": 0.455,
+    "last_pct": 0.0,
     "exit_price": null,
     "closed_at": null,
     "close_reason": null,
-    "actual_temp": null
+    "actual_temp": null,
+    "last_price_source": "mid_unchanged",
+    "last_mid": 0.455,
+    "last_checked_at": "2026-10-31T10:22:25.570913+00:00",
+    "model_fair_cents": 27,
+    "intraday_eliminated": false
+  },
+  {
+    "issue_number": 26,
+    "issue_id": 6133752206,
+    "repo": "ericlamar008/WeatherBotModifiedV1",
+    "city": "chicago",
+    "date": "2026-11-01",
+    "market_id": "6410274",
+    "market_type": "max",
+    "token_id": "80231847439320750557643019933182215018123550098032216870878850638690553650602",
+    "side": "YES",
+    "entry_price": 0.285,
+    "entry_mid": 0.285,
+    "entry_bid": 0.27,
+    "locked_at": "2026-10-31T10:22:25.925355+00:00",
+    "status": "open",
+    "last_price": 0.285,
+    "last_pct": 0.0,
+    "exit_price": null,
+    "closed_at": null,
+    "close_reason": null,
+    "actual_temp": null,
+    "last_price_source": "mid_unchanged",
+    "last_mid": 0.285,
+    "last_checked_at": "2026-10-31T10:22:25.570913+00:00",
+    "model_fair_cents": 28,
+    "intraday_eliminated": false
   }
 ]
