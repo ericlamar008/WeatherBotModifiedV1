@@ -304,42 +304,58 @@ def process_lock_issues():
             entry_mid = live_price if live_price is not None else entry_price
             entry_bid = live_bid
 
-        smart_autopilot = bool(data.get("smart_autopilot", True))
-        auto_exit_enabled = bool(data.get("auto_exit_enabled", True))
-        tp_enabled = bool(data.get("tp_enabled", True))
-        sl_enabled = bool(data.get("sl_enabled", True))
-        metar_auto_stop = bool(data.get("metar_auto_stop", True))
-        auto_sell_99c = bool(data.get("auto_sell_99c", True))
-        trailing_stop_enabled = bool(data.get("trailing_stop_enabled", False))
+        is_advanced_lock = bool(
+            data.get("auto_exit_enabled") is True
+            or data.get("smart_autopilot") is True
+            or data.get("tp_price") is not None
+            or data.get("sl_price") is not None
+            or is_conditional
+            or is_edit_request
+        )
+
+        smart_autopilot = bool(data.get("smart_autopilot", False)) if is_advanced_lock else False
+        auto_exit_enabled = bool(data.get("auto_exit_enabled", True)) if is_advanced_lock else False
+        tp_enabled = bool(data.get("tp_enabled", True)) if auto_exit_enabled else False
+        sl_enabled = bool(data.get("sl_enabled", True)) if auto_exit_enabled else False
+        metar_auto_stop = bool(data.get("metar_auto_stop", True)) if auto_exit_enabled else False
+        auto_sell_99c = bool(data.get("auto_sell_99c", True)) if auto_exit_enabled else False
+        trailing_stop_enabled = bool(data.get("trailing_stop_enabled", False)) if auto_exit_enabled else False
         trailing_offset_pct = float(data.get("trailing_offset_pct") or 10.0)
 
         ref_entry = entry_price if entry_price and entry_price > 0 else 0.20
-        if data.get("tp_price") is not None:
-            tp_price = round(float(data["tp_price"]), 4)
-        elif data.get("tp_cents") is not None:
-            tp_price = round(float(data["tp_cents"]) / 100.0, 4)
-        elif data.get("tp_pct") is not None:
-            tp_price = min(0.99, round(ref_entry * (1.0 + float(data["tp_pct"]) / 100.0), 4))
+        if auto_exit_enabled or is_edit_request:
+            if data.get("tp_price") is not None:
+                tp_price = round(float(data["tp_price"]), 4)
+            elif data.get("tp_cents") is not None:
+                tp_price = round(float(data["tp_cents"]) / 100.0, 4)
+            elif data.get("tp_pct") is not None:
+                tp_price = min(0.99, round(ref_entry * (1.0 + float(data["tp_pct"]) / 100.0), 4))
+            else:
+                tp_price = min(0.99, round(ref_entry * 1.35, 4))
+
+            if data.get("sl_price") is not None:
+                sl_price = round(float(data["sl_price"]), 4)
+            elif data.get("sl_cents") is not None:
+                sl_price = round(float(data["sl_cents"]) / 100.0, 4)
+            elif data.get("sl_pct") is not None:
+                sl_price = max(0.01, round(ref_entry * (1.0 - abs(float(data["sl_pct"])) / 100.0), 4))
+            else:
+                sl_price = max(0.01, round(ref_entry * 0.65, 4))
+
+            tp_pct = round(((tp_price - ref_entry) / ref_entry) * 100.0, 1) if ref_entry > 0 else 35.0
+            sl_pct = round(((ref_entry - sl_price) / ref_entry) * 100.0, 1) if ref_entry > 0 else 35.0
+            usdc_amount = float(data.get("usdc_amount") or 15.0)
+            quantity_shares = float(
+                data.get("quantity_shares")
+                or (round(usdc_amount / ref_entry, 2) if ref_entry > 0 else 0.0)
+            )
         else:
-            tp_price = min(0.99, round(ref_entry * 1.35, 4))
-
-        if data.get("sl_price") is not None:
-            sl_price = round(float(data["sl_price"]), 4)
-        elif data.get("sl_cents") is not None:
-            sl_price = round(float(data["sl_cents"]) / 100.0, 4)
-        elif data.get("sl_pct") is not None:
-            sl_price = max(0.01, round(ref_entry * (1.0 - abs(float(data["sl_pct"])) / 100.0), 4))
-        else:
-            sl_price = max(0.01, round(ref_entry * 0.65, 4))
-
-        tp_pct = round(((tp_price - ref_entry) / ref_entry) * 100.0, 1) if ref_entry > 0 else 35.0
-        sl_pct = round(((ref_entry - sl_price) / ref_entry) * 100.0, 1) if ref_entry > 0 else 35.0
-
-        usdc_amount = float(data.get("usdc_amount") or 10.0)
-        quantity_shares = float(
-            data.get("quantity_shares")
-            or (round(usdc_amount / ref_entry, 2) if ref_entry > 0 else 0.0)
-        )
+            tp_price = None
+            sl_price = None
+            tp_pct = None
+            sl_pct = None
+            usdc_amount = float(data["usdc_amount"]) if data.get("usdc_amount") is not None else None
+            quantity_shares = float(data["quantity_shares"]) if data.get("quantity_shares") is not None else None
 
         if existing_open_lock is not None and is_edit_request:
             existing_open_lock["execution_mode"] = data.get("execution_mode") or existing_open_lock.get("execution_mode") or "SHADOW"

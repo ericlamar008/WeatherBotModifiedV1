@@ -648,9 +648,11 @@ th{color:var(--text-dim);font-weight:600;font-size:11.5px;background:var(--surfa
 tr:last-child td{border-bottom:none}
 tr:hover td{background:rgba(246,248,251,0.65)}
 .smart-main-row td{background:rgba(232,248,238,0.45)}
-.lock-btn,.unlock-btn,.edit-btn{border:none;border-radius:9px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.lock-btn,.quick-lock-btn,.unlock-btn,.edit-btn{border:none;border-radius:9px;padding:7px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
 .lock-btn{background:var(--accent);color:#fff;box-shadow:0 1px 2px rgba(37,99,235,0.2)}
 .lock-btn:hover{background:#1d4ed8}
+.quick-lock-btn{background:var(--green);color:#fff;padding:7px 10px;box-shadow:0 1px 2px rgba(22,163,74,0.2)}
+.quick-lock-btn:hover{background:#15803d}
 .edit-btn{background:var(--accent);color:#fff;padding:5px 10px;font-size:11px;border-radius:8px}
 .edit-btn:hover{background:#1d4ed8}
 .unlock-btn{background:var(--red);color:#fff;padding:5px 10px;font-size:11px;border-radius:8px}
@@ -1819,6 +1821,74 @@ function evaluateTickClientSide(bidCents, metarElim, resBox) {
   }
 }
 
+function quickLockBucket(city, cityName, date, marketId, tokenId, side, price, label, marketType) {
+  setLockStatus(marketId, "⏳ در حال ثبت قفل معمولی...", "#eab308");
+  var isGitHubPages = window.location.hostname.indexOf('github.io') !== -1;
+  if (!isGitHubPages) {
+    fetch('/api/locks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        city: city,
+        date: date,
+        market_id: marketId,
+        token_id: tokenId,
+        side: side,
+        price: price,
+        market_type: marketType || "max",
+        auto_exit_enabled: false,
+        tp_enabled: false,
+        sl_enabled: false,
+        smart_autopilot: false,
+        metar_auto_stop: false,
+        auto_sell_99c: false,
+        usdc_amount: null
+      })
+    }).then(function(r) {
+      if (r.ok) return r.json();
+      throw new Error('fallback');
+    }).then(function(res) {
+      if (res && res.ok) {
+        setLockStatus(marketId, "✔ قفل معمولی با موفقیت ثبت شد!", "#16a34a");
+        window.location.reload();
+      } else {
+        openGitHubIssueForQuickLock(city, cityName, date, marketId, tokenId, side, price, label, marketType);
+      }
+    }).catch(function() {
+      openGitHubIssueForQuickLock(city, cityName, date, marketId, tokenId, side, price, label, marketType);
+    });
+  } else {
+    openGitHubIssueForQuickLock(city, cityName, date, marketId, tokenId, side, price, label, marketType);
+  }
+}
+
+function openGitHubIssueForQuickLock(city, cityName, date, marketId, tokenId, side, price, label, marketType) {
+  var repo = getGitHubRepo();
+  var payload = {
+    city: city,
+    date: date,
+    market_id: marketId + (tokenId ? ("|" + tokenId) : ""),
+    side: side,
+    price: price,
+    market_type: (marketType || "max"),
+    auto_exit_enabled: false,
+    tp_enabled: false,
+    sl_enabled: false,
+    smart_autopilot: false
+  };
+  var title = encodeURIComponent(
+    "LOCK " + cityName + " " + date + " " + label + " " + side + " @" + price
+  );
+  var body = encodeURIComponent(JSON.stringify(payload));
+  var url = "https://github.com/" + repo + "/issues/new?title=" + title + "&body=" + body + "&labels=lock-request";
+  var win = window.open(url, "_blank");
+  if (win) {
+    setLockStatus(marketId, "⚠️ در تب جدید حتماً روی «Submit new issue» کلیک کنید تا قفل ثبت شود!", "#f59e0b");
+  } else {
+    setLockStatus(marketId, "❌ مرورگر پاپ‌آپ را مسدود کرد -- اجازه بدهید و دوباره امتحان کنید.", "#f87171");
+  }
+}
+
 function unlockBucket(city, cityName, date, marketId, label) {
   setLockStatus(marketId, "⏳ در حال باز شدن گیت‌هاب...", "#eab308");
   var isGitHubPages = window.location.hostname.indexOf('github.io') !== -1;
@@ -2208,11 +2278,15 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
                     '<span class="locked-badge">\U0001F512 پوزیشن فعال \u2714</span>'
                     '<div style="display:flex;align-items:center;justify-content:center;gap:4px">'
                     f'<button class="edit-btn" onclick="{edit_call}">⚙️ تنظیمات TP/SL</button>'
-                    f'<button class="unlock-btn" onclick="{unlock_call}">فروش</button>'
+                    f'<button class="unlock-btn" onclick="{unlock_call}">حذف قفل / فروش</button>'
                     '</div>'
                     f'{status_span}'
                 )
             else:
+                quick_lock_call = (
+                    f"quickLockBucket('{city_slug}','{city_name}','{date}','{market_id}','{yes_token}',"
+                    f"'YES',{float(yes_price):.4f},'{label}','{market_type}')"
+                )
                 create_call = (
                     f"openOrderModal({{mode:'create',city:'{city_slug}',cityName:'{city_name}',date:'{date}',"
                     f"marketId:'{market_id}',tokenId:'{yes_token}',noTokenId:'{no_token}',side:'YES',"
@@ -2220,7 +2294,10 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
                     f"modelProb:{mp_js},beliefProb:{bp_js},ev:{ev_js}}})"
                 )
                 action_html = (
-                    f'<button class="lock-btn" onclick="{create_call}">⚡ خرید و تنظیم اتوماتیک</button>'
+                    '<div style="display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap">'
+                    f'<button class="quick-lock-btn" title="ثبت مستقیم قفل معمولی دقیقاً عین قبل (بدون باز کردن صفحه تنظیمات پیشرفته)" onclick="{quick_lock_call}">🔒 قفل معمولی</button>'
+                    f'<button class="lock-btn" title="باز کردن پنل پیشرفته خرید و تنظیم اتوماتیک TP/SL و خرید شرطی" onclick="{create_call}">⚡ خرید و تنظیم اتوماتیک</button>'
+                    '</div>'
                     f'{status_span}'
                 )
 
@@ -2309,7 +2386,12 @@ def _locked_signals_section_html(locks):
         )
         auto_badge = (
             '<span style="display:inline-block;padding:1px 6px;border-radius:4px;font-size:9.5px;font-weight:700;background:var(--green-bg);color:var(--green);border:1px solid #16a34a44">🤖 اتوماتیک</span>'
-            if smart_auto else ""
+            if (smart_auto and l.get("auto_exit_enabled") is not False)
+            else (
+                '<span style="display:inline-block;padding:1px 6px;border-radius:4px;font-size:9.5px;font-weight:700;background:var(--surface-2);color:var(--text-dim);border:1px solid var(--border)">🔒 قفل معمولی</span>'
+                if l.get("auto_exit_enabled") is False
+                else ""
+            )
         )
         city_col_html = (
             f'<a href="{link}" target="_blank" rel="noopener" style="font-weight:700;display:block">{name}</a>'
@@ -2373,7 +2455,7 @@ def _locked_signals_section_html(locks):
         tp_price = l.get("tp_price")
         sl_price = l.get("sl_price")
         if l.get("auto_exit_enabled") is False:
-            tpsl_col_html = '<span style="color:var(--text-dim);font-size:11px">غیرفعال (دستی)</span>'
+            tpsl_col_html = '<span style="color:var(--text-dim);font-size:11px">غیرفعال (قفل معمولی)</span>'
         else:
             tp_c = round(float(tp_price) * 100) if tp_price is not None else (round(float(entry) * 135) if entry else None)
             sl_c = round(float(sl_price) * 100) if sl_price is not None else (round(float(entry) * 72) if entry else None)
