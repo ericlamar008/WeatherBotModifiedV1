@@ -30,7 +30,7 @@ LAYER 5 -- Invariants: total_allocated_units never exceeds balance_units,
 
 import math
 import sys
-import wpde_strategy as strategy
+import strategy
 
 FAILURES = []
 
@@ -89,7 +89,7 @@ print("=" * 70)
 
 def layer2_candidate_set_no_elimination():
     outcomes = [
-        make_bucket(20, 21, 0.02, 0.01),   # tiny prob, tiny price -- would be cut by old min_prob/min_ev floors
+        make_bucket(20, 21, 0.02, 0.01),
         make_bucket(21, 22, 0.30, 0.30),
         make_bucket(22, 23, 0.40, 0.35),
     ]
@@ -102,22 +102,12 @@ def layer2_candidate_set_no_elimination():
           any(c["side"] == "NO" for c in candidates) and any(c["side"] == "YES" for c in candidates))
 
 def layer2_edge_plays_no_role_in_core_selection():
-    """A bucket with a huge NOMINAL edge (model prob far above market price)
-    but that is priced as an implausible tail event -- a true lottery ticket
-    -- must not automatically beat a solidly-priced, plausible candidate
-    just because the raw edge number looks bigger. We verify this using
-    the actual scenario grid mass (not an artificially inflated tail
-    probability): the lottery bucket's real scenario weight is tiny, so
-    its standalone expected utility must come out lower than the modest,
-    well-covered candidate."""
     outcomes = [
-        make_bucket(28, 28, 0.55, 0.50),   # modest edge, well-covered by the scenario grid
-        make_bucket(50, 50, 0.02, 0.001),  # nominal edge huge but this scenario has negligible real mass
+        make_bucket(28, 28, 0.55, 0.50),
+        make_bucket(50, 50, 0.02, 0.001),
     ]
     p = strategy.get_merged_params()
     candidates = strategy.build_candidate_set(outcomes, p)
-    # Realistic scenario grid: the tail bucket (50) gets its TRUE tiny mass,
-    # not an inflated one -- most probability mass sits near 28.
     scenarios = [(28.0, 0.94), (35.0, 0.05), (50.0, 0.01)]
     core, score = strategy.select_core_position(candidates, scenarios, p["balance_units"], p)
     check("L2 core position is NOT chosen by raw edge magnitude alone",
@@ -131,61 +121,48 @@ def layer2_core_has_positive_expected_utility():
     scenarios = [(28.0, 0.7), (30.0, 0.3)]
     core, score = strategy.select_core_position(candidates, scenarios, p["balance_units"], p)
     check("L2 selected core position has non-negative expected utility score",
-          core is None or score >= p["belief_min_utility"] - 1e-9,
+          core is None or score >= 0.0,
           detail=f"score={score}")
+
+def layer2_two_degree_bucket_contains_continuous_bounds():
+    check("L2 2°F bucket (70, 71) contains 69.6 and 71.4",
+          strategy._bucket_contains((70, 71), 69.6) and strategy._bucket_contains((70, 71), 71.4))
+    check("L2 adjacent 2°F buckets (70, 71) and (72, 73) partition 71.5 without gap",
+          strategy._bucket_contains((70, 71), 71.49) and strategy._bucket_contains((72, 73), 71.5))
 
 layer2_candidate_set_no_elimination()
 layer2_edge_plays_no_role_in_core_selection()
 layer2_core_has_positive_expected_utility()
+layer2_two_degree_bucket_contains_continuous_bounds()
 
 # ---------------------------------------------------------------------------
 print("=" * 70)
-print("LAYER 3 -- Confidence")
+print("LAYER 3 -- Confidence & Single Core Allocation (No Hedge)")
 print("=" * 70)
 
 def layer3_confidence_monotonic_in_agreement():
     p = strategy.get_merged_params()
-    agree = {"model_prob": 0.50, "market_prob": 0.50}
-    disagree = {"model_prob": 0.80, "market_prob": 0.20}
-    c_agree = strategy.compute_confidence(agree, "testcity", p)
-    c_disagree = strategy.compute_confidence(disagree, "testcity", p)
+    agree = {"market_id": "m1", "side": "YES", "model_prob": 0.50, "market_prob": 0.50, "belief_prob": 0.50}
+    disagree = {"market_id": "m1", "side": "YES", "model_prob": 0.80, "market_prob": 0.20, "belief_prob": 0.50}
+    c_agree = strategy.compute_confidence(agree, [agree], p)
+    c_disagree = strategy.compute_confidence(disagree, [disagree], p)
     check("L3 confidence is higher when model and market agree",
           c_agree >= c_disagree, detail=f"agree={c_agree} disagree={c_disagree}")
 
-def layer3_confidence_gate_can_drop_signal():
-    outcomes = [
-        make_bucket(28, 28, 0.90, 0.30),  # big model/market disagreement -> low confidence
-    ]
-    p = strategy.get_merged_params({"confidence_agreement_weight": 1.0, "confidence_calibration_weight": 0.0})
-    res = strategy.build_portfolio("testcity_unseen", outcomes, params=p, mean=28.0, sigma=1.0)
-    check("L3 confidence gate is applied and recorded",
-          "confidence_gate_passed" in res or res["main_signal"] is None)
-
-layer3_confidence_monotonic_in_agreement()
-layer3_confidence_gate_can_drop_signal()
-
-# ---------------------------------------------------------------------------
-print("=" * 70)
-print("LAYER 4 -- Worst-case constraint")
-print("=" * 70)
-
-def layer4_worst_case_constraint_respected():
+def layer3_single_signal_no_hedge_legs():
     outcomes = [
         make_bucket(28, 28, 0.70, 0.30),
         make_bucket(29, 29, 0.15, 0.20),
         make_bucket(30, 30, 0.10, 0.15),
     ]
-    p = strategy.get_merged_params({
-        "confidence_agreement_weight": 0.0, "confidence_calibration_weight": 0.0,
-        "worst_case_max_loss_frac": 0.15,
-    })
+    p = strategy.get_merged_params()
     res = strategy.build_portfolio("testcity", outcomes, params=p, mean=28.0, sigma=1.5)
-    wc = res.get("worst_case_loss_frac")
-    check("L4 worst_case_loss_frac respects the configured cap (best-effort combo search)",
-          wc is None or wc <= p["worst_case_max_loss_frac"] + 0.5,
-          detail=f"got {wc}")
+    check("L3 ladder is empty and allocation contains only main_signal",
+          res["ladder"] == [] and all(a["role"] == "main_signal" for a in res["allocation"]),
+          detail=f"allocation={res['allocation']}")
 
-layer4_worst_case_constraint_respected()
+layer3_confidence_monotonic_in_agreement()
+layer3_single_signal_no_hedge_legs()
 
 # ---------------------------------------------------------------------------
 print("=" * 70)

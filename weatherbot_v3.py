@@ -572,8 +572,12 @@ def _attach_distribution_changes(old_dist, new_dist, update_model=True, update_p
                 m_val = round(float(new_model), 4)
                 c["scan6h_model_prob"] = m_val
                 c["prev_scan6h_model_prob"] = m_val
+                c["prev_10m_model_prob"] = m_val
                 c["prev_model_prob"] = m_val
+                c["model_prob_10m_change"] = 0.0
+                c["model_prob_10m_pct_change"] = 0.0
                 c["model_prob_6h_change"] = 0.0
+                c["model_prob_6h_pct_change"] = 0.0
                 c["model_prob_change"] = 0.0
                 c["model_prob_pct_change"] = 0.0
             if new_price is not None:
@@ -589,10 +593,25 @@ def _attach_distribution_changes(old_dist, new_dist, update_model=True, update_p
                 c["yes_price_pct_change"] = 0.0
             continue
 
-        # ۱) تغییرات احتمال مدل (model_prob) نسبت به اسکن ۶ ساعتهٔ قبلی
+        # ۱) تغییرات احتمال مدل (model_prob) -- هم نسبت به اسکن قبلی و هم نسبت به اسکن ۶ ساعتهٔ اخیر
+        old_model_10m = old.get("model_prob")
         ref_model_6h = old.get("scan6h_model_prob")
         if ref_model_6h is None:
-            ref_model_6h = old.get("model_prob")
+            ref_model_6h = old_model_10m
+
+        if new_model is not None and old_model_10m is not None:
+            diff_m_10m = round(float(new_model) - float(old_model_10m), 4)
+            if abs(diff_m_10m) >= 0.0005:
+                c["prev_10m_model_prob"] = round(float(old_model_10m), 4)
+                c["model_prob_10m_change"] = diff_m_10m
+                c["model_prob_10m_pct_change"] = (
+                    round(diff_m_10m / float(old_model_10m) * 100.0, 1)
+                    if float(old_model_10m) > 0.001 else round(diff_m_10m * 100.0, 1)
+                )
+            else:
+                c["prev_10m_model_prob"] = old.get("prev_10m_model_prob", round(float(old_model_10m), 4))
+                c["model_prob_10m_change"] = old.get("model_prob_10m_change", old.get("model_prob_change", 0.0)) if is_6h else 0.0
+                c["model_prob_10m_pct_change"] = old.get("model_prob_10m_pct_change", old.get("model_prob_pct_change", 0.0)) if is_6h else 0.0
 
         if is_6h and update_model and ref_model_6h is not None and new_model is not None:
             diff_m = round(float(new_model) - float(ref_model_6h), 4)
@@ -944,8 +963,15 @@ def discover_new_min_signals(now, state):
                 save_market_min(mkt)
                 continue
 
-            members = fc.build_combined_distribution_min(city_slug, loc, date)
-            mean, sigma = fc.build_calibrated_distribution_min(members, city_slug, i, loc["unit"])
+            members, model_members = fc.build_combined_distribution_full_min(city_slug, loc, date)
+            mean, sigma = fc.build_calibrated_distribution_min(
+                members, city_slug, i, loc["unit"], model_members=model_members
+            )
+            shadow_mean, model_means_raw = fc.build_shadow_mean(
+                model_members, city_slug, i, loc["unit"], is_min=True
+            )
+            if fc.get_gate_status(city_slug, i, is_min=True) == "revert_to_shadow" and shadow_mean is not None:
+                mean = round(float(shadow_mean), 2)
 
             if mean is None:
                 mkt["skipped_reason"] = "ensemble forecast unavailable (mean is None)"
@@ -953,9 +979,12 @@ def discover_new_min_signals(now, state):
                 continue
 
             observed_bound = fc.get_intraday_observed_bound(loc, date, is_min=True) if i == 0 else None
+            model_weights = fc.get_model_weights(city_slug, list((model_means_raw or {}).keys()), is_min=True)
+            model_spread = fc.compute_model_spread(model_means_raw, model_weights)
 
             dist = fc.full_bucket_distribution(
                 mean, sigma, outcomes,
+                model_means_raw=model_means_raw,
                 city_slug=city_slug,
                 horizon_days=i,
                 unit=loc["unit"],
@@ -984,6 +1013,8 @@ def discover_new_min_signals(now, state):
 
             mkt.update({
                 "horizon_days": i, "forecast_mean": mean, "sigma": sigma,
+                "forecast_mean_shadow": shadow_mean, "model_means_raw": model_means_raw,
+                "model_spread": model_spread,
                 "observed_intraday_temp": observed_bound,
                 "full_distribution": portfolio["full_distribution"],
                 "live_allocation": portfolio["allocation"],
@@ -1238,8 +1269,15 @@ def refresh_open_market_info_min(now):
             continue
 
         try:
-            members = fc.build_combined_distribution_min(mkt["city"], loc, mkt["date"])
-            mean, sigma = fc.build_calibrated_distribution_min(members, mkt["city"], horizon_days, loc["unit"])
+            members, model_members = fc.build_combined_distribution_full_min(mkt["city"], loc, mkt["date"])
+            mean, sigma = fc.build_calibrated_distribution_min(
+                members, mkt["city"], horizon_days, loc["unit"], model_members=model_members
+            )
+            shadow_mean, model_means_raw = fc.build_shadow_mean(
+                model_members, mkt["city"], horizon_days, loc["unit"], is_min=True
+            )
+            if fc.get_gate_status(mkt["city"], horizon_days, is_min=True) == "revert_to_shadow" and shadow_mean is not None:
+                mean = round(float(shadow_mean), 2)
         except Exception:
             continue
 
@@ -1247,9 +1285,12 @@ def refresh_open_market_info_min(now):
             continue
 
         observed_bound = fc.get_intraday_observed_bound(loc, mkt["date"], is_min=True) if horizon_days == 0 else None
+        model_weights = fc.get_model_weights(mkt["city"], list((model_means_raw or {}).keys()), is_min=True)
+        model_spread = fc.compute_model_spread(model_means_raw, model_weights)
 
         dist = fc.full_bucket_distribution(
             mean, sigma, tradable_outcomes,
+            model_means_raw=model_means_raw,
             city_slug=mkt["city"],
             horizon_days=horizon_days,
             unit=loc["unit"],
@@ -1276,6 +1317,9 @@ def refresh_open_market_info_min(now):
 
         mkt["forecast_mean"] = mean
         mkt["sigma"] = sigma
+        mkt["forecast_mean_shadow"] = shadow_mean
+        mkt["model_means_raw"] = model_means_raw
+        mkt["model_spread"] = model_spread
         mkt["observed_intraday_temp"] = observed_bound
         mkt["full_distribution"] = full_distribution
         mkt["last_lite_refresh"] = now.isoformat()
@@ -1353,7 +1397,8 @@ def refresh_all_open_market_prices(now):
             belief_prob = strat.fuse_belief(model_prob, new_p, merged_params)
             bucket["belief_prob"] = belief_prob
             if eff_ask > 0.001 and belief_prob is not None:
-                bucket["ev"] = round((belief_prob - eff_ask) / eff_ask, 4)
+                bucket["ev"] = strat.calc_ev(belief_prob, eff_ask)
+                bucket["kelly"] = strat.calc_kelly(belief_prob, eff_ask, merged_params["kelly_fraction"])
             changed = True
 
         if changed:
@@ -1437,7 +1482,8 @@ def refresh_all_open_market_prices_min(now):
             belief_prob = strat.fuse_belief(model_prob, new_p, merged_params)
             bucket["belief_prob"] = belief_prob
             if eff_ask > 0.001 and belief_prob is not None:
-                bucket["ev"] = round((belief_prob - eff_ask) / eff_ask, 4)
+                bucket["ev"] = strat.calc_ev(belief_prob, eff_ask)
+                bucket["kelly"] = strat.calc_kelly(belief_prob, eff_ask, merged_params["kelly_fraction"])
             changed = True
 
         if changed:
@@ -1674,7 +1720,7 @@ def scan_and_update():
     fc.update_calibration_from_live(load_all_markets(), LOCATIONS)
     fc.update_calibration_from_live_min(load_all_min_markets(), LOCATIONS)
     try:
-        fc.update_model_skill_from_live(load_all_markets(), LOCATIONS)
+        fc.update_model_skill_from_live(load_all_markets() + load_all_min_markets(), LOCATIONS)
     except Exception as e:
         print(f"  هشدار: به‌روزرسانی مهارت مدل‌ها ناموفق بود: {e}")
     return new_positions + new_min_positions, resolved_count + resolved_min_count, committed
@@ -1690,8 +1736,7 @@ def run_once():
     t_start = time.perf_counter()
     print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] scanning {len(LOCATIONS)} cities...")
     new_pos, resolved, committed = scan_and_update()
-    # (مرحلهٔ ۱) ساخت داشبورد اصلی (dashboard.html) غیرفعال شد -- فقط داشبورد
-    # تعاملی (simple.html) توسط dashboard_simple.py ساخته می‌شود.
+    # ساخت داشبورد ساده تعاملی (simple.html) توسط dashboard_simple.py انجام می‌شود.
     try:
         n_rows = accuracy_report.build_accuracy_report()
         print(f"  [accuracy-report] {n_rows} رکورد در data/accuracy_report.csv به‌روزرسانی شد")
@@ -1735,7 +1780,7 @@ def run_lite_scan():
     except Exception as e:
         print(f"  هشدار: به‌روزرسانی کالیبراسیون زندهٔ کمینه ناموفق بود: {e}")
     try:
-        fc.update_model_skill_from_live(load_all_markets(), LOCATIONS)
+        fc.update_model_skill_from_live(load_all_markets() + load_all_min_markets(), LOCATIONS)
     except Exception as e:
         print(f"  هشدار: به‌روزرسانی مهارت مدل‌ها ناموفق بود: {e}")
 
@@ -1768,7 +1813,7 @@ def run_loop():
 
 def run_serve():
     httpd = _start_local_server()
-    print(f"WeatherBet v3 -- local server running at http://localhost:{SERVE_PORT}/dashboard.html")
+    print(f"WeatherBet v3 -- local server running at http://localhost:{SERVE_PORT}/simple.html")
     print("Open that URL (not the file directly) so the 'Lock this moment' button "
           "can attach to data/lock_requests.txt once.")
     try:

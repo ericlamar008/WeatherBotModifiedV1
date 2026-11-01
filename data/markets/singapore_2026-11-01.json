@@ -3,11 +3,11 @@
   "city_name": "Singapore",
   "date": "2026-11-01",
   "unit": "C",
-  "status": "resolved",
+  "status": "open",
   "created_at": "2026-10-31T02:20:41.141510+00:00",
   "committed_allocation": null,
-  "hours_left": 0.0,
-  "time_status": "awaiting_settlement",
+  "hours_left": 1.7,
+  "time_status": "local_day_open",
   "local_day_end_utc": "2026-11-01T16:00:00+00:00",
   "event_end_date": "2026-11-01T12:00:00Z",
   "last_scan": "2026-11-01T02:20:45.135984+00:00",
@@ -131,7 +131,7 @@
       "spread": 0.0,
       "yes_token_id": "46623479012285204649234722654281829828615708809609123384318286461227202557927",
       "no_token_id": "16069558714505554537898027537838815830578910397088320793111254882551411405545",
-      "model_prob": 0.0378,
+      "model_prob": 0.0377,
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.0,
@@ -177,7 +177,7 @@
       "spread": 0.0,
       "yes_token_id": "61325294217561348374895428957522932133027834599561766147092157705272701821291",
       "no_token_id": "109014956901522771168455614458358487105483172460929001846104439887301307083821",
-      "model_prob": 0.1553,
+      "model_prob": 0.1552,
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.0,
@@ -223,7 +223,7 @@
       "spread": 0.003,
       "yes_token_id": "20427688424489379256647793667463244018007506598365598741769889289579580498665",
       "no_token_id": "19325756253647502865250915802938456971738288564569466339233093840084441905529",
-      "model_prob": 0.3448,
+      "model_prob": 0.3447,
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 1.0,
@@ -269,7 +269,7 @@
       "spread": 0.0,
       "yes_token_id": "5437897138216896783902634618767781378976031776576494548337567761370014331871",
       "no_token_id": "73980626434741260370053085673452870652932191112442708543615524099572193633543",
-      "model_prob": 0.3034,
+      "model_prob": 0.3035,
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.0,
@@ -545,10 +545,7 @@
       "market_prob": 0.555,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.43,
-      "won": true,
-      "pnl_units": 24.05,
-      "user_entered": false
+      "sell_value": 0.43
     },
     {
       "market_id": "6407348",
@@ -564,10 +561,7 @@
       "market_prob": 0.445,
       "role": "scenario_hedge",
       "units": 16.04,
-      "sell_value": 0.53,
-      "won": false,
-      "pnl_units": -16.04,
-      "user_entered": false
+      "sell_value": 0.53
     }
   ],
   "total_allocated_units": 46.0,
@@ -579,51 +573,6 @@
   "confidence": 0.1869,
   "balance_units": 100,
   "strategy_version": "auto-bb76bea385d114be",
-  "last_price_refresh": "2026-11-01T20:07:20.883617+00:00",
-  "last_lite_refresh": "2026-11-01T20:20:40.997526+00:00",
-  "actual_temp": 32.0,
-  "graded_against": "live_fallback",
-  "resolved_outcome": "win",
-  "pnl_units": 8.01,
-  "my_pnl_units": null,
-  "graded_allocation": [
-    {
-      "market_id": "6407348",
-      "question": "Will the highest temperature in Singapore be 32°C on November 1?",
-      "range": [
-        32.0,
-        32.0
-      ],
-      "side": "YES",
-      "price": 0.555,
-      "model_prob": 0.3582,
-      "ev": -0.2454,
-      "market_prob": 0.555,
-      "role": "main_signal",
-      "units": 30.0,
-      "sell_value": 0.43,
-      "won": true,
-      "pnl_units": 24.05,
-      "user_entered": false
-    },
-    {
-      "market_id": "6407348",
-      "question": "Will the highest temperature in Singapore be 32°C on November 1? (NO)",
-      "range": [
-        32.0,
-        32.0
-      ],
-      "side": "NO",
-      "price": 0.445,
-      "model_prob": 0.6418,
-      "ev": 0.2564,
-      "market_prob": 0.445,
-      "role": "scenario_hedge",
-      "units": 16.04,
-      "sell_value": 0.53,
-      "won": false,
-      "pnl_units": -16.04,
-      "user_entered": false
-    }
-  ]
+  "last_price_refresh": "2026-11-01T18:52:28.422419+00:00",
+  "last_lite_refresh": "2026-11-01T14:20:42.929385+00:00"
 }

@@ -330,6 +330,11 @@ def prefetch_ensembles(locations, max_cities=None, min_cities=None, workers=4):
         if need_min:
             tasks.append((get_ecmwf_ensemble_min, args))
             tasks.append((get_gefs_ensemble_min, args))
+            for extra in _active_extra_models(loc):
+                if extra == "gem":
+                    tasks.append((get_gem_ensemble_min, args))
+                elif extra == "icon_eu":
+                    tasks.append((get_icon_eu_ensemble_min, args))
         if (need_max or need_min) and loc.get("station"):
             try:
                 local_today = now_utc.astimezone(ZoneInfo(loc["tz"])).strftime("%Y-%m-%d")
@@ -531,7 +536,7 @@ def _compute_bma_skill_from_markets():
         for mname in model_names:
             errs_sq, errs_abs, w_list = [], [], []
             valid = [m for m in recent if m["model_means_raw"].get(mname) is not None]
-            if len(valid) < 3:
+            if len(valid) < 2:
                 continue
             n_val = len(valid)
             for idx, m in enumerate(valid):
@@ -556,36 +561,46 @@ def _compute_bma_skill_from_markets():
     return result
 
 
-def get_model_weights(city_slug, model_names, min_n=3, is_min=False):
-    """وزن‌دهی پویا به روش Bayesian / Inverse-RMSE² (BMA) به تفکیک هر شهر.
-    اگر برخی زیرمدل‌ها دادهٔ تاریخی کمتری داشته باشند، به جای حذف کامل وزن‌دهی،
-    میانگین خطای شهر به عنوان prior برای آن زیرمدل لحاظ می‌شود تا همیشه مدل‌های
-    دقیق‌تر آن شهر وزن بالاتری بگیرند."""
+def get_model_weights(city_slug, model_names, min_n=2, is_min=False):
+    """وزن‌دهی پویا به روش Bayesian / Inverse-RMSE² (BMA) به تفکیک هر شهر با حذف خودکار مدل‌های پرت (Outlier Pruning).
+    اگر زیرمدلی در یک شهر خطای بسیار بیشتری نسبت به بهترین زیرمدل آن شهر داشته باشد (مثلاً > ۱.۳۵ برابر)،
+    وزن آن به‌شدت جریمه می‌شود تا میانگین پیش‌بینی را از باکت برنده خارج نکند."""
     if not model_names:
         return None
     lookup_key = f"{city_slug}_min" if is_min else city_slug
     file_skill = load_model_skill()
     dyn_skill = _compute_bma_skill_from_markets()
-    skill = {**dyn_skill.get(city_slug, {}), **file_skill.get(city_slug, {}), **dyn_skill.get(lookup_key, {}), **file_skill.get(lookup_key, {})}
+    skill = {
+        **file_skill.get(city_slug, {}),
+        **dyn_skill.get(city_slug, {}),
+        **file_skill.get(lookup_key, {}),
+        **dyn_skill.get(lookup_key, {}),
+    }
 
-    scores = {}
+    metrics = {}
     for m in model_names:
         entry = skill.get(m, {})
         err_metric = entry.get("rmse") or entry.get("mae")
         n = entry.get("n", 0)
         if err_metric and n >= min_n:
-            # Inverse-variance (1 / (RMSE^2 + 0.15)) gives sharper BMA separation
-            scores[m] = 1.0 / ((float(err_metric) ** 2) + 0.15)
+            metrics[m] = float(err_metric)
 
-    if not scores:
+    if not metrics:
         return None
 
-    # اگر زیرمدل جدیدی (مثل gem یا icon_eu) هنوز به حد نصاب نرسیده، وزن میانه بگیرد
+    min_err = max(0.25, min(metrics.values()))
+    scores = {}
+    for m, err_val in metrics.items():
+        ratio = err_val / min_err
+        # Outlier pruning: heavily penalize sub-models whose error is >1.35x the best model in this city
+        penalty = 0.20 if ratio > 1.35 else (0.55 if ratio > 1.18 else 1.0)
+        scores[m] = (1.0 / ((err_val ** 2) + 0.12)) * penalty
+
     vals = sorted(scores.values())
     median_score = vals[len(vals) // 2]
     for m in model_names:
         if m not in scores:
-            scores[m] = median_score * 0.85
+            scores[m] = median_score * 0.75
 
     total = sum(scores.values()) or 1.0
     return {m: round(scores[m] / total, 4) for m in model_names}
@@ -649,29 +664,35 @@ def update_model_skill_from_live(markets, locations):
         all_model_names.update(m["model_means_raw"].keys())
 
     for city_slug in locations:
-        group = [m for m in resolved if m["city"] == city_slug][-30:]
-        for model_name in all_model_names:
-            samples = [m for m in group if m["model_means_raw"].get(model_name) is not None]
-            if len(samples) < 3:
-                continue
-            n_s = len(samples)
-            errs_abs, errs_sq, weights = [], [], []
-            for idx, m in enumerate(samples):
-                w = 0.90 ** ((n_s - 1) - idx)
-                err = abs(float(m["model_means_raw"][model_name]) - float(m["actual_temp"]))
-                errs_abs.append(err * w)
-                errs_sq.append((err ** 2) * w)
-                weights.append(w)
-            w_sum = sum(weights) or 1.0
-            mae = sum(errs_abs) / w_sum
-            rmse = math.sqrt(sum(errs_sq) / w_sum)
-            entry = skill.setdefault(city_slug, {})
-            entry[model_name] = {
-                "mae": round(mae, 3),
-                "rmse": round(rmse, 3),
-                "n": n_s,
-                "updated_at": datetime.now(timezone.utc).isoformat(),
-            }
+        for is_min_flag in (False, True):
+            mtype_target = "min" if is_min_flag else "max"
+            c_key = f"{city_slug}_min" if is_min_flag else city_slug
+            group = [
+                m for m in resolved
+                if m["city"] == city_slug and (m.get("market_type") or "max") == mtype_target
+            ][-30:]
+            for model_name in all_model_names:
+                samples = [m for m in group if m["model_means_raw"].get(model_name) is not None]
+                if len(samples) < 2:
+                    continue
+                n_s = len(samples)
+                errs_abs, errs_sq, weights = [], [], []
+                for idx, m in enumerate(samples):
+                    w = 0.90 ** ((n_s - 1) - idx)
+                    err = abs(float(m["model_means_raw"][model_name]) - float(m["actual_temp"]))
+                    errs_abs.append(err * w)
+                    errs_sq.append((err ** 2) * w)
+                    weights.append(w)
+                w_sum = sum(weights) or 1.0
+                mae = sum(errs_abs) / w_sum
+                rmse = math.sqrt(sum(errs_sq) / w_sum)
+                entry = skill.setdefault(c_key, {})
+                entry[model_name] = {
+                    "mae": round(mae, 3),
+                    "rmse": round(rmse, 3),
+                    "n": n_s,
+                    "updated_at": datetime.now(timezone.utc).isoformat(),
+                }
     save_model_skill(skill)
     return skill
 
@@ -1151,13 +1172,32 @@ def _compute_smart_live_calibration_entry(group, old, unit, city_slug):
         new_bias_raw *= 0.25
     new_bias = round(max(-cap, min(cap, new_bias_raw)), 3)
 
+    old_n_live = int(old.get("n_live") or old.get("n") or 0)
+    old_rec_n = int(old.get("recent_14d_n") or 14)
+    old_live_mae = float(old.get("live_mae") or old.get("base_mae") or old_sigma)
+    old_live_bias = float(old.get("live_bias_raw") or old.get("base_bias_raw") or old_bias)
+
+    if len(sorted_group) < old_rec_n and old_n_live > len(sorted_group):
+        prior_w = max(0, old_rec_n - n_live)
+        tot_rec = n_live + prior_w
+        blended_mae = (live_mae * n_live + old_live_mae * prior_w) / tot_rec
+        blended_bias = (live_bias_raw * n_live + old_live_bias * prior_w) / tot_rec
+        eff_n_live = old_n_live
+        eff_rec_n = old_rec_n
+    else:
+        blended_mae = live_mae
+        blended_bias = live_bias_raw
+        eff_n_live = max(len(sorted_group), old_n_live)
+        eff_rec_n = n_live
+
     return {
+        **old,
         "sigma": new_sigma,
         "bias": new_bias,
-        "n_live": len(sorted_group),
-        "recent_14d_n": n_live,
-        "live_mae": round(live_mae, 3),
-        "live_bias_raw": round(live_bias_raw, 3),
+        "n_live": eff_n_live,
+        "recent_14d_n": eff_rec_n,
+        "live_mae": round(blended_mae, 3),
+        "live_bias_raw": round(blended_bias, 3),
         "gate_status": "revert_to_shadow" if revert_to_shadow else ("sign_flip_damped" if sign_flip else "use_calibrated"),
         "source": "smart_gated_14d",
         "updated_at": datetime.now(timezone.utc).isoformat(),
@@ -1170,6 +1210,7 @@ def update_calibration_from_live(markets, locations):
         m for m in markets
         if m.get("status") in ("resolved", "resolved_no_signal")
         and m.get("actual_temp") is not None
+        and m.get("market_type", "max") != "min"
     ]
     for city_slug in locations:
         unit = locations[city_slug]["unit"]
@@ -1415,8 +1456,11 @@ def bucket_probability(mean, sigma, t_low, t_high):
         return student_t_cdf((t_high + 0.5 - mean) / s)
     if t_high >= 998:
         return 1.0 - student_t_cdf((t_low - 0.5 - mean) / s)
-    lo = t_low - 0.5 if t_low == t_high else t_low
-    hi = t_high + 0.5 if t_low == t_high else t_high
+    # در پلی‌مارکت دما به عدد صحیح گرد می‌شود؛ بنابراین هر باکت [t_low, t_high]
+    # (چه باکت ۱ درجه‌ای سلسیوس t_low==t_high و چه باکت ۲ درجه‌ای فارنهایت t_high==t_low+1)
+    # دقیقاً بازهٔ پیوستهٔ [t_low - 0.5, t_high + 0.5] را پوشش می‌دهد.
+    lo = t_low - 0.5
+    hi = t_high + 0.5
     return student_t_cdf((hi - mean) / s) - student_t_cdf((lo - mean) / s)
 
 
@@ -1534,6 +1578,22 @@ def get_gefs_ensemble_min(lat, lon, tz, unit):
     return _fetch_ensemble(lat, lon, tz, unit, "gfs_seamless", forecast_days=7, variable="temperature_2m_min")
 
 
+def get_gem_ensemble_min(lat, lon, tz, unit):
+    return _fetch_ensemble(lat, lon, tz, unit, "gem_global", forecast_days=7, variable="temperature_2m_min")
+
+
+def get_icon_eu_ensemble_min(lat, lon, tz, unit):
+    return _fetch_ensemble(lat, lon, tz, unit, "icon_eu_eps", forecast_days=7, variable="temperature_2m_min")
+
+
+def _fetch_extra_model_min(model_name, lat, lon, tz, unit, date_str):
+    if model_name == "gem":
+        return get_gem_ensemble_min(lat, lon, tz, unit).get(date_str, [])
+    if model_name == "icon_eu":
+        return get_icon_eu_ensemble_min(lat, lon, tz, unit).get(date_str, [])
+    return []
+
+
 def build_combined_distribution_min(city_slug, loc, date_str):
     """معادل کامل build_combined_distribution ولی برای دمای کمینه --
     کاملاً مستقل، هیچ داده‌ای با مسیر حداکثر به اشتراک نمی‌گذارد."""
@@ -1543,6 +1603,24 @@ def build_combined_distribution_min(city_slug, loc, date_str):
     members.extend(ecmwf.get(date_str, []))
     members.extend(gefs.get(date_str, []))
     return members
+
+
+def build_combined_distribution_full_min(city_slug, loc, date_str):
+    """معادل کامل build_combined_distribution_full برای بازارهای دمای کمینه --
+    هم لیست ترکیبی (ECMWF+GFS) و هم دیکشنری ۴ مدل (ECMWF, GFS, GEM, ICON-EU)
+    را برای محاسبهٔ BMA، توزیع چندمدلی GMM و انحراف معیار پویا برمی‌گرداند."""
+    ecmwf = get_ecmwf_ensemble_min(loc["lat"], loc["lon"], loc["tz"], loc["unit"])
+    gefs = get_gefs_ensemble_min(loc["lat"], loc["lon"], loc["tz"], loc["unit"])
+    ecmwf_members = ecmwf.get(date_str, [])
+    gfs_members = gefs.get(date_str, [])
+    members_combined = list(ecmwf_members) + list(gfs_members)
+
+    model_members = {"ecmwf": ecmwf_members, "gfs": gfs_members}
+    for extra in _active_extra_models(loc):
+        model_members[extra] = _fetch_extra_model_min(
+            extra, loc["lat"], loc["lon"], loc["tz"], loc["unit"], date_str
+        )
+    return members_combined, model_members
 
 
 def fetch_historical_forecast_min(lat, lon, tz, unit, start_date, end_date):

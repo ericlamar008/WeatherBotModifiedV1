@@ -238,7 +238,8 @@ def process_lock_issues():
         try:
             data = json.loads(issue["body"])
             market_id_raw = str(data["market_id"])
-            market_id, _, token_id = market_id_raw.partition("|")
+            market_id, _, parsed_token_id = market_id_raw.partition("|")
+            token_id = str(data.get("token_id") or parsed_token_id or "").strip() or None
             city, date = data["city"], data["date"]
             dashboard_price = float(data["price"])
             market_type = data.get("market_type") or "max"  # (فاز ۶) پیش‌فرض "max"
@@ -259,14 +260,74 @@ def process_lock_issues():
 
         side = data.get("side", "YES")
 
+        entry_order_type = data.get("entry_order_type") or (
+            "CONDITIONAL_LIMIT_GTC"
+            if data.get("entry_mode") == "conditional" or data.get("limit_buy_price") is not None
+            else "IMMEDIATE_MARKETABLE"
+        )
+        is_conditional = (entry_order_type == "CONDITIONAL_LIMIT_GTC")
+
         live_price = _fetch_live_entry_price(city, date, market_id, side, market_type)
-        live_bid, _ = _fetch_live_exit_price(city, date, market_id, side, market_type, token_id or None)
-        if live_price is not None:
-            entry_price = live_price
-            price_source = "live"
+        live_bid, _ = _fetch_live_exit_price(city, date, market_id, side, market_type, token_id)
+
+        if is_conditional:
+            limit_buy_price = round(
+                float(data.get("limit_buy_price") or data.get("trigger_price") or dashboard_price),
+                4,
+            )
+            entry_price = limit_buy_price
+            entry_mid = live_price if live_price is not None else dashboard_price
+            entry_bid = None
+            position_state = "ENTRY_PENDING"
+            price_source = "conditional_limit"
         else:
-            entry_price = dashboard_price
-            price_source = "dashboard_fallback"
+            limit_buy_price = None
+            position_state = data.get("position_state") or "WATCHING"
+            if live_price is not None:
+                entry_price = live_price
+                price_source = "live"
+            else:
+                entry_price = dashboard_price
+                price_source = "dashboard_fallback"
+            entry_mid = live_price if live_price is not None else entry_price
+            entry_bid = live_bid
+
+        smart_autopilot = bool(data.get("smart_autopilot", True))
+        auto_exit_enabled = bool(data.get("auto_exit_enabled", True))
+        tp_enabled = bool(data.get("tp_enabled", True))
+        sl_enabled = bool(data.get("sl_enabled", True))
+        metar_auto_stop = bool(data.get("metar_auto_stop", True))
+        auto_sell_99c = bool(data.get("auto_sell_99c", True))
+        trailing_stop_enabled = bool(data.get("trailing_stop_enabled", False))
+        trailing_offset_pct = float(data.get("trailing_offset_pct") or 10.0)
+
+        ref_entry = entry_price if entry_price and entry_price > 0 else 0.20
+        if data.get("tp_price") is not None:
+            tp_price = round(float(data["tp_price"]), 4)
+        elif data.get("tp_cents") is not None:
+            tp_price = round(float(data["tp_cents"]) / 100.0, 4)
+        elif data.get("tp_pct") is not None:
+            tp_price = min(0.99, round(ref_entry * (1.0 + float(data["tp_pct"]) / 100.0), 4))
+        else:
+            tp_price = min(0.99, round(ref_entry * 1.35, 4))
+
+        if data.get("sl_price") is not None:
+            sl_price = round(float(data["sl_price"]), 4)
+        elif data.get("sl_cents") is not None:
+            sl_price = round(float(data["sl_cents"]) / 100.0, 4)
+        elif data.get("sl_pct") is not None:
+            sl_price = max(0.01, round(ref_entry * (1.0 - abs(float(data["sl_pct"])) / 100.0), 4))
+        else:
+            sl_price = max(0.01, round(ref_entry * 0.65, 4))
+
+        tp_pct = round(((tp_price - ref_entry) / ref_entry) * 100.0, 1) if ref_entry > 0 else 35.0
+        sl_pct = round(((ref_entry - sl_price) / ref_entry) * 100.0, 1) if ref_entry > 0 else 35.0
+
+        usdc_amount = float(data.get("usdc_amount") or 10.0)
+        quantity_shares = float(
+            data.get("quantity_shares")
+            or (round(usdc_amount / ref_entry, 2) if ref_entry > 0 else 0.0)
+        )
 
         entry = {
             "issue_number": number,
@@ -276,11 +337,34 @@ def process_lock_issues():
             "date": date,
             "market_id": market_id,
             "market_type": market_type,  # (فاز ۶)
-            "token_id": token_id or None,
+            "token_id": token_id,
             "side": side,
             "entry_price": entry_price,
-            "entry_mid": live_price if live_price is not None else entry_price,
-            "entry_bid": live_bid,
+            "entry_mid": entry_mid,
+            "entry_bid": entry_bid,
+            "entry_order_type": entry_order_type,
+            "limit_buy_price": limit_buy_price,
+            "position_state": position_state,
+            "execution_mode": data.get("execution_mode") or "SHADOW",
+            "exit_policy": data.get("exit_policy") or "MARKETABLE_FAK",
+            "smart_autopilot": smart_autopilot,
+            "auto_exit_enabled": auto_exit_enabled,
+            "tp_enabled": tp_enabled,
+            "sl_enabled": sl_enabled,
+            "tp_price": tp_price,
+            "sl_price": sl_price,
+            "tp_pct": tp_pct,
+            "sl_pct": sl_pct,
+            "trailing_stop_enabled": trailing_stop_enabled,
+            "trailing_offset_pct": trailing_offset_pct,
+            "metar_auto_stop": metar_auto_stop,
+            "auto_sell_99c": auto_sell_99c,
+            "max_slippage_pct": float(data.get("max_slippage_pct") or 2.0),
+            "tick_size": float(data.get("tick_size") or 0.001),
+            "usdc_amount": usdc_amount,
+            "quantity_shares": quantity_shares,
+            "filled_shares": 0.0 if is_conditional else quantity_shares,
+            "peak_bid": entry_bid if not is_conditional else None,
             "locked_at": data.get("locked_at", datetime.now(timezone.utc).isoformat()),
             "status": "open",
             "last_price": None,
@@ -293,7 +377,9 @@ def process_lock_issues():
         locks.append(entry)
 
         diff_note = ""
-        if price_source == "dashboard_fallback":
+        if price_source == "conditional_limit":
+            diff_note = f" (خرید شرطی در قیمت هدف {limit_buy_price:.3f})"
+        elif price_source == "dashboard_fallback":
             diff_note = " (قیمت زنده در دسترس نبود -- از قیمت داشبورد استفاده شد)"
         elif abs(entry_price - dashboard_price) > 0.001:
             diff_note = f" (قیمت داشبورد لحظهٔ کلیک: {dashboard_price:.3f})"
@@ -341,6 +427,22 @@ def process_unlock_issues():
             _close_issue(number, "\u26a0\ufe0f هیچ قفل بازی با این مشخصات پیدا نشد (شاید قبلاً حذف یا resolve شده).")
             continue
 
+        if target.get("position_state") == "ENTRY_PENDING":
+            target["status"] = "cancelled_entry"
+            target["position_state"] = "ENTRY_CANCELLED"
+            target["exit_price"] = None
+            target["closed_at"] = datetime.now(timezone.utc).isoformat()
+            target["close_reason"] = "cancelled_entry"
+            target["unlock_issue_number"] = number
+            target["unlock_issue_id"] = issue.get("id")
+            target["repo"] = GITHUB_REPOSITORY
+            _close_issue(
+                number,
+                f"\u2705 سفارش خرید شرطی لغو شد: {city} {date} (پیش از پر شدن سفارش)",
+            )
+            closed_count += 1
+            continue
+
         # خروج باید از همان منبع قیمت ورود خوانده شود: Gamma API (قیمت
         # outcomePrices که در وب‌سایت Polymarket دیده می‌شود). استفادهٔ
         # قبلی از بهترین bid دفتر سفارش CLOB در بازارهای کم‌عمق می‌توانست
@@ -370,6 +472,7 @@ def process_unlock_issues():
             continue
 
         target["status"] = "closed_manual"
+        target["position_state"] = "CLOSED"
         target["exit_price"] = current_price
         target["exit_price_source"] = exit_source
         target["closed_at"] = datetime.now(timezone.utc).isoformat()

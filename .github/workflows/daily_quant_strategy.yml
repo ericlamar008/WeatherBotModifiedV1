@@ -1,0 +1,147 @@
+name: Daily Quant Strategy Lab & Advisor
+
+on:
+  schedule:
+    # 09:37 UTC (13:07 Iran Time) — Carefully chosen off-grid minute & light UTC window:
+    # - Avoids scan_daily.yml (02:20 UTC)
+    # - Avoids heartbeat_dashboard_link.yml (00:00, 06:00, 12:00, 18:00 UTC)
+    # - Avoids daily_report.yml (20:17 UTC)
+    # - Avoids 10/15-min marks (:00, :10, :15, :20, :30, :40, :45, :50) used by monitor_locks.yml
+    - cron: '37 9 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+# Shares concurrency group so git push never collides with other workflows
+concurrency:
+  group: weatherbot-data-writer
+  cancel-in-progress: false
+
+jobs:
+  quant-strategy-lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run Quantitative Strategy & Forensic Engine
+        run: |
+          python3 quant_strategy_advisor.py
+
+      - name: Publish Standalone Strategy Lab Link to GitHub Pages (docs/)
+        id: publish_page
+        run: |
+          mkdir -p docs
+          touch docs/.nojekyll
+          RUN_TAG="${GITHUB_RUN_ID:-manual}"
+          SNAPSHOT_FILE="strategy-lab-${RUN_TAG}.html"
+
+          # Keep only the 5 most recent snapshot files to prevent repo bloat
+          ls -1t docs/strategy-lab-*.html 2>/dev/null | tail -n +6 | xargs -r rm -f
+
+          cp quant_strategy_report.html "docs/${SNAPSHOT_FILE}"
+          cp quant_strategy_report.html "docs/strategy-lab.html"
+
+          echo "snapshot_file=${SNAPSHOT_FILE}" >> "$GITHUB_OUTPUT"
+
+      - name: Commit & Push Strategy Lab Report (Zero Data File Touch)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Stage ONLY the standalone strategy report files so we never conflict with data/locked_signals.json
+          git add docs/strategy-lab.html docs/strategy-lab-*.html quant_strategy_report.html
+
+          if git diff --cached --quiet; then
+            echo "No changes to strategy report."
+            exit 0
+          fi
+
+          git commit -m "chore(quant-lab): update daily quantitative strategy report [skip ci]"
+
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && break
+            echo "Push retry $i..."
+            sleep 3
+          done
+
+      - name: Wait for GitHub Pages Deployment & Send Telegram Strategy Link
+        if: always()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          SNAPSHOT_FILE: ${{ steps.publish_page.outputs.snapshot_file }}
+        run: |
+          python3 - << 'EOF'
+          import os, time, urllib.request, json
+          from pathlib import Path
+
+          token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
+          chat_id = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
+          repo = os.environ.get("GITHUB_REPOSITORY", "ericlamar008/WeatherBotModifiedV1")
+          snapshot_file = os.environ.get("SNAPSHOT_FILE", "strategy-lab.html")
+
+          owner, repo_name = (repo.split("/", 1) + [""])[:2]
+          base_pages_url = f"https://{owner}.github.io/{repo_name}"
+          live_url = f"{base_pages_url}/{snapshot_file}?v={int(time.time())}"
+          stable_url = f"{base_pages_url}/strategy-lab.html?v={int(time.time())}"
+
+          if not token or not chat_id:
+              print("Telegram credentials not configured; skipping Telegram notification.")
+              raise SystemExit(0)
+
+          # Poll GitHub Pages for up to 75 seconds so the link is live before sending
+          pages_ready = False
+          for _ in range(15):
+              try:
+                  req = urllib.request.Request(live_url, headers={"User-Agent": "WeatherBot-QuantLab/1.0"})
+                  with urllib.request.urlopen(req, timeout=6) as resp:
+                      if resp.status == 200:
+                          print(f"GitHub Pages URL is live: {live_url}")
+                          pages_ready = True
+                          break
+              except Exception:
+                  pass
+              time.sleep(5)
+
+          if not pages_ready:
+              live_url = stable_url
+
+          tg_body_path = Path("data/quant_strategy_telegram.txt")
+          summary_text = tg_body_path.read_text(encoding="utf-8") if tg_body_path.exists() else "🧠 گزارش آزمایشگاه کوانت آماده شد."
+
+          full_msg = (
+              f"{summary_text}\n\n"
+              f"🌐 <b>لینک اختصاصی گزارش کامل و تعاملی (جدول تمام شهرها + کالبدشکافی قفل‌ها):</b>\n"
+              f"👉 <a href=\"{live_url}\">مشاهده آزمایشگاه استراتژی و کوانت (Strategy Lab)</a>\n"
+              f"🔗 <a href=\"{stable_url}\">لینک ثابت روزانه</a>"
+          )
+
+          api_url = f"https://api.telegram.org/bot{token}/sendMessage"
+          payload = json.dumps({
+              "chat_id": chat_id,
+              "text": full_msg,
+              "parse_mode": "HTML",
+              "disable_web_page_preview": False,
+          }).encode("utf-8")
+
+          req = urllib.request.Request(api_url, data=payload, headers={"Content-Type": "application/json"}, method="POST")
+          with urllib.request.urlopen(req, timeout=15) as resp:
+              print("Telegram notification sent:", resp.status)
+          EOF

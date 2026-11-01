@@ -3,16 +3,16 @@
   "city_name": "Shanghai",
   "date": "2026-11-01",
   "unit": "C",
-  "status": "resolved",
+  "status": "open",
   "market_type": "min",
   "created_at": "2026-10-31T02:20:41.141510+00:00",
   "committed_allocation": null,
-  "hours_left": 0.0,
-  "time_status": "awaiting_settlement",
+  "hours_left": 1.7,
+  "time_status": "local_day_open",
   "local_day_end_utc": "2026-11-01T16:00:00+00:00",
   "event_end_date": "2026-11-01T12:00:00Z",
   "last_scan": "2026-11-01T02:20:45.135984+00:00",
-  "last_lite_refresh": "2026-11-01T20:20:40.997526+00:00",
+  "last_lite_refresh": "2026-11-01T14:20:42.929385+00:00",
   "forecast_mean": 16.96,
   "sigma": 0.65,
   "observed_intraday_temp": 22.0,
@@ -524,7 +524,7 @@
       "yes_price_pct_change": -0.1
     }
   ],
-  "last_price_refresh": "2026-11-01T20:07:20.883617+00:00",
+  "last_price_refresh": "2026-11-01T18:52:28.422419+00:00",
   "horizon_days": 0,
   "live_allocation": [
     {
@@ -541,10 +541,7 @@
       "market_prob": 0.55,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.42,
-      "won": true,
-      "pnl_units": 24.55,
-      "user_entered": false
+      "sell_value": 0.42
     },
     {
       "market_id": "6406582",
@@ -560,10 +557,7 @@
       "market_prob": 0.45,
       "role": "scenario_hedge",
       "units": 16.36,
-      "sell_value": 0.31,
-      "won": false,
-      "pnl_units": -16.36,
-      "user_entered": false
+      "sell_value": 0.31
     }
   ],
   "total_allocated_units": 46.4,
@@ -574,50 +568,5 @@
   "success_probability": 0.4119,
   "confidence": 0.5096,
   "balance_units": 100,
-  "strategy_version": "auto-bb76bea385d114be",
-  "actual_temp": 17.0,
-  "graded_against": "live_fallback",
-  "resolved_outcome": "win",
-  "pnl_units": 8.19,
-  "my_pnl_units": null,
-  "graded_allocation": [
-    {
-      "market_id": "6406582",
-      "question": "Will the lowest temperature in Shanghai be 17°C on November 1?",
-      "range": [
-        17.0,
-        17.0
-      ],
-      "side": "YES",
-      "price": 0.55,
-      "model_prob": 0.4838,
-      "ev": -0.1952,
-      "market_prob": 0.55,
-      "role": "main_signal",
-      "units": 30.0,
-      "sell_value": 0.42,
-      "won": true,
-      "pnl_units": 24.55,
-      "user_entered": false
-    },
-    {
-      "market_id": "6406582",
-      "question": "Will the lowest temperature in Shanghai be 17°C on November 1? (NO)",
-      "range": [
-        17.0,
-        17.0
-      ],
-      "side": "NO",
-      "price": 0.45,
-      "model_prob": 0.5162,
-      "ev": -0.0698,
-      "market_prob": 0.45,
-      "role": "scenario_hedge",
-      "units": 16.36,
-      "sell_value": 0.31,
-      "won": false,
-      "pnl_units": -16.36,
-      "user_entered": false
-    }
-  ]
+  "strategy_version": "auto-bb76bea385d114be"
 }

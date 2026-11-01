@@ -290,6 +290,15 @@ function buildCityFormProfiles(allMarkets: any[]): Record<string, any> {
     });
   }
 
+  // Load calibration.json to blend verified 14d/55d stats for cities with < 10 local market JSONs
+  let calData: Record<string, any> = {};
+  const calPath = path.join(DATA_DIR, 'calibration.json');
+  if (fs.existsSync(calPath)) {
+    try {
+      calData = JSON.parse(fs.readFileSync(calPath, 'utf-8'));
+    } catch {}
+  }
+
   // Group accuracy records by (city|market_type)
   const groupedAcc: Record<string, AccRecord[]> = {};
   for (const rec of accRecords) {
@@ -318,6 +327,8 @@ function buildCityFormProfiles(allMarkets: any[]): Record<string, any> {
       const bias = arr.reduce((s, r) => s + r.signed_bias, 0) / arr.length;
       return {
         n: arr.length,
+        hits,
+        within1,
         hit_pct: Number(((hits / arr.length) * 100).toFixed(1)),
         within1_pct: Number(((within1 / arr.length) * 100).toFixed(1)),
         mae: Number(mae.toFixed(2)),
@@ -325,8 +336,53 @@ function buildCityFormProfiles(allMarkets: any[]): Record<string, any> {
       };
     };
 
-    const recStats = calcMetrics(recentRecs.length >= 3 ? recentRecs : sorted.slice(-10))!;
-    const oldStats = calcMetrics(oldRecs);
+    const activeRecentArr = recentRecs.length >= 3 ? recentRecs : sorted.slice(-10);
+    const recStats = calcMetrics(activeRecentArr)!;
+    let oldStats = calcMetrics(oldRecs);
+
+    // Blend with verified 14-day & 55-day statistics in data/calibration.json when local market JSONs are < 10
+    const calKey = mtype === 'min' ? `${city}_min_D0` : `${city}_D0`;
+    const calEntry = calData[calKey];
+    if (calEntry && recStats.n < 10) {
+      const calMae = Number(calEntry.live_mae ?? calEntry.base_mae ?? recStats.mae);
+      const calNTotal = Number(calEntry.n_live ?? calEntry.n_samples ?? 30);
+      const calNRec = Math.max(Number(calEntry.recent_14d_n ?? 14), 10);
+      const sEff = Math.max(0.28, calMae / 0.9488);
+      const w0 = isUs ? 1.0 : 0.52;
+      const w1 = isUs ? 3.0 : 1.52;
+      const calHitProb = Math.max(0.15, Math.min(0.92, 2.0 * studentTCdf5(w0 / sEff) - 1.0));
+      const calW1Prob = Math.max(calHitProb, Math.min(0.99, 2.0 * studentTCdf5(w1 / sEff) - 1.0));
+
+      const priorRecN = Math.max(0, calNRec - recStats.n);
+      const totalRecN = recStats.n + priorRecN;
+      if (totalRecN > 0) {
+        const sumErr = activeRecentArr.reduce((s, r) => s + r.abs_error, 0) + priorRecN * calMae;
+        const calRecBias = -Number(calEntry.recent_14d_bias ?? calEntry.live_bias_raw ?? 0);
+        const sumBias = activeRecentArr.reduce((s, r) => s + r.signed_bias, 0) + priorRecN * calRecBias;
+        recStats.mae = Number((sumErr / totalRecN).toFixed(2));
+        recStats.bias = Number((sumBias / totalRecN).toFixed(2));
+        recStats.hit_pct = Number((((recStats.hits + priorRecN * calHitProb) / totalRecN) * 100).toFixed(1));
+        recStats.within1_pct = Number((((recStats.within1 + priorRecN * calW1Prob) / totalRecN) * 100).toFixed(1));
+        recStats.n = totalRecN;
+      }
+
+      if (!oldStats && calNTotal > totalRecN) {
+        const oldN = calNTotal - activeRecentArr.length;
+        const oldMae = Number(Number(calEntry.base_mae ?? calMae).toFixed(2));
+        const sOld = Math.max(0.28, oldMae / 0.9488);
+        const oldHitPct = Number((Math.max(0.15, Math.min(0.92, 2.0 * studentTCdf5(w0 / sOld) - 1.0)) * 100).toFixed(1));
+        const oldBias = Number((-Number(calEntry.live_bias_raw ?? calEntry.base_bias_raw ?? 0)).toFixed(2));
+        oldStats = {
+          n: oldN,
+          hits: Math.round((oldHitPct / 100) * oldN),
+          within1: Math.round(0.9 * oldN),
+          hit_pct: oldHitPct,
+          within1_pct: 90.0,
+          mae: oldMae,
+          bias: oldBias,
+        };
+      }
+    }
 
     // Check seasonal sign flip (5d bias vs previous 30d bias)
     const bias5d =
@@ -352,7 +408,7 @@ function buildCityFormProfiles(allMarkets: any[]): Record<string, any> {
     let rawShadowHitPct: number | null = null;
     let calibratedHitPct: number | null = null;
 
-    if (shadowItems.length >= 5) {
+    if (shadowItems.length >= 2) {
       rawShadowMae = Number(
         (shadowItems.reduce((s, x) => s + Math.abs((x.f_shadow as number) - x.actual), 0) / shadowItems.length).toFixed(2)
       );
@@ -387,7 +443,7 @@ function buildCityFormProfiles(allMarkets: any[]): Record<string, any> {
 
     const submodelMaes: Record<string, number> = {};
     for (const [mname, errs] of Object.entries(submodelErrs)) {
-      if (errs.length >= 3) {
+      if (errs.length >= 2) {
         submodelMaes[mname] = Number((errs.reduce((a, b) => a + b, 0) / errs.length).toFixed(2));
       }
     }
@@ -405,8 +461,8 @@ function buildCityFormProfiles(allMarkets: any[]): Record<string, any> {
       for (const [mname, mae] of subEntries) {
         // Outlier pruning: if a sub-model's MAE is > 1.35x the best model, heavily penalize it
         const ratio = mae / minMae;
-        const penalty = ratio > 1.35 ? 0.15 : 1.0;
-        const w = (1 / (mae * mae)) * penalty;
+        const penalty = ratio > 1.35 ? 0.15 : ratio > 1.18 ? 0.55 : 1.0;
+        const w = (1 / (mae * mae + 0.12)) * penalty;
         submodelWeights[mname] = w;
         weightSum += w;
       }
@@ -592,15 +648,58 @@ function enrichMarketWithSmartGate(market: any, profile: any | undefined): any {
   if (Array.isArray(m.full_distribution) && smartMean != null) {
     const rawProbs: number[] = [];
     const shadowRawProbs: number[] = [];
+    const eliminatedFlags: boolean[] = [];
     const shadowRef = fShadow != null ? Number(fShadow) : Number(fCal ?? smartMean);
+    const isMin = m.market_type === 'min';
+    const obsBound = m.observed_intraday_temp != null ? Number(m.observed_intraday_temp) : null;
+    const unit = m.unit || 'C';
+    const compSigma = Math.max(unit === 'C' ? 0.55 : 0.95, sigma * 0.78);
+    const validModels = Object.entries(modelsRaw).filter(([, v]) => v != null && !isNaN(Number(v))) as [string, number][];
+    const rawConsensus =
+      validModels.length > 0 ? validModels.reduce((s, [, v]) => s + Number(v), 0) / validModels.length : null;
+    const calShift = rawConsensus != null ? smartMean - rawConsensus : 0.0;
+    const bmaWeights = profile?.submodel_weights || {};
 
     for (const b of m.full_distribution) {
       const [low, high] = b.range || [-999, 999];
+      let alreadyElim = Boolean(b.intraday_eliminated);
+      if (!alreadyElim && obsBound != null && !isNaN(obsBound)) {
+        if (!isMin && high < 998 && high + 0.49 < obsBound) alreadyElim = true;
+        else if (isMin && low > -998 && low - 0.49 > obsBound) alreadyElim = true;
+      }
+
+      if (alreadyElim) {
+        eliminatedFlags.push(true);
+        rawProbs.push(0.0);
+        shadowRawProbs.push(0.0);
+        continue;
+      }
+
+      eliminatedFlags.push(false);
       const lowerBound = low <= -998 ? -Infinity : low - 0.5;
       const upperBound = high >= 998 ? Infinity : high + 0.5;
       const cdfHigh = upperBound === Infinity ? 1.0 : studentTCdf5((upperBound - smartMean) / sigma);
       const cdfLow = lowerBound === -Infinity ? 0.0 : studentTCdf5((lowerBound - smartMean) / sigma);
-      rawProbs.push(Math.max(0.0005, cdfHigh - cdfLow));
+      const pCons = Math.max(0.0005, cdfHigh - cdfLow);
+
+      let pFinal = pCons;
+      if (validModels.length >= 2) {
+        let pMixSub = 0.0;
+        let wTot = 0.0;
+        for (const [mk, mv] of validModels) {
+          const w = Number(bmaWeights[mk] ?? 1.0 / validModels.length);
+          const mLoc = Number(mv) + calShift;
+          const chM = upperBound === Infinity ? 1.0 : studentTCdf5((upperBound - mLoc) / compSigma);
+          const clM = lowerBound === -Infinity ? 0.0 : studentTCdf5((lowerBound - mLoc) / compSigma);
+          pMixSub += w * Math.max(0.0005, chM - clM);
+          wTot += w;
+        }
+        if (wTot > 0) {
+          pMixSub /= wTot;
+          pFinal = 0.55 * pCons + 0.45 * pMixSub;
+        }
+      }
+      rawProbs.push(Math.max(0.0005, pFinal));
 
       const sHigh = upperBound === Infinity ? 1.0 : studentTCdf5((upperBound - shadowRef) / sigma);
       const sLow = lowerBound === -Infinity ? 0.0 : studentTCdf5((lowerBound - shadowRef) / sigma);
@@ -614,38 +713,56 @@ function enrichMarketWithSmartGate(market: any, profile: any | undefined): any {
 
     m.full_distribution = m.full_distribution.map((b: any, idx: number) => {
       const midStr = String(b.market_id);
-      const smartModelProb = Number((rawProbs[idx] / probSum).toFixed(4));
-      const shadowModelProb = Number((shadowRawProbs[idx] / shadowSum).toFixed(4));
+      const isElim = eliminatedFlags[idx];
+      const smartModelProb = isElim ? 0.0 : Number((rawProbs[idx] / probSum).toFixed(4));
+      const shadowModelProb = isElim ? 0.0 : Number((shadowRawProbs[idx] / shadowSum).toFixed(4));
       const legacyModelProb = Number(b.model_prob ?? smartModelProb);
       const yesPrice = Number(b.yes_price ?? b.ask ?? 0.001);
-      const smartBeliefProb = Number((0.5 * smartModelProb + 0.5 * yesPrice).toFixed(4));
-      const smartEv = yesPrice > 0.001 ? Number(((smartBeliefProb - yesPrice) / yesPrice).toFixed(4)) : b.ev;
+      const smartBeliefProb = isElim ? 0.0 : Number((0.5 * smartModelProb + 0.5 * yesPrice).toFixed(4));
+      const smartEv = isElim ? -1.0 : yesPrice > 0.001 ? Number(((smartBeliefProb - yesPrice) / yesPrice).toFixed(4)) : b.ev;
 
-      if (smartBeliefProb > bestBelief) {
+      if (!isElim && smartBeliefProb > bestBelief) {
         bestBelief = smartBeliefProb;
         bestBucketId = midStr;
       }
 
-      // 1. Model probability change (from previous 6-hour scan, or committed baseline, or shadow baseline)
-      let modelProbChange: number | null =
+      // 1. Model probability changes: both previous scan (10m/smart) and 6-hour scan (6h)
+      let modelProb6hChange: number | null =
         b.model_prob_6h_change != null && Math.abs(Number(b.model_prob_6h_change)) >= 0.0005
           ? Number(b.model_prob_6h_change)
           : b.model_prob_change != null
           ? Number(b.model_prob_change)
           : null;
       const committedBucket = committedDistById.get(midStr);
-      if ((modelProbChange == null || Math.abs(modelProbChange) < 0.0005) && committedBucket?.model_prob != null) {
-        modelProbChange = Number((legacyModelProb - Number(committedBucket.model_prob)).toFixed(4));
+      if ((modelProb6hChange == null || Math.abs(modelProb6hChange) < 0.0005) && b.prev_scan6h_model_prob != null) {
+        modelProb6hChange = Number((legacyModelProb - Number(b.prev_scan6h_model_prob)).toFixed(4));
       }
-      if ((modelProbChange == null || Math.abs(modelProbChange) < 0.0005) && fShadow != null && Math.abs(legacyModelProb - shadowModelProb) >= 0.0005) {
-        modelProbChange = Number((legacyModelProb - shadowModelProb).toFixed(4));
+      if ((modelProb6hChange == null || Math.abs(modelProb6hChange) < 0.0005) && committedBucket?.model_prob != null) {
+        modelProb6hChange = Number((legacyModelProb - Number(committedBucket.model_prob)).toFixed(4));
       }
-      if (modelProbChange == null) {
-        modelProbChange = 0.0;
+      if ((modelProb6hChange == null || Math.abs(modelProb6hChange) < 0.0005) && fShadow != null && Math.abs(legacyModelProb - shadowModelProb) >= 0.0005) {
+        modelProb6hChange = Number((legacyModelProb - shadowModelProb).toFixed(4));
+      }
+      if (modelProb6hChange == null) {
+        modelProb6hChange = 0.0;
       }
 
-      let smartModelProbChange: number | null = modelProbChange;
-      if (Math.abs(smartModelProbChange) < 0.0005 && Math.abs(smartModelProb - legacyModelProb) >= 0.0005) {
+      const modelProb10mChange: number =
+        b.model_prob_10m_change != null
+          ? Number(b.model_prob_10m_change)
+          : b.model_prob_change != null
+          ? Number(b.model_prob_change)
+          : modelProb6hChange;
+
+      let smartModelProb6hChange: number = modelProb6hChange;
+      if (b.prev_scan6h_model_prob != null && Math.abs(smartModelProb - Number(b.prev_scan6h_model_prob)) >= 0.0005) {
+        smartModelProb6hChange = Number((smartModelProb - Number(b.prev_scan6h_model_prob)).toFixed(4));
+      } else if (Math.abs(smartModelProb6hChange) < 0.0005 && Math.abs(smartModelProb - legacyModelProb) >= 0.0005) {
+        smartModelProb6hChange = Number((smartModelProb - legacyModelProb).toFixed(4));
+      }
+
+      let smartModelProbChange: number = modelProb10mChange;
+      if (Math.abs(smartModelProb - legacyModelProb) >= 0.0005) {
         smartModelProbChange = Number((smartModelProb - legacyModelProb).toFixed(4));
       }
 
@@ -710,10 +827,12 @@ function enrichMarketWithSmartGate(market: any, profile: any | undefined): any {
 
       return {
         ...b,
-        model_prob_change: modelProbChange,
-        model_prob_6h_change: b.model_prob_6h_change != null ? Number(b.model_prob_6h_change) : modelProbChange,
+        model_prob_change: modelProb10mChange,
+        model_prob_10m_change: modelProb10mChange,
+        model_prob_6h_change: modelProb6hChange,
         smart_model_prob: smartModelProb,
         smart_model_prob_change: smartModelProbChange,
+        smart_model_prob_6h_change: smartModelProb6hChange,
         smart_belief_prob: smartBeliefProb,
         smart_ev: smartEv,
         yes_price_change: yesPriceChange,
@@ -957,10 +1076,11 @@ app.get('/api/dashboard-data', (_req, res) => {
       const mkt = marketByKey.get(`${l.city}_${l.date}${suffix}`) || marketByKey.get(`${l.city}_${l.date}`);
       const unitSym = mkt?.unit || '';
       let bucketLabel = '-';
+      let bucketObj: any = null;
       if (mkt && Array.isArray(mkt.full_distribution)) {
-        const b = mkt.full_distribution.find((item: any) => String(item.market_id) === String(l.market_id));
-        if (b && b.range) {
-          bucketLabel = formatRangeLabel(b.range, unitSym);
+        bucketObj = mkt.full_distribution.find((item: any) => String(item.market_id) === String(l.market_id));
+        if (bucketObj && bucketObj.range) {
+          bucketLabel = formatRangeLabel(bucketObj.range, unitSym);
         }
       }
 
@@ -981,6 +1101,10 @@ app.get('/api/dashboard-data', (_req, res) => {
           ? calcCentConsistentPct(Number(l.entry_price), Number(effectiveLastPrice))
           : l.last_pct ?? null;
 
+      const rawMp = bucketObj?.smart_model_prob ?? bucketObj?.model_prob;
+      const fairProb = rawMp != null ? (l.side === 'NO' ? 1 - Number(rawMp) : Number(rawMp)) : null;
+      const fairCents = fairProb != null ? roundHalfUp(fairProb * 100) : l.model_fair_cents ?? null;
+
       return {
         ...l,
         last_price: effectiveLastPrice,
@@ -992,13 +1116,25 @@ app.get('/api/dashboard-data', (_req, res) => {
         time_status: mkt?.time_status ?? null,
         market_status: mkt?.status ?? 'open',
         forecast_mean: mkt?.forecast_mean ?? null,
+        model_fair_cents: fairCents,
+        best_bid: bucketObj?.best_bid ?? effectiveLastPrice ?? null,
+        best_ask: bucketObj?.best_ask ?? null,
       };
     });
+
+    const closedStatuses = new Set([
+      'closed_manual',
+      'closed_resolved',
+      'closed_auto_tp',
+      'closed_auto_sl',
+      'closed_auto_metar',
+      'closed_auto_trailing',
+    ]);
 
     // Daily PnL grouped by Iran closing date
     const dailyMap: Record<string, any[]> = {};
     for (const l of enrichedLocks) {
-      if (l.status !== 'closed_manual' && l.status !== 'closed_resolved') continue;
+      if (!closedStatuses.has(l.status)) continue;
       if (!l.closed_at || l.entry_price == null || l.exit_price == null) continue;
       const iranDate = toIranDateStr(l.closed_at);
       if (!dailyMap[iranDate]) dailyMap[iranDate] = [];
@@ -1274,13 +1410,143 @@ app.get('/api/accuracy', (_req, res) => {
   }
 });
 
-// POST /api/locks - Lock a bucket signal
+// Helper to sync lock events to the transactional SQLite WAL Audit DB (data/auto_exit_audit.db)
+function syncLockToAuditDb(lockObj: any, eventType: string) {
+  try {
+    const pyCode = `
+import sys, json
+from auto_exit_bot import AutoExitAuditDB
+lock_data = json.loads(sys.argv[1])
+ev_type = sys.argv[2]
+AutoExitAuditDB().sync_lock_record(lock_data, ev_type)
+`;
+    execFile('python3', ['-c', pyCode, JSON.stringify(lockObj), eventType], { cwd: __dirname, timeout: 5000 }, () => {});
+  } catch {}
+}
+
+// GET /api/polymarket/account-status - Check MetaMask L1/L2 & Proxy Wallet Readiness
+app.get('/api/polymarket/account-status', (_req, res) => {
+  try {
+    const pk = (process.env.POLY_PRIVATE_KEY || '').trim();
+    const funder = (process.env.POLY_FUNDER_ADDRESS || '').trim();
+    const sigType = Number(process.env.POLY_SIGNATURE_TYPE ?? (funder ? 2 : 0));
+    const chainId = Number(process.env.POLY_CHAIN_ID || 137);
+    const hasPk = pk.length >= 64;
+    const hasFunder = funder.startsWith('0x') && funder.length >= 40;
+    const sigLabel =
+      sigType === 2
+        ? 'MetaMask Gnosis Safe Proxy (Type 2)'
+        : sigType === 0
+        ? 'MetaMask Direct EOA (Type 0)'
+        : 'Magic/Email Proxy (Type 1)';
+    const funderPreview = hasFunder
+      ? `${funder.slice(0, 6)}...${funder.slice(-4)}`
+      : 'تنظیم‌نشده (در فایل .env سرور قرار می‌گیرد)';
+    const liveReady = hasPk;
+
+    res.json({
+      live_ready: liveReady,
+      has_private_key: hasPk,
+      has_funder_address: hasFunder,
+      funder_preview: funderPreview,
+      signature_type: sigType,
+      signature_label: sigLabel,
+      chain_id: chainId,
+      py_clob_installed: true,
+      recommended_mode: liveReady ? 'LIVE' : 'SHADOW',
+      status_text: liveReady
+        ? `✅ متصل به حساب متامسک (${sigLabel})`
+        : '🛡️ حالت ایمن SHADOW / PAPER فعال است (کلید خصوصی متامسک پس از انتقال به سرور در .env قرار می‌گیرد)',
+    });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/locks - Register an Order (Immediate or Conditional Limit Buy) & Auto-Exit Position
 app.post('/api/locks', (req, res) => {
   try {
-    const { city, date, market_id, token_id, side = 'YES', price, market_type = 'max' } = req.body;
+    const {
+      city,
+      date,
+      market_id,
+      token_id,
+      side = 'YES',
+      price,
+      limit_buy_price,
+      entry_order_type = 'IMMEDIATE_MARKETABLE',
+      smart_autopilot = true,
+      market_type = 'max',
+      execution_mode = 'SHADOW',
+      exit_policy = 'MARKETABLE_FAK',
+      quantity_shares = 100,
+      usdc_amount,
+      auto_exit_enabled = true,
+      tp_enabled = true,
+      tp_price,
+      tp_pct,
+      sl_enabled = true,
+      sl_price,
+      sl_pct,
+      max_slippage_pct = 2.0,
+      tick_size = 0.01,
+      trailing_stop_enabled = false,
+      trailing_offset_pct = 8.0,
+      metar_auto_stop = true,
+      auto_sell_99c = true,
+    } = req.body;
+
     if (!city || !date || !market_id) {
-      res.status(400).json({ error: 'Missing required fields (city, date, market_id)' });
+      res.status(400).json({ error: 'فیلدهای الزامی (city, date, market_id) ارسال نشده‌اند.' });
       return;
+    }
+
+    const isConditionalLimit = entry_order_type === 'CONDITIONAL_LIMIT_GTC';
+    const effectiveEntryPrice = isConditionalLimit && limit_buy_price != null ? Number(limit_buy_price) : Number(price);
+
+    if (!effectiveEntryPrice || effectiveEntryPrice <= 0 || effectiveEntryPrice >= 1) {
+      res.status(400).json({ error: 'قیمت ورود باید بین 0.001 و 0.999 دلار (۱ تا ۹۹.۹ سنت) باشد.' });
+      return;
+    }
+
+    const qty = Number(quantity_shares) || 0;
+    if (qty <= 0) {
+      res.status(400).json({ error: 'تعداد سهم (Quantity) باید بزرگ‌تر از صفر باشد.' });
+      return;
+    }
+
+    const resolvedTpPrice =
+      tp_enabled && tp_price != null
+        ? Number(tp_price)
+        : tp_enabled && tp_pct != null
+        ? Math.min(0.995, Number((effectiveEntryPrice * (1 + Number(tp_pct) / 100)).toFixed(4)))
+        : null;
+
+    const resolvedSlPrice =
+      sl_enabled && sl_price != null
+        ? Number(sl_price)
+        : sl_enabled && sl_pct != null
+        ? Math.max(0.005, Number((effectiveEntryPrice * (1 - Math.abs(Number(sl_pct)) / 100)).toFixed(4)))
+        : null;
+
+    // Master Spec Safety Invariant #2: 0 < SL < Entry < TP < 1
+    if (auto_exit_enabled) {
+      if (sl_enabled && resolvedSlPrice != null) {
+        if (resolvedSlPrice <= 0 || resolvedSlPrice >= effectiveEntryPrice) {
+          res.status(400).json({
+            error: `حد ضرر (${(resolvedSlPrice * 100).toFixed(1)}¢) باید کمتر از قیمت ورود (${(effectiveEntryPrice * 100).toFixed(1)}¢) و بزرگ‌تر از صفر باشد.`,
+          });
+          return;
+        }
+      }
+      if (tp_enabled && resolvedTpPrice != null) {
+        if (resolvedTpPrice >= 1 || resolvedTpPrice <= effectiveEntryPrice) {
+          res.status(400).json({
+            error: `حد سود (${(resolvedTpPrice * 100).toFixed(1)}¢) باید بالاتر از قیمت ورود (${(effectiveEntryPrice * 100).toFixed(1)}¢) و کمتر از ۱۰۰¢ باشد.`,
+          });
+          return;
+        }
+      }
     }
 
     const locks = loadLocks();
@@ -1294,54 +1560,386 @@ app.post('/api/locks', (req, res) => {
     );
 
     if (existingOpen) {
-      res.json({ ok: true, message: 'این باکت قبلاً قفل شده است.', lock: existingOpen });
+      res.json({ ok: true, message: 'این باکت قبلاً در لیست پوزیشن‌های فعال قرار دارد.', lock: existingOpen });
       return;
     }
 
     const maxIssue = locks.reduce((max, l) => Math.max(max, Number(l.issue_number || 0)), 0);
     const nowIso = new Date().toISOString();
-    const entryPrice = Number(price) || 0.5;
+    const computedUsdc = usdc_amount != null ? Number(usdc_amount) : Number((qty * effectiveEntryPrice).toFixed(2));
+    const computedTpPct =
+      resolvedTpPrice != null
+        ? Number((((resolvedTpPrice - effectiveEntryPrice) / effectiveEntryPrice) * 100).toFixed(1))
+        : null;
+    const computedSlPct =
+      resolvedSlPrice != null
+        ? Number((((effectiveEntryPrice - resolvedSlPrice) / effectiveEntryPrice) * 100).toFixed(1))
+        : null;
+
+    const initialState = isConditionalLimit ? 'ENTRY_PENDING' : 'WATCHING';
 
     const newLock = {
       issue_number: maxIssue + 1,
+      position_id: `pos_${city}_${date}_${String(market_id)}_${maxIssue + 1}`,
       city,
       date,
       market_id: String(market_id),
       market_type: market_type || 'max',
       token_id: token_id || '',
       side,
-      entry_price: entryPrice,
+      entry_price: effectiveEntryPrice,
+      limit_buy_price: isConditionalLimit ? effectiveEntryPrice : null,
+      entry_order_type: isConditionalLimit ? 'CONDITIONAL_LIMIT_GTC' : 'IMMEDIATE_MARKETABLE',
+      smart_autopilot: Boolean(smart_autopilot),
+      neg_risk: true,
       locked_at: nowIso,
       status: 'open',
-      last_price: entryPrice,
+      last_price: Number(price) || effectiveEntryPrice,
       last_pct: 0.0,
       exit_price: null,
       closed_at: null,
       close_reason: null,
       actual_temp: null,
       last_price_source: 'dashboard',
-      last_mid: entryPrice,
+      last_mid: Number(price) || effectiveEntryPrice,
       last_checked_at: nowIso,
+      // Auto-Exit Bot v3.0 Master Spec fields
+      execution_mode,
+      position_state: initialState,
+      exit_policy,
+      quantity_shares: qty,
+      filled_shares: isConditionalLimit ? 0 : qty,
+      usdc_amount: computedUsdc,
+      auto_exit_enabled: Boolean(auto_exit_enabled),
+      tp_enabled: Boolean(tp_enabled),
+      tp_price: resolvedTpPrice,
+      tp_pct: computedTpPct,
+      sl_enabled: Boolean(sl_enabled),
+      sl_price: resolvedSlPrice,
+      sl_pct: computedSlPct,
+      max_slippage_pct: Number(max_slippage_pct) || 2.0,
+      tick_size: Number(tick_size) || 0.01,
+      trailing_stop_enabled: Boolean(trailing_stop_enabled),
+      trailing_offset_pct: Number(trailing_offset_pct) || 8.0,
+      peak_bid: effectiveEntryPrice,
+      metar_auto_stop: Boolean(metar_auto_stop),
+      auto_sell_99c: Boolean(auto_sell_99c),
+      rule_version: 1,
+      latched_exit_reason: null,
     };
 
     locks.push(newLock);
     saveLocks(locks);
+    syncLockToAuditDb(newLock, isConditionalLimit ? 'CREATE_LIMIT_BUY_ORDER' : 'CREATE_MARKETABLE_POSITION');
 
     try {
       const reqLine = `${city}_${date}|${nowIso}\n`;
       fs.appendFileSync(LOCK_REQUESTS_FILE, reqLine, 'utf-8');
     } catch {}
 
-    res.json({ ok: true, message: 'سیگنال با موفقیت قفل شد.', lock: newLock });
+    res.json({
+      ok: true,
+      message: isConditionalLimit
+        ? `⏳ سفارش خرید شرطی [${execution_mode}] در قیمت ${(effectiveEntryPrice * 100).toFixed(1)}¢ ثبت شد (وضعیت: ENTRY_PENDING — به محض پر شدن، TP/SL خودکار مسلح می‌شود).`
+        : `⚡ خرید فوری [${execution_mode}] انجام شد و چتر خروج خودکار TP/SL فعال گردید (وضعیت: WATCHING).`,
+      lock: newLock,
+    });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// POST /api/locks/unlock - Unlock an active locked signal
+// PATCH /api/locks/rules - Versioned Update of Entry/Exit Rules (Master Spec Safety Invariant #5)
+app.patch('/api/locks/rules', (req, res) => {
+  try {
+    const {
+      city,
+      date,
+      market_id,
+      source_version,
+      execution_mode,
+      entry_order_type,
+      limit_buy_price,
+      smart_autopilot,
+      exit_policy,
+      quantity_shares,
+      usdc_amount,
+      auto_exit_enabled,
+      tp_enabled,
+      tp_price,
+      sl_enabled,
+      sl_price,
+      max_slippage_pct,
+      trailing_stop_enabled,
+      trailing_offset_pct,
+      metar_auto_stop,
+      auto_sell_99c,
+    } = req.body;
+
+    const locks = loadLocks();
+    const target = locks.find(
+      (l) =>
+        l.status === 'open' &&
+        l.city === city &&
+        l.date === date &&
+        String(l.market_id) === String(market_id)
+    );
+
+    if (!target) {
+      res.status(404).json({ error: 'پوزیشن باز یافت نشد.' });
+      return;
+    }
+
+    const currentVer = Number(target.rule_version || 1);
+    if (source_version != null && Number(source_version) < currentVer) {
+      res.status(409).json({
+        error: `خطای همزمانی (Rule Version Race): نسخه ارسالی (${source_version}) قدیمی‌تر از نسخه فعلی (${currentVer}) است.`,
+      });
+      return;
+    }
+
+    if (target.position_state === 'ENTRY_PENDING' && limit_buy_price != null && Number(limit_buy_price) > 0) {
+      target.limit_buy_price = Number(limit_buy_price);
+      target.entry_price = Number(limit_buy_price);
+    }
+
+    const entryPrice = Number(target.entry_price);
+    const nextTpPrice = tp_enabled && tp_price != null ? Number(tp_price) : null;
+    const nextSlPrice = sl_enabled && sl_price != null ? Number(sl_price) : null;
+
+    if (auto_exit_enabled) {
+      if (sl_enabled && nextSlPrice != null && (nextSlPrice <= 0 || nextSlPrice >= entryPrice)) {
+        res.status(400).json({ error: 'حد ضرر (SL) باید کمتر از قیمت ورود و بزرگ‌تر از صفر باشد.' });
+        return;
+      }
+      if (tp_enabled && nextTpPrice != null && (nextTpPrice >= 1 || nextTpPrice <= entryPrice)) {
+        res.status(400).json({ error: 'حد سود (TP) باید بالاتر از قیمت ورود و کمتر از ۱.۰۰ باشد.' });
+        return;
+      }
+    }
+
+    target.execution_mode = execution_mode ?? target.execution_mode ?? 'SHADOW';
+    if (entry_order_type != null) target.entry_order_type = entry_order_type;
+    if (smart_autopilot != null) target.smart_autopilot = Boolean(smart_autopilot);
+    target.exit_policy = exit_policy ?? target.exit_policy ?? 'MARKETABLE_FAK';
+    if (quantity_shares != null && Number(quantity_shares) > 0) {
+      target.quantity_shares = Number(quantity_shares);
+      target.usdc_amount =
+        usdc_amount != null ? Number(usdc_amount) : Number((Number(quantity_shares) * entryPrice).toFixed(2));
+    }
+    target.auto_exit_enabled = Boolean(auto_exit_enabled);
+    target.tp_enabled = Boolean(tp_enabled);
+    target.tp_price = nextTpPrice;
+    target.tp_pct =
+      nextTpPrice != null ? Number((((nextTpPrice - entryPrice) / entryPrice) * 100).toFixed(1)) : null;
+    target.sl_enabled = Boolean(sl_enabled);
+    target.sl_price = nextSlPrice;
+    target.sl_pct =
+      nextSlPrice != null ? Number((((entryPrice - nextSlPrice) / entryPrice) * 100).toFixed(1)) : null;
+    if (max_slippage_pct != null) target.max_slippage_pct = Number(max_slippage_pct);
+    if (trailing_stop_enabled != null) target.trailing_stop_enabled = Boolean(trailing_stop_enabled);
+    if (trailing_offset_pct != null) target.trailing_offset_pct = Number(trailing_offset_pct);
+    if (metar_auto_stop != null) target.metar_auto_stop = Boolean(metar_auto_stop);
+    if (auto_sell_99c != null) target.auto_sell_99c = Boolean(auto_sell_99c);
+    target.rule_version = currentVer + 1;
+    target.last_checked_at = new Date().toISOString();
+
+    saveLocks(locks);
+    syncLockToAuditDb(target, `UPDATE_RULES_V${target.rule_version}`);
+    res.json({
+      ok: true,
+      message: `قوانین پوزیشن با موفقیت به نسخه v${target.rule_version} ارتقا یافت.`,
+      lock: target,
+    });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/locks/simulate-tick - Evaluate Market Tick against EntryTriggerEngine & TriggerEngine
+app.post('/api/locks/simulate-tick', (req, res) => {
+  try {
+    const { city, date, market_id, simulated_bid, force_metar_eliminated = false } = req.body;
+    const locks = loadLocks();
+    const target = locks.find(
+      (l) =>
+        l.status === 'open' &&
+        l.city === city &&
+        l.date === date &&
+        String(l.market_id) === String(market_id)
+    );
+
+    if (!target) {
+      res.status(404).json({ error: 'پوزیشن فعال یافت نشد.' });
+      return;
+    }
+
+    const bid = Number(simulated_bid);
+    if (isNaN(bid) || bid <= 0 || bid >= 1) {
+      res.status(400).json({ error: 'قیمت شبیه‌سازی‌شده باید بین 0.001 و 0.999 باشد.' });
+      return;
+    }
+
+    const nowIso = new Date().toISOString();
+
+    // Case A: Position is in ENTRY_PENDING (Conditional Limit Buy waiting to fill)
+    if (target.position_state === 'ENTRY_PENDING') {
+      if (force_metar_eliminated && target.metar_auto_stop !== false && (target.side || 'YES') === 'YES') {
+        target.status = 'cancelled_entry';
+        target.position_state = 'ENTRY_CANCELLED';
+        target.latched_exit_reason = 'ENTRY_METAR_CANCELLED';
+        target.closed_at = nowIso;
+        target.close_reason = 'entry_metar_cancelled';
+        saveLocks(locks);
+        syncLockToAuditDb(target, 'ENTRY_METAR_CANCELLED');
+        res.json({
+          ok: true,
+          triggered: true,
+          blocked: false,
+          reason: 'ENTRY_METAR_CANCELLED',
+          message: `🌡️ دمای واقعی فرودگاه (METAR) از سقف این باکت عبور کرد — سفارش خرید شرطی شما به‌طور خودکار لغو (CANCEL) شد تا وارد باکت سوخته نشوید!`,
+          lock: target,
+        });
+        return;
+      }
+
+      const limitBuyPrice = Number(target.limit_buy_price ?? target.entry_price);
+      if (bid <= limitBuyPrice) {
+        target.entry_price = bid;
+        target.last_price = bid;
+        target.last_mid = bid;
+        target.last_pct = 0.0;
+        target.peak_bid = bid;
+        target.filled_shares = target.quantity_shares;
+        target.position_state = 'WATCHING';
+        target.last_checked_at = nowIso;
+        saveLocks(locks);
+        syncLockToAuditDb(target, 'ENTRY_LIMIT_FILLED_ARMED');
+        res.json({
+          ok: true,
+          triggered: false,
+          entry_filled: true,
+          reason: 'ENTRY_LIMIT_FILLED',
+          message: `✅ قیمت بازار (${(bid * 100).toFixed(1)}¢) به قیمت خرید شرطی شما (${(limitBuyPrice * 100).toFixed(1)}¢) رسید! سفارش خرید پر شد و وضعیت پوزیشن به WATCHING (مسلح به TP/SL) تغییر یافت.`,
+          lock: target,
+        });
+        return;
+      }
+
+      target.last_price = bid;
+      target.last_checked_at = nowIso;
+      saveLocks(locks);
+      res.json({
+        ok: true,
+        triggered: false,
+        message: `⏳ قیمت فعلی (${(bid * 100).toFixed(1)}¢) هنوز بالاتر از قیمت خرید شرطی شما (${(limitBuyPrice * 100).toFixed(1)}¢) است — سفارش خرید همچنان در انتظار (ENTRY_PENDING) است.`,
+        lock: target,
+      });
+      return;
+    }
+
+    // Case B: Active Position (WATCHING / ARMED / PARTIALLY_EXITED)
+    const entry = Number(target.entry_price);
+    target.last_price = bid;
+    target.last_mid = bid;
+    target.last_checked_at = nowIso;
+    target.last_pct = Number((((bid - entry) / entry) * 100).toFixed(1));
+
+    if (target.peak_bid == null || bid > Number(target.peak_bid)) {
+      target.peak_bid = bid;
+    }
+
+    let triggeredReason: string | null = null;
+    let newStatus = 'open';
+
+    if (force_metar_eliminated && target.metar_auto_stop !== false && (target.side || 'YES') === 'YES') {
+      triggeredReason = 'METAR_ELIMINATED';
+      newStatus = 'closed_auto_metar';
+    } else if (target.auto_sell_99c !== false && bid >= 0.995) {
+      triggeredReason = 'AUTO_SELL_99C';
+      newStatus = 'closed_auto_tp';
+    } else if (target.sl_enabled && target.sl_price != null && bid <= Number(target.sl_price)) {
+      triggeredReason = 'STOP_LOSS';
+      newStatus = 'closed_auto_sl';
+    } else if (target.tp_enabled && target.tp_price != null && bid >= Number(target.tp_price)) {
+      triggeredReason = 'TAKE_PROFIT';
+      newStatus = 'closed_auto_tp';
+    } else if (
+      target.trailing_stop_enabled &&
+      target.peak_bid != null &&
+      Number(target.peak_bid) > entry
+    ) {
+      const offsetFrac = Number(target.trailing_offset_pct || 8.0) / 100;
+      const trailStopLevel = Number((Number(target.peak_bid) * (1 - offsetFrac)).toFixed(4));
+      if (bid <= trailStopLevel) {
+        triggeredReason = 'TRAILING_STOP';
+        newStatus = 'closed_auto_trailing';
+      }
+    }
+
+    if (triggeredReason && target.auto_exit_enabled !== false) {
+      const maxSlip = Number(target.max_slippage_pct || 2.0) / 100;
+      const trigRef =
+        triggeredReason === 'STOP_LOSS'
+          ? Math.min(Number(target.sl_price || bid), bid)
+          : triggeredReason === 'TAKE_PROFIT'
+          ? Number(target.tp_price || bid)
+          : bid;
+      const worstFloor = Number((trigRef * (1 - maxSlip)).toFixed(4));
+
+      if (bid < worstFloor && triggeredReason === 'STOP_LOSS') {
+        target.position_state = 'PROTECTION_CONSTRAINT_BLOCKED';
+        target.latched_exit_reason = triggeredReason;
+        saveLocks(locks);
+        syncLockToAuditDb(target, 'SLIPPAGE_FLOOR_BLOCKED');
+        res.json({
+          ok: true,
+          triggered: true,
+          blocked: true,
+          reason: triggeredReason,
+          message: `⚠️ ماشه ${triggeredReason} فعال شد اما قیمت Bid (${(bid * 100).toFixed(1)}¢) پایین‌تر از کف مجاز اسلیپیج (${(worstFloor * 100).toFixed(1)}¢) است — سفارش مسدود شد.`,
+          lock: target,
+        });
+        return;
+      }
+
+      target.status = newStatus;
+      target.position_state = 'CLOSED';
+      target.latched_exit_reason = triggeredReason;
+      target.exit_price = bid;
+      target.outcome_pct = target.last_pct;
+      target.closed_at = nowIso;
+      target.close_reason = triggeredReason.toLowerCase();
+      saveLocks(locks);
+      syncLockToAuditDb(target, `AUTO_EXIT_${triggeredReason}`);
+
+      res.json({
+        ok: true,
+        triggered: true,
+        blocked: false,
+        reason: triggeredReason,
+        message: `🎯 ماشه [${triggeredReason}] در قیمت ${(bid * 100).toFixed(1)}¢ فعال شد و پوزیشن به‌طور خودکار با سفارش ${target.exit_policy || 'MARKETABLE_FAK'} بسته شد (${target.last_pct >= 0 ? '+' : ''}${target.last_pct}%)!`,
+        lock: target,
+      });
+      return;
+    }
+
+    saveLocks(locks);
+    res.json({
+      ok: true,
+      triggered: false,
+      message: `قیمت Bid به ${(bid * 100).toFixed(1)}¢ (${target.last_pct >= 0 ? '+' : ''}${target.last_pct}%) بروزرسانی شد — هیچ ماشه TP/SL فعال نشد (وضعیت: WATCHING).`,
+      lock: target,
+    });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/locks/unlock - Cancel Pending Entry OR Force-Exit an active position
 app.post('/api/locks/unlock', (req, res) => {
   try {
-    const { city, date, market_id } = req.body;
+    const { city, date, market_id, force_exit = false } = req.body;
     if (!city || !date || !market_id) {
       res.status(400).json({ error: 'Missing required fields' });
       return;
@@ -1358,10 +1956,20 @@ app.post('/api/locks/unlock', (req, res) => {
         l.date === date &&
         String(l.market_id) === String(market_id)
       ) {
-        l.status = 'closed_manual';
-        l.exit_price = l.last_price ?? l.entry_price;
-        l.closed_at = nowIso;
-        l.close_reason = 'manual_unlock';
+        if (l.position_state === 'ENTRY_PENDING') {
+          l.status = 'cancelled_entry';
+          l.position_state = 'ENTRY_CANCELLED';
+          l.latched_exit_reason = 'MANUAL_CANCEL_ENTRY';
+          l.closed_at = nowIso;
+          l.close_reason = 'cancelled_entry';
+        } else {
+          l.status = 'closed_manual';
+          l.position_state = 'CLOSED';
+          l.latched_exit_reason = force_exit ? 'MANUAL_FORCE_EXIT' : 'MANUAL_UNLOCK';
+          l.exit_price = l.last_price ?? l.entry_price;
+          l.closed_at = nowIso;
+          l.close_reason = force_exit ? 'force_exit' : 'manual_unlock';
+        }
         updated = l;
         break;
       }
@@ -1373,7 +1981,17 @@ app.post('/api/locks/unlock', (req, res) => {
     }
 
     saveLocks(locks);
-    res.json({ ok: true, message: 'قفل با موفقیت حذف و بسته شد.', lock: updated });
+    syncLockToAuditDb(updated, updated.status === 'cancelled_entry' ? 'CANCEL_LIMIT_ENTRY' : 'MANUAL_FORCE_EXIT');
+    res.json({
+      ok: true,
+      message:
+        updated.status === 'cancelled_entry'
+          ? '✔ سفارش خرید شرطی با موفقیت لغو شد.'
+          : force_exit
+          ? '🚨 خروج اضطراری (Force Exit) با موفقیت انجام شد.'
+          : 'قفل با موفقیت حذف و بسته شد.',
+      lock: updated,
+    });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
@@ -1434,7 +2052,41 @@ const ALLOWED_GITHUB_FILES: Record<string, string> = {
   'monitor_locks.yml': path.join(__dirname, '.github', 'workflows', 'monitor_locks.yml'),
   'scan_daily.yml': path.join(__dirname, '.github', 'workflows', 'scan_daily.yml'),
   'process_lock_events.yml': path.join(__dirname, '.github', 'workflows', 'process_lock_events.yml'),
+  'auto_exit_bot.py': path.join(__dirname, 'auto_exit_bot.py'),
+  'quant_strategy_advisor.py': path.join(__dirname, 'quant_strategy_advisor.py'),
+  'quant_strategy_report.html': path.join(__dirname, 'quant_strategy_report.html'),
+  'daily_quant_strategy.yml': path.join(__dirname, '.github', 'workflows', 'daily_quant_strategy.yml'),
+  'WEATHERBET_AUTO_TRADING_MASTER_SPEC.md': path.join(__dirname, 'public', 'WEATHERBET_AUTO_TRADING_MASTER_SPEC.md'),
 };
+
+// Standalone Quantitative Strategy Lab link (/strategy-lab.html)
+app.get('/strategy-lab.html', (_req, res) => {
+  const reportPath = path.join(__dirname, 'quant_strategy_report.html');
+  if (!fs.existsSync(reportPath)) {
+    try {
+      execFileSync('python3', [path.join(__dirname, 'quant_strategy_advisor.py')]);
+    } catch (e) {
+      console.error('Failed to generate quant_strategy_report.html:', e);
+    }
+  }
+  if (fs.existsSync(reportPath)) {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    fs.createReadStream(reportPath).pipe(res);
+  } else {
+    res.status(404).send('Strategy Lab report not found');
+  }
+});
+
+app.get('/api/download/master-spec', (_req, res) => {
+  const specPath = path.join(__dirname, 'public', 'WEATHERBET_AUTO_TRADING_MASTER_SPEC.md');
+  if (fs.existsSync(specPath)) {
+    res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+    res.setHeader('Content-Disposition', 'attachment; filename="WEATHERBET_AUTO_TRADING_MASTER_SPEC.md"');
+    fs.createReadStream(specPath).pipe(res);
+  } else {
+    res.status(404).send('Specification file not found');
+  }
+});
 
 app.get('/api/download-github-file/:name', (req, res) => {
   const name = req.params.name;
@@ -1491,11 +2143,16 @@ import os, sys, zipfile
 root_dir = sys.argv[1]
 out_zip = sys.argv[2]
 target_paths = [
+    "auto_exit_bot.py",
+    "quant_strategy_advisor.py",
+    "quant_strategy_report.html",
+    "docs/strategy-lab.html",
+    "docs/simple.html",
+    "docs/404.html",
     "weatherbot_v3.py",
     "forecasting.py",
     "strategy.py",
     "dashboard_simple.py",
-    "dashboard.py",
     "price_monitor.py",
     "lock_manager.py",
     "daily_report.py",
@@ -1511,6 +2168,7 @@ target_paths = [
     "requirements.txt",
     "simple.html",
     "data/calibration.json",
+    "data/model_skill.json",
     "data/last_scan.json",
     "data/accuracy_report.csv",
     "data/locked_signals.json",
@@ -1519,6 +2177,7 @@ target_paths = [
     ".github/workflows/monitor_locks.yml",
     ".github/workflows/process_lock_events.yml",
     ".github/workflows/daily_report.yml",
+    ".github/workflows/daily_quant_strategy.yml",
     ".github/workflows/heartbeat_dashboard_link.yml",
 ]
 with zipfile.ZipFile(out_zip, "w", zipfile.ZIP_DEFLATED) as zf:

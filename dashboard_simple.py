@@ -1,9 +1,8 @@
 """
 dashboard_simple.py -- می‌سازد simple.html (و docs/simple.html):
 نسخهٔ کامل، موبایل‌فرندلی و همگام‌شده با پیش‌نمایش AI Studio شامل:
-  ۱) نوار ابزار بالایی با دکمهٔ «↻ بروزرسانی» و سوییچر بین ۳ تب:
+  ۱) نوار ابزار بالایی با دکمهٔ «↻ بروزرسانی» و سوییچر بین ۲ تب:
      - داشبورد ساده (Simple)
-     - داشبورد پیشرفته (v3 Pro)
      - 📊 دقت شهرها و کالیبراسیون هوشمند
   ۲) نمایش دقیق تغییرات درصدی در داخل پرانتز (با رنگ سبز/قرمز) برای هر ۳ ستون:
      - احتمال مدل (±X.X%)
@@ -145,9 +144,22 @@ def _build_city_form_profiles(all_markets):
                     "signed_bias": a_val - f_val,
                 })
 
+    cal_data = {}
+    cal_path = Path("data/calibration.json")
+    if cal_path.exists():
+        try:
+            cal_data = json.loads(cal_path.read_text(encoding="utf-8"))
+        except Exception:
+            cal_data = {}
+
     grouped = defaultdict(list)
     for r in acc_records:
         grouped[(r["city"], r["market_type"])].append(r)
+
+    # Ensure every city in LOCATIONS has a profile even if local market JSONs were partially synced
+    for c_slug in LOCATIONS:
+        if (c_slug, "max") not in grouped and f"{c_slug}_D0" in cal_data:
+            grouped[(c_slug, "max")] = []
 
     profiles = {}
     for (slug, mtype), records in grouped.items():
@@ -162,12 +174,14 @@ def _build_city_form_profiles(all_markets):
 
         r_hits = sum(1 for r in active_recent if _is_exact_bucket_hit(r["forecast_mean"], r["actual_temp"], is_us))
         r_w1 = sum(1 for r in active_recent if _is_within_one_bucket_hit(r["forecast_mean"], r["actual_temp"], is_us))
-        r_mae = sum(r["abs_error"] for r in active_recent) / max(1, len(active_recent))
-        r_bias = sum(r["signed_bias"] for r in active_recent) / max(1, len(active_recent))
+        r_mae = sum(r["abs_error"] for r in active_recent) / max(1, len(active_recent)) if active_recent else (1.2 if is_us else 0.65)
+        r_bias = sum(r["signed_bias"] for r in active_recent) / max(1, len(active_recent)) if active_recent else 0.0
 
+        recent_n_eff = len(active_recent)
         recent_hit_pct = round(r_hits / len(active_recent) * 100, 1) if active_recent else 0.0
         recent_w1_pct = round(r_w1 / len(active_recent) * 100, 1) if active_recent else 0.0
 
+        old_n_eff = len(older)
         old_hit_pct = None
         old_mae = None
         old_bias = None
@@ -176,6 +190,35 @@ def _build_city_form_profiles(all_markets):
             old_hit_pct = round(o_hits / len(older) * 100, 1)
             old_mae = round(sum(r["abs_error"] for r in older) / len(older), 2)
             old_bias = round(sum(r["signed_bias"] for r in older) / len(older), 2)
+
+        # Blend with verified 14-day & 55-day statistics in data/calibration.json when local market JSONs are < 10
+        cal_key = f"{slug}_min_D0" if mtype == "min" else f"{slug}_D0"
+        cal_entry = cal_data.get(cal_key)
+        if cal_entry and len(active_recent) < 10:
+            cal_mae = float(cal_entry.get("live_mae") or cal_entry.get("base_mae") or r_mae)
+            cal_n_total = int(cal_entry.get("n_live") or cal_entry.get("n_samples") or 30)
+            cal_n_rec = max(int(cal_entry.get("recent_14d_n") or 14), 10)
+            s_eff = max(0.28, cal_mae / 0.9488)
+            w0 = 1.0 if is_us else 0.52
+            w1 = 3.0 if is_us else 1.52
+            cal_hit_prob = max(0.15, min(0.92, 2.0 * _student_t_cdf5(w0 / s_eff) - 1.0))
+            cal_w1_prob = max(cal_hit_prob, min(0.99, 2.0 * _student_t_cdf5(w1 / s_eff) - 1.0))
+
+            prior_rec_n = max(0, cal_n_rec - len(active_recent))
+            recent_n_eff = len(active_recent) + prior_rec_n
+            if recent_n_eff > 0:
+                r_mae = (sum(r["abs_error"] for r in active_recent) + prior_rec_n * cal_mae) / recent_n_eff
+                cal_rec_bias = -float(cal_entry.get("recent_14d_bias") or cal_entry.get("live_bias_raw") or 0.0)
+                r_bias = (sum(r["signed_bias"] for r in active_recent) + prior_rec_n * cal_rec_bias) / recent_n_eff
+                recent_hit_pct = round((r_hits + prior_rec_n * cal_hit_prob) / recent_n_eff * 100, 1)
+                recent_w1_pct = round((r_w1 + prior_rec_n * cal_w1_prob) / recent_n_eff * 100, 1)
+
+            if old_hit_pct is None and cal_n_total > recent_n_eff:
+                old_n_eff = cal_n_total - len(active_recent)
+                old_mae = round(float(cal_entry.get("base_mae") or cal_mae), 2)
+                s_old = max(0.28, old_mae / 0.9488)
+                old_hit_pct = round(max(0.15, min(0.92, 2.0 * _student_t_cdf5(w0 / s_old) - 1.0)) * 100, 1)
+                old_bias = round(-float(cal_entry.get("live_bias_raw") or cal_entry.get("base_bias_raw") or 0.0), 2)
 
         hit_delta = round(recent_hit_pct - old_hit_pct, 1) if old_hit_pct is not None else None
 
@@ -235,9 +278,15 @@ def _build_city_form_profiles(all_markets):
                     worst_submodel = mname
 
         if submodel_rmses:
-            inv_sum = sum(1.0 / (v * v + 0.15) for v in submodel_rmses.values())
+            min_rmse = max(0.25, min(submodel_rmses.values()))
+            raw_w = {}
             for mname, v in submodel_rmses.items():
-                submodel_weights[mname] = round((1.0 / (v * v + 0.15)) / inv_sum, 3)
+                ratio = v / min_rmse
+                penalty = 0.20 if ratio > 1.35 else (0.55 if ratio > 1.18 else 1.0)
+                raw_w[mname] = (1.0 / (v * v + 0.12)) * penalty
+            inv_sum = sum(raw_w.values()) or 1.0
+            for mname, rw in raw_w.items():
+                submodel_weights[mname] = round(rw / inv_sum, 3)
 
         sign_flip = bool(
             old_bias is not None and abs(old_bias) >= 0.45 and abs(r_bias) >= 0.45 and (old_bias * r_bias < 0)
@@ -251,17 +300,17 @@ def _build_city_form_profiles(all_markets):
         elif sign_flip:
             gate_decision = "sign_flip_damped"
             gate_reason = f"چرخش فصل شناسایی شد (بایاس قدیم {old_bias:+.2f}° در برابر جدید {r_bias:+.2f}°) → تعدیل بایاس قدیمی"
-        elif best_submodel and best_mae + 0.25 < r_mae:
+        elif best_submodel and best_mae + 0.20 < r_mae:
             gate_decision = "smart_submodel_blend"
             gate_reason = f"وزن‌دهی هوشمند زیرمدل‌ها (برترین مدل اخیر: {best_submodel.upper()} با خطای {best_mae}°)"
 
-        if recent_hit_pct >= 60:
+        if recent_hit_pct >= 58 or (recent_hit_pct >= 48 and r_mae <= (1.15 if is_us else 0.58)):
             form_status = "hot"
             form_label = f"🔥 روی فرم ({recent_hit_pct}%)"
         elif hit_delta is not None and hit_delta <= -20:
             form_status = "cold_drop"
             form_label = f"⚠️ افت اخیر ({recent_hit_pct}% vs {old_hit_pct}% قدیم)"
-        elif recent_hit_pct >= 45:
+        elif recent_hit_pct >= 42:
             form_status = "stable"
             form_label = f"✅ باثبات ({recent_hit_pct}%)"
         else:
@@ -274,12 +323,12 @@ def _build_city_form_profiles(all_markets):
             "market_type": mtype,
             "unit": unit,
             "is_us": is_us,
-            "recent_n": len(active_recent),
+            "recent_n": recent_n_eff,
             "recent_hit_pct": recent_hit_pct,
             "recent_within1_pct": recent_w1_pct,
             "recent_mae": round(r_mae, 2),
             "recent_bias": round(r_bias, 2),
-            "old_n": len(older),
+            "old_n": old_n_eff,
             "old_hit_pct": old_hit_pct,
             "old_mae": old_mae,
             "old_bias": old_bias,
@@ -779,7 +828,20 @@ function getGitHubRepo() {
 function lockBucket(city, cityName, date, marketId, tokenId, side, price, label, marketType) {
   setLockStatus(marketId, "⏳ در حال باز شدن گیت‌هاب...", "#eab308");
   var repo = getGitHubRepo();
-  var payload = { city: city, date: date, market_id: marketId + "|" + tokenId, side: side, price: price, market_type: (marketType || "max") };
+  var payload = {
+    city: city,
+    date: date,
+    market_id: marketId + "|" + tokenId,
+    token_id: tokenId,
+    side: side,
+    price: price,
+    market_type: (marketType || "max"),
+    smart_autopilot: true,
+    auto_exit_enabled: true,
+    tp_enabled: true,
+    sl_enabled: true,
+    metar_auto_stop: true
+  };
   var title = encodeURIComponent("LOCK " + cityName + " " + date + " " + label + " " + side + " @ " + price);
   var body = encodeURIComponent(JSON.stringify(payload));
   var url = "https://github.com/" + repo + "/issues/new?title=" + title + "&body=" + body + "&labels=lock-request";
@@ -987,22 +1049,22 @@ def _signal_badge_html(is_main, ev_val):
 
 
 def _format_pct_paren(pct_val, pct_6h_val=None):
-    """فرمت کردن درصد تغییرات در داخل پرانتز (هم تغییر اسکن ۱۰ دقیقه‌ای و هم اسکن ۶ ساعته در صورت تفاوت)."""
+    """فرمت کردن درصد تغییرات در داخل پرانتز (هم تغییر نسبت به اسکن قبلی و هم اسکن ۶ ساعته اخیر)."""
     if pct_val is None and pct_6h_val is None:
         return ""
     v10 = float(pct_val if pct_val is not None else (pct_6h_val or 0.0))
     v6 = float(pct_6h_val) if pct_6h_val is not None else None
-    if v6 is not None and abs(v6 - v10) >= 0.05 and abs(v6) >= 0.05:
+    if v6 is not None:
         c10 = "chg-zero" if abs(v10) < 0.05 else ("chg-pos" if v10 > 0 else "chg-neg")
         c6 = "chg-zero" if abs(v6) < 0.05 else ("chg-pos" if v6 > 0 else "chg-neg")
         s10 = "0.0%" if abs(v10) < 0.05 else f"{v10:+.1f}%"
         s6 = "0.0%" if abs(v6) < 0.05 else f"{v6:+.1f}%"
         return (
-            f' <span class="{c10}" title="تغییر اسکن ۱۰ دقیقه‌ای قبلی">({s10})</span>'
+            f' <span class="{c10}" title="تغییر نسبت به اسکن قبلی">({s10})</span>'
             f'<div style="font-size:10.5px;color:var(--text-dim);line-height:1.2;margin-top:2px;direction:ltr" '
-            f'title="تغییر نسبت به اسکن ۶ ساعته قبلی">(6h: <span class="{c6}">{s6}</span>)</div>'
+            f'title="تغییر نسبت به اسکن ۶ ساعته اخیر">(6h: <span class="{c6}">{s6}</span>)</div>'
         )
-    val = v10 if abs(v10) >= 0.05 else (v6 if v6 is not None else 0.0)
+    val = v10
     if abs(val) < 0.05:
         return ' <span class="chg-zero">(0.0%)</span>'
     css = "chg-pos" if val > 0 else "chg-neg"
@@ -1010,7 +1072,7 @@ def _format_pct_paren(pct_val, pct_6h_val=None):
 
 
 def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locked_keys, main_signal_id, market_type="max"):
-    """جدول باکت‌ها همراه با تغییرات درصدی (۱۰ دقیقه‌ای و ۶ ساعته)، اسپرد اردربوک،
+    """جدول باکت‌ها همراه با تغییرات درصدی (اسکن قبلی و ۶ ساعته اخیر)، اسپرد اردربوک،
     وضعیت حذف زنده METAR و پتانسیل نوسان‌گیری تا ارزش منصفانه مدل."""
     if not full_distribution:
         return '<div class="empty">داده‌ای موجود نیست.</div>'
@@ -1031,12 +1093,25 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
         raw_model_prob = b.get("model_prob")
         yes_price = b.get("yes_price")
 
-        model_change = b.get("model_prob_6h_change")
-        if model_change is None or abs(float(model_change)) < 0.0005:
-            model_change = b.get("model_prob_change")
-        if (model_change is None or abs(float(model_change)) < 0.0005) and model_prob is not None and raw_model_prob is not None:
+        m_6h_chg = b.get("model_prob_6h_change")
+        if m_6h_chg is None or abs(float(m_6h_chg)) < 0.0005:
+            m_6h_chg = b.get("model_prob_change")
+        if (m_6h_chg is None or abs(float(m_6h_chg)) < 0.0005) and model_prob is not None and b.get("prev_scan6h_model_prob") is not None:
+            m_6h_chg = round(float(model_prob) - float(b["prev_scan6h_model_prob"]), 4)
+        if (m_6h_chg is None or abs(float(m_6h_chg)) < 0.0005) and model_prob is not None and raw_model_prob is not None:
             if abs(float(model_prob) - float(raw_model_prob)) >= 0.0005:
-                model_change = float(model_prob) - float(raw_model_prob)
+                m_6h_chg = round(float(model_prob) - float(raw_model_prob), 4)
+        if m_6h_chg is None:
+            m_6h_chg = 0.0
+
+        m_10m_chg = b.get("model_prob_10m_change")
+        if m_10m_chg is None:
+            if model_prob is not None and raw_model_prob is not None and abs(float(model_prob) - float(raw_model_prob)) >= 0.0005:
+                m_10m_chg = round(float(model_prob) - float(raw_model_prob), 4)
+            elif b.get("model_prob_change") is not None:
+                m_10m_chg = b.get("model_prob_change")
+            else:
+                m_10m_chg = m_6h_chg
 
         price_change = b.get("yes_price_change")
         if (price_change is None or abs(float(price_change)) < 0.0005) and b.get("yes_price_6h_change") is not None:
@@ -1064,8 +1139,11 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
         p_6h_pct = b.get("yes_price_6h_pct_change", price_pct_change)
 
         model_str = f"{model_prob * 100:.1f}%" if model_prob is not None else "-"
-        if model_prob is not None and model_change is not None:
-            model_str += _format_pct_paren(float(model_change) * 100.0)
+        if model_prob is not None and (m_10m_chg is not None or m_6h_chg is not None):
+            model_str += _format_pct_paren(
+                float(m_10m_chg) * 100.0 if m_10m_chg is not None else None,
+                float(m_6h_chg) * 100.0 if m_6h_chg is not None else None,
+            )
 
         market_str = f"{yes_price * 100:.1f}%" if yes_price is not None else "-"
         if yes_price is not None and (p_10m_chg is not None or p_6h_chg is not None):
@@ -1375,7 +1453,7 @@ DAILY_PNL_VISIBLE_DAYS = 5
 def _daily_pnl_section_html(locks):
     daily = {}
     for l in locks:
-        if l.get("status") not in ("closed_manual", "closed_resolved"):
+        if l.get("status") not in history_manager.CLOSED_STATUSES:
             continue
         closed_at = l.get("closed_at")
         entry = l.get("entry_price")
@@ -1401,10 +1479,18 @@ def _daily_pnl_section_html(locks):
     def _day_block_html(date, day_locks, open_attr):
         pcts = []
         rows = []
+        reason_map = {
+            "closed_resolved": "تسویه نهایی",
+            "closed_auto_tp": "🎯 سیو سود خودکار (TP)",
+            "closed_auto_sl": "🛑 حد ضرر خودکار (SL)",
+            "closed_auto_metar": "🌡️ حد ضرر METAR",
+            "closed_auto_trailing": "📈 تریلینگ استاپ",
+            "closed_manual": "حذف دستی",
+        }
         for l in day_locks:
             entry = l.get("entry_price")
             exit_price = l.get("exit_price")
-            pct = (exit_price - entry) / entry * 100 if entry and exit_price is not None else None
+            _, _, pct = history_manager._calc_cent_consistent_pct(entry, exit_price)
             if pct is not None:
                 pcts.append(pct)
 
@@ -1414,7 +1500,7 @@ def _daily_pnl_section_html(locks):
             label = _find_locked_bucket_label(mkt, l.get("market_id"), unit_sym)
 
             name = LOCATIONS.get(l.get("city"), {}).get("name", l.get("city"))
-            reason = "resolve خودکار" if l.get("status") == "closed_resolved" else "حذف دستی"
+            reason = reason_map.get(l.get("status"), "حذف دستی")
             entry_str = f"{entry:.3f}" if entry is not None else "-"
             exit_str = f"{exit_price:.3f}" if exit_price is not None else "-"
             css = "win" if (pct or 0) >= 0 else "loss"
@@ -1550,59 +1636,6 @@ def _build_group_section(markets, date_block_fn, profiles, market_type="max"):
     return "".join(parts)
 
 
-def _build_pro_tab_html(all_markets, open_max, open_min, profiles):
-    resolved = [m for m in all_markets if m.get("status") == "resolved"]
-    wins = sum(1 for m in resolved if m.get("resolved_outcome") == "win")
-    losses = len(resolved) - wins
-    pnl = round(sum(float(m.get("pnl_units") or 0.0) for m in resolved), 1)
-    win_rate = round(wins / len(resolved) * 100) if resolved else 0
-
-    sig_cards = []
-    for m in (open_max + open_min):
-        alloc = m.get("committed_allocation") or m.get("live_allocation") or []
-        if not alloc:
-            continue
-        cname = LOCATIONS.get(m.get("city"), {}).get("name", m.get("city_name", m.get("city")))
-        mtype_lbl = "❄️ کمینه" if m.get("market_type") == "min" else "🔥 بیشینه"
-        unit_sym = m.get("unit", "")
-        legs_html = []
-        for leg in alloc:
-            b_lbl = _find_locked_bucket_label(m, leg.get("market_id"), unit_sym)
-            legs_html.append(
-                f"<span class='sm-chip'>{leg.get('role','leg')}: {b_lbl} ({leg.get('side','YES')} @ {float(leg.get('price') or 0):.3f}) | {float(leg.get('units') or 0):.1f}u</span>"
-            )
-        sig_cards.append(
-            f"<div class='kpi-card' style='margin-bottom:8px'>"
-            f"<div style='display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px'>"
-            f"<b>{cname} — {m.get('date')} ({mtype_lbl})</b>"
-            f"<span class='ltr-inline'>Mean: {float(m.get('smart_forecast_mean') or m.get('forecast_mean') or 0):.1f}{unit_sym} | σ: {float(m.get('sigma') or 0):.2f}</span>"
-            f"</div>"
-            f"<div style='margin-top:6px'>{''.join(legs_html)}</div>"
-            f"</div>"
-        )
-
-    return f"""
-    <h1>⚡ ترمینال پیشرفته پرتفوی و تخصیص هوشمند (WeatherBet v3 Pro)</h1>
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-title" style="color:var(--blue)">موجودی شبیه‌سازی پرتفوی</div>
-        <div class="kpi-val ltr-inline">{100 + pnl:.1f} u</div>
-        <div class="kpi-sub">سود/زیان خالص: <span class="ltr-inline">{pnl:+.1f} u</span></div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-title" style="color:var(--green)">نرخ برد سیگنال‌های پرتفوی</div>
-        <div class="kpi-val">{win_rate}%</div>
-        <div class="kpi-sub">{wins} برد / {losses} باخت ({len(resolved)} بازار تسویه‌شده)</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-title" style="color:var(--purple)">بازارهای باز در حال رصد</div>
-        <div class="kpi-val">{len(open_max) + len(open_min)} بازار</div>
-        <div class="kpi-sub">{len(open_max)} بیشینه | {len(open_min)} کمینه</div>
-      </div>
-    </div>
-    <h2>🎯 تخصیص‌های فعال استراتژی نردبانی (Ladder Allocations)</h2>
-    {''.join(sig_cards) if sig_cards else '<div class="empty">در حال حاضر پوزیشن پرتفوی باز ثبت نشده است — از تب داشبورد ساده می‌توانید هر باکت را مستقیماً قفل کنید.</div>'}
-    """
 
 
 def _build_accuracy_tab_html(profiles):

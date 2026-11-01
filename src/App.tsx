@@ -9,6 +9,7 @@ import {
   AllocationLeg,
   CityFormProfile,
 } from './types';
+import OrderConfigModal, { OrderModalContext } from './OrderConfigModal';
 
 const MONTHS = [
   'january', 'february', 'march', 'april', 'may', 'june',
@@ -121,7 +122,7 @@ function getGateDecisionBadge(decision?: string) {
 }
 
 export default function App() {
-  const [viewMode, setViewMode] = useState<'simple' | 'pro' | 'accuracy'>('simple');
+  const [viewMode, setViewMode] = useState<'simple' | 'accuracy'>('simple');
   const [data, setData] = useState<DashboardDataResponse | null>(null);
   const [historyData, setHistoryData] = useState<{ rows: HistoryRow[]; cities: string[]; dates: string[] }>({
     rows: [],
@@ -151,6 +152,7 @@ export default function App() {
   const [showAllBucketsInSimple, setShowAllBucketsInSimple] = useState(false);
   const [recalibrating, setRecalibrating] = useState(false);
   const [recalMsg, setRecalMsg] = useState<string | null>(null);
+  const [orderModalCtx, setOrderModalCtx] = useState<OrderModalContext | null>(null);
 
   const fetchAllData = async () => {
     try {
@@ -256,23 +258,85 @@ export default function App() {
     }
   };
 
+  const handleOpenCreateOrderModal = (params: {
+    city: string;
+    cityName: string;
+    date: string;
+    marketId: string;
+    yesTokenId: string;
+    noTokenId?: string;
+    yesPrice: number;
+    noPrice: number;
+    bestBid?: number | null;
+    bestAsk?: number | null;
+    label: string;
+    marketType: 'max' | 'min';
+    modelProb?: number | null;
+    beliefProb?: number | null;
+    ev?: number | null;
+  }) => {
+    setOrderModalCtx({
+      mode: 'create',
+      city: params.city,
+      cityName: params.cityName,
+      date: params.date,
+      marketId: params.marketId,
+      tokenId: params.yesTokenId,
+      noTokenId: params.noTokenId,
+      side: 'YES',
+      yesPrice: params.yesPrice,
+      noPrice: params.noPrice,
+      bestBid: params.bestBid,
+      bestAsk: params.bestAsk,
+      label: params.label,
+      marketType: params.marketType,
+      modelProb: params.modelProb,
+      beliefProb: params.beliefProb,
+      ev: params.ev,
+    });
+  };
+
+  const handleOpenEditOrderModal = (lock: LockedSignal) => {
+    const entry = Number(lock.entry_price || 0.25);
+    const yp = lock.side === 'NO' ? Math.max(0.01, 1 - entry) : entry;
+    const np = Math.max(0.01, 1 - yp);
+    setOrderModalCtx({
+      mode: 'edit',
+      city: lock.city,
+      cityName: lock.city_name,
+      date: lock.date,
+      marketId: lock.market_id,
+      tokenId: lock.token_id || '',
+      side: (lock.side === 'NO' ? 'NO' : 'YES'),
+      yesPrice: yp,
+      noPrice: np,
+      bestBid: lock.best_bid ?? lock.last_price ?? entry,
+      bestAsk: lock.best_ask ?? entry,
+      label: lock.bucket_label || '-',
+      marketType: (lock.market_type as 'max' | 'min') || 'max',
+      modelProb: lock.model_fair_cents != null ? lock.model_fair_cents / 100 : null,
+      existingLock: lock,
+    });
+  };
+
   const handleUnlockBucket = async (
     city: string,
     cityName: string,
     date: string,
     marketId: string,
-    label: string
+    label: string,
+    forceExit = false
   ) => {
-    setLockStatus(marketId, '⏳ در حال حذف قفل...', '#b45309');
+    setLockStatus(marketId, forceExit ? '⏳ در حال اجرای خروج اضطراری...' : '⏳ در حال حذف قفل...', '#b45309');
     try {
       const res = await fetch('/api/locks/unlock', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ city, date, market_id: marketId, label, cityName }),
+        body: JSON.stringify({ city, date, market_id: marketId, label, cityName, force_exit: forceExit }),
       });
       const json = await res.json();
       if (res.ok && json.ok) {
-        setLockStatus(marketId, '✔ قفل حذف و بسته شد.', '#16a34a');
+        setLockStatus(marketId, forceExit ? '✔ پوزیشن با موفقیت فروخته و بسته شد.' : '✔ قفل حذف و بسته شد.', '#16a34a');
         await fetchAllData();
       } else {
         setLockStatus(marketId, `❌ خطا: ${json.error || 'نامشخص'}`, '#dc2626');
@@ -450,34 +514,18 @@ export default function App() {
 
   return (
     <div
-      className={
-        viewMode === 'pro'
-          ? 'min-h-screen bg-[#0f1115] text-[#e6e6e6] p-4 md:p-6 transition-colors'
-          : 'min-h-screen bg-[#eef1f6] text-[#1f2430] p-3.5 md:p-6 transition-colors'
-      }
+      className="min-h-screen bg-[#eef1f6] text-[#1f2430] p-3.5 md:p-6 transition-colors"
       dir="rtl"
     >
       {/* Top Mode Switcher Bar */}
-      <div
-        className={`flex flex-wrap items-center justify-between gap-3 pb-3 mb-4 border-b ${
-          viewMode === 'pro' ? 'border-[#2a2e37]' : 'border-[#dde3ec]'
-        }`}
-      >
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 mb-4 border-b border-[#dde3ec]">
         <div className="flex items-center gap-3 flex-wrap">
           <h1 className="text-lg md:text-xl font-bold m-0">
-            {viewMode === 'pro'
-              ? 'WeatherBet v3 Dashboard'
-              : viewMode === 'accuracy'
+            {viewMode === 'accuracy'
               ? 'WeatherBet -- کالیبراسیون هوشمند و رتبه‌بندی دقت شهرها'
               : 'WeatherBet -- داشبورد ساده'}
           </h1>
-          <span
-            className={`text-xs px-2.5 py-1 rounded-md font-medium ${
-              viewMode === 'pro'
-                ? 'bg-[#181b21] text-[#9aa0a6] border border-[#2a2e37]'
-                : 'bg-white text-[#6b7684] border border-[#dde3ec]'
-            }`}
-          >
+          <span className="text-xs px-2.5 py-1 rounded-md font-medium bg-white text-[#6b7684] border border-[#dde3ec]">
             {data.meta.open_max_count + data.meta.open_min_count} بازار باز • {openLocks.length} قفل فعال
           </span>
           <span className="text-xs px-2.5 py-1 rounded-md font-semibold bg-[#e8f8ee] text-[#16a34a] border border-[#16a34a55]">
@@ -491,30 +539,16 @@ export default function App() {
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all ${
               viewMode === 'simple'
                 ? 'bg-[#2563eb] text-white shadow-sm'
-                : viewMode === 'pro'
-                ? 'bg-[#181b21] text-[#c7ccd1] border border-[#2a2e37] hover:bg-[#232730]'
                 : 'bg-white text-[#1f2430] border border-[#dde3ec] hover:bg-gray-50'
             }`}
           >
             داشبورد ساده (Simple)
           </button>
           <button
-            onClick={() => setViewMode('pro')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all ${
-              viewMode === 'pro'
-                ? 'bg-[#2563eb] text-white shadow-sm'
-                : 'bg-white text-[#1f2430] border border-[#dde3ec] hover:bg-gray-50'
-            }`}
-          >
-            داشبورد پیشرفته (v3 Pro)
-          </button>
-          <button
             onClick={() => setViewMode('accuracy')}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all ${
               viewMode === 'accuracy'
                 ? 'bg-[#2563eb] text-white shadow-sm'
-                : viewMode === 'pro'
-                ? 'bg-[#181b21] text-[#c7ccd1] border border-[#2a2e37] hover:bg-[#232730]'
                 : 'bg-white text-[#1f2430] border border-[#dde3ec] hover:bg-gray-50'
             }`}
           >
@@ -528,11 +562,7 @@ export default function App() {
               await fetchAllData();
             }}
             title="به‌روزرسانی داده‌ها"
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer ${
-              viewMode === 'pro'
-                ? 'bg-[#181b21] text-[#60a5fa] border border-[#2a2e37] hover:bg-[#232730]'
-                : 'bg-white text-[#2563eb] border border-[#dde3ec] hover:bg-gray-50'
-            }`}
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer bg-white text-[#2563eb] border border-[#dde3ec] hover:bg-gray-50"
           >
             ↻ بروزرسانی
           </button>
@@ -630,23 +660,26 @@ export default function App() {
               open
               className="bg-[#e8f8ee] border border-[#16a34a55] rounded-xl px-3 py-2.5 mb-4 shadow-xs"
             >
-              <summary className="cursor-pointer text-sm font-bold text-[#1f2430] py-1.5 select-none">
-                🔒 سیگنال‌های قفل‌شدهٔ فعال ({openLocks.length})
+              <summary className="cursor-pointer text-sm font-bold text-[#1f2430] py-1.5 select-none flex items-center justify-between flex-wrap gap-2">
+                <span>🔒 پوزیشن‌ها و سیگنال‌های قفل‌شدهٔ فعال ({openLocks.length})</span>
+                <span className="text-[11px] font-semibold bg-white text-[#16a34a] border border-[#16a34a55] px-2.5 py-0.5 rounded-md">
+                  🤖 موتور پایش خودکار TP / SL روی Best Bid فعال است
+                </span>
               </summary>
               <div className="overflow-x-auto mt-2.5 rounded-lg">
-                <table className="w-full min-w-[600px] border-collapse text-[13px] bg-white tabular-nums">
+                <table className="w-full min-w-[760px] border-collapse text-[12.5px] bg-white tabular-nums">
                   <thead>
-                    <tr className="bg-[#f6f8fb] text-[#6b7684] text-[11.5px] font-semibold">
-                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">شهر</th>
-                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">نوع</th>
+                    <tr className="bg-[#f6f8fb] text-[#6b7684] text-[11px] font-semibold">
+                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">شهر / حالت</th>
+                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">نوع / سمت</th>
                       <th className="py-2.5 px-2 border-b border-[#dde3ec]">تاریخ</th>
-                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">دمای سیگنال قفل‌شده</th>
-                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">قیمت قفل‌شده</th>
-                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">قیمت فروش فعلی</th>
-                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">درصد تغییر</th>
-                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">تا پایان روز محلی</th>
-                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">آخرین به‌روزرسانی</th>
-                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">عملیات</th>
+                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">باکت دما</th>
+                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">حجم پوزیشن</th>
+                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">ورود ← Bid فعلی</th>
+                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">اهداف خودکار (TP / SL)</th>
+                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">سود / زیان</th>
+                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">زمان باقی‌مانده</th>
+                      <th className="py-2.5 px-2 border-b border-[#dde3ec]">مدیریت سفارش و خروج</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -655,42 +688,140 @@ export default function App() {
                       const polyUrl = buildPolymarketUrl(l.city, l.date, isMin ? 'min' : 'max');
                       const pct = l.last_pct;
                       const statusObj = statusMessages[l.market_id];
+                      const execMode = l.execution_mode || 'SHADOW';
+                      const isPendingEntry = l.position_state === 'ENTRY_PENDING';
+                      const tpCents = l.tp_price != null ? Math.round(l.tp_price * 100) : null;
+                      const slCents = l.sl_price != null ? Math.round(l.sl_price * 100) : null;
+                      const entryCents = l.entry_price != null ? (l.entry_price * 100).toFixed(1) : '-';
+                      const currCents = l.last_price != null ? (l.last_price * 100).toFixed(1) : '-';
                       return (
-                        <tr key={`${l.city}-${l.date}-${l.market_id}`} className="border-b border-[#dde3ec] last:border-b-0 text-center">
+                        <tr key={`${l.city}-${l.date}-${l.market_id}`} className="border-b border-[#dde3ec] last:border-b-0 text-center hover:bg-gray-50/70">
                           <td className="py-2.5 px-2 font-medium">
-                            <a href={polyUrl} target="_blank" rel="noopener noreferrer" className="text-[#2563eb] hover:underline">
+                            <a href={polyUrl} target="_blank" rel="noopener noreferrer" className="text-[#2563eb] hover:underline font-bold block">
                               {l.city_name}
                             </a>
+                            <div className="flex items-center justify-center gap-1 mt-0.5 flex-wrap">
+                              <span
+                                className={`inline-block px-1.5 py-0.2 rounded text-[10px] font-bold ltr-inline ${
+                                  execMode === 'LIVE'
+                                    ? 'bg-[#fdeceb] text-[#dc2626] border border-[#dc262644]'
+                                    : execMode === 'SHADOW'
+                                    ? 'bg-[#eaf1ff] text-[#2563eb] border border-[#2563eb44]'
+                                    : 'bg-[#f6f8fb] text-[#6b7684] border border-[#dde3ec]'
+                                }`}
+                              >
+                                {execMode}
+                              </span>
+                              {l.smart_autopilot && (
+                                <span className="inline-block px-1.5 py-0.2 rounded text-[9.5px] font-bold bg-[#e8f8ee] text-[#16a34a] border border-[#16a34a44]">
+                                  🤖 اتوماتیک
+                                </span>
+                              )}
+                            </div>
                           </td>
                           <td className="py-2.5 px-2 text-xs">
-                            {isMin ? '❄️ کمینه' : '🔥 بیشینه'}
+                            <div>{isMin ? '❄️ کمینه' : '🔥 بیشینه'}</div>
+                            <span className={`inline-block mt-0.5 px-1.5 rounded text-[10.5px] font-bold ${l.side === 'NO' ? 'bg-red-50 text-red-600' : 'bg-blue-50 text-blue-600'}`}>
+                              {l.side || 'YES'}
+                            </span>
+                            {isPendingEntry ? (
+                              <span className="block mt-0.5 text-[10px] font-bold text-[#9333ea]">
+                                ⏳ خرید شرطی
+                              </span>
+                            ) : (
+                              <span className="block mt-0.5 text-[10px] font-bold text-[#16a34a]">
+                                👁️ فعال (WATCHING)
+                              </span>
+                            )}
                           </td>
-                          <td className="py-2.5 px-2">{l.date}</td>
-                          <td className="py-2.5 px-2 font-semibold ltr-inline">{l.bucket_label || '-'}</td>
-                          <td className="py-2.5 px-2">{l.entry_price != null ? l.entry_price.toFixed(3) : '-'}</td>
-                          <td className="py-2.5 px-2">{l.last_price != null ? l.last_price.toFixed(3) : '-'}</td>
-                          <td className="py-2.5 px-2">
-                            {pct == null ? (
+                          <td className="py-2.5 px-2 ltr-inline text-xs font-medium">{l.date}</td>
+                          <td className="py-2.5 px-2 font-bold ltr-inline text-[#1f2430]">{l.bucket_label || '-'}</td>
+                          <td className="py-2.5 px-2 ltr-inline text-xs">
+                            {l.usdc_amount != null ? (
+                              <div>
+                                <b className="text-[#1f2430]">${Number(l.usdc_amount).toFixed(2)}</b>
+                                <span className="block text-[10.5px] text-[#6b7684]">
+                                  {Number(l.quantity_shares || 0).toFixed(1)} سهم
+                                </span>
+                              </div>
+                            ) : (
+                              <span className="text-[#6b7684]">1 واحد</span>
+                            )}
+                          </td>
+                          <td className="py-2.5 px-2 ltr-inline font-semibold">
+                            {isPendingEntry ? (
+                              <div>
+                                <span className="text-[10.5px] text-[#9333ea] font-bold block">
+                                  شرط خرید: ≤{entryCents}¢
+                                </span>
+                                <span className="text-xs text-[#6b7684]">فعلی: {currCents}¢</span>
+                              </div>
+                            ) : (
+                              <>
+                                <span className="text-[#6b7684]">{entryCents}¢</span>
+                                <span className="mx-1 text-[#9aa0a6]">→</span>
+                                <span className="text-[#1f2430] font-bold">{currCents}¢</span>
+                              </>
+                            )}
+                            {l.model_fair_cents != null && (
+                              <span className="block text-[10.5px] text-[#2563eb]">
+                                مدل: {l.model_fair_cents}¢
+                              </span>
+                            )}
+                          </td>
+                          <td className="py-2.5 px-2 ltr-inline text-xs">
+                            {l.auto_exit_enabled === false ? (
+                              <span className="text-[#6b7684] text-[11px]">غیرفعال (دستی)</span>
+                            ) : (
+                              <div className="flex flex-col items-center gap-0.5">
+                                {l.tp_enabled !== false && tpCents != null && (
+                                  <span className="bg-[#e8f8ee] text-[#16a34a] border border-[#16a34a44] px-2 py-0.5 rounded text-[10.5px] font-bold">
+                                    🎯 TP: {tpCents}¢
+                                  </span>
+                                )}
+                                {l.sl_enabled !== false && slCents != null && (
+                                  <span className="bg-[#fdeceb] text-[#dc2626] border border-[#dc262644] px-2 py-0.5 rounded text-[10.5px] font-bold">
+                                    🛑 SL: {slCents}¢
+                                  </span>
+                                )}
+                                {l.trailing_stop_enabled && (
+                                  <span className="text-[10px] text-[#9333ea] font-semibold">
+                                    📈 Trailing {l.trailing_offset_pct || 8}%
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                          </td>
+                          <td className="py-2.5 px-2 ltr-inline">
+                            {isPendingEntry ? (
+                              <span className="text-[11px] font-semibold text-[#9333ea]">در انتظار ورود</span>
+                            ) : pct == null ? (
                               '-'
                             ) : (
-                              <span className={pct >= 0 ? 'text-[#16a34a] font-semibold' : 'text-[#dc2626] font-semibold'}>
+                              <span className={pct >= 0 ? 'text-[#16a34a] font-bold text-sm' : 'text-[#dc2626] font-bold text-sm'}>
                                 {pct >= 0 ? `+${pct.toFixed(1)}%` : `${pct.toFixed(1)}%`}
                               </span>
                             )}
                           </td>
-                          <td className="py-2.5 px-2 ltr-inline text-xs text-[#6b7684]">
-                            {formatHoursLeft(l.hours_left, l.time_status || undefined) || 'active'}
-                          </td>
-                          <td className="py-2.5 px-2 ltr-inline text-xs text-[#6b7684]">
-                            {formatRelativeTime(l.last_checked_at)}
+                          <td className="py-2.5 px-2 ltr-inline text-[11px] text-[#6b7684]">
+                            <div>{formatHoursLeft(l.hours_left, l.time_status || undefined) || 'active'}</div>
+                            <div className="text-[10px] opacity-80">{formatRelativeTime(l.last_checked_at)}</div>
                           </td>
                           <td className="py-2.5 px-2">
-                            <button
-                              onClick={() => handleUnlockBucket(l.city, l.city_name, l.date, l.market_id, l.bucket_label || '')}
-                              className="bg-[#dc2626] hover:bg-[#b91c1c] text-white border-none rounded-[9px] px-3.5 py-2 text-xs font-semibold cursor-pointer"
-                            >
-                              حذف قفل
-                            </button>
+                            <div className="flex flex-wrap items-center justify-center gap-1.5">
+                              <button
+                                onClick={() => handleOpenEditOrderModal(l)}
+                                className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white border-none rounded-[8px] px-2.5 py-1.5 text-[11.5px] font-semibold cursor-pointer shadow-2xs"
+                              >
+                                ⚙️ تنظیمات / تست TP-SL
+                              </button>
+                              <button
+                                onClick={() => handleUnlockBucket(l.city, l.city_name, l.date, l.market_id, l.bucket_label || '', true)}
+                                className="bg-[#dc2626] hover:bg-[#b91c1c] text-white border-none rounded-[8px] px-2.5 py-1.5 text-[11.5px] font-semibold cursor-pointer shadow-2xs"
+                              >
+                                {isPendingEntry ? '✕ لغو خرید شرطی' : '🚨 خروج اضطراری'}
+                              </button>
+                            </div>
                             {statusObj && (
                               <span className="block text-[10.5px] mt-1" style={{ color: statusObj.color }}>
                                 {statusObj.text}
@@ -720,9 +851,11 @@ export default function App() {
                 marketType="max"
                 useSmartGate={useSmartGate}
                 lockedKeysSet={lockedKeysSet}
+                openLocks={openLocks}
                 showAllBuckets={showAllBucketsInSimple}
                 statusMessages={statusMessages}
-                onLock={handleLockBucket}
+                onOpenCreateModal={handleOpenCreateOrderModal}
+                onOpenEditModal={handleOpenEditOrderModal}
                 onUnlock={handleUnlockBucket}
               />
             ))
@@ -742,9 +875,11 @@ export default function App() {
                 marketType="min"
                 useSmartGate={useSmartGate}
                 lockedKeysSet={lockedKeysSet}
+                openLocks={openLocks}
                 showAllBuckets={showAllBucketsInSimple}
                 statusMessages={statusMessages}
-                onLock={handleLockBucket}
+                onOpenCreateModal={handleOpenCreateOrderModal}
+                onOpenEditModal={handleOpenEditOrderModal}
                 onUnlock={handleUnlockBucket}
               />
             ))
@@ -875,20 +1010,7 @@ export default function App() {
       )}
 
       {/* =====================================================================
-          MODE 2: PRO TERMINAL DASHBOARD
-         ===================================================================== */}
-      {viewMode === 'pro' && (
-        <ProDashboardView
-          data={data}
-          citySearch={citySearch}
-          setCitySearch={setCitySearch}
-          commitMessages={commitMessages}
-          onCommitMoment={handleCommitMoment}
-        />
-      )}
-
-      {/* =====================================================================
-          MODE 3: SMART CALIBRATION & CITY ACCURACY ANALYTICS
+          MODE 2: SMART CALIBRATION & CITY ACCURACY ANALYTICS
          ===================================================================== */}
       {viewMode === 'accuracy' && (
         <div className="space-y-6">
@@ -1160,6 +1282,13 @@ export default function App() {
           </div>
         </div>
       )}
+
+      {/* Professional Order Configuration & Auto-Exit Modal */}
+      <OrderConfigModal
+        context={orderModalCtx}
+        onClose={() => setOrderModalCtx(null)}
+        onSuccess={fetchAllData}
+      />
     </div>
   );
 }
@@ -1200,9 +1329,11 @@ function SimpleCityBlock({
   marketType,
   useSmartGate,
   lockedKeysSet,
+  openLocks,
   showAllBuckets,
   statusMessages,
-  onLock,
+  onOpenCreateModal,
+  onOpenEditModal,
   onUnlock,
 }: {
   group: {
@@ -1215,20 +1346,28 @@ function SimpleCityBlock({
   marketType: 'max' | 'min';
   useSmartGate: boolean;
   lockedKeysSet: Set<string>;
+  openLocks: LockedSignal[];
   showAllBuckets: boolean;
   statusMessages: Record<string, { text: string; color: string }>;
-  onLock: (
-    city: string,
-    cityName: string,
-    date: string,
-    marketId: string,
-    tokenId: string,
-    side: string,
-    price: number,
-    label: string,
-    marketType: 'max' | 'min'
-  ) => void;
-  onUnlock: (city: string, cityName: string, date: string, marketId: string, label: string) => void;
+  onOpenCreateModal: (params: {
+    city: string;
+    cityName: string;
+    date: string;
+    marketId: string;
+    yesTokenId: string;
+    noTokenId?: string;
+    yesPrice: number;
+    noPrice: number;
+    bestBid?: number | null;
+    bestAsk?: number | null;
+    label: string;
+    marketType: 'max' | 'min';
+    modelProb?: number | null;
+    beliefProb?: number | null;
+    ev?: number | null;
+  }) => void;
+  onOpenEditModal: (lock: LockedSignal) => void;
+  onUnlock: (city: string, cityName: string, date: string, marketId: string, label: string, forceExit?: boolean) => void;
 }) {
   const { slug, city_name, markets, has_signal, form_profile } = group;
 
@@ -1277,9 +1416,11 @@ function SimpleCityBlock({
             marketType={marketType}
             useSmartGate={useSmartGate}
             lockedKeysSet={lockedKeysSet}
+            openLocks={openLocks}
             showAllBuckets={showAllBuckets}
             statusMessages={statusMessages}
-            onLock={onLock}
+            onOpenCreateModal={onOpenCreateModal}
+            onOpenEditModal={onOpenEditModal}
             onUnlock={onUnlock}
           />
         ))}
@@ -1295,9 +1436,11 @@ function SimpleDateBlock({
   marketType,
   useSmartGate,
   lockedKeysSet,
+  openLocks,
   showAllBuckets,
   statusMessages,
-  onLock,
+  onOpenCreateModal,
+  onOpenEditModal,
   onUnlock,
 }: {
   market: WeatherMarket;
@@ -1306,20 +1449,28 @@ function SimpleDateBlock({
   marketType: 'max' | 'min';
   useSmartGate: boolean;
   lockedKeysSet: Set<string>;
+  openLocks: LockedSignal[];
   showAllBuckets: boolean;
   statusMessages: Record<string, { text: string; color: string }>;
-  onLock: (
-    city: string,
-    cityName: string,
-    date: string,
-    marketId: string,
-    tokenId: string,
-    side: string,
-    price: number,
-    label: string,
-    marketType: 'max' | 'min'
-  ) => void;
-  onUnlock: (city: string, cityName: string, date: string, marketId: string, label: string) => void;
+  onOpenCreateModal: (params: {
+    city: string;
+    cityName: string;
+    date: string;
+    marketId: string;
+    yesTokenId: string;
+    noTokenId?: string;
+    yesPrice: number;
+    noPrice: number;
+    bestBid?: number | null;
+    bestAsk?: number | null;
+    label: string;
+    marketType: 'max' | 'min';
+    modelProb?: number | null;
+    beliefProb?: number | null;
+    ev?: number | null;
+  }) => void;
+  onOpenEditModal: (lock: LockedSignal) => void;
+  onUnlock: (city: string, cityName: string, date: string, marketId: string, label: string, forceExit?: boolean) => void;
 }) {
   const date = market.date;
   const unitSym = market.unit || '';
@@ -1443,7 +1594,11 @@ function SimpleDateBlock({
                 const modelChange =
                   useSmartGate && hasForecastCorrection && b.smart_model_prob_change != null
                     ? b.smart_model_prob_change
-                    : b.model_prob_change;
+                    : b.model_prob_10m_change ?? b.model_prob_change;
+                const model6hChange =
+                  useSmartGate && hasForecastCorrection && b.smart_model_prob_6h_change != null
+                    ? b.smart_model_prob_6h_change
+                    : b.model_prob_6h_change ?? b.model_prob_change ?? modelChange;
                 const priceChange = b.yes_price_change;
                 const pricePctChange =
                   b.yes_price_pct_change != null
@@ -1468,20 +1623,17 @@ function SimpleDateBlock({
                   if (pctVal == null && pct6hVal == null) return null;
                   const v10 = Number(pctVal ?? pct6hVal ?? 0);
                   const v6 = pct6hVal != null ? Number(pct6hVal) : null;
-                  const hasDistinct6h = v6 != null && Math.abs(v6 - v10) >= 0.05 && Math.abs(v6) >= 0.05;
 
-                  const primaryVal = Math.abs(v10) >= 0.05 ? v10 : v6 ?? 0;
-                  const primaryCls =
-                    Math.abs(primaryVal) < 0.05
-                      ? 'text-[#6b7684]'
-                      : primaryVal > 0
-                      ? 'text-[#16a34a] font-semibold'
-                      : 'text-[#dc2626] font-semibold';
-
-                  if (!hasDistinct6h) {
+                  if (v6 == null) {
+                    const primaryCls =
+                      Math.abs(v10) < 0.05
+                        ? 'text-[#6b7684]'
+                        : v10 > 0
+                        ? 'text-[#16a34a] font-semibold'
+                        : 'text-[#dc2626] font-semibold';
                     return (
                       <span className={`ltr-inline ${primaryCls} text-[11.5px] ml-1`}>
-                        ({fmtSignedPct(primaryVal)})
+                        ({fmtSignedPct(v10)})
                       </span>
                     );
                   }
@@ -1493,9 +1645,9 @@ function SimpleDateBlock({
                       ? 'text-[#16a34a] font-semibold'
                       : 'text-[#dc2626] font-semibold';
                   const cls6 =
-                    Math.abs(v6!) < 0.05
+                    Math.abs(v6) < 0.05
                       ? 'text-[#6b7684]'
-                      : v6! > 0
+                      : v6 > 0
                       ? 'text-[#16a34a] font-semibold'
                       : 'text-[#dc2626] font-semibold';
 
@@ -1503,21 +1655,22 @@ function SimpleDateBlock({
                     <>
                       <span
                         className={`ltr-inline ${cls10} text-[11.5px] ml-1`}
-                        title="تغییر نسبت به اسکن ۱۰ دقیقه‌ای قبلی"
+                        title="تغییر نسبت به اسکن قبلی"
                       >
                         ({fmtSignedPct(v10)})
                       </span>
                       <div
                         className="text-[10.5px] text-[#6b7684] leading-tight mt-0.5 ltr-inline block"
-                        title="تغییر نسبت به اسکن ۶ ساعته قبلی"
+                        title="تغییر نسبت به اسکن ۶ ساعته اخیر"
                       >
-                        (6h: <span className={cls6}>{fmtSignedPct(v6!)}</span>)
+                        (6h: <span className={cls6}>{fmtSignedPct(v6)}</span>)
                       </div>
                     </>
                   );
                 };
 
-                const modelChangePct = modelChange != null ? modelChange * 100 : null;
+                const modelChangePct = modelChange != null ? modelChange * 100 : 0;
+                const model6hPct = model6hChange != null ? model6hChange * 100 : modelChangePct;
                 const market10mPct = price10mChange != null ? price10mChange * 100 : null;
                 const market6hPct = price6hChange != null ? price6hChange * 100 : null;
 
@@ -1553,7 +1706,7 @@ function SimpleDateBlock({
                       <span className="font-medium text-[#1f2430]">
                         {modelProb != null ? `${(modelProb * 100).toFixed(1)}%` : '-'}
                       </span>
-                      {modelProb != null && renderPctParen(modelChangePct)}
+                      {modelProb != null && renderPctParen(modelChangePct, model6hPct)}
                     </td>
                     <td className="py-2.5 px-2.5 whitespace-nowrap align-middle" dir="ltr">
                       <span className="font-medium text-[#1f2430]">
@@ -1591,25 +1744,54 @@ function SimpleDateBlock({
                       {yesPrice != null && marketId && (
                         <div>
                           {isLocked ? (
-                            <>
-                              <span className="text-[#16a34a] text-[11.5px] font-semibold block mb-1">
-                                قفل ✔
+                            <div className="flex flex-col items-center gap-1">
+                              <span className="text-[#16a34a] text-[11px] font-bold">
+                                🔒 پوزیشن فعال ✔
                               </span>
-                              <button
-                                onClick={() => onUnlock(citySlug, cityName, date, marketId, label)}
-                                className="bg-[#dc2626] hover:bg-[#b91c1c] text-white border-none rounded-[9px] px-3.5 py-1.5 text-xs font-semibold cursor-pointer"
-                              >
-                                حذف قفل
-                              </button>
-                            </>
+                              <div className="flex items-center gap-1">
+                                <button
+                                  onClick={() => {
+                                    const found = openLocks.find(
+                                      (x) => x.city === citySlug && x.date === date && String(x.market_id) === marketId
+                                    );
+                                    if (found) onOpenEditModal(found);
+                                  }}
+                                  className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white border-none rounded-[8px] px-2.5 py-1 text-[11px] font-semibold cursor-pointer"
+                                >
+                                  ⚙️ تنظیمات TP/SL
+                                </button>
+                                <button
+                                  onClick={() => onUnlock(citySlug, cityName, date, marketId, label, true)}
+                                  className="bg-[#dc2626] hover:bg-[#b91c1c] text-white border-none rounded-[8px] px-2.5 py-1 text-[11px] font-semibold cursor-pointer"
+                                >
+                                  فروش
+                                </button>
+                              </div>
+                            </div>
                           ) : (
                             <button
                               onClick={() =>
-                                onLock(citySlug, cityName, date, marketId, yesToken, 'YES', yesPrice, label, marketType)
+                                onOpenCreateModal({
+                                  city: citySlug,
+                                  cityName,
+                                  date,
+                                  marketId,
+                                  yesTokenId: yesToken,
+                                  noTokenId: b.no_token_id || '',
+                                  yesPrice,
+                                  noPrice: b.no_price ?? Math.max(0.01, 1 - yesPrice),
+                                  bestBid: b.best_bid ?? null,
+                                  bestAsk: b.best_ask ?? null,
+                                  label,
+                                  marketType,
+                                  modelProb,
+                                  beliefProb: beliefVal,
+                                  ev: evVal,
+                                })
                               }
-                              className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white border-none rounded-[9px] px-4 py-1.5 text-xs font-semibold cursor-pointer"
+                              className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white border-none rounded-[9px] px-3.5 py-1.5 text-xs font-semibold cursor-pointer shadow-2xs transition-all"
                             >
-                              قفل کن
+                              ⚡ خرید و تنظیم اتوماتیک
                             </button>
                           )}
                           {statusObj && (
@@ -1667,7 +1849,13 @@ function DailyPnlBlock({
           <tbody>
             {items.map((l, i) => {
               const pct = l.outcome_pct ?? 0;
-              const reason = l.status === 'closed_resolved' ? 'resolve خودکار' : 'حذف دستی';
+              let reason = 'حذف دستی';
+              if (l.status === 'closed_resolved') reason = 'resolve خودکار';
+              else if (l.status === 'closed_auto_tp') reason = '🎯 سیو سود خودکار (TP)';
+              else if (l.status === 'closed_auto_sl') reason = '🛑 حد ضرر خودکار (SL)';
+              else if (l.status === 'closed_auto_metar') reason = '🌡️ حد ضرر METAR';
+              else if (l.status === 'closed_auto_trailing') reason = '📈 تریلینگ استاپ خودکار';
+              else if (l.latched_exit_reason === 'MANUAL_FORCE_EXIT') reason = '🚨 خروج اضطراری';
               return (
                 <tr key={i} className="border-b border-[#dde3ec] last:border-b-0 text-center">
                   <td className="py-2 px-2 font-medium">{l.city_name}</td>
@@ -1691,564 +1879,4 @@ function DailyPnlBlock({
   );
 }
 
-/* ============================================================================
-   Sub-components for Pro Terminal View (dashboard.py v3/v5)
-   ============================================================================ */
 
-function ProDashboardView({
-  data,
-  citySearch,
-  setCitySearch,
-  commitMessages,
-  onCommitMoment,
-}: {
-  data: DashboardDataResponse;
-  citySearch: string;
-  setCitySearch: (v: string) => void;
-  commitMessages: Record<string, string>;
-  onCommitMoment: (marketKey: string) => void;
-}) {
-  const allOpenMarkets = useMemo(() => {
-    const combined = [...data.open_max_markets, ...data.open_min_markets];
-    if (!citySearch.trim()) return combined;
-    const q = citySearch.trim().toLowerCase();
-    return combined.filter(
-      (m) => m.city_name.toLowerCase().includes(q) || m.city.toLowerCase().includes(q)
-    );
-  }, [data.open_max_markets, data.open_min_markets, citySearch]);
-
-  const signalMarkets = useMemo(
-    () =>
-      allOpenMarkets.filter(
-        (m) =>
-          (m.committed_allocation && m.committed_allocation.length > 0) ||
-          (m.live_allocation && m.live_allocation.length > 0)
-      ),
-    [allOpenMarkets]
-  );
-
-  const resolvedByDate = useMemo(() => {
-    const groups: Record<string, WeatherMarket[]> = {};
-    for (const m of data.resolved_markets) {
-      if (citySearch.trim()) {
-        const q = citySearch.trim().toLowerCase();
-        if (!m.city_name.toLowerCase().includes(q) && !m.city.toLowerCase().includes(q)) continue;
-      }
-      const d = m.date || '?';
-      if (!groups[d]) groups[d] = [];
-      groups[d].push(m);
-    }
-    return Object.keys(groups)
-      .sort((a, b) => b.localeCompare(a))
-      .map((date) => ({
-        date,
-        markets: groups[date].sort((a, b) => (a.city_name || '').localeCompare(b.city_name || '')),
-      }));
-  }, [data.resolved_markets, citySearch]);
-
-  return (
-    <div className="text-[#e6e6e6]">
-      <nav className="sticky top-0 z-40 flex gap-2.5 flex-wrap bg-[#0f1115] py-2.5 mb-3 border-b border-[#2a2e37]">
-        <a
-          href="#sec-signals"
-          className="text-[#c7ccd1] bg-[#181b21] border border-[#2a2e37] rounded-lg px-3.5 py-1.5 text-xs hover:bg-[#232730] hover:text-white no-underline"
-        >
-          سیگنال‌ها ({signalMarkets.length})
-        </a>
-        <a
-          href="#sec-open"
-          className="text-[#c7ccd1] bg-[#181b21] border border-[#2a2e37] rounded-lg px-3.5 py-1.5 text-xs hover:bg-[#232730] hover:text-white no-underline"
-        >
-          بازارهای باز ({allOpenMarkets.length})
-        </a>
-        <a
-          href="#sec-resolved"
-          className="text-[#c7ccd1] bg-[#181b21] border border-[#2a2e37] rounded-lg px-3.5 py-1.5 text-xs hover:bg-[#232730] hover:text-white no-underline"
-        >
-          بازارهای حل‌شده ({data.resolved_markets.length})
-        </a>
-        <a
-          href="#sec-no-signal"
-          className="text-[#c7ccd1] bg-[#181b21] border border-[#2a2e37] rounded-lg px-3.5 py-1.5 text-xs hover:bg-[#232730] hover:text-white no-underline"
-        >
-          بدون سیگنال ({data.no_signal_markets.length})
-        </a>
-        <a
-          href="#sec-city-stats"
-          className="text-[#c7ccd1] bg-[#181b21] border border-[#2a2e37] rounded-lg px-3.5 py-1.5 text-xs hover:bg-[#232730] hover:text-white no-underline"
-        >
-          آمار شهرها ({data.city_stats.length})
-        </a>
-        <input
-          type="text"
-          value={citySearch}
-          onChange={(e) => setCitySearch(e.target.value)}
-          placeholder="فیلتر شهر..."
-          className="bg-[#181b21] border border-[#2a2e37] text-[#e6e6e6] rounded-lg px-3 py-1 text-xs mr-auto"
-        />
-      </nav>
-
-      <div className="text-[#9aa0a6] text-[13px] mb-4">
-        آخرین به‌روزرسانی: {data.meta.last_update_iran} &nbsp;&nbsp;&nbsp;&nbsp;(با اصلاح محاسبه دقت باکت‌های ۲ درجه‌ای فارنهایت آمریکا + گیت کالیبراسیون ۱۴ روزه)
-      </div>
-
-      <div className="text-[13px] text-[#9aa0a6] my-1.5">-- استراتژی کامل (همه‌ی سیگنال‌ها) --</div>
-      <div className="flex gap-4 flex-wrap mb-4">
-        <div className="bg-[#181b21] border border-[#2a2e37] rounded-[10px] px-5 py-3.5 min-w-[140px]">
-          <div className="text-[#9aa0a6] text-xs mb-1.5">تراز سود/زیان کل</div>
-          <div className="text-[22px] font-bold ltr-inline">
-            {data.summary.pnl_units > 0 ? `+${data.summary.pnl_units}` : data.summary.pnl_units}u
-          </div>
-        </div>
-        <div className="bg-[#181b21] border border-[#2a2e37] rounded-[10px] px-5 py-3.5 min-w-[140px]">
-          <div className="text-[#9aa0a6] text-xs mb-1.5">نرخ برد</div>
-          <div className="text-[22px] font-bold">{data.summary.win_rate}%</div>
-        </div>
-        <div className="bg-[#181b21] border border-[#2a2e37] rounded-[10px] px-5 py-3.5 min-w-[140px]">
-          <div className="text-[#9aa0a6] text-xs mb-1.5">تعداد کل معاملات</div>
-          <div className="text-[22px] font-bold">{data.summary.total_trades}</div>
-        </div>
-        <div className="bg-[#181b21] border border-[#2a2e37] rounded-[10px] px-5 py-3.5 min-w-[140px]">
-          <div className="text-[#9aa0a6] text-xs mb-1.5">بازارهای باز</div>
-          <div className="text-[22px] font-bold">{data.summary.open_count}</div>
-        </div>
-        <div className="bg-[#181b21] border border-[#2a2e37] rounded-[10px] px-5 py-3.5 min-w-[140px]">
-          <div className="text-[#9aa0a6] text-xs mb-1.5">تعداد شهرها</div>
-          <div className="text-[22px] font-bold">{data.meta.city_count}</div>
-        </div>
-      </div>
-
-      <div id="sec-signals" className="text-base font-bold mt-7 mb-3 pb-2 border-b border-[#2a2e37]">
-        سیگنال‌ها ({signalMarkets.length})
-      </div>
-      {signalMarkets.length === 0 ? (
-        <div className="text-[#6b7280] italic py-3">سیگنال فعالی در این لحظه وجود ندارد.</div>
-      ) : (
-        signalMarkets.map((m) => (
-          <ProMarketBlock
-            key={`sig-${m.file_key || `${m.city}_${m.date}`}`}
-            market={m}
-            accuracy={data.accuracy_by_city[m.city]}
-            commitMsg={commitMessages[`${m.city}_${m.date}`]}
-            onCommit={() => onCommitMoment(`${m.city}_${m.date}`)}
-          />
-        ))
-      )}
-
-      <div id="sec-open" className="text-base font-bold mt-7 mb-3 pb-2 border-b border-[#2a2e37]">
-        بازارهای باز ({allOpenMarkets.length})
-      </div>
-      {allOpenMarkets.length === 0 ? (
-        <div className="text-[#6b7280] italic py-3">بازار باز موجود نیست.</div>
-      ) : (
-        allOpenMarkets.map((m) => (
-          <ProMarketBlock
-            key={`open-${m.file_key || `${m.city}_${m.date}`}`}
-            market={m}
-            accuracy={data.accuracy_by_city[m.city]}
-            commitMsg={commitMessages[`${m.city}_${m.date}`]}
-            onCommit={() => onCommitMoment(`${m.city}_${m.date}`)}
-          />
-        ))
-      )}
-
-      <div id="sec-resolved" className="text-base font-bold mt-7 mb-3 pb-2 border-b border-[#2a2e37]">
-        بازارهای حل‌شده
-      </div>
-      {resolvedByDate.map((grp, idx) => {
-        const wins = grp.markets.filter((m) => m.resolved_outcome === 'win').length;
-        const total = grp.markets.length;
-        const pnlSum = grp.markets.reduce((acc, m) => acc + Number(m.pnl_units || 0), 0);
-        return (
-          <details
-            key={grp.date}
-            open={idx < 2}
-            className="bg-[#101216] border border-[#232730] rounded-[10px] px-4 py-2.5 mb-3.5"
-          >
-            <summary className="cursor-pointer text-[15px] text-[#e6e6e6] py-1">
-              <span className="font-semibold">{grp.date}</span> &nbsp;&nbsp;
-              {total} بازار &nbsp;&nbsp;
-              {wins}/{total} ({total > 0 ? Math.round((wins / total) * 100) : 0}%) &nbsp;&nbsp;
-              PnL: <span className={pnlSum >= 0 ? 'text-[#4ade80] ltr-inline' : 'text-[#f87171] ltr-inline'}>
-                {pnlSum >= 0 ? `+${pnlSum.toFixed(1)}u` : `${pnlSum.toFixed(1)}u`}
-              </span>
-            </summary>
-            <div className="mt-2 space-y-2">
-              {grp.markets.map((m) => (
-                <ProResolvedMarketBlock key={`res-${m.file_key || `${m.city}_${m.date}`}`} market={m} />
-              ))}
-            </div>
-          </details>
-        );
-      })}
-
-      <div id="sec-city-stats" className="text-base font-bold mt-7 mb-3 pb-2 border-b border-[#2a2e37]">
-        آمار به‌تفکیک شهر
-      </div>
-      <div className="overflow-x-auto bg-[#14161b] border border-[#2a2e37] rounded-[10px] p-3">
-        <table className="w-full border-collapse text-[12.5px] tabular-nums">
-          <thead>
-            <tr className="text-[#9aa0a6] border-b border-[#23262d]">
-              <th className="py-2 px-2">شهر</th>
-              <th className="py-2 px-2">تعداد کل</th>
-              <th className="py-2 px-2">برد استراتژی</th>
-              <th className="py-2 px-2">نرخ برد</th>
-              <th className="py-2 px-2">PnL کل (واحد)</th>
-              <th className="py-2 px-2">دقت پیش‌بینی دما (۱۴ روز اخیر)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.city_stats.map((cs) => (
-              <tr key={cs.city} className="border-b border-[#23262d] last:border-b-0 text-center">
-                <td className="py-2 px-2 font-semibold">{cs.city_name}</td>
-                <td className="py-2 px-2">{cs.total}</td>
-                <td className="py-2 px-2 text-[#4ade80]">{cs.wins}</td>
-                <td className="py-2 px-2">{cs.total > 0 ? Math.round((cs.wins / cs.total) * 100) : 0}%</td>
-                <td className={`py-2 px-2 font-semibold ltr-inline ${cs.pnl_sum >= 0 ? 'text-[#4ade80]' : 'text-[#f87171]'}`}>
-                  {cs.pnl_sum >= 0 ? `+${cs.pnl_sum.toFixed(1)}` : cs.pnl_sum.toFixed(1)}
-                </td>
-                <td className="py-2 px-2 text-[#60a5fa] font-semibold">
-                  {cs.recent_accuracy_pct != null
-                    ? `${cs.recent_accuracy_pct}%`
-                    : cs.accuracy_pct != null
-                    ? `${cs.accuracy_pct}%`
-                    : '-'}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-function ProMarketBlock({
-  market,
-  accuracy,
-  commitMsg,
-  onCommit,
-}: {
-  market: WeatherMarket;
-  accuracy?: number | null;
-  commitMsg?: string;
-  onCommit: () => void;
-}) {
-  const unitSym = market.unit || '';
-  const committed = market.committed_allocation;
-  const liveAlloc = market.live_allocation;
-  const isCommitted = Boolean(committed && committed.length > 0);
-  const bestPnl = isCommitted
-    ? market.committed_best_case_pnl_units ?? market.best_case_pnl_units
-    : market.best_case_pnl_units;
-  const worstPnl = isCommitted
-    ? market.committed_worst_case_pnl_units ?? market.worst_case_pnl_units
-    : market.worst_case_pnl_units;
-  const successProb = isCommitted
-    ? market.committed_success_probability ?? market.success_probability
-    : market.success_probability;
-  const confidence = isCommitted
-    ? market.committed_confidence ?? market.confidence
-    : market.confidence;
-
-  const polyUrl = buildPolymarketUrl(market.city, market.date, market.market_type);
-
-  return (
-    <details className="bg-[#14161b] border border-[#2a2e37] rounded-[10px] px-4 py-2.5 mb-2.5">
-      <summary className="cursor-pointer text-sm text-[#c7ccd1] py-1.5 list-none flex flex-wrap items-center justify-between gap-2">
-        <div className="flex flex-wrap items-center gap-2">
-          <b className="text-white text-[14.5px]">{market.city_name}</b>
-          <span className="ltr-inline text-xs text-[#9aa0a6] bg-[#1e222d] border border-[#2a2e37] px-2 py-0.5 rounded-md">
-            {market.date}
-          </span>
-          <span className="text-xs text-[#9aa0a6]">
-            ({market.market_type === 'min' ? '❄️ کمینه' : '🔥 بیشینه'})
-          </span>
-          <span className="text-xs bg-[#181b21] border border-[#2a2e37] px-2 py-0.5 rounded-md">
-            پیش‌بینی هوشمند:{' '}
-            <b className="text-white ltr-inline">
-              {(market.smart_forecast_mean ?? market.forecast_mean) != null
-                ? `${(market.smart_forecast_mean ?? market.forecast_mean)!.toFixed(1)}${unitSym}`
-                : '-'}
-            </b>
-          </span>
-          {market.hours_left != null && (
-            <span className="ltr-inline text-xs text-[#9aa0a6]">⏱ {market.hours_left.toFixed(1)}h</span>
-          )}
-          {isCommitted ? (
-            <span className="text-[#4ade80] bg-[#16a34a22] border border-[#16a34a55] px-2 py-0.5 rounded-md text-[11px] font-semibold">
-              قفل‌شده — {committed?.length} پوزیشن
-            </span>
-          ) : (
-            <span className="text-[#eab308] bg-[#eab30822] border border-[#eab30855] px-2 py-0.5 rounded-md text-[11px] font-semibold">
-              در حال پایش
-            </span>
-          )}
-        </div>
-        <div className="flex flex-wrap items-center gap-3 text-[11.5px] text-[#9aa0a6]">
-          <span>
-            دقت اخیر:{' '}
-            <b className="text-[#60a5fa]">
-              {market.city_form?.recent_hit_pct != null
-                ? `${market.city_form.recent_hit_pct}%`
-                : accuracy != null
-                ? `${accuracy}%`
-                : '-'}
-            </b>
-          </span>
-          <span>
-            بهترین حالت:{' '}
-            <b className="text-[#4ade80] ltr-inline">
-              {bestPnl != null ? `${bestPnl >= 0 ? '+' : ''}${bestPnl.toFixed(2)}u` : '-'}
-            </b>
-          </span>
-          <span>
-            بدترین حالت:{' '}
-            <b className="text-[#f87171] ltr-inline">
-              {worstPnl != null ? `${worstPnl >= 0 ? '+' : ''}${worstPnl.toFixed(2)}u` : '-'}
-            </b>
-          </span>
-          <span>
-            برد: <b className="text-[#60a5fa]">{successProb != null ? `${Math.round(successProb * 100)}%` : '-'}</b>
-          </span>
-          {confidence != null && (
-            <span className="text-[#c084fc] font-semibold">اطمینان: {Math.round(confidence * 100)}%</span>
-          )}
-        </div>
-      </summary>
-
-      <div className="flex items-center gap-2.5 my-2 px-2.5 py-2 bg-[#101216] border border-[#232730] rounded-lg">
-        {isCommitted ? (
-          <span className="text-[#4ade80] text-xs font-semibold">قفل‌شده ✔</span>
-        ) : (
-          <>
-            <button
-              onClick={onCommit}
-              className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white border-none rounded-md px-3.5 py-1.5 text-xs cursor-pointer"
-            >
-              قفل کردن این لحظه
-            </button>
-            <span className="text-xs text-[#9aa0a6]">
-              {commitMsg || '-- ثبت در lock_requests.txt'}
-            </span>
-          </>
-        )}
-      </div>
-
-      <ProUnifiedBucketTable
-        distribution={market.full_distribution || []}
-        committedAllocation={committed || null}
-        liveAllocation={liveAlloc || null}
-        unitSym={unitSym}
-        showResult={false}
-        balanceUnits={market.balance_units || 100}
-      />
-
-      <div className="mt-2 text-xs">
-        <a href={polyUrl} target="_blank" rel="noopener noreferrer" className="text-[#60a5fa] hover:underline">
-          مشاهده این بازار در Polymarket ↗
-        </a>
-      </div>
-    </details>
-  );
-}
-
-function ProResolvedMarketBlock({ market }: { market: WeatherMarket }) {
-  const unitSym = market.unit || '';
-  const isWin = market.resolved_outcome === 'win';
-  const pnl = Number(market.pnl_units || 0);
-  const gradedAllocation = market.graded_allocation || market.committed_allocation || [];
-
-  return (
-    <details className="bg-[#14161b] border border-[#2a2e37] rounded-[10px] px-4 py-2">
-      <summary className="cursor-pointer text-sm text-[#c7ccd1] py-1 list-none flex flex-wrap items-center justify-between gap-2">
-        <div className="flex flex-wrap items-center gap-2">
-          <b className="text-white">{market.city_name}</b>
-          <span className="text-xs text-[#9aa0a6]">
-            پیش‌بینی: <b className="ltr-inline text-[#e6e6e6]">{market.forecast_mean != null ? `${market.forecast_mean.toFixed(1)}${unitSym}` : '-'}</b>
-            {' — '}
-            واقعی: <b className="ltr-inline text-[#e6e6e6]">{market.actual_temp != null ? `${market.actual_temp.toFixed(1)}${unitSym}` : '-'}</b>
-          </span>
-        </div>
-        <span className={isWin ? 'text-[#4ade80] font-bold text-xs' : 'text-[#f87171] font-bold text-xs'}>
-          {isWin ? 'برد' : 'باخت'} <span className="ltr-inline">{pnl >= 0 ? `+${pnl.toFixed(2)}u` : `${pnl.toFixed(2)}u`}</span>
-        </span>
-      </summary>
-      <ProUnifiedBucketTable
-        distribution={market.full_distribution || []}
-        committedAllocation={gradedAllocation}
-        liveAllocation={null}
-        unitSym={unitSym}
-        showResult={true}
-        balanceUnits={market.committed_balance_units || market.balance_units || 100}
-      />
-    </details>
-  );
-}
-
-function ProUnifiedBucketTable({
-  distribution,
-  committedAllocation,
-  liveAllocation,
-  unitSym,
-  showResult,
-  balanceUnits,
-}: {
-  distribution: BucketDistribution[];
-  committedAllocation: AllocationLeg[] | null;
-  liveAllocation: AllocationLeg[] | null;
-  unitSym: string;
-  showResult: boolean;
-  balanceUnits: number;
-}) {
-  const displayAlloc = committedAllocation && committedAllocation.length > 0 ? committedAllocation : liveAllocation || [];
-  const allocByKey = new Map<string, AllocationLeg>();
-  let totalUnits = 0;
-  for (const a of displayAlloc) {
-    allocByKey.set(`${a.market_id}|${a.side}`, a);
-    totalUnits += Number(a.units || 0);
-  }
-  const denom = totalUnits || balanceUnits || 100;
-
-  const renderLegRow = (b: BucketDistribution, alloc: AllocationLeg | null, keySuffix: string) => {
-    const label = formatRangeLabel(b.range, unitSym);
-    let yesPrice = b.yes_price ?? b.ask ?? 0;
-    let noPrice = b.no_price ?? Number((1 - yesPrice).toFixed(4));
-
-    if (alloc && alloc.price != null) {
-      if (alloc.side === 'YES') {
-        yesPrice = alloc.price;
-        noPrice = Number((1 - alloc.price).toFixed(4));
-      } else {
-        noPrice = alloc.price;
-        yesPrice = Number((1 - alloc.price).toFixed(4));
-      }
-    }
-
-    const role = alloc?.role;
-    const rowBg =
-      role === 'main_signal'
-        ? 'bg-green-500/10'
-        : role === 'emergency_hedge'
-        ? 'bg-red-500/10'
-        : role
-        ? 'bg-yellow-500/10'
-        : 'opacity-55';
-
-    const sideDisplay = alloc ? alloc.side : 'YES';
-    const pctCapital = alloc && alloc.units != null ? ((alloc.units / denom) * 100).toFixed(1) : '-';
-    const edgeVal = alloc ? alloc.ev : b.ev;
-    const edgeStr = edgeVal != null ? `${edgeVal >= 0 ? '+' : ''}${edgeVal.toFixed(3)}` : '-';
-
-    let sellStr = '-';
-    if (alloc && alloc.sell_value != null && alloc.price != null && alloc.price > 0) {
-      const drift = ((alloc.sell_value - alloc.price) / alloc.price) * 100;
-      sellStr = `${alloc.sell_value.toFixed(3)} (${drift >= 0 ? '+' : ''}${drift.toFixed(1)}%)`;
-    }
-
-    const modelChangePct = b.model_prob_change != null ? b.model_prob_change * 100 : null;
-    const marketChangePct = b.yes_price_change != null ? b.yes_price_change * 100 : null;
-    const pricePctChange = b.yes_price_pct_change ?? marketChangePct;
-
-    const renderProParen = (pctVal: number | null | undefined) => {
-      if (pctVal == null || Math.abs(pctVal) < 0.05) return null;
-      const cls = pctVal > 0 ? 'text-[#4ade80]' : 'text-[#f87171]';
-      return (
-        <span className={`ltr-inline ${cls} text-[11px] ml-1`}>
-          ({pctVal > 0 ? `+${pctVal.toFixed(1)}%` : `${pctVal.toFixed(1)}%`})
-        </span>
-      );
-    };
-
-    return (
-      <tr key={`${b.market_id}-${keySuffix}`} className={`${rowBg} border-b border-[#23262d] text-center`}>
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle" dir="ltr">{label}</td>
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle">{sideDisplay}</td>
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle" dir="ltr">
-          {((b.model_prob || 0) * 100).toFixed(1)}%{renderProParen(modelChangePct)}
-        </td>
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle" dir="ltr">
-          {(yesPrice * 100).toFixed(1)}%{renderProParen(marketChangePct)}
-        </td>
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle" dir="ltr">
-          {b.belief_prob != null ? `${(b.belief_prob * 100).toFixed(1)}%` : '-'}
-        </td>
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle" dir="ltr">
-          {yesPrice.toFixed(3)}{renderProParen(pricePctChange)}
-        </td>
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle" dir="ltr">{noPrice.toFixed(3)}</td>
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle" dir="ltr">{edgeStr}</td>
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle">
-          {role === 'main_signal' ? (
-            <span className="px-2 py-0.5 rounded text-[11px] bg-[#16a34a33] text-[#4ade80] border border-[#16a34a]">
-              main
-            </span>
-          ) : role === 'emergency_hedge' ? (
-            <span className="px-2 py-0.5 rounded text-[11px] bg-[#dc262633] text-[#f87171] border border-[#dc2626]">
-              emergency
-            </span>
-          ) : role ? (
-            <span className="px-2 py-0.5 rounded text-[11px] bg-[#ca8a0433] text-[#fbbf24] border border-[#ca8a04]">
-              hedge
-            </span>
-          ) : (
-            '-'
-          )}
-        </td>
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle" dir="ltr">{pctCapital}</td>
-        {showResult && (
-          <>
-            <td className="py-1.5 px-2 whitespace-nowrap align-middle">
-              {alloc ? (alloc.won == null ? '-' : alloc.won ? 'برد' : 'باخت') : '-'}
-            </td>
-            <td className="py-1.5 px-2 whitespace-nowrap align-middle" dir="ltr">
-              {alloc && alloc.pnl_units != null
-                ? `${alloc.pnl_units >= 0 ? '+' : ''}${alloc.pnl_units.toFixed(2)}`
-                : '-'}
-            </td>
-          </>
-        )}
-        <td className="py-1.5 px-2 whitespace-nowrap align-middle" dir="ltr">{sellStr}</td>
-      </tr>
-    );
-  };
-
-  return (
-    <div className="overflow-x-auto mt-2">
-      <table className="w-full min-w-[680px] border-collapse text-[12.5px] tabular-nums">
-        <thead>
-          <tr className="text-[#9aa0a6] border-b border-[#23262d]">
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">محدوده</th>
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">سمت</th>
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">احتمال مدل</th>
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">احتمال بازار</th>
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">باور نهایی</th>
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">قیمت YES</th>
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">قیمت NO</th>
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">Edge</th>
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">نقش</th>
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">٪ سرمایه</th>
-            {showResult && (
-              <>
-                <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">نتیجه</th>
-                <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">PnL</th>
-              </>
-            )}
-            <th className="py-1.5 px-2 font-normal text-center whitespace-nowrap">فروش</th>
-          </tr>
-        </thead>
-        <tbody>
-          {distribution.map((b) => {
-            const yesAlloc = allocByKey.get(`${b.market_id}|YES`) || null;
-            const noAlloc = allocByKey.get(`${b.market_id}|NO`) || null;
-            const legs = [yesAlloc, noAlloc].filter((x): x is AllocationLeg => x !== null);
-            if (legs.length === 0) {
-              return renderLegRow(b, null, 'none');
-            }
-            return legs.map((leg) => renderLegRow(b, leg, leg.side));
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
-}

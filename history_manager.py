@@ -82,7 +82,17 @@ def _calc_cent_consistent_pct(entry_price, exit_price):
 
 
 MARKETS_DIR = Path("data/markets")
+LOCKS_FILE = Path("data/locked_signals.json")
 CSV_FILE = Path("data/lock_history.csv")
+
+CLOSED_STATUSES = (
+    "closed_manual",
+    "closed_resolved",
+    "closed_auto_tp",
+    "closed_auto_sl",
+    "closed_auto_metar",
+    "closed_auto_trailing",
+)
 
 CSV_HEADERS = [
     "تاریخ", "شهر", "دمای سیگنال", "دمای نهایی",
@@ -157,6 +167,8 @@ def check_and_close_resolved_locks(locks, now=None):
     for l in locks:
         if l.get("status") != "open":
             continue
+        if l.get("position_state") == "ENTRY_PENDING":
+            continue
 
         city, date, market_id = l["city"], l["date"], str(l["market_id"])
         try:
@@ -187,7 +199,10 @@ def check_and_close_resolved_locks(locks, now=None):
         if market_id not in settlement:
             continue
 
-        won = settlement[market_id]
+        bucket_yes_won = bool(settlement[market_id])
+        side = str(l.get("side") or "YES").upper()
+        won = (not bucket_yes_won) if side == "NO" else bucket_yes_won
+
         market = _load_market_for_lock(l)
         actual_temp = None
         if market:
@@ -197,6 +212,7 @@ def check_and_close_resolved_locks(locks, now=None):
                 actual_temp = None
 
         l["status"] = "closed_resolved"
+        l["position_state"] = "CLOSED"
         l["exit_price"] = 1.0 if won else 0.0
         l["closed_at"] = ref_now.isoformat()
         l["close_reason"] = "auto_resolved"
@@ -206,13 +222,13 @@ def check_and_close_resolved_locks(locks, now=None):
     return closed_count
 
 def write_history_csv(locks):
-    """از همهٔ قفل‌های بسته‌شده (دستی یا خودکار) فایل CSV می‌سازد.
+    """از همهٔ قفل‌های بسته‌شده (دستی، تسویهٔ نهایی یا خروج خودکار TP/SL/METAR) فایل CSV می‌سازد.
     lineterminator="\\n" صریحاً تنظیم شده تا کاراکتر پایان خط همیشه لینوکسی
     باشد -- رفع علت اصلی خطای "unstaged changes" بعد از commit (توضیح کامل
     در docstring بالای فایل)."""
     rows = []
     for l in locks:
-        if l.get("status") not in ("closed_manual", "closed_resolved"):
+        if l.get("status") not in CLOSED_STATUSES:
             continue
 
         city = l["city"]
@@ -241,11 +257,22 @@ def write_history_csv(locks):
         writer.writerows(rows)
     return len(rows)
 
+def record_closed_lock(lock):
+    """به‌روزرسانی فوری فایل CSV تاریخچه پس از بسته‌شدن خودکار یک قفل در price_monitor.py."""
+    try:
+        if LOCKS_FILE.exists():
+            locks = json.loads(LOCKS_FILE.read_text(encoding="utf-8"))
+        else:
+            locks = [lock] if lock else []
+        return write_history_csv(locks)
+    except Exception:
+        return 0
+
 def get_history_rows(locks):
     """همان دادهٔ CSV را به‌شکل لیست دیکشنری برمی‌گرداند -- برای رندر در simple.html."""
     out = []
     for l in locks:
-        if l.get("status") not in ("closed_manual", "closed_resolved"):
+        if l.get("status") not in CLOSED_STATUSES:
             continue
         city = l["city"]
         city_name = LOCATIONS.get(city, {}).get("name", city)
@@ -263,6 +290,8 @@ def get_history_rows(locks):
             "buy_cents": buy_c,
             "sell_cents": sell_c,
             "outcome_pct": outcome_pct,
+            "status": l.get("status"),
+            "close_reason": l.get("close_reason"),
         })
     out.sort(key=lambda r: r["date"], reverse=True)
     return out

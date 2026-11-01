@@ -187,12 +187,16 @@ jobs:
               time.sleep(6)
 
           if not live_link:
-              # تشخیص بر اساس مسیر simple.html ثابت
+              # اگر فایل یکتای جدید هنوز در CDN گیت‌هاب پیجز منتشر نشده بود، به مسیر همیشه فعال simple.html با ضدکش برمی‌گردیم تا هرگز خطای 404 رخ ندهد
+              cb = int(time.time())
               try:
                   r = requests.head(f"https://{owner}.github.io/{repo_name}/docs/simple.html", timeout=6)
-                  live_link = url_root_mode if r.status_code == 200 else url_docs_mode
+                  if r.status_code == 200:
+                      live_link = f"https://{owner}.github.io/{repo_name}/docs/simple.html?t={cb}"
+                  else:
+                      live_link = f"https://{owner}.github.io/{repo_name}/simple.html?t={cb}"
               except Exception:
-                  live_link = url_docs_mode
+                  live_link = f"https://{owner}.github.io/{repo_name}/simple.html?t={cb}"
 
           stale = os.environ.get("DEADMAN_STALE", "false") == "true"
           hours_since = os.environ.get("DEADMAN_HOURS", "?")

@@ -278,9 +278,7 @@ def _bucket_contains(rng, temp):
         return temp <= high + 0.5
     if high >= 998:
         return temp >= low - 0.5
-    if low == high:
-        return (low - 0.5) <= temp < (high + 0.5)
-    return low <= temp <= high
+    return (low - 0.5) <= temp < (high + 0.5)
 
 # =============================================================================
 # PORTFOLIO SCORING (unchanged)
@@ -369,7 +367,7 @@ def _passes_distinction_gate(core, candidates, params):
     return (core["belief_prob"] / second_best) >= params["min_distinction_ratio"]
 
 # =============================================================================
-# PHASE C -- BELIEF-STRENGTH MAIN SIZING + MINIMAL-INSURANCE HEDGING (V8)
+# PHASE C -- BELIEF-STRENGTH MAIN SIZING (SINGLE CORE SIGNAL, NO HEDGE)
 # =============================================================================
 
 def _main_position_units(core, params, balance_units):
@@ -379,100 +377,6 @@ def _main_position_units(core, params, balance_units):
     units = floor_units + (cap_units - floor_units) * strength
     units = max(units, floor_units)
     return round(min(units, balance_units), 1)
-
-def _hedge_loss_scenarios(core, scenarios):
-    return [(t, p) for t, p in scenarios if not _bucket_contains(core["range"], t)]
-
-def _hedge_payoff_strength(candidate, loss_scenarios):
-    weighted_payoff = 0.0
-    for t, p in loss_scenarios:
-        won = _bucket_contains(candidate["range"], t) if candidate["side"] == "YES" else not _bucket_contains(candidate["range"], t)
-        payoff = (1.0 / candidate["ask"] - 1.0) if won else -1.0
-        weighted_payoff += p * payoff
-    return weighted_payoff
-
-def _covers_main_loss(candidate, loss_scenarios, min_payoff_ratio=0.0):
-    return _hedge_payoff_strength(candidate, loss_scenarios) > min_payoff_ratio
-
-def _minimal_insurance(core, main_units, hedge_pool, params, scenarios, balance_units):
-    """V9: size insurance to the minimum amount needed to reach the loss cap.
-
-    The prior implementation searched for the global minimum worst-case loss.
-    For a same-bucket opposite-side hedge, that can over-hedge and erase the
-    profit when the main prediction is correct. This version finds the smallest
-    hedge size that makes worst_case_loss <= worst_case_max_loss_frac. If no
-    size can reach the cap, it uses the best genuine improvement only.
-    """
-    loss_scenarios = _hedge_loss_scenarios(core, scenarios)
-    eligible = [
-        c for c in hedge_pool
-        if _covers_main_loss(c, loss_scenarios, params["insurance_min_payoff_ratio"])
-    ]
-    eligible.sort(key=lambda c: -_hedge_payoff_strength(c, loss_scenarios))
-    eligible = eligible[:params["ladder_max_buckets"]]
-
-    allocation = [(core, main_units)]
-    budget_left = round(balance_units - main_units, 2)
-    cap = params["worst_case_max_loss_frac"]
-
-    def current_units():
-        return [(m["side"], m["range"], m["ask"], u) for m, u in allocation]
-
-    def wc_now():
-        return _worst_case_loss(
-            current_units(), scenarios, balance_units, params["worst_case_prob_mass"]
-        )
-
-    for candidate in eligible:
-        if budget_left <= 0.01 or wc_now() <= cap:
-            break
-
-        baseline_wc = wc_now()
-
-        def wc_with(units):
-            trial = current_units() + [
-                (candidate["side"], candidate["range"], candidate["ask"], units)
-            ]
-            return _worst_case_loss(
-                trial, scenarios, balance_units, params["worst_case_prob_mass"]
-            )
-
-        steps = 60
-        grid = [budget_left * i / steps for i in range(steps + 1)]
-        wc_grid = [wc_with(units) for units in grid]
-        global_idx = min(range(len(grid)), key=lambda i: wc_grid[i])
-        global_u, global_wc = grid[global_idx], wc_grid[global_idx]
-
-        sufficient_idx = next((i for i, wc in enumerate(wc_grid) if wc <= cap), None)
-        if sufficient_idx is not None:
-            lo = grid[sufficient_idx - 1] if sufficient_idx else 0.0
-            hi = grid[sufficient_idx]
-            for _ in range(30):
-                mid = (lo + hi) / 2.0
-                if wc_with(mid) <= cap:
-                    hi = mid
-                else:
-                    lo = mid
-            units = round(hi, 2)
-        elif global_wc < baseline_wc:
-            units = round(global_u, 2)
-        else:
-            units = 0.0
-
-        if units < 0.01:
-            continue
-        allocation.append((candidate, units))
-        budget_left = round(budget_left - units, 2)
-
-    final_units = current_units()
-    return {
-        "members": [m for m, _ in allocation],
-        "units": {m["market_id"] + m["side"]: u for m, u in allocation},
-        "score": _score_combo(final_units, scenarios, balance_units),
-        "worst_case_loss": _worst_case_loss(
-            final_units, scenarios, balance_units, params["worst_case_prob_mass"]
-        ),
-    }
 
 def compute_confidence(core, candidates, params):
     yes_candidates = sorted(
@@ -531,63 +435,35 @@ def _build_portfolio_raw(outcomes_with_prob, params=None, mean=None, sigma=None)
         return _no_signal_result(full_distribution)
 
     core_confidence = compute_confidence(core, candidates, p)
-
-    def _is_plausible(c):
-        mp = c.get("model_prob") or 0.0
-        kp = c.get("market_prob") or 0.0
-        return max(mp, kp) >= p["hedge_min_plausibility"]
-
-    def _coverage_score(c):
-        mp = c.get("model_prob") or 0.0
-        kp = c.get("market_prob") or 0.0
-        return min(mp, kp)
-
-    # V8: NO on core's own bucket is BACK in the eligible hedge pool (only
-    # the exact (market_id, side) match of core is excluded -- can't hold
-    # the literal same leg twice). It's the mathematically strongest
-    # possible single hedge, and it's a genuinely different position from
-    # core (opposite side), not a duplicate.
-    hedge_pool_raw = [
-        c for c in candidates
-        if (c["market_id"] != core["market_id"] or c["side"] != core["side"])
-        and c.get("ask") is not None and 0 < c["ask"] < 1
-        and _is_plausible(c)
-    ]
-    hedge_pool_raw.sort(key=lambda c: -_coverage_score(c))
-    hedge_pool = hedge_pool_raw[: p["hedge_pool_size"]]
-
     main_units = _main_position_units(core, p, total_units)
-    best = _minimal_insurance(core, main_units, hedge_pool, p, scenarios, total_units)
+    final_combo_units = [(core.get("side", "YES"), core["range"], core["ask"], main_units)]
+    score = _score_combo(final_combo_units, scenarios, total_units)
+    worst_loss = _worst_case_loss(final_combo_units, scenarios, total_units, p["worst_case_prob_mass"])
 
-    allocation = []
-    for m in best["members"]:
-        units = best["units"][m["market_id"] + m["side"]]
-        is_core = (m["market_id"] == core["market_id"] and m["side"] == core["side"])
-        allocation.append({
-            "market_id": m["market_id"], "question": m["question"],
-            "range": m["range"], "side": m.get("side", "YES"),
-            "price": m["ask"], "model_prob": m["model_prob"], "ev": m["ev"],
-            "market_prob": m.get("market_prob"),
-            "role": "main_signal" if is_core else "scenario_hedge",
-            "units": units,
-            "sell_value": m.get("sell_value"),
-        })
+    allocation = [{
+        "market_id": core["market_id"],
+        "question": core["question"],
+        "range": core["range"],
+        "side": core.get("side", "YES"),
+        "price": core["ask"],
+        "model_prob": core["model_prob"],
+        "ev": core["ev"],
+        "market_prob": core.get("market_prob"),
+        "role": "main_signal",
+        "units": main_units,
+        "sell_value": core.get("sell_value"),
+    }]
 
-    total_allocated = round(sum(a["units"] for a in allocation), 1)
-    ladder = [m for m in best["members"] if m["market_id"] != core["market_id"] or m["side"] != core["side"]]
-    final_combo_units = [
-        (a["side"], a["range"], a["price"], a["units"]) for a in allocation
-    ]
     stats = _scenario_outcome_stats(final_combo_units, scenarios)
 
     return {
         "full_distribution": full_distribution,
         "main_signal": core,
-        "ladder": ladder,
+        "ladder": [],
         "allocation": allocation,
-        "total_allocated_units": total_allocated,
-        "portfolio_score": round(best["score"], 6),
-        "worst_case_loss_frac": round(best["worst_case_loss"], 4),
+        "total_allocated_units": round(main_units, 1),
+        "portfolio_score": round(score, 6),
+        "worst_case_loss_frac": round(worst_loss, 4),
         "confidence": core_confidence,
         **stats,
     }

@@ -191,11 +191,14 @@ jobs:
               time.sleep(6)
 
           if not link:
+              cache_bust = f"{os.environ.get('GITHUB_RUN_ID', int(time.time()))}"
+              fallback_docs = f"https://{owner}.github.io/{repo_name}/simple.html?v={cache_bust}"
+              fallback_root = f"https://{owner}.github.io/{repo_name}/docs/simple.html?v={cache_bust}"
               try:
                   r = requests.head(f"https://{owner}.github.io/{repo_name}/docs/simple.html", timeout=6)
-                  link = url_root_mode if r.status_code == 200 else url_docs_mode
+                  link = fallback_root if r.status_code == 200 else fallback_docs
               except Exception:
-                  link = url_docs_mode
+                  link = fallback_docs
 
           text = f"\U0001F504 بروزرسانی ۶ساعته -- داشبورد تعاملی تازه‌سازی شد:\n{link}"
           if token and chat:

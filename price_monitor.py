@@ -305,7 +305,79 @@ def _build_city_blocks(locks_subset, now, is_min):
             l["model_fair_cents"] = fair_c
             l["intraday_eliminated"] = intraday_elim
 
-            triggered = pct >= TAKE_PROFIT_PCT or pct <= -STOP_LOSS_PCT
+            # بررسی سفارش‌های خرید شرطی در انتظار (ENTRY_PENDING)
+            if l.get("position_state") == "ENTRY_PENDING" and l.get("status") == "open":
+                metar_stop = l.get("metar_auto_stop", True)
+                limit_buy_p = float(l.get("limit_buy_price") or entry)
+                if metar_stop and intraday_elim and side == "YES":
+                    l["status"] = "cancelled_entry"
+                    l["position_state"] = "ENTRY_CANCELLED"
+                    l["latched_exit_reason"] = "ENTRY_METAR_CANCELLED"
+                    l["closed_at"] = now.isoformat()
+                    lines.append(" \U0001F321\uFE0F سفارش خرید شرطی به دلیل عبور دمای METAR از سقف باکت خودکار لغو شد.")
+                    continue
+                elif float(current) <= limit_buy_p:
+                    l["entry_price"] = round(float(current), 4)
+                    l["filled_shares"] = l.get("quantity_shares", 100)
+                    l["position_state"] = "WATCHING"
+                    l["peak_bid"] = round(float(current), 4)
+                    entry = float(l["entry_price"])
+                    entry_c, curr_c, diff_cents, pct, pct_int = _calc_cent_consistent_pct(entry, current)
+                    l["last_pct"] = 0.0
+                    star = True
+                    lines.append(f" \u2705 سفارش خرید شرطی در قیمت {curr_c}\u00a2 پر شد و چتر TP/SL فعال گردید!")
+
+            # ارزیابی خودکار خروج (Auto-Exit Engine: TP / SL / METAR / Trailing)
+            auto_exit_on = l.get("auto_exit_enabled", True)
+            auto_closed_reason = None
+            auto_closed_status = None
+
+            if l.get("peak_bid") is None or float(current) > float(l.get("peak_bid", 0)):
+                l["peak_bid"] = round(float(current), 4)
+
+            if auto_exit_on and l.get("status") == "open" and l.get("position_state") != "ENTRY_PENDING":
+                tp_on = l.get("tp_enabled", True)
+                sl_on = l.get("sl_enabled", True)
+                tp_p = float(l["tp_price"]) if l.get("tp_price") is not None else round(entry * (1.0 + TAKE_PROFIT_PCT / 100.0), 4)
+                sl_p = float(l["sl_price"]) if l.get("sl_price") is not None else round(entry * (1.0 - STOP_LOSS_PCT / 100.0), 4)
+                metar_stop = l.get("metar_auto_stop", True)
+                sell_99c = l.get("auto_sell_99c", True)
+                trail_on = l.get("trailing_stop_enabled", False)
+                trail_offset = float(l.get("trailing_offset_pct", 8.0))
+
+                if metar_stop and intraday_elim and side == "YES":
+                    auto_closed_reason = "METAR_ELIMINATED"
+                    auto_closed_status = "closed_auto_metar"
+                elif sell_99c and float(current) >= 0.995:
+                    auto_closed_reason = "AUTO_SELL_99C"
+                    auto_closed_status = "closed_auto_tp"
+                elif tp_on and float(current) >= tp_p:
+                    auto_closed_reason = "TAKE_PROFIT"
+                    auto_closed_status = "closed_auto_tp"
+                elif sl_on and float(current) <= sl_p:
+                    auto_closed_reason = "STOP_LOSS"
+                    auto_closed_status = "closed_auto_sl"
+                elif trail_on and float(l.get("peak_bid", current)) > entry:
+                    stop_lvl = float(l["peak_bid"]) * (1.0 - trail_offset / 100.0)
+                    if float(current) <= stop_lvl:
+                        auto_closed_reason = "TRAILING_STOP"
+                        auto_closed_status = "closed_auto_trailing"
+
+            if auto_closed_status:
+                l["status"] = auto_closed_status
+                l["position_state"] = "CLOSED"
+                l["latched_exit_reason"] = auto_closed_reason
+                l["closed_at"] = now.isoformat()
+                l["exit_price"] = round(float(current), 4)
+                l["outcome_pct"] = pct
+                star = True
+                try:
+                    import history_manager
+                    history_manager.record_closed_lock(l)
+                except Exception as he:
+                    print(f"[price_monitor] خطا در ثبت تاریخچه خروج خودکار: {he}")
+
+            triggered = pct >= TAKE_PROFIT_PCT or pct <= -STOP_LOSS_PCT or bool(auto_closed_status)
             if triggered or (intraday_elim and side == "YES") or (fair_c is not None and curr_c is not None and diff_cents > 0 and curr_c >= fair_c and pct_int >= 10):
                 star = True
 
@@ -321,6 +393,9 @@ def _build_city_blocks(locks_subset, now, is_min):
                 f" {color} {label}: {entry_c}\u00a2 \u2192 "
                 f"{curr_c}\u00a2 ({pct_sign}{pct_int}% {arrow})"
             )
+
+            if auto_closed_status:
+                lines.append(f"    \u26A1 خروج خودکار اجرا شد ({auto_closed_reason}) در قیمت {curr_c}\u00a2!")
 
             # مشاور هوشمند سیو سود و نوسان‌گیری پیش از Resolve
             if intraday_elim and side == "YES":
@@ -398,11 +473,18 @@ def build_message(now, locks):
 def _closed_locks_footer(locks):
     """(درخواست کاربر) گزارش یک‌بارهٔ قفل‌هایی که از آخرین پیام تا الان
     بسته شده‌اند -- چه با حذف دستی (closed_manual)، چه با resolve خودکار
-    (closed_resolved). با پرچم داخلی notified_close از تکرار در پیام‌های
-    بعدی جلوگیری می‌شود."""
+    (closed_resolved) و چه با خروج خودکار TP/SL/METAR."""
     lines = []
+    closed_statuses = (
+        "closed_manual",
+        "closed_resolved",
+        "closed_auto_tp",
+        "closed_auto_sl",
+        "closed_auto_metar",
+        "closed_auto_trailing",
+    )
     for l in locks:
-        if l.get("status") not in ("closed_manual", "closed_resolved"):
+        if l.get("status") not in closed_statuses:
             continue
         if l.get("notified_close"):
             continue
@@ -417,7 +499,19 @@ def _closed_locks_footer(locks):
             pct_str = "-"
 
         name = LOCATIONS.get(l.get("city"), {}).get("name", l.get("city"))
-        reason = "resolve خودکار" if l.get("status") == "closed_resolved" else "حذف دستی"
+        st = l.get("status")
+        if st == "closed_resolved":
+            reason = "resolve خودکار"
+        elif st == "closed_auto_tp":
+            reason = "🎯 سیو سود خودکار (TP)"
+        elif st == "closed_auto_sl":
+            reason = "🛑 حد ضرر خودکار (SL)"
+        elif st == "closed_auto_metar":
+            reason = "🌡️ حد ضرر METAR"
+        elif st == "closed_auto_trailing":
+            reason = "📈 تریلینگ استاپ"
+        else:
+            reason = "حذف دستی"
         lines.append(f"  \u2705 {name} \u2014 {l.get('date')} ({reason}, {pct_str})")
 
         l["notified_close"] = True

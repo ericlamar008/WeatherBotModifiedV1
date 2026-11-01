@@ -263,13 +263,14 @@ jobs:
             sleep 10
           done
 
+          CACHE_BUST="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           PROBE_CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://${OWNER}.github.io/${REPO_NAME}/docs/simple.html")
           if [ "$PROBE_CODE" = "200" ]; then
-            echo "FINAL_DASHBOARD_URL=$URL_ROOT" >> "$GITHUB_ENV"
+            echo "FINAL_DASHBOARD_URL=https://${OWNER}.github.io/${REPO_NAME}/docs/simple.html?v=${CACHE_BUST}" >> "$GITHUB_ENV"
           else
-            echo "FINAL_DASHBOARD_URL=$URL_DOCS" >> "$GITHUB_ENV"
+            echo "FINAL_DASHBOARD_URL=https://${OWNER}.github.io/${REPO_NAME}/simple.html?v=${CACHE_BUST}" >> "$GITHUB_ENV"
           fi
-          echo "::warning::نسخهٔ یکتا تا ۵ دقیقه در GitHub Pages منتشر نشد (داده‌ها قبلاً push شده‌اند) -- پیام تلگرام با یادداشت ارسال می‌شود."
+          echo "::warning::نسخهٔ یکتا تا ۵ دقیقه در GitHub Pages منتشر نشد؛ از آدرس پایدار simple.html?v=${CACHE_BUST} بدون خطای 404 استفاده می‌شود."
           echo "PAGES_READY=false" >> "$GITHUB_ENV"
           exit 0
 

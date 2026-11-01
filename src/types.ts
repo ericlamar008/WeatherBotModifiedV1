@@ -11,6 +11,8 @@ export interface BucketDistribution {
   model_prob: number;
   side?: string;
   ask?: number;
+  best_bid?: number | null;
+  best_ask?: number | null;
   market_prob?: number;
   belief_prob?: number;
   ev?: number;
@@ -18,6 +20,7 @@ export interface BucketDistribution {
   sell_value?: number | null;
   model_prob_change?: number | null;
   model_prob_pct_change?: number | null;
+  model_prob_10m_change?: number | null;
   model_prob_6h_change?: number | null;
   yes_price_change?: number | null;
   yes_price_pct_change?: number | null;
@@ -28,6 +31,7 @@ export interface BucketDistribution {
   // Smart gated calibration fields
   smart_model_prob?: number;
   smart_model_prob_change?: number | null;
+  smart_model_prob_6h_change?: number | null;
   smart_belief_prob?: number;
   smart_ev?: number;
   is_smart_main?: boolean;
@@ -138,7 +142,15 @@ export interface LockedSignal {
   side: string;
   entry_price: number;
   locked_at: string;
-  status: 'open' | 'closed_manual' | 'closed_resolved';
+  status:
+    | 'open'
+    | 'closed_manual'
+    | 'closed_resolved'
+    | 'closed_auto_tp'
+    | 'closed_auto_sl'
+    | 'closed_auto_metar'
+    | 'closed_auto_trailing'
+    | 'cancelled_entry';
   last_price?: number | null;
   last_pct?: number | null;
   exit_price?: number | null;
@@ -153,6 +165,49 @@ export interface LockedSignal {
   market_status?: string;
   forecast_mean?: number | null;
   outcome_pct?: number;
+  // Auto-Exit Bot fields (Spec v3.0 Master Blueprint)
+  position_id?: string;
+  execution_mode?: 'PAPER' | 'SHADOW' | 'LIVE';
+  entry_order_type?: 'IMMEDIATE_MARKETABLE' | 'CONDITIONAL_LIMIT_GTC';
+  smart_autopilot?: boolean;
+  limit_buy_price?: number | null;
+  filled_shares?: number;
+  neg_risk?: boolean;
+  position_state?: string;
+  exit_policy?: 'MARKETABLE_FAK' | 'MARKETABLE_FOK' | 'STRICT_LIMIT';
+  quantity_shares?: number;
+  usdc_amount?: number;
+  auto_exit_enabled?: boolean;
+  tp_enabled?: boolean;
+  tp_price?: number | null;
+  tp_pct?: number | null;
+  sl_enabled?: boolean;
+  sl_price?: number | null;
+  sl_pct?: number | null;
+  max_slippage_pct?: number;
+  tick_size?: number;
+  trailing_stop_enabled?: boolean;
+  trailing_offset_pct?: number | null;
+  metar_auto_stop?: boolean;
+  auto_sell_99c?: boolean;
+  rule_version?: number;
+  latched_exit_reason?: string | null;
+  model_fair_cents?: number | null;
+  best_bid?: number | null;
+  best_ask?: number | null;
+}
+
+export interface PolymarketAccountStatus {
+  live_ready: boolean;
+  has_private_key: boolean;
+  has_funder_address: boolean;
+  funder_preview: string;
+  signature_type: number;
+  signature_label: string;
+  chain_id: number;
+  py_clob_installed: boolean;
+  recommended_mode: 'PAPER' | 'SHADOW' | 'LIVE';
+  status_text: string;
 }
 
 export interface DailyPnlGroup {

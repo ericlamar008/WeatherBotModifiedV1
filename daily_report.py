@@ -58,8 +58,16 @@ def _daily_pnl():
     باشد."""
     locks = _load_locks()
     daily = {}
+    closed_statuses = (
+        "closed_manual",
+        "closed_resolved",
+        "closed_auto_tp",
+        "closed_auto_sl",
+        "closed_auto_metar",
+        "closed_auto_trailing",
+    )
     for l in locks:
-        if l.get("status") not in ("closed_manual", "closed_resolved"):
+        if l.get("status") not in closed_statuses:
             continue
         closed_at = l.get("closed_at")
         entry = l.get("entry_price")
@@ -213,7 +221,16 @@ def build_report_text():
             rng = _find_range(market, l.get("market_id"))
             label = _label_for_range(rng, unit_sym)
 
-            reason = "resolve خودکار" if l.get("status") == "closed_resolved" else "حذف دستی"
+            st = l.get("status")
+            reason_map = {
+                "closed_resolved": "تسویه نهایی بازار",
+                "closed_auto_tp": "سیو سود خودکار (TP)",
+                "closed_auto_sl": "حد ضرر خودکار (SL)",
+                "closed_auto_metar": "خروج هوشمند دمای فرودگاه (METAR)",
+                "closed_auto_trailing": "تریلینگ استاپ خودکار",
+                "closed_manual": "حذف دستی",
+            }
+            reason = reason_map.get(st, "حذف دستی")
             entry_str = f"{entry_c}\u00a2" if entry_c is not None else "-"
             exit_str = f"{exit_c}\u00a2" if exit_c is not None else "-"
             pct_sign = "+" if (pct_int or 0) >= 0 else ""
