@@ -536,7 +536,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   } catch (e) {}
 })();
 </script>
-<title>WeatherBet -- سامانه هوشمند پیش‌بینی دما</title>
+<title>WeatherBet -- داشبورد ساده</title>
 <style>
 * { box-sizing: border-box; }
 :root{
@@ -565,48 +565,57 @@ body{
   padding:0;margin:0;font-size:14.5px;line-height:1.55;
   -webkit-font-smoothing:antialiased;
 }
-.top-navbar{
-  position:sticky;top:0;z-index:100;
-  background:#14171f;border-bottom:1px solid #262b38;color:#fff;
-  padding:10px 14px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.18);
+.container{max-width:1280px;margin:0 auto;padding:16px 20px}
+.top-header-bar{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+  padding-bottom:12px;margin-bottom:16px;border-bottom:1px solid var(--border);
 }
-.brand-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.brand-title{font-weight:700;font-size:15px;color:#fff}
-.brand-meta{font-size:11.5px;color:#9aa0a6}
-.nav-tabs{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.header-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.header-title{font-size:19px;font-weight:700;margin:0;color:var(--text)}
+.meta-pill{
+  font-size:12px;padding:4px 10px;border-radius:6px;font-weight:500;
+  background:var(--surface);color:var(--text-dim);border:1px solid var(--border);
+}
+.gate-pill{
+  font-size:12px;padding:4px 10px;border-radius:6px;font-weight:600;
+  background:var(--green-bg);color:var(--green);border:1px solid #16a34a55;
+}
+.nav-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .tab-btn{
-  border:1px solid #2e3444;background:#1e222d;color:#cbd5e1;
-  border-radius:8px;padding:7px 12px;font-size:12px;font-weight:600;cursor:pointer;
+  border:1px solid var(--border);background:var(--surface);color:var(--text);
+  border-radius:8px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;
   font-family:inherit;transition:all .15s ease;
 }
-.tab-btn.active-blue{background:#2563eb;color:#fff;border-color:#3b82f6}
-.tab-btn.active-purple{background:#9333ea;color:#fff;border-color:#a855f7}
+.tab-btn:hover{background:#f8fafc}
+.tab-btn.active-blue{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 1px 2px rgba(37,99,235,0.2)}
 .refresh-btn{
-  border:1px solid #16a34a88;background:#16a34a22;color:#4ade80;
-  border-radius:8px;padding:7px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;
+  border:1px solid var(--border);background:var(--surface);color:#2563eb;
+  border-radius:8px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;
 }
-.refresh-btn:hover{background:#16a34a44}
-.container{max-width:1280px;margin:0 auto;padding:14px}
+.refresh-btn:hover{background:#f8fafc}
 h1{font-size:19px;margin:6px 0 8px;font-weight:700;color:var(--text)}
-h2{font-size:15.5px;margin-top:26px;border-bottom:1px solid var(--border);padding-bottom:8px;scroll-margin-top:64px;font-weight:700}
-.smart-bar{
-  background:var(--surface);border:1px solid var(--border);border-radius:12px;
-  padding:10px 14px;margin-bottom:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
-}
-.smart-toggles{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.toggle-label{
-  display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
-  padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer;
-}
+h2{font-size:15.5px;margin-top:24px;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px;scroll-margin-top:24px;font-weight:700}
+.subtitle-bar{font-size:12.5px;color:var(--text-dim);margin-bottom:14px;line-height:1.65}
 .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
-.toolbar input[type=text]{flex:1;min-width:140px;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:10px 14px;font-size:13.5px}
-.jump-btn{display:inline-block;background:var(--accent);color:#fff;border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.toolbar input[type=text]{
+  flex:1;min-width:180px;background:var(--surface);border:1px solid var(--border);
+  color:var(--text);border-radius:10px;padding:10px 14px;font-size:13.5px;
+}
+.jump-btn{
+  display:inline-block;background:var(--accent);color:#fff;border-radius:10px;
+  padding:10px 14px;font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap;
+}
+.jump-btn:hover{background:#1d4ed8;text-decoration:none}
+.smart-toggles{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.toggle-label{
+  display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;
+  padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);cursor:pointer;user-select:none;
+}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
-details.city-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 12px;margin-bottom:10px;box-shadow:0 1px 3px rgba(20,30,60,0.05)}
-details.date-block{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;margin:8px 0}
-summary{cursor:pointer;font-size:14px;color:var(--text);list-style:none;padding:7px 4px;font-weight:500}
+details.city-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:10px;box-shadow:0 1px 2px rgba(20,30,60,0.04)}
+details.date-block{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:8px 0}
+summary{cursor:pointer;font-size:14px;color:var(--text);list-style:none;padding:6px 4px;font-weight:500}
 summary::-webkit-details-marker{display:none}
 summary::before{content:"";display:inline-block;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:5px solid var(--text-dim);margin-left:8px;vertical-align:middle;transition:transform .12s ease}
 details[open]>summary::before{transform:rotate(90deg)}
@@ -616,8 +625,8 @@ details[open]>summary::before{transform:rotate(90deg)}
 .form-stable{background:var(--blue-bg);color:var(--blue);border-color:#2563eb44}
 .form-cold_drop{background:var(--amber-bg);color:var(--amber);border-color:#b4530955}
 .form-weak{background:var(--red-bg);color:var(--red);border-color:#dc262644}
-.gate-badge{background:var(--purple-bg);color:var(--purple);border:1px solid #9333ea44;border-radius:6px;padding:2px 7px;font-size:10px;font-weight:600;margin-right:5px}
-.signal-badge{border-radius:6px;padding:2px 8px;font-size:10.5px;font-weight:600;white-space:nowrap;margin-right:6px;border:1px solid}
+.gate-badge{background:var(--purple-bg);color:var(--purple);border:1px solid #9333ea44;border-radius:6px;padding:2px 7px;font-size:10.5px;font-weight:600;margin-right:5px}
+.signal-badge{border-radius:6px;padding:2px 8px;font-size:10.5px;font-weight:600;white-space:nowrap;margin-right:6px;border:1px solid;display:inline-block}
 .signal-blue{background:var(--blue-bg);color:var(--blue);border-color:#2563eb55}
 .signal-purple{background:var(--purple-bg);color:var(--purple);border-color:#9333ea55}
 .signal-green{background:var(--green-bg);color:var(--green);border-color:#16a34a55}
@@ -627,99 +636,177 @@ td.ltr-inline,th.ltr-inline{display:table-cell}
 .chg-pos{color:var(--green);font-weight:600;font-size:11.5px;direction:ltr;unicode-bidi:embed;display:inline-block;margin-right:3px}
 .chg-neg{color:var(--red);font-weight:600;font-size:11.5px;direction:ltr;unicode-bidi:embed;display:inline-block;margin-right:3px}
 .chg-zero{color:var(--text-dim);font-size:11px;direction:ltr;unicode-bidi:embed;display:inline-block;margin-right:3px}
-.submodel-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 10px;margin-top:6px;font-size:11.5px;color:var(--text-dim)}
-.sm-chip{padding:2px 6px;border-radius:5px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);direction:ltr;unicode-bidi:embed;display:inline-block;margin-left:4px}
+.submodel-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 12px;margin-top:8px;font-size:11.5px;color:var(--text-dim)}
+.sm-chip{padding:2px 8px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);direction:ltr;unicode-bidi:embed;display:inline-block;margin-left:4px;font-size:11px}
 .sm-best{background:var(--green-bg);color:var(--green);border-color:#16a34a55;font-weight:600}
 .sm-worst{background:var(--red-bg);color:var(--red);border-color:#dc262644;text-decoration:line-through;opacity:0.75}
 .locked-section{border:1px solid #16a34a55;background:var(--green-bg)}
-.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:8px;border-radius:8px;border:1px solid var(--border)}
-table{width:100%;min-width:520px;border-collapse:collapse;font-size:12.8px;background:var(--surface);font-variant-numeric:tabular-nums}
-th,td{padding:9px 7px;text-align:center;border-bottom:1px solid var(--border);white-space:nowrap}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:10px;border-radius:8px;border:1px solid var(--border);background:var(--surface)}
+table{width:100%;min-width:580px;border-collapse:collapse;font-size:13px;background:var(--surface);font-variant-numeric:tabular-nums}
+th,td{padding:10px 8px;text-align:center;border-bottom:1px solid var(--border);white-space:nowrap;vertical-align:middle}
 th{color:var(--text-dim);font-weight:600;font-size:11.5px;background:var(--surface-2)}
 tr:last-child td{border-bottom:none}
-.lock-btn,.unlock-btn{border:none;border-radius:9px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;min-height:36px}
-.lock-btn{background:var(--accent);color:#fff}
-.unlock-btn{background:var(--red);color:#fff}
-.locked-badge{color:var(--green);font-size:11.5px;font-weight:600;display:block;margin-bottom:3px}
+tr:hover td{background:rgba(246,248,251,0.65)}
+.smart-main-row td{background:rgba(232,248,238,0.45)}
+.lock-btn,.unlock-btn,.edit-btn{border:none;border-radius:9px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.lock-btn{background:var(--accent);color:#fff;box-shadow:0 1px 2px rgba(37,99,235,0.2)}
+.lock-btn:hover{background:#1d4ed8}
+.edit-btn{background:var(--accent);color:#fff;padding:5px 10px;font-size:11px;border-radius:8px}
+.edit-btn:hover{background:#1d4ed8}
+.unlock-btn{background:var(--red);color:#fff;padding:5px 10px;font-size:11px;border-radius:8px}
+.unlock-btn:hover{background:#b91c1c}
+.locked-badge{color:var(--green);font-size:11px;font-weight:700;display:block;margin-bottom:4px}
 .lock-status{display:block;font-size:10.5px;margin-top:4px;line-height:1.35;max-width:170px;margin-left:auto;margin-right:auto}
-.empty{color:var(--text-dim);font-style:italic;padding:14px 4px}
+.empty{color:var(--text-dim);font-style:italic;padding:14px 4px;text-align:center}
 .win{color:var(--green);font-weight:600}
 .loss{color:var(--red);font-weight:600}
-.history-filters{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-.history-filters select{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:8px 12px;font-size:12.5px}
-.download-btn{display:inline-block;margin:8px 0;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:9px 16px;font-size:12.5px;font-weight:600}
+.history-filters{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;align-items:center;justify-content:space-between}
+.history-filters select{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:8px 12px;font-size:12.5px;font-family:inherit}
+.download-btn{display:inline-block;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 16px;font-size:12.5px;font-weight:600;text-decoration:none}
+.download-btn:hover{border-color:var(--accent);text-decoration:none}
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:14px}
 .kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px}
 .kpi-title{font-size:11.5px;font-weight:700;margin-bottom:4px}
 .kpi-val{font-size:21px;font-weight:800}
 .kpi-sub{font-size:11px;color:var(--text-dim);margin-top:4px}
-@media (max-width: 600px){
-  .top-navbar{padding:8px 10px}
-  .tab-btn,.refresh-btn{padding:6px 9px;font-size:11px}
-  .container{padding:10px}
+
+/* OrderConfigModal Styles (100% parity with AI Studio Preview) */
+.modal-backdrop{
+  position:fixed;inset:0;z-index:999;background:rgba(15,23,42,0.62);
+  backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;
+  padding:12px;overflow-y:auto;
+}
+.modal-backdrop.open{display:flex}
+.modal-card{
+  background:#fff;border:1px solid var(--border);border-radius:16px;
+  box-shadow:0 24px 48px rgba(0,0,0,0.28);width:100%;max-width:768px;
+  overflow:hidden;margin:auto;
+}
+.modal-header{
+  background:#0f172a;color:#fff;padding:16px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.modal-close-btn{
+  width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.12);
+  color:#fff;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.modal-close-btn:hover{background:rgba(255,255,255,0.22)}
+.modal-account-bar{
+  background:#f8fafc;border-bottom:1px solid var(--border);padding:8px 20px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;font-size:11.5px;
+}
+.modal-body{padding:16px 20px;max-height:82vh;overflow-y:auto}
+.modal-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.modal-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.modal-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.stat-mini{background:#fff;border:1px solid #e5eaf2;border-radius:8px;padding:8px;text-align:center}
+.autopilot-box{
+  border-radius:12px;padding:14px;border:1px solid var(--border);background:var(--surface-2);margin-top:12px;transition:all .15s;
+}
+.autopilot-box.active{background:var(--green-bg);border-color:#16a34a88}
+.mode-btn{
+  padding:8px 10px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer;
+  border:1px solid var(--border);background:#fff;color:#4b5563;font-family:inherit;width:100%;transition:all .15s;
+}
+.mode-btn.active-blue{background:#2563eb;color:#fff;border-color:#2563eb}
+.mode-btn.active-purple{background:#9333ea;color:#fff;border-color:#9333ea}
+.mode-btn.active-green{background:#16a34a;color:#fff;border-color:#16a34a}
+.mode-btn.active-red{background:#dc2626;color:#fff;border-color:#dc2626}
+.mode-btn.active-dark{background:#1f2430;color:#fff;border-color:#1f2430}
+.modal-input{
+  width:100%;background:#fff;border:1px solid var(--border);border-radius:8px;
+  padding:8px 10px;font-size:13.5px;font-weight:700;text-align:center;font-family:inherit;
+}
+.preset-btn{
+  padding:4px 9px;border-radius:6px;font-size:11.5px;font-weight:700;cursor:pointer;
+  border:1px solid var(--border);background:#fff;color:var(--text);font-family:inherit;
+}
+.preset-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+.rr-bar{width:100%;height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden;display:flex;margin-top:6px}
+.modal-footer{
+  display:flex;align-items:center;justify-content:flex-end;gap:10px;
+  padding-top:12px;margin-top:14px;border-top:1px solid var(--border);
+}
+.submit-order-btn{
+  border:none;border-radius:12px;padding:10px 20px;font-size:13px;font-weight:700;
+  color:#fff;cursor:pointer;font-family:inherit;background:#16a34a;transition:all .15s;
+}
+.submit-order-btn.purple{background:#9333ea}
+.submit-order-btn:hover{filter:brightness(0.93)}
+@media (max-width: 680px){
+  .container{padding:12px}
+  .modal-grid-4,.modal-grid-3,.modal-grid-2{grid-template-columns:1fr}
   th,td{padding:8px 5px;font-size:11.8px}
 }
 </style>
 </head>
 <body>
-<div class="top-navbar">
-  <div class="brand-wrap">
-    <span class="brand-title">🌡️ WeatherBet — سامانه هوشمند پیش‌بینی دما</span>
-    <span class="brand-meta">آخرین آپدیت: LASTUPDATE (ایران) | <span class="time-note relative-time" data-ts="LASTSCANISO" data-kind="LASTSCANKIND">LASTSCANFALLBACK</span></span>
-  </div>
-  <div class="nav-tabs">
-    <button id="tabBtnSimple" class="tab-btn active-blue" onclick="switchTab('simple')">داشبورد ساده (نوسان‌گیری باکت‌ها)</button>
-    <button id="tabBtnAccuracy" class="tab-btn" onclick="switchTab('accuracy')">📊 دقت شهرها و کالیبراسیون هوشمند</button>
-    <button id="refreshBtn" class="refresh-btn" onclick="refreshDashboardNow()">↻ بروزرسانی</button>
-  </div>
-</div>
-
 <div class="container">
+  <!-- Top Mode Switcher Bar (Matches AI Studio Preview) -->
+  <div class="top-header-bar">
+    <div class="header-left">
+      <h1 id="mainPageTitle" class="header-title">WeatherBet -- داشبورد ساده</h1>
+      <span class="meta-pill">OPEN_MARKETS_COUNT بازار باز • OPEN_LOCKS_COUNT قفل فعال</span>
+      <span class="gate-pill">🛡️ گیت کالیبراسیون هوشمند (Champion-Challenger 14d) فعال</span>
+    </div>
+    <div class="nav-tabs">
+      <button id="tabBtnSimple" class="tab-btn active-blue" onclick="switchTab('simple')">داشبورد ساده (Simple)</button>
+      <button id="tabBtnAccuracy" class="tab-btn" onclick="switchTab('accuracy')">📊 دقت شهرها و کالیبراسیون هوشمند</button>
+      <button id="refreshBtn" class="refresh-btn" onclick="refreshDashboardNow()">↻ بروزرسانی</button>
+    </div>
+  </div>
+
   <!-- TAB 1: SIMPLE DASHBOARD -->
   <div id="view-simple">
-    <div class="smart-bar">
-      <div>
-        <b style="font-size:13.5px">🛡️ موتور نوسان‌گیری پیش از Resolve (ترکیب بیزین BMA + توزیع چندمدلی GMM + فیلتر زنده METAR + مشاور سیو سود)</b>
-        <div style="font-size:11.5px;color:var(--text-dim)">طراحی‌شده ویژهٔ شکار باکت‌های جامانده از ارزش منصفانه مدل و سیو سود پیش از تسویه نهایی (بدون قمار صفر و صدی روی Resolve).</div>
-      </div>
-      <div class="smart-toggles">
-        <label class="toggle-label" style="border-color:#16a34a66">
-          <input type="checkbox" id="useSmartGateToggle" checked onchange="filterCities()">
-          🛡️ اعمال گیت کالیبراسیون هوشمند (پیشنهادی)
-        </label>
-        <label class="toggle-label">
-          <input type="checkbox" id="onlyGoodCitiesToggle" onchange="filterCities()">
-          🔥 فقط شهرهای روی فرم (≥۵۰٪)
-        </label>
-        <label class="toggle-label">
-          <input type="checkbox" id="onlyUsCitiesToggle" onchange="filterCities()">
-          🇺🇸 فقط شهرهای آمریکا
-        </label>
-        <label class="toggle-label">
-          <input type="checkbox" id="showAllBucketsToggle" onchange="toggleLowPlausibilityBuckets()">
-          نمایش باکت‌های زیر ۵٪
-        </label>
-      </div>
+    <div class="subtitle-bar">
+      آخرین به‌روزرسانی: <b style="color:var(--text)">LASTUPDATE</b> (به وقت ایران)
+      <span class="time-note relative-time" data-ts="LASTSCANISO" data-kind="LASTSCANKIND">LASTSCANFALLBACK</span>
+      <br>
+      مجهز به <b>ردیابی تغییرات اسکن‌های ۶ ساعته نسبت به اسکن ۶ ساعتهٔ قبلی</b> + <b>گیت کالیبراسیون هوشمند ۱۴ روزه</b> (حذف اورکورکشن فصل پاییز، وزن‌دهی زیرمدل‌ها و تصحیح باکت‌های ۲ درجه‌ای آمریکا)
     </div>
 
     <div class="toolbar">
       <input type="text" id="citySearch" placeholder="جستجوی شهر (مثلاً Atlanta, Chicago, Cape Town, Seoul)..." oninput="filterCities()">
-      <a class="jump-btn" href="#max-section">🔥 حداکثر</a>
-      <a class="jump-btn" href="#min-section">❄️ حداقل</a>
+      <a class="jump-btn" href="#max-section">🔥 حداکثر (MAX_CITIES_COUNT)</a>
+      <a class="jump-btn" href="#min-section">❄️ حداقل (MIN_CITIES_COUNT)</a>
       <a class="jump-btn" href="#daily-section">📅 آمار روزانه</a>
       <a class="jump-btn" href="#history-section">مشاهدهٔ نتایج ↓</a>
     </div>
 
-    <h2 id="max-section">🔥 دمای حداکثر</h2>
+    <div class="smart-toggles">
+      <label class="toggle-label" style="border-color:#16a34a66;font-weight:600">
+        <input type="checkbox" id="useSmartGateToggle" checked onchange="filterCities()">
+        🛡️ اعمال گیت کالیبراسیون هوشمند (پیشنهادی)
+      </label>
+      <label class="toggle-label">
+        <input type="checkbox" id="onlyGoodCitiesToggle" onchange="filterCities()">
+        🔥 فقط شهرهای روی فرم (دقت اخیر بالای ۵۰٪)
+      </label>
+      <label class="toggle-label">
+        <input type="checkbox" id="onlyUsCitiesToggle" onchange="filterCities()">
+        🇺🇸 فقط شهرهای آمریکا
+      </label>
+      <label class="toggle-label" style="color:var(--text-dim)">
+        <input type="checkbox" id="showAllBucketsToggle" onchange="toggleLowPlausibilityBuckets()">
+        نمایش باکت‌های زیر ۵٪
+      </label>
+    </div>
+
+    LOCKED_SECTION_HTML
+
+    <h2 id="max-section">🔥 دمای حداکثر (MAX_CITIES_COUNT شهر)</h2>
     BODYHTML
-    <h2 id="min-section">❄️ دمای حداقل</h2>
+    <h2 id="min-section">❄️ دمای حداقل (MIN_CITIES_COUNT شهر)</h2>
     MIN_BODYHTML
     DAILYPNLHTML
     <h2 id="history-section">تاریخچهٔ معاملات</h2>
-    <a class="download-btn" href="lock_history.csv" download>⬇ دانلود CSV کامل</a>
     <div class="history-filters">
-      <select id="historyCityFilter" onchange="filterHistory()"><option value="">همهٔ شهرها</option>HISTORYCITYOPTIONS</select>
-      <select id="historyDateFilter" onchange="filterHistory()"><option value="">همهٔ تاریخ‌ها</option>HISTORYDATEOPTIONS</select>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <select id="historyCityFilter" onchange="filterHistory()"><option value="">همهٔ شهرها</option>HISTORYCITYOPTIONS</select>
+        <select id="historyDateFilter" onchange="filterHistory()"><option value="">همهٔ تاریخ‌ها</option>HISTORYDATEOPTIONS</select>
+        <button type="button" id="clearHistoryFilterBtn" onclick="clearHistoryFilters()" style="display:none;background:#f6f8fb;border:1px solid var(--border);border-radius:10px;padding:7px 12px;font-size:12px;color:var(--text-dim);cursor:pointer;font-family:inherit">✕ پاک کردن فیلتر</button>
+      </div>
+      <a class="download-btn" href="lock_history.csv" download>⬇ دانلود CSV کامل</a>
     </div>
     <div class="table-scroll">
     HISTORYHTML
@@ -732,16 +819,354 @@ tr:last-child td{border-bottom:none}
   </div>
 </div>
 
+<!-- =========================================================================
+     INTERACTIVE ORDER CONFIG & SMART AUTO-PILOT MODAL (100% Preview Parity)
+     ========================================================================= -->
+<div id="orderConfigModal" class="modal-backdrop" onclick="closeOrderModal()">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span id="modalHeaderTitle" style="font-size:16.5px;font-weight:700">⚡ ثبت سفارش هوشمند و تنظیم اتوماتیک سیو سود / حد ضرر</span>
+          <span id="modalTempTypeBadge" class="ltr-inline" style="padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(59,130,246,0.2);color:#93c5fd;border:1px solid rgba(96,165,250,0.3)">🔥 MAX TEMP</span>
+        </div>
+        <div style="font-size:12px;color:#cbd5e1;margin-top:4px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+          <span>شهر: <b id="modalCityName" style="color:#fff">-</b></span>
+          <span>•</span>
+          <span class="ltr-inline">تاریخ: <b id="modalDate" style="color:#fff">-</b></span>
+          <span>•</span>
+          <span>باکت دما: <b id="modalBucketLabel" class="ltr-inline" style="color:#fcd34d">-</b></span>
+        </div>
+      </div>
+      <button type="button" class="modal-close-btn" onclick="closeOrderModal()">✕</button>
+    </div>
+
+    <div class="modal-account-bar">
+      <div>
+        <b style="color:var(--text)">🦊 وضعیت حساب پلی‌مارکت (MetaMask):</b>
+        <span style="color:var(--blue);font-weight:600">آماده اجرا در حالت SHADOW (پایش زندهٔ اوردربوک در اسکن‌های گیت‌هاب)</span>
+      </div>
+      <div class="ltr-inline" style="font-size:11px;color:var(--text-dim)">Chain: Polygon (137) • Auto-Exit Engine Ready</div>
+    </div>
+
+    <div class="modal-body">
+      <!-- Telemetry Summary Bar -->
+      <div class="modal-grid-4" style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:10px">
+        <div class="stat-mini">
+          <div style="font-size:11px;color:var(--text-dim)">قیمت فعلی بازار (<span id="statSideLabel">YES</span>)</div>
+          <div id="statMarketPrice" class="ltr-inline" style="font-size:14px;font-weight:700;margin-top:2px">-</div>
+        </div>
+        <div class="stat-mini">
+          <div style="font-size:11px;color:var(--text-dim)">ارزش منصفانه مدل هوشمند</div>
+          <div id="statModelFair" class="ltr-inline" style="font-size:14px;font-weight:700;color:var(--blue);margin-top:2px">-</div>
+        </div>
+        <div class="stat-mini">
+          <div style="font-size:11px;color:var(--text-dim)">باور نهایی (Belief)</div>
+          <div id="statBelief" class="ltr-inline" style="font-size:14px;font-weight:700;margin-top:2px">-</div>
+        </div>
+        <div class="stat-mini">
+          <div style="font-size:11px;color:var(--text-dim)">امید ریاضی سود (EV)</div>
+          <div id="statEv" class="ltr-inline" style="font-size:14px;font-weight:700;margin-top:2px">-</div>
+        </div>
+      </div>
+
+      <!-- Smart Auto-Pilot Toggle Card -->
+      <div id="autopilotCard" class="autopilot-box active">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px">
+          <label style="display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none">
+            <input type="checkbox" id="modalSmartAutopilot" checked onchange="onToggleSmartAutopilot(this.checked)" style="width:17px;height:17px;accent-color:#16a34a;cursor:pointer">
+            <div>
+              <div style="font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+                <span>🤖 تعیین اتوماتیک هوشمند (Smart Auto-Pilot)</span>
+                <span style="font-size:10.5px;background:#16a34a;color:#fff;padding:2px 8px;border-radius:6px">پیشنهادی برای جلوگیری از پیچیدگی</span>
+              </div>
+              <div style="font-size:11.5px;color:#4b5563;margin-top:2px">
+                محاسبهٔ خودکار بهترین نقطهٔ ورود، سیو سود منطبق با ارزش منصفانهٔ مدل کالیبره، حد ضرر پله‌ای و محافظ دمای فرودگاه (METAR)
+              </div>
+            </div>
+          </label>
+          <button type="button" id="btnSwitchManual" onclick="onToggleSmartAutopilot(false)" style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit">
+            ⚙️ تغییر به تنظیم دستی
+          </button>
+        </div>
+
+        <div id="autopilotPreviewGrid" class="modal-grid-4" style="margin-top:12px;padding-top:10px;border-top:1px solid #16a34a33;font-size:12px">
+          <div style="background:rgba(255,255,255,0.92);border-radius:8px;padding:6px 10px;border:1px solid #16a34a33">
+            <span id="apEntryLabel" style="color:var(--text-dim);display:block;font-size:10.5px">قیمت ورود بازار:</span>
+            <b id="apEntryVal" class="ltr-inline" style="font-size:13.5px">-</b>
+          </div>
+          <div style="background:rgba(255,255,255,0.92);border-radius:8px;padding:6px 10px;border:1px solid #16a34a33">
+            <span style="color:var(--text-dim);display:block;font-size:10.5px">🎯 حد سود هوشمند (TP):</span>
+            <b id="apTpVal" class="ltr-inline" style="font-size:13.5px;color:var(--green)">-</b>
+          </div>
+          <div style="background:rgba(255,255,255,0.92);border-radius:8px;padding:6px 10px;border:1px solid #16a34a33">
+            <span style="color:var(--text-dim);display:block;font-size:10.5px">🛑 حد ضرر پله‌ای (SL):</span>
+            <b id="apSlVal" class="ltr-inline" style="font-size:13.5px;color:var(--red)">-</b>
+          </div>
+          <div style="background:rgba(255,255,255,0.92);border-radius:8px;padding:6px 10px;border:1px solid #16a34a33">
+            <span style="color:var(--text-dim);display:block;font-size:10.5px">🛡️ محافظ‌های آب‌وهوا:</span>
+            <b style="font-size:11px;color:var(--blue)">METAR + فروش 99.5¢ فعال</b>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 1: Execution Mode + Entry Order Type -->
+      <div class="modal-grid-2" style="margin-top:12px">
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px">
+          <div style="font-size:12px;font-weight:700;margin-bottom:8px">۱. حالت اجرای ربات (Execution Mode)</div>
+          <div class="modal-grid-3" style="gap:6px">
+            <button type="button" id="execBtnPAPER" class="mode-btn" onclick="setModalExecMode('PAPER')">🧪 PAPER (تست)</button>
+            <button type="button" id="execBtnSHADOW" class="mode-btn active-blue" onclick="setModalExecMode('SHADOW')">🛡️ SHADOW (پیشنهادی)</button>
+            <button type="button" id="execBtnLIVE" class="mode-btn" onclick="setModalExecMode('LIVE')">🔥 LIVE (پول واقعی)</button>
+          </div>
+          <div id="execModeDesc" style="font-size:10.5px;color:var(--text-dim);margin-top:6px">
+            در حالت SHADOW، ربات روی اوردربوک زنده پلی‌مارکت تصمیم می‌گیرد و شبیه‌سازی واقعی انجام می‌دهد (بدون کسر پول).
+          </div>
+        </div>
+
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px">
+          <div style="font-size:12px;font-weight:700;margin-bottom:8px">۲. نوع ورود به معامله (فوری یا خرید شرطی)</div>
+          <div class="modal-grid-2" style="gap:6px">
+            <button type="button" id="orderTypeImmediate" class="mode-btn active-blue" onclick="setModalOrderType('IMMEDIATE_MARKETABLE')">⚡ خرید فوری در قیمت بازار</button>
+            <button type="button" id="orderTypeConditional" class="mode-btn" onclick="setModalOrderType('CONDITIONAL_LIMIT_GTC')">⏳ خرید شرطی (Limit Buy)</button>
+          </div>
+          <div id="orderTypeDesc" style="font-size:10.5px;color:var(--text-dim);margin-top:6px">
+            همین لحظه در قیمت فعلی بازار خریداری شده و بلافاصله چتر TP/SL فعال می‌شود.
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Side + Entry Price (Cents) + USDC Amount -->
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:12px">
+        <div class="modal-grid-3" style="align-items:end">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;margin-bottom:4px">سمت معامله (Side)</label>
+            <div class="modal-grid-2" style="gap:6px">
+              <button type="button" id="sideBtnYES" class="mode-btn active-green" onclick="setModalSide('YES')">خرید YES</button>
+              <button type="button" id="sideBtnNO" class="mode-btn" onclick="setModalSide('NO')">خرید NO</button>
+            </div>
+          </div>
+          <div>
+            <label id="entryInputLabel" style="display:block;font-size:12px;font-weight:700;margin-bottom:4px">قیمت مبنای ورود (سنت ¢)</label>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input type="number" id="modalEntryCents" class="modal-input ltr-inline" step="0.1" min="0.5" max="99.5" oninput="onManualEntryCentsChange(this.value)">
+              <span style="font-size:12px;font-weight:700;color:var(--text-dim)">¢</span>
+            </div>
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;margin-bottom:4px">مبلغ سرمایه‌گذاری ($USDC)</label>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input type="number" id="modalUsdcAmount" class="modal-input ltr-inline" step="1" min="1" value="15" oninput="onModalUsdcChange(this.value)">
+              <span style="font-size:12px;font-weight:700;color:var(--text-dim)">$</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="font-size:11px;color:var(--text-dim)">انتخاب سریع مبلغ:</span>
+            <button type="button" class="preset-btn" onclick="onModalUsdcChange(5)">$5</button>
+            <button type="button" class="preset-btn" onclick="onModalUsdcChange(10)">$10</button>
+            <button type="button" class="preset-btn active" onclick="onModalUsdcChange(15)">$15</button>
+            <button type="button" class="preset-btn" onclick="onModalUsdcChange(25)">$25</button>
+            <button type="button" class="preset-btn" onclick="onModalUsdcChange(50)">$50</button>
+            <button type="button" class="preset-btn" onclick="onModalUsdcChange(100)">$100</button>
+          </div>
+          <div style="font-size:12px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:4px 12px">
+            تعداد سهام دریافتی: <b id="modalSharesDisplay" class="ltr-inline" style="color:var(--blue)">-</b>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manual / Advanced TP & SL Controls (Shown when Smart Auto-Pilot is off) -->
+      <div id="manualTpSlSection" style="display:none;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:12px">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:10px">
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;cursor:pointer">
+            <input type="checkbox" id="modalAutoExitEnabled" checked onchange="recalcModalPreview()">
+            فعال‌سازی موتور خروج خودکار (Auto-Exit TP / SL)
+          </label>
+          <button type="button" onclick="applyModelFairTp()" style="background:var(--blue-bg);color:var(--blue);border:1px solid #2563eb55;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">
+            🎯 تنظیم TP روی ارزش منصفانه مدل
+          </button>
+        </div>
+
+        <div class="modal-grid-2">
+          <!-- Take Profit Box -->
+          <div style="background:#fff;border:1px solid #16a34a55;border-radius:12px;padding:10px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+              <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--green);cursor:pointer">
+                <input type="checkbox" id="modalTpEnabled" checked onchange="recalcModalPreview()">
+                🎯 حد سیو سود (Take-Profit)
+              </label>
+              <span id="modalTpProfitLabel" class="ltr-inline" style="font-size:11px;font-weight:700;color:var(--green)">+$0.00</span>
+            </div>
+            <div class="modal-grid-2" style="gap:8px">
+              <div>
+                <span style="display:block;font-size:10.5px;color:var(--text-dim);margin-bottom:3px">قیمت هدف (سنت ¢)</span>
+                <input type="number" id="modalTpCents" class="modal-input ltr-inline" step="0.5" min="1" max="99.5" oninput="onManualTpCentsChange(this.value)">
+              </div>
+              <div>
+                <span style="display:block;font-size:10.5px;color:var(--text-dim);margin-bottom:3px">درصد سود هدف (%)</span>
+                <input type="number" id="modalTpPct" class="modal-input ltr-inline" step="1" min="1" max="900" oninput="onManualTpPctChange(this.value)">
+              </div>
+            </div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:8px">
+              <button type="button" class="preset-btn" style="background:var(--green-bg);color:var(--green);border-color:#16a34a33" onclick="onManualTpPctChange(20)">+20%</button>
+              <button type="button" class="preset-btn" style="background:var(--green-bg);color:var(--green);border-color:#16a34a33" onclick="onManualTpPctChange(35)">+35%</button>
+              <button type="button" class="preset-btn" style="background:var(--green-bg);color:var(--green);border-color:#16a34a33" onclick="onManualTpPctChange(50)">+50%</button>
+              <button type="button" class="preset-btn" style="background:var(--green-bg);color:var(--green);border-color:#16a34a33" onclick="onManualTpPctChange(75)">+75%</button>
+              <button type="button" class="preset-btn" style="background:var(--green-bg);color:var(--green);border-color:#16a34a33" onclick="onManualTpPctChange(100)">+100%</button>
+            </div>
+          </div>
+
+          <!-- Stop Loss Box -->
+          <div style="background:#fff;border:1px solid #dc262655;border-radius:12px;padding:10px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+              <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--red);cursor:pointer">
+                <input type="checkbox" id="modalSlEnabled" checked onchange="recalcModalPreview()">
+                🛑 حد ضرر خودکار (Stop-Loss)
+              </label>
+              <span id="modalSlLossLabel" class="ltr-inline" style="font-size:11px;font-weight:700;color:var(--red)">-$0.00</span>
+            </div>
+            <div class="modal-grid-2" style="gap:8px">
+              <div>
+                <span style="display:block;font-size:10.5px;color:var(--text-dim);margin-bottom:3px">قیمت استاپ (سنت ¢)</span>
+                <input type="number" id="modalSlCents" class="modal-input ltr-inline" step="0.5" min="0.5" max="98" oninput="onManualSlCentsChange(this.value)">
+              </div>
+              <div>
+                <span style="display:block;font-size:10.5px;color:var(--text-dim);margin-bottom:3px">درصد افت مجاز (%)</span>
+                <input type="number" id="modalSlPct" class="modal-input ltr-inline" step="1" min="1" max="95" oninput="onManualSlPctChange(this.value)">
+              </div>
+            </div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:8px">
+              <button type="button" class="preset-btn" style="background:var(--red-bg);color:var(--red);border-color:#dc262633" onclick="onManualSlPctChange(15)">-15%</button>
+              <button type="button" class="preset-btn" style="background:var(--red-bg);color:var(--red);border-color:#dc262633" onclick="onManualSlPctChange(25)">-25%</button>
+              <button type="button" class="preset-btn" style="background:var(--red-bg);color:var(--red);border-color:#dc262633" onclick="onManualSlPctChange(30)">-30%</button>
+              <button type="button" class="preset-btn" style="background:var(--red-bg);color:var(--red);border-color:#dc262633" onclick="onManualSlPctChange(40)">-40%</button>
+              <button type="button" class="preset-btn" style="background:var(--red-bg);color:var(--red);border-color:#dc262633" onclick="onManualSlPctChange(50)">-50%</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weather-Smart Guards & Execution Policy -->
+        <div class="modal-grid-2" style="margin-top:10px">
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px;font-size:12px">
+            <div style="font-weight:700;margin-bottom:6px">🌡️ محافظ‌های هوشمند بازار آب‌وهوا</div>
+            <label style="display:flex;align-items:center;gap:6px;margin-bottom:6px;cursor:pointer">
+              <input type="checkbox" id="modalMetarStop" checked>
+              <span>خروج فوری در صورت عبور دمای واقعی فرودگاه (METAR) از باکت</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;margin-bottom:6px;cursor:pointer">
+              <input type="checkbox" id="modalAutoSell99" checked>
+              <span>فروش خودکار در 99.5¢ (نقد کردن سود قبل از تسویه UMA)</span>
+            </label>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:6px">
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                <input type="checkbox" id="modalTrailingEnabled">
+                <span>حد ضرر متحرک (Trailing Stop)</span>
+              </label>
+              <div style="display:flex;align-items:center;gap:4px">
+                <input type="number" id="modalTrailingPct" value="8" min="2" max="50" style="width:52px;border:1px solid var(--border);border-radius:6px;padding:3px;text-align:center;font-weight:700" class="ltr-inline">
+                <span>%</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px;font-size:12px">
+            <div style="font-weight:700;margin-bottom:6px">⚙️ سیاست ارسال سفارش فروش به CLOB</div>
+            <select id="modalExitPolicy" style="width:100%;border:1px solid var(--border);border-radius:8px;padding:6px;font-size:11.5px;font-weight:600;background:var(--surface-2);font-family:inherit;margin-bottom:8px">
+              <option value="MARKETABLE_FAK">MARKETABLE_FAK (پیشنهادی - فروش فوری تا کف مجاز)</option>
+              <option value="MARKETABLE_FOK">MARKETABLE_FOK (یا کل حجم یکجا یا لغو)</option>
+              <option value="STRICT_LIMIT">STRICT_LIMIT (سفارش لیمیت GTC در اوردربوک)</option>
+            </select>
+            <div class="modal-grid-2" style="gap:8px">
+              <div>
+                <span style="display:block;font-size:10.5px;color:var(--text-dim)">حداکثر اسلیپیج (%)</span>
+                <input type="number" id="modalSlippagePct" value="2.0" step="0.5" min="0.5" max="15" class="modal-input ltr-inline" style="padding:4px">
+              </div>
+              <div>
+                <span style="display:block;font-size:10.5px;color:var(--text-dim)">گام قیمت (Tick Size)</span>
+                <select id="modalTickSize" class="modal-input ltr-inline" style="padding:4px">
+                  <option value="0.01">0.01 (1¢)</option>
+                  <option value="0.001">0.001 (0.1¢)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual SL <-- Entry --> TP Risk/Reward Bar -->
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-top:12px">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;font-size:12px;gap:6px">
+          <span id="rrSlText" class="ltr-inline" style="font-weight:700;color:var(--red)">🛑 SL: -</span>
+          <span id="rrEntryText" class="ltr-inline" style="font-weight:700;color:var(--text)">⚡ Entry: -</span>
+          <span id="rrTpText" class="ltr-inline" style="font-weight:700;color:var(--green)">🎯 TP: -</span>
+        </div>
+        <div class="rr-bar">
+          <div style="background:#dc2626;width:32%"></div>
+          <div style="background:#2563eb;width:8%"></div>
+          <div style="background:#16a34a;width:60%"></div>
+        </div>
+        <div id="rrRatioText" style="font-size:11px;color:var(--text-dim);text-align:center;margin-top:5px"></div>
+      </div>
+
+      <!-- Live Tick Simulator (Shown in Edit Mode to test PAPER/SHADOW triggers immediately) -->
+      <div id="modalTickSimulatorSection" style="display:none;background:#fffbeb;border:1px solid rgba(245,158,11,0.45);border-radius:12px;padding:12px 14px;margin-top:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px">
+          <div style="font-size:12px;font-weight:700;color:#b45309">
+            🧪 شبیه‌ساز زندهٔ تیک بازار و دمای فرودگاه (تست عملکرد موتور قبل از پول واقعی)
+          </div>
+          <span id="simStateBadge" class="ltr-inline" style="font-size:11px;background:#fff;border:1px solid rgba(245,158,11,0.35);color:#b45309;padding:2px 8px;border-radius:6px;font-weight:600">
+            State: WATCHING
+          </span>
+        </div>
+        <p id="simHelpText" style="font-size:11.5px;color:#78350f;margin:0 0 8px 0">
+          یک قیمت Best Bid فرضی وارد کنید تا عملکرد موتور Auto-Exit (سیو سود، حد ضرر یا METAR) را در لحظه تست کنید:
+        </p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+          <div style="display:flex;align-items:center;gap:4px;background:#fff;border:1px solid rgba(245,158,11,0.45);border-radius:8px;padding:5px 10px">
+            <span id="simPriceLabel" style="font-size:12px;color:#78350f">قیمت خریدار بازار (Best Bid ¢):</span>
+            <input type="number" id="simBidCents" step="0.5" min="0.5" max="99.9" value="35.0" class="ltr-inline" style="width:72px;font-weight:700;font-size:13.5px;text-align:center;border:none;outline:none">
+            <span style="font-size:12px;font-weight:700;color:#78350f">¢</span>
+          </div>
+          <label style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid rgba(245,158,11,0.45);border-radius:8px;padding:6px 10px;font-size:12px;color:#78350f;cursor:pointer">
+            <input type="checkbox" id="simMetarElim">
+            🌡️ شبیه‌سازی عبور دمای METAR از سقف باکت
+          </label>
+          <button type="button" id="simRunBtn" onclick="runModalSimulateTick()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">
+            ⚡ ارسال تیک به موتور ربات
+          </button>
+        </div>
+        <div id="simResultBox" style="display:none;margin-top:8px;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:600"></div>
+      </div>
+
+      <div id="modalFeedbackBox" style="display:none;margin-top:10px;padding:10px 12px;border-radius:10px;font-size:12px;font-weight:600"></div>
+
+      <div class="modal-footer">
+        <button type="button" onclick="closeOrderModal()" style="background:#fff;color:#4b5563;border:1px solid var(--border);border-radius:10px;padding:9px 16px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">انصراف</button>
+        <button type="button" id="modalSubmitBtn" class="submit-order-btn" onclick="submitOrderModal()">⚡ ثبت سفارش خرید فوری + فعال‌سازی TP/SL</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 function switchTab(mode) {
   var vs = document.getElementById('view-simple');
   var va = document.getElementById('view-accuracy');
   var bs = document.getElementById('tabBtnSimple');
   var ba = document.getElementById('tabBtnAccuracy');
+  var title = document.getElementById('mainPageTitle');
   vs.style.display = (mode === 'simple') ? '' : 'none';
   va.style.display = (mode === 'accuracy') ? '' : 'none';
   bs.className = (mode === 'simple') ? 'tab-btn active-blue' : 'tab-btn';
-  ba.className = (mode === 'accuracy') ? 'tab-btn active-purple' : 'tab-btn';
+  ba.className = (mode === 'accuracy') ? 'tab-btn active-blue' : 'tab-btn';
+  if (title) {
+    title.textContent = (mode === 'accuracy')
+      ? 'WeatherBet -- کالیبراسیون هوشمند و رتبه‌بندی دقت شهرها'
+      : 'WeatherBet -- داشبورد ساده';
+  }
 }
 function refreshDashboardNow() {
   var btn = document.getElementById('refreshBtn');
@@ -758,6 +1183,7 @@ function filterCities() {
   var q = (document.getElementById('citySearch').value || '').trim().toLowerCase();
   var onlyGood = document.getElementById('onlyGoodCitiesToggle') && document.getElementById('onlyGoodCitiesToggle').checked;
   var onlyUs = document.getElementById('onlyUsCitiesToggle') && document.getElementById('onlyUsCitiesToggle').checked;
+  var useSmart = !document.getElementById('useSmartGateToggle') || document.getElementById('useSmartGateToggle').checked;
   document.querySelectorAll('.city-block[data-city-name]').forEach(function(block) {
     var name = (block.getAttribute('data-city-name') || '').toLowerCase();
     var slug = (block.getAttribute('data-city-slug') || '').toLowerCase();
@@ -767,6 +1193,12 @@ function filterCities() {
     var okGood = !onlyGood || hitPct >= 50;
     var okUs = !onlyUs || isUs;
     block.style.display = (okName && okGood && okUs) ? '' : 'none';
+  });
+  document.querySelectorAll('.smart-val').forEach(function(el) {
+    el.style.display = useSmart ? '' : 'none';
+  });
+  document.querySelectorAll('.legacy-val').forEach(function(el) {
+    el.style.display = useSmart ? 'none' : '';
   });
 }
 function toggleLowPlausibilityBuckets() {
@@ -800,19 +1232,32 @@ function filterAccuracyTable() {
     var okReg = (currentAccRegion === 'all') || (currentAccRegion === 'us' && isUs) || (currentAccRegion === 'non_us' && !isUs);
     row.style.display = (okQ && okType && okReg) ? '' : 'none';
   });
+  document.querySelectorAll('#rawAccuracyTable tbody tr').forEach(function(row) {
+    var cname = (row.getAttribute('data-city-name') || '').toLowerCase();
+    row.style.display = (!q || cname.indexOf(q) !== -1) ? '' : 'none';
+  });
 }
 function filterHistory() {
   var city = document.getElementById('historyCityFilter').value;
   var date = document.getElementById('historyDateFilter').value;
+  var clearBtn = document.getElementById('clearHistoryFilterBtn');
+  if (clearBtn) clearBtn.style.display = (city || date) ? '' : 'none';
   document.querySelectorAll('#historyTable tbody tr').forEach(function(row) {
     var okCity = !city || row.getAttribute('data-city') === city;
     var okDate = !date || row.getAttribute('data-date') === date;
     row.style.display = (okCity && okDate) ? '' : 'none';
   });
 }
+function clearHistoryFilters() {
+  document.getElementById('historyCityFilter').value = '';
+  document.getElementById('historyDateFilter').value = '';
+  filterHistory();
+}
 function setLockStatus(marketId, text, color) {
   var el = document.getElementById("lockstatus-" + marketId);
   if (el) { el.textContent = text; el.style.color = color || "#9aa0a6"; }
+  var elActive = document.getElementById("lockstatus-" + marketId + "-active");
+  if (elActive) { elActive.textContent = text; elActive.style.color = color || "#9aa0a6"; }
 }
 function getGitHubRepo() {
   var fallback = "GITHUB_REPO_PLACEHOLDER";
@@ -825,35 +1270,575 @@ function getGitHubRepo() {
   } catch (e) {}
   return fallback;
 }
-function lockBucket(city, cityName, date, marketId, tokenId, side, price, label, marketType) {
-  setLockStatus(marketId, "⏳ در حال باز شدن گیت‌هاب...", "#eab308");
-  var repo = getGitHubRepo();
+
+/* ============================================================================
+   Interactive OrderConfigModal State & Smart Auto-Pilot Math
+   ============================================================================ */
+var modalCtx = null;
+var modalState = {
+  mode: 'create',
+  side: 'YES',
+  executionMode: 'SHADOW',
+  entryOrderType: 'IMMEDIATE_MARKETABLE',
+  smartAutopilot: true,
+  entryPrice: 0.25,
+  usdcAmount: 15,
+  quantityShares: 60,
+  tpCents: 35,
+  tpPct: 40,
+  slCents: 18,
+  slPct: 28
+};
+
+function computeSmartAutoPilotJS(marketPrice, modelProb, beliefProb, ev, entryOrderType, tickSize) {
+  var tick = (tickSize && tickSize > 0) ? tickSize : 0.01;
+  function roundDownTick(val) {
+    var steps = Math.floor((val + 1e-9) / tick);
+    var res = Number((steps * tick).toFixed(4));
+    return Math.max(tick, Math.min(1 - tick, res));
+  }
+  var ask = roundDownTick(Math.max(0.01, Math.min(0.99, marketPrice || 0.25)));
+  var mProb = (modelProb != null && modelProb > 0) ? modelProb : ask;
+  var bProb = (beliefProb != null && beliefProb > 0) ? beliefProb : mProb;
+  var evVal = ev != null ? ev : 0;
+
+  var entryPrice = ask;
+  if (entryOrderType === 'CONDITIONAL_LIMIT_GTC') {
+    var cand1 = ask - 0.02;
+    var cand2 = mProb * 0.82;
+    var rawLimit = mProb > 0.03 ? Math.min(cand1, cand2) : cand1;
+    entryPrice = roundDownTick(Math.max(tick, rawLimit));
+    if (entryPrice >= ask && ask > tick) {
+      entryPrice = roundDownTick(ask - tick);
+    }
+  }
+
+  var minTp = Math.min(0.99, entryPrice + Math.max(0.03, tick * 3));
+  var rawTp = entryPrice * 1.3;
+  if (evVal >= 0.15 && mProb >= minTp) {
+    rawTp = Math.max(mProb, bProb, entryPrice * 1.25);
+  } else if (mProb > entryPrice + 0.04) {
+    rawTp = Math.max(mProb, entryPrice * 1.25);
+  }
+  var tpPrice = roundDownTick(Math.min(0.99, Math.max(minTp, rawTp)));
+  if (tpPrice <= entryPrice) {
+    tpPrice = Math.min(0.999, Number((entryPrice + tick).toFixed(4)));
+  }
+
+  var maxSl = Math.max(tick, entryPrice - tick);
+  var rawSl = entryPrice * 0.72;
+  if (entryPrice < 0.15) {
+    rawSl = entryPrice * 0.62;
+  } else if (entryPrice < 0.35) {
+    rawSl = entryPrice * 0.72;
+  } else {
+    rawSl = entryPrice * 0.78;
+  }
+  var slPrice = roundDownTick(Math.min(maxSl, Math.max(tick, rawSl)));
+  if (slPrice >= entryPrice && entryPrice > 0.001) {
+    slPrice = Math.max(0.001, Number((entryPrice - 0.001).toFixed(4)));
+  }
+
+  var tpPct = entryPrice > 0 ? Number((((tpPrice - entryPrice) / entryPrice) * 100).toFixed(1)) : 30.0;
+  var slPct = entryPrice > 0 ? Number((((entryPrice - slPrice) / entryPrice) * 100).toFixed(1)) : 28.0;
+  return { entryPrice: entryPrice, tpPrice: tpPrice, tpPct: tpPct, slPrice: slPrice, slPct: slPct };
+}
+
+function openOrderModal(ctx) {
+  modalCtx = ctx;
+  modalState.mode = ctx.mode || 'create';
+  modalState.side = ctx.side || 'YES';
+  modalState.executionMode = ctx.executionMode || 'SHADOW';
+  modalState.entryOrderType = ctx.entryOrderType || 'IMMEDIATE_MARKETABLE';
+  modalState.smartAutopilot = (ctx.smartAutopilot !== undefined) ? Boolean(ctx.smartAutopilot) : true;
+  modalState.usdcAmount = ctx.usdcAmount || 15;
+
+  document.getElementById('modalCityName').textContent = ctx.cityName || ctx.city;
+  document.getElementById('modalDate').textContent = ctx.date;
+  document.getElementById('modalBucketLabel').textContent = ctx.label;
+  document.getElementById('modalTempTypeBadge').textContent = (ctx.marketType === 'min') ? '❄️ MIN TEMP' : '🔥 MAX TEMP';
+  document.getElementById('modalHeaderTitle').textContent = (modalState.mode === 'edit')
+    ? '⚙️ تنظیمات پوزیشن فعال و مدیریت خودکار TP / SL'
+    : '⚡ ثبت سفارش هوشمند و تنظیم اتوماتیک سیو سود / حد ضرر';
+
+  var yesCents = Math.round((ctx.yesPrice || 0.25) * 100);
+  var noCents = Math.round((1 - (ctx.yesPrice || 0.25)) * 100);
+  document.getElementById('sideBtnYES').textContent = 'خرید YES (' + yesCents + '¢)';
+  document.getElementById('sideBtnNO').textContent = 'خرید NO (' + noCents + '¢)';
+  document.getElementById('modalUsdcAmount').value = modalState.usdcAmount;
+
+  var fb = document.getElementById('modalFeedbackBox');
+  if (fb) fb.style.display = 'none';
+  var simSec = document.getElementById('modalTickSimulatorSection');
+  var simRes = document.getElementById('simResultBox');
+  if (simRes) simRes.style.display = 'none';
+
+  if (modalState.mode === 'edit') {
+    if (simSec) simSec.style.display = 'block';
+    if (ctx.existingTpPrice && ctx.existingSlPrice) {
+      modalState.entryPrice = ctx.entryPrice || ctx.yesPrice || 0.25;
+      modalState.tpCents = Number((ctx.existingTpPrice * 100).toFixed(1));
+      modalState.slCents = Number((ctx.existingSlPrice * 100).toFixed(1));
+      var ec = modalState.entryPrice * 100;
+      modalState.tpPct = ec > 0 ? Number((((modalState.tpCents - ec) / ec) * 100).toFixed(1)) : 35;
+      modalState.slPct = ec > 0 ? Number((((ec - modalState.slCents) / ec) * 100).toFixed(1)) : 28;
+      document.getElementById('modalEntryCents').value = Number(ec.toFixed(1));
+      document.getElementById('modalTpCents').value = modalState.tpCents;
+      document.getElementById('modalTpPct').value = modalState.tpPct;
+      document.getElementById('modalSlCents').value = modalState.slCents;
+      document.getElementById('modalSlPct').value = modalState.slPct;
+      var simInput = document.getElementById('simBidCents');
+      if (simInput) simInput.value = modalState.tpCents;
+    }
+  } else {
+    if (simSec) simSec.style.display = 'none';
+  }
+
+  setModalExecMode(modalState.executionMode);
+  setModalOrderType(modalState.entryOrderType);
+  setModalSide(modalState.side);
+  onToggleSmartAutopilot(modalState.smartAutopilot);
+
+  document.getElementById('orderConfigModal').className = 'modal-backdrop open';
+}
+
+function closeOrderModal() {
+  document.getElementById('orderConfigModal').className = 'modal-backdrop';
+}
+
+function getSidePrices() {
+  if (!modalCtx) return { marketPrice: 0.25, modelProb: null, beliefProb: null, ev: null };
+  var rawYes = Number(modalCtx.yesPrice || 0.25);
+  var rawNo = Math.max(0.01, 1 - rawYes);
+  var mp = modalState.side === 'YES' ? Math.max(0.01, Math.min(0.99, rawYes)) : Math.max(0.01, Math.min(0.99, rawNo));
+  var modP = modalCtx.modelProb != null ? (modalState.side === 'YES' ? Number(modalCtx.modelProb) : 1 - Number(modalCtx.modelProb)) : null;
+  var belP = modalCtx.beliefProb != null ? (modalState.side === 'YES' ? Number(modalCtx.beliefProb) : 1 - Number(modalCtx.beliefProb)) : modP;
+  return { marketPrice: mp, modelProb: modP, beliefProb: belP, ev: modalCtx.ev };
+}
+
+function applyAutopilotValues() {
+  var sp = getSidePrices();
+  var smart = computeSmartAutoPilotJS(sp.marketPrice, sp.modelProb, sp.beliefProb, sp.ev, modalState.entryOrderType, 0.01);
+  if (modalState.mode !== 'edit' || modalState.entryOrderType === 'CONDITIONAL_LIMIT_GTC') {
+    modalState.entryPrice = smart.entryPrice;
+  }
+  modalState.tpCents = Number((smart.tpPrice * 100).toFixed(1));
+  modalState.tpPct = smart.tpPct;
+  modalState.slCents = Number((smart.slPrice * 100).toFixed(1));
+  modalState.slPct = smart.slPct;
+
+  document.getElementById('modalEntryCents').value = Number((modalState.entryPrice * 100).toFixed(1));
+  document.getElementById('modalTpCents').value = modalState.tpCents;
+  document.getElementById('modalTpPct').value = modalState.tpPct;
+  document.getElementById('modalSlCents').value = modalState.slCents;
+  document.getElementById('modalSlPct').value = modalState.slPct;
+  recalcModalPreview();
+}
+
+function onToggleSmartAutopilot(checked) {
+  modalState.smartAutopilot = Boolean(checked);
+  document.getElementById('modalSmartAutopilot').checked = modalState.smartAutopilot;
+  var card = document.getElementById('autopilotCard');
+  var grid = document.getElementById('autopilotPreviewGrid');
+  var btnMan = document.getElementById('btnSwitchManual');
+  var manSec = document.getElementById('manualTpSlSection');
+  if (modalState.smartAutopilot) {
+    card.className = 'autopilot-box active';
+    grid.style.display = '';
+    btnMan.style.display = '';
+    manSec.style.display = 'none';
+    applyAutopilotValues();
+  } else {
+    card.className = 'autopilot-box';
+    grid.style.display = 'none';
+    btnMan.style.display = 'none';
+    manSec.style.display = 'block';
+    recalcModalPreview();
+  }
+}
+
+function setModalExecMode(mode) {
+  modalState.executionMode = mode;
+  document.getElementById('execBtnPAPER').className = (mode === 'PAPER') ? 'mode-btn active-dark' : 'mode-btn';
+  document.getElementById('execBtnSHADOW').className = (mode === 'SHADOW') ? 'mode-btn active-blue' : 'mode-btn';
+  document.getElementById('execBtnLIVE').className = (mode === 'LIVE') ? 'mode-btn active-red' : 'mode-btn';
+  var desc = document.getElementById('execModeDesc');
+  if (mode === 'SHADOW') desc.textContent = 'در حالت SHADOW، ربات روی اوردربوک زنده پلی‌مارکت تصمیم می‌گیرد و شبیه‌سازی واقعی انجام می‌دهد (بدون کسر پول).';
+  else if (mode === 'PAPER') desc.textContent = 'در حالت PAPER، سفارش و تست‌های تیک کاملاً در محیط شبیه‌ساز داخلی اجرا می‌شوند.';
+  else desc.textContent = 'در حالت LIVE، سفارش‌ها مستقیماً با تنظیمات کلید کیف‌پول به صرافی پلی‌مارکت ارسال می‌شوند.';
+}
+
+function setModalOrderType(otype) {
+  modalState.entryOrderType = otype;
+  document.getElementById('orderTypeImmediate').className = (otype === 'IMMEDIATE_MARKETABLE') ? 'mode-btn active-blue' : 'mode-btn';
+  document.getElementById('orderTypeConditional').className = (otype === 'CONDITIONAL_LIMIT_GTC') ? 'mode-btn active-purple' : 'mode-btn';
+  document.getElementById('entryInputLabel').textContent = (otype === 'CONDITIONAL_LIMIT_GTC')
+    ? '⏳ قیمت شرطی خرید (سنت ¢)'
+    : 'قیمت مبنای ورود (سنت ¢)';
+  document.getElementById('apEntryLabel').textContent = (otype === 'CONDITIONAL_LIMIT_GTC')
+    ? 'قیمت خرید شرطی اتوماتیک:'
+    : 'قیمت ورود بازار:';
+  document.getElementById('orderTypeDesc').textContent = (otype === 'IMMEDIATE_MARKETABLE')
+    ? 'همین لحظه در قیمت فعلی بازار خریداری شده و بلافاصله چتر TP/SL فعال می‌شود.'
+    : 'سفارش خرید در قیمت پایین‌تر منتظر می‌ماند؛ به محض رسیدن قیمت و پر شدن، چتر TP/SL خودکار فعال می‌شود.';
+  if (modalState.smartAutopilot) {
+    applyAutopilotValues();
+  } else {
+    recalcModalPreview();
+  }
+}
+
+function setModalSide(side) {
+  modalState.side = side;
+  document.getElementById('sideBtnYES').className = (side === 'YES') ? 'mode-btn active-green' : 'mode-btn';
+  document.getElementById('sideBtnNO').className = (side === 'NO') ? 'mode-btn active-red' : 'mode-btn';
+  document.getElementById('statSideLabel').textContent = side;
+  var sp = getSidePrices();
+  if (modalState.mode !== 'edit') {
+    modalState.entryPrice = sp.marketPrice;
+    document.getElementById('modalEntryCents').value = Number((sp.marketPrice * 100).toFixed(1));
+  }
+  if (modalState.smartAutopilot) {
+    applyAutopilotValues();
+  } else {
+    recalcModalPreview();
+  }
+}
+
+function onManualEntryCentsChange(val) {
+  var c = Math.max(0.5, Math.min(99.5, parseFloat(val) || 25));
+  modalState.entryPrice = Number((c / 100).toFixed(4));
+  modalState.tpCents = Math.min(99.5, Number((c * (1 + modalState.tpPct / 100)).toFixed(1)));
+  modalState.slCents = Math.max(0.5, Number((c * (1 - modalState.slPct / 100)).toFixed(1)));
+  document.getElementById('modalTpCents').value = modalState.tpCents;
+  document.getElementById('modalSlCents').value = modalState.slCents;
+  onToggleSmartAutopilot(false);
+}
+
+function onModalUsdcChange(val) {
+  var u = Math.max(1, parseFloat(val) || 15);
+  modalState.usdcAmount = u;
+  document.getElementById('modalUsdcAmount').value = u;
+  recalcModalPreview();
+}
+
+function onManualTpCentsChange(val) {
+  var c = Math.max(0.5, Math.min(99.9, parseFloat(val) || 35));
+  modalState.tpCents = c;
+  var ec = modalState.entryPrice * 100;
+  if (ec > 0) {
+    modalState.tpPct = Number((((c - ec) / ec) * 100).toFixed(1));
+    document.getElementById('modalTpPct').value = modalState.tpPct;
+  }
+  recalcModalPreview();
+}
+
+function onManualTpPctChange(val) {
+  var p = Math.max(1, parseFloat(val) || 35);
+  modalState.tpPct = p;
+  document.getElementById('modalTpPct').value = p;
+  var ec = modalState.entryPrice * 100;
+  modalState.tpCents = Math.min(99.5, Number((ec * (1 + p / 100)).toFixed(1)));
+  document.getElementById('modalTpCents').value = modalState.tpCents;
+  recalcModalPreview();
+}
+
+function onManualSlCentsChange(val) {
+  var c = Math.max(0.1, Math.min(99.0, parseFloat(val) || 15));
+  modalState.slCents = c;
+  var ec = modalState.entryPrice * 100;
+  if (ec > 0) {
+    modalState.slPct = Number((((ec - c) / ec) * 100).toFixed(1));
+    document.getElementById('modalSlPct').value = modalState.slPct;
+  }
+  recalcModalPreview();
+}
+
+function onManualSlPctChange(val) {
+  var p = Math.max(1, Math.min(98, Math.abs(parseFloat(val) || 28)));
+  modalState.slPct = p;
+  document.getElementById('modalSlPct').value = p;
+  var ec = modalState.entryPrice * 100;
+  modalState.slCents = Math.max(0.1, Number((ec * (1 - p / 100)).toFixed(1)));
+  document.getElementById('modalSlCents').value = modalState.slCents;
+  recalcModalPreview();
+}
+
+function applyModelFairTp() {
+  var sp = getSidePrices();
+  if (sp.modelProb == null) return;
+  var ec = modalState.entryPrice * 100;
+  var fairC = Math.min(99.5, Math.max(ec + 2, Number((sp.modelProb * 100).toFixed(1))));
+  modalState.tpCents = fairC;
+  modalState.tpPct = ec > 0 ? Number((((fairC - ec) / ec) * 100).toFixed(1)) : 35;
+  document.getElementById('modalTpCents').value = modalState.tpCents;
+  document.getElementById('modalTpPct').value = modalState.tpPct;
+  recalcModalPreview();
+}
+
+function recalcModalPreview() {
+  var sp = getSidePrices();
+  var mktCents = Number((sp.marketPrice * 100).toFixed(1));
+  document.getElementById('statMarketPrice').innerHTML = mktCents + '¢ <span style="font-size:11px;font-weight:400;color:var(--text-dim)">($' + sp.marketPrice.toFixed(3) + ')</span>';
+  document.getElementById('statModelFair').textContent = sp.modelProb != null ? (sp.modelProb * 100).toFixed(1) + '¢ (' + (sp.modelProb * 100).toFixed(1) + '%)' : '-';
+  document.getElementById('statBelief').textContent = sp.beliefProb != null ? (sp.beliefProb * 100).toFixed(1) + '%' : '-';
+  if (sp.ev != null) {
+    var evP = sp.ev * 100;
+    var evEl = document.getElementById('statEv');
+    evEl.textContent = (evP > 0 ? '+' : '') + evP.toFixed(1) + '%';
+    evEl.style.color = evP > 0 ? 'var(--green)' : (evP < 0 ? 'var(--red)' : 'var(--text-dim)');
+  } else {
+    document.getElementById('statEv').textContent = '-';
+  }
+
+  var ep = Math.max(0.005, modalState.entryPrice || 0.25);
+  var ec = Number((ep * 100).toFixed(1));
+  var shares = Number((modalState.usdcAmount / ep).toFixed(2));
+  modalState.quantityShares = shares;
+
+  document.getElementById('modalSharesDisplay').innerHTML = shares.toFixed(2) + ' Shares <span style="font-size:11px;color:var(--text-dim)">(ارزش در صورت برد ۱۰۰¢: <b style="color:var(--green)">$' + shares.toFixed(2) + '</b>)</span>';
+
+  document.getElementById('apEntryVal').textContent = ec + '¢';
+  document.getElementById('apTpVal').textContent = modalState.tpCents + '¢ (+' + modalState.tpPct + '%)';
+  document.getElementById('apSlVal').textContent = modalState.slCents + '¢ (-' + modalState.slPct + '%)';
+
+  var tpDec = modalState.tpCents / 100.0;
+  var slDec = modalState.slCents / 100.0;
+  var estProfit = Math.max(0, shares * (tpDec - ep));
+  var estLoss = Math.max(0, shares * (ep - slDec));
+  document.getElementById('modalTpProfitLabel').textContent = 'سود خالص: +$' + estProfit.toFixed(2);
+  document.getElementById('modalSlLossLabel').textContent = 'حداکثر ریسک: -$' + estLoss.toFixed(2);
+
+  document.getElementById('rrSlText').textContent = '🛑 SL: ' + modalState.slCents + '¢ (-$' + estLoss.toFixed(2) + ')';
+  document.getElementById('rrEntryText').textContent = (modalState.entryOrderType === 'CONDITIONAL_LIMIT_GTC' ? '⏳ Limit Buy: ' : '⚡ Entry: ') + ec + '¢ ($' + modalState.usdcAmount.toFixed(2) + ')';
+  document.getElementById('rrTpText').textContent = '🎯 TP: ' + modalState.tpCents + '¢ (+$' + estProfit.toFixed(2) + ')';
+  var rr = (estLoss > 0 && estProfit > 0) ? (estProfit / estLoss).toFixed(2) : null;
+  document.getElementById('rrRatioText').innerHTML = rr ? ('نسبت ریسک به ریوارد (Risk / Reward): <b class="ltr-inline" style="color:var(--text)">1 : ' + rr + '</b>') : '';
+
+  var subBtn = document.getElementById('modalSubmitBtn');
+  if (modalState.mode === 'edit') {
+    subBtn.textContent = '💾 ذخیره تغییرات پوزیشن و بروزرسانی TP/SL';
+    subBtn.className = 'submit-order-btn';
+  } else if (modalState.entryOrderType === 'CONDITIONAL_LIMIT_GTC') {
+    subBtn.textContent = '⏳ ثبت سفارش خرید شرطی در ' + ec + '¢ + مسلح‌سازی خودکار TP/SL';
+    subBtn.className = 'submit-order-btn purple';
+  } else {
+    subBtn.textContent = '⚡ ثبت سفارش خرید فوری (' + ec + '¢) + فعال‌سازی TP/SL';
+    subBtn.className = 'submit-order-btn';
+  }
+}
+
+function submitOrderModal() {
+  if (!modalCtx) return;
+  var sp = getSidePrices();
+  var tokenId = (modalState.side === 'NO' && modalCtx.noTokenId) ? modalCtx.noTokenId : modalCtx.tokenId;
+  var tpDec = Number((modalState.tpCents / 100.0).toFixed(4));
+  var slDec = Number((modalState.slCents / 100.0).toFixed(4));
+  var autoExit = modalState.smartAutopilot ? true : document.getElementById('modalAutoExitEnabled').checked;
+  var tpEn = modalState.smartAutopilot ? true : document.getElementById('modalTpEnabled').checked;
+  var slEn = modalState.smartAutopilot ? true : document.getElementById('modalSlEnabled').checked;
+  var metarStop = modalState.smartAutopilot ? true : document.getElementById('modalMetarStop').checked;
+  var sell99 = modalState.smartAutopilot ? true : document.getElementById('modalAutoSell99').checked;
+  var trailEn = modalState.smartAutopilot ? false : document.getElementById('modalTrailingEnabled').checked;
+  var trailPct = parseFloat(document.getElementById('modalTrailingPct').value) || 8.0;
+  var exitPol = document.getElementById('modalExitPolicy').value || 'MARKETABLE_FAK';
+  var slipPct = parseFloat(document.getElementById('modalSlippagePct').value) || 2.0;
+  var tickSz = parseFloat(document.getElementById('modalTickSize').value) || 0.01;
+
   var payload = {
-    city: city,
-    date: date,
-    market_id: marketId + "|" + tokenId,
+    mode: modalState.mode,
+    update_existing: (modalState.mode === 'edit'),
+    city: modalCtx.city,
+    date: modalCtx.date,
+    market_id: modalCtx.marketId + (tokenId ? ("|" + tokenId) : ""),
     token_id: tokenId,
-    side: side,
-    price: price,
-    market_type: (marketType || "max"),
-    smart_autopilot: true,
-    auto_exit_enabled: true,
-    tp_enabled: true,
-    sl_enabled: true,
-    metar_auto_stop: true
+    side: modalState.side,
+    price: sp.marketPrice,
+    limit_buy_price: (modalState.entryOrderType === 'CONDITIONAL_LIMIT_GTC') ? modalState.entryPrice : null,
+    entry_order_type: modalState.entryOrderType,
+    smart_autopilot: modalState.smartAutopilot,
+    market_type: (modalCtx.marketType || "max"),
+    execution_mode: modalState.executionMode,
+    exit_policy: exitPol,
+    quantity_shares: modalState.quantityShares,
+    usdc_amount: modalState.usdcAmount,
+    auto_exit_enabled: autoExit,
+    tp_enabled: tpEn,
+    tp_price: tpEn ? tpDec : null,
+    tp_pct: tpEn ? modalState.tpPct : null,
+    sl_enabled: slEn,
+    sl_price: slEn ? slDec : null,
+    sl_pct: slEn ? modalState.slPct : null,
+    max_slippage_pct: slipPct,
+    tick_size: tickSz,
+    trailing_stop_enabled: trailEn,
+    trailing_offset_pct: trailPct,
+    metar_auto_stop: metarStop,
+    auto_sell_99c: sell99
   };
-  var title = encodeURIComponent("LOCK " + cityName + " " + date + " " + label + " " + side + " @ " + price);
+
+  var isGitHubPages = window.location.hostname.indexOf('github.io') !== -1;
+  if (!isGitHubPages) {
+    // Try direct API first (AI Studio / Local Server), fall back to GitHub Issue if offline
+    var apiEndpoint = (modalState.mode === 'edit') ? '/api/locks/rules' : '/api/locks';
+    var apiMethod = (modalState.mode === 'edit') ? 'PATCH' : 'POST';
+    var apiPayload = Object.assign({}, payload, { market_id: modalCtx.marketId });
+    fetch(apiEndpoint, {
+      method: apiMethod,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(apiPayload)
+    }).then(function(r) {
+      if (r.ok) return r.json();
+      throw new Error('fallback');
+    }).then(function(res) {
+      if (res && res.ok) {
+        setLockStatus(modalCtx.marketId, "✔ سفارش با موفقیت ثبت شد!", "#16a34a");
+        closeOrderModal();
+        window.location.reload();
+      } else {
+        openGitHubIssueForOrder(payload);
+      }
+    }).catch(function() {
+      openGitHubIssueForOrder(payload);
+    });
+  } else {
+    openGitHubIssueForOrder(payload);
+  }
+}
+
+function openGitHubIssueForOrder(payload) {
+  var repo = getGitHubRepo();
+  var actionPrefix = (payload.mode === 'edit') ? "LOCK " : "LOCK ";
+  var priceTag = (payload.entry_order_type === 'CONDITIONAL_LIMIT_GTC')
+    ? ("LIMIT@" + payload.limit_buy_price)
+    : ("@" + payload.price);
+  var title = encodeURIComponent(
+    actionPrefix + (modalCtx.cityName || payload.city) + " " + payload.date + " " + (modalCtx.label || "") + " " + payload.side + " " + priceTag
+  );
   var body = encodeURIComponent(JSON.stringify(payload));
   var url = "https://github.com/" + repo + "/issues/new?title=" + title + "&body=" + body + "&labels=lock-request";
   var win = window.open(url, "_blank");
+  var fb = document.getElementById('modalFeedbackBox');
   if (win) {
-    setLockStatus(marketId, "⚠️ در تب جدید حتماً روی «Submit new issue» کلیک کنید تا قفل ثبت شود!", "#f59e0b");
+    if (fb) {
+      fb.style.display = 'block';
+      fb.style.background = '#e8f8ee';
+      fb.style.color = '#16a34a';
+      fb.style.border = '1px solid #16a34a55';
+      fb.textContent = '⚠️ در تب جدید گیت‌هاب حتماً روی دکمهٔ سبز «Submit new issue» کلیک کنید تا سفارش و تنظیمات TP/SL ثبت شود!';
+    }
+    setLockStatus(modalCtx.marketId, "⚠️ در تب جدید روی «Submit new issue» کلیک کنید!", "#f59e0b");
   } else {
-    setLockStatus(marketId, "❌ مرورگر پاپ‌آپ را مسدود کرد -- اجازه بدهید و دوباره امتحان کنید.", "#f87171");
+    if (fb) {
+      fb.style.display = 'block';
+      fb.style.background = '#fdeceb';
+      fb.style.color = '#dc2626';
+      fb.style.border = '1px solid #dc262655';
+      fb.textContent = '❌ مرورگر پاپ‌آپ را مسدود کرد -- اجازهٔ پاپ‌آپ بدهید و دوباره کلیک کنید.';
+    }
   }
 }
+
+function runModalSimulateTick() {
+  if (!modalCtx) return;
+  var bidCents = parseFloat(document.getElementById('simBidCents').value || '0');
+  var metarElim = document.getElementById('simMetarElim').checked;
+  var resBox = document.getElementById('simResultBox');
+  resBox.style.display = 'block';
+  if (isNaN(bidCents) || bidCents <= 0 || bidCents >= 100) {
+    resBox.style.background = '#fdeceb';
+    resBox.style.color = '#dc2626';
+    resBox.style.border = '1px solid #dc262655';
+    resBox.textContent = '❌ قیمت شبیه‌سازی باید بین 0.5 و 99.9 سنت باشد.';
+    return;
+  }
+  var isGitHubPages = window.location.hostname.indexOf('github.io') !== -1;
+  if (!isGitHubPages) {
+    fetch('/api/locks/simulate-tick', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        city: modalCtx.city,
+        date: modalCtx.date,
+        market_id: modalCtx.marketId,
+        simulated_bid: Number((bidCents / 100.0).toFixed(4)),
+        force_metar_eliminated: metarElim
+      })
+    }).then(function(r) {
+      if (r.ok) return r.json();
+      throw new Error('fallback');
+    }).then(function(d) {
+      if (d && d.ok) {
+        resBox.style.background = '#e8f8ee';
+        resBox.style.color = '#16a34a';
+        resBox.style.border = '1px solid #16a34a55';
+        resBox.textContent = d.message;
+        return;
+      }
+      throw new Error('local');
+    }).catch(function() {
+      evaluateTickClientSide(bidCents, metarElim, resBox);
+    });
+  } else {
+    evaluateTickClientSide(bidCents, metarElim, resBox);
+  }
+}
+
+function evaluateTickClientSide(bidCents, metarElim, resBox) {
+  var entryC = Number((modalState.entryPrice * 100).toFixed(1));
+  var tpC = modalState.tpCents;
+  var slC = modalState.slCents;
+  var pnlPct = entryC > 0 ? (((bidCents - entryC) / entryC) * 100).toFixed(1) : '0.0';
+  var shares = modalState.quantityShares || 60;
+  var pnlUsdc = (shares * ((bidCents - entryC) / 100.0)).toFixed(2);
+  if (metarElim) {
+    resBox.style.background = '#e8f8ee';
+    resBox.style.color = '#16a34a';
+    resBox.style.border = '1px solid #16a34a55';
+    resBox.textContent = '🌡️ [تست شبیه‌ساز] عبور دمای METAR از سقف باکت تشخیص داده شد! موتور Auto-Exit دستور خروج اضطراری را در قیمت ' + bidCents + '¢ (' + pnlPct + '%) صادر می‌کند.';
+  } else if (bidCents >= 99.5) {
+    resBox.style.background = '#e8f8ee';
+    resBox.style.color = '#16a34a';
+    resBox.style.border = '1px solid #16a34a55';
+    resBox.textContent = '🎯 [تست شبیه‌ساز] قیمت به 99.5¢ رسید! فروش خودکار قبل از تسویه UMA فعال شد (+$' + pnlUsdc + ' / +' + pnlPct + '%).';
+  } else if (bidCents >= tpC) {
+    resBox.style.background = '#e8f8ee';
+    resBox.style.color = '#16a34a';
+    resBox.style.border = '1px solid #16a34a55';
+    resBox.textContent = '🎯 [تست شبیه‌ساز] سیو سود خودکار (TP) در قیمت ' + bidCents + '¢ (≥ هدف ' + tpC + '¢) فعال شد! سود خالص: +$' + pnlUsdc + ' (+' + pnlPct + '%).';
+  } else if (bidCents <= slC) {
+    resBox.style.background = '#fdeceb';
+    resBox.style.color = '#dc2626';
+    resBox.style.border = '1px solid #dc262655';
+    resBox.textContent = '🛑 [تست شبیه‌ساز] حد ضرر خودکار (SL) در قیمت ' + bidCents + '¢ (≤ استاپ ' + slC + '¢) فعال شد و جلوی ضرر بیشتر گرفته شد (' + pnlPct + '%).';
+  } else {
+    resBox.style.background = '#eff6ff';
+    resBox.style.color = '#2563eb';
+    resBox.style.border = '1px solid #2563eb44';
+    resBox.textContent = '👁️ [تست شبیه‌ساز] در قیمت ' + bidCents + '¢ (' + (pnlPct >= 0 ? '+' : '') + pnlPct + '%) پوزیشن بین استاپ (' + slC + '¢) و هدف سود (' + tpC + '¢) قرار دارد و در حالت پایش (WATCHING) باقی می‌ماند.';
+  }
+}
+
 function unlockBucket(city, cityName, date, marketId, label) {
   setLockStatus(marketId, "⏳ در حال باز شدن گیت‌هاب...", "#eab308");
+  var isGitHubPages = window.location.hostname.indexOf('github.io') !== -1;
+  if (!isGitHubPages) {
+    fetch('/api/locks/unlock', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ city: city, cityName: cityName, date: date, market_id: marketId, label: label, force_exit: true })
+    }).then(function(r) {
+      if (r.ok) { window.location.reload(); return; }
+      throw new Error('fallback');
+    }).catch(function() {
+      openGitHubIssueForUnlock(city, cityName, date, marketId, label);
+    });
+  } else {
+    openGitHubIssueForUnlock(city, cityName, date, marketId, label);
+  }
+}
+
+function openGitHubIssueForUnlock(city, cityName, date, marketId, label) {
   var repo = getGitHubRepo();
   var payload = { city: city, date: date, market_id: marketId };
   var title = encodeURIComponent("UNLOCK " + cityName + " " + date + " " + label);
@@ -866,6 +1851,7 @@ function unlockBucket(city, cityName, date, marketId, label) {
     setLockStatus(marketId, "❌ مرورگر پاپ‌آپ را مسدود کرد -- اجازه بدهید و دوباره امتحان کنید.", "#f87171");
   }
 }
+
 function computeRelativeTimes() {
   var now = new Date();
   document.querySelectorAll('.relative-time').forEach(function(el) {
@@ -1037,12 +2023,14 @@ def _build_polymarket_url_min(city, date_str):
         return "https://polymarket.com"
 
 
-def _signal_badge_html(is_main, ev_val):
+def _signal_badge_html(is_main, is_smart_main, ev_val):
     ev_val = ev_val if ev_val is not None else 0.0
-    if is_main and ev_val >= EV_GATE_THRESHOLD:
-        return '<span class="signal-badge signal-green">\U0001F7E2 سیگنال نهایی</span>'
-    if is_main:
-        return '<span class="signal-badge signal-blue">\U0001F535 محتمل\u200cترین</span>'
+    active_main = bool(is_smart_main or is_main)
+    smart_tag = " (هوشمند)" if (is_smart_main and not is_main) else ""
+    if active_main and ev_val >= EV_GATE_THRESHOLD:
+        return f'<span class="signal-badge signal-green">\U0001F7E2 سیگنال نهایی{smart_tag}</span>'
+    if active_main:
+        return f'<span class="signal-badge signal-blue">\U0001F535 محتمل\u200cترین{smart_tag}</span>'
     if ev_val >= EV_GATE_THRESHOLD:
         return '<span class="signal-badge signal-purple">\U0001F7E3 ارزش بالا</span>'
     return ''
@@ -1071,15 +2059,15 @@ def _format_pct_paren(pct_val, pct_6h_val=None):
     return f' <span class="{css}">({val:+.1f}%)</span>'
 
 
-def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locked_keys, main_signal_id, market_type="max"):
-    """جدول باکت‌ها همراه با تغییرات درصدی (اسکن قبلی و ۶ ساعته اخیر)، اسپرد اردربوک،
-    وضعیت حذف زنده METAR و پتانسیل نوسان‌گیری تا ارزش منصفانه مدل."""
+def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locked_keys, open_locks_map, main_signal_id, market_type="max"):
+    """جدول باکت‌ها دقیقاً منطبق با پیش‌نمایش AI Studio شامل دکمهٔ «⚡ خرید و تنظیم اتوماتیک»
+    و باز کردن مودال پیشرفتهٔ تنظیمات TP/SL/Limit Buy."""
     if not full_distribution:
         return '<div class="empty">داده‌ای موجود نیست.</div>'
 
     rows = [
-        "<table><tr><th>باکت</th><th>احتمال مدل (GMM+BMA)</th><th>احتمال بازار (YES)</th>"
-        "<th>قیمت YES و اسپرد</th><th>باور نهایی</th><th>EV</th><th>پتانسیل نوسان‌گیری / هدف مدل</th><th>عملیات</th></tr>"
+        "<table><thead><tr><th>باکت</th><th>احتمال مدل (هوشمند)</th><th>احتمال بازار (YES)</th>"
+        "<th>قیمت YES</th><th>باور نهایی</th><th>EV</th><th>عملیات</th></tr></thead><tbody>"
     ]
     has_visible = False
     for b in full_distribution:
@@ -1138,12 +2126,19 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
         p_10m_pct = b.get("yes_price_10m_pct_change", price_pct_change)
         p_6h_pct = b.get("yes_price_6h_pct_change", price_pct_change)
 
-        model_str = f"{model_prob * 100:.1f}%" if model_prob is not None else "-"
+        model_str_smart = f"{model_prob * 100:.1f}%" if model_prob is not None else "-"
         if model_prob is not None and (m_10m_chg is not None or m_6h_chg is not None):
-            model_str += _format_pct_paren(
+            model_str_smart += _format_pct_paren(
                 float(m_10m_chg) * 100.0 if m_10m_chg is not None else None,
                 float(m_6h_chg) * 100.0 if m_6h_chg is not None else None,
             )
+        model_str_leg = f"{raw_model_prob * 100:.1f}%" if raw_model_prob is not None else model_str_smart
+        if raw_model_prob is not None and (m_10m_chg is not None or m_6h_chg is not None):
+            model_str_leg += _format_pct_paren(
+                float(m_10m_chg) * 100.0 if m_10m_chg is not None else None,
+                float(m_6h_chg) * 100.0 if m_6h_chg is not None else None,
+            )
+        model_str = f'<span class="smart-val">{model_str_smart}</span><span class="legacy-val" style="display:none">{model_str_leg}</span>'
 
         market_str = f"{yes_price * 100:.1f}%" if yes_price is not None else "-"
         if yes_price is not None and (p_10m_chg is not None or p_6h_chg is not None):
@@ -1156,83 +2151,94 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
         if yes_price is not None and (p_10m_pct is not None or p_6h_pct is not None):
             price_str += _format_pct_paren(p_10m_pct, p_6h_pct)
 
-        best_bid = b.get("best_bid")
-        best_ask = b.get("best_ask")
-        spread = float(b.get("bid_ask_spread") or 0.0)
-        if best_bid is not None and best_ask is not None:
-            sp_c = round(spread * 100)
-            sp_color = "var(--amber)" if sp_c >= 5 else "var(--text-dim)"
-            price_str += (
-                f'<div style="font-size:10px;color:{sp_color};margin-top:2px;direction:ltr">'
-                f'Bid/Ask: {round(float(best_bid)*100)}¢/{round(float(best_ask)*100)}¢ (اسپرد {sp_c}¢)</div>'
-            )
-
         belief_val = b.get("smart_belief_prob") if b.get("smart_belief_prob") is not None else b.get("belief_prob")
-        belief_str = f"{belief_val * 100:.1f}%" if belief_val is not None else "-"
+        raw_belief_val = b.get("belief_prob")
+        belief_str_smart = f"{belief_val * 100:.1f}%" if belief_val is not None else "-"
+        belief_str_leg = f"{raw_belief_val * 100:.1f}%" if raw_belief_val is not None else belief_str_smart
+        belief_str = f'<span class="smart-val">{belief_str_smart}</span><span class="legacy-val" style="display:none">{belief_str_leg}</span>'
 
         ev_val = b.get("smart_ev") if b.get("smart_ev") is not None else b.get("ev")
-        if ev_val is None:
-            ev_str = "-"
-        else:
-            ev_pct = ev_val * 100
-            ev_css = "win" if ev_pct > 0 else ("loss" if ev_pct < 0 else "")
-            ev_sign = "+" if ev_pct > 0 else ""
-            ev_str = f'<span class="{ev_css}">{ev_sign}{ev_pct:.1f}%</span>' if ev_css else f"{ev_pct:.1f}%"
-
-        # ستون پتانسیل نوسان‌گیری و هدف ارزش منصفانه مدل (ویژه سیو سود پیش از Resolve)
-        fair_c = round(float(model_prob) * 100) if model_prob is not None else None
-        curr_c = round(float(yes_price) * 100) if yes_price is not None else None
-        if is_elim:
-            swing_html = '<span class="signal-badge" style="background:var(--red-bg);color:var(--red);border-color:#dc262655">❌ رد شده با دمای فعلی (METAR)</span>'
-        elif fair_c is not None and curr_c is not None:
-            diff_fair = fair_c - curr_c
-            upside_pct = round((diff_fair / max(1, curr_c)) * 100)
-            if fair_c >= 8 and curr_c >= 2 and diff_fair >= 5:
-                swing_html = f'<span class="signal-badge signal-green">🎯 مستعد رشد تا {fair_c}¢ (+{upside_pct}%)</span>'
-            elif curr_c >= 8 and curr_c >= fair_c + 4:
-                swing_html = f'<span class="signal-badge" style="background:var(--amber-bg);color:var(--amber);border-color:#b4530955">💰 اشباع قیمت (ارزش مدل: {fair_c}¢)</span>'
-            else:
-                swing_html = f'<span style="font-size:11.5px;color:var(--text-dim)">ارزش مدل: <b>{fair_c}¢</b></span>'
-        else:
-            swing_html = "-"
+        raw_ev_val = b.get("ev")
+        def _fmt_ev_cell(v):
+            if v is None:
+                return "-"
+            ep = v * 100
+            ecss = "win" if ep > 0 else ("loss" if ep < 0 else "")
+            esign = "+" if ep > 0 else ""
+            return f'<span class="{ecss}">{esign}{ep:.1f}%</span>' if ecss else f"{ep:.1f}%"
+        ev_str = f'<span class="smart-val">{_fmt_ev_cell(ev_val)}</span><span class="legacy-val" style="display:none">{_fmt_ev_cell(raw_ev_val if raw_ev_val is not None else ev_val)}</span>'
 
         market_id = str(b.get("market_id", ""))
-        yes_token = b.get("yes_token_id", "")
+        yes_token = str(b.get("yes_token_id", "") or "")
+        no_token = str(b.get("no_token_id", "") or "")
 
         is_main = (not is_elim) and main_signal_id is not None and market_id == main_signal_id
-        label_html = f'<span class="ltr-inline">{label}</span> ' + (_signal_badge_html(is_main, ev_val) if not is_elim else "")
+        is_smart_main = bool(b.get("is_smart_main"))
+        label_html = f'<span class="ltr-inline" style="font-weight:600">{label}</span> ' + (
+            _signal_badge_html(is_main, is_smart_main, ev_val) if not is_elim else ""
+        )
 
         is_locked = (city_slug, date, market_id) in locked_keys
         action_html = ""
         status_span = f'<span class="lock-status" id="lockstatus-{market_id}"></span>' if market_id else ""
         if yes_price is not None and market_id:
+            mp_js = "null" if model_prob is None else f"{float(model_prob):.4f}"
+            bp_js = "null" if belief_val is None else f"{float(belief_val):.4f}"
+            ev_js = "null" if ev_val is None else f"{float(ev_val):.4f}"
             if is_locked:
-                unlock_call = "unlockBucket('{0}','{1}','{2}','{3}','{4}')".format(
-                    city_slug, city_name, date, market_id, label
+                lock_obj = open_locks_map.get((city_slug, date, market_id), {})
+                l_side = lock_obj.get("side", "YES")
+                l_entry = float(lock_obj.get("entry_price") or yes_price)
+                l_tp = float(lock_obj.get("tp_price") or min(0.99, l_entry * 1.35))
+                l_sl = float(lock_obj.get("sl_price") or max(0.01, l_entry * 0.72))
+                l_usdc = float(lock_obj.get("usdc_amount") or 15.0)
+                l_exec = lock_obj.get("execution_mode") or "SHADOW"
+                l_otype = lock_obj.get("entry_order_type") or "IMMEDIATE_MARKETABLE"
+                l_auto = "true" if lock_obj.get("smart_autopilot", True) else "false"
+                edit_call = (
+                    f"openOrderModal({{mode:'edit',city:'{city_slug}',cityName:'{city_name}',date:'{date}',"
+                    f"marketId:'{market_id}',tokenId:'{yes_token}',noTokenId:'{no_token}',side:'{l_side}',"
+                    f"yesPrice:{float(yes_price):.4f},entryPrice:{l_entry:.4f},existingTpPrice:{l_tp:.4f},"
+                    f"existingSlPrice:{l_sl:.4f},usdcAmount:{l_usdc},executionMode:'{l_exec}',"
+                    f"entryOrderType:'{l_otype}',smartAutopilot:{l_auto},label:'{label}',"
+                    f"marketType:'{market_type}',modelProb:{mp_js},beliefProb:{bp_js},ev:{ev_js}}})"
                 )
+                unlock_call = f"unlockBucket('{city_slug}','{city_name}','{date}','{market_id}','{label}')"
                 action_html = (
-                    '<span class="locked-badge">قفل \u2714</span>'
-                    f'<button class="unlock-btn" onclick="{unlock_call}">حذف قفل</button>'
+                    '<span class="locked-badge">\U0001F512 پوزیشن فعال \u2714</span>'
+                    '<div style="display:flex;align-items:center;justify-content:center;gap:4px">'
+                    f'<button class="edit-btn" onclick="{edit_call}">⚙️ تنظیمات TP/SL</button>'
+                    f'<button class="unlock-btn" onclick="{unlock_call}">فروش</button>'
+                    '</div>'
                     f'{status_span}'
                 )
             else:
-                lock_call = "lockBucket('{0}','{1}','{2}','{3}','{4}','YES',{5},'{6}','{7}')".format(
-                    city_slug, city_name, date, market_id, yes_token, yes_price, label, market_type
+                create_call = (
+                    f"openOrderModal({{mode:'create',city:'{city_slug}',cityName:'{city_name}',date:'{date}',"
+                    f"marketId:'{market_id}',tokenId:'{yes_token}',noTokenId:'{no_token}',side:'YES',"
+                    f"yesPrice:{float(yes_price):.4f},label:'{label}',marketType:'{market_type}',"
+                    f"modelProb:{mp_js},beliefProb:{bp_js},ev:{ev_js}}})"
                 )
                 action_html = (
-                    f'<button class="lock-btn" onclick="{lock_call}">قفل کن</button>'
+                    f'<button class="lock-btn" onclick="{create_call}">⚡ خرید و تنظیم اتوماتیک</button>'
                     f'{status_span}'
                 )
 
-        row_cls = "" if is_plausible else " class='low-plausibility-row' style='display:none'"
+        row_classes = []
+        if not is_plausible:
+            row_classes.append("low-plausibility-row")
+        if is_smart_main:
+            row_classes.append("smart-main-row")
+        cls_attr = f" class=\"{' '.join(row_classes)}\"" if row_classes else ""
+        style_attr = " style='display:none'" if not is_plausible else ""
         rows.append(
-            f"<tr{row_cls}><td>{label_html}</td><td class='ltr-inline'>{model_str}</td><td class='ltr-inline'>{market_str}</td>"
-            f"<td class='ltr-inline'>{price_str}</td><td class='ltr-inline'>{belief_str}</td><td class='ltr-inline'>{ev_str}</td>"
-            f"<td>{swing_html}</td><td>{action_html}</td></tr>"
+            f"<tr{cls_attr}{style_attr}><td>{label_html}</td><td class='ltr-inline'>{model_str}</td><td class='ltr-inline'>{market_str}</td>"
+            f"<td class='ltr-inline'>{price_str}</td><td class='ltr-inline' style='font-weight:600'>{belief_str}</td><td class='ltr-inline'>{ev_str}</td>"
+            f"<td>{action_html}</td></tr>"
         )
     if not has_visible:
         return '<div class="empty">داده‌ای موجود نیست.</div>'
-    rows.append("</table>")
+    rows.append("</tbody></table>")
     return "".join(rows)
 
 
@@ -1257,6 +2263,7 @@ def _load_market_by_key_min(city, date):
 
 
 def _locked_signals_section_html(locks):
+    """جدول ۱۰ ستونهٔ پوزیشن‌ها و سیگنال‌های قفل‌شدهٔ فعال دقیقاً مشابه پیش‌نمایش AI Studio."""
     open_locks = [l for l in locks if l.get("status") == "open"]
     if not open_locks:
         return ""
@@ -1274,7 +2281,7 @@ def _locked_signals_section_html(locks):
         if mkt is not None and mkt.get("status") in RESOLVED_LIKE_STATUSES:
             continue
 
-        time_str, awaiting_settlement = _local_day_time_label(city, date, now)
+        time_str, _ = _local_day_time_label(city, date, now)
         unit_sym = mkt.get("unit", "") if mkt else ""
         bucket_label = _find_locked_bucket_label(mkt, l.get("market_id"), unit_sym)
 
@@ -1287,87 +2294,167 @@ def _locked_signals_section_html(locks):
 
         name = LOCATIONS.get(city, {}).get("name", city)
         link = _build_polymarket_url_min(city, date) if is_min else _build_polymarket_url(city, date)
-        name_html = f'<a href="{link}" target="_blank" rel="noopener">{name}</a>'
+        exec_mode = l.get("execution_mode") or "SHADOW"
+        is_pending = (l.get("position_state") == "ENTRY_PENDING")
+        smart_auto = bool(l.get("smart_autopilot", True))
+
+        exec_badge_style = (
+            "background:var(--red-bg);color:var(--red);border:1px solid #dc262644"
+            if exec_mode == "LIVE"
+            else (
+                "background:var(--blue-bg);color:var(--blue);border:1px solid #2563eb44"
+                if exec_mode == "SHADOW"
+                else "background:var(--surface-2);color:var(--text-dim);border:1px solid var(--border)"
+            )
+        )
+        auto_badge = (
+            '<span style="display:inline-block;padding:1px 6px;border-radius:4px;font-size:9.5px;font-weight:700;background:var(--green-bg);color:var(--green);border:1px solid #16a34a44">🤖 اتوماتیک</span>'
+            if smart_auto else ""
+        )
+        city_col_html = (
+            f'<a href="{link}" target="_blank" rel="noopener" style="font-weight:700;display:block">{name}</a>'
+            f'<div style="display:flex;align-items:center;justify-content:center;gap:4px;margin-top:2px;flex-wrap:wrap">'
+            f'<span class="ltr-inline" style="padding:1px 6px;border-radius:4px;font-size:10px;font-weight:700;{exec_badge_style}">{exec_mode}</span>'
+            f'{auto_badge}</div>'
+        )
+
+        mtype_label = "❄️ کمینه" if is_min else "🔥 بیشینه"
+        side_style = "background:#fef2f2;color:#dc2626" if side == "NO" else "background:#eff6ff;color:#2563eb"
+        state_html = (
+            '<span style="display:block;margin-top:2px;font-size:10px;font-weight:700;color:var(--purple)">⏳ خرید شرطی</span>'
+            if is_pending
+            else '<span style="display:block;margin-top:2px;font-size:10px;font-weight:700;color:var(--green)">👁️ فعال (WATCHING)</span>'
+        )
+        type_col_html = (
+            f'<div style="font-size:12px">{mtype_label}</div>'
+            f'<span style="display:inline-block;margin-top:2px;padding:1px 6px;border-radius:4px;font-size:10.5px;font-weight:700;{side_style}">{side}</span>'
+            f'{state_html}'
+        )
+
+        usdc_amt = l.get("usdc_amount")
+        qty_shares = l.get("quantity_shares")
+        if usdc_amt is not None:
+            size_col_html = (
+                f'<div><b>${float(usdc_amt):.2f}</b>'
+                f'<span style="display:block;font-size:10.5px;color:var(--text-dim)">{float(qty_shares or 0):.1f} سهم</span></div>'
+            )
+        else:
+            size_col_html = '<span style="color:var(--text-dim)">1 واحد</span>'
 
         entry = l.get("entry_price")
-        entry_str = f"{entry:.3f}" if entry is not None else "-"
         last = l.get("last_price")
         if last is None and bucket_obj is not None and bucket_obj.get("yes_price") is not None:
             yp_b = float(bucket_obj["yes_price"])
             last = (1.0 - yp_b) if side == "NO" else yp_b
-        last_str = f"{last:.3f}" if last is not None else "-"
 
-        pct = l.get("last_pct")
-        if pct is None and entry and last is not None and float(entry) > 0:
-            pct = round(((float(last) - float(entry)) / float(entry)) * 100.0, 1)
-        if pct is None:
-            pct_html = "-"
-        else:
-            css = "win" if pct >= 0 else "loss"
-            pct_html = f'<span class="{css}">{pct:+.1f}%</span>'
+        entry_c_str = f"{float(entry)*100:.1f}" if entry is not None else "-"
+        curr_c_str = f"{float(last)*100:.1f}" if last is not None else "-"
 
-        # مشاور هوشمند سیو سود و مقایسه با ارزش منصفانه مدل
         raw_mp = (bucket_obj.get("smart_model_prob") or bucket_obj.get("model_prob")) if bucket_obj else None
-        is_elim = bool(bucket_obj.get("intraday_eliminated", False)) if bucket_obj else False
-        entry_c = round(float(entry) * 100) if entry is not None else None
-        curr_c = round(float(last) * 100) if last is not None else None
         if raw_mp is not None:
             fair_p = (1.0 - float(raw_mp)) if side == "NO" else float(raw_mp)
             fair_c = round(fair_p * 100)
         else:
             fair_c = l.get("model_fair_cents")
 
-        if is_elim and side == "YES":
-            advisor_html = '<span class="signal-badge" style="background:var(--red-bg);color:var(--red);border-color:#dc262655">🚨 خروج فوری (رد شده با METAR)</span>'
-        elif fair_c is not None and curr_c is not None and entry_c is not None:
-            if curr_c > entry_c and curr_c >= fair_c and (pct or 0) >= 10:
-                advisor_html = f'<span class="signal-badge signal-green">💰 پیشنهاد سیو سود قطعی! (هدف مدل: {fair_c}¢)</span>'
-            elif (pct or 0) >= 20:
-                advisor_html = f'<span class="signal-badge signal-green">🎯 در ناحیه سیو سود (ارزش مدل: {fair_c}¢)</span>'
-            elif fair_c <= entry_c - 5 and fair_c < curr_c:
-                advisor_html = f'<span class="signal-badge" style="background:var(--amber-bg);color:var(--amber);border-color:#b4530955">⚠️ تضعیف مدل به {fair_c}¢ (زیر ورود)</span>'
-            elif fair_c >= curr_c + 4:
-                advisor_html = f'<span class="signal-badge signal-blue">⏳ نگهداری تا هدف مدل: {fair_c}¢ (+{fair_c - curr_c}¢)</span>'
-            else:
-                advisor_html = f'<span style="font-size:11.5px;color:var(--text-dim)">ارزش منصفانه مدل: <b>{fair_c}¢</b></span>'
+        fair_note = f'<span style="display:block;font-size:10.5px;color:var(--blue)">مدل: {fair_c}¢</span>' if fair_c is not None else ""
+        if is_pending:
+            price_col_html = (
+                f'<div><span style="font-size:10.5px;color:var(--purple);font-weight:700;display:block">شرط خرید: ≤{entry_c_str}¢</span>'
+                f'<span style="font-size:12px;color:var(--text-dim)">فعلی: {curr_c_str}¢</span>{fair_note}</div>'
+            )
         else:
-            advisor_html = "-"
+            price_col_html = (
+                f'<span style="color:var(--text-dim)">{entry_c_str}¢</span>'
+                f'<span style="margin:0 4px;color:#9aa0a6">→</span>'
+                f'<span style="font-weight:700">{curr_c_str}¢</span>{fair_note}'
+            )
+
+        tp_price = l.get("tp_price")
+        sl_price = l.get("sl_price")
+        if l.get("auto_exit_enabled") is False:
+            tpsl_col_html = '<span style="color:var(--text-dim);font-size:11px">غیرفعال (دستی)</span>'
+        else:
+            tp_c = round(float(tp_price) * 100) if tp_price is not None else (round(float(entry) * 135) if entry else None)
+            sl_c = round(float(sl_price) * 100) if sl_price is not None else (round(float(entry) * 72) if entry else None)
+            badges = []
+            if l.get("tp_enabled") is not False and tp_c is not None:
+                badges.append(f'<span style="background:var(--green-bg);color:var(--green);border:1px solid #16a34a44;padding:2px 8px;border-radius:4px;font-size:10.5px;font-weight:700">🎯 TP: {tp_c}¢</span>')
+            if l.get("sl_enabled") is not False and sl_c is not None:
+                badges.append(f'<span style="background:var(--red-bg);color:var(--red);border:1px solid #dc262644;padding:2px 8px;border-radius:4px;font-size:10.5px;font-weight:700">🛑 SL: {sl_c}¢</span>')
+            if l.get("trailing_stop_enabled"):
+                badges.append(f'<span style="font-size:10px;color:var(--purple);font-weight:600">📈 Trailing {l.get("trailing_offset_pct") or 8}%</span>')
+            tpsl_col_html = f'<div style="display:flex;flex-direction:column;align-items:center;gap:3px">{"".join(badges) or "-"}</div>'
+
+        pct = l.get("last_pct")
+        if pct is None and entry and last is not None and float(entry) > 0:
+            pct = round(((float(last) - float(entry)) / float(entry)) * 100.0, 1)
+        if is_pending:
+            pnl_col_html = '<span style="font-size:11px;font-weight:600;color:var(--purple)">در انتظار ورود</span>'
+        elif pct is None:
+            pnl_col_html = "-"
+        else:
+            css = "win" if pct >= 0 else "loss"
+            pnl_col_html = f'<span class="{css}" style="font-size:13.5px">{pct:+.1f}%</span>'
 
         last_checked = l.get("last_checked_at")
-        if last_checked:
-            updated_html = f'<span class="relative-time" data-ts="{last_checked}"></span>'
-        else:
-            updated_html = "-"
+        updated_html = f'<div class="relative-time" data-ts="{last_checked}" style="font-size:10px;opacity:0.8"></div>' if last_checked else ""
+        time_col_html = f'<div class="ltr-inline" style="font-size:11px;color:var(--text-dim)"><div>{time_str or "active"}</div>{updated_html}</div>'
 
         market_id = str(l.get("market_id", ""))
-        unlock_call = "unlockBucket('{0}','{1}','{2}','{3}','{4}')".format(
-            city, name, date, market_id, bucket_label
+        token_id = str(l.get("token_id") or "")
+        yes_p_val = float(bucket_obj.get("yes_price") or entry or 0.25) if bucket_obj else float(entry or 0.25)
+        l_entry_val = float(entry or 0.25)
+        l_tp_val = float(tp_price or min(0.99, l_entry_val * 1.35))
+        l_sl_val = float(sl_price or max(0.01, l_entry_val * 0.72))
+        l_usdc_val = float(usdc_amt or 15.0)
+        l_otype = l.get("entry_order_type") or "IMMEDIATE_MARKETABLE"
+        l_auto_js = "true" if smart_auto else "false"
+        mp_js = "null" if raw_mp is None else f"{float(raw_mp):.4f}"
+
+        edit_call = (
+            f"openOrderModal({{mode:'edit',city:'{city}',cityName:'{name}',date:'{date}',"
+            f"marketId:'{market_id}',tokenId:'{token_id}',side:'{side}',"
+            f"yesPrice:{yes_p_val:.4f},entryPrice:{l_entry_val:.4f},existingTpPrice:{l_tp_val:.4f},"
+            f"existingSlPrice:{l_sl_val:.4f},usdcAmount:{l_usdc_val},executionMode:'{exec_mode}',"
+            f"entryOrderType:'{l_otype}',smartAutopilot:{l_auto_js},label:'{bucket_label}',"
+            f"marketType:'{'min' if is_min else 'max'}',modelProb:{mp_js},beliefProb:{mp_js},ev:null}})"
         )
+        unlock_call = f"unlockBucket('{city}','{name}','{date}','{market_id}','{bucket_label}')"
+        exit_btn_label = "✕ لغو خرید شرطی" if is_pending else "🚨 خروج اضطراری"
+
         action_html = (
-            f'<button class="unlock-btn" onclick="{unlock_call}">حذف قفل</button>'
+            '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px">'
+            f'<button class="edit-btn" onclick="{edit_call}">⚙️ تنظیمات / تست TP-SL</button>'
+            f'<button class="unlock-btn" onclick="{unlock_call}">{exit_btn_label}</button>'
+            '</div>'
             f'<span class="lock-status" id="lockstatus-{market_id}-active"></span>'
         )
 
         visible_rows.append(
-            f"<tr><td>{name_html}</td><td>{date}</td><td>{bucket_label}</td>"
-            f"<td>{entry_str}</td><td>{last_str}</td><td>{pct_html}</td>"
-            f"<td>{advisor_html}</td><td>{time_str}</td><td>{updated_html}</td><td>{action_html}</td></tr>"
+            f"<tr><td>{city_col_html}</td><td>{type_col_html}</td><td class='ltr-inline'>{date}</td>"
+            f"<td class='ltr-inline' style='font-weight:700'>{bucket_label}</td><td class='ltr-inline'>{size_col_html}</td>"
+            f"<td class='ltr-inline'>{price_col_html}</td><td class='ltr-inline'>{tpsl_col_html}</td>"
+            f"<td class='ltr-inline'>{pnl_col_html}</td><td>{time_col_html}</td><td>{action_html}</td></tr>"
         )
 
     if not visible_rows:
         return ""
 
     rows = [
-        "<table><tr><th>شهر</th><th>تاریخ</th><th>دمای سیگنال قفل‌شده</th>"
-        "<th>قیمت قفل‌شده</th><th>قیمت فعلی</th><th>درصد تغییر</th>"
-        "<th>مشاور سیو سود و ارزش مدل</th><th>تا پایان روز محلی</th><th>آخرین به‌روزرسانی</th><th>عملیات</th></tr>"
+        "<table><thead><tr><th>شهر / حالت</th><th>نوع / سمت</th><th>تاریخ</th><th>باکت دما</th>"
+        "<th>حجم پوزیشن</th><th>ورود ← Bid فعلی</th><th>اهداف خودکار (TP / SL)</th>"
+        "<th>سود / زیان</th><th>زمان باقی‌مانده</th><th>مدیریت سفارش و خروج</th></tr></thead><tbody>"
     ] + visible_rows
-    rows.append("</table>")
+    rows.append("</tbody></table>")
     table_html = "".join(rows)
 
     return (
-        "<details class='city-block locked-section' open>"
-        f"<summary><b>\U0001F512 سیگنال‌های قفل‌شدهٔ فعال و مشاور سیو سود</b> ({len(visible_rows)})</summary>"
+        "<details class='city-block locked-section' open style='margin-bottom:16px'>"
+        "<summary style='display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px'>"
+        f"<span><b>\U0001F512 پوزیشن‌ها و سیگنال‌های قفل‌شدهٔ فعال ({len(visible_rows)})</b></span>"
+        "<span style='font-size:11px;font-weight:600;background:#fff;color:var(--green);border:1px solid #16a34a55;padding:2px 10px;border-radius:6px'>🤖 موتور پایش خودکار TP / SL روی Best Bid فعال است</span>"
+        "</summary>"
         f"<div class='table-scroll'>{table_html}</div>"
         "</details>"
     )
@@ -1399,12 +2486,12 @@ def _submodel_bar_html(m):
         chips.append(f'<span class="sm-chip" style="border-color:#9333ea55;color:var(--purple)">پراکندگی مدل‌ها: ±{float(model_spread):.2f}{unit_sym}</span>')
     if obs_temp is not None:
         chips.append(f'<span class="sm-chip" style="background:var(--amber-bg);color:var(--amber);border-color:#b4530955;font-weight:700">🌡️ دمای ثبت‌شده امروز (METAR): {float(obs_temp):.1f}{unit_sym}</span>')
-    left_html = f"<div><b>زیرمدل‌ها (وزن BMA):</b> {''.join(chips)}</div>" if chips else ""
-    right_html = f"<div>💡 <b>وضعیت گیت:</b> {prof['gate_reason']}</div>" if prof else ""
+    left_html = f"<div><b style='color:var(--text)'>زیرمدل‌های هواشناسی:</b> {''.join(chips)}</div>" if chips else ""
+    right_html = f"<div>💡 <b style='color:var(--text)'>وضعیت گیت:</b> {prof['gate_reason']}</div>" if prof else ""
     return f'<div class="submodel-bar">{left_html}{right_html}</div>'
 
 
-def _date_block_common_html(m, city_slug, city_name, locked_keys, market_type="max"):
+def _date_block_common_html(m, city_slug, city_name, locked_keys, open_locks_map, market_type="max"):
     date = m.get("date", "")
     unit_sym = m.get("unit", "")
     main_signal_id = _main_signal_market_id(m)
@@ -1416,35 +2503,42 @@ def _date_block_common_html(m, city_slug, city_name, locked_keys, market_type="m
 
     f_legacy = m.get("forecast_mean")
     f_smart = m.get("smart_forecast_mean", f_legacy)
-    s_sigma = m.get("smart_sigma", m.get("sigma"))
-    obs_temp = m.get("observed_intraday_temp")
     mean_html = ""
     if f_smart is not None:
         corr_html = ""
         if f_legacy is not None and abs(float(f_smart) - float(f_legacy)) >= 0.08:
-            corr_html = f' <span style="color:var(--purple);font-weight:600">← اصلاح BMA از {float(f_legacy):.1f}{unit_sym}</span>'
-        sigma_html = f' | σ={float(s_sigma):.2f}' if s_sigma is not None else ''
-        obs_html = f' | <b style="color:var(--amber)">ثبت‌شده امروز: {float(obs_temp):.1f}{unit_sym}</b>' if obs_temp is not None else ''
-        mean_html = f' <span style="font-size:12px;color:var(--text-dim)">(پیش‌بینی هوشمند: <b class="ltr-inline" style="color:var(--text)">{float(f_smart):.1f}{unit_sym}</b>{corr_html}{sigma_html}{obs_html})</span>'
+            corr_html = f' <span class="ltr-inline smart-val" style="color:var(--purple);font-weight:600">(اصلاح از {float(f_legacy):.1f}{unit_sym})</span>'
+        leg_val_str = f"{float(f_legacy):.1f}{unit_sym}" if f_legacy is not None else f"{float(f_smart):.1f}{unit_sym}"
+        mean_html = (
+            f' <span style="font-size:12px;color:var(--text-dim);background:#fff;border:1px solid var(--border);border-radius:6px;padding:2px 8px;margin-right:6px">'
+            f'<span class="smart-val">پیش‌بینی هوشمند: <b class="ltr-inline" style="color:var(--text)">{float(f_smart):.1f}{unit_sym}</b></span>'
+            f'<span class="legacy-val" style="display:none">پیش‌بینی مدل: <b class="ltr-inline" style="color:var(--text)">{leg_val_str}</b></span>'
+            f'{corr_html}</span>'
+        )
 
+    time_badge = (
+        f'<span class="time-note" style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:2px 8px">⏱ {time_note}</span>'
+        if time_note else ""
+    )
     summary = (
-        f'<a href="{link}" target="_blank" rel="noopener">{city_name} ↗</a> \u2014 {date}'
-        f'{mean_html}  <span class="time-note">{time_note}</span>'
+        f'<div style="display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:space-between;width:96%;gap:8px">'
+        f'<div><a href="{link}" target="_blank" rel="noopener" style="font-weight:700">{city_name} ↗</a> — <b class="ltr-inline">{date}</b>{mean_html}</div>'
+        f'{time_badge}</div>'
     )
     sm_bar = _submodel_bar_html(m)
     table = _bucket_table(
         city_slug, city_name, date, unit_sym,
-        m.get("full_distribution"), locked_keys, main_signal_id, market_type=market_type,
+        m.get("full_distribution"), locked_keys, open_locks_map, main_signal_id, market_type=market_type,
     )
     return f"<details class='date-block' open><summary>{summary}</summary>{sm_bar}<div class='table-scroll'>{table}</div></details>"
 
 
-def _date_block_html(m, city_slug, city_name, locked_keys):
-    return _date_block_common_html(m, city_slug, city_name, locked_keys, market_type="max")
+def _date_block_html(m, city_slug, city_name, locked_keys, open_locks_map):
+    return _date_block_common_html(m, city_slug, city_name, locked_keys, open_locks_map, market_type="max")
 
 
-def _date_block_html_min(m, city_slug, city_name, locked_keys):
-    return _date_block_common_html(m, city_slug, city_name, locked_keys, market_type="min")
+def _date_block_html_min(m, city_slug, city_name, locked_keys, open_locks_map):
+    return _date_block_common_html(m, city_slug, city_name, locked_keys, open_locks_map, market_type="min")
 
 
 DAILY_PNL_VISIBLE_DAYS = 5
@@ -1480,11 +2574,11 @@ def _daily_pnl_section_html(locks):
         pcts = []
         rows = []
         reason_map = {
-            "closed_resolved": "تسویه نهایی",
+            "closed_resolved": "resolve خودکار",
             "closed_auto_tp": "🎯 سیو سود خودکار (TP)",
             "closed_auto_sl": "🛑 حد ضرر خودکار (SL)",
             "closed_auto_metar": "🌡️ حد ضرر METAR",
-            "closed_auto_trailing": "📈 تریلینگ استاپ",
+            "closed_auto_trailing": "📈 تریلینگ استاپ خودکار",
             "closed_manual": "حذف دستی",
         }
         for l in day_locks:
@@ -1507,19 +2601,19 @@ def _daily_pnl_section_html(locks):
             pct_str = f"<span class='{css}'>{pct:+.1f}%</span>" if pct is not None else "-"
 
             rows.append(
-                f"<tr><td>{name}</td><td>{l.get('date')}</td><td>{label}</td>"
-                f"<td>{entry_str}</td><td>{exit_str}</td><td>{pct_str}</td><td>{reason}</td></tr>"
+                f"<tr><td>{name}</td><td class='ltr-inline'>{l.get('date')}</td><td class='ltr-inline'>{label}</td>"
+                f"<td class='ltr-inline'>{entry_str}</td><td class='ltr-inline'>{exit_str}</td><td class='ltr-inline'>{pct_str}</td><td>{reason}</td></tr>"
             )
 
         avg_pct = sum(pcts) / len(pcts) if pcts else 0.0
         summary_css = "win" if avg_pct >= 0 else "loss"
         table_html = (
-            "<table><tr><th>شهر</th><th>تاریخ</th><th>باکت</th><th>ورود</th>"
-            "<th>خروج</th><th>درصد</th><th>دلیل</th></tr>" + "".join(rows) + "</table>"
+            "<table><thead><tr><th>شهر</th><th>تاریخ هدف</th><th>باکت</th><th>ورود</th>"
+            "<th>خروج</th><th>درصد</th><th>دلیل</th></tr></thead><tbody>" + "".join(rows) + "</tbody></table>"
         )
         return (
             f"<details class='date-block'{open_attr}>"
-            f"<summary>{date} \u2014 <span class='{summary_css}'>{avg_pct:+.1f}%</span></summary>"
+            f"<summary><b class='ltr-inline'>{date}</b> — <span class='{summary_css} ltr-inline'>{avg_pct:+.1f}%</span> <span style='font-size:12px;color:var(--text-dim);margin-right:6px'>({len(day_locks)} معامله بسته‌شده)</span></summary>"
             f"<div class='table-scroll'>{table_html}</div>"
             "</details>"
         )
@@ -1539,7 +2633,7 @@ def _daily_pnl_section_html(locks):
             "</details>"
         )
 
-    return "<h2 id='daily-section'>\U0001F4C5 گزارش روزانه</h2>" + "".join(blocks)
+    return "<h2 id='daily-section'>\U0001F4C5 گزارش روزانه (بر اساس تاریخ بسته‌شدن به وقت ایران)</h2>" + "".join(blocks)
 
 
 def _history_table_html(locks):
@@ -1553,8 +2647,8 @@ def _history_table_html(locks):
         table_html = '<div class="empty">هنوز هیچ معامله‌ای بسته نشده.</div>'
     else:
         parts = [
-            "<table id='historyTable'><tr><th>تاریخ</th><th>شهر</th><th>دمای سیگنال</th>"
-            "<th>دمای نهایی</th><th>خرید (سنت)</th><th>فروش (سنت)</th><th>برآیند</th></tr><tbody>"
+            "<table id='historyTable'><thead><tr><th>تاریخ</th><th>شهر</th><th>دمای سیگنال</th>"
+            "<th>دمای نهایی</th><th>خرید (سنت)</th><th>فروش (سنت)</th><th>برآیند</th></tr></thead><tbody>"
         ]
         for r in rows:
             pct = r["outcome_pct"]
@@ -1566,8 +2660,8 @@ def _history_table_html(locks):
             sell = r["sell_cents"] if r["sell_cents"] is not None else "-"
             parts.append(
                 f"<tr data-city=\"{r['city_name']}\" data-date=\"{r['date']}\">"
-                f"<td>{r['date']}</td><td>{r['city_name']}</td><td>{r['signal_label']}</td>"
-                f"<td>{r['final_temp']}</td><td>{r['buy_cents']}</td><td>{sell}</td><td>{pct_html}</td></tr>"
+                f"<td>{r['date']}</td><td>{r['city_name']}</td><td class='ltr-inline'>{r['signal_label']}</td>"
+                f"<td class='ltr-inline'>{r['final_temp']}</td><td>{r['buy_cents']}</td><td>{sell}</td><td>{pct_html}</td></tr>"
             )
         parts.append("</tbody></table>")
         table_html = "".join(parts)
@@ -1577,17 +2671,22 @@ def _history_table_html(locks):
 
 def _gate_badge_html(gd):
     if gd == "revert_to_shadow":
-        return '<span class="gate-badge">🔄 بازگشت به خام</span>'
+        return '<span class="gate-badge">🛡️ سوئیچ به مدل Shadow (حذف اورکورکشن)</span>'
     if gd == "sign_flip_damped":
-        return '<span class="gate-badge">🛑 ترمز چرخش فصل</span>'
+        return '<span class="gate-badge" style="background:var(--amber-bg);color:var(--amber);border-color:#b4530944">🍂 ترمز تغییر فصل فعال</span>'
     if gd == "smart_submodel_blend":
-        return '<span class="gate-badge">🧠 ترکیب هوشمند زیرمدل‌ها</span>'
-    return ''
+        return '<span class="gate-badge" style="background:var(--blue-bg);color:var(--blue);border-color:#2563eb44">⚖️ وزن‌دهی هوشمند زیرمدل‌ها</span>'
+    return '<span class="gate-badge" style="background:var(--green-bg);color:var(--green);border-color:#16a34a44">✅ کالیبره سودمند</span>'
 
 
 def _build_group_section(markets, date_block_fn, profiles, market_type="max"):
     locks = _load_locks()
     locked_keys = _load_locked_keys(locks)
+    open_locks_map = {
+        (l.get("city"), l.get("date"), str(l.get("market_id"))): l
+        for l in locks
+        if l.get("status") == "open"
+    }
 
     groups = defaultdict(list)
     for m in markets:
@@ -1606,7 +2705,7 @@ def _build_group_section(markets, date_block_fn, profiles, market_type="max"):
 
     parts = []
     if not sorted_slugs:
-        return '<div class="empty">هیچ بازار بازی برای نمایش وجود ندارد.</div>'
+        return '<div class="empty">هیچ بازار بازی برای نمایش وجود ندارد.</div>', 0
 
     for slug in sorted_slugs:
         city_name = city_names[slug]
@@ -1614,18 +2713,23 @@ def _build_group_section(markets, date_block_fn, profiles, market_type="max"):
         has_signal = group_has_signal(mlist)
         prof = profiles.get((slug, market_type)) or profiles.get((slug, "max"))
         us_flag = " 🇺🇸" if slug in US_CITIES else ""
-        badge = '<span class="main-badge">سیگنال فعال</span>' if has_signal else ""
+        badge = '<span class="main-badge">🟢 سیگنال فعال</span>' if has_signal else ""
         form_badge = ""
         gate_badge = ""
         hit_pct = 100
         if prof:
             hit_pct = prof["recent_hit_pct"]
             form_badge = f'<span class="form-badge form-{prof["form_status"]}">{prof["form_label"]}</span>'
-            gate_badge = _gate_badge_html(prof["gate_decision"])
+            if prof["gate_decision"] != "use_calibrated":
+                gate_badge = _gate_badge_html(prof["gate_decision"])
 
-        inner = "".join(date_block_fn(m, slug, city_name, locked_keys) for m in mlist)
-        count_note = f" &nbsp;({len(mlist)} تاریخ)" if len(mlist) > 1 else ""
-        summary = f"<b>{city_name}</b>{us_flag} {badge} {form_badge} {gate_badge}{count_note}"
+        inner = "".join(date_block_fn(m, slug, city_name, locked_keys, open_locks_map) for m in mlist)
+        count_note = f' <span style="font-size:11.5px;color:var(--text-dim);background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:2px 8px">{len(mlist)} تاریخ</span>' if len(mlist) > 1 else ""
+        summary = (
+            f'<div style="display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:space-between;width:96%;gap:8px">'
+            f'<div><b style="font-size:14.5px">{city_name}</b>{us_flag}{count_note} {badge}</div>'
+            f'<div>{form_badge} {gate_badge}</div></div>'
+        )
 
         is_us_attr = "1" if slug in US_CITIES else "0"
         parts.append(
@@ -1633,9 +2737,7 @@ def _build_group_section(markets, date_block_fn, profiles, market_type="max"):
             f"<summary>{summary}</summary>{inner}</details>"
         )
 
-    return "".join(parts)
-
-
+    return "".join(parts), len(sorted_slugs)
 
 
 def _build_accuracy_tab_html(profiles):
@@ -1655,7 +2757,7 @@ def _build_accuracy_tab_html(profiles):
         is_us_attr = "1" if p["is_us"] else "0"
         mtype = p["market_type"]
         mtype_label = "🔥 بیشینه" if mtype == "max" else "❄️ کمینه"
-        old_str = f"{p['old_hit_pct']}% (MAE {p['old_mae']}°)" if p["old_hit_pct"] is not None else "داده جدید"
+        old_str = f"{p['old_hit_pct']}%" if p["old_hit_pct"] is not None else "-"
         delta = p["hit_delta_pct"]
         if delta is None:
             delta_html = "-"
@@ -1666,74 +2768,140 @@ def _build_accuracy_tab_html(profiles):
         else:
             delta_html = "0%"
 
-        cal_vs_raw = "هم‌سطح / اصلاح‌شده"
+        cal_vs_raw = "-"
         if p["calibrated_mae"] is not None and p["raw_shadow_mae"] is not None:
-            diff = round(p["raw_shadow_mae"] - p["calibrated_mae"], 2)
-            if diff > 0.05:
-                cal_vs_raw = f'<span class="win">+{diff}° به نفع کالیبره</span>'
-            elif diff < -0.05:
-                cal_vs_raw = f'<span class="win">اصلاح‌شده با Shadow ({p["raw_shadow_mae"]}°)</span>'
+            cal_vs_raw = f"Cal: {p['calibrated_mae']} / Shd: <b>{p['raw_shadow_mae']}</b>"
 
-        best_sm = p["best_submodel"].upper() if p["best_submodel"] else "-"
+        best_sm = f'<span class="win">✔ {p["best_submodel"].upper()}</span>' if p["best_submodel"] else "-"
+        if p.get("worst_submodel") and p["worst_submodel"] != p.get("best_submodel"):
+            best_sm += f' <span class="loss">(✖ {p["worst_submodel"].upper()})</span>'
+
+        if p["form_status"] == "hot":
+            advice = "🟢 اولویت بالا برای ورود"
+        elif p["form_status"] == "stable":
+            advice = "🔵 مناسب با رعایت EV"
+        elif p["form_status"] == "cold_drop":
+            advice = "🟠 احتیاط (چرخش فصلی)"
+        else:
+            advice = "🔴 فقط با حاشیه امنیت بالا"
+
         display_style = "" if mtype == "max" else " style='display:none'"
         rows.append(
             f"<tr data-city-name='{p['city_name']}' data-mtype='{mtype}' data-is-us='{is_us_attr}'{display_style}>"
             f"<td>{idx}</td>"
             f"<td><b>{p['city_name']}</b>{us_flag}</td>"
             f"<td>{mtype_label}</td>"
-            f"<td><b>{p['recent_hit_pct']}%</b> ({p['recent_n']} روز)</td>"
-            f"<td>{p['recent_within1_pct']}%</td>"
-            f"<td class='ltr-inline'>{p['recent_mae']}°{p['unit']}</td>"
+            f"<td><span class='form-badge form-{p['form_status']}'>{p['form_label']}</span></td>"
+            f"<td><b>{p['recent_hit_pct']}%</b></td>"
+            f"<td style='color:var(--blue);font-weight:600'>{p['recent_within1_pct']}%</td>"
             f"<td>{old_str}</td>"
             f"<td class='ltr-inline'>{delta_html}</td>"
+            f"<td class='ltr-inline'>{p['recent_mae']}°{p['unit']}</td>"
             f"<td class='ltr-inline'>{cal_vs_raw}</td>"
-            f"<td>{best_sm}</td>"
-            f"<td><span class='form-badge form-{p['form_status']}'>{p['form_label']}</span> {_gate_badge_html(p['gate_decision'])}</td>"
+            f"<td class='ltr-inline'>{best_sm}</td>"
+            f"<td>{_gate_badge_html(p['gate_decision'])}</td>"
+            f"<td>{advice}</td>"
             f"</tr>"
         )
 
     table_html = (
         "<div class='table-scroll'><table id='accuracyLeaderboardTable'>"
-        "<thead><tr><th>#</th><th>شهر</th><th>نوع</th><th>دقت باکت دقیق (۱۴ روز اخیر)</th><th>دقت ±۱ باکت</th>"
-        "<th>خطای MAE اخیر</th><th>عملکرد قدیم</th><th>تغییر فرم</th>"
-        "<th>کالیبره در برابر خام</th><th>بهترین زیرمدل</th><th>وضعیت و تصمیم گیت</th></tr></thead>"
+        "<thead><tr><th>#</th><th>شهر</th><th>نوع</th><th>وضعیت فرم</th><th>دقت اخیر (باکت دقیق)</th><th>دقت با ±1 باکت</th>"
+        "<th>دقت قدیم</th><th>تغییر روند</th><th>خطای اخیر (MAE)</th>"
+        "<th>کالیبره vs Shadow</th><th>بهترین / بدترین مدل</th><th>تصمیم گیت هوشمند</th><th>پیشنهاد معاملاتی</th></tr></thead>"
         "<tbody>" + "".join(rows) + "</tbody></table></div>"
     )
 
+    # Raw daily station accuracy records table (matches Card 2 in AI Studio Preview)
+    raw_rows = []
+    total_acc_lines = 0
+    if ACCURACY_CSV.exists():
+        try:
+            with ACCURACY_CSV.open("r", encoding="utf-8-sig") as f:
+                reader = list(csv.reader(f))
+                data_lines = reader[1:] if len(reader) > 1 else []
+                total_acc_lines = len(data_lines)
+                for cols in reversed(data_lines[-120:]):
+                    if len(cols) < 9:
+                        continue
+                    c_name = cols[0].strip()
+                    dt_str = cols[1].strip()
+                    mt_str = cols[2].strip()
+                    f_m = cols[4].strip() or "-"
+                    sig_str = cols[5].strip() or "-"
+                    act_str = cols[6].strip() or "-"
+                    err_str = cols[7].strip() or "-"
+                    bias_str = cols[8].strip() or "-"
+                    out_raw = cols[12].strip() if len(cols) > 12 else "-"
+                    pnl_raw = cols[13].strip() if len(cols) > 13 else "-"
+                    out_html = (
+                        '<span style="background:var(--green-bg);color:var(--green);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">برد</span>'
+                        if out_raw == "win"
+                        else (
+                            '<span style="background:var(--red-bg);color:var(--red);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">باخت</span>'
+                            if out_raw == "loss"
+                            else out_raw
+                        )
+                    )
+                    raw_rows.append(
+                        f"<tr data-city-name='{c_name}'>"
+                        f"<td style='font-weight:600'>{c_name}</td><td class='ltr-inline'>{dt_str}</td><td>{mt_str}</td>"
+                        f"<td class='ltr-inline'>{f_m}</td><td class='ltr-inline'>{sig_str}</td>"
+                        f"<td class='ltr-inline' style='font-weight:600'>{act_str}</td><td class='ltr-inline'>{err_str}</td>"
+                        f"<td class='ltr-inline'>{bias_str}</td><td>{out_html}</td><td class='ltr-inline'>{pnl_raw}</td></tr>"
+                    )
+        except Exception:
+            pass
+
+    raw_card_html = (
+        f'<div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:16px">'
+        f'<h3 style="margin-top:0;font-size:14.5px">ریزِ رکوردهای روزانه دقت مدل در برابر دمای واقعی ایستگاه‌ها ({total_acc_lines} رکورد)</h3>'
+        f'<div class="table-scroll"><table id="rawAccuracyTable">'
+        f'<thead><tr><th>شهر</th><th>تاریخ</th><th>نوع بازار</th><th>پیش‌بینی مدل</th><th>سیگما (σ)</th>'
+        f'<th>دمای واقعی</th><th>خطای مطلق</th><th>بایاس</th><th>نتیجه</th><th>سود/زیان (u)</th></tr></thead>'
+        f'<tbody>{"".join(raw_rows)}</tbody></table></div></div>'
+    ) if raw_rows else ""
+
     return f"""
-    <h1>📊 جدول دقت پیش‌بینی شهرها و گیت کالیبراسیون هوشمند</h1>
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-title" style="color:var(--green)">🔥 شهرهای روی فرم (≥۶۰٪ دقت اخیر)</div>
-        <div class="kpi-val">{hot_count} شهر</div>
-        <div class="kpi-sub">شامل شهرهای اصلاح‌شده با گیت کالیبراسیون هوشمند ۱۴ روزه</div>
+    <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px">
+        <h2 style="margin:0;border:none;padding:0">🛡️ جدول رتبه‌بندی فرم اخیر شهرها و گیت کالیبراسیون هوشمند (Champion-Challenger 14d)</h2>
+        <a class="download-btn" style="background:var(--blue);color:#fff;border-color:var(--blue)" href="data/accuracy_report.csv" download="accuracy_report.csv">⬇ دانلود CSV دقت</a>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-title" style="color:var(--blue)">🇺🇸 میانگین دقت شهرهای آمریکا</div>
-        <div class="kpi-val">{us_avg}%</div>
-        <div class="kpi-sub">با احتساب باکت‌های ۲ درجه‌ای فارنهایت و اصلاح کالیبراسیون</div>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title" style="color:var(--green)">🔥 شهرهای روی فرم (≥۶۰٪ دقت اخیر)</div>
+          <div class="kpi-val">{hot_count} شهر</div>
+          <div class="kpi-sub">شامل شهرهای اصلاح‌شده با گیت کالیبراسیون هوشمند ۱۴ روزه</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title" style="color:var(--blue)">🇺🇸 میانگین دقت شهرهای آمریکا</div>
+          <div class="kpi-val">{us_avg}%</div>
+          <div class="kpi-sub">با احتساب باکت‌های ۲ درجه‌ای فارنهایت و اصلاح کالیبراسیون</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title" style="color:var(--purple)">🔄 شهرهای ارتقایافته پس از اصلاح</div>
+          <div class="kpi-val">{reverted_count} شهر</div>
+          <div class="kpi-sub">حذف اورکورکشن و بازگشت شهرهای آسیب‌دیده به دقت بالا</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title" style="color:var(--amber)">🛑 پایش چرخش فصلی (۵ روز به ۳۰ روز)</div>
+          <div class="kpi-val">{flips_count} شهر</div>
+          <div class="kpi-sub">محافظت خودکار در برابر تغییر علامت بایاس فصلی</div>
+        </div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-title" style="color:var(--purple)">🔄 شهرهای ارتقایافته پس از اصلاح</div>
-        <div class="kpi-val">{reverted_count} شهر</div>
-        <div class="kpi-sub">حذف اورکورکشن و بازگشت شهرهای آسیب‌دیده به دقت بالا</div>
+      <div class="toolbar" style="margin-bottom:12px">
+        <input type="text" id="accCitySearch" placeholder="جستجوی شهر در جدول دقت..." oninput="filterAccuracyTable()">
+        <button class="tab-btn active-blue" data-acc-type-btn="max" onclick="setAccuracyFilter('type','max')">🔥 دمای حداکثر (Max)</button>
+        <button class="tab-btn" data-acc-type-btn="min" onclick="setAccuracyFilter('type','min')">❄️ دمای حداقل (Min)</button>
+        <button class="tab-btn" data-acc-type-btn="all" onclick="setAccuracyFilter('type','all')">همه بازارها</button>
+        <button class="tab-btn active-blue" data-acc-region-btn="all" onclick="setAccuracyFilter('region','all')">🌍 همه کشورها</button>
+        <button class="tab-btn" data-acc-region-btn="us" onclick="setAccuracyFilter('region','us')">🇺🇸 فقط شهرهای آمریکا</button>
+        <button class="tab-btn" data-acc-region-btn="non_us" onclick="setAccuracyFilter('region','non_us')">🌐 غیرآمریکایی (°C)</button>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-title" style="color:var(--amber)">🛑 پایش چرخش فصلی (۵ روز به ۳۰ روز)</div>
-        <div class="kpi-val">{flips_count} شهر</div>
-        <div class="kpi-sub">محافظت خودکار در برابر تغییر علامت بایاس فصلی</div>
-      </div>
+      {table_html}
     </div>
-    <div class="toolbar" style="margin-bottom:12px">
-      <input type="text" id="accCitySearch" placeholder="جستجوی شهر در جدول دقت..." oninput="filterAccuracyTable()">
-      <button class="tab-btn active-blue" data-acc-type-btn="max" onclick="setAccuracyFilter('type','max')">🔥 دمای حداکثر (Max)</button>
-      <button class="tab-btn" data-acc-type-btn="min" onclick="setAccuracyFilter('type','min')">❄️ دمای حداقل (Min)</button>
-      <button class="tab-btn" data-acc-type-btn="all" onclick="setAccuracyFilter('type','all')">همه بازارها</button>
-      <button class="tab-btn active-blue" data-acc-region-btn="all" onclick="setAccuracyFilter('region','all')">🌍 همه کشورها</button>
-      <button class="tab-btn" data-acc-region-btn="us" onclick="setAccuracyFilter('region','us')">🇺🇸 فقط شهرهای آمریکا</button>
-      <button class="tab-btn" data-acc-region-btn="non_us" onclick="setAccuracyFilter('region','non_us')">🌐 غیرآمریکایی (°C)</button>
-    </div>
-    {table_html}
+    {raw_card_html}
     """
 
 
@@ -1753,9 +2921,11 @@ def build_simple_dashboard():
         if m.get("status") == "open" and m.get("full_distribution")
     ]
     locks = _load_locks()
+    open_locks_count = sum(1 for l in locks if l.get("status") == "open")
 
-    body_html = _locked_signals_section_html(locks) + _build_group_section(markets, _date_block_html, profiles, market_type="max")
-    min_body_html = _build_group_section(min_markets, _date_block_html_min, profiles, market_type="min")
+    locked_section_html = _locked_signals_section_html(locks)
+    body_html, max_cities_count = _build_group_section(markets, _date_block_html, profiles, market_type="max")
+    min_body_html, min_cities_count = _build_group_section(min_markets, _date_block_html_min, profiles, market_type="min")
 
     history_html, history_city_options, history_date_options = _history_table_html(locks)
     daily_pnl_html = _daily_pnl_section_html(locks)
@@ -1765,10 +2935,15 @@ def build_simple_dashboard():
     reference_dt = datetime.fromisoformat(scan_iso) if scan_iso else datetime.now(timezone.utc)
 
     html = HTML_TEMPLATE
+    html = html.replace("OPEN_MARKETS_COUNT", str(len(markets) + len(min_markets)))
+    html = html.replace("OPEN_LOCKS_COUNT", str(open_locks_count))
+    html = html.replace("MAX_CITIES_COUNT", str(max_cities_count))
+    html = html.replace("MIN_CITIES_COUNT", str(min_cities_count))
     html = html.replace("LASTUPDATE", _iran_time_str(reference_dt))
     html = html.replace("LASTSCANISO", scan_iso or "")
     html = html.replace("LASTSCANKIND", scan_kind or "")
     html = html.replace("LASTSCANFALLBACK", "بدون سابقهٔ اسکن" if not scan_iso else "")
+    html = html.replace("LOCKED_SECTION_HTML", locked_section_html)
     html = html.replace("MIN_BODYHTML", min_body_html)
     html = html.replace("BODYHTML", body_html)
     html = html.replace("DAILYPNLHTML", daily_pnl_html)
@@ -1790,3 +2965,4 @@ def build_simple_dashboard():
 if __name__ == "__main__":
     path = build_simple_dashboard()
     print(f"simple.html ساخته شد: {path}")
+

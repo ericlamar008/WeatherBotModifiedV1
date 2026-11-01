@@ -73,7 +73,7 @@ jobs:
           python-version: "3.11"
 
       - name: نصب پیش‌نیازها
-        run: pip install requests
+        run: pip install -r requirements.txt
 
       - name: پردازش قفل‌ها و حذف‌قفل‌های تازه + ساخت CSV تاریخچه
         env:
@@ -81,7 +81,7 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python lock_manager.py
 
-      - name: ثبت امن داده‌های قفل (بدون ساخت یا انتشار داشبورد -- آن کار برعهدهٔ monitor_locks.yml هر ۱۰ دقیقه است)
+      - name: ثبت امن داده‌های قفل و بازسازی فوری داشبورد ساده (simple.html)
         run: |
           REF="${{ github.ref_name }}"
           git config user.name "weatherbot-ci"
@@ -92,14 +92,19 @@ jobs:
           cp -a data/locked_signals.json /tmp/lock_backup/ 2>/dev/null || true
           cp -a data/lock_history.csv /tmp/lock_backup/ 2>/dev/null || true
 
-          git add data/locked_signals.json data/lock_history.csv
+          python dashboard_simple.py || true
+          mkdir -p docs
+          cp simple.html docs/simple.html 2>/dev/null || true
+          cp data/lock_history.csv docs/lock_history.csv 2>/dev/null || true
+
+          git add data/locked_signals.json data/lock_history.csv simple.html docs/simple.html docs/lock_history.csv
 
           if git diff --cached --quiet; then
             echo "تغییری در داده‌های قفل نبود -- چیزی برای کامیت نیست."
             exit 0
           fi
 
-          git commit -m "بروزرسانی قفل‌ها"
+          git commit -m "بروزرسانی قفل‌ها و داشبورد ساده"
 
           PUSHED=false
           for i in 1 2 3 4 5; do
@@ -114,12 +119,16 @@ jobs:
               git reset --hard "origin/${REF}"
               cp -a /tmp/lock_backup/locked_signals.json data/ 2>/dev/null || true
               cp -a /tmp/lock_backup/lock_history.csv data/ 2>/dev/null || true
-              git add data/locked_signals.json data/lock_history.csv
+              python dashboard_simple.py || true
+              mkdir -p docs
+              cp simple.html docs/simple.html 2>/dev/null || true
+              cp data/lock_history.csv docs/lock_history.csv 2>/dev/null || true
+              git add data/locked_signals.json data/lock_history.csv simple.html docs/simple.html docs/lock_history.csv
               if git diff --cached --quiet; then
                 PUSHED=true
                 break
               fi
-              git commit -m "بروزرسانی قفل‌ها"
+              git commit -m "بروزرسانی قفل‌ها و داشبورد ساده"
               if git push origin "HEAD:${REF}"; then
                 PUSHED=true
                 break

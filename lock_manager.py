@@ -192,11 +192,11 @@ def _is_already_processed_lock_issue(locks, issue, city, date, market_id):
     issue_id = issue.get("id")
     number = issue.get("number")
     for l in locks:
-        if issue_id and l.get("issue_id") == issue_id:
+        if issue_id and (l.get("issue_id") == issue_id or l.get("last_edit_issue_id") == issue_id):
             return True
         if (
             l.get("repo") == GITHUB_REPOSITORY
-            and l.get("issue_number") == number
+            and (l.get("issue_number") == number or l.get("last_edit_issue_number") == number)
             and l.get("city") == city
             and l.get("date") == date
             and str(l.get("market_id")) == str(market_id)
@@ -254,11 +254,23 @@ def process_lock_issues():
             _close_issue(number, "\u2139\ufe0f این درخواست قفل قبلاً ثبت شده بود و بسته شد.")
             continue
 
-        if _has_open_lock(locks, city, date, market_id):
+        existing_open_lock = next(
+            (
+                l for l in locks
+                if l.get("city") == city
+                and l.get("date") == date
+                and str(l.get("market_id")) == str(market_id)
+                and l.get("status") == "open"
+            ),
+            None,
+        )
+        is_edit_request = bool(data.get("mode") == "edit" or data.get("update_existing"))
+
+        if existing_open_lock is not None and not is_edit_request:
             _close_issue(number, "\u2139\ufe0f این باکت از قبل قفل باز دارد -- درخواست تکراری نادیده گرفته شد.")
             continue
 
-        side = data.get("side", "YES")
+        side = data.get("side", existing_open_lock.get("side", "YES") if existing_open_lock else "YES")
 
         entry_order_type = data.get("entry_order_type") or (
             "CONDITIONAL_LIMIT_GTC"
@@ -329,6 +341,38 @@ def process_lock_issues():
             or (round(usdc_amount / ref_entry, 2) if ref_entry > 0 else 0.0)
         )
 
+        if existing_open_lock is not None and is_edit_request:
+            existing_open_lock["execution_mode"] = data.get("execution_mode") or existing_open_lock.get("execution_mode") or "SHADOW"
+            existing_open_lock["exit_policy"] = data.get("exit_policy") or existing_open_lock.get("exit_policy") or "MARKETABLE_FAK"
+            existing_open_lock["smart_autopilot"] = smart_autopilot
+            existing_open_lock["auto_exit_enabled"] = auto_exit_enabled
+            existing_open_lock["tp_enabled"] = tp_enabled
+            existing_open_lock["sl_enabled"] = sl_enabled
+            existing_open_lock["tp_price"] = tp_price
+            existing_open_lock["sl_price"] = sl_price
+            existing_open_lock["tp_pct"] = tp_pct
+            existing_open_lock["sl_pct"] = sl_pct
+            existing_open_lock["trailing_stop_enabled"] = trailing_stop_enabled
+            existing_open_lock["trailing_offset_pct"] = trailing_offset_pct
+            existing_open_lock["metar_auto_stop"] = metar_auto_stop
+            existing_open_lock["auto_sell_99c"] = auto_sell_99c
+            existing_open_lock["max_slippage_pct"] = float(data.get("max_slippage_pct") or existing_open_lock.get("max_slippage_pct") or 2.0)
+            existing_open_lock["tick_size"] = float(data.get("tick_size") or existing_open_lock.get("tick_size") or 0.001)
+            existing_open_lock["usdc_amount"] = usdc_amount
+            existing_open_lock["quantity_shares"] = quantity_shares
+            if existing_open_lock.get("position_state") == "ENTRY_PENDING" and is_conditional:
+                existing_open_lock["limit_buy_price"] = limit_buy_price
+                existing_open_lock["entry_price"] = limit_buy_price
+            existing_open_lock["rule_version"] = int(existing_open_lock.get("rule_version") or 1) + 1
+            existing_open_lock["last_edit_issue_number"] = number
+            existing_open_lock["last_edit_issue_id"] = issue.get("id")
+            _close_issue(
+                number,
+                f"\u2705 تنظیمات پوزیشن بروزرسانی شد (v{existing_open_lock['rule_version']}): {city} {date} | TP={round(tp_price*100,1)}¢, SL={round(sl_price*100,1)}¢",
+            )
+            new_count += 1
+            continue
+
         entry = {
             "issue_number": number,
             "issue_id": issue.get("id"),
@@ -365,6 +409,7 @@ def process_lock_issues():
             "quantity_shares": quantity_shares,
             "filled_shares": 0.0 if is_conditional else quantity_shares,
             "peak_bid": entry_bid if not is_conditional else None,
+            "rule_version": 1,
             "locked_at": data.get("locked_at", datetime.now(timezone.utc).isoformat()),
             "status": "open",
             "last_price": None,
