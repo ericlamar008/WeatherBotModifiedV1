@@ -3,15 +3,15 @@
   "city_name": "New York",
   "date": "2026-10-30",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-10-28T21:41:01.810187+00:00",
   "committed_allocation": null,
-  "hours_left": 43.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-31T04:00:00+00:00",
   "event_end_date": "2026-10-30T12:00:00Z",
-  "last_scan": "2026-10-29T02:20:40.624801+00:00",
+  "last_scan": "2026-11-01T20:38:01.884084+00:00",
   "horizon_days": 2,
   "forecast_mean": 53.49,
   "sigma": 1.229,
@@ -571,7 +571,10 @@
       "market_prob": 0.27,
       "role": "main_signal",
       "units": 29.7,
-      "sell_value": 0.25
+      "sell_value": 0.25,
+      "won": true,
+      "pnl_units": 80.3,
+      "user_entered": false
     },
     {
       "market_id": "6335481",
@@ -587,7 +590,10 @@
       "market_prob": 0.73,
       "role": "scenario_hedge",
       "units": 53.26,
-      "sell_value": 0.71
+      "sell_value": 0.71,
+      "won": false,
+      "pnl_units": -53.26,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 83.0,
@@ -601,5 +607,50 @@
   "strategy_version": "auto-bb76bea385d114be",
   "last_price_refresh": "2026-11-01T20:37:20.573784+00:00",
   "observed_intraday_temp": null,
-  "last_lite_refresh": "2026-10-29T08:20:41.194306+00:00"
+  "last_lite_refresh": "2026-10-29T08:20:41.194306+00:00",
+  "actual_temp": 54.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 27.04,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6335481",
+      "question": "Will the lowest temperature in New York City be between 54-55°F on October 30?",
+      "range": [
+        54.0,
+        55.0
+      ],
+      "side": "YES",
+      "price": 0.27,
+      "model_prob": 0.4621,
+      "ev": 0.4334,
+      "market_prob": 0.27,
+      "role": "main_signal",
+      "units": 29.7,
+      "sell_value": 0.25,
+      "won": true,
+      "pnl_units": 80.3,
+      "user_entered": false
+    },
+    {
+      "market_id": "6335481",
+      "question": "Will the lowest temperature in New York City be between 54-55°F on October 30? (NO)",
+      "range": [
+        54.0,
+        55.0
+      ],
+      "side": "NO",
+      "price": 0.73,
+      "model_prob": 0.5379,
+      "ev": -0.1773,
+      "market_prob": 0.73,
+      "role": "scenario_hedge",
+      "units": 53.26,
+      "sell_value": 0.71,
+      "won": false,
+      "pnl_units": -53.26,
+      "user_entered": false
+    }
+  ]
 }
