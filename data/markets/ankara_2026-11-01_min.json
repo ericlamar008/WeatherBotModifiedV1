@@ -3,15 +3,15 @@
   "city_name": "Ankara",
   "date": "2026-11-01",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-10-31T02:20:41.141510+00:00",
   "committed_allocation": null,
-  "hours_left": 0.4,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-11-01T21:00:00+00:00",
   "event_end_date": "2026-11-01T12:00:00Z",
-  "last_scan": "2026-11-01T20:38:01.884084+00:00",
+  "last_scan": "2026-11-01T21:35:01.104886+00:00",
   "last_lite_refresh": "2026-11-01T14:20:42.929385+00:00",
   "forecast_mean": 5.29,
   "sigma": 2.066,
@@ -476,7 +476,10 @@
       "market_prob": 0.95,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.9
+      "sell_value": 0.9,
+      "won": true,
+      "pnl_units": 1.58,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -495,5 +498,31 @@
     "gem": 5.58,
     "icon_eu": 6.5
   },
-  "model_spread": 1.95
+  "model_spread": 1.95,
+  "actual_temp": 4.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 1.58,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6406503",
+      "question": "Will the lowest temperature in Ankara be 4°C on November 1?",
+      "range": [
+        4.0,
+        4.0
+      ],
+      "side": "YES",
+      "price": 0.95,
+      "model_prob": 0.2209,
+      "ev": -0.4988,
+      "market_prob": 0.95,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.9,
+      "won": true,
+      "pnl_units": 1.58,
+      "user_entered": false
+    }
+  ]
 }
