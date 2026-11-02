@@ -64,8 +64,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Stage ONLY the standalone strategy report files so we never conflict with data/locked_signals.json
-          git add docs/strategy-lab.html docs/strategy-lab-*.html quant_strategy_report.html
+          # Stage ONLY the standalone strategy report files & temporal sequence memory
+          git add docs/strategy-lab.html docs/strategy-lab-*.html quant_strategy_report.html data/temporal_memory.json
 
           if git diff --cached --quiet; then
             echo "No changes to strategy report."

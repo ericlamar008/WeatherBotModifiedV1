@@ -754,6 +754,7 @@ tr:hover td{background:rgba(246,248,251,0.65)}
     <div class="nav-tabs">
       <button id="tabBtnSimple" class="tab-btn active-blue" onclick="switchTab('simple')">داشبورد ساده (Simple)</button>
       <button id="tabBtnAccuracy" class="tab-btn" onclick="switchTab('accuracy')">📊 دقت شهرها و کالیبراسیون هوشمند</button>
+      <a href="strategy-lab.html" target="_blank" rel="noopener noreferrer" class="tab-btn" style="background:#eef2ff;color:#4338ca;border-color:#c7d2fe;text-decoration:none">🔬 آزمایشگاه کمّی و استراتژی شهرها</a>
       <button id="refreshBtn" class="refresh-btn" onclick="refreshDashboardNow()">↻ بروزرسانی</button>
     </div>
   </div>
@@ -1679,6 +1680,22 @@ function submitOrderModal() {
     auto_sell_99c: sell99
   };
 
+function markBucketLockedUI(marketId, isQuick) {
+  var stEl = document.getElementById("lock-status-" + marketId);
+  if (stEl && stEl.parentElement) {
+    var badgeText = isQuick ? "🔒 قفل معمولی فعال ✔" : "🔒 پوزیشن فعال ✔";
+    var badgeEl = stEl.parentElement.querySelector(".locked-badge");
+    if (!badgeEl) {
+      var span = document.createElement("span");
+      span.className = "locked-badge";
+      span.textContent = badgeText;
+      stEl.parentElement.insertBefore(span, stEl.parentElement.firstChild);
+    } else {
+      badgeEl.textContent = badgeText;
+    }
+  }
+}
+
   var isGitHubPages = window.location.hostname.indexOf('github.io') !== -1;
   if (!isGitHubPages) {
     // Try direct API first (AI Studio / Local Server), fall back to GitHub Issue if offline
@@ -1694,9 +1711,9 @@ function submitOrderModal() {
       throw new Error('fallback');
     }).then(function(res) {
       if (res && res.ok) {
+        markBucketLockedUI(modalCtx.marketId, false);
         setLockStatus(modalCtx.marketId, "✔ سفارش با موفقیت ثبت شد!", "#16a34a");
         closeOrderModal();
-        window.location.reload();
       } else {
         openGitHubIssueForOrder(payload);
       }
@@ -1722,6 +1739,7 @@ function openGitHubIssueForOrder(payload) {
   var win = window.open(url, "_blank");
   var fb = document.getElementById('modalFeedbackBox');
   if (win) {
+    markBucketLockedUI(modalCtx.marketId, false);
     if (fb) {
       fb.style.display = 'block';
       fb.style.background = '#e8f8ee';
@@ -1849,8 +1867,8 @@ function quickLockBucket(city, cityName, date, marketId, tokenId, side, price, l
       throw new Error('fallback');
     }).then(function(res) {
       if (res && res.ok) {
+        markBucketLockedUI(marketId, true);
         setLockStatus(marketId, "✔ قفل معمولی با موفقیت ثبت شد!", "#16a34a");
-        window.location.reload();
       } else {
         openGitHubIssueForQuickLock(city, cityName, date, marketId, tokenId, side, price, label, marketType);
       }
@@ -1883,6 +1901,7 @@ function openGitHubIssueForQuickLock(city, cityName, date, marketId, tokenId, si
   var url = "https://github.com/" + repo + "/issues/new?title=" + title + "&body=" + body + "&labels=lock-request";
   var win = window.open(url, "_blank");
   if (win) {
+    markBucketLockedUI(marketId, true);
     setLockStatus(marketId, "⚠️ در تب جدید حتماً روی «Submit new issue» کلیک کنید تا قفل ثبت شود!", "#f59e0b");
   } else {
     setLockStatus(marketId, "❌ مرورگر پاپ‌آپ را مسدود کرد -- اجازه بدهید و دوباره امتحان کنید.", "#f87171");
@@ -1890,7 +1909,7 @@ function openGitHubIssueForQuickLock(city, cityName, date, marketId, tokenId, si
 }
 
 function unlockBucket(city, cityName, date, marketId, label) {
-  setLockStatus(marketId, "⏳ در حال باز شدن گیت‌هاب...", "#eab308");
+  setLockStatus(marketId, "⏳ در حال حذف قفل...", "#eab308");
   var isGitHubPages = window.location.hostname.indexOf('github.io') !== -1;
   if (!isGitHubPages) {
     fetch('/api/locks/unlock', {
@@ -1898,7 +1917,10 @@ function unlockBucket(city, cityName, date, marketId, label) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ city: city, cityName: cityName, date: date, market_id: marketId, label: label, force_exit: true })
     }).then(function(r) {
-      if (r.ok) { window.location.reload(); return; }
+      if (r.ok) {
+        setLockStatus(marketId, "✔ قفل با موفقیت حذف و بسته شد.", "#16a34a");
+        return;
+      }
       throw new Error('fallback');
     }).catch(function() {
       openGitHubIssueForUnlock(city, cityName, date, marketId, label);
@@ -2319,23 +2341,40 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
     return "".join(rows)
 
 
+_MARKET_BY_KEY_MEM_CACHE = {}
+
+
 def _load_market_by_key(city, date):
+    key = (city, date, "max")
+    if key in _MARKET_BY_KEY_MEM_CACHE:
+        return _MARKET_BY_KEY_MEM_CACHE[key]
     p = MARKETS_DIR / f"{city}_{date}.json"
     if not p.exists():
+        _MARKET_BY_KEY_MEM_CACHE[key] = None
         return None
     try:
-        return json.loads(p.read_text(encoding="utf-8"))
+        data = json.loads(p.read_text(encoding="utf-8"))
+        _MARKET_BY_KEY_MEM_CACHE[key] = data
+        return data
     except Exception:
+        _MARKET_BY_KEY_MEM_CACHE[key] = None
         return None
 
 
 def _load_market_by_key_min(city, date):
+    key = (city, date, "min")
+    if key in _MARKET_BY_KEY_MEM_CACHE:
+        return _MARKET_BY_KEY_MEM_CACHE[key]
     p = MARKETS_DIR / f"{city}_{date}_min.json"
     if not p.exists():
+        _MARKET_BY_KEY_MEM_CACHE[key] = None
         return None
     try:
-        return json.loads(p.read_text(encoding="utf-8"))
+        data = json.loads(p.read_text(encoding="utf-8"))
+        _MARKET_BY_KEY_MEM_CACHE[key] = data
+        return data
     except Exception:
+        _MARKET_BY_KEY_MEM_CACHE[key] = None
         return None
 
 
@@ -2988,8 +3027,21 @@ def _build_accuracy_tab_html(profiles):
 
 
 def build_simple_dashboard():
+    _MARKET_BY_KEY_MEM_CACHE.clear()
+    if hasattr(history_manager, "clear_market_cache"):
+        history_manager.clear_market_cache()
     all_max = _load_all_markets()
     all_min = _load_all_min_markets()
+    for m in all_max:
+        k = (m.get("city"), m.get("date"), "max")
+        _MARKET_BY_KEY_MEM_CACHE[k] = m
+        if hasattr(history_manager, "_MARKET_MEM_CACHE"):
+            history_manager._MARKET_MEM_CACHE[k] = m
+    for m in all_min:
+        k = (m.get("city"), m.get("date"), "min")
+        _MARKET_BY_KEY_MEM_CACHE[k] = m
+        if hasattr(history_manager, "_MARKET_MEM_CACHE"):
+            history_manager._MARKET_MEM_CACHE[k] = m
     profiles = _build_city_form_profiles(all_max + all_min)
 
     markets = [

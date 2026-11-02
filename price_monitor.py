@@ -294,6 +294,17 @@ def _build_city_blocks(locks_subset, now, is_min):
             entry_c, curr_c, diff_cents, pct, pct_int = _calc_cent_consistent_pct(entry, current)
             l["last_pct"] = pct
 
+            # ثبت توالی زمانی قیمت روی پوزیشن قفل‌شده برای آزمایشگاه کمّی
+            traj = list(l.get("price_trajectory") or [])
+            now_short_iso = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+            if not traj and l.get("locked_at"):
+                traj.append({"t": str(l["locked_at"])[:19] + "Z", "p": round(entry, 4), "pct": 0.0})
+            if not traj or abs(float(current) - float(traj[-1].get("p", entry))) >= 0.004 or len(traj) == 1:
+                traj.append({"t": now_short_iso, "p": round(float(current), 4), "pct": pct})
+            if len(traj) > 48:
+                traj = traj[-48:]
+            l["price_trajectory"] = traj
+
             bucket_obj = _find_bucket(market, l["market_id"])
             raw_model_prob = bucket_obj.get("model_prob") if bucket_obj else None
             intraday_elim = bool(bucket_obj.get("intraday_eliminated", False)) if bucket_obj else False

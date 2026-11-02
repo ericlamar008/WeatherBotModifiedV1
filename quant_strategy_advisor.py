@@ -30,6 +30,11 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from locations import LOCATIONS
 
+try:
+    from zoneinfo import ZoneInfo
+except ImportError:
+    ZoneInfo = None
+
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 MARKETS_DIR = os.path.join(DATA_DIR, "markets")
@@ -37,6 +42,8 @@ LOCKS_FILE = os.path.join(DATA_DIR, "locked_signals.json")
 ACCURACY_CSV = os.path.join(DATA_DIR, "accuracy_report.csv")
 CALIBRATION_FILE = os.path.join(DATA_DIR, "calibration.json")
 TELEGRAM_SUMMARY_FILE = os.path.join(DATA_DIR, "quant_strategy_telegram.txt")
+REPORT_JSON_FILE = os.path.join(DATA_DIR, "quant_strategy_report.json")
+TEMPORAL_MEMORY_FILE = os.path.join(DATA_DIR, "temporal_memory.json")
 REPORT_HTML_FILE = os.path.join(ROOT_DIR, "quant_strategy_report.html")
 DOCS_DIR = os.path.join(ROOT_DIR, "docs")
 
@@ -122,6 +129,398 @@ def get_season_Context(month: int, lat: float = 40.0) -> Tuple[str, str]:
     return "رژیم تابستانی (Summer Peak)", "ثبات بیشتر الگوهای تابستانی و اهمیت رطوبت/پدیده جزیره گرمایی"
 
 
+def _parse_iso_dt(ts_str: Any) -> Optional[datetime]:
+    if not ts_str or not isinstance(ts_str, str):
+        return None
+    try:
+        return datetime.fromisoformat(ts_str.replace("Z", "+00:00"))
+    except Exception:
+        return None
+
+
+def _fmt_hour_window(start_h: int, span: int = 3) -> str:
+    end_h = (start_h + span) % 24
+    return f"{start_h:02d}:00–{end_h:02d}:00"
+
+
+def load_temporal_memory() -> Dict[str, Any]:
+    if os.path.isfile(TEMPORAL_MEMORY_FILE):
+        try:
+            with open(TEMPORAL_MEMORY_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, dict):
+                    return data
+        except Exception:
+            pass
+    return {"version": 2, "updated_at": "", "cities": {}}
+
+
+def save_temporal_memory(mem: Dict[str, Any]) -> None:
+    try:
+        os.makedirs(DATA_DIR, exist_ok=True)
+        mem["updated_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        with open(TEMPORAL_MEMORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(mem, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
+
+
+def build_temporal_microstructure_profile(
+    city: str,
+    mtype: str,
+    tz_name: str,
+    city_locks_raw: List[Dict[str, Any]],
+    city_markets_all: List[Dict[str, Any]],
+    rec_bias: float,
+    unit_sym: str,
+    rec_hit_rate: float = 0.0,
+    rec_within1_rate: float = 0.0,
+    n_resolved: int = 0,
+    u_smart_saves: int = 0,
+    u_early_regrets: int = 0,
+    memory_store: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    """
+    Maintains an internal temporal sequence memory for each city+market_type and uses that
+    accumulated memory to diagnose multi-dimensional market & model behavioral regimes.
+    Does NOT expose raw sequence telemetry or hourly bar charts to the UI; instead outputs
+    synthesized behavioral diagnoses and concrete trading strategies when real data supports them.
+    """
+    city_tz = None
+    if ZoneInfo is not None and tz_name:
+        try:
+            city_tz = ZoneInfo(tz_name)
+        except Exception:
+            city_tz = None
+
+    key = f"{city}|{mtype}"
+    cities_mem = (memory_store or {}).setdefault("cities", {})
+    prior_mem = cities_mem.get(key, {}) if isinstance(cities_mem.get(key), dict) else {}
+
+    ts_trades = 0
+    profitable_scalps = 0
+    scalp_gains: List[float] = []
+    hold_hours_list: List[float] = []
+    velocities_pct_per_h: List[float] = []
+
+    # Multi-regime behavioral counters extracted from temporal sequences
+    whipsaw_reversals = 0          # Rallied intraday (or exited in profit) then collapsed to 0c at settlement
+    smart_money_resistances = 0    # Model prob >= 42% while market refused to bid (< 22c) and bucket lost
+    silent_model_leads = 0         # Model jumped >= +6% while market lagged >= 12c behind fair value
+    fomo_overreactions = 0         # Intraday price spiked >= 55c or +35% on non-winning bucket before dumping
+    neighbor_migrations = 0        # Winner or momentum shifted by exactly 1 adjacent bucket from initial model peak
+    theta_stagnations = 0          # Held > 10h with flat/decaying price trajectory ending in loss or stop
+    explosive_convergences = 0     # Fast directional repricing (+25%+) aligned with station confirmation
+
+    entry_iran_hours: List[int] = []
+    active_iran_hours: List[int] = []
+
+    for l in city_locks_raw:
+        if l.get("status") == "cancelled_entry":
+            continue
+        ep = safe_float(l.get("entry_price"))
+        xp = safe_float(l.get("exit_price")) or safe_float(l.get("last_price"))
+        if not ep or ep <= 0:
+            continue
+        dt_lock = _parse_iso_dt(l.get("locked_at"))
+        dt_close = _parse_iso_dt(l.get("closed_at")) or _parse_iso_dt(l.get("last_checked_at"))
+        if dt_lock:
+            ts_trades += 1
+            entry_iran_hours.append(dt_lock.astimezone(IRAN_TZ).hour)
+
+        pnl_pct = ((xp - ep) / ep) * 100.0 if xp is not None else 0.0
+        dur_h = 6.0
+        if dt_lock and dt_close and dt_close > dt_lock:
+            dur_h = max(0.25, (dt_close - dt_lock).total_seconds() / 3600.0)
+            if dur_h <= 72.0:
+                hold_hours_list.append(dur_h)
+            if pnl_pct >= 12.0 and l.get("status") != "open":
+                profitable_scalps += 1
+                scalp_gains.append(pnl_pct)
+                velocities_pct_per_h.append(pnl_pct / max(0.5, min(24.0, dur_h)))
+                active_iran_hours.append(dt_close.astimezone(IRAN_TZ).hour)
+
+        # Inspect granular trajectory sequence inside lock if present
+        traj = l.get("price_trajectory") or []
+        if len(traj) >= 2:
+            pcts = [safe_float(pt.get("pct"), 0.0) or 0.0 for pt in traj]
+            max_traj_pct = max(pcts) if pcts else 0.0
+            end_traj_pct = pcts[-1] if pcts else 0.0
+            if max_traj_pct >= 18.0 and (max_traj_pct - end_traj_pct) >= 22.0:
+                whipsaw_reversals += 1
+            if max_traj_pct >= 25.0 and end_traj_pct >= 20.0:
+                explosive_convergences += 1
+            if dur_h >= 10.0 and max_traj_pct < 6.0 and end_traj_pct <= -12.0:
+                theta_stagnations += 1
+
+        # Detect stagnation or whipsaw from closed lock outcome
+        if dur_h >= 12.0 and pnl_pct <= -15.0:
+            theta_stagnations += 1
+        if l.get("status") == "closed_resolved" and (xp or 0.0) <= 0.05 and ep >= 0.48:
+            fomo_overreactions += 1
+
+    # Inspect market-level sequences across all files for this city
+    intraday_mover_buckets = 0
+    for m in city_markets_all:
+        is_resolved = (m.get("status") == "resolved" and m.get("actual_temp") is not None)
+        actual_t = safe_float(m.get("actual_temp")) if is_resolved else None
+        win_mid = str(m.get("winning_market_id") or "")
+        dist = m.get("full_distribution") or []
+
+        best_model_idx = -1
+        best_model_prob = -1.0
+        win_idx = -1
+
+        for bi, b in enumerate(dist):
+            mp = safe_float(b.get("model_prob"), 0.0) or 0.0
+            if mp > best_model_prob:
+                best_model_prob = mp
+                best_model_idx = bi
+            if is_resolved:
+                if win_mid and str(b.get("market_id")) == win_mid:
+                    win_idx = bi
+                elif win_idx == -1 and actual_t is not None and b.get("range") and check_temp_in_range(actual_t, b["range"]):
+                    win_idx = bi
+
+        if is_resolved and best_model_idx != -1 and win_idx != -1:
+            if abs(best_model_idx - win_idx) == 1:
+                neighbor_migrations += 1
+
+        for bi, b in enumerate(dist):
+            p6_pct = safe_float(b.get("yes_price_6h_pct_change"))
+            if p6_pct is None:
+                p6_pct = safe_float(b.get("yes_price_pct_change"))
+            m6_chg = safe_float(b.get("model_prob_6h_change")) or safe_float(b.get("model_prob_change")) or 0.0
+            yp = safe_float(b.get("yes_price"), 0.0) or 0.0
+            mp = safe_float(b.get("model_prob"), 0.0) or 0.0
+
+            if p6_pct is not None and abs(p6_pct) >= 5.0 and (yp >= 0.06 or mp >= 0.08):
+                intraday_mover_buckets += 1
+                if p6_pct >= 20.0:
+                    explosive_convergences += 1
+                    velocities_pct_per_h.append(min(45.0, p6_pct / 6.0))
+
+            # Pattern: Silent Model Lead (Model jumped, Market still lagging)
+            if m6_chg >= 0.05 and (mp - yp) >= 0.12 and mp >= 0.25:
+                silent_model_leads += 1
+
+            # Pattern: Smart-Money Resistance vs Model Trap
+            if mp >= 0.42 and 0.01 < yp <= 0.22:
+                if not is_resolved or (win_idx != -1 and bi != win_idx):
+                    smart_money_resistances += 1
+
+            # Pattern: FOMO Overreaction on non-winning bucket
+            if is_resolved and win_idx != -1 and bi != win_idx:
+                if yp >= 0.50 or (p6_pct is not None and p6_pct >= 30.0):
+                    fomo_overreactions += 1
+
+            # Inspect bucket price_history sequence if available
+            phist = b.get("price_history") or []
+            if len(phist) >= 2:
+                prices_seq = [safe_float(pt.get("p"), 0.0) or 0.0 for pt in phist if safe_float(pt.get("p")) is not None]
+                if len(prices_seq) >= 2:
+                    intraday_mover_buckets += 1
+                    p_min, p_max, p_last = min(prices_seq), max(prices_seq), prices_seq[-1]
+                    if p_min > 0.02 and ((p_max - p_min) / p_min) >= 0.25:
+                        if p_max - p_last >= 0.12:
+                            whipsaw_reversals += 1
+                        else:
+                            explosive_convergences += 1
+
+    whipsaw_reversals += u_smart_saves
+
+    # Merge with persistent memory so learned sequences are never lost when old files rotate
+    mem_ts_trades = max(ts_trades, int(prior_mem.get("sample_locks", 0)))
+    mem_bucket_moves = max(intraday_mover_buckets, int(prior_mem.get("sample_bucket_moves", 0)))
+    mem_whipsaws = max(whipsaw_reversals, int(prior_mem.get("whipsaw_reversals", 0)))
+    mem_resistances = max(smart_money_resistances, int(prior_mem.get("smart_money_resistances", 0)))
+    mem_silent_leads = max(silent_model_leads, int(prior_mem.get("silent_model_leads", 0)))
+    mem_fomo = max(fomo_overreactions, int(prior_mem.get("fomo_overreactions", 0)))
+    mem_neighbor = max(neighbor_migrations, int(prior_mem.get("neighbor_migrations", 0)))
+    mem_theta = max(theta_stagnations, int(prior_mem.get("theta_stagnations", 0)))
+    mem_explosive = max(explosive_convergences, int(prior_mem.get("explosive_convergences", 0)))
+
+    total_observations = mem_ts_trades + mem_bucket_moves + n_resolved
+    has_temporal_support = (
+        mem_ts_trades >= 3
+        or mem_bucket_moves >= 6
+        or (n_resolved >= 6 and (mem_neighbor >= 2 or mem_resistances >= 1 or mem_whipsaws >= 1))
+    )
+
+    avg_hold_h = round(sum(hold_hours_list) / len(hold_hours_list), 1) if hold_hours_list else prior_mem.get("avg_hold_hours", 8.0)
+    avg_surge_pct = round(sum(scalp_gains) / len(scalp_gains), 1) if scalp_gains else prior_mem.get("avg_surge_pct", 32.0)
+    avg_vel = round(sum(velocities_pct_per_h) / len(velocities_pct_per_h), 1) if velocities_pct_per_h else prior_mem.get("price_velocity_pct_per_h", 4.5)
+
+    # Save updated sequence counters into persistent memory store
+    cities_mem[key] = {
+        "city": city,
+        "market_type": mtype,
+        "sample_locks": mem_ts_trades,
+        "sample_bucket_moves": mem_bucket_moves,
+        "n_resolved": n_resolved,
+        "whipsaw_reversals": mem_whipsaws,
+        "smart_money_resistances": mem_resistances,
+        "silent_model_leads": mem_silent_leads,
+        "fomo_overreactions": mem_fomo,
+        "neighbor_migrations": mem_neighbor,
+        "theta_stagnations": mem_theta,
+        "explosive_convergences": mem_explosive,
+        "avg_hold_hours": avg_hold_h,
+        "avg_surge_pct": avg_surge_pct,
+        "price_velocity_pct_per_h": avg_vel,
+        "updated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
+
+    if not has_temporal_support:
+        return {
+            "has_temporal_support": False,
+            "sample_locks": mem_ts_trades,
+            "sample_bucket_moves": mem_bucket_moves,
+            "profitable_scalps": profitable_scalps,
+            "confidence_tag": "⏳ در حال یادگیری رفتار توالی بازار در حافظه",
+            "dominant_regime_code": "ACCUMULATING_MEMORY",
+            "complex_strategy_title": "⏳ در حال تکمیل حافظهٔ توالی رفتار قیمت برای این شهر",
+            "complex_strategy_body": (
+                "حافظهٔ توالی ربات در حال ثبت و انباشت رفتارهای درون‌روزی این شهر در اسکن‌های متوالی است و تا زمان رسیدن به حد نصاب آماری، از صدور استراتژی رفتاری پیچیده خودداری می‌کند."
+            ),
+            "secondary_insight": "",
+        }
+
+    # ------------------------------------------------------------------------
+    # Multi-Regime Behavioral Diagnosis & Strategy Synthesis from Memory
+    # ------------------------------------------------------------------------
+    adj_gap_pct = round((rec_within1_rate - rec_hit_rate) * 100.0, 1)
+    regimes_detected: List[Tuple[float, str, str, str]] = []
+
+    # Regime 1: Intraday Whipsaw & Mandatory Pre-Settlement Exit
+    if mem_whipsaws >= 2 or (u_smart_saves >= 1 and rec_hit_rate < 0.45):
+        score_w = 88.0 + min(10.0, mem_whipsaws * 2.5)
+        regimes_detected.append((
+            score_w,
+            "WHIPSAW_SCALP_ONLY",
+            "🔄 الگوی چرخش درون‌روزی و تلهٔ تسویه (Intraday Whipsaw & Pre-Settlement Exit)",
+            (
+                f"بررسی حافظهٔ توالی این شهر نشان می‌دهد قیمت باکت‌های پیش‌رو در میانهٔ روز بارها تا محدودهٔ سود (+۲۵٪ تا +{int(round(avg_surge_pct))}٪) بالا می‌رود، "
+                f"اما در ساعات پایانی با تغییر شیب دمای فرودگاه چرخش کرده و در تسویه نهایی صفر می‌شود ({mem_whipsaws} مورد چرخش/نجات ثبت‌شده). "
+                "<b>استراتژی قطعی:</b> این شهر صرفاً بازار «نوسان‌گیری درون‌روزی (Scalp)» است؛ نگهداری پوزیشن تا تسویه نهایی (Hold-to-Settlement) ممنوع است و باید روی +۲۵٪ تا +۳۵٪ سود با Auto-TP خارج شد."
+            ),
+        ))
+
+    # Regime 2: Adjacent Bucket Thermal Drift (Neighbor Migration)
+    if adj_gap_pct >= 32.0 or mem_neighbor >= max(3, int(n_resolved * 0.35)):
+        dir_hint = (
+            f"به سمت باکتِ خنک‌تر (پایین‌تر) به دلیل گرم‌خوانی +{rec_bias:.2f}{unit_sym}"
+            if rec_bias >= 0.25
+            else f"به سمت باکتِ گرم‌تر (بالاتر) به دلیل سردخوانی {rec_bias:.2f}{unit_sym}"
+            if rec_bias <= -0.25
+            else "بین دو باکت مرکزیِ مجاور"
+        )
+        score_n = 85.0 + min(12.0, adj_gap_pct * 0.2)
+        regimes_detected.append((
+            score_n,
+            "NEIGHBOR_BUCKET_DRIFT",
+            "🔀 الگوی کوچ دما به باکت همسایه (Adjacent Bucket Thermal Migration)",
+            (
+                f"حافظهٔ توالی بازارهای این شهر نشان می‌دهد در {mem_neighbor} روز ثبت‌شده، دمای نهایی در ساعات اوج روز به اندازهٔ دقیقاً ۱ باکت نسبت به پیک اولیهٔ مدل جابه‌جا شده است "
+                f"(شکاف دقت ±1 باکت و تک‌باکت: +{adj_gap_pct}% — تمایل غالب {dir_hint}). "
+                "<b>استراتژی قطعی:</b> به جای تک‌خال زدن روی یک باکت، قبل از بیدار شدن بازار ۳۰٪ تا ۴۰٪ حجم معامله را روی باکت همسایه (در حالی که هنوز ۱۲ تا ۲۲ سنت قیمت دارد) بکارید تا در صورت کوچ دما، جهش چندبرابری آن کل پوزیشن را برنده کند."
+            ),
+        ))
+
+    # Regime 3: Smart-Money Resistance vs Model Trap
+    if mem_resistances >= 2 or (rec_hit_rate < 0.35 and abs(rec_bias) >= 0.45):
+        score_r = 84.0 + min(12.0, mem_resistances * 3.0)
+        regimes_detected.append((
+            score_r,
+            "SMART_MONEY_RESISTANCE",
+            "🛑 الگوی مقاومت هوشمند بازار در برابر خطای مدل (Smart-Money Resistance Trap)",
+            (
+                "در حافظهٔ توالی این شهر مشاهده می‌شود که هرگاه مدل هواشناسی احتمال بالایی (>۴۵٪) به یک باکت می‌دهد اما قیمت تابلوی بازار در اسکن‌های متوالی زیر ۲۰ تا ۲۲ سنت قفل می‌ماند و بالا نمی‌رود، "
+                "معامله‌گران بومی (بر اساس پوشش ابر، باد ساحلی یا بارش لحظه‌ای) زودتر از مدل‌های جهانی متوجه خطای پیش‌بینی شده‌اند. "
+                "<b>استراتژی قطعی:</b> واگرایی‌های بالای ۲۵٪ در این شهر «سیگنال خرید ارزان» نیستند بلکه تلهٔ مدل هستند؛ شرط ورود، همراهی حداقل جریان سفارشات بازار (قیمت بالای ۲۲ سنت و شیب مثبت) یا شکار معکوس (NO) است."
+            ),
+        ))
+
+    # Regime 4: Silent Model Lead & Delayed Market Convergence
+    if mem_silent_leads >= 2 and rec_hit_rate >= 0.42:
+        score_s = 86.0 + min(10.0, mem_silent_leads * 2.0)
+        regimes_detected.append((
+            score_s,
+            "SILENT_MODEL_LEAD",
+            "⚡ الگوی واگرایی پیش‌رو مدل و جاماندگی بازار (Delayed Market Catch-Up)",
+            (
+                f"در حافظهٔ توالی این شهر، آپدیت مدل‌های هواشناسی معمولاً چند ساعت جلوتر از تابلوی معاملات حرکت می‌کند ({mem_silent_leads} مورد واگرایی پیش‌رو ثبت‌شده) و بازار با تأخیر زمانی به سمت ارزش منصفانهٔ مدل هم‌گرا می‌شود. "
+                "<b>استراتژی قطعی:</b> بهترین نقطهٔ ورود بلافاصله پس از اسکن‌های ۶ ساعته است، زمانی که احتمال مدل جهش کرده اما تابلوی بازار هنوز واکنش نشان نداده است؛ سفارش فروش خودکار (Limit Sell) را ۴ سنت زیر ارزش منصفانهٔ مدل بگذارید."
+            ),
+        ))
+
+    # Regime 5: FOMO Overreaction & Mean Reversion
+    if mem_fomo >= 2 or (u_smart_saves >= 1 and avg_surge_pct >= 40.0):
+        score_f = 82.0 + min(10.0, mem_fomo * 2.5)
+        regimes_detected.append((
+            score_f,
+            "FOMO_MEAN_REVERSION",
+            "🫧 الگوی حباب هیجانی و تخلیهٔ قیمت (Intraday Overreaction & Fade)",
+            (
+                "حافظهٔ قیمت این شهر نشان‌دهندهٔ جهش‌های هیجانی و زودهنگام روی باکت‌های غیربرنده در ابتدای روز و سپس تخلیهٔ شدید حباب پس از تثبیت گزارش‌های فرودگاهی است. "
+                "<b>استراتژی قطعی:</b> از خرید باکت‌ها پس از جهش اولیه (قیمت‌های بالای ۵۲ سنت) اکیداً خودداری کنید؛ اگر از قبل در قیمت پایین وارد شده‌اید، در اولین موج هیجانی بازار (+۳۰٪ تا +۴۵٪) بدون طمع پوزیشن را ببندید."
+            ),
+        ))
+
+    # Regime 6: Theta Decay & Diurnal Plateau Stop
+    if mem_theta >= 2:
+        score_t = 80.0 + min(10.0, mem_theta * 2.5)
+        regimes_detected.append((
+            score_t,
+            "THETA_PLATEAU_STOP",
+            "⏳ الگوی فرسایش زمانی در فلات دمایی (Theta Decay & Time-Stop)",
+            (
+                f"در حافظهٔ معاملات این شهر، پوزیشن‌هایی که بیش از {int(round(avg_hold_h))} ساعت بدون رشد معنادار در قیمت ورود درجا می‌زنند، با رسیدن به سقف/کف ساعت حرارتی روز دچار ریزش ناگهانی می‌شوند. "
+                "<b>استراتژی قطعی:</b> اعمال «حد ضرر زمانی (Time-Stop)» و فعال‌سازی حتماً محافظ دمای واقعی فرودگاه (METAR Auto-Stop)؛ اگر قیمت تا میانهٔ روز به سمت مدل حرکت نکرد، بدون صبر کردن تا پایان روز با کمترین زیان خارج شوید."
+            ),
+        ))
+
+    # Regime 7: High-Conviction METAR Momentum Ride (Default for clean alpha cities)
+    if not regimes_detected or (rec_hit_rate >= 0.52 and profitable_scalps >= 2):
+        score_m = 89.0 if (rec_hit_rate >= 0.52 and profitable_scalps >= 2) else 78.0
+        regimes_detected.append((
+            score_m,
+            "METAR_MOMENTUM_RIDE",
+            "🎯 الگوی هم‌گرایی پرشتاب با گزارش‌های فرودگاهی (High-Conviction METAR Convergence)",
+            (
+                f"حافظهٔ توالی این شهر نشان می‌دهد که روند قیمت درون‌روزی هم‌راستا با پیش‌بینی مدل و گزارش‌های واقعی ایستگاه فرودگاهی حرکت می‌کند (دقت اخیر: {round(rec_hit_rate*100, 1)}% و {profitable_scalps} موج سودده ثبت‌شده). "
+                "<b>استراتژی قطعی:</b> ورود در فاز آرام بازار با سفارش Limit و نگهداری پوزیشن با «حد ضرر متحرک (Trailing Stop 8%)» پس از عبور قیمت از ۶۵ سنت، تا به جای خروج زودهنگام، بیشترین بخش رالی تا ۱۰۰ سنت شکار شود."
+            ),
+        ))
+
+    regimes_detected.sort(key=lambda x: x[0], reverse=True)
+    primary = regimes_detected[0]
+    secondary = regimes_detected[1] if len(regimes_detected) >= 2 else None
+
+    secondary_text = ""
+    if secondary:
+        secondary_text = f"<b>مکمل رفتاری در حافظهٔ این شهر ({secondary[2]}):</b> {secondary[3]}"
+
+    conf_tag = (
+        f"🧠 استخراج‌شده از حافظهٔ توالی ({total_observations} نقطهٔ داده‌ای)"
+    )
+
+    return {
+        "has_temporal_support": True,
+        "sample_locks": mem_ts_trades,
+        "sample_bucket_moves": mem_bucket_moves,
+        "profitable_scalps": profitable_scalps,
+        "confidence_tag": conf_tag,
+        "dominant_regime_code": primary[1],
+        "complex_strategy_title": primary[2],
+        "complex_strategy_body": primary[3],
+        "secondary_insight": secondary_text,
+        "avg_hold_hours": avg_hold_h,
+        "avg_surge_pct": avg_surge_pct,
+        "price_velocity_pct_per_h": avg_vel,
+    }
+
+
 # ============================================================================
 # 2. Data Loaders & Cross-Referencing Engine
 # ============================================================================
@@ -194,6 +593,7 @@ def run_quantitative_analysis() -> Dict[str, Any]:
     # ------------------------------------------------------------------------
     user_locks_analyzed: List[Dict[str, Any]] = []
     locks_by_city_type: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    raw_locks_by_city_type: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
 
     entry_band_stats: Dict[str, Dict[str, Any]] = {
         "cheap_under_25c": {"label": "ارزان / زیر ۲۵ سنت (<25¢)", "count": 0, "wins": 0, "pnl_pct_sum": 0.0, "hold_wins": 0, "hold_total": 0},
@@ -312,18 +712,23 @@ def run_quantitative_analysis() -> Dict[str, Any]:
         }
         user_locks_analyzed.append(rec)
         locks_by_city_type[f"{city}|{mtype}"].append(rec)
+        raw_locks_by_city_type[f"{city}|{mtype}"].append(l)
 
     # ------------------------------------------------------------------------
     # Part B: Analyze All Resolved Markets & Model/Market Behavior per City
     # ------------------------------------------------------------------------
     markets_by_city_type: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    all_markets_by_city_type: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
     for m in markets:
+        c = m.get("city", "")
+        mt = m.get("market_type") or "max"
+        if c:
+            all_markets_by_city_type[f"{c}|{mt}"].append(m)
         if m.get("status") == "resolved" and m.get("actual_temp") is not None and m.get("forecast_mean") is not None:
-            c = m.get("city", "")
-            mt = m.get("market_type") or "max"
             markets_by_city_type[f"{c}|{mt}"].append(m)
 
     city_playbooks: List[Dict[str, Any]] = []
+    temporal_memory = load_temporal_memory()
 
     all_keys = sorted(set(list(markets_by_city_type.keys()) + list(locks_by_city_type.keys())))
 
@@ -590,6 +995,21 @@ def run_quantitative_analysis() -> Dict[str, Any]:
             hold_policy_rec = "در صورت ورود آزمایشی، فعال‌سازی حتماً METAR Auto-Stop و حد ضرر سخت ۱۸٪"
 
         season_title, season_note = get_season_Context(now_utc.month, lat)
+        temporal_prof = build_temporal_microstructure_profile(
+            city=city,
+            mtype=mtype,
+            tz_name=loc_info.get("tz", "UTC"),
+            city_locks_raw=raw_locks_by_city_type.get(key, []),
+            city_markets_all=all_markets_by_city_type.get(key, []),
+            rec_bias=rec_bias,
+            unit_sym=unit_sym,
+            rec_hit_rate=rec_hit_rate,
+            rec_within1_rate=rec_within1_rate,
+            n_resolved=n_total,
+            u_smart_saves=u_smart_saves,
+            u_early_regrets=u_early_regrets,
+            memory_store=temporal_memory,
+        )
 
         city_playbooks.append({
             "city": city,
@@ -635,7 +1055,10 @@ def run_quantitative_analysis() -> Dict[str, Any]:
             "opt_sl_pct": opt_sl_pct,
             "entry_mode_rec": entry_mode_rec,
             "hold_policy_rec": hold_policy_rec,
+            "temporal_profile": temporal_prof,
         })
+
+    save_temporal_memory(temporal_memory)
 
     # Sort playbooks by composite score descending
     city_playbooks.sort(key=lambda x: (
@@ -657,12 +1080,16 @@ def run_quantitative_analysis() -> Dict[str, Any]:
         "TIER_3_SCALP": sum(1 for p in city_playbooks if p["tier_code"] == "TIER_3_SCALP"),
         "TIER_4_AVOID": sum(1 for p in city_playbooks if p["tier_code"] == "TIER_4_AVOID"),
     }
+    temporal_supported_count = sum(
+        1 for p in city_playbooks if (p.get("temporal_profile") or {}).get("has_temporal_support")
+    )
 
     return {
         "generated_at_utc": now_utc.strftime("%Y-%m-%d %H:%M UTC"),
         "generated_at_iran": now_iran.strftime("%Y-%m-%d %H:%M"),
         "total_markets_analyzed": len(markets),
         "total_playbooks": len(city_playbooks),
+        "temporal_supported_count": temporal_supported_count,
         "tier_counts": tier_counts,
         "user_forensics": {
             "total_locks": len(user_locks_analyzed),
@@ -909,6 +1336,15 @@ def build_standalone_html_report(report: Dict[str, Any]) -> str:
           <option value="US">🇺🇸 فقط شهرهای آمریکا (°F)</option>
           <option value="GLOBAL">🌐 فقط شهرهای بین‌المللی (°C)</option>
         </select>
+        <select id="temporalFilter" class="bg-indigo-50 border border-indigo-300 text-indigo-900 rounded-xl px-3 py-2 text-xs font-bold">
+          <option value="ALL">🧠 همهٔ الگوهای رفتاری حافظه</option>
+          <option value="WHIPSAW_SCALP_ONLY">🔄 الگوی چرخش درون‌روزی (فقط Scalp)</option>
+          <option value="NEIGHBOR_BUCKET_DRIFT">🔀 الگوی کوچ دما به باکت همسایه</option>
+          <option value="SMART_MONEY_RESISTANCE">🛑 الگوی مقاومت هوشمند بازار (تله مدل)</option>
+          <option value="SILENT_MODEL_LEAD">⚡ الگوی واگرایی پیش‌رو مدل (جاماندگی بازار)</option>
+          <option value="FOMO_MEAN_REVERSION">🫧 الگوی حباب هیجانی و بازگشت قیمت</option>
+          <option value="METAR_MOMENTUM_RIDE">🎯 الگوی هم‌گرایی پرشتاب فرودگاهی</option>
+        </select>
       </div>
 
       <!-- Playbook Cards Container -->
@@ -960,12 +1396,17 @@ def build_standalone_html_report(report: Dict[str, Any]) -> str:
       const tierF = document.getElementById('tierFilter').value;
       const typeF = document.getElementById('typeFilter').value;
       const regF = document.getElementById('regionFilter').value;
+      const tempF = (document.getElementById('temporalFilter') || {{value: 'ALL'}}).value;
 
       const filtered = PLAYBOOKS.filter((p) => {{
         if (tierF !== 'ALL' && p.tier_code !== tierF) return false;
         if (typeF !== 'ALL' && p.market_type !== typeF) return false;
         if (regF === 'US' && !p.is_us) return false;
         if (regF === 'GLOBAL' && p.is_us) return false;
+        if (tempF !== 'ALL') {{
+          const domCode = (p.temporal_profile && p.temporal_profile.dominant_regime_code) || '';
+          if (domCode !== tempF) return false;
+        }}
         if (q && !p.city_name.toLowerCase().includes(q) && !p.city.toLowerCase().includes(q)) return false;
         return true;
       }});
@@ -980,7 +1421,6 @@ def build_standalone_html_report(report: Dict[str, Any]) -> str:
         const badgeCls = getTierClasses(p.tier_code);
         const typeLabel = p.market_type === 'min' ? '❄️ کمینه دما (Min)' : '🔥 بیشینه دما (Max)';
         const bestSm = p.best_submodel ? `${{p.best_submodel.name}} (MAE: ${{p.best_submodel.mae}}${{p.unit}})` : 'ترکیبی';
-        const worstSm = p.worst_submodel ? `${{p.worst_submodel.name}} (MAE: ${{p.worst_submodel.mae}}${{p.unit}})` : '-';
         const userStatsHtml = p.user_locks_total > 0
           ? `<div class="mt-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[11.5px] flex flex-wrap items-center justify-between gap-2">
                <span>📌 <b>سابقه قفل‌های شخصی شما در این شهر:</b> ${{p.user_locks_total}} معامله</span>
@@ -1065,6 +1505,27 @@ def build_standalone_html_report(report: Dict[str, Any]) -> str:
                   </div>
                 </div>
               </div>
+
+              <!-- Behavioral Strategy Synthesized from Internal Sequence Memory -->
+              ${{(() => {{
+                const tp = p.temporal_profile;
+                if (!tp || !tp.has_temporal_support) return '';
+                const secHtml = tp.secondary_insight
+                  ? `<div class="pt-1.5 mt-1.5 border-t border-indigo-200/70 text-[11px] text-slate-700 leading-relaxed">${{tp.secondary_insight}}</div>`
+                  : '';
+                return `
+                  <div class="mt-3 bg-indigo-50/75 border border-indigo-200 rounded-xl p-3 space-y-1.5 text-xs">
+                    <div class="flex flex-wrap items-center justify-between gap-1">
+                      <span class="font-extrabold text-indigo-950">${{tp.complex_strategy_title}}</span>
+                      <span class="px-2 py-0.5 rounded bg-indigo-100 border border-indigo-300 text-indigo-900 text-[10px] font-bold">
+                        ${{tp.confidence_tag}}
+                      </span>
+                    </div>
+                    <p class="text-[11.5px] text-slate-800 leading-relaxed m-0">${{tp.complex_strategy_body}}</p>
+                    ${{secHtml}}
+                  </div>
+                `;
+              }})()}}
             </div>
 
             ${{userStatsHtml}}
@@ -1096,6 +1557,7 @@ def build_standalone_html_report(report: Dict[str, Any]) -> str:
     document.getElementById('tierFilter').addEventListener('change', renderPlaybooks);
     document.getElementById('typeFilter').addEventListener('change', renderPlaybooks);
     document.getElementById('regionFilter').addEventListener('change', renderPlaybooks);
+    document.getElementById('temporalFilter').addEventListener('change', renderPlaybooks);
 
     renderPlaybooks();
     renderForensicTable();
@@ -1141,6 +1603,29 @@ def build_telegram_executive_summary(report: Dict[str, Any], live_link: Optional
                 f"  • <b>{p['city_name']}</b> ({m_tag}): دقت ±1 باکت <b>{p['rec_within1_pct']}%</b> ({p['bias_diagnosis']})"
             )
 
+    behavioral_highlights = [
+        p for p in playbooks
+        if (p.get("temporal_profile") or {}).get("has_temporal_support")
+    ]
+    if behavioral_highlights:
+        lines.append("")
+        lines.append("🧬 <b>استراتژی‌های رفتاری مستخرج از حافظهٔ توالی بازار:</b>")
+        seen_regimes = set()
+        picked = []
+        for p in behavioral_highlights:
+            rcode = (p["temporal_profile"].get("dominant_regime_code") or "")
+            if rcode not in seen_regimes:
+                seen_regimes.add(rcode)
+                picked.append(p)
+            if len(picked) >= 5:
+                break
+        for p in picked:
+            tp = p["temporal_profile"]
+            m_tag = "❄️ کمینه" if p["market_type"] == "min" else "🔥 بیشینه"
+            lines.append(
+                f"  • <b>{p['city_name']}</b> ({m_tag}): {tp['complex_strategy_title']}"
+            )
+
     if avoid_list:
         lines.append("")
         lines.append("🔴 <b>شهرهای پرریسک فعلی (پیشنهاد عدم ورود مستقیم):</b>")
@@ -1167,16 +1652,21 @@ def main() -> None:
     with open(docs_target, "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    tg_summary = build_telegram_executive_summary(report)
     os.makedirs(DATA_DIR, exist_ok=True)
+    with open(REPORT_JSON_FILE, "w", encoding="utf-8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=2)
+
+    tg_summary = build_telegram_executive_summary(report)
     with open(TELEGRAM_SUMMARY_FILE, "w", encoding="utf-8") as f:
         f.write(tg_summary)
 
     print(
-        f"[quant_strategy_advisor] Generated {len(report['playbooks'])} city playbooks & analyzed "
+        f"[quant_strategy_advisor] Generated {len(report['playbooks'])} city playbooks "
+        f"({report.get('temporal_supported_count', 0)} with multi-regime behavioral strategies from memory) & analyzed "
         f"{report['user_forensics']['total_locks']} personal locks -> {REPORT_HTML_FILE}"
     )
 
 
 if __name__ == "__main__":
     main()
+

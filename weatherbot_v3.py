@@ -591,6 +591,14 @@ def _attach_distribution_changes(old_dist, new_dist, update_model=True, update_p
                 c["yes_price_6h_pct_change"] = 0.0
                 c["yes_price_change"] = 0.0
                 c["yes_price_pct_change"] = 0.0
+                now_utc_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                c["price_history"] = [{
+                    "t": now_utc_iso,
+                    "p": p_val,
+                    "mp": round(float(new_model), 4) if new_model is not None else None,
+                    "bid": c.get("best_bid"),
+                    "ask": c.get("best_ask"),
+                }]
             continue
 
         # ۱) تغییرات احتمال مدل (model_prob) -- هم نسبت به اسکن قبلی و هم نسبت به اسکن ۶ ساعتهٔ اخیر
@@ -736,6 +744,48 @@ def _attach_distribution_changes(old_dist, new_dist, update_model=True, update_p
             ):
                 if k in old:
                     c[k] = old[k]
+
+        # ۳) ثبت توالی زمانی قیمت‌ها (price_history) برای تحلیل رشد ساعتی و ریزساختار بازار در آزمایشگاه کمّی
+        hist = list(old.get("price_history") or [])
+        now_utc_dt = datetime.now(timezone.utc)
+        now_utc_iso = now_utc_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+        if not hist:
+            # بازیابی نقطهٔ قبلی از داده‌های ۶ ساعته موجود در صورت نبود تاریخچه قبلی
+            seed_p = old.get("prev_scan6h_yes_price") or old.get("scan6h_yes_price") or old_price_10m
+            seed_mp = old.get("prev_scan6h_model_prob") or old.get("scan6h_model_prob") or old_model_10m
+            if seed_p is not None:
+                seed_ts = (now_utc_dt - timedelta(hours=6)).strftime("%Y-%m-%dT%H:%M:%SZ")
+                hist.append({
+                    "t": seed_ts,
+                    "p": round(float(seed_p), 4),
+                    "mp": round(float(seed_mp), 4) if seed_mp is not None else None,
+                })
+        if new_price is not None:
+            p_curr = round(float(new_price), 4)
+            mp_curr = round(float(new_model), 4) if new_model is not None else None
+            should_append = True
+            if hist:
+                last_pt = hist[-1]
+                last_p = float(last_pt.get("p") or 0.0)
+                price_moved = abs(p_curr - last_p) >= 0.004
+                time_elapsed = True
+                try:
+                    last_dt = datetime.fromisoformat(str(last_pt.get("t", "")).replace("Z", "+00:00"))
+                    time_elapsed = (now_utc_dt - last_dt).total_seconds() >= 900  # حداقل ۱۵ دقیقه فاصله
+                except Exception:
+                    time_elapsed = True
+                should_append = price_moved or time_elapsed or is_6h
+            if should_append:
+                hist.append({
+                    "t": now_utc_iso,
+                    "p": p_curr,
+                    "mp": mp_curr,
+                    "bid": c.get("best_bid"),
+                    "ask": c.get("best_ask"),
+                })
+        if len(hist) > 48:
+            hist = hist[-48:]
+        c["price_history"] = hist
 
 
 def discover_new_signals(now, state):

@@ -3,7 +3,7 @@ import cors from 'cors';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { execFileSync } from 'child_process';
+import { execFile, execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -180,12 +180,21 @@ function parseCsvLine(line: string): string[] {
 interface MarketCache {
   all: any[];
   lastLoaded: number;
+  profiles: Record<string, any> | null;
+  profilesLoaded: number;
 }
 
 const marketCache: MarketCache = {
   all: [],
   lastLoaded: 0,
+  profiles: null,
+  profilesLoaded: 0,
 };
+
+function invalidateProfilesCache() {
+  marketCache.profiles = null;
+  marketCache.profilesLoaded = 0;
+}
 
 function loadAllMarkets(force = false): any[] {
   const now = Date.now();
@@ -209,6 +218,7 @@ function loadAllMarkets(force = false): any[] {
   }
   marketCache.all = results;
   marketCache.lastLoaded = now;
+  invalidateProfilesCache();
   return results;
 }
 
@@ -218,7 +228,11 @@ function loadAllMarkets(force = false): any[] {
  * compares calibrated vs shadow vs sub-models (ECMWF, GFS, GEM, ICON),
  * detects seasonal sign-flips, and decides the profit-only gate action.
  */
-function buildCityFormProfiles(allMarkets: any[]): Record<string, any> {
+function buildCityFormProfiles(allMarkets: any[], force = false): Record<string, any> {
+  const now = Date.now();
+  if (!force && marketCache.profiles && now - marketCache.profilesLoaded < 30000) {
+    return marketCache.profiles;
+  }
   const profiles: Record<string, any> = {};
 
   // 1. Parse accuracy_report.csv
@@ -910,6 +924,7 @@ function applySmartCalibrationToFile(profiles: Record<string, any>): { updated_k
 
     if (updatedKeys.length > 0) {
       fs.writeFileSync(CALIBRATION_FILE, JSON.stringify(cal, null, 2), 'utf-8');
+      invalidateProfilesCache();
     }
     return { updated_keys: updatedKeys, total_keys: Object.keys(cal).length };
   } catch (e) {
@@ -1566,7 +1581,12 @@ app.post('/api/locks', (req, res) => {
 
     const maxIssue = locks.reduce((max, l) => Math.max(max, Number(l.issue_number || 0)), 0);
     const nowIso = new Date().toISOString();
-    const computedUsdc = usdc_amount != null ? Number(usdc_amount) : Number((qty * effectiveEntryPrice).toFixed(2));
+    const isSimpleLock = auto_exit_enabled === false && !isConditionalLimit;
+    const computedUsdc = isSimpleLock && usdc_amount == null
+      ? null
+      : usdc_amount != null
+      ? Number(usdc_amount)
+      : Number((qty * effectiveEntryPrice).toFixed(2));
     const computedTpPct =
       resolvedTpPrice != null
         ? Number((((resolvedTpPrice - effectiveEntryPrice) / effectiveEntryPrice) * 100).toFixed(1))
@@ -1607,8 +1627,8 @@ app.post('/api/locks', (req, res) => {
       execution_mode,
       position_state: initialState,
       exit_policy,
-      quantity_shares: qty,
-      filled_shares: isConditionalLimit ? 0 : qty,
+      quantity_shares: isSimpleLock && usdc_amount == null ? null : qty,
+      filled_shares: isConditionalLimit ? 0 : isSimpleLock && usdc_amount == null ? null : qty,
       usdc_amount: computedUsdc,
       auto_exit_enabled: Boolean(auto_exit_enabled),
       tp_enabled: Boolean(tp_enabled),
@@ -1639,7 +1659,9 @@ app.post('/api/locks', (req, res) => {
 
     res.json({
       ok: true,
-      message: isConditionalLimit
+      message: isSimpleLock
+        ? `🔒 قفل معمولی در قیمت ${(effectiveEntryPrice * 100).toFixed(1)}¢ ثبت شد.`
+        : isConditionalLimit
         ? `⏳ سفارش خرید شرطی [${execution_mode}] در قیمت ${(effectiveEntryPrice * 100).toFixed(1)}¢ ثبت شد (وضعیت: ENTRY_PENDING — به محض پر شدن، TP/SL خودکار مسلح می‌شود).`
         : `⚡ خرید فوری [${execution_mode}] انجام شد و چتر خروج خودکار TP/SL فعال گردید (وضعیت: WATCHING).`,
       lock: newLock,
@@ -2147,6 +2169,8 @@ target_paths = [
     "quant_strategy_advisor.py",
     "quant_strategy_report.html",
     "docs/strategy-lab.html",
+    "data/quant_strategy_report.json",
+    "data/temporal_memory.json",
     "docs/simple.html",
     "docs/404.html",
     "weatherbot_v3.py",
@@ -2197,6 +2221,19 @@ with zipfile.ZipFile(out_zip, "w", zipfile.ZIP_DEFLATED) as zf:
   } catch (err) {
     console.error('Error building github updates zip:', err);
     res.status(500).send('Failed to create github updates zip');
+  }
+});
+
+// Serve standalone Quantitative Strategy Lab HTML report
+app.get(['/strategy-lab.html', '/quant_strategy_report.html'], (_req, res) => {
+  const reportPath = path.join(__dirname, 'quant_strategy_report.html');
+  const docsPath = path.join(__dirname, 'docs', 'strategy-lab.html');
+  if (fs.existsSync(reportPath)) {
+    res.sendFile(reportPath);
+  } else if (fs.existsSync(docsPath)) {
+    res.sendFile(docsPath);
+  } else {
+    res.status(404).send('Strategy Lab report not found.');
   }
 });
 

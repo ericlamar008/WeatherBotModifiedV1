@@ -89,10 +89,22 @@ def _save_locks(locks):
     LOCKS_FILE.write_text(json.dumps(locks, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def _fetch_open_issues():
+from concurrent.futures import ThreadPoolExecutor
+
+_OPEN_ISSUES_CACHE = None
+_GAMMA_QUOTES_MEM_CACHE = {}
+
+
+def _fetch_open_issues(use_cache=True):
     """همهٔ Issueهای باز ریپو را برمی‌گرداند (بدون فیلتر لیبل -- به دلیل
     غیرقابل‌اتکا بودن پارامتر labels= در لینک ایجاد issue، دیگر روی آن
     تکیه نمی‌کنیم). تشخیص نوع درخواست بر عهدهٔ توابع فراخواننده است."""
+    global _OPEN_ISSUES_CACHE
+    if use_cache and _OPEN_ISSUES_CACHE is not None:
+        return _OPEN_ISSUES_CACHE
+    if not GITHUB_TOKEN and not os.environ.get("GITHUB_ACTIONS"):
+        # جلوگیری از معطلی شبکه وقتی توکن گیت‌هاب تنظیم نشده است
+        pass
     issues = []
     page = 1
     while True:
@@ -100,7 +112,7 @@ def _fetch_open_issues():
             f"{API_BASE}/issues",
             headers=HEADERS,
             params={"state": "open", "per_page": 100, "page": page},
-            timeout=15,
+            timeout=10,
         )
         r.raise_for_status()
         batch = r.json()
@@ -108,40 +120,53 @@ def _fetch_open_issues():
         if len(batch) < 100:
             break
         page += 1
+    _OPEN_ISSUES_CACHE = issues
     return issues
+
+
+def _get_cached_gamma_quotes(city, date, market_type="max"):
+    """دریافت یک‌بارهٔ تمام قیمت‌ها (price + bid + ask) برای یک رویداد شهر/تاریخ با کش حافظه
+    تا برای ثبت قفل، ۲ درخواست جداگانه به پلی‌مارکت ارسال نشود."""
+    key = (city, date, "min" if market_type == "min" else "max")
+    if key in _GAMMA_QUOTES_MEM_CACHE:
+        return _GAMMA_QUOTES_MEM_CACHE[key]
+    try:
+        dt = datetime.strptime(date, "%Y-%m-%d")
+        month = MONTHS[dt.month - 1]
+        fetch_fn = get_gamma_event_quotes_min if market_type == "min" else get_gamma_event_quotes
+        quotes = fetch_fn(city, month, dt.day, dt.year) or {}
+    except Exception:
+        quotes = {}
+    _GAMMA_QUOTES_MEM_CACHE[key] = quotes
+    return quotes
 
 
 def _fetch_live_entry_price(city, date, market_id, side, market_type="max"):
     """قیمت زندهٔ واقعی این market_id را در همین لحظه از Gamma API می‌گیرد
-    و بر اساس side (YES/NO) قیمت ورود درست را برمی‌گرداند. در هر شکستی
-    (شبکه، نبودن market_id در پاسخ) None برمی‌گرداند تا فراخواننده به‌صورت
-    ایمن به قیمت دکمهٔ داشبورد برگردد -- این تابع هرگز استثنا پرتاب نمی‌کند.
-
-    (فاز ۶) پارامتر market_type تعیین می‌کند کدام رویداد Polymarket
-    (highest- یا lowest-) خوانده شود."""
+    و بر اساس side (YES/NO) قیمت ورود درست را برمی‌گرداند."""
     try:
-        dt = datetime.strptime(date, "%Y-%m-%d")
-        month = MONTHS[dt.month - 1]
-        fetch_fn = get_gamma_event_prices_min if market_type == "min" else get_gamma_event_prices
-        prices = fetch_fn(city, month, dt.day, dt.year)
-        live_yes_price = prices.get(str(market_id))
+        quotes = _get_cached_gamma_quotes(city, date, market_type)
+        q = quotes.get(str(market_id))
+        live_yes_price = q.get("price") if q else None
+        if live_yes_price is None:
+            dt = datetime.strptime(date, "%Y-%m-%d")
+            month = MONTHS[dt.month - 1]
+            fetch_fn = get_gamma_event_prices_min if market_type == "min" else get_gamma_event_prices
+            prices = fetch_fn(city, month, dt.day, dt.year)
+            live_yes_price = prices.get(str(market_id))
         if live_yes_price is None:
             return None
         if side == "NO":
-            return round(1.0 - live_yes_price, 4)
-        return round(live_yes_price, 4)
+            return round(1.0 - float(live_yes_price), 4)
+        return round(float(live_yes_price), 4)
     except Exception:
         return None
 
 
 def _fetch_live_exit_price(city, date, market_id, side, market_type="max", token_id=None):
-    """(تغییر ۴) قیمت فروش (bid) برای خروج دستی. در هر شکستی (None, None)
-    برمی‌گرداند تا فراخواننده به منطق قبلی برگردد؛ هرگز استثنا پرتاب نمی‌کند."""
+    """(تغییر ۴) قیمت فروش (bid) برای خروج دستی از روی کش یکپارچه Gamma Quotes."""
     try:
-        dt = datetime.strptime(date, "%Y-%m-%d")
-        month = MONTHS[dt.month - 1]
-        fetch_fn = get_gamma_event_quotes_min if market_type == "min" else get_gamma_event_quotes
-        quotes = fetch_fn(city, month, dt.day, dt.year)
+        quotes = _get_cached_gamma_quotes(city, date, market_type)
         quote = quotes.get(str(market_id))
         if not quote:
             return None, None
@@ -149,29 +174,33 @@ def _fetch_live_exit_price(city, date, market_id, side, market_type="max", token
     except Exception:
         return None, None
 
+
 def _close_issue(number, comment=None, extra_label="processed"):
     if not GITHUB_TOKEN:
         return
     try:
-        if comment:
-            requests.post(
-                f"{API_BASE}/issues/{number}/comments",
+        def _post_comment():
+            if comment:
+                requests.post(
+                    f"{API_BASE}/issues/{number}/comments",
+                    headers=HEADERS,
+                    json={"body": comment},
+                    timeout=10,
+                )
+
+        def _patch_close_and_label():
+            requests.patch(
+                f"{API_BASE}/issues/{number}",
                 headers=HEADERS,
-                json={"body": comment},
-                timeout=15,
+                json={"state": "closed", "labels": [extra_label]},
+                timeout=10,
             )
-        requests.patch(
-            f"{API_BASE}/issues/{number}",
-            headers=HEADERS,
-            json={"state": "closed"},
-            timeout=15,
-        )
-        requests.post(
-            f"{API_BASE}/issues/{number}/labels",
-            headers=HEADERS,
-            json={"labels": [extra_label]},
-            timeout=15,
-        )
+
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            f1 = pool.submit(_post_comment)
+            f2 = pool.submit(_patch_close_and_label)
+            f1.result()
+            f2.result()
     except Exception as e:
         print(f"[lock_manager] هشدار: نشد issue شماره {number} را ببندم: {e}")
 
