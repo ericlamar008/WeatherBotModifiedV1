@@ -71,7 +71,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.0005,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0006
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0001,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Ankara be 13°C on November 3?",
@@ -120,7 +134,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.001,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "yes_price_pct_change": -0.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0015,
+          "mp": 0.0007
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0002,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Ankara be 14°C on November 3?",
@@ -169,7 +197,21 @@
       "scan6h_yes_price": 0.0015,
       "prev_yes_price": 0.006,
       "yes_price_change": -0.0045,
-      "yes_price_pct_change": -75.0
+      "yes_price_pct_change": -75.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.007,
+          "mp": 0.0022
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0015,
+          "mp": 0.0006,
+          "bid": 0.001,
+          "ask": 0.002
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Ankara be 15°C on November 3?",
@@ -218,7 +260,21 @@
       "scan6h_yes_price": 0.0025,
       "prev_yes_price": 0.0025,
       "yes_price_change": 0.001,
-      "yes_price_pct_change": 40.0
+      "yes_price_pct_change": 40.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0085,
+          "mp": 0.0046
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0035,
+          "mp": 0.0029,
+          "bid": 0.003,
+          "ask": 0.004
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Ankara be 16°C on November 3?",
@@ -227,11 +283,11 @@
         16.0,
         16.0
       ],
-      "yes_price": 0.0395,
+      "yes_price": 0.037,
       "no_price": 0.965,
-      "best_bid": 0.032,
+      "best_bid": 0.027,
       "best_ask": 0.047,
-      "bid_ask_spread": 0.015,
+      "bid_ask_spread": 0.02,
       "volume": 544.0,
       "spread": 0.024,
       "yes_token_id": "53205833156985350577762299784099094844815996322677640906885598091379186793784",
@@ -239,14 +295,14 @@
       "model_prob": 0.0256,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0395,
-      "effective_ask": 0.0395,
-      "market_prob": 0.0395,
-      "belief_prob": 0.0305,
-      "ev": -0.2278,
+      "ask": 0.037,
+      "effective_ask": 0.037,
+      "market_prob": 0.037,
+      "belief_prob": 0.0296,
+      "ev": -0.2,
       "kelly": 0.0,
-      "swing_edge": -0.0139,
-      "swing_upside_pct": -35.2,
+      "swing_edge": -0.0114,
+      "swing_upside_pct": -30.8,
       "sell_value": 0.023,
       "prev_10m_model_prob": 0.0289,
       "model_prob_10m_change": 0.0,
@@ -258,16 +314,30 @@
       "prev_model_prob": 0.0289,
       "model_prob_change": -0.0033,
       "model_prob_pct_change": -11.4,
-      "prev_10m_yes_price": 0.036,
-      "yes_price_10m_change": 0.0035,
-      "yes_price_10m_pct_change": 9.7,
+      "prev_10m_yes_price": 0.0395,
+      "yes_price_10m_change": -0.0025,
+      "yes_price_10m_pct_change": -6.3,
       "prev_scan6h_yes_price": 0.021,
-      "yes_price_6h_change": 0.0045,
-      "yes_price_6h_pct_change": 12.9,
+      "yes_price_6h_change": 0.002,
+      "yes_price_6h_pct_change": 5.7,
       "scan6h_yes_price": 0.035,
-      "prev_yes_price": 0.036,
-      "yes_price_change": 0.0035,
-      "yes_price_pct_change": 9.7
+      "prev_yes_price": 0.0395,
+      "yes_price_change": -0.0025,
+      "yes_price_pct_change": -6.3,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.021,
+          "mp": 0.0289
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.037,
+          "mp": 0.0256,
+          "bid": 0.027,
+          "ask": 0.047
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Ankara be 17°C on November 3?",
@@ -276,11 +346,11 @@
         17.0,
         17.0
       ],
-      "yes_price": 0.255,
+      "yes_price": 0.26,
       "no_price": 0.725,
-      "best_bid": 0.24,
+      "best_bid": 0.25,
       "best_ask": 0.27,
-      "bid_ask_spread": 0.03,
+      "bid_ask_spread": 0.02,
       "volume": 3334.0,
       "spread": 0.03,
       "yes_token_id": "55603908853029676265060729894436048553461097793937977788245494349618857300568",
@@ -288,14 +358,14 @@
       "model_prob": 0.1741,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.255,
-      "effective_ask": 0.255,
-      "market_prob": 0.255,
-      "belief_prob": 0.2024,
-      "ev": -0.2063,
+      "ask": 0.26,
+      "effective_ask": 0.26,
+      "market_prob": 0.26,
+      "belief_prob": 0.2042,
+      "ev": -0.2146,
       "kelly": 0.0,
-      "swing_edge": -0.0809,
-      "swing_upside_pct": -31.7,
+      "swing_edge": -0.0859,
+      "swing_upside_pct": -33.0,
       "sell_value": 0.26,
       "prev_10m_model_prob": 0.171,
       "model_prob_10m_change": 0.0,
@@ -307,16 +377,30 @@
       "prev_model_prob": 0.171,
       "model_prob_change": 0.0031,
       "model_prob_pct_change": 1.8,
-      "prev_10m_yes_price": 0.25,
+      "prev_10m_yes_price": 0.255,
       "yes_price_10m_change": 0.005,
       "yes_price_10m_pct_change": 2.0,
       "prev_scan6h_yes_price": 0.155,
-      "yes_price_6h_change": -0.02,
-      "yes_price_6h_pct_change": -7.3,
+      "yes_price_6h_change": -0.015,
+      "yes_price_6h_pct_change": -5.5,
       "scan6h_yes_price": 0.275,
-      "prev_yes_price": 0.25,
+      "prev_yes_price": 0.255,
       "yes_price_change": 0.005,
-      "yes_price_pct_change": 2.0
+      "yes_price_pct_change": 2.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.155,
+          "mp": 0.171
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.26,
+          "mp": 0.1741,
+          "bid": 0.25,
+          "ask": 0.27
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Ankara be 18°C on November 3?",
@@ -325,11 +409,11 @@
         18.0,
         18.0
       ],
-      "yes_price": 0.53,
+      "yes_price": 0.525,
       "no_price": 0.475,
       "best_bid": 0.52,
-      "best_ask": 0.54,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.53,
+      "bid_ask_spread": 0.01,
       "volume": 1446.0,
       "spread": 0.03,
       "yes_token_id": "43324155584835517989694690582780295589410958129273705577366987863163171599143",
@@ -337,14 +421,14 @@
       "model_prob": 0.448,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.53,
-      "effective_ask": 0.53,
-      "market_prob": 0.53,
-      "belief_prob": 0.4767,
-      "ev": -0.1006,
+      "ask": 0.525,
+      "effective_ask": 0.525,
+      "market_prob": 0.525,
+      "belief_prob": 0.4749,
+      "ev": -0.0954,
       "kelly": 0.0,
-      "swing_edge": -0.082,
-      "swing_upside_pct": -15.5,
+      "swing_edge": -0.077,
+      "swing_upside_pct": -14.7,
       "sell_value": 0.51,
       "prev_10m_model_prob": 0.4431,
       "model_prob_10m_change": 0.0,
@@ -356,16 +440,30 @@
       "prev_model_prob": 0.4431,
       "model_prob_change": 0.0048,
       "model_prob_pct_change": 1.1,
-      "prev_10m_yes_price": 0.535,
+      "prev_10m_yes_price": 0.53,
       "yes_price_10m_change": -0.005,
       "yes_price_10m_pct_change": -0.9,
       "prev_scan6h_yes_price": 0.5,
       "yes_price_6h_change": 0.005,
       "yes_price_6h_pct_change": 1.0,
       "scan6h_yes_price": 0.525,
-      "prev_yes_price": 0.535,
+      "prev_yes_price": 0.53,
       "yes_price_change": -0.005,
-      "yes_price_pct_change": -0.9
+      "yes_price_pct_change": -0.9,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.5,
+          "mp": 0.4431
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.525,
+          "mp": 0.448,
+          "bid": 0.52,
+          "ask": 0.53
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Ankara be 19°C on November 3?",
@@ -414,7 +512,21 @@
       "scan6h_yes_price": 0.155,
       "prev_yes_price": 0.16,
       "yes_price_change": -0.005,
-      "yes_price_pct_change": -3.1
+      "yes_price_pct_change": -3.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.285,
+          "mp": 0.3011
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.155,
+          "mp": 0.2994,
+          "bid": 0.15,
+          "ask": 0.16
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Ankara be 20°C on November 3?",
@@ -463,7 +575,21 @@
       "scan6h_yes_price": 0.0105,
       "prev_yes_price": 0.0105,
       "yes_price_change": 0.0005,
-      "yes_price_pct_change": 4.8
+      "yes_price_pct_change": 4.8,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0145,
+          "mp": 0.0416
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.011,
+          "mp": 0.0434,
+          "bid": 0.006,
+          "ask": 0.016
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Ankara be 21°C on November 3?",
@@ -512,7 +638,21 @@
       "scan6h_yes_price": 0.002,
       "prev_yes_price": 0.0025,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -20.0
+      "yes_price_pct_change": -20.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0025,
+          "mp": 0.0245
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.002,
+          "mp": 0.0046,
+          "bid": 0.001,
+          "ask": 0.003
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Ankara be 22°C or higher on November 3?",
@@ -561,7 +701,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.001,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "yes_price_pct_change": -0.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.001,
+          "mp": 0.0072
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0011,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     }
   ],
   "live_allocation": [],
@@ -574,6 +728,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-02T21:37:37.514403+00:00",
+  "last_price_refresh": "2026-11-02T21:52:31.472197+00:00",
   "last_lite_refresh": "2026-11-02T20:20:49.272980+00:00"
 }

@@ -70,7 +70,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.0105,
       "yes_price_change": -0.01,
-      "yes_price_pct_change": -95.2
+      "yes_price_pct_change": -95.2,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0115,
+          "mp": 0.0108
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0341,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Denver be between 46-47°F on November 2?",
@@ -119,7 +133,21 @@
       "scan6h_yes_price": 0.001,
       "prev_yes_price": 0.001,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "yes_price_pct_change": -0.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.165,
+          "mp": 0.0308
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0563,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Denver be between 48-49°F on November 2?",
@@ -168,7 +196,21 @@
       "scan6h_yes_price": 0.001,
       "prev_yes_price": 0.001,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "yes_price_pct_change": -0.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.485,
+          "mp": 0.137
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.1398,
+          "bid": 0.001,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Denver be between 50-51°F on November 2?",
@@ -177,11 +219,11 @@
         50.0,
         51.0
       ],
-      "yes_price": 0.685,
+      "yes_price": 0.575,
       "no_price": 0.275,
-      "best_bid": 0.59,
-      "best_ask": 0.78,
-      "bid_ask_spread": 0.19,
+      "best_bid": 0.35,
+      "best_ask": 0.8,
+      "bid_ask_spread": 0.45,
       "volume": 1176.0,
       "spread": 0.11,
       "yes_token_id": "73756943514305361318125047264435876784138965590489021907318593588229253551054",
@@ -189,14 +231,14 @@
       "model_prob": 0.2403,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.685,
-      "effective_ask": 0.765,
-      "market_prob": 0.685,
-      "belief_prob": 0.3959,
-      "ev": -0.4825,
+      "ask": 0.575,
+      "effective_ask": 0.655,
+      "market_prob": 0.575,
+      "belief_prob": 0.3574,
+      "ev": -0.4544,
       "kelly": 0.0,
-      "swing_edge": -0.4447,
-      "swing_upside_pct": -64.9,
+      "swing_edge": -0.3347,
+      "swing_upside_pct": -58.2,
       "sell_value": 0.67,
       "prev_10m_model_prob": 0.3764,
       "model_prob_10m_change": 0.0,
@@ -208,16 +250,30 @@
       "prev_model_prob": 0.3764,
       "model_prob_change": -0.1361,
       "model_prob_pct_change": -36.2,
-      "prev_10m_yes_price": 0.735,
-      "yes_price_10m_change": -0.05,
-      "yes_price_10m_pct_change": -6.8,
+      "prev_10m_yes_price": 0.685,
+      "yes_price_10m_change": -0.11,
+      "yes_price_10m_pct_change": -16.1,
       "prev_scan6h_yes_price": 0.315,
-      "yes_price_6h_change": -0.04,
-      "yes_price_6h_pct_change": -5.5,
+      "yes_price_6h_change": -0.15,
+      "yes_price_6h_pct_change": -20.7,
       "scan6h_yes_price": 0.725,
-      "prev_yes_price": 0.735,
-      "yes_price_change": -0.05,
-      "yes_price_pct_change": -6.8
+      "prev_yes_price": 0.685,
+      "yes_price_change": -0.11,
+      "yes_price_pct_change": -16.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.315,
+          "mp": 0.3764
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.575,
+          "mp": 0.2403,
+          "bid": 0.35,
+          "ask": 0.8
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Denver be between 52-53°F on November 2?",
@@ -226,11 +282,11 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.315,
+      "yes_price": 0.425,
       "no_price": 0.75,
-      "best_bid": 0.22,
-      "best_ask": 0.41,
-      "bid_ask_spread": 0.19,
+      "best_bid": 0.21,
+      "best_ask": 0.64,
+      "bid_ask_spread": 0.43,
       "volume": 1723.0,
       "spread": 0.1,
       "yes_token_id": "95301910048504236220791641499526196888698192492820301917024234513093860155069",
@@ -238,14 +294,14 @@
       "model_prob": 0.2418,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.315,
-      "effective_ask": 0.395,
-      "market_prob": 0.315,
-      "belief_prob": 0.2674,
-      "ev": -0.323,
+      "ask": 0.425,
+      "effective_ask": 0.505,
+      "market_prob": 0.425,
+      "belief_prob": 0.3059,
+      "ev": -0.3943,
       "kelly": 0.0,
-      "swing_edge": -0.0732,
-      "swing_upside_pct": -23.2,
+      "swing_edge": -0.1832,
+      "swing_upside_pct": -43.1,
       "sell_value": 0.2,
       "prev_10m_model_prob": 0.3195,
       "model_prob_10m_change": 0.0,
@@ -257,16 +313,30 @@
       "prev_model_prob": 0.3195,
       "model_prob_change": -0.0777,
       "model_prob_pct_change": -24.3,
-      "prev_10m_yes_price": 0.255,
-      "yes_price_10m_change": 0.06,
-      "yes_price_10m_pct_change": 23.5,
+      "prev_10m_yes_price": 0.315,
+      "yes_price_10m_change": 0.11,
+      "yes_price_10m_pct_change": 34.9,
       "prev_scan6h_yes_price": 0.08,
-      "yes_price_6h_change": 0.065,
-      "yes_price_6h_pct_change": 26.0,
+      "yes_price_6h_change": 0.175,
+      "yes_price_6h_pct_change": 70.0,
       "scan6h_yes_price": 0.25,
-      "prev_yes_price": 0.255,
-      "yes_price_change": 0.06,
-      "yes_price_pct_change": 23.5
+      "prev_yes_price": 0.315,
+      "yes_price_change": 0.11,
+      "yes_price_pct_change": 34.9,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.08,
+          "mp": 0.3195
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.425,
+          "mp": 0.2418,
+          "bid": 0.21,
+          "ask": 0.64
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Denver be between 54-55°F on November 2?",
@@ -275,11 +345,11 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.024,
+      "yes_price": 0.022,
       "no_price": 0.977,
-      "best_bid": 0.011,
-      "best_ask": 0.037,
-      "bid_ask_spread": 0.026,
+      "best_bid": 0.013,
+      "best_ask": 0.031,
+      "bid_ask_spread": 0.018,
       "volume": 1346.0,
       "spread": 0.036,
       "yes_token_id": "86401085059440136625716929018026407927512731316469241308954994382093860649620",
@@ -287,14 +357,14 @@
       "model_prob": 0.1582,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.024,
-      "effective_ask": 0.024,
-      "market_prob": 0.024,
-      "belief_prob": 0.1112,
-      "ev": 3.6333,
-      "kelly": 0.0223,
-      "swing_edge": 0.1342,
-      "swing_upside_pct": 559.2,
+      "ask": 0.022,
+      "effective_ask": 0.022,
+      "market_prob": 0.022,
+      "belief_prob": 0.1105,
+      "ev": 4.0227,
+      "kelly": 0.0226,
+      "swing_edge": 0.1362,
+      "swing_upside_pct": 619.1,
       "sell_value": 0.005,
       "prev_10m_model_prob": 0.096,
       "model_prob_10m_change": 0.0,
@@ -306,16 +376,30 @@
       "prev_model_prob": 0.096,
       "model_prob_change": 0.0622,
       "model_prob_pct_change": 64.8,
-      "prev_10m_yes_price": 0.0245,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -2.0,
+      "prev_10m_yes_price": 0.024,
+      "yes_price_10m_change": -0.002,
+      "yes_price_10m_pct_change": -8.3,
       "prev_scan6h_yes_price": 0.0165,
-      "yes_price_6h_change": 0.001,
-      "yes_price_6h_pct_change": 4.3,
+      "yes_price_6h_change": -0.001,
+      "yes_price_6h_pct_change": -4.3,
       "scan6h_yes_price": 0.023,
-      "prev_yes_price": 0.0245,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -2.0
+      "prev_yes_price": 0.024,
+      "yes_price_change": -0.002,
+      "yes_price_pct_change": -8.3,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0165,
+          "mp": 0.096
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.022,
+          "mp": 0.1582,
+          "bid": 0.013,
+          "ask": 0.031
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Denver be between 56-57°F on November 2?",
@@ -364,7 +448,21 @@
       "scan6h_yes_price": 0.001,
       "prev_yes_price": 0.0015,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -33.3
+      "yes_price_pct_change": -33.3,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.007,
+          "mp": 0.0215
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.001,
+          "mp": 0.0782,
+          "bid": null,
+          "ask": 0.002
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Denver be between 58-59°F on November 2?",
@@ -413,7 +511,21 @@
       "scan6h_yes_price": 0.001,
       "prev_yes_price": 0.0005,
       "yes_price_change": 0.0005,
-      "yes_price_pct_change": 0.1
+      "yes_price_pct_change": 0.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0054
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.001,
+          "mp": 0.0312,
+          "bid": null,
+          "ask": 0.002
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Denver be between 60-61°F on November 2?",
@@ -462,7 +574,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.001,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "yes_price_pct_change": -0.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0015,
+          "mp": 0.0016
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0117,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Denver be between 62-63°F on November 2?",
@@ -511,7 +637,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.001,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "yes_price_pct_change": -0.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.001,
+          "mp": 0.0006
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0046,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Denver be 64°F or higher on November 2?",
@@ -560,7 +700,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.001,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "yes_price_pct_change": -0.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.001,
+          "mp": 0.0005
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.004,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     }
   ],
   "live_allocation": [],
@@ -573,6 +727,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-02T21:37:37.514403+00:00",
+  "last_price_refresh": "2026-11-02T21:52:31.472197+00:00",
   "last_lite_refresh": "2026-11-02T20:20:49.272980+00:00"
 }

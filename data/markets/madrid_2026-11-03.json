@@ -71,7 +71,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.001,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "yes_price_pct_change": -0.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.001,
+          "mp": 0.0055
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0075,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Madrid be 12°C on November 3?",
@@ -120,7 +134,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.0025,
       "yes_price_change": -0.002,
-      "yes_price_pct_change": -80.0
+      "yes_price_pct_change": -80.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.004,
+          "mp": 0.0132
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0178,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Madrid be 13°C on November 3?",
@@ -169,7 +197,21 @@
       "scan6h_yes_price": 0.0015,
       "prev_yes_price": 0.002,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -25.0
+      "yes_price_pct_change": -25.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0025,
+          "mp": 0.0572
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0015,
+          "mp": 0.073,
+          "bid": 0.001,
+          "ask": 0.002
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Madrid be 14°C on November 3?",
@@ -178,11 +220,11 @@
         14.0,
         14.0
       ],
-      "yes_price": 0.1085,
+      "yes_price": 0.122,
       "no_price": 0.915,
-      "best_bid": 0.1,
-      "best_ask": 0.117,
-      "bid_ask_spread": 0.017,
+      "best_bid": 0.114,
+      "best_ask": 0.13,
+      "bid_ask_spread": 0.016,
       "volume": 727.0,
       "spread": 0.02,
       "yes_token_id": "107506438208532824258337200566900352842063671251260148846883165090237197278654",
@@ -190,14 +232,14 @@
       "model_prob": 0.2485,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1085,
-      "effective_ask": 0.1085,
-      "market_prob": 0.1085,
-      "belief_prob": 0.1995,
-      "ev": 0.8387,
-      "kelly": 0.0255,
-      "swing_edge": 0.14,
-      "swing_upside_pct": 129.0,
+      "ask": 0.122,
+      "effective_ask": 0.122,
+      "market_prob": 0.122,
+      "belief_prob": 0.2042,
+      "ev": 0.6738,
+      "kelly": 0.0234,
+      "swing_edge": 0.1265,
+      "swing_upside_pct": 103.7,
       "sell_value": 0.075,
       "prev_10m_model_prob": 0.2236,
       "model_prob_10m_change": 0.0,
@@ -209,16 +251,30 @@
       "prev_model_prob": 0.2236,
       "model_prob_change": 0.0249,
       "model_prob_pct_change": 11.1,
-      "prev_10m_yes_price": 0.084,
-      "yes_price_10m_change": 0.0245,
-      "yes_price_10m_pct_change": 29.2,
+      "prev_10m_yes_price": 0.1085,
+      "yes_price_10m_change": 0.0135,
+      "yes_price_10m_pct_change": 12.4,
       "prev_scan6h_yes_price": 0.059,
-      "yes_price_6h_change": 0.0235,
-      "yes_price_6h_pct_change": 27.6,
+      "yes_price_6h_change": 0.037,
+      "yes_price_6h_pct_change": 43.5,
       "scan6h_yes_price": 0.085,
-      "prev_yes_price": 0.084,
-      "yes_price_change": 0.0245,
-      "yes_price_pct_change": 29.2
+      "prev_yes_price": 0.1085,
+      "yes_price_change": 0.0135,
+      "yes_price_pct_change": 12.4,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.059,
+          "mp": 0.2236
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.122,
+          "mp": 0.2485,
+          "bid": 0.114,
+          "ask": 0.13
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Madrid be 15°C on November 3?",
@@ -229,9 +285,9 @@
       ],
       "yes_price": 0.58,
       "no_price": 0.435,
-      "best_bid": 0.57,
-      "best_ask": 0.59,
-      "bid_ask_spread": 0.02,
+      "best_bid": 0.56,
+      "best_ask": 0.6,
+      "bid_ask_spread": 0.04,
       "volume": 1841.0,
       "spread": 0.03,
       "yes_token_id": "69762053188049425306239666249458825598221860774358576664308964085962617825897",
@@ -240,10 +296,10 @@
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.58,
-      "effective_ask": 0.58,
+      "effective_ask": 0.5855,
       "market_prob": 0.58,
       "belief_prob": 0.4546,
-      "ev": -0.2162,
+      "ev": -0.2236,
       "kelly": 0.0,
       "swing_edge": -0.1929,
       "swing_upside_pct": -33.3,
@@ -267,7 +323,21 @@
       "scan6h_yes_price": 0.565,
       "prev_yes_price": 0.6,
       "yes_price_change": -0.02,
-      "yes_price_pct_change": -3.3
+      "yes_price_pct_change": -3.3,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.54,
+          "mp": 0.4084
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.58,
+          "mp": 0.3871,
+          "bid": 0.56,
+          "ask": 0.6
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Madrid be 16°C on November 3?",
@@ -276,11 +346,11 @@
         16.0,
         16.0
       ],
-      "yes_price": 0.3,
+      "yes_price": 0.295,
       "no_price": 0.685,
-      "best_bid": 0.29,
+      "best_bid": 0.28,
       "best_ask": 0.31,
-      "bid_ask_spread": 0.02,
+      "bid_ask_spread": 0.03,
       "volume": 4106.0,
       "spread": 0.03,
       "yes_token_id": "81370475785119880152084463450522925443829935032831405501294013645746926309160",
@@ -288,14 +358,14 @@
       "model_prob": 0.196,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.3,
-      "effective_ask": 0.3,
-      "market_prob": 0.3,
-      "belief_prob": 0.2324,
-      "ev": -0.2253,
+      "ask": 0.295,
+      "effective_ask": 0.295,
+      "market_prob": 0.295,
+      "belief_prob": 0.2307,
+      "ev": -0.218,
       "kelly": 0.0,
-      "swing_edge": -0.104,
-      "swing_upside_pct": -34.7,
+      "swing_edge": -0.099,
+      "swing_upside_pct": -33.6,
       "sell_value": 0.3,
       "prev_10m_model_prob": 0.2193,
       "model_prob_10m_change": 0.0,
@@ -307,16 +377,30 @@
       "prev_model_prob": 0.2193,
       "model_prob_change": -0.0233,
       "model_prob_pct_change": -10.6,
-      "prev_10m_yes_price": 0.305,
+      "prev_10m_yes_price": 0.3,
       "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.6,
+      "yes_price_10m_pct_change": -1.7,
       "prev_scan6h_yes_price": 0.37,
-      "yes_price_6h_change": -0.015,
-      "yes_price_6h_pct_change": -4.8,
+      "yes_price_6h_change": -0.02,
+      "yes_price_6h_pct_change": -6.3,
       "scan6h_yes_price": 0.315,
-      "prev_yes_price": 0.305,
+      "prev_yes_price": 0.3,
       "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.6
+      "yes_price_pct_change": -1.7,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.37,
+          "mp": 0.2193
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.295,
+          "mp": 0.196,
+          "bid": 0.28,
+          "ask": 0.31
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Madrid be 17°C on November 3?",
@@ -365,7 +449,21 @@
       "scan6h_yes_price": 0.0375,
       "prev_yes_price": 0.0365,
       "yes_price_change": -0.001,
-      "yes_price_pct_change": -2.7
+      "yes_price_pct_change": -2.7,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0435,
+          "mp": 0.0549
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0355,
+          "mp": 0.0515,
+          "bid": 0.03,
+          "ask": 0.041
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Madrid be 18°C on November 3?",
@@ -374,11 +472,11 @@
         18.0,
         18.0
       ],
-      "yes_price": 0.007,
+      "yes_price": 0.0065,
       "no_price": 0.993,
-      "best_bid": 0.004,
+      "best_bid": 0.003,
       "best_ask": 0.01,
-      "bid_ask_spread": 0.006,
+      "bid_ask_spread": 0.007,
       "volume": 509.0,
       "spread": 0.006,
       "yes_token_id": "87495988376447887914365812255661403171068930606707584632442255308980022460184",
@@ -386,13 +484,13 @@
       "model_prob": 0.0127,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.007,
-      "effective_ask": 0.007,
-      "market_prob": 0.007,
-      "belief_prob": 0.0107,
-      "ev": 0.5286,
-      "kelly": 0.0009,
-      "swing_edge": 0.0057,
+      "ask": 0.0065,
+      "effective_ask": 0.0065,
+      "market_prob": 0.0065,
+      "belief_prob": 0.0105,
+      "ev": 0.6154,
+      "kelly": 0.001,
+      "swing_edge": 0.0062,
       "swing_upside_pct": 0.0,
       "sell_value": 0.004,
       "prev_10m_model_prob": 0.0183,
@@ -405,16 +503,30 @@
       "prev_model_prob": 0.0183,
       "model_prob_change": -0.0056,
       "model_prob_pct_change": -30.6,
-      "prev_10m_yes_price": 0.008,
-      "yes_price_10m_change": -0.001,
-      "yes_price_10m_pct_change": -12.5,
+      "prev_10m_yes_price": 0.007,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -7.1,
       "prev_scan6h_yes_price": 0.0095,
-      "yes_price_6h_change": -0.0025,
-      "yes_price_6h_pct_change": -26.3,
+      "yes_price_6h_change": -0.0005,
+      "yes_price_6h_pct_change": -7.1,
       "scan6h_yes_price": 0.007,
-      "prev_yes_price": 0.008,
-      "yes_price_change": -0.001,
-      "yes_price_pct_change": -12.5
+      "prev_yes_price": 0.007,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -7.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0095,
+          "mp": 0.0183
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0065,
+          "mp": 0.0127,
+          "bid": 0.003,
+          "ask": 0.01
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Madrid be 19°C on November 3?",
@@ -463,7 +575,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.0015,
       "yes_price_change": -0.001,
-      "yes_price_pct_change": -66.7
+      "yes_price_pct_change": -66.7,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0025,
+          "mp": 0.0053
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0036,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Madrid be 20°C on November 3?",
@@ -512,7 +638,21 @@
       "scan6h_yes_price": 0.0015,
       "prev_yes_price": 0.005,
       "yes_price_change": -0.0035,
-      "yes_price_pct_change": -70.0
+      "yes_price_pct_change": -70.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0055,
+          "mp": 0.0018
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0015,
+          "mp": 0.0012,
+          "bid": null,
+          "ask": 0.003
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in Madrid be 21°C or higher on November 3?",
@@ -561,7 +701,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.001,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "yes_price_pct_change": -0.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.001,
+          "mp": 0.0013
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0009,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     }
   ],
   "live_allocation": [],
@@ -574,6 +728,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-02T21:37:37.514403+00:00",
+  "last_price_refresh": "2026-11-02T21:52:31.472197+00:00",
   "last_lite_refresh": "2026-11-02T20:20:49.272980+00:00"
 }

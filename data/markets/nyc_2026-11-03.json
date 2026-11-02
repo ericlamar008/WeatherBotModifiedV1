@@ -70,7 +70,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.0005,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0062
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.004,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in New York City be between 60-61°F on November 3?",
@@ -119,7 +133,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.0015,
       "yes_price_change": -0.001,
-      "yes_price_pct_change": -66.7
+      "yes_price_pct_change": -66.7,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0015,
+          "mp": 0.0079
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0058,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in New York City be between 62-63°F on November 3?",
@@ -168,7 +196,21 @@
       "scan6h_yes_price": 0.001,
       "prev_yes_price": 0.0015,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -33.3
+      "yes_price_pct_change": -33.3,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0015,
+          "mp": 0.0206
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.001,
+          "mp": 0.0173,
+          "bid": null,
+          "ask": 0.002
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in New York City be between 64-65°F on November 3?",
@@ -217,7 +259,21 @@
       "scan6h_yes_price": 0.0055,
       "prev_yes_price": 0.0035,
       "yes_price_change": 0.002,
-      "yes_price_pct_change": 57.1
+      "yes_price_pct_change": 57.1,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0045,
+          "mp": 0.0515
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0055,
+          "mp": 0.0509,
+          "bid": 0.002,
+          "ask": 0.009
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in New York City be between 66-67°F on November 3?",
@@ -226,11 +282,11 @@
         66.0,
         67.0
       ],
-      "yes_price": 0.048,
+      "yes_price": 0.042,
       "no_price": 0.9785,
       "best_bid": 0.033,
-      "best_ask": 0.063,
-      "bid_ask_spread": 0.03,
+      "best_ask": 0.051,
+      "bid_ask_spread": 0.018,
       "volume": 1089.0,
       "spread": 0.005,
       "yes_token_id": "44653344092349493498002460924839118295917132107759156200955327644986489550593",
@@ -238,14 +294,14 @@
       "model_prob": 0.122,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.048,
-      "effective_ask": 0.048,
-      "market_prob": 0.048,
-      "belief_prob": 0.0961,
-      "ev": 1.0021,
-      "kelly": 0.0126,
-      "swing_edge": 0.074,
-      "swing_upside_pct": 154.2,
+      "ask": 0.042,
+      "effective_ask": 0.042,
+      "market_prob": 0.042,
+      "belief_prob": 0.094,
+      "ev": 1.2381,
+      "kelly": 0.0136,
+      "swing_edge": 0.08,
+      "swing_upside_pct": 190.5,
       "sell_value": 0.019,
       "prev_10m_model_prob": 0.109,
       "model_prob_10m_change": 0.0,
@@ -257,16 +313,30 @@
       "prev_model_prob": 0.109,
       "model_prob_change": 0.013,
       "model_prob_pct_change": 11.9,
-      "prev_10m_yes_price": 0.0495,
-      "yes_price_10m_change": -0.0015,
-      "yes_price_10m_pct_change": -3.0,
+      "prev_10m_yes_price": 0.048,
+      "yes_price_10m_change": -0.006,
+      "yes_price_10m_pct_change": -12.5,
       "prev_scan6h_yes_price": 0.0415,
-      "yes_price_6h_change": 0.0265,
-      "yes_price_6h_pct_change": 123.3,
+      "yes_price_6h_change": 0.0205,
+      "yes_price_6h_pct_change": 95.3,
       "scan6h_yes_price": 0.0215,
-      "prev_yes_price": 0.0495,
-      "yes_price_change": -0.0015,
-      "yes_price_pct_change": -3.0
+      "prev_yes_price": 0.048,
+      "yes_price_change": -0.006,
+      "yes_price_pct_change": -12.5,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0415,
+          "mp": 0.109
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.042,
+          "mp": 0.122,
+          "bid": 0.033,
+          "ask": 0.051
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in New York City be between 68-69°F on November 3?",
@@ -275,11 +345,11 @@
         68.0,
         69.0
       ],
-      "yes_price": 0.615,
+      "yes_price": 0.6,
       "no_price": 0.405,
-      "best_bid": 0.6,
-      "best_ask": 0.63,
-      "bid_ask_spread": 0.03,
+      "best_bid": 0.58,
+      "best_ask": 0.62,
+      "bid_ask_spread": 0.04,
       "volume": 2637.0,
       "spread": 0.01,
       "yes_token_id": "75267469480486217321050669334272607008725332906903801369488891978361192549015",
@@ -287,14 +357,14 @@
       "model_prob": 0.2189,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.615,
-      "effective_ask": 0.615,
-      "market_prob": 0.615,
-      "belief_prob": 0.3575,
-      "ev": -0.4187,
+      "ask": 0.6,
+      "effective_ask": 0.6055,
+      "market_prob": 0.6,
+      "belief_prob": 0.3523,
+      "ev": -0.4182,
       "kelly": 0.0,
-      "swing_edge": -0.3961,
-      "swing_upside_pct": -64.4,
+      "swing_edge": -0.3811,
+      "swing_upside_pct": -63.5,
       "sell_value": 0.59,
       "prev_10m_model_prob": 0.1858,
       "model_prob_10m_change": 0.0,
@@ -306,16 +376,30 @@
       "prev_model_prob": 0.1858,
       "model_prob_change": 0.0331,
       "model_prob_pct_change": 17.8,
-      "prev_10m_yes_price": 0.595,
-      "yes_price_10m_change": 0.02,
-      "yes_price_10m_pct_change": 3.4,
+      "prev_10m_yes_price": 0.615,
+      "yes_price_10m_change": -0.015,
+      "yes_price_10m_pct_change": -2.4,
       "prev_scan6h_yes_price": 0.52,
-      "yes_price_6h_change": 0.02,
-      "yes_price_6h_pct_change": 3.4,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 0.8,
       "scan6h_yes_price": 0.595,
-      "prev_yes_price": 0.595,
-      "yes_price_change": 0.02,
-      "yes_price_pct_change": 3.4
+      "prev_yes_price": 0.615,
+      "yes_price_change": -0.015,
+      "yes_price_pct_change": -2.4,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.52,
+          "mp": 0.1858
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.6,
+          "mp": 0.2189,
+          "bid": 0.58,
+          "ask": 0.62
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in New York City be between 70-71°F on November 3?",
@@ -324,11 +408,11 @@
         70.0,
         71.0
       ],
-      "yes_price": 0.33,
+      "yes_price": 0.335,
       "no_price": 0.685,
-      "best_bid": 0.32,
+      "best_bid": 0.33,
       "best_ask": 0.34,
-      "bid_ask_spread": 0.02,
+      "bid_ask_spread": 0.01,
       "volume": 5199.0,
       "spread": 0.03,
       "yes_token_id": "7299795746865044642516188827807355350290892207992622588461464922480616445866",
@@ -336,14 +420,14 @@
       "model_prob": 0.2753,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.33,
-      "effective_ask": 0.33,
-      "market_prob": 0.33,
-      "belief_prob": 0.2944,
-      "ev": -0.1079,
+      "ask": 0.335,
+      "effective_ask": 0.335,
+      "market_prob": 0.335,
+      "belief_prob": 0.2962,
+      "ev": -0.1158,
       "kelly": 0.0,
-      "swing_edge": -0.0547,
-      "swing_upside_pct": -16.6,
+      "swing_edge": -0.0597,
+      "swing_upside_pct": -17.8,
       "sell_value": 0.3,
       "prev_10m_model_prob": 0.2416,
       "model_prob_10m_change": 0.0,
@@ -355,16 +439,30 @@
       "prev_model_prob": 0.2416,
       "model_prob_change": 0.0337,
       "model_prob_pct_change": 13.9,
-      "prev_10m_yes_price": 0.325,
+      "prev_10m_yes_price": 0.33,
       "yes_price_10m_change": 0.005,
       "yes_price_10m_pct_change": 1.5,
       "prev_scan6h_yes_price": 0.435,
-      "yes_price_6h_change": 0.015,
-      "yes_price_6h_pct_change": 4.8,
+      "yes_price_6h_change": 0.02,
+      "yes_price_6h_pct_change": 6.3,
       "scan6h_yes_price": 0.315,
-      "prev_yes_price": 0.325,
+      "prev_yes_price": 0.33,
       "yes_price_change": 0.005,
-      "yes_price_pct_change": 1.5
+      "yes_price_pct_change": 1.5,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.435,
+          "mp": 0.2416
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.335,
+          "mp": 0.2753,
+          "bid": 0.33,
+          "ask": 0.34
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in New York City be between 72-73°F on November 3?",
@@ -373,11 +471,11 @@
         72.0,
         73.0
       ],
-      "yes_price": 0.033,
+      "yes_price": 0.0335,
       "no_price": 0.9765,
-      "best_bid": 0.028,
+      "best_bid": 0.029,
       "best_ask": 0.038,
-      "bid_ask_spread": 0.01,
+      "bid_ask_spread": 0.009,
       "volume": 717.0,
       "spread": 0.009,
       "yes_token_id": "51146433368093758156711543674966395207667791790892511151027728155163104014767",
@@ -385,14 +483,14 @@
       "model_prob": 0.1914,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.033,
-      "effective_ask": 0.033,
-      "market_prob": 0.033,
-      "belief_prob": 0.136,
-      "ev": 3.1212,
-      "kelly": 0.0266,
-      "swing_edge": 0.1584,
-      "swing_upside_pct": 480.0,
+      "ask": 0.0335,
+      "effective_ask": 0.0335,
+      "market_prob": 0.0335,
+      "belief_prob": 0.1361,
+      "ev": 3.0627,
+      "kelly": 0.0265,
+      "swing_edge": 0.1579,
+      "swing_upside_pct": 471.3,
       "sell_value": 0.019,
       "prev_10m_model_prob": 0.2036,
       "model_prob_10m_change": 0.0,
@@ -404,16 +502,30 @@
       "prev_model_prob": 0.2036,
       "model_prob_change": -0.0122,
       "model_prob_pct_change": -6.0,
-      "prev_10m_yes_price": 0.0225,
-      "yes_price_10m_change": 0.0105,
-      "yes_price_10m_pct_change": 46.7,
+      "prev_10m_yes_price": 0.033,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 1.5,
       "prev_scan6h_yes_price": 0.0065,
-      "yes_price_6h_change": 0.0095,
-      "yes_price_6h_pct_change": 40.4,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 42.6,
       "scan6h_yes_price": 0.0235,
-      "prev_yes_price": 0.0225,
-      "yes_price_change": 0.0105,
-      "yes_price_pct_change": 46.7
+      "prev_yes_price": 0.033,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 1.5,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0065,
+          "mp": 0.2036
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0335,
+          "mp": 0.1914,
+          "bid": 0.029,
+          "ask": 0.038
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in New York City be between 74-75°F on November 3?",
@@ -462,7 +574,21 @@
       "scan6h_yes_price": 0.0015,
       "prev_yes_price": 0.0025,
       "yes_price_change": -0.001,
-      "yes_price_pct_change": -40.0
+      "yes_price_pct_change": -40.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.002,
+          "mp": 0.1058
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0015,
+          "mp": 0.0762,
+          "bid": 0.001,
+          "ask": 0.002
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in New York City be between 76-77°F on November 3?",
@@ -511,7 +637,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.0015,
       "yes_price_change": -0.001,
-      "yes_price_pct_change": -66.7
+      "yes_price_pct_change": -66.7,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.001,
+          "mp": 0.0415
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0245,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     },
     {
       "question": "Will the highest temperature in New York City be 78°F or higher on November 3?",
@@ -560,7 +700,21 @@
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.0005,
       "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0
+      "yes_price_pct_change": 0.0,
+      "price_history": [
+        {
+          "t": "2026-11-02T15:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0266
+        },
+        {
+          "t": "2026-11-02T21:52:32Z",
+          "p": 0.0005,
+          "mp": 0.0136,
+          "bid": null,
+          "ask": 0.001
+        }
+      ]
     }
   ],
   "live_allocation": [],
@@ -573,6 +727,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-02T21:37:37.514403+00:00",
+  "last_price_refresh": "2026-11-02T21:52:31.472197+00:00",
   "last_lite_refresh": "2026-11-02T20:20:49.272980+00:00"
 }
