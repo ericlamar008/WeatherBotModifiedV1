@@ -7,7 +7,7 @@
   "market_type": "min",
   "created_at": "2026-10-31T02:20:41.141510+00:00",
   "committed_allocation": null,
-  "hours_left": 2.7,
+  "hours_left": 2.1,
   "time_status": "local_day_open",
   "local_day_end_utc": "2026-11-02T05:00:00+00:00",
   "event_end_date": "2026-11-01T12:00:00Z",
@@ -15,7 +15,7 @@
   "horizon_days": 0,
   "forecast_mean": 40.83,
   "sigma": 7.156,
-  "observed_intraday_temp": null,
+  "observed_intraday_temp": 57.9,
   "full_distribution": [
     {
       "question": "Will the lowest temperature in New York City be 37°F or below on November 1?",
@@ -111,9 +111,9 @@
       "yes_price_6h_change": 0.033,
       "yes_price_6h_pct_change": 471.4,
       "scan6h_yes_price": 0.04,
-      "prev_yes_price": 0.0405,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -1.2
+      "prev_yes_price": 0.007,
+      "yes_price_change": 0.033,
+      "yes_price_pct_change": 471.4
     },
     {
       "question": "Will the lowest temperature in New York City be between 40-41°F on November 1?",
@@ -160,9 +160,9 @@
       "yes_price_6h_change": -0.054,
       "yes_price_6h_pct_change": -74.5,
       "scan6h_yes_price": 0.0185,
-      "prev_yes_price": 0.0195,
-      "yes_price_change": -0.001,
-      "yes_price_pct_change": -5.1
+      "prev_yes_price": 0.0725,
+      "yes_price_change": -0.054,
+      "yes_price_pct_change": -74.5
     },
     {
       "question": "Will the lowest temperature in New York City be between 42-43°F on November 1?",
@@ -209,9 +209,9 @@
       "yes_price_6h_change": -0.002,
       "yes_price_6h_pct_change": -21.1,
       "scan6h_yes_price": 0.0075,
-      "prev_yes_price": 0.0085,
-      "yes_price_change": -0.001,
-      "yes_price_pct_change": -11.8
+      "prev_yes_price": 0.0095,
+      "yes_price_change": -0.002,
+      "yes_price_pct_change": -21.1
     },
     {
       "question": "Will the lowest temperature in New York City be between 44-45°F on November 1?",
@@ -220,26 +220,26 @@
         44.0,
         45.0
       ],
-      "yes_price": 0.0115,
-      "no_price": 0.9805,
+      "yes_price": 0.012,
+      "no_price": 0.988,
       "best_bid": 0.001,
-      "best_ask": 0.022,
-      "bid_ask_spread": 0.021,
-      "volume": 1755.0,
-      "spread": 0.037,
+      "best_ask": 0.023,
+      "bid_ask_spread": 0.022,
+      "volume": 1813.0,
+      "spread": 0.022,
       "yes_token_id": "97999662650629916132110423280521622084409966405161830522020553289018024328703",
       "no_token_id": "40771345580340607184109956745549686851929563793941643114619839856372160424616",
       "model_prob": 0.0732,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0115,
-      "effective_ask": 0.0115,
-      "market_prob": 0.0115,
-      "belief_prob": 0.0516,
-      "ev": 3.487,
+      "ask": 0.012,
+      "effective_ask": 0.012,
+      "market_prob": 0.012,
+      "belief_prob": 0.0518,
+      "ev": 3.3167,
       "kelly": 0.0101,
-      "swing_edge": 0.0617,
-      "swing_upside_pct": 536.5,
+      "swing_edge": 0.0612,
+      "swing_upside_pct": 510.0,
       "sell_value": 0.001,
       "prev_10m_model_prob": 0.0737,
       "model_prob_10m_change": 0.0,
@@ -251,16 +251,16 @@
       "prev_model_prob": 0.0737,
       "model_prob_change": -0.0005,
       "model_prob_pct_change": -0.7,
-      "prev_10m_yes_price": 0.0155,
-      "yes_price_10m_change": -0.004,
-      "yes_price_10m_pct_change": -25.8,
-      "prev_scan6h_yes_price": 0.029,
-      "yes_price_6h_change": -0.008,
-      "yes_price_6h_pct_change": -41.0,
-      "scan6h_yes_price": 0.0195,
-      "prev_yes_price": 0.0155,
-      "yes_price_change": -0.004,
-      "yes_price_pct_change": -25.8
+      "prev_10m_yes_price": 0.0115,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 4.3,
+      "prev_scan6h_yes_price": 0.0195,
+      "yes_price_6h_change": -0.0075,
+      "yes_price_6h_pct_change": -38.5,
+      "scan6h_yes_price": 0.012,
+      "prev_yes_price": 0.0195,
+      "yes_price_change": -0.0075,
+      "yes_price_pct_change": -38.5
     },
     {
       "question": "Will the lowest temperature in New York City be between 46-47°F on November 1?",
@@ -274,7 +274,7 @@
       "best_bid": 0.938,
       "best_ask": 0.999,
       "bid_ask_spread": 0.061,
-      "volume": 1881.0,
+      "volume": 1943.0,
       "spread": 0.061,
       "yes_token_id": "55956736452460511904607455194511267619286436650410863525625774004960638543698",
       "no_token_id": "6879564228441132035725659671779258901853548340263940217671146657859511412818",
@@ -287,8 +287,8 @@
       "belief_prob": 0.3763,
       "ev": -0.6182,
       "kelly": 0.0,
-      "swing_edge": -0.9111,
-      "swing_upside_pct": -94.1,
+      "swing_edge": -0.9282,
+      "swing_upside_pct": -94.2,
       "sell_value": 0.938,
       "prev_10m_model_prob": 0.058,
       "model_prob_10m_change": 0.0,
@@ -307,9 +307,9 @@
       "yes_price_6h_change": 0.0065,
       "yes_price_6h_pct_change": 0.7,
       "scan6h_yes_price": 0.9685,
-      "prev_yes_price": 0.9675,
-      "yes_price_change": 0.001,
-      "yes_price_pct_change": 0.1
+      "prev_yes_price": 0.962,
+      "yes_price_change": 0.0065,
+      "yes_price_pct_change": 0.7
     },
     {
       "question": "Will the lowest temperature in New York City be between 48-49°F on November 1?",
@@ -356,9 +356,9 @@
       "yes_price_6h_change": -0.001,
       "yes_price_6h_pct_change": -50.0,
       "scan6h_yes_price": 0.001,
-      "prev_yes_price": 0.0005,
-      "yes_price_change": 0.0005,
-      "yes_price_pct_change": 0.1
+      "prev_yes_price": 0.002,
+      "yes_price_change": -0.001,
+      "yes_price_pct_change": -50.0
     },
     {
       "question": "Will the lowest temperature in New York City be between 50-51°F on November 1?",
@@ -405,9 +405,9 @@
       "yes_price_6h_change": -0.0015,
       "yes_price_6h_pct_change": -75.0,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.001,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1
+      "prev_yes_price": 0.002,
+      "yes_price_change": -0.0015,
+      "yes_price_pct_change": -75.0
     },
     {
       "question": "Will the lowest temperature in New York City be between 52-53°F on November 1?",
@@ -454,9 +454,9 @@
       "yes_price_6h_change": -0.0085,
       "yes_price_6h_pct_change": -94.4,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.01,
-      "yes_price_change": -0.0095,
-      "yes_price_pct_change": -95.0
+      "prev_yes_price": 0.009,
+      "yes_price_change": -0.0085,
+      "yes_price_pct_change": -94.4
     },
     {
       "question": "Will the lowest temperature in New York City be between 54-55°F on November 1?",
@@ -503,9 +503,9 @@
       "yes_price_6h_change": -0.0075,
       "yes_price_6h_pct_change": -93.8,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0075,
-      "yes_price_change": -0.007,
-      "yes_price_pct_change": -93.3
+      "prev_yes_price": 0.008,
+      "yes_price_change": -0.0075,
+      "yes_price_pct_change": -93.8
     },
     {
       "question": "Will the lowest temperature in New York City be 56°F or higher on November 1?",
@@ -552,9 +552,9 @@
       "yes_price_6h_change": -0.007,
       "yes_price_6h_pct_change": -93.3,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.007,
-      "yes_price_change": -0.0065,
-      "yes_price_pct_change": -92.9
+      "prev_yes_price": 0.0075,
+      "yes_price_change": -0.007,
+      "yes_price_pct_change": -93.3
     }
   ],
   "live_allocation": [],
@@ -568,7 +568,7 @@
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
   "last_price_refresh": "2026-11-02T02:52:28.724568+00:00",
-  "last_lite_refresh": "2026-11-01T14:20:42.929385+00:00",
+  "last_lite_refresh": "2026-11-02T02:53:24.941068+00:00",
   "forecast_mean_shadow": 36.99,
   "model_means_raw": {
     "ecmwf": 41.13,
