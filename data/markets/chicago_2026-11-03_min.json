@@ -32,11 +32,11 @@
         62.0,
         63.0
       ],
-      "yes_price": 0.385,
+      "yes_price": 0.35,
       "no_price": 0.535,
       "best_bid": 0.07,
       "best_ask": 0.7,
-      "bid_ask_spread": 0.63,
+      "bid_ask_spread": 0.0,
       "volume": 48.0,
       "spread": 0.47,
       "yes_token_id": "82905584784912580070064111107035156071657082486150077085556278880475008001992",
@@ -44,14 +44,14 @@
       "model_prob": 0.9996,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.385,
-      "effective_ask": 0.465,
-      "market_prob": 0.385,
-      "belief_prob": 0.7845,
-      "ev": 0.6871,
-      "kelly": 0.1493,
-      "swing_edge": 0.6146,
-      "swing_upside_pct": 159.6,
+      "ask": 0.35,
+      "effective_ask": 0.35,
+      "market_prob": 0.35,
+      "belief_prob": 0.7722,
+      "ev": 1.2063,
+      "kelly": 0.1624,
+      "swing_edge": 0.6496,
+      "swing_upside_pct": 185.6,
       "sell_value": 0.23,
       "scan6h_model_prob": 0.9996,
       "prev_scan6h_model_prob": 0.9996,
@@ -65,13 +65,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.465,
       "prev_scan6h_yes_price": 0.465,
-      "prev_yes_price": 0.425,
-      "yes_price_10m_change": -0.04,
-      "yes_price_10m_pct_change": -9.4,
-      "yes_price_6h_change": -0.08,
-      "yes_price_6h_pct_change": -17.2,
-      "yes_price_change": -0.04,
-      "yes_price_pct_change": -9.4,
+      "prev_yes_price": 0.385,
+      "yes_price_10m_change": -0.035,
+      "yes_price_10m_pct_change": -9.1,
+      "yes_price_6h_change": -0.115,
+      "yes_price_6h_pct_change": -24.7,
+      "yes_price_change": -0.035,
+      "yes_price_pct_change": -9.1,
       "price_history": [
         {
           "t": "2026-11-03T02:59:21Z",
@@ -163,9 +163,16 @@
           "mp": 0.9996,
           "bid": 0.07,
           "ask": 0.7
+        },
+        {
+          "t": "2026-11-03T06:07:56Z",
+          "p": 0.35,
+          "mp": 0.9996,
+          "bid": 0.07,
+          "ask": 0.7
         }
       ],
-      "prev_10m_yes_price": 0.425
+      "prev_10m_yes_price": 0.385
     },
     {
       "question": "Will the lowest temperature in Chicago be between 70-71°F on November 3?",
@@ -391,6 +398,13 @@
         },
         {
           "t": "2026-11-03T05:52:35Z",
+          "p": 0.009,
+          "mp": 0.0003,
+          "bid": null,
+          "ask": 0.018
+        },
+        {
+          "t": "2026-11-03T06:07:56Z",
           "p": 0.009,
           "mp": 0.0003,
           "bid": null,
@@ -626,9 +640,16 @@
           "mp": 0.0001,
           "bid": null,
           "ask": 0.018
+        },
+        {
+          "t": "2026-11-03T06:07:56Z",
+          "p": 0.009,
+          "mp": 0.0001,
+          "bid": null,
+          "ask": 0.018
         }
       ]
     }
   ],
-  "last_price_refresh": "2026-11-03T05:52:33.452818+00:00"
+  "last_price_refresh": "2026-11-03T06:07:53.567803+00:00"
 }
