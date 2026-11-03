@@ -32,10 +32,10 @@
         -999.0,
         45.0
       ],
-      "yes_price": 0.285,
+      "yes_price": 0.255,
       "no_price": 0.75,
       "best_bid": null,
-      "best_ask": 0.57,
+      "best_ask": 0.51,
       "bid_ask_spread": 0.0,
       "volume": 22.0,
       "spread": 0.0,
@@ -44,14 +44,14 @@
       "model_prob": 0.0283,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.285,
-      "effective_ask": 0.285,
-      "market_prob": 0.285,
-      "belief_prob": 0.1181,
-      "ev": -0.5856,
+      "ask": 0.255,
+      "effective_ask": 0.255,
+      "market_prob": 0.255,
+      "belief_prob": 0.1076,
+      "ev": -0.578,
       "kelly": 0.0,
-      "swing_edge": -0.2567,
-      "swing_upside_pct": -90.1,
+      "swing_edge": -0.2267,
+      "swing_upside_pct": -88.9,
       "sell_value": null,
       "scan6h_model_prob": 0.0283,
       "prev_scan6h_model_prob": 0.0283,
@@ -65,13 +65,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.25,
       "prev_scan6h_yes_price": 0.25,
-      "prev_yes_price": 0.25,
-      "yes_price_10m_change": 0.035,
-      "yes_price_10m_pct_change": 14.0,
-      "yes_price_6h_change": 0.035,
-      "yes_price_6h_pct_change": 14.0,
-      "yes_price_change": 0.035,
-      "yes_price_pct_change": 14.0,
+      "prev_yes_price": 0.285,
+      "yes_price_10m_change": -0.03,
+      "yes_price_10m_pct_change": -10.5,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 2.0,
+      "yes_price_change": -0.03,
+      "yes_price_pct_change": -10.5,
       "price_history": [
         {
           "t": "2026-11-03T02:59:18Z",
@@ -135,9 +135,16 @@
           "mp": 0.0283,
           "bid": null,
           "ask": 0.57
+        },
+        {
+          "t": "2026-11-03T05:52:35Z",
+          "p": 0.255,
+          "mp": 0.0283,
+          "bid": null,
+          "ask": 0.51
         }
       ],
-      "prev_10m_yes_price": 0.25
+      "prev_10m_yes_price": 0.285
     },
     {
       "question": "Will the lowest temperature in Austin be between 62-63°F on November 4?",
@@ -146,10 +153,10 @@
         62.0,
         63.0
       ],
-      "yes_price": 0.335,
+      "yes_price": 0.13,
       "no_price": 0.87,
       "best_bid": null,
-      "best_ask": 0.67,
+      "best_ask": 0.26,
       "bid_ask_spread": 0.0,
       "volume": 22.0,
       "spread": 0.0,
@@ -158,14 +165,14 @@
       "model_prob": 0.3761,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.335,
-      "effective_ask": 0.335,
-      "market_prob": 0.335,
-      "belief_prob": 0.3617,
-      "ev": 0.0797,
-      "kelly": 0.01,
-      "swing_edge": 0.0411,
-      "swing_upside_pct": 12.3,
+      "ask": 0.13,
+      "effective_ask": 0.13,
+      "market_prob": 0.13,
+      "belief_prob": 0.29,
+      "ev": 1.2308,
+      "kelly": 0.046,
+      "swing_edge": 0.2461,
+      "swing_upside_pct": 189.3,
       "sell_value": null,
       "scan6h_model_prob": 0.3761,
       "prev_scan6h_model_prob": 0.3761,
@@ -179,13 +186,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.13,
       "prev_scan6h_yes_price": 0.13,
-      "prev_yes_price": 0.13,
-      "yes_price_10m_change": 0.205,
-      "yes_price_10m_pct_change": 157.7,
+      "prev_yes_price": 0.335,
+      "yes_price_10m_change": -0.205,
+      "yes_price_10m_pct_change": -61.2,
       "yes_price_6h_change": 0.205,
       "yes_price_6h_pct_change": 157.7,
-      "yes_price_change": 0.205,
-      "yes_price_pct_change": 157.7,
+      "yes_price_change": -0.205,
+      "yes_price_pct_change": -61.2,
       "price_history": [
         {
           "t": "2026-11-03T02:59:18Z",
@@ -256,9 +263,16 @@
           "mp": 0.3761,
           "bid": null,
           "ask": 0.67
+        },
+        {
+          "t": "2026-11-03T05:52:35Z",
+          "p": 0.13,
+          "mp": 0.3761,
+          "bid": null,
+          "ask": 0.26
         }
       ],
-      "prev_10m_yes_price": 0.13
+      "prev_10m_yes_price": 0.335
     },
     {
       "question": "Will the lowest temperature in Austin be 64°F or higher on November 4?",
@@ -370,10 +384,17 @@
           "mp": 0.5956,
           "bid": null,
           "ask": 0.43
+        },
+        {
+          "t": "2026-11-03T05:52:35Z",
+          "p": 0.215,
+          "mp": 0.5956,
+          "bid": null,
+          "ask": 0.43
         }
       ],
       "prev_10m_yes_price": 0.22
     }
   ],
-  "last_price_refresh": "2026-11-03T05:37:27.638783+00:00"
+  "last_price_refresh": "2026-11-03T05:52:33.452818+00:00"
 }
