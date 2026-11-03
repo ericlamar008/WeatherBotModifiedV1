@@ -437,11 +437,11 @@
         17.0,
         17.0
       ],
-      "yes_price": 0.0595,
+      "yes_price": 0.062,
       "no_price": 0.9425,
       "best_bid": 0.027,
-      "best_ask": 0.092,
-      "bid_ask_spread": 0.065,
+      "best_ask": 0.098,
+      "bid_ask_spread": 0.071,
       "volume": 3.0,
       "spread": 0.061,
       "yes_token_id": "97028378013255907109866380015739856918964952035927193744477499980098115455030",
@@ -449,14 +449,14 @@
       "model_prob": 0.1056,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0595,
-      "effective_ask": 0.0788,
-      "market_prob": 0.0595,
-      "belief_prob": 0.0895,
-      "ev": 0.1358,
-      "kelly": 0.0029,
-      "swing_edge": 0.0461,
-      "swing_upside_pct": 77.5,
+      "ask": 0.062,
+      "effective_ask": 0.0846,
+      "market_prob": 0.062,
+      "belief_prob": 0.0903,
+      "ev": 0.0674,
+      "kelly": 0.0016,
+      "swing_edge": 0.0436,
+      "swing_upside_pct": 70.3,
       "sell_value": 0.027,
       "scan6h_model_prob": 0.1056,
       "prev_scan6h_model_prob": 0.1056,
@@ -470,13 +470,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0575,
       "prev_scan6h_yes_price": 0.0575,
-      "prev_yes_price": 0.0575,
-      "yes_price_10m_change": 0.002,
-      "yes_price_10m_pct_change": 3.5,
-      "yes_price_6h_change": 0.002,
-      "yes_price_6h_pct_change": 3.5,
-      "yes_price_change": 0.002,
-      "yes_price_pct_change": 3.5,
+      "prev_yes_price": 0.0595,
+      "yes_price_10m_change": 0.0025,
+      "yes_price_10m_pct_change": 4.2,
+      "yes_price_6h_change": 0.0045,
+      "yes_price_6h_pct_change": 7.8,
+      "yes_price_change": 0.0025,
+      "yes_price_pct_change": 4.2,
       "price_history": [
         {
           "t": "2026-11-03T02:26:10Z",
@@ -484,9 +484,16 @@
           "mp": 0.1056,
           "bid": 0.027,
           "ask": 0.088
+        },
+        {
+          "t": "2026-11-03T02:37:37Z",
+          "p": 0.062,
+          "mp": 0.1056,
+          "bid": 0.027,
+          "ask": 0.098
         }
       ],
-      "prev_10m_yes_price": 0.0575
+      "prev_10m_yes_price": 0.0595
     },
     {
       "question": "Will the highest temperature in Istanbul be 19°C on November 4?",
@@ -615,5 +622,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-03T02:29:01.102377+00:00"
+  "last_price_refresh": "2026-11-03T02:37:36.310436+00:00"
 }
