@@ -32,10 +32,10 @@
         62.0,
         63.0
       ],
-      "yes_price": 0.005,
+      "yes_price": 0.0005,
       "no_price": 0.535,
       "best_bid": 0.07,
-      "best_ask": 0.01,
+      "best_ask": 0.001,
       "bid_ask_spread": 0.0,
       "volume": 48.0,
       "spread": 0.47,
@@ -44,13 +44,13 @@
       "model_prob": 0.9996,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.005,
-      "effective_ask": 0.005,
-      "market_prob": 0.005,
-      "belief_prob": 0.6515,
+      "ask": 0.0005,
+      "effective_ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.6499,
       "ev": 129.3,
       "kelly": 0.1624,
-      "swing_edge": 0.9946,
+      "swing_edge": 0.9991,
       "swing_upside_pct": 0.0,
       "sell_value": 0.23,
       "scan6h_model_prob": 0.9996,
@@ -65,13 +65,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.465,
       "prev_scan6h_yes_price": 0.465,
-      "prev_yes_price": 0.35,
-      "yes_price_10m_change": -0.345,
-      "yes_price_10m_pct_change": -98.6,
-      "yes_price_6h_change": -0.46,
-      "yes_price_6h_pct_change": -98.9,
-      "yes_price_change": -0.345,
-      "yes_price_pct_change": -98.6,
+      "prev_yes_price": 0.005,
+      "yes_price_10m_change": -0.0045,
+      "yes_price_10m_pct_change": -90.0,
+      "yes_price_6h_change": -0.4645,
+      "yes_price_6h_pct_change": -99.9,
+      "yes_price_change": -0.0045,
+      "yes_price_pct_change": -90.0,
       "price_history": [
         {
           "t": "2026-11-03T02:59:21Z",
@@ -191,9 +191,16 @@
           "mp": 0.9996,
           "bid": 0.07,
           "ask": 0.01
+        },
+        {
+          "t": "2026-11-03T07:22:36Z",
+          "p": 0.0005,
+          "mp": 0.9996,
+          "bid": 0.07,
+          "ask": 0.001
         }
       ],
-      "prev_10m_yes_price": 0.35
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the lowest temperature in Chicago be between 70-71°F on November 3?",
@@ -447,6 +454,13 @@
         },
         {
           "t": "2026-11-03T07:07:33Z",
+          "p": 0.0005,
+          "mp": 0.0003,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-03T07:22:36Z",
           "p": 0.0005,
           "mp": 0.0003,
           "bid": null,
@@ -710,9 +724,16 @@
           "mp": 0.0001,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-03T07:22:36Z",
+          "p": 0.0005,
+          "mp": 0.0001,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     }
   ],
-  "last_price_refresh": "2026-11-03T07:07:31.722081+00:00"
+  "last_price_refresh": "2026-11-03T07:22:33.397537+00:00"
 }
