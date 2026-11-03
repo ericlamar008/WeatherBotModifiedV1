@@ -1514,11 +1514,11 @@
         4.0,
         4.0
       ],
-      "yes_price": 0.5,
+      "yes_price": 0.53,
       "no_price": 0.47,
-      "best_bid": 0.04,
+      "best_bid": 0.1,
       "best_ask": 0.96,
-      "bid_ask_spread": 0.92,
+      "bid_ask_spread": 0.86,
       "volume": 38.0,
       "spread": 0.88,
       "yes_token_id": "99160358477795732771772337833347061666469271523829437622481688693074621229131",
@@ -1526,14 +1526,14 @@
       "model_prob": 0.3183,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.5,
-      "effective_ask": 0.58,
-      "market_prob": 0.5,
-      "belief_prob": 0.3819,
-      "ev": -0.3416,
+      "ask": 0.53,
+      "effective_ask": 0.61,
+      "market_prob": 0.53,
+      "belief_prob": 0.3924,
+      "ev": -0.3567,
       "kelly": 0.0,
-      "swing_edge": -0.1817,
-      "swing_upside_pct": -36.3,
+      "swing_edge": -0.2117,
+      "swing_upside_pct": -39.9,
       "sell_value": 0.09,
       "scan6h_model_prob": 0.3183,
       "prev_scan6h_model_prob": 0.3183,
@@ -1547,13 +1547,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.53,
       "prev_scan6h_yes_price": 0.53,
-      "prev_yes_price": 0.59,
-      "yes_price_10m_change": -0.09,
-      "yes_price_10m_pct_change": -15.3,
+      "prev_yes_price": 0.5,
+      "yes_price_10m_change": 0.03,
+      "yes_price_10m_pct_change": 6.0,
       "yes_price_6h_change": -0.03,
       "yes_price_6h_pct_change": -5.7,
-      "yes_price_change": -0.09,
-      "yes_price_pct_change": -15.3,
+      "yes_price_change": 0.03,
+      "yes_price_pct_change": 6.0,
       "price_history": [
         {
           "t": "2026-11-03T08:27:48Z",
@@ -1659,9 +1659,16 @@
           "mp": 0.3183,
           "bid": 0.04,
           "ask": 0.96
+        },
+        {
+          "t": "2026-11-03T13:07:34Z",
+          "p": 0.53,
+          "mp": 0.3183,
+          "bid": 0.1,
+          "ask": 0.96
         }
       ],
-      "prev_10m_yes_price": 0.59
+      "prev_10m_yes_price": 0.5
     },
     {
       "question": "Will the lowest temperature in Munich be 5°C on November 3?",
@@ -2749,5 +2756,5 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-03T12:52:35.514996+00:00"
+  "last_price_refresh": "2026-11-03T13:07:32.859799+00:00"
 }
