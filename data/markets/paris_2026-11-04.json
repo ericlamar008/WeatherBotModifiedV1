@@ -487,11 +487,11 @@
         9.0,
         9.0
       ],
-      "yes_price": 0.09,
+      "yes_price": 0.095,
       "no_price": 0.935,
       "best_bid": 0.08,
-      "best_ask": 0.1,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.11,
+      "bid_ask_spread": 0.03,
       "volume": 495.0,
       "spread": 0.03,
       "yes_token_id": "7499866848475933218566622497601345638466742870222766545790464564552099099321",
@@ -499,14 +499,14 @@
       "model_prob": 0.1391,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.09,
-      "effective_ask": 0.09,
-      "market_prob": 0.09,
-      "belief_prob": 0.1219,
-      "ev": 0.3544,
-      "kelly": 0.0088,
-      "swing_edge": 0.0491,
-      "swing_upside_pct": 54.6,
+      "ask": 0.095,
+      "effective_ask": 0.095,
+      "market_prob": 0.095,
+      "belief_prob": 0.1237,
+      "ev": 0.3021,
+      "kelly": 0.0079,
+      "swing_edge": 0.0441,
+      "swing_upside_pct": 46.4,
       "sell_value": 0.05,
       "scan6h_model_prob": 0.1391,
       "prev_scan6h_model_prob": 0.1391,
@@ -520,13 +520,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.065,
       "prev_scan6h_yes_price": 0.065,
-      "prev_yes_price": 0.065,
-      "yes_price_10m_change": 0.025,
-      "yes_price_10m_pct_change": 38.5,
-      "yes_price_6h_change": 0.025,
-      "yes_price_6h_pct_change": 38.5,
-      "yes_price_change": 0.025,
-      "yes_price_pct_change": 38.5,
+      "prev_yes_price": 0.09,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 5.6,
+      "yes_price_6h_change": 0.03,
+      "yes_price_6h_pct_change": 46.2,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 5.6,
       "price_history": [
         {
           "t": "2026-11-03T02:26:07Z",
@@ -590,9 +590,16 @@
           "mp": 0.1391,
           "bid": 0.08,
           "ask": 0.1
+        },
+        {
+          "t": "2026-11-03T05:22:32Z",
+          "p": 0.095,
+          "mp": 0.1391,
+          "bid": 0.08,
+          "ask": 0.11
         }
       ],
-      "prev_10m_yes_price": 0.065
+      "prev_10m_yes_price": 0.09
     },
     {
       "question": "Will the highest temperature in Paris be 10°C on November 4?",
@@ -1296,6 +1303,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-03T05:07:33.279434+00:00",
+  "last_price_refresh": "2026-11-03T05:22:31.650764+00:00",
   "last_lite_refresh": "2026-11-03T02:53:37.556730+00:00"
 }
