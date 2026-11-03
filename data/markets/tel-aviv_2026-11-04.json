@@ -78,7 +78,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 24°C on November 4?",
@@ -135,7 +136,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 25°C on November 4?",
@@ -192,7 +194,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 26°C on November 4?",
@@ -249,7 +252,8 @@
           "bid": 0.05,
           "ask": 0.06
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.055
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 27°C on November 4?",
@@ -306,7 +310,8 @@
           "bid": 0.5,
           "ask": 0.52
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.51
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 28°C on November 4?",
@@ -363,7 +368,8 @@
           "bid": 0.38,
           "ask": 0.41
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.395
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 29°C on November 4?",
@@ -372,11 +378,11 @@
         29.0,
         29.0
       ],
-      "yes_price": 0.041,
+      "yes_price": 0.0415,
       "no_price": 0.959,
       "best_bid": 0.032,
-      "best_ask": 0.05,
-      "bid_ask_spread": 0.018,
+      "best_ask": 0.051,
+      "bid_ask_spread": 0.019,
       "volume": 686.0,
       "spread": 0.018,
       "yes_token_id": "30980581337542703869343205882651467853595119720177872810837887998309859828894",
@@ -384,14 +390,14 @@
       "model_prob": 0.1372,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.041,
-      "effective_ask": 0.041,
-      "market_prob": 0.041,
-      "belief_prob": 0.1035,
-      "ev": 1.5244,
-      "kelly": 0.0163,
-      "swing_edge": 0.0962,
-      "swing_upside_pct": 234.6,
+      "ask": 0.0415,
+      "effective_ask": 0.0415,
+      "market_prob": 0.0415,
+      "belief_prob": 0.1037,
+      "ev": 1.4988,
+      "kelly": 0.0162,
+      "swing_edge": 0.0957,
+      "swing_upside_pct": 230.6,
       "sell_value": 0.032,
       "scan6h_model_prob": 0.1372,
       "prev_scan6h_model_prob": 0.1372,
@@ -406,12 +412,12 @@
       "scan6h_yes_price": 0.041,
       "prev_scan6h_yes_price": 0.041,
       "prev_yes_price": 0.041,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 1.2,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 1.2,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 1.2,
       "price_history": [
         {
           "t": "2026-11-03T02:26:10Z",
@@ -420,7 +426,8 @@
           "bid": 0.032,
           "ask": 0.05
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.041
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 30°C on November 4?",
@@ -477,7 +484,8 @@
           "bid": 0.003,
           "ask": 0.007
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 31°C on November 4?",
@@ -534,7 +542,8 @@
           "bid": null,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 32°C on November 4?",
@@ -591,7 +600,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 33°C or higher on November 4?",
@@ -648,7 +658,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     }
   ],
   "live_allocation": [],
@@ -660,5 +671,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-03T02:29:01.102377+00:00"
 }

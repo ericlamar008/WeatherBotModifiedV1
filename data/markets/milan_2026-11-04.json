@@ -79,7 +79,8 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the highest temperature in Milan be 8°C on November 4?",
@@ -136,7 +137,8 @@
           "bid": 0.001,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Milan be 10°C on November 4?",
@@ -193,7 +195,8 @@
           "bid": 0.007,
           "ask": 0.017
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.012
     },
     {
       "question": "Will the highest temperature in Milan be 11°C on November 4?",
@@ -202,11 +205,11 @@
         11.0,
         11.0
       ],
-      "yes_price": 0.128,
+      "yes_price": 0.13,
       "no_price": 0.872,
-      "best_bid": 0.105,
+      "best_bid": 0.109,
       "best_ask": 0.151,
-      "bid_ask_spread": 0.046,
+      "bid_ask_spread": 0.042,
       "volume": 310.0,
       "spread": 0.046,
       "yes_token_id": "30344545179696843893420049069414482661406861354366564181796782383490954615146",
@@ -214,14 +217,14 @@
       "model_prob": 0.1915,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.128,
-      "effective_ask": 0.1368,
-      "market_prob": 0.128,
-      "belief_prob": 0.1693,
-      "ev": 0.2376,
-      "kelly": 0.0094,
-      "swing_edge": 0.0547,
-      "swing_upside_pct": 40.0,
+      "ask": 0.13,
+      "effective_ask": 0.1366,
+      "market_prob": 0.13,
+      "belief_prob": 0.17,
+      "ev": 0.2445,
+      "kelly": 0.0097,
+      "swing_edge": 0.0615,
+      "swing_upside_pct": 47.3,
       "sell_value": 0.105,
       "scan6h_model_prob": 0.1915,
       "prev_scan6h_model_prob": 0.1915,
@@ -236,12 +239,12 @@
       "scan6h_yes_price": 0.128,
       "prev_scan6h_yes_price": 0.128,
       "prev_yes_price": 0.128,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.002,
+      "yes_price_10m_pct_change": 1.6,
+      "yes_price_6h_change": 0.002,
+      "yes_price_6h_pct_change": 1.6,
+      "yes_price_change": 0.002,
+      "yes_price_pct_change": 1.6,
       "price_history": [
         {
           "t": "2026-11-03T02:26:08Z",
@@ -250,7 +253,8 @@
           "bid": 0.105,
           "ask": 0.151
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.128
     },
     {
       "question": "Will the highest temperature in Milan be 12°C on November 4?",
@@ -259,11 +263,11 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.405,
+      "yes_price": 0.41,
       "no_price": 0.595,
-      "best_bid": 0.38,
+      "best_bid": 0.39,
       "best_ask": 0.43,
-      "bid_ask_spread": 0.05,
+      "bid_ask_spread": 0.04,
       "volume": 221.0,
       "spread": 0.05,
       "yes_token_id": "62056237487071610489031102408792882195516273846477579443368898706359907335030",
@@ -271,14 +275,14 @@
       "model_prob": 0.3279,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.405,
-      "effective_ask": 0.416,
-      "market_prob": 0.405,
-      "belief_prob": 0.3549,
-      "ev": -0.1469,
+      "ask": 0.41,
+      "effective_ask": 0.4155,
+      "market_prob": 0.41,
+      "belief_prob": 0.3566,
+      "ev": -0.1418,
       "kelly": 0.0,
-      "swing_edge": -0.0881,
-      "swing_upside_pct": -21.2,
+      "swing_edge": -0.0821,
+      "swing_upside_pct": -20.0,
       "sell_value": 0.38,
       "scan6h_model_prob": 0.3279,
       "prev_scan6h_model_prob": 0.3279,
@@ -293,12 +297,12 @@
       "scan6h_yes_price": 0.405,
       "prev_scan6h_yes_price": 0.405,
       "prev_yes_price": 0.405,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.2,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 1.2,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.2,
       "price_history": [
         {
           "t": "2026-11-03T02:26:08Z",
@@ -306,8 +310,16 @@
           "mp": 0.3279,
           "bid": 0.38,
           "ask": 0.43
+        },
+        {
+          "t": "2026-11-03T02:29:02Z",
+          "p": 0.41,
+          "mp": 0.3279,
+          "bid": 0.39,
+          "ask": 0.43
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.405
     },
     {
       "question": "Will the highest temperature in Milan be 13°C on November 4?",
@@ -364,7 +376,8 @@
           "bid": 0.32,
           "ask": 0.34
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.33
     },
     {
       "question": "Will the highest temperature in Milan be 14°C on November 4?",
@@ -421,7 +434,8 @@
           "bid": 0.09,
           "ask": 0.12
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.105
     },
     {
       "question": "Will the highest temperature in Milan be 15°C on November 4?",
@@ -478,7 +492,8 @@
           "bid": 0.006,
           "ask": 0.019
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0125
     },
     {
       "question": "Will the highest temperature in Milan be 16°C on November 4?",
@@ -535,7 +550,8 @@
           "bid": 0.002,
           "ask": 0.008
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Milan be 17°C or higher on November 4?",
@@ -592,7 +608,8 @@
           "bid": 0.001,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     }
   ],
   "live_allocation": [],
@@ -604,5 +621,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-03T02:29:01.102377+00:00"
 }

@@ -78,7 +78,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Austin be between 66-67°F on November 4?",
@@ -135,7 +136,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Austin be between 68-69°F on November 4?",
@@ -192,7 +194,8 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the highest temperature in Austin be between 70-71°F on November 4?",
@@ -249,7 +252,8 @@
           "bid": 0.001,
           "ask": 0.018
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0095
     },
     {
       "question": "Will the highest temperature in Austin be between 72-73°F on November 4?",
@@ -306,7 +310,8 @@
           "bid": 0.011,
           "ask": 0.025
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.018
     },
     {
       "question": "Will the highest temperature in Austin be between 74-75°F on November 4?",
@@ -333,8 +338,8 @@
       "belief_prob": 0.111,
       "ev": -0.039,
       "kelly": 0.0,
-      "swing_edge": -0.004,
-      "swing_upside_pct": -3.5,
+      "swing_edge": 0.0015,
+      "swing_upside_pct": 1.4,
       "sell_value": 0.09,
       "scan6h_model_prob": 0.1115,
       "prev_scan6h_model_prob": 0.1115,
@@ -363,7 +368,8 @@
           "bid": 0.09,
           "ask": 0.13
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.11
     },
     {
       "question": "Will the highest temperature in Austin be between 76-77°F on November 4?",
@@ -372,11 +378,11 @@
         76.0,
         77.0
       ],
-      "yes_price": 0.495,
+      "yes_price": 0.5,
       "no_price": 0.505,
-      "best_bid": 0.47,
+      "best_bid": 0.48,
       "best_ask": 0.52,
-      "bid_ask_spread": 0.05,
+      "bid_ask_spread": 0.04,
       "volume": 292.0,
       "spread": 0.05,
       "yes_token_id": "79123277514887205583285825944414740104515909675369213945883670573038167793826",
@@ -384,14 +390,14 @@
       "model_prob": 0.1821,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.495,
-      "effective_ask": 0.506,
-      "market_prob": 0.495,
-      "belief_prob": 0.2916,
-      "ev": -0.4237,
+      "ask": 0.5,
+      "effective_ask": 0.5055,
+      "market_prob": 0.5,
+      "belief_prob": 0.2934,
+      "ev": -0.4196,
       "kelly": 0.0,
-      "swing_edge": -0.3239,
-      "swing_upside_pct": -64.0,
+      "swing_edge": -0.3179,
+      "swing_upside_pct": -63.6,
       "sell_value": 0.47,
       "scan6h_model_prob": 0.1821,
       "prev_scan6h_model_prob": 0.1821,
@@ -406,12 +412,12 @@
       "scan6h_yes_price": 0.495,
       "prev_scan6h_yes_price": 0.495,
       "prev_yes_price": 0.495,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.0,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 1.0,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.0,
       "price_history": [
         {
           "t": "2026-11-03T02:26:06Z",
@@ -419,8 +425,16 @@
           "mp": 0.1821,
           "bid": 0.47,
           "ask": 0.52
+        },
+        {
+          "t": "2026-11-03T02:29:02Z",
+          "p": 0.5,
+          "mp": 0.1821,
+          "bid": 0.48,
+          "ask": 0.52
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.495
     },
     {
       "question": "Will the highest temperature in Austin be between 78-79°F on November 4?",
@@ -429,10 +443,10 @@
         78.0,
         79.0
       ],
-      "yes_price": 0.335,
+      "yes_price": 0.315,
       "no_price": 0.665,
-      "best_bid": 0.32,
-      "best_ask": 0.35,
+      "best_bid": 0.3,
+      "best_ask": 0.33,
       "bid_ask_spread": 0.03,
       "volume": 2078.0,
       "spread": 0.03,
@@ -441,14 +455,14 @@
       "model_prob": 0.223,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.335,
-      "effective_ask": 0.335,
-      "market_prob": 0.335,
-      "belief_prob": 0.2622,
-      "ev": -0.2173,
+      "ask": 0.315,
+      "effective_ask": 0.315,
+      "market_prob": 0.315,
+      "belief_prob": 0.2552,
+      "ev": -0.1898,
       "kelly": 0.0,
-      "swing_edge": -0.112,
-      "swing_upside_pct": -33.4,
+      "swing_edge": -0.092,
+      "swing_upside_pct": -29.2,
       "sell_value": 0.32,
       "scan6h_model_prob": 0.223,
       "prev_scan6h_model_prob": 0.223,
@@ -463,12 +477,12 @@
       "scan6h_yes_price": 0.335,
       "prev_scan6h_yes_price": 0.335,
       "prev_yes_price": 0.335,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.02,
+      "yes_price_10m_pct_change": -6.0,
+      "yes_price_6h_change": -0.02,
+      "yes_price_6h_pct_change": -6.0,
+      "yes_price_change": -0.02,
+      "yes_price_pct_change": -6.0,
       "price_history": [
         {
           "t": "2026-11-03T02:26:06Z",
@@ -476,8 +490,16 @@
           "mp": 0.223,
           "bid": 0.32,
           "ask": 0.35
+        },
+        {
+          "t": "2026-11-03T02:29:02Z",
+          "p": 0.315,
+          "mp": 0.223,
+          "bid": 0.3,
+          "ask": 0.33
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.335
     },
     {
       "question": "Will the highest temperature in Austin be between 80-81°F on November 4?",
@@ -534,7 +556,8 @@
           "bid": 0.035,
           "ask": 0.048
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0415
     },
     {
       "question": "Will the highest temperature in Austin be between 82-83°F on November 4?",
@@ -591,7 +614,8 @@
           "bid": 0.004,
           "ask": 0.013
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0085
     },
     {
       "question": "Will the highest temperature in Austin be 84°F or higher on November 4?",
@@ -648,7 +672,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     }
   ],
   "live_allocation": [],
@@ -660,5 +685,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-03T02:29:01.102377+00:00"
 }
