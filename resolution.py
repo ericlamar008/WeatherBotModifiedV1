@@ -37,9 +37,39 @@ nothing settled yet", which returns an empty dict).
 """
 
 import json
+import math
+import re
 import time
-import requests
-from datetime import datetime
+try:
+    import requests
+except ImportError:
+    import urllib.request
+
+    class _UrllibResponse:
+        def __init__(self, status_code, text):
+            self.status_code = status_code
+            self.text = text
+
+        def json(self):
+            return json.loads(self.text)
+
+    class _UrllibRequestsShim:
+        @staticmethod
+        def get(url, timeout=10, headers=None):
+            t = timeout[1] if isinstance(timeout, (tuple, list)) and len(timeout) > 1 else (timeout[0] if isinstance(timeout, (tuple, list)) else timeout)
+            hdrs = {"User-Agent": "WeatherBot/3.0"}
+            if headers:
+                hdrs.update(headers)
+            req = urllib.request.Request(url, headers=hdrs)
+            with urllib.request.urlopen(req, timeout=t) as resp:
+                return _UrllibResponse(resp.status, resp.read().decode("utf-8", errors="replace"))
+
+    requests = _UrllibRequestsShim()
+from datetime import datetime, timedelta, timezone
+try:
+    from zoneinfo import ZoneInfo
+except ImportError:
+    ZoneInfo = None
 
 MAX_RETRIES = 3
 RETRY_DELAY_S = 3
@@ -224,44 +254,112 @@ def get_actual_wunderground_proxy(station, unit, date_str, vc_key):
                 print(f"  [DISPLAY-WU] {station} {date_str}: {e}")
     return None
 
-def get_actual_noaa(station, unit, date_str):
-    """NOAA Aviation Weather METAR archive -- FALLBACK DISPLAY ONLY, not authoritative."""
+_T_REMARK_RE = re.compile(r"\bT([01])(\d{3})(?:[01]\d{3}|\d{4})\b")
+
+
+def _parse_routine_metar_temp_c(row):
+    """Extracts routine METAR temperature in Celsius per Polymarket official METAR rules:
+    - Excludes SPECI (special observations).
+    - Uses 8-digit T-group remark (tenths of C) if present in rawOb, otherwise row['temp']."""
+    raw = str(row.get("rawOb") or "").strip()
+    if raw.startswith("SPECI ") or str(row.get("metarType") or "").upper() == "SPECI":
+        return None
+    if raw:
+        m = _T_REMARK_RE.search(raw)
+        if m:
+            sign = -1.0 if m.group(1) == "1" else 1.0
+            return sign * (int(m.group(2)) / 10.0)
+    if row.get("temp") is not None:
+        try:
+            return float(row["temp"])
+        except Exception:
+            return None
+    return None
+
+
+def _pm_round_whole_degree(val):
+    """Polymarket official rounding rule: round to nearest whole degree, with exact .5 rounded UP
+    to the next higher whole degree (e.g. 16.5 -> 17, -8.5 -> -8)."""
+    return math.floor(float(val) + 0.5)
+
+
+def _fetch_routine_metar_temps_for_local_date(station, date_str, tz_name=None):
+    """Fetches all routine METAR temperatures (in Celsius) for `station` on `date_str`
+    in the station's local timezone (`tz_name`), using `&hours=28` on aviationweather.gov."""
+    tz = None
+    if tz_name and ZoneInfo is not None:
+        try:
+            tz = ZoneInfo(tz_name)
+        except Exception:
+            tz = None
+
+    now_utc = datetime.now(timezone.utc)
     try:
+        y, m, d = map(int, date_str.split("-"))
+        if tz is not None:
+            local_end = datetime(y, m, d, 23, 59, 59, tzinfo=tz) + timedelta(hours=2)
+            end_utc = min(now_utc, local_end.astimezone(timezone.utc))
+        else:
+            local_end = datetime(y, m, d, 23, 59, 59, tzinfo=timezone.utc) + timedelta(hours=6)
+            end_utc = min(now_utc, local_end)
+        date_param = end_utc.strftime("%Y-%m-%dT%H:%M:%SZ")
         url = (
             f"https://aviationweather.gov/api/data/metar"
-            f"?ids={station}&format=json&date={date_str.replace('-', '')}"
+            f"?ids={station}&format=json&date={date_param}&hours=28"
         )
-        data = requests.get(url, timeout=(5, 10)).json()
-        if not data:
-            return None
-        temps = [float(d["temp"]) for d in data if d.get("temp") is not None]
+    except Exception:
+        url = (
+            f"https://aviationweather.gov/api/data/metar"
+            f"?ids={station}&format=json&hours=28"
+        )
+
+    data = requests.get(url, timeout=(5, 10)).json()
+    if not data or not isinstance(data, list):
+        return []
+
+    temps = []
+    for row in data:
+        if tz is not None and row.get("obsTime") is not None:
+            try:
+                local_dt = datetime.fromtimestamp(int(row["obsTime"]), tz=timezone.utc).astimezone(tz)
+                if local_dt.strftime("%Y-%m-%d") != date_str:
+                    continue
+            except Exception:
+                pass
+        tc = _parse_routine_metar_temp_c(row)
+        if tc is not None:
+            temps.append(tc)
+    return temps
+
+
+def get_actual_noaa(station, unit, date_str, tz_name=None):
+    """NOAA Aviation Weather METAR archive -- FALLBACK DISPLAY ONLY, not authoritative."""
+    try:
+        temps = _fetch_routine_metar_temps_for_local_date(station, date_str, tz_name=tz_name)
         if not temps:
             return None
         max_c = max(temps)
-        return round(max_c * 9 / 5 + 32) if unit == "F" else round(max_c, 1)
+        val = (max_c * 9.0 / 5.0 + 32.0) if unit == "F" else max_c
+        return round(val, 1)
     except Exception as e:
         print(f"  [DISPLAY-NOAA] {station} {date_str}: {e}")
         return None
 
-def get_actual_noaa_min(station, unit, date_str):
+
+def get_actual_noaa_min(station, unit, date_str, tz_name=None):
     """(فاز ۶) معادل get_actual_noaa (فقط نمایشی/fallback، نه مرجع تعیین
     برد/باخت) -- min(temps) به‌جای max(temps)."""
     try:
-        url = (
-            f"https://aviationweather.gov/api/data/metar"
-            f"?ids={station}&format=json&date={date_str.replace('-', '')}"
-        )
-        data = requests.get(url, timeout=(5, 10)).json()
-        if not data:
-            return None
-        temps = [float(d["temp"]) for d in data if d.get("temp") is not None]
+        temps = _fetch_routine_metar_temps_for_local_date(station, date_str, tz_name=tz_name)
         if not temps:
             return None
         min_c = min(temps)
-        return round(min_c * 9 / 5 + 32) if unit == "F" else round(min_c, 1)
+        val = (min_c * 9.0 / 5.0 + 32.0) if unit == "F" else min_c
+        return round(val, 1)
     except Exception as e:
         print(f"  [DISPLAY-NOAA-MIN] {station} {date_str}: {e}")
         return None
+
 
 def get_actual_hko(date_str):
     """Hong Kong Observatory open data API -- FALLBACK DISPLAY ONLY, not authoritative."""
@@ -277,6 +375,7 @@ def get_actual_hko(date_str):
     except Exception as e:
         print(f"  [DISPLAY-HKO] {date_str}: {e}")
     return None
+
 
 def get_actual_hko_min(date_str):
     """(فاز ۶) معادل get_actual_hko با dataType=CLMMINT به‌جای CLMMAXT
@@ -294,23 +393,27 @@ def get_actual_hko_min(date_str):
         print(f"  [DISPLAY-HKO-MIN] {date_str}: {e}")
     return None
 
+
 def get_display_temp(loc, date_str, vc_key=""):
     """Dispatches to the correct FALLBACK-ONLY source per city config."""
     source = loc.get("resolve_source", "wunderground")
     if source == "noaa":
-        return get_actual_noaa(loc["station"], loc["unit"], date_str)
+        return get_actual_noaa(loc["station"], loc["unit"], date_str, tz_name=loc.get("tz"))
     if source == "hko":
         return get_actual_hko(date_str)
     return get_actual_wunderground_proxy(loc["station"], loc["unit"], date_str, vc_key)
+
 
 def get_display_temp_min(loc, date_str, vc_key=""):
     """(فاز ۶) معادل get_display_temp برای کمینه."""
     source = loc.get("resolve_source", "wunderground")
     if source == "noaa":
-        return get_actual_noaa_min(loc["station"], loc["unit"], date_str)
+        return get_actual_noaa_min(loc["station"], loc["unit"], date_str, tz_name=loc.get("tz"))
     if source == "hko":
         return get_actual_hko_min(date_str)
     return get_actual_wunderground_proxy(loc["station"], loc["unit"], date_str, vc_key)
 
+
 # Backward-compat alias
 get_actual_temp = get_display_temp
+

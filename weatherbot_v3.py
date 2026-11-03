@@ -59,7 +59,31 @@ import hashlib
 import threading
 import functools
 import http.server
-import requests
+try:
+    import requests
+except ImportError:
+    import urllib.request
+
+    class _UrllibResponse:
+        def __init__(self, status_code, text):
+            self.status_code = status_code
+            self.text = text
+
+        def json(self):
+            return json.loads(self.text)
+
+    class _UrllibRequestsShim:
+        @staticmethod
+        def get(url, timeout=10, headers=None):
+            t = timeout[1] if isinstance(timeout, (tuple, list)) and len(timeout) > 1 else (timeout[0] if isinstance(timeout, (tuple, list)) else timeout)
+            hdrs = {"User-Agent": "WeatherBot/3.0"}
+            if headers:
+                hdrs.update(headers)
+            req = urllib.request.Request(url, headers=hdrs)
+            with urllib.request.urlopen(req, timeout=t) as resp:
+                return _UrllibResponse(resp.status, resp.read().decode("utf-8", errors="replace"))
+
+    requests = _UrllibRequestsShim()
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -907,6 +931,11 @@ def discover_new_signals(now, state):
                 update_price=True,
             )
 
+            resolve_source_info = fc.get_resolution_source_forecast(
+                city_slug, loc, date, is_min=False, outcomes=outcomes,
+                prev_info=mkt.get("resolve_source_info"), reference_mean=mean,
+            )
+
             was_new_signal = bool(portfolio["allocation"]) and not mkt.get("live_allocation")
 
             mkt.update({
@@ -914,6 +943,7 @@ def discover_new_signals(now, state):
                 "forecast_mean_shadow": shadow_mean, "model_means_raw": model_means_raw,
                 "model_spread": model_spread,
                 "observed_intraday_temp": observed_bound,
+                "resolve_source_info": resolve_source_info,
                 "full_distribution": portfolio["full_distribution"],
                 "live_allocation": portfolio["allocation"],
                 "total_allocated_units": portfolio.get("total_allocated_units"),
@@ -1059,6 +1089,11 @@ def discover_new_min_signals(now, state):
                 update_price=True,
             )
 
+            resolve_source_info = fc.get_resolution_source_forecast(
+                city_slug, loc, date, is_min=True, outcomes=outcomes,
+                prev_info=mkt.get("resolve_source_info"), reference_mean=mean,
+            )
+
             was_new_signal = bool(portfolio["allocation"]) and not mkt.get("live_allocation")
 
             mkt.update({
@@ -1066,6 +1101,7 @@ def discover_new_min_signals(now, state):
                 "forecast_mean_shadow": shadow_mean, "model_means_raw": model_means_raw,
                 "model_spread": model_spread,
                 "observed_intraday_temp": observed_bound,
+                "resolve_source_info": resolve_source_info,
                 "full_distribution": portfolio["full_distribution"],
                 "live_allocation": portfolio["allocation"],
                 "total_allocated_units": portfolio.get("total_allocated_units"),
@@ -1254,6 +1290,10 @@ def refresh_open_market_info(now):
             update_price=True,
         )
 
+        mkt["resolve_source_info"] = fc.get_resolution_source_forecast(
+            mkt["city"], loc, mkt["date"], is_min=False, outcomes=tradable_outcomes,
+            prev_info=mkt.get("resolve_source_info"), reference_mean=mean,
+        )
         mkt["forecast_mean"] = mean
         mkt["sigma"] = sigma
         mkt["forecast_mean_shadow"] = shadow_mean
@@ -1365,6 +1405,10 @@ def refresh_open_market_info_min(now):
             update_price=True,
         )
 
+        mkt["resolve_source_info"] = fc.get_resolution_source_forecast(
+            mkt["city"], loc, mkt["date"], is_min=True, outcomes=tradable_outcomes,
+            prev_info=mkt.get("resolve_source_info"), reference_mean=mean,
+        )
         mkt["forecast_mean"] = mean
         mkt["sigma"] = sigma
         mkt["forecast_mean_shadow"] = shadow_mean

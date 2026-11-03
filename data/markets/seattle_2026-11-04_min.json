@@ -1,0 +1,31 @@
+{
+  "city": "seattle",
+  "city_name": "Seattle",
+  "date": "2026-11-04",
+  "unit": "F",
+  "status": "open",
+  "market_type": "min",
+  "created_at": "2026-11-03T20:24:09.377364+00:00",
+  "committed_allocation": null,
+  "hours_left": 35.6,
+  "time_status": "local_day_open",
+  "local_day_end_utc": "2026-11-05T08:00:00+00:00",
+  "event_end_date": "2026-11-04T12:00:00Z",
+  "last_scan": "2026-11-03T20:24:09.377364+00:00",
+  "skipped_reason": "event volume 204 < min_volume 500",
+  "resolve_source_info": {
+    "source_code": "noaa",
+    "station": "KSEA",
+    "source_label": "NOAA AviationWeather METAR (KSEA)",
+    "provider_note": "NWS / NOAA METAR",
+    "url": "https://aviationweather.gov/data/metar/?id=KSEA",
+    "forecast_temp": 40.7,
+    "rounded_temp": 41,
+    "baseline_temp": 41.5,
+    "temp_change": -0.8,
+    "temp_pct_change": -1.9,
+    "target_bucket": "41°F",
+    "gap_vs_bot": null,
+    "weight_in_signal": 0
+  }
+}

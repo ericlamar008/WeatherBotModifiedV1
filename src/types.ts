@@ -88,6 +88,22 @@ export interface CityFormProfile {
   trading_advice: string;
 }
 
+export interface ResolveSourceInfo {
+  source_code: 'wunderground' | 'noaa' | 'hko' | string;
+  station: string;
+  source_label: string;
+  provider_note?: string;
+  url: string;
+  forecast_temp?: number | null;
+  rounded_temp?: number | null;
+  baseline_temp?: number | null;
+  temp_change?: number | null;
+  temp_pct_change?: number | null;
+  target_bucket?: string | null;
+  gap_vs_bot?: number | null;
+  weight_in_signal?: number;
+}
+
 export interface WeatherMarket {
   city: string;
   city_name: string;
@@ -101,6 +117,7 @@ export interface WeatherMarket {
   forecast_mean?: number | null;
   forecast_mean_shadow?: number | null;
   model_means_raw?: Record<string, number> | null;
+  resolve_source_info?: ResolveSourceInfo | null;
   actual_temp?: number | null;
   sigma?: number | null;
   full_distribution: BucketDistribution[];

@@ -3,25 +3,25 @@
   "city_name": "Atlanta",
   "date": "2026-11-02",
   "unit": "F",
-  "status": "resolved",
+  "status": "open",
   "created_at": "2026-11-01T02:20:45.135984+00:00",
   "committed_allocation": null,
-  "hours_left": 0.0,
-  "time_status": "awaiting_settlement",
+  "hours_left": 38.7,
+  "time_status": "local_day_open",
   "local_day_end_utc": "2026-11-03T05:00:00+00:00",
   "event_end_date": "2026-11-02T12:00:00Z",
-  "last_scan": "2026-11-03T02:20:49.772053+00:00",
-  "horizon_days": 0,
-  "forecast_mean": 70.16,
-  "sigma": 1.681,
-  "forecast_mean_shadow": 70.6,
+  "last_scan": "2026-11-01T02:20:45.135984+00:00",
+  "horizon_days": 2,
+  "forecast_mean": 70.04,
+  "sigma": 2.047,
+  "forecast_mean_shadow": 71.5,
   "model_means_raw": {
-    "ecmwf": 68.84,
-    "gfs": 70.73,
-    "gem": 69.9
+    "ecmwf": 69.41,
+    "gfs": 70.31,
+    "gem": 71.64
   },
-  "model_spread": 0.945,
-  "observed_intraday_temp": 59.0,
+  "model_spread": 1.115,
+  "observed_intraday_temp": null,
   "full_distribution": [
     {
       "question": "Will the highest temperature in Atlanta be 61°F or below on November 2?",
@@ -30,264 +30,44 @@
         -999.0,
         61.0
       ],
-      "yes_price": 0.0,
-      "no_price": 0.9995,
+      "yes_price": 0.001,
+      "no_price": 0.999,
       "best_bid": null,
-      "best_ask": 0.001,
+      "best_ask": 0.002,
       "bid_ask_spread": 0.0,
       "volume": 235.0,
       "spread": 0.0,
       "yes_token_id": "30240374071559651283723609196997178320602926010463838052523535074788719749309",
       "no_token_id": "85333171284376488150512736542783938216521224287470083993382098085255585396229",
-      "model_prob": 0.0013,
+      "model_prob": 0.0028,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0,
-      "effective_ask": 0.0,
-      "market_prob": 0.0,
-      "belief_prob": 0.0008,
-      "ev": 1.0,
-      "kelly": 0.0001,
-      "swing_edge": 0.0013,
+      "ask": 0.001,
+      "effective_ask": 0.001,
+      "market_prob": 0.001,
+      "belief_prob": 0.0044,
+      "ev": 3.4,
+      "kelly": 0.0009,
+      "swing_edge": 0.0053,
       "swing_upside_pct": 0.0,
       "sell_value": null,
-      "prev_10m_model_prob": 0.0026,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.0026,
-      "model_prob_6h_change": -0.001,
-      "model_prob_6h_pct_change": -38.5,
-      "scan6h_model_prob": 0.0013,
-      "prev_model_prob": 0.0026,
-      "model_prob_change": -0.001,
-      "model_prob_pct_change": -38.5,
-      "prev_10m_yes_price": 0.0005,
+      "prev_scan6h_model_prob": 0.029,
+      "model_prob_6h_change": -0.0227,
+      "model_prob_6h_pct_change": -78.3,
+      "scan6h_model_prob": 0.0063,
+      "prev_model_prob": 0.029,
+      "model_prob_change": -0.0227,
+      "model_prob_pct_change": -78.3,
+      "prev_10m_yes_price": 0.0015,
       "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.1,
-      "prev_scan6h_yes_price": 0.001,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
-      "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0005,
+      "yes_price_10m_pct_change": -33.3,
+      "prev_scan6h_yes_price": 0.009,
+      "yes_price_6h_change": -0.008,
+      "yes_price_6h_pct_change": -88.9,
+      "scan6h_yes_price": 0.001,
+      "prev_yes_price": 0.0015,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.001,
-          "mp": 0.0026
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.0005,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 0.0,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 0.0,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 0.0,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 0.0,
-          "mp": 0.0013,
-          "bid": null,
-          "ask": 0.001
-        }
-      ]
+      "yes_price_pct_change": -33.3
     },
     {
       "question": "Will the highest temperature in Atlanta be between 62-63°F on November 2?",
@@ -296,264 +76,44 @@
         62.0,
         63.0
       ],
-      "yes_price": 0.0,
-      "no_price": 0.9995,
-      "best_bid": null,
-      "best_ask": 0.001,
-      "bid_ask_spread": 0.0,
-      "volume": 213.0,
-      "spread": 0.0,
+      "yes_price": 0.0015,
+      "no_price": 0.9985,
+      "best_bid": 0.001,
+      "best_ask": 0.002,
+      "bid_ask_spread": 0.001,
+      "volume": 189.0,
+      "spread": 0.001,
       "yes_token_id": "71450477432674906265063543111956002725720663400164786824143691417094184988264",
       "no_token_id": "82847506558757986534418540306926750528541024065973096240000568623025884568732",
-      "model_prob": 0.0026,
+      "model_prob": 0.005,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0,
-      "effective_ask": 0.0,
-      "market_prob": 0.0,
-      "belief_prob": 0.0017,
-      "ev": 2.8,
-      "kelly": 0.0004,
-      "swing_edge": 0.0026,
+      "ask": 0.0015,
+      "effective_ask": 0.0015,
+      "market_prob": 0.0015,
+      "belief_prob": 0.0041,
+      "ev": 1.7333,
+      "kelly": 0.0007,
+      "swing_edge": 0.004,
       "swing_upside_pct": 0.0,
-      "sell_value": null,
-      "prev_10m_model_prob": 0.0017,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.0017,
-      "model_prob_6h_change": 0.0009,
-      "model_prob_6h_pct_change": 52.9,
-      "scan6h_model_prob": 0.0026,
-      "prev_model_prob": 0.0017,
-      "model_prob_change": 0.0009,
-      "model_prob_pct_change": 52.9,
-      "prev_10m_yes_price": 0.0005,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.1,
-      "prev_scan6h_yes_price": 0.001,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
-      "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0005,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.001,
-          "mp": 0.0027
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0017,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.0005,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 0.0,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 0.0,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 0.0,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 0.0,
-          "mp": 0.0026,
-          "bid": null,
-          "ask": 0.001
-        }
-      ]
+      "sell_value": 0.001,
+      "prev_scan6h_model_prob": 0.0195,
+      "model_prob_6h_change": -0.014,
+      "model_prob_6h_pct_change": -71.8,
+      "scan6h_model_prob": 0.0055,
+      "prev_model_prob": 0.0195,
+      "model_prob_change": -0.014,
+      "model_prob_pct_change": -71.8,
+      "prev_10m_yes_price": 0.008,
+      "yes_price_10m_change": -0.0065,
+      "yes_price_10m_pct_change": -81.2,
+      "prev_scan6h_yes_price": 0.008,
+      "yes_price_6h_change": -0.0065,
+      "yes_price_6h_pct_change": -81.2,
+      "scan6h_yes_price": 0.0015,
+      "prev_yes_price": 0.008,
+      "yes_price_change": -0.0065,
+      "yes_price_pct_change": -81.2
     },
     {
       "question": "Will the highest temperature in Atlanta be between 64-65°F on November 2?",
@@ -562,264 +122,44 @@
         64.0,
         65.0
       ],
-      "yes_price": 0.0,
-      "no_price": 0.9995,
-      "best_bid": null,
-      "best_ask": 0.001,
-      "bid_ask_spread": 0.0,
-      "volume": 995.0,
-      "spread": 0.0,
+      "yes_price": 0.0035,
+      "no_price": 0.9965,
+      "best_bid": 0.003,
+      "best_ask": 0.004,
+      "bid_ask_spread": 0.001,
+      "volume": 497.0,
+      "spread": 0.001,
       "yes_token_id": "1729170661863874775220996386884750451534760167228810854194352919468531689997",
       "no_token_id": "109868478886224982369878902800088207694159060484286443402737090002229440896553",
-      "model_prob": 0.0106,
+      "model_prob": 0.0173,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0,
-      "effective_ask": 0.0,
-      "market_prob": 0.0,
-      "belief_prob": 0.0069,
-      "ev": 13.2,
-      "kelly": 0.0017,
-      "swing_edge": 0.0106,
+      "ask": 0.0035,
+      "effective_ask": 0.0035,
+      "market_prob": 0.0035,
+      "belief_prob": 0.014,
+      "ev": 3.0,
+      "kelly": 0.0026,
+      "swing_edge": 0.0162,
       "swing_upside_pct": 0.0,
-      "sell_value": null,
-      "prev_10m_model_prob": 0.006,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.006,
-      "model_prob_6h_change": 0.0046,
-      "model_prob_6h_pct_change": 76.7,
-      "scan6h_model_prob": 0.0106,
-      "prev_model_prob": 0.006,
-      "model_prob_change": 0.0046,
-      "model_prob_pct_change": 76.7,
-      "prev_10m_yes_price": 0.0005,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.1,
-      "prev_scan6h_yes_price": 0.001,
+      "sell_value": 0.003,
+      "prev_scan6h_model_prob": 0.0515,
+      "model_prob_6h_change": -0.0318,
+      "model_prob_6h_pct_change": -61.7,
+      "scan6h_model_prob": 0.0197,
+      "prev_model_prob": 0.0515,
+      "model_prob_change": -0.0318,
+      "model_prob_pct_change": -61.7,
+      "prev_10m_yes_price": 0.003,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 16.7,
+      "prev_scan6h_yes_price": 0.0025,
       "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
-      "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0005,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.001,
-          "mp": 0.0114
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.0005,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 0.0,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 0.0,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 0.0,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 0.0,
-          "mp": 0.0106,
-          "bid": null,
-          "ask": 0.001
-        }
-      ]
+      "yes_price_6h_pct_change": -14.3,
+      "scan6h_yes_price": 0.0035,
+      "prev_yes_price": 0.003,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 16.7
     },
     {
       "question": "Will the highest temperature in Atlanta be between 66-67°F on November 2?",
@@ -828,264 +168,44 @@
         66.0,
         67.0
       ],
-      "yes_price": 0.0,
-      "no_price": 0.9995,
-      "best_bid": null,
-      "best_ask": 0.001,
-      "bid_ask_spread": 0.0,
-      "volume": 1824.0,
-      "spread": 0.0,
+      "yes_price": 0.0435,
+      "no_price": 0.93,
+      "best_bid": 0.02,
+      "best_ask": 0.067,
+      "bid_ask_spread": 0.047,
+      "volume": 959.0,
+      "spread": 0.068,
       "yes_token_id": "90973125936929744585693681602787471541963362501151554240290672879802518505861",
       "no_token_id": "27062899395315345440489033059923042307018504710252595130357588214465799100746",
-      "model_prob": 0.0534,
+      "model_prob": 0.0648,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0,
-      "effective_ask": 0.0,
-      "market_prob": 0.0,
-      "belief_prob": 0.0347,
-      "ev": 68.8,
-      "kelly": 0.0086,
-      "swing_edge": 0.0534,
-      "swing_upside_pct": 0.0,
-      "sell_value": null,
-      "prev_10m_model_prob": 0.0255,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.0255,
-      "model_prob_6h_change": 0.0279,
-      "model_prob_6h_pct_change": 109.4,
-      "scan6h_model_prob": 0.0534,
-      "prev_model_prob": 0.0255,
-      "model_prob_change": 0.0279,
-      "model_prob_pct_change": 109.4,
-      "prev_10m_yes_price": 0.0005,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.1,
-      "prev_scan6h_yes_price": 0.0025,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
-      "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0005,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.0025,
-          "mp": 0.0611
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0255,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.0005,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 0.0,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 0.0,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 0.0,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 0.0,
-          "mp": 0.0534,
-          "bid": null,
-          "ask": 0.001
-        }
-      ]
+      "ask": 0.0435,
+      "effective_ask": 0.0528,
+      "market_prob": 0.0435,
+      "belief_prob": 0.0661,
+      "ev": 0.2519,
+      "kelly": 0.0,
+      "swing_edge": 0.0347,
+      "swing_upside_pct": 79.8,
+      "sell_value": 0.036,
+      "prev_scan6h_model_prob": 0.1269,
+      "model_prob_6h_change": -0.0487,
+      "model_prob_6h_pct_change": -38.4,
+      "scan6h_model_prob": 0.0782,
+      "prev_model_prob": 0.1269,
+      "model_prob_change": -0.0487,
+      "model_prob_pct_change": -38.4,
+      "prev_10m_yes_price": 0.0465,
+      "yes_price_10m_change": -0.003,
+      "yes_price_10m_pct_change": -6.5,
+      "prev_scan6h_yes_price": 0.0795,
+      "yes_price_6h_change": -0.0265,
+      "yes_price_6h_pct_change": -37.9,
+      "scan6h_yes_price": 0.07,
+      "prev_yes_price": 0.0465,
+      "yes_price_change": -0.003,
+      "yes_price_pct_change": -6.5
     },
     {
       "question": "Will the highest temperature in Atlanta be between 68-69°F on November 2?",
@@ -1094,264 +214,44 @@
         68.0,
         69.0
       ],
-      "yes_price": 0.0,
-      "no_price": 0.9995,
-      "best_bid": null,
-      "best_ask": 0.001,
-      "bid_ask_spread": 0.0,
-      "volume": 4525.0,
-      "spread": 0.0,
+      "yes_price": 0.17,
+      "no_price": 0.785,
+      "best_bid": 0.16,
+      "best_ask": 0.18,
+      "bid_ask_spread": 0.02,
+      "volume": 2170.0,
+      "spread": 0.03,
       "yes_token_id": "58417095511306045963486746868774676828099980201828374914924894634259194380923",
       "no_token_id": "114535850571190702246498313221314214991370524102342877464672774507480049669609",
-      "model_prob": 0.2362,
+      "model_prob": 0.2015,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0,
-      "effective_ask": 0.0,
-      "market_prob": 0.0,
-      "belief_prob": 0.1535,
-      "ev": 306.4,
-      "kelly": 0.0383,
-      "swing_edge": 0.2362,
-      "swing_upside_pct": 0.0,
-      "sell_value": null,
-      "prev_10m_model_prob": 0.1137,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.1137,
-      "model_prob_6h_change": 0.1225,
-      "model_prob_6h_pct_change": 107.7,
-      "scan6h_model_prob": 0.2362,
-      "prev_model_prob": 0.1137,
-      "model_prob_change": 0.1225,
-      "model_prob_pct_change": 107.7,
-      "prev_10m_yes_price": 0.0005,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.1,
-      "prev_scan6h_yes_price": 0.0335,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
-      "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0005,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.0335,
-          "mp": 0.2851
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.0005,
-          "mp": 0.1137,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.0005,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 0.0,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 0.0,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 0.0,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 0.0,
-          "mp": 0.2362,
-          "bid": null,
-          "ask": 0.001
-        }
-      ]
+      "ask": 0.17,
+      "effective_ask": 0.17,
+      "market_prob": 0.17,
+      "belief_prob": 0.2248,
+      "ev": 0.3224,
+      "kelly": 0.0081,
+      "swing_edge": 0.0843,
+      "swing_upside_pct": 49.6,
+      "sell_value": 0.2,
+      "prev_scan6h_model_prob": 0.2329,
+      "model_prob_6h_change": 0.0214,
+      "model_prob_6h_pct_change": 9.2,
+      "scan6h_model_prob": 0.2543,
+      "prev_model_prob": 0.2329,
+      "model_prob_change": 0.0214,
+      "model_prob_pct_change": 9.2,
+      "prev_10m_yes_price": 0.175,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -2.9,
+      "prev_scan6h_yes_price": 0.29,
+      "yes_price_6h_change": -0.045,
+      "yes_price_6h_pct_change": -20.9,
+      "scan6h_yes_price": 0.215,
+      "prev_yes_price": 0.175,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -2.9
     },
     {
       "question": "Will the highest temperature in Atlanta be between 70-71°F on November 2?",
@@ -1360,264 +260,44 @@
         70.0,
         71.0
       ],
-      "yes_price": 1.0,
-      "no_price": 0.0005,
-      "best_bid": 0.999,
-      "best_ask": 1.0,
-      "bid_ask_spread": 0.0,
-      "volume": 10914.0,
-      "spread": 0.001,
+      "yes_price": 0.445,
+      "no_price": 0.52,
+      "best_bid": 0.43,
+      "best_ask": 0.46,
+      "bid_ask_spread": 0.03,
+      "volume": 1975.0,
+      "spread": 0.02,
       "yes_token_id": "47351178716643397542029605455715843999936615704324341356228441161732715855307",
       "no_token_id": "60124350198379744471008666001757783044756727007931109887599706471373352252495",
-      "model_prob": 0.4402,
+      "model_prob": 0.3455,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 1.0,
-      "effective_ask": 1.0,
-      "market_prob": 1.0,
-      "belief_prob": 0.6361,
-      "ev": 0.0,
+      "ask": 0.445,
+      "effective_ask": 0.445,
+      "market_prob": 0.445,
+      "belief_prob": 0.3964,
+      "ev": -0.1092,
       "kelly": 0.0,
-      "swing_edge": -0.5598,
-      "swing_upside_pct": -56.0,
-      "sell_value": 0.999,
-      "prev_10m_model_prob": 0.3282,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.3282,
-      "model_prob_6h_change": 0.112,
-      "model_prob_6h_pct_change": 34.1,
-      "scan6h_model_prob": 0.4402,
-      "prev_model_prob": 0.3282,
-      "model_prob_change": 0.112,
-      "model_prob_pct_change": 34.1,
-      "prev_10m_yes_price": 0.9995,
-      "yes_price_10m_change": 0.0005,
-      "yes_price_10m_pct_change": 0.1,
-      "prev_scan6h_yes_price": 0.9685,
-      "yes_price_6h_change": 0.031,
-      "yes_price_6h_pct_change": 3.2,
-      "scan6h_yes_price": 0.9995,
-      "prev_yes_price": 0.9995,
-      "yes_price_change": 0.0005,
-      "yes_price_pct_change": 0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.315,
-          "mp": 0.4472
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.9925,
-          "mp": 0.3282,
-          "bid": 0.99,
-          "ask": 0.995
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.991,
-          "mp": 0.3282,
-          "bid": 0.988,
-          "ask": 0.994
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.991,
-          "mp": 0.3282,
-          "bid": 0.988,
-          "ask": 0.994
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.9925,
-          "mp": 0.3282,
-          "bid": 0.991,
-          "ask": 0.994
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.9985,
-          "mp": 0.3282,
-          "bid": 0.998,
-          "ask": 0.999
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.9985,
-          "mp": 0.3282,
-          "bid": 0.998,
-          "ask": 0.999
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.9995,
-          "mp": 0.3282,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.9995,
-          "mp": 0.3282,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.9995,
-          "mp": 0.3282,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.9995,
-          "mp": 0.3282,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.9995,
-          "mp": 0.3282,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.9995,
-          "mp": 0.3282,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.9995,
-          "mp": 0.3282,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.9995,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 1.0,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 1.0,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 1.0,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 1.0,
-          "mp": 0.4402,
-          "bid": 0.999,
-          "ask": 1.0
-        }
-      ]
+      "swing_edge": -0.0748,
+      "swing_upside_pct": -16.8,
+      "sell_value": 0.47,
+      "prev_scan6h_model_prob": 0.2531,
+      "model_prob_6h_change": 0.1171,
+      "model_prob_6h_pct_change": 46.3,
+      "scan6h_model_prob": 0.3702,
+      "prev_model_prob": 0.2531,
+      "model_prob_change": 0.1171,
+      "model_prob_pct_change": 46.3,
+      "prev_10m_yes_price": 0.44,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.1,
+      "prev_scan6h_yes_price": 0.395,
+      "yes_price_6h_change": -0.035,
+      "yes_price_6h_pct_change": -7.3,
+      "scan6h_yes_price": 0.48,
+      "prev_yes_price": 0.44,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.1
     },
     {
       "question": "Will the highest temperature in Atlanta be between 72-73°F on November 2?",
@@ -1626,264 +306,44 @@
         72.0,
         73.0
       ],
-      "yes_price": 0.0,
-      "no_price": 0.9995,
-      "best_bid": null,
-      "best_ask": 0.001,
-      "bid_ask_spread": 0.0,
-      "volume": 7516.0,
-      "spread": 0.0,
+      "yes_price": 0.3,
+      "no_price": 0.775,
+      "best_bid": 0.29,
+      "best_ask": 0.31,
+      "bid_ask_spread": 0.02,
+      "volume": 2611.0,
+      "spread": 0.03,
       "yes_token_id": "34127454107316510905829813857465335341843281350352067991440976024040837132103",
       "no_token_id": "41303301476900771461089648358728688356830314411280057863562799930143607663111",
-      "model_prob": 0.2054,
+      "model_prob": 0.2503,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0,
-      "effective_ask": 0.0,
-      "market_prob": 0.0,
-      "belief_prob": 0.1335,
-      "ev": 266.4,
-      "kelly": 0.0333,
-      "swing_edge": 0.2054,
-      "swing_upside_pct": 0.0,
-      "sell_value": null,
-      "prev_10m_model_prob": 0.3625,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.3625,
-      "model_prob_6h_change": -0.1571,
-      "model_prob_6h_pct_change": -43.3,
-      "scan6h_model_prob": 0.2054,
-      "prev_model_prob": 0.3625,
-      "model_prob_change": -0.1571,
-      "model_prob_pct_change": -43.3,
-      "prev_10m_yes_price": 0.0005,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.1,
-      "prev_scan6h_yes_price": 0.0255,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
-      "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0005,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.535,
-          "mp": 0.1554
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.005,
-          "mp": 0.3625,
-          "bid": 0.002,
-          "ask": 0.008
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.0025,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.004
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.0025,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.004
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.0025,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.004
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.0015,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.002
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.0015,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.002
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.0005,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.0005,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.0005,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.0005,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.0005,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.0005,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.0005,
-          "mp": 0.3625,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.0005,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 0.0,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 0.0,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 0.0,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 0.0,
-          "mp": 0.2054,
-          "bid": null,
-          "ask": 0.001
-        }
-      ]
+      "ask": 0.3,
+      "effective_ask": 0.3,
+      "market_prob": 0.3,
+      "belief_prob": 0.23,
+      "ev": -0.2333,
+      "kelly": 0.0,
+      "swing_edge": -0.1077,
+      "swing_upside_pct": -35.9,
+      "sell_value": 0.21,
+      "prev_scan6h_model_prob": 0.1618,
+      "model_prob_6h_change": 0.0305,
+      "model_prob_6h_pct_change": 18.9,
+      "scan6h_model_prob": 0.1923,
+      "prev_model_prob": 0.1618,
+      "model_prob_change": 0.0305,
+      "model_prob_pct_change": 18.9,
+      "prev_10m_yes_price": 0.295,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.7,
+      "prev_scan6h_yes_price": 0.2,
+      "yes_price_6h_change": 0.075,
+      "yes_price_6h_pct_change": 33.3,
+      "scan6h_yes_price": 0.225,
+      "prev_yes_price": 0.295,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.7
     },
     {
       "question": "Will the highest temperature in Atlanta be between 74-75°F on November 2?",
@@ -1892,264 +352,44 @@
         74.0,
         75.0
       ],
-      "yes_price": 0.0,
-      "no_price": 0.9995,
-      "best_bid": null,
-      "best_ask": 0.001,
-      "bid_ask_spread": 0.0,
-      "volume": 3950.0,
-      "spread": 0.0,
+      "yes_price": 0.072,
+      "no_price": 0.9585,
+      "best_bid": 0.067,
+      "best_ask": 0.077,
+      "bid_ask_spread": 0.01,
+      "volume": 142.0,
+      "spread": 0.021,
       "yes_token_id": "99435845957009300688583209069278275348535516070844062547285060870147716142836",
       "no_token_id": "71971294714540674175654008900829926658340341335816028299798543224148435698961",
-      "model_prob": 0.0397,
+      "model_prob": 0.0844,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0,
-      "effective_ask": 0.0,
-      "market_prob": 0.0,
-      "belief_prob": 0.0258,
-      "ev": 51.0,
-      "kelly": 0.0064,
-      "swing_edge": 0.0397,
-      "swing_upside_pct": 0.0,
-      "sell_value": null,
-      "prev_10m_model_prob": 0.1263,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.1263,
-      "model_prob_6h_change": -0.0866,
-      "model_prob_6h_pct_change": -68.6,
-      "scan6h_model_prob": 0.0397,
-      "prev_model_prob": 0.1263,
-      "model_prob_change": -0.0866,
-      "model_prob_pct_change": -68.6,
-      "prev_10m_yes_price": 0.0005,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.1,
-      "prev_scan6h_yes_price": 0.0075,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
-      "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0005,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.128,
-          "mp": 0.028
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.006,
-          "mp": 0.1263,
-          "bid": 0.002,
-          "ask": 0.01
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.0035,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.006
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.0035,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.006
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.0005,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.0005,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.0005,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.0005,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.0005,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.0005,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.0005,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.0005,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.0005,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.0005,
-          "mp": 0.1263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.0005,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 0.0,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 0.0,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 0.0,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 0.0,
-          "mp": 0.0397,
-          "bid": null,
-          "ask": 0.001
-        }
-      ]
+      "ask": 0.072,
+      "effective_ask": 0.072,
+      "market_prob": 0.072,
+      "belief_prob": 0.0591,
+      "ev": -0.1792,
+      "kelly": 0.0018,
+      "swing_edge": -0.0198,
+      "swing_upside_pct": -27.5,
+      "sell_value": 0.031,
+      "prev_scan6h_model_prob": 0.0713,
+      "model_prob_6h_change": -0.0191,
+      "model_prob_6h_pct_change": -26.8,
+      "scan6h_model_prob": 0.0522,
+      "prev_model_prob": 0.0713,
+      "model_prob_change": -0.0191,
+      "model_prob_pct_change": -26.8,
+      "prev_10m_yes_price": 0.0755,
+      "yes_price_10m_change": -0.0035,
+      "yes_price_10m_pct_change": -4.6,
+      "prev_scan6h_yes_price": 0.05,
+      "yes_price_6h_change": 0.0305,
+      "yes_price_6h_pct_change": 73.5,
+      "scan6h_yes_price": 0.0415,
+      "prev_yes_price": 0.0755,
+      "yes_price_change": -0.0035,
+      "yes_price_pct_change": -4.6
     },
     {
       "question": "Will the highest temperature in Atlanta be between 76-77°F on November 2?",
@@ -2158,264 +398,44 @@
         76.0,
         77.0
       ],
-      "yes_price": 0.0,
-      "no_price": 0.9995,
-      "best_bid": null,
-      "best_ask": 0.001,
-      "bid_ask_spread": 0.0,
-      "volume": 2592.0,
-      "spread": 0.0,
+      "yes_price": 0.0025,
+      "no_price": 0.9975,
+      "best_bid": 0.002,
+      "best_ask": 0.003,
+      "bid_ask_spread": 0.001,
+      "volume": 98.0,
+      "spread": 0.001,
       "yes_token_id": "56504481880204632314604073227383678982278244355131596996593060747245325554753",
       "no_token_id": "9306643008681839234581030847411197778503460564185866204165464483779475194383",
-      "model_prob": 0.0077,
+      "model_prob": 0.0203,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0,
-      "effective_ask": 0.0,
-      "market_prob": 0.0,
-      "belief_prob": 0.005,
-      "ev": 9.4,
-      "kelly": 0.0012,
-      "swing_edge": 0.0077,
+      "ask": 0.0025,
+      "effective_ask": 0.0025,
+      "market_prob": 0.0025,
+      "belief_prob": 0.0093,
+      "ev": 2.72,
+      "kelly": 0.0017,
+      "swing_edge": 0.0104,
       "swing_upside_pct": 0.0,
-      "sell_value": null,
-      "prev_10m_model_prob": 0.0263,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.0263,
-      "model_prob_6h_change": -0.0186,
-      "model_prob_6h_pct_change": -70.7,
-      "scan6h_model_prob": 0.0077,
-      "prev_model_prob": 0.0263,
-      "model_prob_change": -0.0186,
-      "model_prob_pct_change": -70.7,
-      "prev_10m_yes_price": 0.0005,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.1,
-      "prev_scan6h_yes_price": 0.0035,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
-      "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0005,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.021,
-          "mp": 0.0056
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.0015,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.002
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.0015,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.002
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.0025,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.004
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.0005,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.0005,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.0005,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.0005,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.0005,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.0005,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0263,
-          "bid": 0.001,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.0005,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 0.0,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 0.0,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 0.0,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 0.0,
-          "mp": 0.0077,
-          "bid": null,
-          "ask": 0.001
-        }
-      ]
+      "sell_value": 0.002,
+      "prev_scan6h_model_prob": 0.027,
+      "model_prob_6h_change": -0.0141,
+      "model_prob_6h_pct_change": -52.2,
+      "scan6h_model_prob": 0.0129,
+      "prev_model_prob": 0.027,
+      "model_prob_change": -0.0141,
+      "model_prob_pct_change": -52.2,
+      "prev_10m_yes_price": 0.0025,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
+      "prev_scan6h_yes_price": 0.0025,
+      "yes_price_6h_change": 0.0,
+      "yes_price_6h_pct_change": 0.0,
+      "scan6h_yes_price": 0.0025,
+      "prev_yes_price": 0.0025,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0
     },
     {
       "question": "Will the highest temperature in Atlanta be between 78-79°F on November 2?",
@@ -2424,264 +444,44 @@
         78.0,
         79.0
       ],
-      "yes_price": 0.0,
-      "no_price": 0.9995,
-      "best_bid": null,
+      "yes_price": 0.0005,
+      "no_price": 0.999,
+      "best_bid": 0.001,
       "best_ask": 0.001,
       "bid_ask_spread": 0.0,
-      "volume": 459.0,
+      "volume": 115.0,
       "spread": 0.0,
       "yes_token_id": "70866179206028748181368383496056699598639196934257714676174635454430466002719",
       "no_token_id": "108014645587162893467060942373028037042089186635316880803551830120763837405092",
-      "model_prob": 0.0019,
+      "model_prob": 0.0053,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0,
-      "effective_ask": 0.0,
-      "market_prob": 0.0,
-      "belief_prob": 0.0012,
-      "ev": 1.8,
-      "kelly": 0.0002,
-      "swing_edge": 0.0019,
+      "ask": 0.0005,
+      "effective_ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0026,
+      "ev": 0.9333,
+      "kelly": 0.0005,
+      "swing_edge": 0.0032,
       "swing_upside_pct": 0.0,
       "sell_value": null,
-      "prev_10m_model_prob": 0.006,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.006,
-      "model_prob_6h_change": -0.0041,
-      "model_prob_6h_pct_change": -68.3,
-      "scan6h_model_prob": 0.0019,
-      "prev_model_prob": 0.006,
-      "model_prob_change": -0.0041,
-      "model_prob_pct_change": -68.3,
-      "prev_10m_yes_price": 0.0005,
+      "prev_scan6h_model_prob": 0.0103,
+      "model_prob_6h_change": -0.0066,
+      "model_prob_6h_pct_change": -64.1,
+      "scan6h_model_prob": 0.0037,
+      "prev_model_prob": 0.0103,
+      "model_prob_change": -0.0066,
+      "model_prob_pct_change": -64.1,
+      "prev_10m_yes_price": 0.001,
       "yes_price_10m_change": -0.0005,
       "yes_price_10m_pct_change": -0.1,
-      "prev_scan6h_yes_price": 0.001,
+      "prev_scan6h_yes_price": 0.0055,
       "yes_price_6h_change": -0.0005,
       "yes_price_6h_pct_change": -0.1,
-      "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0005,
+      "scan6h_yes_price": 0.001,
+      "prev_yes_price": 0.001,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.0015,
-          "mp": 0.0015
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.001,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.002
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.001,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.002
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.001,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.002
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.0005,
-          "mp": 0.006,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.0005,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 0.0,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 0.0,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 0.0,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 0.0,
-          "mp": 0.0019,
-          "bid": null,
-          "ask": 0.001
-        }
-      ]
+      "yes_price_pct_change": -0.1
     },
     {
       "question": "Will the highest temperature in Atlanta be 80°F or higher on November 2?",
@@ -2690,7 +490,7 @@
         80.0,
         999.0
       ],
-      "yes_price": 0.0,
+      "yes_price": 0.0005,
       "no_price": 0.9995,
       "best_bid": null,
       "best_ask": 0.001,
@@ -2699,313 +499,62 @@
       "spread": 0.0,
       "yes_token_id": "81836178774852362578233938441055414104473471095086104063107915781368709657446",
       "no_token_id": "102577456499784263761558768336827433314179539104807858844881045175901293838396",
-      "model_prob": 0.001,
+      "model_prob": 0.0028,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0,
-      "effective_ask": 0.0,
-      "market_prob": 0.0,
-      "belief_prob": 0.0007,
-      "ev": 0.6,
-      "kelly": 0.0001,
-      "swing_edge": 0.001,
+      "ask": 0.0005,
+      "effective_ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0032,
+      "ev": 5.4,
+      "kelly": 0.0007,
+      "swing_edge": 0.0041,
       "swing_upside_pct": 0.0,
       "sell_value": null,
-      "prev_10m_model_prob": 0.0028,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
-      "prev_scan6h_model_prob": 0.0028,
-      "model_prob_6h_change": -0.0018,
-      "model_prob_6h_pct_change": -64.3,
-      "scan6h_model_prob": 0.001,
-      "prev_model_prob": 0.0028,
-      "model_prob_change": -0.0018,
-      "model_prob_pct_change": -64.3,
+      "prev_scan6h_model_prob": 0.0166,
+      "model_prob_6h_change": -0.012,
+      "model_prob_6h_pct_change": -72.3,
+      "scan6h_model_prob": 0.0046,
+      "prev_model_prob": 0.0166,
+      "model_prob_change": -0.012,
+      "model_prob_pct_change": -72.3,
       "prev_10m_yes_price": 0.0005,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.1,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.0005,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
+      "yes_price_6h_change": 0.0,
+      "yes_price_6h_pct_change": 0.0,
       "scan6h_yes_price": 0.0005,
       "prev_yes_price": 0.0005,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.1,
-      "price_history": [
-        {
-          "t": "2026-11-02T15:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0008
-        },
-        {
-          "t": "2026-11-02T21:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:07:32Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:22:38Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T22:52:33Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:07:33Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:22:45Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-02T23:52:32Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:07:33Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T00:52:35Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:22:32Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:37:32Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T01:52:34Z",
-          "p": 0.0005,
-          "mp": 0.0028,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:24:29Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:52:36Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T02:58:12Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:22:34Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T03:37:39Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:07:29Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:22:30Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:37:32Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T04:52:32Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:07:34Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:37:28Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T05:52:34Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:07:54Z",
-          "p": 0.0005,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:37:32Z",
-          "p": 0.0,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T06:52:35Z",
-          "p": 0.0,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:22:34Z",
-          "p": 0.0,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        },
-        {
-          "t": "2026-11-03T07:52:46Z",
-          "p": 0.0,
-          "mp": 0.001,
-          "bid": null,
-          "ask": 0.001
-        }
-      ]
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0
     }
   ],
-  "live_allocation": [
-    {
-      "market_id": "6448852",
-      "question": "Will the highest temperature in Atlanta be between 70-71°F on November 2?",
-      "range": [
-        70.0,
-        71.0
-      ],
-      "side": "YES",
-      "price": 0.9995,
-      "model_prob": 0.4402,
-      "ev": -0.3637,
-      "market_prob": 0.9995,
-      "role": "main_signal",
-      "units": 30.0,
-      "sell_value": 0.999,
-      "won": true,
-      "pnl_units": 0.02,
-      "user_entered": false
-    }
-  ],
-  "total_allocated_units": 30.0,
-  "portfolio_score": -0.106691,
-  "worst_case_loss_frac": 0.3,
-  "best_case_pnl_units": 0.02,
-  "worst_case_pnl_units": -30.0,
-  "success_probability": 0.7006,
-  "confidence": 1.0,
+  "live_allocation": [],
+  "total_allocated_units": 0,
+  "portfolio_score": null,
+  "worst_case_loss_frac": null,
+  "best_case_pnl_units": null,
+  "worst_case_pnl_units": null,
+  "success_probability": null,
+  "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-03T08:07:28.904440+00:00",
-  "last_lite_refresh": "2026-11-03T08:20:48.849057+00:00",
-  "actual_temp": 70.5,
-  "graded_against": "live_fallback",
-  "resolved_outcome": "win",
-  "pnl_units": 0.02,
-  "my_pnl_units": null,
-  "graded_allocation": [
-    {
-      "market_id": "6448852",
-      "question": "Will the highest temperature in Atlanta be between 70-71°F on November 2?",
-      "range": [
-        70.0,
-        71.0
-      ],
-      "side": "YES",
-      "price": 0.9995,
-      "model_prob": 0.4402,
-      "ev": -0.3637,
-      "market_prob": 0.9995,
-      "role": "main_signal",
-      "units": 30.0,
-      "sell_value": 0.999,
-      "won": true,
-      "pnl_units": 0.02,
-      "user_entered": false
-    }
-  ]
+  "strategy_version": "auto-bb76bea385d114be",
+  "last_price_refresh": "2026-11-01T18:52:28.422419+00:00",
+  "last_lite_refresh": "2026-11-01T14:20:42.929385+00:00",
+  "resolve_source_info": {
+    "source_code": "wunderground",
+    "station": "KATL",
+    "source_label": "Wunderground (KATL)",
+    "provider_note": "Weather.com / NWS",
+    "url": "https://www.wunderground.com/history/daily/KATL/date/2026-11-02",
+    "forecast_temp": 70.4,
+    "rounded_temp": 70,
+    "baseline_temp": 71.5,
+    "temp_change": -1.1,
+    "temp_pct_change": -1.5,
+    "target_bucket": "70-71°F",
+    "gap_vs_bot": 0.4,
+    "weight_in_signal": 0
+  }
 }

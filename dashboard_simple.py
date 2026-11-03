@@ -55,7 +55,7 @@ EV_GATE_THRESHOLD = 0.10
 
 US_CITIES = {
     "atlanta", "austin", "chicago", "dallas", "denver",
-    "houston", "los-angeles", "miami", "nyc",
+    "houston", "los-angeles", "miami", "nyc", "seattle",
 }
 
 NAME_TO_SLUG = {loc["name"].lower(): slug for slug, loc in LOCATIONS.items()}
@@ -640,6 +640,13 @@ td.ltr-inline,th.ltr-inline{display:table-cell}
 .sm-chip{padding:2px 8px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);direction:ltr;unicode-bidi:embed;display:inline-block;margin-left:4px;font-size:11px}
 .sm-best{background:var(--green-bg);color:var(--green);border-color:#16a34a55;font-weight:600}
 .sm-worst{background:var(--red-bg);color:var(--red);border-color:#dc262644;text-decoration:line-through;opacity:0.75}
+.resolution-source-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;padding:8px 12px;margin-top:6px;font-size:11.5px;color:#334155}
+.rs-link{padding:2px 8px;border-radius:6px;border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;font-weight:600;font-size:11px;direction:ltr;unicode-bidi:embed;display:inline-block;margin-left:4px;text-decoration:none}
+.rs-link:hover{background:#dbeafe;text-decoration:none}
+.rs-pill{padding:2px 9px;border-radius:6px;border:1px solid #cbd5e1;background:#ffffff;color:#0f172a;font-weight:600;font-size:11.5px;display:inline-flex;align-items:center;gap:5px;margin-left:4px}
+.rs-bucket-pill{padding:2px 8px;border-radius:6px;border:1px solid #fde68a;background:#fef3c7;color:#92400e;font-weight:600;font-size:11px;display:inline-flex;align-items:center;gap:4px;margin-left:4px}
+.rs-gap-pill{padding:2px 8px;border-radius:6px;border:1px solid #e2e8f0;background:#f1f5f9;color:#475569;font-size:11px;display:inline-flex;align-items:center;gap:4px;margin-left:4px}
+.rs-zero-weight{font-size:10.5px;color:#64748b;background:#ffffff;border:1px solid #e2e8f0;border-radius:6px;padding:2px 8px;font-weight:500}
 .locked-section{border:1px solid #16a34a55;background:var(--green-bg)}
 .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:10px;border-radius:8px;border:1px solid var(--border);background:var(--surface)}
 table{width:100%;min-width:580px;border-collapse:collapse;font-size:13px;background:var(--surface);font-variant-numeric:tabular-nums}
@@ -2612,6 +2619,111 @@ def _submodel_bar_html(m):
     return f'<div class="submodel-bar">{left_html}{right_html}</div>'
 
 
+def _resolution_source_bar_html(m, city_slug):
+    """سطر کاملاً مجزا برای نمایش منبع رزولوشن پلی‌مارکت و پیش‌بینی عمومی آن
+    به همراه تغییرات در پرانتز (با وزن ۰٪ در سیگنال ربات)."""
+    loc = LOCATIONS.get(city_slug, {})
+    unit_sym = f"°{m.get('unit', loc.get('unit', 'C')).replace('°', '')}"
+    date_str = m.get("date", "")
+    info = m.get("resolve_source_info") or {}
+
+    source_code = str(info.get("source_code") or loc.get("resolve_source", "noaa")).lower()
+    station = str(info.get("station") or loc.get("station", "")).strip()
+    region = str(loc.get("region", ""))
+
+    if source_code == "wunderground":
+        source_label = info.get("source_label") or f"Wunderground ({station})"
+        provider_note = info.get("provider_note") or ("Weather.com / NWS" if region == "us" else "Weather.com / ایستگاه فرودگاهی")
+        url = info.get("url") or f"https://www.wunderground.com/history/daily/{station}/date/{date_str}"
+    elif source_code == "hko":
+        source_label = info.get("source_label") or f"Hong Kong Observatory ({station})"
+        provider_note = info.get("provider_note") or "رصدخانه رسمی هنگ‌کنگ (HKO)"
+        url = info.get("url") or "https://www.hko.gov.hk/en/wxinfo/currwx/fnd.htm"
+    else:
+        source_label = info.get("source_label") or f"NOAA AviationWeather METAR ({station})"
+        provider_note = info.get("provider_note") or ("NWS / NOAA METAR" if region == "us" else "گزارش رسمی METAR فرودگاهی")
+        url = info.get("url") or f"https://aviationweather.gov/data/metar/?id={station}"
+
+    models_raw = m.get("model_means_raw") or {}
+    f_smart = m.get("smart_forecast_mean", m.get("forecast_mean"))
+    f_temp = info.get("forecast_temp")
+    if f_temp is None:
+        if models_raw.get("gfs") is not None:
+            f_temp = round(float(models_raw["gfs"]), 1)
+        elif m.get("forecast_mean_shadow") is not None:
+            f_temp = round(float(m["forecast_mean_shadow"]), 1)
+
+    chg = float(info.get("temp_change") or 0.0)
+    pct = float(info.get("temp_pct_change") or 0.0)
+    if f_temp is not None and abs(chg) < 0.01 and m.get("forecast_mean") is not None:
+        chg = round(float(f_temp) - float(m["forecast_mean"]), 1)
+        pct = round((chg / max(1.0, abs(float(f_temp)))) * 100.0, 1)
+
+    if f_temp is not None:
+        sign = "+" if chg > 0 else ""
+        pct_sign = "+" if pct > 0 else ""
+        chg_cls = "chg-pos" if chg > 0.04 else ("chg-neg" if chg < -0.04 else "chg-zero")
+        forecast_chip = (
+            f'<span class="rs-pill">'
+            f'<span>پیش‌بینی منبع:</span> '
+            f'<b class="ltr-inline" style="font-size:12px">{float(f_temp):.1f}{unit_sym}</b> '
+            f'<span class="{chg_cls}" title="تغییرات پیش‌بینی منبع رزولوشن نسبت به اجرای/اسکن قبلی">'
+            f'({sign}{chg:.1f}{unit_sym} | {pct_sign}{pct:.1f}%)'
+            f'</span>'
+            f'</span>'
+        )
+    else:
+        forecast_chip = '<span class="rs-pill" style="color:#64748b">پیش‌بینی منبع: —</span>'
+
+    target_bucket = info.get("target_bucket")
+    if not target_bucket and f_temp is not None:
+        rounded_t = int(math.floor(float(f_temp) + 0.5))
+        for b in (m.get("full_distribution") or []):
+            rng = b.get("range")
+            if rng and len(rng) >= 2:
+                lo, hi = float(rng[0]), float(rng[1])
+                if (lo <= -998 and rounded_t <= hi) or (hi >= 998 and rounded_t >= lo) or (lo <= rounded_t <= hi):
+                    target_bucket = _format_range_label(rng, unit_sym)
+                    break
+        if not target_bucket:
+            target_bucket = f"{rounded_t}{unit_sym}"
+
+    bucket_chip = (
+        f'<span class="rs-bucket-pill"><span>باکت هدف عوام:</span> <b class="ltr-inline">{target_bucket}</b></span>'
+        if target_bucket else ""
+    )
+
+    gap_val = (
+        round(float(f_temp) - float(f_smart), 1)
+        if (f_temp is not None and f_smart is not None)
+        else info.get("gap_vs_bot")
+    )
+    if gap_val is not None:
+        g_sign = "+" if float(gap_val) > 0 else ""
+        gap_chip = (
+            f'<span class="rs-gap-pill">'
+            f'<span>اختلاف با مدل ما:</span> '
+            f'<b class="ltr-inline">({g_sign}{float(gap_val):.1f}{unit_sym})</b>'
+            f'</span>'
+        )
+    else:
+        gap_chip = ""
+
+    left_part = (
+        f'<div style="display:flex;flex-wrap:wrap;align-items:center;gap:4px">'
+        f'<b style="color:#0f172a">🎯 منبع رزولوشن پلی‌مارکت (عموم بازار):</b> '
+        f'<a href="{url}" target="_blank" rel="noopener noreferrer" class="rs-link" title="{provider_note}">🔗 {source_label}</a>'
+        f'{forecast_chip}{bucket_chip}{gap_chip}'
+        f'</div>'
+    )
+    right_part = (
+        '<div class="rs-zero-weight">'
+        '⚖️ وزن در سیگنال: <b style="color:#0f172a">۰٪</b> (صرفاً جهت رصد اعداد معامله‌گران عوام)'
+        '</div>'
+    )
+    return f'<div class="resolution-source-bar">{left_part}{right_part}</div>'
+
+
 def _date_block_common_html(m, city_slug, city_name, locked_keys, open_locks_map, market_type="max"):
     date = m.get("date", "")
     unit_sym = m.get("unit", "")
@@ -2647,11 +2759,12 @@ def _date_block_common_html(m, city_slug, city_name, locked_keys, open_locks_map
         f'{time_badge}</div>'
     )
     sm_bar = _submodel_bar_html(m)
+    rs_bar = _resolution_source_bar_html(m, city_slug)
     table = _bucket_table(
         city_slug, city_name, date, unit_sym,
         m.get("full_distribution"), locked_keys, open_locks_map, main_signal_id, market_type=market_type,
     )
-    return f"<details class='date-block' open><summary>{summary}</summary>{sm_bar}<div class='table-scroll'>{table}</div></details>"
+    return f"<details class='date-block' open><summary>{summary}</summary>{sm_bar}{rs_bar}<div class='table-scroll'>{table}</div></details>"
 
 
 def _date_block_html(m, city_slug, city_name, locked_keys, open_locks_map):

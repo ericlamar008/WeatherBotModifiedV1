@@ -231,7 +231,7 @@ export default function App() {
     label: string,
     marketType: 'max' | 'min'
   ) => {
-    setLockStatus(marketId, '⏳ در حال ثبت قفل...', '#b45309');
+    setLockStatus(marketId, '⏳ در حال ثبت قفل معمولی...', '#b45309');
     try {
       const res = await fetch('/api/locks', {
         method: 'POST',
@@ -244,12 +244,38 @@ export default function App() {
           side,
           price,
           market_type: marketType,
+          auto_exit_enabled: false,
+          tp_enabled: false,
+          sl_enabled: false,
+          smart_autopilot: false,
+          metar_auto_stop: false,
+          auto_sell_99c: false,
+          usdc_amount: null,
         }),
       });
       const json = await res.json();
       if (res.ok && json.ok) {
-        setLockStatus(marketId, '✔ قفل با موفقیت ثبت شد!', '#16a34a');
-        await fetchAllData();
+        setLockStatus(marketId, '✔ قفل معمولی با موفقیت ثبت شد!', '#16a34a');
+        if (json.lock) {
+          setData((prev) =>
+            prev
+              ? {
+                  ...prev,
+                  locks: [
+                    ...prev.locks.filter(
+                      (x) => !(x.city === city && x.date === date && x.market_id === marketId && x.status === 'open')
+                    ),
+                    {
+                      ...json.lock,
+                      city_name: cityName,
+                      bucket_label: label,
+                    },
+                  ],
+                }
+              : prev
+          );
+        }
+        fetchAllData();
       } else {
         setLockStatus(marketId, `❌ خطا: ${json.error || 'نامشخص'}`, '#dc2626');
       }
@@ -337,7 +363,19 @@ export default function App() {
       const json = await res.json();
       if (res.ok && json.ok) {
         setLockStatus(marketId, forceExit ? '✔ پوزیشن با موفقیت فروخته و بسته شد.' : '✔ قفل حذف و بسته شد.', '#16a34a');
-        await fetchAllData();
+        setData((prev) =>
+          prev
+            ? {
+                ...prev,
+                locks: prev.locks.map((x) =>
+                  x.city === city && x.date === date && x.market_id === marketId && x.status === 'open'
+                    ? { ...x, status: 'closed_manual' }
+                    : x
+                ),
+              }
+            : prev
+        );
+        fetchAllData();
       } else {
         setLockStatus(marketId, `❌ خطا: ${json.error || 'نامشخص'}`, '#dc2626');
       }
@@ -554,6 +592,14 @@ export default function App() {
           >
             📊 دقت شهرها و کالیبراسیون هوشمند
           </button>
+          <a
+            href="/strategy-lab.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold no-underline bg-[#eef2ff] text-[#4338ca] border border-[#c7d2fe] hover:bg-[#e0e7ff]"
+          >
+            🔬 آزمایشگاه کمّی و استراتژی شهرها
+          </a>
           <button
             onClick={async () => {
               try {
@@ -712,11 +758,15 @@ export default function App() {
                               >
                                 {execMode}
                               </span>
-                              {l.smart_autopilot && (
+                              {l.smart_autopilot ? (
                                 <span className="inline-block px-1.5 py-0.2 rounded text-[9.5px] font-bold bg-[#e8f8ee] text-[#16a34a] border border-[#16a34a44]">
                                   🤖 اتوماتیک
                                 </span>
-                              )}
+                              ) : l.auto_exit_enabled === false ? (
+                                <span className="inline-block px-1.5 py-0.2 rounded text-[9.5px] font-bold bg-[#f6f8fb] text-[#4b5563] border border-[#dde3ec]">
+                                  🔒 قفل معمولی
+                                </span>
+                              ) : null}
                             </div>
                           </td>
                           <td className="py-2.5 px-2 text-xs">
@@ -771,7 +821,7 @@ export default function App() {
                           </td>
                           <td className="py-2.5 px-2 ltr-inline text-xs">
                             {l.auto_exit_enabled === false ? (
-                              <span className="text-[#6b7684] text-[11px]">غیرفعال (دستی)</span>
+                              <span className="text-[#6b7684] text-[11px]">غیرفعال (قفل معمولی)</span>
                             ) : (
                               <div className="flex flex-col items-center gap-0.5">
                                 {l.tp_enabled !== false && tpCents != null && (
@@ -854,6 +904,7 @@ export default function App() {
                 openLocks={openLocks}
                 showAllBuckets={showAllBucketsInSimple}
                 statusMessages={statusMessages}
+                onQuickLock={handleLockBucket}
                 onOpenCreateModal={handleOpenCreateOrderModal}
                 onOpenEditModal={handleOpenEditOrderModal}
                 onUnlock={handleUnlockBucket}
@@ -878,6 +929,7 @@ export default function App() {
                 openLocks={openLocks}
                 showAllBuckets={showAllBucketsInSimple}
                 statusMessages={statusMessages}
+                onQuickLock={handleLockBucket}
                 onOpenCreateModal={handleOpenCreateOrderModal}
                 onOpenEditModal={handleOpenEditOrderModal}
                 onUnlock={handleUnlockBucket}
@@ -1332,6 +1384,7 @@ function SimpleCityBlock({
   openLocks,
   showAllBuckets,
   statusMessages,
+  onQuickLock,
   onOpenCreateModal,
   onOpenEditModal,
   onUnlock,
@@ -1349,6 +1402,17 @@ function SimpleCityBlock({
   openLocks: LockedSignal[];
   showAllBuckets: boolean;
   statusMessages: Record<string, { text: string; color: string }>;
+  onQuickLock: (
+    city: string,
+    cityName: string,
+    date: string,
+    marketId: string,
+    tokenId: string,
+    side: string,
+    price: number,
+    label: string,
+    marketType: 'max' | 'min'
+  ) => void;
   onOpenCreateModal: (params: {
     city: string;
     cityName: string;
@@ -1419,6 +1483,7 @@ function SimpleCityBlock({
             openLocks={openLocks}
             showAllBuckets={showAllBuckets}
             statusMessages={statusMessages}
+            onQuickLock={onQuickLock}
             onOpenCreateModal={onOpenCreateModal}
             onOpenEditModal={onOpenEditModal}
             onUnlock={onUnlock}
@@ -1439,6 +1504,7 @@ function SimpleDateBlock({
   openLocks,
   showAllBuckets,
   statusMessages,
+  onQuickLock,
   onOpenCreateModal,
   onOpenEditModal,
   onUnlock,
@@ -1452,6 +1518,17 @@ function SimpleDateBlock({
   openLocks: LockedSignal[];
   showAllBuckets: boolean;
   statusMessages: Record<string, { text: string; color: string }>;
+  onQuickLock: (
+    city: string,
+    cityName: string,
+    date: string,
+    marketId: string,
+    tokenId: string,
+    side: string,
+    price: number,
+    label: string,
+    marketType: 'max' | 'min'
+  ) => void;
   onOpenCreateModal: (params: {
     city: string;
     cityName: string;
@@ -1562,6 +1639,77 @@ function SimpleDateBlock({
               💡 <b className="text-[#1f2430]">وضعیت گیت:</b> {market.city_form.gate_reason}
             </div>
           )}
+        </div>
+      )}
+
+      {/* Separate Row: Official Polymarket Resolution Source & Retail/Public Forecast (0% Signal Weight) */}
+      {market.resolve_source_info && (
+        <div className="flex flex-wrap items-center justify-between gap-2 text-[11.5px] text-[#334155] bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 mt-1.5">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-bold text-[#0f172a]">🎯 منبع رزولوشن پلی‌مارکت (عموم بازار):</span>
+            <a
+              href={market.resolve_source_info.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ltr-inline inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#eff6ff] text-[#1d4ed8] border border-[#bfdbfe] font-semibold text-[11px] hover:bg-[#dbeafe] transition-colors"
+              title={market.resolve_source_info.provider_note || 'مشاهده ایستگاه رسمی رزولوشن'}
+            >
+              🔗 {market.resolve_source_info.source_label}
+            </a>
+
+            {market.resolve_source_info.forecast_temp != null ? (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-white border border-[#cbd5e1] text-[#0f172a] font-semibold text-[11.5px]">
+                <span>پیش‌بینی منبع:</span>
+                <b className="ltr-inline text-[12px] text-[#0f172a]">
+                  {Number(market.resolve_source_info.forecast_temp).toFixed(1)}
+                  {unitSym}
+                </b>
+                {(() => {
+                  const chg = Number(market.resolve_source_info.temp_change ?? 0);
+                  const pct = Number(market.resolve_source_info.temp_pct_change ?? 0);
+                  const sign = chg > 0 ? '+' : '';
+                  const pctSign = pct > 0 ? '+' : '';
+                  const colorCls =
+                    chg > 0.04
+                      ? 'text-[#16a34a] font-bold'
+                      : chg < -0.04
+                      ? 'text-[#dc2626] font-bold'
+                      : 'text-[#64748b]';
+                  return (
+                    <span className={`ltr-inline text-[11px] ${colorCls}`} title="تغییرات پیش‌بینی منبع رزولوشن نسبت به اجرای/اسکن قبلی">
+                      ({sign}{chg.toFixed(1)}{unitSym} | {pctSign}{pct.toFixed(1)}%)
+                    </span>
+                  );
+                })()}
+              </span>
+            ) : (
+              <span className="px-2 py-0.5 rounded-md bg-white border border-[#e2e8f0] text-[#64748b] text-[11px]">
+                پیش‌بینی منبع: —
+              </span>
+            )}
+
+            {market.resolve_source_info.target_bucket && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#fef3c7] text-[#92400e] border border-[#fde68a] font-semibold text-[11px]">
+                <span>باکت هدف عوام:</span>
+                <b className="ltr-inline">{market.resolve_source_info.target_bucket}</b>
+              </span>
+            )}
+
+            {market.resolve_source_info.gap_vs_bot != null && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#f1f5f9] text-[#475569] border border-[#e2e8f0] text-[11px]">
+                <span>اختلاف با مدل ما:</span>
+                <b className="ltr-inline">
+                  ({market.resolve_source_info.gap_vs_bot > 0 ? '+' : ''}
+                  {Number(market.resolve_source_info.gap_vs_bot).toFixed(1)}
+                  {unitSym})
+                </b>
+              </span>
+            )}
+          </div>
+
+          <div className="text-[10.5px] text-[#64748b] font-medium bg-white px-2 py-0.5 rounded border border-[#e2e8f0]">
+            ⚖️ وزن در سیگنال: <b className="text-[#0f172a]">۰٪</b> (صرفاً جهت رصد اعداد معامله‌گران عوام)
+          </div>
         </div>
       )}
 
@@ -1764,35 +1912,57 @@ function SimpleDateBlock({
                                   onClick={() => onUnlock(citySlug, cityName, date, marketId, label, true)}
                                   className="bg-[#dc2626] hover:bg-[#b91c1c] text-white border-none rounded-[8px] px-2.5 py-1 text-[11px] font-semibold cursor-pointer"
                                 >
-                                  فروش
+                                  حذف قفل / فروش
                                 </button>
                               </div>
                             </div>
                           ) : (
-                            <button
-                              onClick={() =>
-                                onOpenCreateModal({
-                                  city: citySlug,
-                                  cityName,
-                                  date,
-                                  marketId,
-                                  yesTokenId: yesToken,
-                                  noTokenId: b.no_token_id || '',
-                                  yesPrice,
-                                  noPrice: b.no_price ?? Math.max(0.01, 1 - yesPrice),
-                                  bestBid: b.best_bid ?? null,
-                                  bestAsk: b.best_ask ?? null,
-                                  label,
-                                  marketType,
-                                  modelProb,
-                                  beliefProb: beliefVal,
-                                  ev: evVal,
-                                })
-                              }
-                              className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white border-none rounded-[9px] px-3.5 py-1.5 text-xs font-semibold cursor-pointer shadow-2xs transition-all"
-                            >
-                              ⚡ خرید و تنظیم اتوماتیک
-                            </button>
+                            <div className="flex items-center justify-center gap-1.5 flex-wrap">
+                              <button
+                                onClick={() =>
+                                  onQuickLock(
+                                    citySlug,
+                                    cityName,
+                                    date,
+                                    marketId,
+                                    yesToken,
+                                    'YES',
+                                    yesPrice,
+                                    label,
+                                    marketType
+                                  )
+                                }
+                                title="ثبت مستقیم قفل معمولی (تست ساده و سریع دقیقاً مشابه نسخه قبلی، بدون باز شدن صفحه تنظیمات پیشرفته)"
+                                className="bg-[#16a34a] hover:bg-[#15803d] text-white border-none rounded-[9px] px-2.5 py-1.5 text-xs font-semibold cursor-pointer shadow-2xs transition-all"
+                              >
+                                🔒 قفل معمولی
+                              </button>
+                              <button
+                                onClick={() =>
+                                  onOpenCreateModal({
+                                    city: citySlug,
+                                    cityName,
+                                    date,
+                                    marketId,
+                                    yesTokenId: yesToken,
+                                    noTokenId: b.no_token_id || '',
+                                    yesPrice,
+                                    noPrice: b.no_price ?? Math.max(0.01, 1 - yesPrice),
+                                    bestBid: b.best_bid ?? null,
+                                    bestAsk: b.best_ask ?? null,
+                                    label,
+                                    marketType,
+                                    modelProb,
+                                    beliefProb: beliefVal,
+                                    ev: evVal,
+                                  })
+                                }
+                                title="باز کردن پنل پیشرفته خرید و تنظیم اتوماتیک حد سود/ضرر (TP/SL) و خرید شرطی"
+                                className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white border-none rounded-[9px] px-3 py-1.5 text-xs font-semibold cursor-pointer shadow-2xs transition-all"
+                              >
+                                ⚡ خرید و تنظیم اتوماتیک
+                              </button>
+                            </div>
                           )}
                           {statusObj && (
                             <span

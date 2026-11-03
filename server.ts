@@ -57,6 +57,7 @@ const CITY_NAMES: Record<string, string> = {
   'riyadh': 'Riyadh',
   'rome': 'Rome',
   'sao-paulo': 'São Paulo',
+  'seattle': 'Seattle',
   'seoul': 'Seoul',
   'shanghai': 'Shanghai',
   'singapore': 'Singapore',
@@ -83,7 +84,42 @@ const US_CITIES = new Set([
   'los-angeles',
   'miami',
   'nyc',
+  'seattle',
 ]);
+
+const CITY_RESOLUTION_META: Record<string, { station: string; source: 'wunderground' | 'noaa' | 'hko' }> = {
+  'nyc': { station: 'KLGA', source: 'wunderground' },
+  'chicago': { station: 'KORD', source: 'wunderground' },
+  'miami': { station: 'KMIA', source: 'wunderground' },
+  'dallas': { station: 'KDFW', source: 'wunderground' },
+  'atlanta': { station: 'KATL', source: 'wunderground' },
+  'seattle': { station: 'KSEA', source: 'noaa' },
+  'london': { station: 'EGLC', source: 'wunderground' },
+  'paris': { station: 'LFPG', source: 'wunderground' },
+  'munich': { station: 'EDDM', source: 'noaa' },
+  'ankara': { station: 'LTAC', source: 'wunderground' },
+  'tokyo': { station: 'RJTT', source: 'noaa' },
+  'seoul': { station: 'RKSI', source: 'wunderground' },
+  'singapore': { station: 'WSSS', source: 'noaa' },
+  'tel-aviv': { station: 'LLBG', source: 'noaa' },
+  'sao-paulo': { station: 'SBGR', source: 'noaa' },
+  'buenos-aires': { station: 'SAEZ', source: 'noaa' },
+  'toronto': { station: 'CYYZ', source: 'noaa' },
+  'los-angeles': { station: 'KLAX', source: 'noaa' },
+  'houston': { station: 'KHOU', source: 'noaa' },
+  'austin': { station: 'KAUS', source: 'noaa' },
+  'denver': { station: 'KDEN', source: 'noaa' },
+  'hong-kong': { station: 'HKO', source: 'hko' },
+  'shanghai': { station: 'ZSPD', source: 'wunderground' },
+  'taipei': { station: 'RCSS', source: 'noaa' },
+  'warsaw': { station: 'EPWA', source: 'wunderground' },
+  'madrid': { station: 'LEMD', source: 'noaa' },
+  'milan': { station: 'LIMC', source: 'noaa' },
+  'istanbul': { station: 'LTFM', source: 'noaa' },
+  'dubai': { station: 'OMDB', source: 'noaa' },
+  'kuala-lumpur': { station: 'WMKK', source: 'noaa' },
+  'mexico-city': { station: 'MMMX', source: 'noaa' },
+};
 
 function getCityName(slug: string, fallback?: string): string {
   if (fallback && fallback !== slug) return fallback;
@@ -637,6 +673,100 @@ function enrichMarketWithSmartGate(market: any, profile: any | undefined): any {
   m.smart_sigma = sigma;
   m.smart_gate_decision = gateDecision;
   m.smart_gate_note = gateNote;
+
+  // Ensure resolve_source_info is always populated and has up-to-date gap_vs_bot & target_bucket
+  const resMeta = CITY_RESOLUTION_META[m.city] || { station: 'ICAO', source: 'noaa' as const };
+  const isUs = US_CITIES.has(m.city);
+  const existingInfo = m.resolve_source_info || {};
+  const sourceCode = existingInfo.source_code || resMeta.source;
+  const stationCode = existingInfo.station || resMeta.station;
+  const sourceLabel =
+    existingInfo.source_label ||
+    (sourceCode === 'wunderground'
+      ? `Wunderground (${stationCode})`
+      : sourceCode === 'hko'
+      ? `Hong Kong Observatory (${stationCode})`
+      : `NOAA AviationWeather METAR (${stationCode})`);
+  const providerNote =
+    existingInfo.provider_note ||
+    (sourceCode === 'wunderground'
+      ? isUs
+        ? 'Weather.com / NWS'
+        : 'Weather.com / ایستگاه فرودگاهی'
+      : sourceCode === 'hko'
+      ? 'رصدخانه رسمی هنگ‌کنگ (HKO)'
+      : isUs
+      ? 'NWS / NOAA METAR'
+      : 'گزارش رسمی METAR فرودگاهی');
+  const resUrl =
+    existingInfo.url ||
+    (sourceCode === 'wunderground'
+      ? `https://www.wunderground.com/history/daily/${stationCode}/date/${m.date}`
+      : sourceCode === 'hko'
+      ? 'https://www.hko.gov.hk/en/wxinfo/currwx/fnd.htm'
+      : `https://aviationweather.gov/data/metar/?id=${stationCode}`);
+
+  let resForecastTemp: number | null =
+    existingInfo.forecast_temp != null
+      ? Number(existingInfo.forecast_temp)
+      : modelsRaw.gfs != null
+      ? Number(Number(modelsRaw.gfs).toFixed(1))
+      : fShadow != null
+      ? Number(Number(fShadow).toFixed(1))
+      : null;
+
+  const roundedResTemp = resForecastTemp != null ? Math.floor(resForecastTemp + 0.5) : null;
+  let targetBucket: string | null = existingInfo.target_bucket || null;
+  if (roundedResTemp != null && Array.isArray(m.full_distribution)) {
+    for (const b of m.full_distribution) {
+      if (Array.isArray(b.range) && b.range.length >= 2) {
+        const [lo, hi] = b.range;
+        if (
+          (lo <= -998 && roundedResTemp <= hi) ||
+          (hi >= 998 && roundedResTemp >= lo) ||
+          (roundedResTemp >= lo && roundedResTemp <= hi)
+        ) {
+          targetBucket = formatRangeLabel(b.range, `°${m.unit || 'C'}`);
+          break;
+        }
+      }
+    }
+  }
+  if (!targetBucket && roundedResTemp != null) {
+    targetBucket = `${roundedResTemp}°${m.unit || 'C'}`;
+  }
+
+  const tempChange =
+    existingInfo.temp_change != null
+      ? Number(existingInfo.temp_change)
+      : resForecastTemp != null && fCal != null
+      ? Number((resForecastTemp - Number(fCal)).toFixed(1))
+      : 0.0;
+  const tempPctChange =
+    existingInfo.temp_pct_change != null
+      ? Number(existingInfo.temp_pct_change)
+      : resForecastTemp != null && Math.abs(resForecastTemp) > 1
+      ? Number(((tempChange / Math.abs(resForecastTemp)) * 100).toFixed(1))
+      : 0.0;
+
+  m.resolve_source_info = {
+    source_code: sourceCode,
+    station: stationCode,
+    source_label: sourceLabel,
+    provider_note: providerNote,
+    url: resUrl,
+    forecast_temp: resForecastTemp,
+    rounded_temp: roundedResTemp,
+    baseline_temp: existingInfo.baseline_temp ?? null,
+    temp_change: tempChange,
+    temp_pct_change: tempPctChange,
+    target_bucket: targetBucket,
+    gap_vs_bot:
+      resForecastTemp != null && smartMean != null
+        ? Number((resForecastTemp - Number(smartMean)).toFixed(1))
+        : existingInfo.gap_vs_bot ?? null,
+    weight_in_signal: 0,
+  };
 
   // Build baseline lookup from committed_full_distribution or live_allocation if scan-over-scan deltas are missing
   const committedDistById = new Map<string, any>();

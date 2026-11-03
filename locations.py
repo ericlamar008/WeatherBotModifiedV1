@@ -67,6 +67,14 @@ LOCATIONS = {
     # --- فاز ۵ نقشه‌راه: افزوده‌شدهٔ جدید (۱۶ سپتامبر ۲۰۲۶) -----------------
     "cape-town": {"lat": -33.9648, "lon": 18.6017, "name": "Cape Town", "station": "FACT", "unit": "C", "region": "af", "resolve_source": "wunderground", "tz": "Africa/Johannesburg"},
     "denver": {"lat": 39.7017, "lon": -104.7527, "name": "Denver", "station": "KBKF", "unit": "F", "region": "us", "resolve_source": "wunderground", "tz": "America/Denver"},
+
+    # --- فاز ۷: افزودن بوئنوس آیرس و سیاتل با تأیید مستقیم منبع رزولوشن زندهٔ Polymarket ---
+    # - buenos-aires: ایستگاه رسمی SAEZ (Minister Pistarini Intl Airport / Ezeiza)
+    #   منبع رسمی رزولوشن در Polymarket: aviationweather.gov/api/data/metar?ids=SAEZ (واحد: C)
+    # - seattle: ایستگاه رسمی KSEA (Seattle-Tacoma International Airport)
+    #   منبع رسمی رزولوشن در Polymarket: aviationweather.gov/api/data/metar?ids=KSEA (واحد: F)
+    "buenos-aires": {"lat": -34.8222, "lon": -58.5358, "name": "Buenos Aires", "station": "SAEZ", "unit": "C", "region": "sa", "resolve_source": "noaa", "tz": "America/Argentina/Buenos_Aires"},
+    "seattle": {"lat": 47.4447, "lon": -122.3144, "name": "Seattle", "station": "KSEA", "unit": "F", "region": "us", "resolve_source": "noaa", "tz": "America/Los_Angeles"},
 }
 
 MONTHS = ["january", "february", "march", "april", "may", "june",
