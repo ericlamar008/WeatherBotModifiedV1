@@ -705,9 +705,9 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.98,
+      "yes_price": 0.67,
       "no_price": 0.0365,
-      "best_bid": 0.96,
+      "best_bid": 0.34,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 466.0,
@@ -717,14 +717,14 @@
       "model_prob": 0.138,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.98,
-      "effective_ask": 0.98,
-      "market_prob": 0.98,
-      "belief_prob": 0.4327,
-      "ev": -0.5585,
+      "ask": 0.67,
+      "effective_ask": 0.67,
+      "market_prob": 0.67,
+      "belief_prob": 0.3242,
+      "ev": -0.5161,
       "kelly": 0.0,
-      "swing_edge": -0.842,
-      "swing_upside_pct": -85.9,
+      "swing_edge": -0.532,
+      "swing_upside_pct": -79.4,
       "sell_value": 0.928,
       "prev_10m_model_prob": 0.1278,
       "model_prob_10m_change": 0.0,
@@ -736,16 +736,16 @@
       "prev_model_prob": 0.1278,
       "model_prob_change": 0.0102,
       "model_prob_pct_change": 8.0,
-      "prev_10m_yes_price": 0.981,
-      "yes_price_10m_change": -0.001,
-      "yes_price_10m_pct_change": -0.1,
+      "prev_10m_yes_price": 0.98,
+      "yes_price_10m_change": -0.31,
+      "yes_price_10m_pct_change": -31.6,
       "prev_scan6h_yes_price": 0.963,
-      "yes_price_6h_change": 0.0165,
-      "yes_price_6h_pct_change": 1.7,
+      "yes_price_6h_change": -0.2935,
+      "yes_price_6h_pct_change": -30.5,
       "scan6h_yes_price": 0.9635,
-      "prev_yes_price": 0.981,
-      "yes_price_change": -0.001,
-      "yes_price_pct_change": -0.1,
+      "prev_yes_price": 0.98,
+      "yes_price_change": -0.31,
+      "yes_price_pct_change": -31.6,
       "price_history": [
         {
           "t": "2026-11-02T15:52:32Z",
@@ -967,6 +967,13 @@
           "p": 0.98,
           "mp": 0.138,
           "bid": 0.96,
+          "ask": 1.0
+        },
+        {
+          "t": "2026-11-03T07:07:33Z",
+          "p": 0.67,
+          "mp": 0.138,
+          "bid": 0.34,
           "ask": 1.0
         }
       ]
@@ -2736,7 +2743,7 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-03T06:52:34.845706+00:00",
+  "last_price_refresh": "2026-11-03T07:07:31.722081+00:00",
   "forecast_mean_shadow": 52.8,
   "model_means_raw": {
     "ecmwf": 52.34,
