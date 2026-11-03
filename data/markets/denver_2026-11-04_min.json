@@ -330,10 +330,10 @@
         44.0,
         45.0
       ],
-      "yes_price": 0.08,
+      "yes_price": 0.055,
       "no_price": 0.885,
       "best_bid": null,
-      "best_ask": 0.16,
+      "best_ask": 0.11,
       "bid_ask_spread": 0.0,
       "volume": 22.0,
       "spread": 0.0,
@@ -342,14 +342,14 @@
       "model_prob": 0.0609,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.08,
-      "effective_ask": 0.08,
-      "market_prob": 0.08,
-      "belief_prob": 0.0676,
-      "ev": -0.155,
-      "kelly": 0.0,
-      "swing_edge": -0.0191,
-      "swing_upside_pct": -23.9,
+      "ask": 0.055,
+      "effective_ask": 0.055,
+      "market_prob": 0.055,
+      "belief_prob": 0.0588,
+      "ev": 0.0691,
+      "kelly": 0.001,
+      "swing_edge": 0.0059,
+      "swing_upside_pct": 10.7,
       "sell_value": null,
       "scan6h_model_prob": 0.0609,
       "prev_scan6h_model_prob": 0.0609,
@@ -363,13 +363,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.115,
       "prev_scan6h_yes_price": 0.115,
-      "prev_yes_price": 0.09,
-      "yes_price_10m_change": -0.01,
-      "yes_price_10m_pct_change": -11.1,
-      "yes_price_6h_change": -0.035,
-      "yes_price_6h_pct_change": -30.4,
-      "yes_price_change": -0.01,
-      "yes_price_pct_change": -11.1,
+      "prev_yes_price": 0.08,
+      "yes_price_10m_change": -0.025,
+      "yes_price_10m_pct_change": -31.2,
+      "yes_price_6h_change": -0.06,
+      "yes_price_6h_pct_change": -52.2,
+      "yes_price_change": -0.025,
+      "yes_price_pct_change": -31.2,
       "price_history": [
         {
           "t": "2026-11-03T02:58:39Z",
@@ -482,9 +482,16 @@
           "mp": 0.0609,
           "bid": null,
           "ask": 0.16
+        },
+        {
+          "t": "2026-11-03T07:37:31Z",
+          "p": 0.055,
+          "mp": 0.0609,
+          "bid": null,
+          "ask": 0.11
         }
       ],
-      "prev_10m_yes_price": 0.09
+      "prev_10m_yes_price": 0.08
     },
     {
       "question": "Will the lowest temperature in Denver be 46°F or higher on November 4?",
@@ -650,5 +657,5 @@
       "prev_10m_yes_price": 0.24
     }
   ],
-  "last_price_refresh": "2026-11-03T07:22:33.397537+00:00"
+  "last_price_refresh": "2026-11-03T07:37:28.551204+00:00"
 }
