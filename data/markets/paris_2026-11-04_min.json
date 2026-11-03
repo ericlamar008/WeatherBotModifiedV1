@@ -704,10 +704,10 @@
         2.0,
         2.0
       ],
-      "yes_price": 0.09,
+      "yes_price": 0.085,
       "no_price": 0.865,
       "best_bid": 0.12,
-      "best_ask": 0.18,
+      "best_ask": 0.17,
       "bid_ask_spread": 0.0,
       "volume": 71.0,
       "spread": 0.03,
@@ -716,14 +716,14 @@
       "model_prob": 0.2977,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.09,
-      "effective_ask": 0.09,
-      "market_prob": 0.09,
-      "belief_prob": 0.225,
-      "ev": 1.5,
-      "kelly": 0.0371,
-      "swing_edge": 0.2077,
-      "swing_upside_pct": 230.8,
+      "ask": 0.085,
+      "effective_ask": 0.085,
+      "market_prob": 0.085,
+      "belief_prob": 0.2233,
+      "ev": 1.6271,
+      "kelly": 0.0378,
+      "swing_edge": 0.2127,
+      "swing_upside_pct": 250.2,
       "sell_value": 0.12,
       "scan6h_model_prob": 0.2977,
       "prev_scan6h_model_prob": 0.2977,
@@ -737,13 +737,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.135,
       "prev_scan6h_yes_price": 0.135,
-      "prev_yes_price": 0.095,
+      "prev_yes_price": 0.09,
       "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -5.3,
-      "yes_price_6h_change": -0.045,
-      "yes_price_6h_pct_change": -33.3,
+      "yes_price_10m_pct_change": -5.6,
+      "yes_price_6h_change": -0.05,
+      "yes_price_6h_pct_change": -37.0,
       "yes_price_change": -0.005,
-      "yes_price_pct_change": -5.3,
+      "yes_price_pct_change": -5.6,
       "price_history": [
         {
           "t": "2026-11-03T08:27:48Z",
@@ -821,9 +821,16 @@
           "mp": 0.2977,
           "bid": 0.12,
           "ask": 0.18
+        },
+        {
+          "t": "2026-11-03T11:37:32Z",
+          "p": 0.085,
+          "mp": 0.2977,
+          "bid": 0.12,
+          "ask": 0.17
         }
       ],
-      "prev_10m_yes_price": 0.095
+      "prev_10m_yes_price": 0.09
     },
     {
       "question": "Will the lowest temperature in Paris be 3°C on November 4?",
@@ -1574,5 +1581,5 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-03T11:22:36.368089+00:00"
+  "last_price_refresh": "2026-11-03T11:37:31.100810+00:00"
 }
