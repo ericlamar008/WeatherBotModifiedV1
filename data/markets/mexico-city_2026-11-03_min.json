@@ -410,11 +410,11 @@
         9.0,
         9.0
       ],
-      "yes_price": 0.4,
+      "yes_price": 0.395,
       "no_price": 0.6,
       "best_bid": 0.01,
       "best_ask": 0.79,
-      "bid_ask_spread": 0.78,
+      "bid_ask_spread": 0.0,
       "volume": 10.0,
       "spread": 0.78,
       "yes_token_id": "2020043115576570911447518011979725706958717584911506836576684365907411256058",
@@ -422,14 +422,14 @@
       "model_prob": 0.0406,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.4,
-      "effective_ask": 0.48,
-      "market_prob": 0.4,
-      "belief_prob": 0.1664,
-      "ev": -0.6533,
+      "ask": 0.395,
+      "effective_ask": 0.395,
+      "market_prob": 0.395,
+      "belief_prob": 0.1646,
+      "ev": -0.5833,
       "kelly": 0.0,
-      "swing_edge": -0.3594,
-      "swing_upside_pct": -89.8,
+      "swing_edge": -0.3544,
+      "swing_upside_pct": -89.7,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.0406,
       "prev_scan6h_model_prob": 0.0406,
@@ -444,16 +444,23 @@
       "scan6h_yes_price": 0.4,
       "prev_scan6h_yes_price": 0.4,
       "prev_yes_price": 0.4,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.2,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -1.2,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.2,
       "price_history": [
         {
           "t": "2026-11-03T14:26:43Z",
           "p": 0.4,
+          "mp": 0.0406,
+          "bid": 0.01,
+          "ask": 0.79
+        },
+        {
+          "t": "2026-11-03T14:37:37Z",
+          "p": 0.395,
           "mp": 0.0406,
           "bid": 0.01,
           "ask": 0.79
@@ -1615,5 +1622,5 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-03T14:28:13.685320+00:00"
+  "last_price_refresh": "2026-11-03T14:37:35.836317+00:00"
 }
