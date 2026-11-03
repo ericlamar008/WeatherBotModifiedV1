@@ -514,11 +514,11 @@
         78.0,
         79.0
       ],
-      "yes_price": 0.135,
+      "yes_price": 0.125,
       "no_price": 0.85,
-      "best_bid": 0.12,
+      "best_bid": 0.1,
       "best_ask": 0.15,
-      "bid_ask_spread": 0.03,
+      "bid_ask_spread": 0.05,
       "volume": 215.0,
       "spread": 0.08,
       "yes_token_id": "62328535243322218499376561369356850966490027324263835691302753386986728087407",
@@ -526,14 +526,14 @@
       "model_prob": 0.1227,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.135,
-      "effective_ask": 0.135,
-      "market_prob": 0.135,
-      "belief_prob": 0.127,
-      "ev": -0.0593,
+      "ask": 0.125,
+      "effective_ask": 0.136,
+      "market_prob": 0.125,
+      "belief_prob": 0.1235,
+      "ev": -0.0919,
       "kelly": 0.0,
-      "swing_edge": -0.0123,
-      "swing_upside_pct": -9.1,
+      "swing_edge": -0.0023,
+      "swing_upside_pct": -1.8,
       "sell_value": 0.11,
       "scan6h_model_prob": 0.1227,
       "prev_scan6h_model_prob": 0.1227,
@@ -547,13 +547,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.15,
       "prev_scan6h_yes_price": 0.15,
-      "prev_yes_price": 0.13,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 3.8,
-      "yes_price_6h_change": -0.015,
-      "yes_price_6h_pct_change": -10.0,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 3.8,
+      "prev_yes_price": 0.135,
+      "yes_price_10m_change": -0.01,
+      "yes_price_10m_pct_change": -7.4,
+      "yes_price_6h_change": -0.025,
+      "yes_price_6h_pct_change": -16.7,
+      "yes_price_change": -0.01,
+      "yes_price_pct_change": -7.4,
       "price_history": [
         {
           "t": "2026-11-03T14:26:40Z",
@@ -659,9 +659,16 @@
           "mp": 0.1227,
           "bid": 0.12,
           "ask": 0.15
+        },
+        {
+          "t": "2026-11-03T18:52:49Z",
+          "p": 0.125,
+          "mp": 0.1227,
+          "bid": 0.1,
+          "ask": 0.15
         }
       ],
-      "prev_10m_yes_price": 0.13
+      "prev_10m_yes_price": 0.135
     },
     {
       "question": "Will the lowest temperature in Miami be between 82-83°F on November 4?",
@@ -1069,5 +1076,5 @@
       "prev_10m_yes_price": 0.03
     }
   ],
-  "last_price_refresh": "2026-11-03T18:37:57.034663+00:00"
+  "last_price_refresh": "2026-11-03T18:52:47.766922+00:00"
 }
