@@ -32,10 +32,10 @@
         -999.0,
         14.0
       ],
-      "yes_price": 0.17,
+      "yes_price": 0.21,
       "no_price": 0.825,
       "best_bid": null,
-      "best_ask": 0.34,
+      "best_ask": 0.42,
       "bid_ask_spread": 0.0,
       "volume": 22.0,
       "spread": 0.0,
@@ -44,14 +44,14 @@
       "model_prob": 0.0873,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.17,
-      "effective_ask": 0.17,
-      "market_prob": 0.17,
-      "belief_prob": 0.1162,
-      "ev": -0.3165,
+      "ask": 0.21,
+      "effective_ask": 0.21,
+      "market_prob": 0.21,
+      "belief_prob": 0.1302,
+      "ev": -0.38,
       "kelly": 0.0,
-      "swing_edge": -0.0827,
-      "swing_upside_pct": -48.6,
+      "swing_edge": -0.1227,
+      "swing_upside_pct": -58.4,
       "sell_value": null,
       "scan6h_model_prob": 0.0873,
       "prev_scan6h_model_prob": 0.0873,
@@ -65,13 +65,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.175,
       "prev_scan6h_yes_price": 0.175,
-      "prev_yes_price": 0.225,
-      "yes_price_10m_change": -0.055,
-      "yes_price_10m_pct_change": -24.4,
-      "yes_price_6h_change": -0.005,
-      "yes_price_6h_pct_change": -2.9,
-      "yes_price_change": -0.055,
-      "yes_price_pct_change": -24.4,
+      "prev_yes_price": 0.17,
+      "yes_price_10m_change": 0.04,
+      "yes_price_10m_pct_change": 23.5,
+      "yes_price_6h_change": 0.035,
+      "yes_price_6h_pct_change": 20.0,
+      "yes_price_change": 0.04,
+      "yes_price_pct_change": 23.5,
       "price_history": [
         {
           "t": "2026-11-03T02:59:21Z",
@@ -170,9 +170,16 @@
           "mp": 0.0873,
           "bid": null,
           "ask": 0.34
+        },
+        {
+          "t": "2026-11-03T06:22:39Z",
+          "p": 0.21,
+          "mp": 0.0873,
+          "bid": null,
+          "ask": 0.42
         }
       ],
-      "prev_10m_yes_price": 0.225
+      "prev_10m_yes_price": 0.17
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 15°C on November 4?",
@@ -722,5 +729,5 @@
       "prev_10m_yes_price": 0.235
     }
   ],
-  "last_price_refresh": "2026-11-03T06:07:53.567803+00:00"
+  "last_price_refresh": "2026-11-03T06:22:37.223412+00:00"
 }
