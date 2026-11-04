@@ -3,11 +3,11 @@
   "city_name": "Denver",
   "date": "2026-11-02",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-11-01T02:20:45.135984+00:00",
   "committed_allocation": null,
-  "hours_left": 40.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-11-03T07:00:00+00:00",
   "event_end_date": "2026-11-02T12:00:00Z",
   "last_scan": "2026-11-01T02:20:45.135984+00:00",
@@ -406,7 +406,10 @@
       "market_prob": 0.24,
       "role": "main_signal",
       "units": 19.0,
-      "sell_value": 0.14
+      "sell_value": 0.14,
+      "won": false,
+      "pnl_units": -19.0,
+      "user_entered": false
     },
     {
       "market_id": "6453771",
@@ -422,7 +425,10 @@
       "market_prob": 0.76,
       "role": "scenario_hedge",
       "units": 28.5,
-      "sell_value": 0.66
+      "sell_value": 0.66,
+      "won": true,
+      "pnl_units": 9.0,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 47.5,
@@ -435,7 +441,7 @@
   "balance_units": 100,
   "strategy_version": "auto-bb76bea385d114be",
   "last_price_refresh": "2026-11-01T18:52:28.422419+00:00",
-  "last_lite_refresh": "2026-11-01T14:20:42.929385+00:00",
+  "last_lite_refresh": "2026-11-04T02:53:10.416245+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KBKF",
@@ -450,5 +456,50 @@
     "target_bucket": "48-49°F",
     "gap_vs_bot": -5.0,
     "weight_in_signal": 0
-  }
+  },
+  "actual_temp": 50.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "loss",
+  "pnl_units": -10.0,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6453771",
+      "question": "Will the highest temperature in Denver be between 52-53°F on November 2?",
+      "range": [
+        52.0,
+        53.0
+      ],
+      "side": "YES",
+      "price": 0.24,
+      "model_prob": 0.2145,
+      "ev": -0.3019,
+      "market_prob": 0.24,
+      "role": "main_signal",
+      "units": 19.0,
+      "sell_value": 0.14,
+      "won": false,
+      "pnl_units": -19.0,
+      "user_entered": false
+    },
+    {
+      "market_id": "6453771",
+      "question": "Will the highest temperature in Denver be between 52-53°F on November 2? (NO)",
+      "range": [
+        52.0,
+        53.0
+      ],
+      "side": "NO",
+      "price": 0.76,
+      "model_prob": 0.7855,
+      "ev": -0.0755,
+      "market_prob": 0.76,
+      "role": "scenario_hedge",
+      "units": 28.5,
+      "sell_value": 0.66,
+      "won": true,
+      "pnl_units": 9.0,
+      "user_entered": false
+    }
+  ]
 }

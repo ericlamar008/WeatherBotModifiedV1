@@ -3,11 +3,11 @@
   "city_name": "Tel Aviv",
   "date": "2026-11-01",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-10-31T02:20:41.141510+00:00",
   "committed_allocation": null,
-  "hours_left": 7.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-11-01T22:00:00+00:00",
   "event_end_date": "2026-11-01T12:00:00Z",
   "last_scan": "2026-11-01T02:20:45.135984+00:00",
@@ -545,7 +545,10 @@
       "market_prob": 0.72,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.71
+      "sell_value": 0.71,
+      "won": true,
+      "pnl_units": 11.67,
+      "user_entered": false
     },
     {
       "market_id": "6407304",
@@ -561,7 +564,10 @@
       "market_prob": 0.28,
       "role": "scenario_hedge",
       "units": 7.78,
-      "sell_value": 0.26
+      "sell_value": 0.26,
+      "won": false,
+      "pnl_units": -7.78,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 37.8,
@@ -574,7 +580,7 @@
   "balance_units": 100,
   "strategy_version": "auto-bb76bea385d114be",
   "last_price_refresh": "2026-11-01T18:52:28.422419+00:00",
-  "last_lite_refresh": "2026-11-01T14:20:42.929385+00:00",
+  "last_lite_refresh": "2026-11-04T02:53:10.416245+00:00",
   "resolve_source_info": {
     "source_code": "noaa",
     "station": "LLBG",
@@ -589,5 +595,50 @@
     "target_bucket": "27°C",
     "gap_vs_bot": -0.4,
     "weight_in_signal": 0
-  }
+  },
+  "actual_temp": 27.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 3.89,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6407304",
+      "question": "Will the highest temperature in Tel Aviv be 27°C on November 1?",
+      "range": [
+        27.0,
+        27.0
+      ],
+      "side": "YES",
+      "price": 0.72,
+      "model_prob": 0.4396,
+      "ev": -0.2589,
+      "market_prob": 0.72,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.71,
+      "won": true,
+      "pnl_units": 11.67,
+      "user_entered": false
+    },
+    {
+      "market_id": "6407304",
+      "question": "Will the highest temperature in Tel Aviv be 27°C on November 1? (NO)",
+      "range": [
+        27.0,
+        27.0
+      ],
+      "side": "NO",
+      "price": 0.28,
+      "model_prob": 0.5604,
+      "ev": 0.6193,
+      "market_prob": 0.28,
+      "role": "scenario_hedge",
+      "units": 7.78,
+      "sell_value": 0.26,
+      "won": false,
+      "pnl_units": -7.78,
+      "user_entered": false
+    }
+  ]
 }

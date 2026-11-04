@@ -3,11 +3,11 @@
   "city_name": "Austin",
   "date": "2026-10-30",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-10-28T21:41:01.810187+00:00",
   "committed_allocation": null,
-  "hours_left": 44.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-10-31T05:00:00+00:00",
   "event_end_date": "2026-10-30T12:00:00Z",
   "last_scan": "2026-10-29T02:20:40.624801+00:00",
@@ -449,7 +449,10 @@
       "market_prob": 0.295,
       "role": "main_signal",
       "units": 13.6,
-      "sell_value": 0.28
+      "sell_value": 0.28,
+      "won": true,
+      "pnl_units": 32.5,
+      "user_entered": false
     },
     {
       "market_id": "6336430",
@@ -465,7 +468,10 @@
       "market_prob": 0.705,
       "role": "scenario_hedge",
       "units": 8.6,
-      "sell_value": 0.69
+      "sell_value": 0.69,
+      "won": false,
+      "pnl_units": -8.6,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 22.2,
@@ -478,7 +484,7 @@
   "balance_units": 100,
   "strategy_version": "auto-bb76bea385d114be",
   "last_price_refresh": "2026-10-29T11:07:25.323147+00:00",
-  "last_lite_refresh": "2026-10-29T08:20:41.194306+00:00",
+  "last_lite_refresh": "2026-11-04T02:53:10.416245+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KAUS",
@@ -493,5 +499,50 @@
     "target_bucket": "70-71°F",
     "gap_vs_bot": -3.8,
     "weight_in_signal": 0
-  }
+  },
+  "actual_temp": 70.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 23.9,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6336430",
+      "question": "Will the highest temperature in Austin be between 70-71°F on October 30?",
+      "range": [
+        70.0,
+        71.0
+      ],
+      "side": "YES",
+      "price": 0.295,
+      "model_prob": 0.0541,
+      "ev": -0.5308,
+      "market_prob": 0.295,
+      "role": "main_signal",
+      "units": 13.6,
+      "sell_value": 0.28,
+      "won": true,
+      "pnl_units": 32.5,
+      "user_entered": false
+    },
+    {
+      "market_id": "6336430",
+      "question": "Will the highest temperature in Austin be between 70-71°F on October 30? (NO)",
+      "range": [
+        70.0,
+        71.0
+      ],
+      "side": "NO",
+      "price": 0.705,
+      "model_prob": 0.9459,
+      "ev": 0.2221,
+      "market_prob": 0.705,
+      "role": "scenario_hedge",
+      "units": 8.6,
+      "sell_value": 0.69,
+      "won": false,
+      "pnl_units": -8.6,
+      "user_entered": false
+    }
+  ]
 }
