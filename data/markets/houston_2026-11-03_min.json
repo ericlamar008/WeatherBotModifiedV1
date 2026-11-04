@@ -32,10 +32,10 @@
         -999.0,
         61.0
       ],
-      "yes_price": 0.19,
+      "yes_price": 0.17,
       "no_price": 0.695,
       "best_bid": null,
-      "best_ask": 0.38,
+      "best_ask": 0.34,
       "bid_ask_spread": 0.0,
       "volume": 28.0,
       "spread": 0.0,
@@ -44,14 +44,14 @@
       "model_prob": 0.1165,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.19,
-      "effective_ask": 0.19,
-      "market_prob": 0.19,
-      "belief_prob": 0.1422,
-      "ev": -0.2516,
+      "ask": 0.17,
+      "effective_ask": 0.17,
+      "market_prob": 0.17,
+      "belief_prob": 0.1352,
+      "ev": -0.2047,
       "kelly": 0.0,
-      "swing_edge": -0.0735,
-      "swing_upside_pct": -38.7,
+      "swing_edge": -0.0535,
+      "swing_upside_pct": -31.5,
       "sell_value": null,
       "prev_10m_model_prob": 0.3644,
       "model_prob_10m_change": 0.0,
@@ -63,24 +63,17 @@
       "prev_model_prob": 0.3644,
       "model_prob_change": -0.2479,
       "model_prob_pct_change": -68.0,
-      "prev_10m_yes_price": 0.21,
+      "prev_10m_yes_price": 0.19,
       "yes_price_10m_change": -0.02,
-      "yes_price_10m_pct_change": -9.5,
+      "yes_price_10m_pct_change": -10.5,
       "prev_scan6h_yes_price": 0.34,
-      "yes_price_6h_change": -0.115,
-      "yes_price_6h_pct_change": -37.7,
+      "yes_price_6h_change": -0.135,
+      "yes_price_6h_pct_change": -44.3,
       "scan6h_yes_price": 0.305,
-      "prev_yes_price": 0.21,
+      "prev_yes_price": 0.19,
       "yes_price_change": -0.02,
-      "yes_price_pct_change": -9.5,
+      "yes_price_pct_change": -10.5,
       "price_history": [
-        {
-          "t": "2026-11-03T08:27:48Z",
-          "p": 0.45,
-          "mp": 0.215,
-          "bid": null,
-          "ask": 0.9
-        },
         {
           "t": "2026-11-03T08:52:53Z",
           "p": 0.45,
@@ -409,6 +402,13 @@
           "mp": 0.1165,
           "bid": null,
           "ask": 0.38
+        },
+        {
+          "t": "2026-11-04T05:52:35Z",
+          "p": 0.17,
+          "mp": 0.1165,
+          "bid": null,
+          "ask": 0.34
         }
       ]
     },
@@ -419,10 +419,10 @@
         70.0,
         71.0
       ],
-      "yes_price": 0.0035,
+      "yes_price": 0.002,
       "no_price": 0.505,
       "best_bid": 0.001,
-      "best_ask": 0.007,
+      "best_ask": 0.004,
       "bid_ask_spread": 0.0,
       "volume": 5.0,
       "spread": 0.97,
@@ -431,13 +431,13 @@
       "model_prob": 0.8835,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0035,
-      "effective_ask": 0.0035,
-      "market_prob": 0.0035,
-      "belief_prob": 0.5755,
-      "ev": 163.4286,
+      "ask": 0.002,
+      "effective_ask": 0.002,
+      "market_prob": 0.002,
+      "belief_prob": 0.575,
+      "ev": 286.5,
       "kelly": 0.1435,
-      "swing_edge": 0.88,
+      "swing_edge": 0.8815,
       "swing_upside_pct": 0.0,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.8835,
@@ -452,13 +452,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.495,
       "prev_scan6h_yes_price": 0.495,
-      "prev_yes_price": 0.004,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -12.5,
-      "yes_price_6h_change": -0.4915,
-      "yes_price_6h_pct_change": -99.3,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -12.5,
+      "prev_yes_price": 0.0035,
+      "yes_price_10m_change": -0.0015,
+      "yes_price_10m_pct_change": -42.9,
+      "yes_price_6h_change": -0.493,
+      "yes_price_6h_pct_change": -99.6,
+      "yes_price_change": -0.0015,
+      "yes_price_pct_change": -42.9,
       "price_history": [
         {
           "t": "2026-11-04T02:53:56Z",
@@ -515,9 +515,16 @@
           "mp": 0.8835,
           "bid": 0.001,
           "ask": 0.007
+        },
+        {
+          "t": "2026-11-04T05:52:35Z",
+          "p": 0.002,
+          "mp": 0.8835,
+          "bid": 0.001,
+          "ask": 0.004
         }
       ],
-      "prev_10m_yes_price": 0.004
+      "prev_10m_yes_price": 0.0035
     },
     {
       "question": "Will the lowest temperature in Houston be between 72-73°F on November 3?",
@@ -752,6 +759,13 @@
         },
         {
           "t": "2026-11-04T05:22:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T05:52:35Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -992,6 +1006,13 @@
         },
         {
           "t": "2026-11-04T05:22:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T05:52:35Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1334,6 +1355,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T05:52:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -1668,6 +1696,13 @@
         },
         {
           "t": "2026-11-04T05:22:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T05:52:35Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -2010,11 +2045,18 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T05:52:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     }
   ],
-  "last_price_refresh": "2026-11-04T05:37:33.957771+00:00",
+  "last_price_refresh": "2026-11-04T05:52:33.359995+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KHOU",
