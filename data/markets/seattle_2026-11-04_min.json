@@ -64,8 +64,8 @@
       "belief_prob": 0.6386,
       "ev": 0.0824,
       "kelly": 0.0296,
-      "swing_edge": 0.1179,
-      "swing_upside_pct": 20.0,
+      "swing_edge": 0.1979,
+      "swing_upside_pct": 38.8,
       "sell_value": 0.36,
       "scan6h_model_prob": 0.7079,
       "prev_scan6h_model_prob": 0.7079,
@@ -94,7 +94,8 @@
           "bid": 0.36,
           "ask": 0.66
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.51
     },
     {
       "question": "Will the lowest temperature in Seattle be between 46-47°F on November 4?",
@@ -103,11 +104,11 @@
         46.0,
         47.0
       ],
-      "yes_price": 0.0605,
+      "yes_price": 0.072,
       "no_price": 0.9395,
       "best_bid": 0.002,
-      "best_ask": 0.119,
-      "bid_ask_spread": 0.117,
+      "best_ask": 0.142,
+      "bid_ask_spread": 0.14,
       "volume": 22.0,
       "spread": 0.117,
       "yes_token_id": "37557667781035279809787669842011460488730603214339318789650497549884295639975",
@@ -115,14 +116,14 @@
       "model_prob": 0.229,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0605,
-      "effective_ask": 0.1084,
-      "market_prob": 0.0605,
-      "belief_prob": 0.17,
-      "ev": 0.5683,
-      "kelly": 0.0173,
-      "swing_edge": 0.1206,
-      "swing_upside_pct": 111.3,
+      "ask": 0.072,
+      "effective_ask": 0.1325,
+      "market_prob": 0.072,
+      "belief_prob": 0.1741,
+      "ev": 0.314,
+      "kelly": 0.012,
+      "swing_edge": 0.157,
+      "swing_upside_pct": 218.1,
       "sell_value": 0.002,
       "scan6h_model_prob": 0.229,
       "prev_scan6h_model_prob": 0.229,
@@ -137,12 +138,12 @@
       "scan6h_yes_price": 0.0605,
       "prev_scan6h_yes_price": 0.0605,
       "prev_yes_price": 0.0605,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0115,
+      "yes_price_10m_pct_change": 19.0,
+      "yes_price_6h_change": 0.0115,
+      "yes_price_6h_pct_change": 19.0,
+      "yes_price_change": 0.0115,
+      "yes_price_pct_change": 19.0,
       "price_history": [
         {
           "t": "2026-11-04T02:53:58Z",
@@ -150,8 +151,16 @@
           "mp": 0.229,
           "bid": 0.002,
           "ask": 0.119
+        },
+        {
+          "t": "2026-11-04T03:07:31Z",
+          "p": 0.072,
+          "mp": 0.229,
+          "bid": 0.002,
+          "ask": 0.142
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0605
     },
     {
       "question": "Will the lowest temperature in Seattle be between 48-49°F on November 4?",
@@ -208,7 +217,8 @@
           "bid": 0.002,
           "ask": 0.028
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.015
     },
     {
       "question": "Will the lowest temperature in Seattle be between 50-51°F on November 4?",
@@ -265,7 +275,8 @@
           "bid": null,
           "ask": 0.017
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0085
     },
     {
       "question": "Will the lowest temperature in Seattle be between 52-53°F on November 4?",
@@ -322,7 +333,8 @@
           "bid": null,
           "ask": 0.027
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0135
     },
     {
       "question": "Will the lowest temperature in Seattle be 54°F or higher on November 4?",
@@ -379,7 +391,9 @@
           "bid": null,
           "ask": 0.056
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.028
     }
-  ]
+  ],
+  "last_price_refresh": "2026-11-04T03:07:30.275639+00:00"
 }

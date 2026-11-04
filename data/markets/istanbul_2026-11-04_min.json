@@ -33,11 +33,11 @@
         13.0,
         13.0
       ],
-      "yes_price": 0.455,
+      "yes_price": 0.465,
       "no_price": 0.545,
       "best_bid": 0.02,
-      "best_ask": 0.89,
-      "bid_ask_spread": 0.87,
+      "best_ask": 0.91,
+      "bid_ask_spread": 0.89,
       "volume": 71.0,
       "spread": 0.87,
       "yes_token_id": "49951705504925032462342636726127521935644154631534249320087467116735171275192",
@@ -45,14 +45,14 @@
       "model_prob": 1.0,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.455,
-      "effective_ask": 0.535,
-      "market_prob": 0.455,
-      "belief_prob": 0.8093,
-      "ev": 0.5127,
-      "kelly": 0.1475,
-      "swing_edge": 0.465,
-      "swing_upside_pct": 86.9,
+      "ask": 0.465,
+      "effective_ask": 0.545,
+      "market_prob": 0.465,
+      "belief_prob": 0.8128,
+      "ev": 0.4914,
+      "kelly": 0.1471,
+      "swing_edge": 0.535,
+      "swing_upside_pct": 115.1,
       "sell_value": 0.02,
       "prev_10m_model_prob": 1.0,
       "model_prob_10m_change": 0.0,
@@ -64,24 +64,17 @@
       "prev_model_prob": 1.0,
       "model_prob_change": 0.0,
       "model_prob_pct_change": 0.0,
-      "prev_10m_yes_price": 0.345,
-      "yes_price_10m_change": 0.11,
-      "yes_price_10m_pct_change": 31.9,
+      "prev_10m_yes_price": 0.455,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 2.2,
       "prev_scan6h_yes_price": 0.355,
-      "yes_price_6h_change": 0.1,
-      "yes_price_6h_pct_change": 28.2,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 2.2,
       "scan6h_yes_price": 0.455,
-      "prev_yes_price": 0.355,
-      "yes_price_change": 0.1,
-      "yes_price_pct_change": 28.2,
+      "prev_yes_price": 0.455,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 2.2,
       "price_history": [
-        {
-          "t": "2026-11-03T04:22:31Z",
-          "p": 0.35,
-          "mp": 1.0,
-          "bid": 0.03,
-          "ask": 0.67
-        },
         {
           "t": "2026-11-03T04:37:33Z",
           "p": 0.345,
@@ -410,6 +403,13 @@
           "mp": 1.0,
           "bid": 0.02,
           "ask": 0.89
+        },
+        {
+          "t": "2026-11-04T03:07:31Z",
+          "p": 0.465,
+          "mp": 1.0,
+          "bid": 0.02,
+          "ask": 0.91
         }
       ]
     },
@@ -435,7 +435,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -468,7 +468,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Istanbul be 16°C on November 4?",
@@ -492,8 +493,8 @@
       "ask": 0.0055,
       "effective_ask": 0.0055,
       "market_prob": 0.0055,
-      "belief_prob": 0.0,
-      "ev": -1.0,
+      "belief_prob": 0.0019,
+      "ev": -0.6545,
       "kelly": 0.0,
       "swing_edge": -0.0055,
       "swing_upside_pct": 0.0,
@@ -525,7 +526,8 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the lowest temperature in Istanbul be 17°C or higher on November 4?",
@@ -549,8 +551,8 @@
       "ask": 0.0055,
       "effective_ask": 0.0055,
       "market_prob": 0.0055,
-      "belief_prob": 0.0,
-      "ev": -1.0,
+      "belief_prob": 0.0019,
+      "ev": -0.6545,
       "kelly": 0.0,
       "swing_edge": -0.0055,
       "swing_upside_pct": 0.0,
@@ -582,10 +584,11 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     }
   ],
-  "last_price_refresh": "2026-11-03T21:22:43.181987+00:00",
+  "last_price_refresh": "2026-11-04T03:07:30.275639+00:00",
   "resolve_source_info": {
     "source_code": "noaa",
     "station": "LTFM",
