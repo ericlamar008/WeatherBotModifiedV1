@@ -46,11 +46,11 @@
         25.0,
         25.0
       ],
-      "yes_price": 0.041,
+      "yes_price": 0.061,
       "no_price": 0.93,
-      "best_bid": 0.022,
-      "best_ask": 0.06,
-      "bid_ask_spread": 0.038,
+      "best_bid": 0.024,
+      "best_ask": 0.098,
+      "bid_ask_spread": 0.074,
       "volume": 37.0,
       "spread": 0.1,
       "yes_token_id": "98947757203309441675362356434902861636012119172553988378656745495607799967589",
@@ -58,14 +58,14 @@
       "model_prob": 0.1934,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.041,
-      "effective_ask": 0.0454,
-      "market_prob": 0.041,
-      "belief_prob": 0.1401,
-      "ev": 2.0859,
-      "kelly": 0.0248,
-      "swing_edge": 0.1524,
-      "swing_upside_pct": 371.7,
+      "ask": 0.061,
+      "effective_ask": 0.0852,
+      "market_prob": 0.061,
+      "belief_prob": 0.1471,
+      "ev": 0.7265,
+      "kelly": 0.0169,
+      "swing_edge": 0.1324,
+      "swing_upside_pct": 217.0,
       "sell_value": 0.02,
       "scan6h_model_prob": 0.1934,
       "prev_scan6h_model_prob": 0.1934,
@@ -79,13 +79,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.07,
       "prev_scan6h_yes_price": 0.07,
-      "prev_yes_price": 0.044,
-      "yes_price_10m_change": -0.003,
-      "yes_price_10m_pct_change": -6.8,
-      "yes_price_6h_change": -0.029,
-      "yes_price_6h_pct_change": -41.4,
-      "yes_price_change": -0.003,
-      "yes_price_pct_change": -6.8,
+      "prev_yes_price": 0.041,
+      "yes_price_10m_change": 0.02,
+      "yes_price_10m_pct_change": 48.8,
+      "yes_price_6h_change": -0.009,
+      "yes_price_6h_pct_change": -12.9,
+      "yes_price_change": 0.02,
+      "yes_price_pct_change": 48.8,
       "price_history": [
         {
           "t": "2026-11-04T02:53:54Z",
@@ -142,9 +142,16 @@
           "mp": 0.1934,
           "bid": 0.028,
           "ask": 0.06
+        },
+        {
+          "t": "2026-11-04T05:22:34Z",
+          "p": 0.061,
+          "mp": 0.1934,
+          "bid": 0.024,
+          "ask": 0.098
         }
       ],
-      "prev_10m_yes_price": 0.044
+      "prev_10m_yes_price": 0.041
     },
     {
       "question": "Will the highest temperature in Buenos Aires be 26°C on November 5?",
@@ -238,6 +245,13 @@
         },
         {
           "t": "2026-11-04T04:52:33Z",
+          "p": 0.145,
+          "mp": 0.3019,
+          "bid": 0.13,
+          "ask": 0.16
+        },
+        {
+          "t": "2026-11-04T05:22:34Z",
           "p": 0.145,
           "mp": 0.3019,
           "bid": 0.13,
@@ -338,6 +352,13 @@
         },
         {
           "t": "2026-11-04T04:52:33Z",
+          "p": 0.465,
+          "mp": 0.2712,
+          "bid": 0.45,
+          "ask": 0.48
+        },
+        {
+          "t": "2026-11-04T05:22:34Z",
           "p": 0.465,
           "mp": 0.2712,
           "bid": 0.45,
@@ -456,6 +477,13 @@
           "mp": 0.1542,
           "bid": 0.29,
           "ask": 0.32
+        },
+        {
+          "t": "2026-11-04T05:22:34Z",
+          "p": 0.305,
+          "mp": 0.1542,
+          "bid": 0.29,
+          "ask": 0.32
         }
       ],
       "prev_10m_yes_price": 0.32
@@ -563,6 +591,13 @@
           "mp": 0.0637,
           "bid": 0.05,
           "ask": 0.07
+        },
+        {
+          "t": "2026-11-04T05:22:34Z",
+          "p": 0.06,
+          "mp": 0.0637,
+          "bid": 0.05,
+          "ask": 0.07
         }
       ],
       "prev_10m_yes_price": 0.095
@@ -652,6 +687,13 @@
         },
         {
           "t": "2026-11-04T04:52:33Z",
+          "p": 0.0005,
+          "mp": 0.0087,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T05:22:34Z",
           "p": 0.0005,
           "mp": 0.0087,
           "bid": null,
@@ -749,10 +791,17 @@
           "mp": 0.0068,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T05:22:34Z",
+          "p": 0.0005,
+          "mp": 0.0068,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
     }
   ],
-  "last_price_refresh": "2026-11-04T05:07:28.962396+00:00"
+  "last_price_refresh": "2026-11-04T05:22:34.234672+00:00"
 }
