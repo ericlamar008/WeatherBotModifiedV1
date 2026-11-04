@@ -32,9 +32,9 @@
         13.0,
         13.0
       ],
-      "yes_price": 0.985,
+      "yes_price": 0.99,
       "no_price": 0.0255,
-      "best_bid": 0.97,
+      "best_bid": 0.98,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 20.0,
@@ -44,14 +44,14 @@
       "model_prob": 1.0,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.985,
-      "effective_ask": 0.985,
-      "market_prob": 0.985,
-      "belief_prob": 0.9948,
-      "ev": 0.0099,
-      "kelly": 0.1633,
-      "swing_edge": 0.015,
-      "swing_upside_pct": 1.5,
+      "ask": 0.99,
+      "effective_ask": 0.99,
+      "market_prob": 0.99,
+      "belief_prob": 0.9965,
+      "ev": 0.0066,
+      "kelly": 0.1625,
+      "swing_edge": 0.01,
+      "swing_upside_pct": 1.0,
       "sell_value": 0.95,
       "scan6h_model_prob": 1.0,
       "prev_scan6h_model_prob": 1.0,
@@ -65,13 +65,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.9745,
       "prev_scan6h_yes_price": 0.9745,
-      "prev_yes_price": 0.9995,
-      "yes_price_10m_change": -0.0145,
-      "yes_price_10m_pct_change": -1.5,
-      "yes_price_6h_change": 0.0105,
-      "yes_price_6h_pct_change": 1.1,
-      "yes_price_change": -0.0145,
-      "yes_price_pct_change": -1.5,
+      "prev_yes_price": 0.985,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 0.5,
+      "yes_price_6h_change": 0.0155,
+      "yes_price_6h_pct_change": 1.6,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 0.5,
       "price_history": [
         {
           "t": "2026-11-04T02:53:56Z",
@@ -114,9 +114,16 @@
           "mp": 1.0,
           "bid": 0.97,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-04T05:07:30Z",
+          "p": 0.99,
+          "mp": 1.0,
+          "bid": 0.98,
+          "ask": 1.0
         }
       ],
-      "prev_10m_yes_price": 0.9995
+      "prev_10m_yes_price": 0.985
     },
     {
       "question": "Will the lowest temperature in Toronto be 14°C on November 3?",
@@ -1443,7 +1450,7 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-04T04:52:33.221020+00:00",
+  "last_price_refresh": "2026-11-04T05:07:28.962396+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "CYYZ",

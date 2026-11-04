@@ -838,9 +838,9 @@
         58.0,
         59.0
       ],
-      "yes_price": 0.535,
+      "yes_price": 0.575,
       "no_price": 0.46,
-      "best_bid": 0.07,
+      "best_bid": 0.15,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 109.0,
@@ -850,14 +850,14 @@
       "model_prob": 0.2658,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.535,
-      "effective_ask": 0.535,
-      "market_prob": 0.535,
-      "belief_prob": 0.36,
-      "ev": -0.3271,
+      "ask": 0.575,
+      "effective_ask": 0.575,
+      "market_prob": 0.575,
+      "belief_prob": 0.374,
+      "ev": -0.3496,
       "kelly": 0.0,
-      "swing_edge": -0.2692,
-      "swing_upside_pct": -50.3,
+      "swing_edge": -0.3092,
+      "swing_upside_pct": -53.8,
       "sell_value": 0.08,
       "prev_10m_model_prob": 0.1674,
       "model_prob_10m_change": 0.0,
@@ -869,24 +869,17 @@
       "prev_model_prob": 0.1674,
       "model_prob_change": 0.0984,
       "model_prob_pct_change": 58.8,
-      "prev_10m_yes_price": 0.58,
-      "yes_price_10m_change": -0.045,
-      "yes_price_10m_pct_change": -7.8,
+      "prev_10m_yes_price": 0.535,
+      "yes_price_10m_change": 0.04,
+      "yes_price_10m_pct_change": 7.5,
       "prev_scan6h_yes_price": 0.535,
-      "yes_price_6h_change": -0.005,
-      "yes_price_6h_pct_change": -0.9,
+      "yes_price_6h_change": 0.035,
+      "yes_price_6h_pct_change": 6.5,
       "scan6h_yes_price": 0.54,
-      "prev_yes_price": 0.58,
-      "yes_price_change": -0.045,
-      "yes_price_pct_change": -7.8,
+      "prev_yes_price": 0.535,
+      "yes_price_change": 0.04,
+      "yes_price_pct_change": 7.5,
       "price_history": [
-        {
-          "t": "2026-11-03T08:27:18Z",
-          "p": 0.365,
-          "mp": 1.0,
-          "bid": 0.03,
-          "ask": 0.7
-        },
         {
           "t": "2026-11-03T08:52:53Z",
           "p": 0.365,
@@ -1214,6 +1207,13 @@
           "p": 0.535,
           "mp": 0.2658,
           "bid": 0.07,
+          "ask": 1.0
+        },
+        {
+          "t": "2026-11-04T05:07:30Z",
+          "p": 0.575,
+          "mp": 0.2658,
+          "bid": 0.15,
           "ask": 1.0
         }
       ]
@@ -2384,7 +2384,7 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-04T04:52:33.221020+00:00",
+  "last_price_refresh": "2026-11-04T05:07:28.962396+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KLAX",
