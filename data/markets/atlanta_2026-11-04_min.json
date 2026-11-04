@@ -54,8 +54,8 @@
       "swing_upside_pct": -41.0,
       "sell_value": null,
       "prev_10m_model_prob": 0.0072,
-      "model_prob_10m_change": -0.0013,
-      "model_prob_10m_pct_change": -18.1,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.0072,
       "model_prob_6h_change": -0.0013,
       "model_prob_6h_pct_change": -18.1,
@@ -250,7 +250,8 @@
           "bid": 0.001,
           "ask": 0.03
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0155
     },
     {
       "question": "Will the lowest temperature in Atlanta be between 64-65°F on November 4?",
@@ -277,12 +278,12 @@
       "belief_prob": 0.7846,
       "ev": 0.5384,
       "kelly": 0.1401,
-      "swing_edge": 0.4655,
-      "swing_upside_pct": 91.3,
+      "swing_edge": 0.5455,
+      "swing_upside_pct": 126.9,
       "sell_value": 0.07,
       "prev_10m_model_prob": 0.9928,
-      "model_prob_10m_change": -0.0173,
-      "model_prob_10m_pct_change": -1.7,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.9928,
       "model_prob_6h_change": -0.0173,
       "model_prob_6h_pct_change": -1.7,
@@ -297,9 +298,9 @@
       "yes_price_6h_change": 0.02,
       "yes_price_6h_pct_change": 4.9,
       "scan6h_yes_price": 0.43,
-      "prev_yes_price": 0.41,
-      "yes_price_change": 0.02,
-      "yes_price_pct_change": 4.9,
+      "prev_yes_price": 0.425,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.2,
       "price_history": [
         {
           "t": "2026-11-04T02:53:56Z",
@@ -458,7 +459,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -491,7 +492,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Atlanta be between 70-71°F on November 4?",
@@ -515,7 +517,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -548,7 +550,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Atlanta be between 72-73°F on November 4?",
@@ -572,7 +575,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -605,7 +608,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Atlanta be 74°F or higher on November 4?",
@@ -629,7 +633,7 @@
       "ask": 0.001,
       "effective_ask": 0.001,
       "market_prob": 0.001,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0003,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.001,
@@ -662,10 +666,11 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     }
   ],
-  "last_price_refresh": "2026-11-04T08:07:33.065062+00:00",
+  "last_price_refresh": "2026-11-04T08:30:03.358547+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KATL",
