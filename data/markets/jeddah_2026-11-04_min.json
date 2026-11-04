@@ -806,10 +806,10 @@
         24.0,
         24.0
       ],
-      "yes_price": 0.05,
+      "yes_price": 0.095,
       "no_price": 0.905,
       "best_bid": null,
-      "best_ask": 0.1,
+      "best_ask": 0.19,
       "bid_ask_spread": 0.0,
       "volume": 15.0,
       "spread": 0.0,
@@ -818,14 +818,14 @@
       "model_prob": 0.064,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.05,
-      "effective_ask": 0.05,
-      "market_prob": 0.05,
-      "belief_prob": 0.0591,
-      "ev": 0.182,
-      "kelly": 0.0024,
-      "swing_edge": 0.014,
-      "swing_upside_pct": 28.0,
+      "ask": 0.095,
+      "effective_ask": 0.095,
+      "market_prob": 0.095,
+      "belief_prob": 0.0748,
+      "ev": -0.2126,
+      "kelly": 0.0,
+      "swing_edge": -0.031,
+      "swing_upside_pct": -32.6,
       "sell_value": null,
       "scan6h_model_prob": 0.064,
       "prev_scan6h_model_prob": 0.064,
@@ -839,13 +839,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.095,
       "prev_scan6h_yes_price": 0.095,
-      "prev_yes_price": 0.09,
-      "yes_price_10m_change": -0.04,
-      "yes_price_10m_pct_change": -44.4,
+      "prev_yes_price": 0.05,
+      "yes_price_10m_change": 0.045,
+      "yes_price_10m_pct_change": 90.0,
       "yes_price_6h_change": -0.045,
       "yes_price_6h_pct_change": -47.4,
-      "yes_price_change": -0.04,
-      "yes_price_pct_change": -44.4,
+      "yes_price_change": 0.045,
+      "yes_price_pct_change": 90.0,
       "price_history": [
         {
           "t": "2026-11-04T08:28:53Z",
@@ -909,9 +909,16 @@
           "mp": 0.064,
           "bid": null,
           "ask": 0.1
+        },
+        {
+          "t": "2026-11-04T11:37:23Z",
+          "p": 0.095,
+          "mp": 0.064,
+          "bid": null,
+          "ask": 0.19
         }
       ],
-      "prev_10m_yes_price": 0.09
+      "prev_10m_yes_price": 0.05
     },
     {
       "question": "Will the lowest temperature in Jeddah be 25°C on November 4?",
@@ -3380,7 +3387,7 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-04T11:22:53.190384+00:00",
+  "last_price_refresh": "2026-11-04T11:37:23.053538+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "OEJN",

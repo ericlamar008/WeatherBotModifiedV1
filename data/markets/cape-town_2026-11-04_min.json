@@ -32,10 +32,10 @@
         14.0,
         14.0
       ],
-      "yes_price": 0.115,
+      "yes_price": 0.46,
       "no_price": 0.675,
       "best_bid": 0.01,
-      "best_ask": 0.23,
+      "best_ask": 0.92,
       "bid_ask_spread": 0.0,
       "volume": 15.0,
       "spread": 0.63,
@@ -44,14 +44,14 @@
       "model_prob": 0.441,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.115,
-      "effective_ask": 0.115,
-      "market_prob": 0.115,
-      "belief_prob": 0.3269,
-      "ev": 1.8426,
-      "kelly": 0.0599,
-      "swing_edge": 0.326,
-      "swing_upside_pct": 283.5,
+      "ask": 0.46,
+      "effective_ask": 0.46,
+      "market_prob": 0.46,
+      "belief_prob": 0.4476,
+      "ev": -0.027,
+      "kelly": 0.0,
+      "swing_edge": -0.019,
+      "swing_upside_pct": -4.1,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.441,
       "prev_scan6h_model_prob": 0.441,
@@ -65,13 +65,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.325,
       "prev_scan6h_yes_price": 0.325,
-      "prev_yes_price": 0.135,
-      "yes_price_10m_change": -0.02,
-      "yes_price_10m_pct_change": -14.8,
-      "yes_price_6h_change": -0.21,
-      "yes_price_6h_pct_change": -64.6,
-      "yes_price_change": -0.02,
-      "yes_price_pct_change": -14.8,
+      "prev_yes_price": 0.115,
+      "yes_price_10m_change": 0.345,
+      "yes_price_10m_pct_change": 300.0,
+      "yes_price_6h_change": 0.135,
+      "yes_price_6h_pct_change": 41.5,
+      "yes_price_change": 0.345,
+      "yes_price_pct_change": 300.0,
       "price_history": [
         {
           "t": "2026-11-04T08:28:51Z",
@@ -149,9 +149,16 @@
           "mp": 0.441,
           "bid": 0.01,
           "ask": 0.23
+        },
+        {
+          "t": "2026-11-04T11:37:23Z",
+          "p": 0.46,
+          "mp": 0.441,
+          "bid": 0.01,
+          "ask": 0.92
         }
       ],
-      "prev_10m_yes_price": 0.135
+      "prev_10m_yes_price": 0.115
     },
     {
       "question": "Will the lowest temperature in Cape Town be 15°C on November 4?",
@@ -2235,7 +2242,7 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-04T11:22:53.190384+00:00",
+  "last_price_refresh": "2026-11-04T11:37:23.053538+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "FACT",
