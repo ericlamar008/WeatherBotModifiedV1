@@ -955,11 +955,11 @@
         16.0,
         16.0
       ],
-      "yes_price": 0.08,
+      "yes_price": 0.1,
       "no_price": 0.685,
       "best_bid": 0.02,
-      "best_ask": 0.14,
-      "bid_ask_spread": 0.12,
+      "best_ask": 0.18,
+      "bid_ask_spread": 0.16,
       "volume": 69.0,
       "spread": 0.57,
       "yes_token_id": "112901551569892186650827454172162268530607340005499755446807752258457371993707",
@@ -967,14 +967,14 @@
       "model_prob": 0.4037,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.08,
-      "effective_ask": 0.1295,
-      "market_prob": 0.08,
-      "belief_prob": 0.2904,
-      "ev": 1.2425,
-      "kelly": 0.0462,
-      "swing_edge": 0.3237,
-      "swing_upside_pct": 404.6,
+      "ask": 0.1,
+      "effective_ask": 0.1715,
+      "market_prob": 0.1,
+      "belief_prob": 0.2974,
+      "ev": 0.7341,
+      "kelly": 0.038,
+      "swing_edge": 0.3037,
+      "swing_upside_pct": 303.7,
       "sell_value": 0.03,
       "prev_10m_model_prob": 0.246,
       "model_prob_10m_change": 0.0,
@@ -986,24 +986,17 @@
       "prev_model_prob": 0.246,
       "model_prob_change": 0.1577,
       "model_prob_pct_change": 64.1,
-      "prev_10m_yes_price": 0.27,
-      "yes_price_10m_change": -0.19,
-      "yes_price_10m_pct_change": -70.4,
+      "prev_10m_yes_price": 0.08,
+      "yes_price_10m_change": 0.02,
+      "yes_price_10m_pct_change": 25.0,
       "prev_scan6h_yes_price": 0.47,
-      "yes_price_6h_change": -0.235,
-      "yes_price_6h_pct_change": -74.6,
+      "yes_price_6h_change": -0.215,
+      "yes_price_6h_pct_change": -68.3,
       "scan6h_yes_price": 0.315,
-      "prev_yes_price": 0.27,
-      "yes_price_change": -0.19,
-      "yes_price_pct_change": -70.4,
+      "prev_yes_price": 0.08,
+      "yes_price_change": 0.02,
+      "yes_price_pct_change": 25.0,
       "price_history": [
-        {
-          "t": "2026-11-03T20:28:47Z",
-          "p": 0.335,
-          "mp": 0.342,
-          "bid": 0.03,
-          "ask": 0.64
-        },
         {
           "t": "2026-11-03T20:30:33Z",
           "p": 0.33,
@@ -1332,6 +1325,13 @@
           "mp": 0.4037,
           "bid": 0.02,
           "ask": 0.14
+        },
+        {
+          "t": "2026-11-04T14:39:55Z",
+          "p": 0.1,
+          "mp": 0.4037,
+          "bid": 0.02,
+          "ask": 0.18
         }
       ]
     },
@@ -3688,7 +3688,7 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-04T14:29:41.976819+00:00",
+  "last_price_refresh": "2026-11-04T14:39:54.672443+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "ZSPD",
