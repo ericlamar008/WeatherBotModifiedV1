@@ -1580,11 +1580,11 @@
         24.0,
         24.0
       ],
-      "yes_price": 0.0115,
+      "yes_price": 0.0005,
       "no_price": 0.9815,
       "best_bid": 0.001,
-      "best_ask": 0.022,
-      "bid_ask_spread": 0.021,
+      "best_ask": 0.001,
+      "bid_ask_spread": 0.0,
       "volume": 4195.0,
       "spread": 0.017,
       "yes_token_id": "71464661458021254230844520490482224755937693268432242241637414216783902453331",
@@ -1592,14 +1592,14 @@
       "model_prob": 0.2437,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0115,
-      "effective_ask": 0.0115,
-      "market_prob": 0.0115,
-      "belief_prob": 0.1624,
+      "ask": 0.0005,
+      "effective_ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.1586,
       "ev": 13.1217,
       "kelly": 0.0382,
-      "swing_edge": 0.2322,
-      "swing_upside_pct": 2019.1,
+      "swing_edge": 0.2432,
+      "swing_upside_pct": 0.0,
       "sell_value": 0.01,
       "prev_10m_model_prob": 0.3759,
       "model_prob_10m_change": 0.0,
@@ -1611,24 +1611,17 @@
       "prev_model_prob": 0.3759,
       "model_prob_change": -0.1322,
       "model_prob_pct_change": -35.2,
-      "prev_10m_yes_price": 0.0165,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -30.3,
+      "prev_10m_yes_price": 0.0115,
+      "yes_price_10m_change": -0.011,
+      "yes_price_10m_pct_change": -95.7,
       "prev_scan6h_yes_price": 0.06,
-      "yes_price_6h_change": -0.007,
-      "yes_price_6h_pct_change": -37.8,
+      "yes_price_6h_change": -0.018,
+      "yes_price_6h_pct_change": -97.3,
       "scan6h_yes_price": 0.0185,
-      "prev_yes_price": 0.0165,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -30.3,
+      "prev_yes_price": 0.0115,
+      "yes_price_change": -0.011,
+      "yes_price_pct_change": -95.7,
       "price_history": [
-        {
-          "t": "2026-11-03T09:52:34Z",
-          "p": 0.2,
-          "mp": 0.2967,
-          "bid": 0.18,
-          "ask": 0.22
-        },
         {
           "t": "2026-11-03T10:07:36Z",
           "p": 0.22,
@@ -1957,6 +1950,13 @@
           "mp": 0.2437,
           "bid": 0.001,
           "ask": 0.022
+        },
+        {
+          "t": "2026-11-04T04:22:36Z",
+          "p": 0.0005,
+          "mp": 0.2437,
+          "bid": 0.001,
+          "ask": 0.001
         }
       ]
     },
@@ -4220,7 +4220,7 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-04T04:07:36.953587+00:00",
+  "last_price_refresh": "2026-11-04T04:22:35.097856+00:00",
   "resolve_source_info": {
     "source_code": "hko",
     "station": "HKO",
