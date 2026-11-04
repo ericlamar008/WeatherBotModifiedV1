@@ -618,10 +618,10 @@
         7.0,
         7.0
       ],
-      "yes_price": 0.335,
+      "yes_price": 0.485,
       "no_price": 0.52,
       "best_bid": null,
-      "best_ask": 0.67,
+      "best_ask": 0.97,
       "bid_ask_spread": 0.0,
       "volume": 114.0,
       "spread": 0.0,
@@ -630,14 +630,14 @@
       "model_prob": 0.1845,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.335,
-      "effective_ask": 0.335,
-      "market_prob": 0.335,
-      "belief_prob": 0.2372,
-      "ev": -0.2919,
+      "ask": 0.485,
+      "effective_ask": 0.485,
+      "market_prob": 0.485,
+      "belief_prob": 0.2897,
+      "ev": -0.4027,
       "kelly": 0.0,
-      "swing_edge": -0.1505,
-      "swing_upside_pct": -44.9,
+      "swing_edge": -0.3005,
+      "swing_upside_pct": -62.0,
       "sell_value": null,
       "prev_10m_model_prob": 0.415,
       "model_prob_10m_change": 0.0,
@@ -649,24 +649,17 @@
       "prev_model_prob": 0.415,
       "model_prob_change": -0.2305,
       "model_prob_pct_change": -55.5,
-      "prev_10m_yes_price": 0.485,
-      "yes_price_10m_change": -0.15,
-      "yes_price_10m_pct_change": -30.9,
+      "prev_10m_yes_price": 0.335,
+      "yes_price_10m_change": 0.15,
+      "yes_price_10m_pct_change": 44.8,
       "prev_scan6h_yes_price": 0.445,
-      "yes_price_6h_change": -0.145,
-      "yes_price_6h_pct_change": -30.2,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 1.0,
       "scan6h_yes_price": 0.48,
-      "prev_yes_price": 0.485,
-      "yes_price_change": -0.15,
-      "yes_price_pct_change": -30.9,
+      "prev_yes_price": 0.335,
+      "yes_price_change": 0.15,
+      "yes_price_pct_change": 44.8,
       "price_history": [
-        {
-          "t": "2026-11-04T03:07:31Z",
-          "p": 0.455,
-          "mp": 0.415,
-          "bid": 0.02,
-          "ask": 0.89
-        },
         {
           "t": "2026-11-04T03:22:35Z",
           "p": 0.465,
@@ -995,6 +988,13 @@
           "mp": 0.1845,
           "bid": null,
           "ask": 0.67
+        },
+        {
+          "t": "2026-11-04T17:07:39Z",
+          "p": 0.485,
+          "mp": 0.1845,
+          "bid": null,
+          "ask": 0.97
         }
       ]
     },
@@ -2831,7 +2831,7 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-04T16:52:53.946116+00:00",
+  "last_price_refresh": "2026-11-04T17:07:39.240792+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "LTAC",
