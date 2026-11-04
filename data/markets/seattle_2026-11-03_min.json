@@ -46,11 +46,11 @@
         44.0,
         45.0
       ],
-      "yes_price": 0.85,
+      "yes_price": 0.855,
       "no_price": 0.145,
       "best_bid": 0.71,
-      "best_ask": 0.99,
-      "bid_ask_spread": 0.28,
+      "best_ask": 1.0,
+      "bid_ask_spread": 0.0,
       "volume": 70.0,
       "spread": 0.29,
       "yes_token_id": "24115947554074799640403907102501722355489392547834112228122139948376534546937",
@@ -58,14 +58,14 @@
       "model_prob": 1.0,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.85,
-      "effective_ask": 0.93,
-      "market_prob": 0.85,
-      "belief_prob": 0.9475,
-      "ev": 0.0188,
-      "kelly": 0.0625,
-      "swing_edge": 0.15,
-      "swing_upside_pct": 17.6,
+      "ask": 0.855,
+      "effective_ask": 0.855,
+      "market_prob": 0.855,
+      "belief_prob": 0.9492,
+      "ev": 0.1102,
+      "kelly": 0.1624,
+      "swing_edge": 0.145,
+      "swing_upside_pct": 17.0,
       "sell_value": 0.71,
       "scan6h_model_prob": 1.0,
       "prev_scan6h_model_prob": 1.0,
@@ -79,13 +79,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.855,
       "prev_scan6h_yes_price": 0.855,
-      "prev_yes_price": 0.855,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -0.6,
+      "prev_yes_price": 0.85,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 0.6,
       "yes_price_6h_change": -0.005,
       "yes_price_6h_pct_change": -0.6,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -0.6,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 0.6,
       "price_history": [
         {
           "t": "2026-11-04T02:53:57Z",
@@ -128,9 +128,16 @@
           "mp": 1.0,
           "bid": 0.71,
           "ask": 0.99
+        },
+        {
+          "t": "2026-11-04T04:52:35Z",
+          "p": 0.855,
+          "mp": 1.0,
+          "bid": 0.71,
+          "ask": 1.0
         }
       ],
-      "prev_10m_yes_price": 0.855
+      "prev_10m_yes_price": 0.85
     },
     {
       "question": "Will the lowest temperature in Seattle be between 46-47°F on November 3?",
@@ -210,6 +217,13 @@
         },
         {
           "t": "2026-11-04T04:37:34Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T04:52:35Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -300,6 +314,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T04:52:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -382,6 +403,13 @@
         },
         {
           "t": "2026-11-04T04:37:34Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T04:52:35Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -472,6 +500,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T04:52:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -554,6 +589,13 @@
         },
         {
           "t": "2026-11-04T04:37:34Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T04:52:35Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -644,10 +686,17 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T04:52:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
     }
   ],
-  "last_price_refresh": "2026-11-04T04:37:33.517848+00:00"
+  "last_price_refresh": "2026-11-04T04:52:33.221020+00:00"
 }
