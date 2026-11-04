@@ -419,10 +419,10 @@
         70.0,
         71.0
       ],
-      "yes_price": 0.0015,
+      "yes_price": 0.001,
       "no_price": 0.505,
       "best_bid": 0.001,
-      "best_ask": 0.003,
+      "best_ask": 0.002,
       "bid_ask_spread": 0.0,
       "volume": 5.0,
       "spread": 0.97,
@@ -431,13 +431,13 @@
       "model_prob": 0.8835,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0015,
-      "effective_ask": 0.0015,
-      "market_prob": 0.0015,
-      "belief_prob": 0.5748,
+      "ask": 0.001,
+      "effective_ask": 0.001,
+      "market_prob": 0.001,
+      "belief_prob": 0.5746,
       "ev": 382.2,
       "kelly": 0.1435,
-      "swing_edge": 0.882,
+      "swing_edge": 0.8825,
       "swing_upside_pct": 0.0,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.8835,
@@ -452,13 +452,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.495,
       "prev_scan6h_yes_price": 0.495,
-      "prev_yes_price": 0.002,
+      "prev_yes_price": 0.0015,
       "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -25.0,
-      "yes_price_6h_change": -0.4935,
-      "yes_price_6h_pct_change": -99.7,
+      "yes_price_10m_pct_change": -33.3,
+      "yes_price_6h_change": -0.494,
+      "yes_price_6h_pct_change": -99.8,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -25.0,
+      "yes_price_pct_change": -33.3,
       "price_history": [
         {
           "t": "2026-11-04T02:53:56Z",
@@ -529,9 +529,16 @@
           "mp": 0.8835,
           "bid": 0.001,
           "ask": 0.004
+        },
+        {
+          "t": "2026-11-04T06:37:30Z",
+          "p": 0.001,
+          "mp": 0.8835,
+          "bid": 0.001,
+          "ask": 0.002
         }
       ],
-      "prev_10m_yes_price": 0.002
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the lowest temperature in Houston be between 72-73°F on November 3?",
@@ -780,6 +787,13 @@
         },
         {
           "t": "2026-11-04T06:07:39Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T06:37:30Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1034,6 +1048,13 @@
         },
         {
           "t": "2026-11-04T06:07:39Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T06:37:30Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1390,6 +1411,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T06:37:30Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -1738,6 +1766,13 @@
         },
         {
           "t": "2026-11-04T06:07:39Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T06:37:30Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -2094,11 +2129,18 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-04T06:37:30Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     }
   ],
-  "last_price_refresh": "2026-11-04T06:22:31.178244+00:00",
+  "last_price_refresh": "2026-11-04T06:37:29.150443+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KHOU",
