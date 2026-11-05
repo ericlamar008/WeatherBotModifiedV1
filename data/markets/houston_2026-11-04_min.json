@@ -111,11 +111,11 @@
         58.0,
         59.0
       ],
-      "yes_price": 0.9695,
+      "yes_price": 0.9745,
       "no_price": 0.15,
-      "best_bid": 0.94,
+      "best_bid": 0.95,
       "best_ask": 0.999,
-      "bid_ask_spread": 0.059,
+      "bid_ask_spread": 0.049,
       "volume": 25.0,
       "spread": 0.298,
       "yes_token_id": "33110773599335203494463136699994108253838354643971074765374197691818622024419",
@@ -123,14 +123,14 @@
       "model_prob": 0.5749,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.9695,
-      "effective_ask": 0.9855,
-      "market_prob": 0.9695,
-      "belief_prob": 0.713,
-      "ev": -0.2765,
+      "ask": 0.9745,
+      "effective_ask": 0.9849,
+      "market_prob": 0.9745,
+      "belief_prob": 0.7148,
+      "ev": -0.2742,
       "kelly": 0.0,
-      "swing_edge": -0.3946,
-      "swing_upside_pct": -40.7,
+      "swing_edge": -0.3996,
+      "swing_upside_pct": -41.0,
       "sell_value": 0.701,
       "scan6h_model_prob": 0.5749,
       "prev_scan6h_model_prob": 0.5749,
@@ -144,13 +144,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.85,
       "prev_scan6h_yes_price": 0.85,
-      "prev_yes_price": 0.8505,
-      "yes_price_10m_change": 0.119,
-      "yes_price_10m_pct_change": 14.0,
-      "yes_price_6h_change": 0.1195,
-      "yes_price_6h_pct_change": 14.1,
-      "yes_price_change": 0.119,
-      "yes_price_pct_change": 14.0,
+      "prev_yes_price": 0.9695,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 0.5,
+      "yes_price_6h_change": 0.1245,
+      "yes_price_6h_pct_change": 14.6,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 0.5,
       "price_history": [
         {
           "t": "2026-11-05T02:59:56Z",
@@ -186,9 +186,16 @@
           "mp": 0.5749,
           "bid": 0.94,
           "ask": 0.999
+        },
+        {
+          "t": "2026-11-05T04:22:28Z",
+          "p": 0.9745,
+          "mp": 0.5749,
+          "bid": 0.95,
+          "ask": 0.999
         }
       ],
-      "prev_10m_yes_price": 0.8505
+      "prev_10m_yes_price": 0.9695
     },
     {
       "question": "Will the lowest temperature in Houston be between 60-61°F on November 4?",
@@ -2284,7 +2291,7 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-05T04:07:33.830307+00:00",
+  "last_price_refresh": "2026-11-05T04:22:27.889716+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KHOU",
