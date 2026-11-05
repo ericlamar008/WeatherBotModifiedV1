@@ -513,25 +513,33 @@ def fetch_outcomes(event):
     return outcomes
 
 def _fetch_sell_values_for_allocation(allocation, tradable_dist, pool=None):
-    """Fetch bid prices only for actual allocation legs, in parallel."""
+    """Fetch bid prices only for actual allocation legs, using Gamma best_bid/best_ask first
+    and falling back to CLOB HTTP in parallel only when missing."""
     by_market_id = {d["market_id"]: d for d in tradable_dist}
     jobs = []
+    pre_resolved = {}
     for index, leg in enumerate(allocation):
         bucket = by_market_id.get(leg["market_id"])
         if not bucket:
+            continue
+        if leg["side"] == "YES" and bucket.get("best_bid") is not None:
+            pre_resolved[index] = round(float(bucket["best_bid"]), 4)
+            continue
+        if leg["side"] == "NO" and bucket.get("best_ask") is not None:
+            pre_resolved[index] = round(max(0.0, 1.0 - float(bucket["best_ask"])), 4)
             continue
         token_id = bucket.get("yes_token_id") if leg["side"] == "YES" else bucket.get("no_token_id")
         if token_id:
             jobs.append((index, token_id))
 
     if not jobs:
-        for leg in allocation:
-            leg["sell_value"] = None
+        for index, leg in enumerate(allocation):
+            leg["sell_value"] = pre_resolved.get(index)
         return
 
     def collect(pool_obj):
         futures = {pool_obj.submit(get_clob_book_bid, token_id): index for index, token_id in jobs}
-        values = {}
+        values = dict(pre_resolved)
         for future in as_completed(futures):
             index = futures[future]
             try:
@@ -812,11 +820,12 @@ def _attach_distribution_changes(old_dist, new_dist, update_model=True, update_p
         c["price_history"] = hist
 
 
-def discover_new_signals(now, state):
+def discover_new_signals(now, state, target_cities=None):
     new_positions = 0
+    cities_to_scan = target_cities if target_cities is not None else LOCATIONS
 
     fetch_jobs = []
-    for city_slug in LOCATIONS:
+    for city_slug in cities_to_scan:
         loc = LOCATIONS[city_slug]
         dates = _local_dates_for_city(now, loc, 4)
         for i, date in enumerate(dates):
@@ -837,7 +846,8 @@ def discover_new_signals(now, state):
             except Exception:
                 events_by_job[job] = None
 
-    for city_slug, loc in LOCATIONS.items():
+    for city_slug in cities_to_scan:
+        loc = LOCATIONS[city_slug]
         print(f"  -> {loc['name']}...", end=" ", flush=True)
         dates = _local_dates_for_city(now, loc, 4)
 
@@ -868,19 +878,20 @@ def discover_new_signals(now, state):
                 save_market(mkt)
                 continue
 
+            event_volume = float(event.get("volume", 0) or 0)
+            if event_volume < MIN_VOLUME:
+                mkt["skipped_reason"] = f"volume {event_volume:.0f} < MIN_VOLUME {MIN_VOLUME}"
+                save_market(mkt)
+                continue
+
             outcomes = fetch_outcomes(event)
             if not outcomes:
                 save_market(mkt)
                 continue
 
-            event_volume = float(event.get("volume", 0) or 0)
-            if event_volume < MIN_VOLUME:
-                mkt["skipped_reason"] = f"event volume {event_volume:.0f} < min_volume {MIN_VOLUME}"
-                save_market(mkt)
-                continue
-
             dist_precheck = [d for d in outcomes if d["volume"] > 0]
             if not dist_precheck:
+                mkt["skipped_reason"] = "all buckets have zero volume"
                 save_market(mkt)
                 continue
 
@@ -1027,19 +1038,20 @@ def discover_new_min_signals(now, state):
                 save_market_min(mkt)
                 continue
 
+            event_volume = float(event.get("volume", 0) or 0)
+            if event_volume < MIN_VOLUME:
+                mkt["skipped_reason"] = f"volume {event_volume:.0f} < MIN_VOLUME {MIN_VOLUME}"
+                save_market_min(mkt)
+                continue
+
             outcomes = fetch_outcomes(event)
             if not outcomes:
                 save_market_min(mkt)
                 continue
 
-            event_volume = float(event.get("volume", 0) or 0)
-            if event_volume < MIN_VOLUME:
-                mkt["skipped_reason"] = f"event volume {event_volume:.0f} < min_volume {MIN_VOLUME}"
-                save_market_min(mkt)
-                continue
-
             dist_precheck = [d for d in outcomes if d["volume"] > 0]
             if not dist_precheck:
+                mkt["skipped_reason"] = "all buckets have zero volume"
                 save_market_min(mkt)
                 continue
 
@@ -1130,7 +1142,7 @@ def discover_new_min_signals(now, state):
 def refresh_all_locked_markets(now):
     """Refreshes raw Gamma metadata but derives all operational time from the
     city-local target day, including when Gamma is temporarily unavailable."""
-    open_markets = [m for m in load_all_markets() if m.get("status") != "resolved"]
+    open_markets = [m for m in load_all_markets() if m.get("status") == "open"]
     if not open_markets:
         return
     with ThreadPoolExecutor(max_workers=EVENT_FETCH_WORKERS) as pool:
@@ -1161,7 +1173,7 @@ def refresh_all_locked_markets_min(now):
     فرقش استفاده از load_all_min_markets/get_polymarket_event_for_market_date_min/
     save_market_min است. بدون این تابع، hours_left بازارهای کمینه فقط یک‌بار
     در لحظهٔ discover_new_min_signals محاسبه و برای همیشه یخ‌زده می‌ماند."""
-    open_markets = [m for m in load_all_min_markets() if m.get("status") != "resolved"]
+    open_markets = [m for m in load_all_min_markets() if m.get("status") == "open"]
     if not open_markets:
         return
     with ThreadPoolExecutor(max_workers=EVENT_FETCH_WORKERS) as pool:
@@ -1237,6 +1249,10 @@ def refresh_open_market_info(now):
         if not event:
             continue
 
+        event_volume = float(event.get("volume", 0) or 0)
+        if event_volume < MIN_VOLUME:
+            continue
+
         outcomes = fetch_outcomes(event)
         if not outcomes:
             continue
@@ -1264,7 +1280,7 @@ def refresh_open_market_info(now):
         model_spread = fc.compute_model_spread(model_means_raw, model_weights)
 
         dist = fc.full_bucket_distribution(
-            mean, sigma, tradable_outcomes,
+            mean, sigma, outcomes,
             model_means_raw=model_means_raw,
             city_slug=mkt["city"],
             horizon_days=horizon_days,
@@ -1276,10 +1292,12 @@ def refresh_open_market_info(now):
         if not tradable_dist:
             continue
 
-        candidates = strat.build_candidate_set(tradable_dist, merged_params)
-        full_distribution = sorted(
-            [c for c in candidates if c["side"] == "YES"], key=lambda x: x["range"][0]
+        portfolio = strat.build_portfolio(
+            mkt["city"], tradable_dist, STRATEGY_PARAMS, mean=mean, sigma=sigma
         )
+        if portfolio["allocation"]:
+            _fetch_sell_values_for_allocation(portfolio["allocation"], tradable_dist)
+        full_distribution = portfolio["full_distribution"]
         if not full_distribution:
             continue
 
@@ -1291,9 +1309,10 @@ def refresh_open_market_info(now):
         )
 
         mkt["resolve_source_info"] = fc.get_resolution_source_forecast(
-            mkt["city"], loc, mkt["date"], is_min=False, outcomes=tradable_outcomes,
+            mkt["city"], loc, mkt["date"], is_min=False, outcomes=outcomes,
             prev_info=mkt.get("resolve_source_info"), reference_mean=mean,
         )
+        mkt["horizon_days"] = horizon_days
         mkt["forecast_mean"] = mean
         mkt["sigma"] = sigma
         mkt["forecast_mean_shadow"] = shadow_mean
@@ -1301,7 +1320,18 @@ def refresh_open_market_info(now):
         mkt["model_spread"] = model_spread
         mkt["observed_intraday_temp"] = observed_bound
         mkt["full_distribution"] = full_distribution
+        mkt["live_allocation"] = portfolio["allocation"]
+        mkt["total_allocated_units"] = portfolio.get("total_allocated_units")
+        mkt["portfolio_score"] = portfolio.get("portfolio_score")
+        mkt["worst_case_loss_frac"] = portfolio.get("worst_case_loss_frac")
+        mkt["best_case_pnl_units"] = portfolio.get("best_case_pnl_units")
+        mkt["worst_case_pnl_units"] = portfolio.get("worst_case_pnl_units")
+        mkt["success_probability"] = portfolio.get("success_probability")
+        mkt["confidence"] = portfolio.get("confidence")
+        mkt["balance_units"] = STRATEGY_PARAMS["balance_units"]
+        mkt["strategy_version"] = STRATEGY_VERSION
         mkt["last_lite_refresh"] = now.isoformat()
+        mkt.pop("skipped_reason", None)
         save_market(mkt)
         refreshed += 1
 
@@ -1350,6 +1380,10 @@ def refresh_open_market_info_min(now):
         if not event:
             continue
 
+        event_volume = float(event.get("volume", 0) or 0)
+        if event_volume < MIN_VOLUME:
+            continue
+
         outcomes = fetch_outcomes(event)
         if not outcomes:
             continue
@@ -1379,7 +1413,7 @@ def refresh_open_market_info_min(now):
         model_spread = fc.compute_model_spread(model_means_raw, model_weights)
 
         dist = fc.full_bucket_distribution(
-            mean, sigma, tradable_outcomes,
+            mean, sigma, outcomes,
             model_means_raw=model_means_raw,
             city_slug=mkt["city"],
             horizon_days=horizon_days,
@@ -1391,10 +1425,12 @@ def refresh_open_market_info_min(now):
         if not tradable_dist:
             continue
 
-        candidates = strat.build_candidate_set(tradable_dist, merged_params)
-        full_distribution = sorted(
-            [c for c in candidates if c["side"] == "YES"], key=lambda x: x["range"][0]
+        portfolio = strat.build_portfolio(
+            mkt["city"], tradable_dist, STRATEGY_PARAMS, mean=mean, sigma=sigma
         )
+        if portfolio["allocation"]:
+            _fetch_sell_values_for_allocation(portfolio["allocation"], tradable_dist)
+        full_distribution = portfolio["full_distribution"]
         if not full_distribution:
             continue
 
@@ -1406,9 +1442,10 @@ def refresh_open_market_info_min(now):
         )
 
         mkt["resolve_source_info"] = fc.get_resolution_source_forecast(
-            mkt["city"], loc, mkt["date"], is_min=True, outcomes=tradable_outcomes,
+            mkt["city"], loc, mkt["date"], is_min=True, outcomes=outcomes,
             prev_info=mkt.get("resolve_source_info"), reference_mean=mean,
         )
+        mkt["horizon_days"] = horizon_days
         mkt["forecast_mean"] = mean
         mkt["sigma"] = sigma
         mkt["forecast_mean_shadow"] = shadow_mean
@@ -1416,7 +1453,18 @@ def refresh_open_market_info_min(now):
         mkt["model_spread"] = model_spread
         mkt["observed_intraday_temp"] = observed_bound
         mkt["full_distribution"] = full_distribution
+        mkt["live_allocation"] = portfolio["allocation"]
+        mkt["total_allocated_units"] = portfolio.get("total_allocated_units")
+        mkt["portfolio_score"] = portfolio.get("portfolio_score")
+        mkt["worst_case_loss_frac"] = portfolio.get("worst_case_loss_frac")
+        mkt["best_case_pnl_units"] = portfolio.get("best_case_pnl_units")
+        mkt["worst_case_pnl_units"] = portfolio.get("worst_case_pnl_units")
+        mkt["success_probability"] = portfolio.get("success_probability")
+        mkt["confidence"] = portfolio.get("confidence")
+        mkt["balance_units"] = STRATEGY_PARAMS["balance_units"]
+        mkt["strategy_version"] = STRATEGY_VERSION
         mkt["last_lite_refresh"] = now.isoformat()
+        mkt.pop("skipped_reason", None)
         save_market_min(mkt)
         refreshed += 1
 
@@ -1616,17 +1664,36 @@ def _record_scan_timestamp(kind):
 def resolve_expired_markets(state):
     resolved_count = 0
     entries = load_entries()
-    for mkt in load_all_markets():
-        if mkt.get("status") in ("resolved", "resolved_no_signal"):
-            continue
-        grading_allocation = mkt.get("committed_allocation") or mkt.get("live_allocation")
+    candidates = [
+        mkt for mkt in load_all_markets()
+        if mkt.get("status") not in ("resolved", "resolved_no_signal", "expired_no_signal")
+        and mkt.get("hours_left", 999) <= 0.5
+        and mkt.get("city") in LOCATIONS
+    ]
+    if not candidates:
+        return 0
+
+    def _fetch_settle(mkt):
+        dt = datetime.strptime(mkt["date"], "%Y-%m-%d")
+        return res.get_polymarket_settlement(mkt["city"], MONTHS[dt.month - 1], dt.day, dt.year)
+
+    settlements = {}
+    with ThreadPoolExecutor(max_workers=EVENT_FETCH_WORKERS) as pool:
+        fut_map = {pool.submit(_fetch_settle, m): (m["city"], m["date"]) for m in candidates}
+        for fut in as_completed(fut_map):
+            k = fut_map[fut]
+            try:
+                settlements[k] = fut.result()
+            except Exception:
+                settlements[k] = None
+
+    for mkt in candidates:
+        loc = LOCATIONS[mkt["city"]]
         hours_left = mkt.get("hours_left", 999)
+        grading_allocation = mkt.get("committed_allocation") or mkt.get("live_allocation")
+        settlement = settlements.get((mkt["city"], mkt["date"]))
+
         if not grading_allocation:
-            if hours_left > 0.5:
-                continue
-            loc = LOCATIONS[mkt["city"]]
-            dt = datetime.strptime(mkt["date"], "%Y-%m-%d")
-            settlement = res.get_polymarket_settlement(mkt["city"], MONTHS[dt.month - 1], dt.day, dt.year)
             if not settlement:
                 mkt["status"] = "expired_no_signal"
                 save_market(mkt)
@@ -1638,16 +1705,25 @@ def resolve_expired_markets(state):
             mkt["my_pnl_units"] = None
             save_market(mkt)
             continue
-        if hours_left > 0.5:
+
+        if not settlement:
+            if hours_left <= -24.0 and not mkt.get("committed_allocation"):
+                mkt["status"] = "expired_no_signal"
+                save_market(mkt)
             continue
-        loc = LOCATIONS[mkt["city"]]
-        dt = datetime.strptime(mkt["date"], "%Y-%m-%d")
-        settlement = res.get_polymarket_settlement(mkt["city"], MONTHS[dt.month - 1], dt.day, dt.year)
-        if settlement is None:
-            continue
+
         all_settled = all(a["market_id"] in settlement for a in grading_allocation)
         if not all_settled:
+            if hours_left <= -24.0 and not mkt.get("committed_allocation"):
+                settlement_temp = res.get_actual_temp_from_settlement(mkt, settlement)
+                if settlement_temp is not None:
+                    mkt["actual_temp"] = settlement_temp
+                    mkt["status"] = "resolved_no_signal"
+                else:
+                    mkt["status"] = "expired_no_signal"
+                save_market(mkt)
             continue
+
         settlement_temp = res.get_actual_temp_from_settlement(mkt, settlement)
         mkt["actual_temp"] = settlement_temp if settlement_temp is not None else res.get_display_temp(loc, mkt["date"], VC_KEY)
         raw_pnl_units = 0.0
@@ -1696,18 +1772,36 @@ def resolve_expired_min_markets(state):
     استفاده می‌شود."""
     resolved_count = 0
     entries = load_entries()
-    for mkt in load_all_min_markets():
-        if mkt.get("status") in ("resolved", "resolved_no_signal"):
-            continue
-        grading_allocation = mkt.get("committed_allocation") or mkt.get("live_allocation")
+    candidates = [
+        mkt for mkt in load_all_min_markets()
+        if mkt.get("status") not in ("resolved", "resolved_no_signal", "expired_no_signal")
+        and mkt.get("hours_left", 999) <= 0.5
+        and mkt.get("city") in LOCATIONS
+    ]
+    if not candidates:
+        return 0
+
+    def _fetch_settle_min(mkt):
+        dt = datetime.strptime(mkt["date"], "%Y-%m-%d")
+        return res.get_polymarket_settlement_min(mkt["city"], MONTHS[dt.month - 1], dt.day, dt.year)
+
+    settlements = {}
+    with ThreadPoolExecutor(max_workers=EVENT_FETCH_WORKERS) as pool:
+        fut_map = {pool.submit(_fetch_settle_min, m): (m["city"], m["date"]) for m in candidates}
+        for fut in as_completed(fut_map):
+            k = fut_map[fut]
+            try:
+                settlements[k] = fut.result()
+            except Exception:
+                settlements[k] = None
+
+    for mkt in candidates:
+        loc = LOCATIONS[mkt["city"]]
         hours_left = mkt.get("hours_left", 999)
+        grading_allocation = mkt.get("committed_allocation") or mkt.get("live_allocation")
+        settlement = settlements.get((mkt["city"], mkt["date"]))
 
         if not grading_allocation:
-            if hours_left > 0.5:
-                continue
-            loc = LOCATIONS[mkt["city"]]
-            dt = datetime.strptime(mkt["date"], "%Y-%m-%d")
-            settlement = res.get_polymarket_settlement_min(mkt["city"], MONTHS[dt.month - 1], dt.day, dt.year)
             if not settlement:
                 mkt["status"] = "expired_no_signal"
                 save_market_min(mkt)
@@ -1720,15 +1814,22 @@ def resolve_expired_min_markets(state):
             save_market_min(mkt)
             continue
 
-        if hours_left > 0.5:
+        if not settlement:
+            if hours_left <= -24.0 and not mkt.get("committed_allocation"):
+                mkt["status"] = "expired_no_signal"
+                save_market_min(mkt)
             continue
-        loc = LOCATIONS[mkt["city"]]
-        dt = datetime.strptime(mkt["date"], "%Y-%m-%d")
-        settlement = res.get_polymarket_settlement_min(mkt["city"], MONTHS[dt.month - 1], dt.day, dt.year)
-        if settlement is None:
-            continue
+
         all_settled = all(a["market_id"] in settlement for a in grading_allocation)
         if not all_settled:
+            if hours_left <= -24.0 and not mkt.get("committed_allocation"):
+                settlement_temp = res.get_actual_temp_from_settlement(mkt, settlement)
+                if settlement_temp is not None:
+                    mkt["actual_temp"] = settlement_temp
+                    mkt["status"] = "resolved_no_signal"
+                else:
+                    mkt["status"] = "expired_no_signal"
+                save_market_min(mkt)
             continue
 
         settlement_temp = res.get_actual_temp_from_settlement(mkt, settlement)
@@ -1841,46 +1942,44 @@ def run_once():
     print(f"  mark your real trades in: {ENTRIES_FILE}")
 
 def run_lite_scan():
-    """اسکن سبک (heartbeat) -- فقط تازه‌سازی اطلاعات نمایشی بازارهای باز،
-    resolve بازارهای منقضی، و به‌روزرسانی کالیبراسیون زنده. هیچ سیگنال
-    جدیدی ساخته نمی‌شود (طبق تصمیم صریح کاربر، discover_new_min_signals
-    اینجا فراخوانی نمی‌شود -- فقط در اسکن سنگین)."""
+    """اسکن سبک ۶ ساعته (heartbeat) -- فقط بازارهای باز فعلی را با پیش‌بینی و سیگنال
+    جدید به‌روزرسانی می‌کند، و فقط اگر شهری هیچ بازار فعالی روی دیسک نداشت آن شهر را کشف می‌کند."""
     t_start = time.perf_counter()
     now = datetime.now(timezone.utc)
-    print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] اسکن سبک -- تازه‌سازی اطلاعات {len(LOCATIONS)} شهر...")
-
-    try:
-        open_max_cities = {m.get("city") for m in load_all_markets() if m.get("status") == "open"}
-        open_min_cities = {m.get("city") for m in load_all_min_markets() if m.get("status") == "open"}
-        _prepare_weather_cache(open_max_cities, open_min_cities)
-    except Exception as e:
-        fc.clear_ensemble_cache()
-        fc.set_ensemble_cache_enabled(False)
-        print(f"  [prefetch] هشدار: آماده‌سازی ناموفق بود ({e}) -- رفتار قبلی")
-
-    refreshed = refresh_open_market_info(now)
-    refresh_open_market_info_min(now)
     state = load_state()
+    print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] اسکن سبک ۶ ساعته -- تازه‌سازی بازارهای باز...")
+    open_max = [m for m in load_all_markets() if m.get("status") == "open"]
+    open_min = [m for m in load_all_min_markets() if m.get("status") == "open"]
+    active_max_cities = {
+        m.get("city") for m in open_max
+        if m.get("city") in LOCATIONS
+        and (m.get("full_distribution") or m.get("skipped_reason"))
+        and (m.get("hours_left") or 99) > MIN_HOURS
+    }
+    missing_cities = [c for c in LOCATIONS if c not in active_max_cities]
+    max_cities = set(LOCATIONS.keys()) if missing_cities else {m.get("city") for m in open_max if m.get("city") in LOCATIONS}
+    min_cities = {m.get("city") for m in open_min if m.get("city") in LOCATIONS}
+    _prepare_weather_cache(max_cities, min_cities)
+    refreshed = refresh_open_market_info(now)
+    refreshed_min = refresh_open_market_info_min(now)
+    new_pos = discover_new_signals(now, state, target_cities=missing_cities) if missing_cities else 0
+    committed = apply_lock_requests(now)
     resolved_count = resolve_expired_markets(state)
     resolved_min_count = resolve_expired_min_markets(state)
     save_state(state)
-
-    try:
-        fc.update_calibration_from_live(load_all_markets(), LOCATIONS)
-    except Exception as e:
-        print(f"  هشدار: به‌روزرسانی کالیبراسیون زنده ناموفق بود: {e}")
-    try:
-        fc.update_calibration_from_live_min(load_all_min_markets(), LOCATIONS)
-    except Exception as e:
-        print(f"  هشدار: به‌روزرسانی کالیبراسیون زندهٔ کمینه ناموفق بود: {e}")
+    fc.update_calibration_from_live(load_all_markets(), LOCATIONS)
+    fc.update_calibration_from_live_min(load_all_min_markets(), LOCATIONS)
     try:
         fc.update_model_skill_from_live(load_all_markets() + load_all_min_markets(), LOCATIONS)
     except Exception as e:
         print(f"  هشدار: به‌روزرسانی مهارت مدل‌ها ناموفق بود: {e}")
-
+    try:
+        n_rows = accuracy_report.build_accuracy_report()
+        print(f"  [accuracy-report] {n_rows} رکورد در data/accuracy_report.csv به‌روزرسانی شد")
+    except Exception as e:
+        print(f"  [accuracy-report] هشدار: گزارش دقت ساخته نشد ({e}) -- بات ادامه می‌دهد")
     _record_scan_timestamp("lite")
-    print(f"  بازارهای تازه‌سازی‌شده: {refreshed} | resolve‌شده: {resolved_count + resolved_min_count}")
-    print(f"  توجه: هیچ سیگنال/پوزیشن جدیدی در این مسیر ساخته نمی‌شود.")
+    print(f"  تازه شد: {refreshed} بازار حداکثر + {refreshed_min} کمینه | شهر جدید: {new_pos} | resolve: {resolved_count + resolved_min_count} ({round(time.perf_counter() - t_start, 1)}s)")
 
 def run_price_refresh():
     """سبک‌ترین مسیر اسکن -- فقط قیمت بازار همهٔ باکت‌های open را تازه

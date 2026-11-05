@@ -441,8 +441,9 @@ def _enrich_market_with_smart_gate(m, profile):
             c_low = 0.0 if low <= -998 else _student_t_cdf5((low - 0.5 - smart_mean) / sigma)
             p_cons = max(0.0005, c_high - c_low)
 
-            # ۳) توزیع ترکیبی چندمدلی (Multi-Model Mixture / GMM) برای حفظ دوکوهانگی
-            if len(valid_models) >= 2:
+            # ۳) توزیع ترکیبی چندمدلی (Multi-Model Mixture / GMM) فقط در صورت واگرایی دوقله‌ای
+            bimodal_thresh = 2.2 if unit == "F" else 1.25
+            if len(valid_models) >= 2 and (model_spread or 0.0) >= bimodal_thresh:
                 p_mix_sub = 0.0
                 w_tot = 0.0
                 for mk, mv in valid_models.items():
@@ -454,7 +455,7 @@ def _enrich_market_with_smart_gate(m, profile):
                     w_tot += w
                 if w_tot > 0:
                     p_mix_sub /= w_tot
-                    p_final = 0.55 * p_cons + 0.45 * p_mix_sub
+                    p_final = 0.78 * p_cons + 0.22 * p_mix_sub
                 else:
                     p_final = p_cons
             else:

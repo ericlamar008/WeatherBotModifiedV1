@@ -263,10 +263,13 @@ def _fetch_ensemble_uncached(lat, lon, tz, unit, models, forecast_days=7, variab
         f"&forecast_days={forecast_days}&timezone={tz}"
         f"&models={models}"
     )
-    for attempt in range(MAX_RETRIES):
+    for attempt in range(MAX_RETRIES + 1):
         try:
             data = requests.get(url, timeout=(5, 12)).json()
             if "error" in data:
+                if attempt < MAX_RETRIES:
+                    time.sleep(RETRY_DELAY_S * (attempt + 1))
+                    continue
                 return {}
             daily = data.get("daily", {})
             dates = daily.get("time", [])
@@ -279,11 +282,54 @@ def _fetch_ensemble_uncached(lat, lon, tz, unit, models, forecast_days=7, variab
                         result[d].append(v)
             return result
         except Exception:
-            if attempt < MAX_RETRIES - 1:
-                time.sleep(RETRY_DELAY_S)
+            if attempt < MAX_RETRIES:
+                time.sleep(RETRY_DELAY_S * (attempt + 1))
             else:
                 return {}
     return {}
+
+
+def _fetch_ensemble_both_uncached(lat, lon, tz, unit, models, forecast_days=7):
+    """دریافت هم‌زمان دمای بیشینه (temperature_2m_max) و دمای کمینه (temperature_2m_min)
+    در یک درخواست واحد به Open-Meteo برای نصف کردن تعداد درخواست‌ها و جلوگیری از Rate-Limit."""
+    temp_unit = "fahrenheit" if unit == "F" else "celsius"
+    url = (
+        f"https://ensemble-api.open-meteo.com/v1/ensemble"
+        f"?latitude={lat}&longitude={lon}"
+        f"&daily=temperature_2m_max,temperature_2m_min&temperature_unit={temp_unit}"
+        f"&forecast_days={forecast_days}&timezone={tz}"
+        f"&models={models}"
+    )
+    for attempt in range(MAX_RETRIES + 1):
+        try:
+            data = requests.get(url, timeout=(5, 14)).json()
+            if "error" in data:
+                if attempt < MAX_RETRIES:
+                    time.sleep(RETRY_DELAY_S * (attempt + 1))
+                    continue
+                return {}, {}
+            daily = data.get("daily", {})
+            dates = daily.get("time", [])
+            res_max = {d: [] for d in dates}
+            res_min = {d: [] for d in dates}
+            for key, series in daily.items():
+                if key == "time":
+                    continue
+                if key.startswith("temperature_2m_max"):
+                    for d, v in zip(dates, series):
+                        if v is not None:
+                            res_max[d].append(v)
+                elif key.startswith("temperature_2m_min"):
+                    for d, v in zip(dates, series):
+                        if v is not None:
+                            res_min[d].append(v)
+            return res_max, res_min
+        except Exception:
+            if attempt < MAX_RETRIES:
+                time.sleep(RETRY_DELAY_S * (attempt + 1))
+            else:
+                return {}, {}
+    return {}, {}
 
 
 # =============================================================================
@@ -321,7 +367,8 @@ def _ensemble_has_data(result):
 
 def _fetch_ensemble(lat, lon, tz, unit, models, forecast_days=7, variable="temperature_2m_max"):
     """همان امضا و همان خروجی قبلی؛ فقط اگر همین آدرس قبلاً در همین اسکن با
-    موفقیت گرفته شده باشد، از حافظه می‌خواند."""
+    موفقیت گرفته شده باشد، از حافظه می‌خواند. در حالت فعال بودن کش، هر دو متغیر
+    max و min را در یک درخواست واحد واکشی و کش می‌کند تا مصرف API نصف شود."""
     if not _ENSEMBLE_CACHE_ENABLED:
         return _fetch_ensemble_uncached(lat, lon, tz, unit, models, forecast_days, variable)
     key = (lat, lon, tz, unit, models, forecast_days, variable)
@@ -329,6 +376,20 @@ def _fetch_ensemble(lat, lon, tz, unit, models, forecast_days=7, variable="tempe
         hit = _ENSEMBLE_CACHE.get(key)
     if hit is not None:
         return _copy_ensemble(hit)
+
+    if variable in ("temperature_2m_max", "temperature_2m_min"):
+        res_max, res_min = _fetch_ensemble_both_uncached(lat, lon, tz, unit, models, forecast_days)
+        key_max = (lat, lon, tz, unit, models, forecast_days, "temperature_2m_max")
+        key_min = (lat, lon, tz, unit, models, forecast_days, "temperature_2m_min")
+        with _ENSEMBLE_CACHE_LOCK:
+            if _ensemble_has_data(res_max):
+                _ENSEMBLE_CACHE[key_max] = _copy_ensemble(res_max)
+            if _ensemble_has_data(res_min):
+                _ENSEMBLE_CACHE[key_min] = _copy_ensemble(res_min)
+        target_res = res_max if variable == "temperature_2m_max" else res_min
+        if _ensemble_has_data(target_res):
+            return target_res
+
     result = _fetch_ensemble_uncached(lat, lon, tz, unit, models, forecast_days, variable)
     if _ensemble_has_data(result):
         with _ENSEMBLE_CACHE_LOCK:
@@ -337,36 +398,31 @@ def _fetch_ensemble(lat, lon, tz, unit, models, forecast_days=7, variable="tempe
 
 def prefetch_ensembles(locations, max_cities=None, min_cities=None, workers=4):
     """آدرس‌های یکتای مورد نیاز اسکن (Open-Meteo + ایستگاه‌های METAR روز جاری D0)
-    را با چند کار همزمان می‌گیرد و در حافظه می‌گذارد تا هیچ تاخیری به حلقهٔ اسکن اضافه نشود."""
-    tasks = []
+    را در دو استخر موازی مجزا (Open-Meteo و AviationWeather) می‌گیرد تا هیچ تاخیری به اسکن اضافه نشود."""
+    om_tasks = []
+    metar_tasks = []
     now_utc = datetime.now(timezone.utc)
     for slug, loc in locations.items():
         args = (loc["lat"], loc["lon"], loc["tz"], loc["unit"])
         need_max = (max_cities is None or slug in max_cities)
         need_min = (min_cities is None or slug in min_cities)
-        if need_max:
-            tasks.append((get_ecmwf_ensemble, args))
-            tasks.append((get_gefs_ensemble, args))
+        if need_max or need_min:
+            # چون _fetch_ensemble هر دو متغیر max و min را در یک درخواست واحد می‌گیرد،
+            # فقط یک بار فراخوانی به‌ازای هر مدل کافی است تا هر دو کش پر شوند.
+            om_tasks.append((get_ecmwf_ensemble, args))
+            om_tasks.append((get_gefs_ensemble, args))
             for extra in _active_extra_models(loc):
                 if extra == "gem":
-                    tasks.append((get_gem_ensemble, args))
+                    om_tasks.append((get_gem_ensemble, args))
                 elif extra == "icon_eu":
-                    tasks.append((get_icon_eu_ensemble, args))
-        if need_min:
-            tasks.append((get_ecmwf_ensemble_min, args))
-            tasks.append((get_gefs_ensemble_min, args))
-            for extra in _active_extra_models(loc):
-                if extra == "gem":
-                    tasks.append((get_gem_ensemble_min, args))
-                elif extra == "icon_eu":
-                    tasks.append((get_icon_eu_ensemble_min, args))
+                    om_tasks.append((get_icon_eu_ensemble, args))
         if (need_max or need_min) and loc.get("station"):
             try:
                 local_today = now_utc.astimezone(ZoneInfo(loc["tz"])).strftime("%Y-%m-%d")
             except Exception:
                 local_today = now_utc.strftime("%Y-%m-%d")
-            tasks.append((get_intraday_observed_bound, (loc, local_today, False)))
-            tasks.append((_fetch_resolution_source_series, (loc,)))
+            metar_tasks.append((get_intraday_observed_bound, (loc, local_today, False)))
+            om_tasks.append((_fetch_resolution_source_series, (loc,)))
 
     def _run(task):
         fn, args = task
@@ -376,12 +432,18 @@ def prefetch_ensembles(locations, max_cities=None, min_cities=None, workers=4):
             pass
 
     t0 = time.perf_counter()
-    if tasks:
-        with ThreadPoolExecutor(max_workers=max(1, int(workers))) as pool:
-            list(pool.map(_run, tasks))
+    eff_workers = max(1, min(int(workers), 4))
+    with ThreadPoolExecutor(max_workers=eff_workers) as om_pool, ThreadPoolExecutor(max_workers=6) as metar_pool:
+        om_futs = [om_pool.submit(_run, t) for t in om_tasks]
+        metar_futs = [metar_pool.submit(_run, t) for t in metar_tasks]
+        for f in om_futs + metar_futs:
+            try:
+                f.result()
+            except Exception:
+                pass
     with _ENSEMBLE_CACHE_LOCK:
         cached = len(_ENSEMBLE_CACHE)
-    return {"tasks": len(tasks), "cached": cached, "seconds": round(time.perf_counter() - t0, 1)}
+    return {"tasks": len(om_tasks) + len(metar_tasks), "cached": cached, "seconds": round(time.perf_counter() - t0, 1)}
 
 def verify_ensemble_cache(sample=5):
     """(فقط برای بررسی) چند آدرس حافظه را دوباره مستقیم می‌گیرد و برابری را می‌سنجد.
@@ -1718,28 +1780,31 @@ def full_bucket_distribution(
         elif is_min and float(observed_bound) < float(mean):
             effective_mean = float(observed_bound)
 
-    # آماده‌سازی اجزای مخلوط چندمدلی (GMM) در صورت وجود زیرمدل‌ها
+    # آماده‌سازی اجزای مخلوط چندمدلی (GMM) فقط در صورت واگرایی واقعی و دوقله‌ای بودن زیرمدل‌ها
     gmm_components = []
     if model_means_raw and isinstance(model_means_raw, dict) and len(model_means_raw) >= 2:
         valid_models = {k: float(v) for k, v in model_means_raw.items() if v is not None}
         if len(valid_models) >= 2:
             weights = get_model_weights(city_slug, list(valid_models.keys()), is_min=is_min) if city_slug else None
-            if not weights:
-                weights = {k: 1.0 / len(valid_models) for k in valid_models}
-            bias = (
-                (get_bias_min(city_slug, horizon_days, unit) if is_min else get_bias(city_slug, horizon_days, unit))
-                if city_slug else 0.0
-            )
-            regime_adj = _get_regime_drift_adjustment(city_slug, unit=unit, is_min=is_min) if city_slug else 0.0
-            comp_sigma = max(0.45 if unit == "C" else 0.85, sigma * 0.82)
-            for m_name, raw_v in valid_models.items():
-                comp_mu = raw_v + bias + regime_adj
-                if observed_bound is not None:
-                    if not is_min and float(observed_bound) > comp_mu:
-                        comp_mu = float(observed_bound)
-                    elif is_min and float(observed_bound) < comp_mu:
-                        comp_mu = float(observed_bound)
-                gmm_components.append((comp_mu, comp_sigma, float(weights.get(m_name, 0.25))))
+            spread_val = compute_model_spread(valid_models, weights)
+            bimodal_thresh = 2.2 if unit == "F" else 1.25
+            if spread_val >= bimodal_thresh:
+                if not weights:
+                    weights = {k: 1.0 / len(valid_models) for k in valid_models}
+                bias = (
+                    (get_bias_min(city_slug, horizon_days, unit) if is_min else get_bias(city_slug, horizon_days, unit))
+                    if city_slug else 0.0
+                )
+                regime_adj = _get_regime_drift_adjustment(city_slug, unit=unit, is_min=is_min) if city_slug else 0.0
+                comp_sigma = max(0.45 if unit == "C" else 0.85, sigma * 0.82)
+                for m_name, raw_v in valid_models.items():
+                    comp_mu = raw_v + bias + regime_adj
+                    if observed_bound is not None:
+                        if not is_min and float(observed_bound) > comp_mu:
+                            comp_mu = float(observed_bound)
+                        elif is_min and float(observed_bound) < comp_mu:
+                            comp_mu = float(observed_bound)
+                    gmm_components.append((comp_mu, comp_sigma, float(weights.get(m_name, 0.25))))
 
     raw = []
     eliminated_flags = []
@@ -1766,7 +1831,7 @@ def full_bucket_distribution(
         p_consensus = bucket_probability(effective_mean, sigma, t_low, t_high)
         if gmm_components:
             p_gmm = sum(w * bucket_probability(m_mu, m_sig, t_low, t_high) for (m_mu, m_sig, w) in gmm_components)
-            p_blended = 0.55 * p_consensus + 0.45 * p_gmm
+            p_blended = 0.78 * p_consensus + 0.22 * p_gmm
         else:
             p_blended = p_consensus
         raw.append(p_blended)
@@ -1899,8 +1964,7 @@ _RESOLUTION_SOURCE_CACHE = {}
 
 def _fetch_resolution_source_series(loc):
     """دریافت پیش‌بینی قطعی ایستگاه مرجع رزولوشن (HKO رسمی برای هنگ‌کنگ، و مدل قطعی
-    ایستگاه فرودگاهی NWS / Weather.com / سرویس ملی هواشناسی برای سایر شهرها) به همراه
-    مقدار اجرای قبلی (previous_day1) برای محاسبهٔ تغییرات در پرانتز."""
+    ایستگاه فرودگاهی NWS / Weather.com / سرویس ملی هواشناسی برای سایر شهرها)."""
     station = str(loc.get("station", "")).strip()
     lat = loc["lat"]
     lon = loc["lon"]
@@ -1923,21 +1987,29 @@ def _fetch_resolution_source_series(loc):
         f"https://api.open-meteo.com/v1/forecast"
         f"?latitude={lat}&longitude={lon}"
         f"&daily=temperature_2m_max,temperature_2m_min"
-        f"&temperature_unit={temp_unit}&timezone={tz}&past_days=14&forecast_days=7"
+        f"&temperature_unit={temp_unit}&timezone={tz}&past_days=2&forecast_days=7"
     )
-    try:
-        resp = requests.get(det_url, timeout=(4, 10)).json()
-        daily = resp.get("daily", {})
-        dates = daily.get("time", [])
-        max_vals = daily.get("temperature_2m_max", [])
-        min_vals = daily.get("temperature_2m_min", [])
-        for d, mx, mn in zip(dates, max_vals, min_vals):
-            if mx is not None:
-                out["max"][d] = round(float(mx), 1)
-            if mn is not None:
-                out["min"][d] = round(float(mn), 1)
-    except Exception:
-        pass
+    for attempt in range(MAX_RETRIES):
+        try:
+            resp = requests.get(det_url, timeout=(4, 10)).json()
+            if "error" in resp:
+                if attempt < MAX_RETRIES - 1:
+                    time.sleep(RETRY_DELAY_S * (attempt + 1))
+                    continue
+                break
+            daily = resp.get("daily", {})
+            dates = daily.get("time", [])
+            max_vals = daily.get("temperature_2m_max", [])
+            min_vals = daily.get("temperature_2m_min", [])
+            for d, mx, mn in zip(dates, max_vals, min_vals):
+                if mx is not None:
+                    out["max"][d] = round(float(mx), 1)
+                if mn is not None:
+                    out["min"][d] = round(float(mn), 1)
+            break
+        except Exception:
+            if attempt < MAX_RETRIES - 1:
+                time.sleep(RETRY_DELAY_S * (attempt + 1))
 
     # ۲) برای هنگ‌کنگ (HKO): دریافت مستقیم پیش‌بینی رسمی ۹ روزه از رصدخانه هنگ‌کنگ
     if resolve_source == "hko":
@@ -1951,7 +2023,6 @@ def _fetch_resolution_source_series(loc):
                     mx_v = (item.get("forecastMaxtemp") or {}).get("value")
                     mn_v = (item.get("forecastMintemp") or {}).get("value")
                     if mx_v is not None:
-                        # اگر قبل از جایگزینی مقدار Open-Meteo موجود بود، به عنوان مبنای مقایسه نگه داریم
                         if iso_d in out["max"] and iso_d not in out["prev_max"]:
                             out["prev_max"][iso_d] = out["max"][iso_d]
                         out["max"][iso_d] = round(float(mx_v), 1)
@@ -1961,31 +2032,6 @@ def _fetch_resolution_source_series(loc):
                         out["min"][iso_d] = round(float(mn_v), 1)
         except Exception:
             pass
-
-    # ۳) دریافت اجرای قبلی مدل قطعی (previous_day1) برای نمایش تغییرات داخل پرانتز حتی در اولین اسکن
-    prev_url = (
-        f"https://previous-runs-api.open-meteo.com/v1/forecast"
-        f"?latitude={lat}&longitude={lon}"
-        f"&hourly=temperature_2m,temperature_2m_previous_day1"
-        f"&temperature_unit={temp_unit}&timezone={tz}&past_days=14&forecast_days=7"
-    )
-    try:
-        presp = requests.get(prev_url, timeout=(4, 10)).json()
-        hourly = presp.get("hourly", {})
-        times = hourly.get("time", [])
-        p1_vals = hourly.get("temperature_2m_previous_day1", [])
-        by_day = {}
-        for t_str, pv in zip(times, p1_vals):
-            if pv is None or not t_str or len(t_str) < 10:
-                continue
-            d_key = t_str[:10]
-            by_day.setdefault(d_key, []).append(float(pv))
-        for d_key, vals in by_day.items():
-            if len(vals) >= 12:
-                out["prev_max"][d_key] = round(max(vals), 1)
-                out["prev_min"][d_key] = round(min(vals), 1)
-    except Exception:
-        pass
 
     if out["max"] or out["min"]:
         with _ENSEMBLE_CACHE_LOCK:
