@@ -403,11 +403,11 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.0035,
+      "yes_price": 0.0085,
       "no_price": 0.996,
       "best_bid": 0.002,
-      "best_ask": 0.005,
-      "bid_ask_spread": 0.003,
+      "best_ask": 0.015,
+      "bid_ask_spread": 0.013,
       "volume": 1806.0,
       "spread": 0.004,
       "yes_token_id": "28151245144075470035172262978098593173588655362453889360025415695809877602900",
@@ -415,13 +415,13 @@
       "model_prob": 0.018,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0035,
-      "effective_ask": 0.0035,
-      "market_prob": 0.0035,
-      "belief_prob": 0.0129,
-      "ev": 2.6857,
-      "kelly": 0.0024,
-      "swing_edge": 0.0145,
+      "ask": 0.0085,
+      "effective_ask": 0.0085,
+      "market_prob": 0.0085,
+      "belief_prob": 0.0147,
+      "ev": 0.7294,
+      "kelly": 0.0016,
+      "swing_edge": 0.0095,
       "swing_upside_pct": 0.0,
       "sell_value": 0.002,
       "scan6h_model_prob": 0.018,
@@ -436,13 +436,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.004,
       "prev_scan6h_yes_price": 0.004,
-      "prev_yes_price": 0.003,
-      "yes_price_10m_change": 0.0005,
-      "yes_price_10m_pct_change": 16.7,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -12.5,
-      "yes_price_change": 0.0005,
-      "yes_price_pct_change": 16.7,
+      "prev_yes_price": 0.0035,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 142.9,
+      "yes_price_6h_change": 0.0045,
+      "yes_price_6h_pct_change": 112.5,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 142.9,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -478,9 +478,16 @@
           "mp": 0.018,
           "bid": 0.002,
           "ask": 0.005
+        },
+        {
+          "t": "2026-11-05T22:07:25Z",
+          "p": 0.0085,
+          "mp": 0.018,
+          "bid": 0.002,
+          "ask": 0.015
         }
       ],
-      "prev_10m_yes_price": 0.003
+      "prev_10m_yes_price": 0.0035
     },
     {
       "question": "Will the highest temperature in Chicago be between 58-59°F on November 5?",
@@ -1026,5 +1033,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-05T21:52:27.420327+00:00"
+  "last_price_refresh": "2026-11-05T22:07:24.302054+00:00"
 }

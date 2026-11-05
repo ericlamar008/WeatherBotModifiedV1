@@ -345,10 +345,10 @@
         76.0,
         77.0
       ],
-      "yes_price": 0.275,
+      "yes_price": 0.305,
       "no_price": 0.735,
-      "best_bid": 0.24,
-      "best_ask": 0.31,
+      "best_bid": 0.27,
+      "best_ask": 0.34,
       "bid_ask_spread": 0.07,
       "volume": 413.0,
       "spread": 0.01,
@@ -357,14 +357,14 @@
       "model_prob": 0.2993,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.275,
-      "effective_ask": 0.297,
-      "market_prob": 0.275,
-      "belief_prob": 0.2908,
-      "ev": -0.0209,
+      "ask": 0.305,
+      "effective_ask": 0.327,
+      "market_prob": 0.305,
+      "belief_prob": 0.3013,
+      "ev": -0.0786,
       "kelly": 0.0,
-      "swing_edge": 0.0243,
-      "swing_upside_pct": 8.8,
+      "swing_edge": -0.0057,
+      "swing_upside_pct": -1.9,
       "sell_value": 0.26,
       "scan6h_model_prob": 0.2993,
       "prev_scan6h_model_prob": 0.2993,
@@ -378,13 +378,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.265,
       "prev_scan6h_yes_price": 0.265,
-      "prev_yes_price": 0.265,
-      "yes_price_10m_change": 0.01,
-      "yes_price_10m_pct_change": 3.8,
-      "yes_price_6h_change": 0.01,
-      "yes_price_6h_pct_change": 3.8,
-      "yes_price_change": 0.01,
-      "yes_price_pct_change": 3.8,
+      "prev_yes_price": 0.275,
+      "yes_price_10m_change": 0.03,
+      "yes_price_10m_pct_change": 10.9,
+      "yes_price_6h_change": 0.04,
+      "yes_price_6h_pct_change": 15.1,
+      "yes_price_change": 0.03,
+      "yes_price_pct_change": 10.9,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -427,9 +427,16 @@
           "mp": 0.2993,
           "bid": 0.24,
           "ask": 0.31
+        },
+        {
+          "t": "2026-11-05T22:07:25Z",
+          "p": 0.305,
+          "mp": 0.2993,
+          "bid": 0.27,
+          "ask": 0.34
         }
       ],
-      "prev_10m_yes_price": 0.265
+      "prev_10m_yes_price": 0.275
     },
     {
       "question": "Will the highest temperature in Houston be between 78-79°F on November 7?",
@@ -438,11 +445,11 @@
         78.0,
         79.0
       ],
-      "yes_price": 0.065,
+      "yes_price": 0.11,
       "no_price": 0.87,
-      "best_bid": 0.05,
-      "best_ask": 0.08,
-      "bid_ask_spread": 0.03,
+      "best_bid": 0.06,
+      "best_ask": 0.16,
+      "bid_ask_spread": 0.1,
       "volume": 11.0,
       "spread": 0.1,
       "yes_token_id": "57679877149070147109209407633637839723011515258869218008630836820510816450022",
@@ -450,14 +457,14 @@
       "model_prob": 0.1523,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.065,
-      "effective_ask": 0.065,
-      "market_prob": 0.065,
-      "belief_prob": 0.1217,
-      "ev": 0.8723,
-      "kelly": 0.0152,
-      "swing_edge": 0.0873,
-      "swing_upside_pct": 134.3,
+      "ask": 0.11,
+      "effective_ask": 0.1485,
+      "market_prob": 0.11,
+      "belief_prob": 0.1375,
+      "ev": -0.0741,
+      "kelly": 0.0,
+      "swing_edge": 0.0423,
+      "swing_upside_pct": 38.5,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.1523,
       "prev_scan6h_model_prob": 0.1523,
@@ -471,13 +478,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.13,
       "prev_scan6h_yes_price": 0.13,
-      "prev_yes_price": 0.06,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 8.3,
-      "yes_price_6h_change": -0.065,
-      "yes_price_6h_pct_change": -50.0,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 8.3,
+      "prev_yes_price": 0.065,
+      "yes_price_10m_change": 0.045,
+      "yes_price_10m_pct_change": 69.2,
+      "yes_price_6h_change": -0.02,
+      "yes_price_6h_pct_change": -15.4,
+      "yes_price_change": 0.045,
+      "yes_price_pct_change": 69.2,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -527,9 +534,16 @@
           "mp": 0.1523,
           "bid": 0.05,
           "ask": 0.08
+        },
+        {
+          "t": "2026-11-05T22:07:25Z",
+          "p": 0.11,
+          "mp": 0.1523,
+          "bid": 0.06,
+          "ask": 0.16
         }
       ],
-      "prev_10m_yes_price": 0.06
+      "prev_10m_yes_price": 0.065
     },
     {
       "question": "Will the highest temperature in Houston be between 84-85°F on November 7?",
@@ -714,5 +728,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-05T21:52:27.420327+00:00"
+  "last_price_refresh": "2026-11-05T22:07:24.302054+00:00"
 }
