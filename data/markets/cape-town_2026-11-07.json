@@ -680,11 +680,11 @@
         20.0,
         20.0
       ],
-      "yes_price": 0.31,
+      "yes_price": 0.305,
       "no_price": 0.665,
       "best_bid": 0.29,
-      "best_ask": 0.33,
-      "bid_ask_spread": 0.04,
+      "best_ask": 0.32,
+      "bid_ask_spread": 0.03,
       "volume": 284.0,
       "spread": 0.03,
       "yes_token_id": "106980498188284871544059266454044006243421681159920932715741056274784441399664",
@@ -692,14 +692,14 @@
       "model_prob": 0.1094,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.31,
-      "effective_ask": 0.3155,
-      "market_prob": 0.31,
-      "belief_prob": 0.1796,
-      "ev": -0.4307,
+      "ask": 0.305,
+      "effective_ask": 0.305,
+      "market_prob": 0.305,
+      "belief_prob": 0.1779,
+      "ev": -0.4167,
       "kelly": 0.0,
-      "swing_edge": -0.2006,
-      "swing_upside_pct": -64.7,
+      "swing_edge": -0.1956,
+      "swing_upside_pct": -64.1,
       "sell_value": 0.32,
       "scan6h_model_prob": 0.1094,
       "prev_scan6h_model_prob": 0.1094,
@@ -713,13 +713,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.335,
       "prev_scan6h_yes_price": 0.335,
-      "prev_yes_price": 0.305,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 1.6,
-      "yes_price_6h_change": -0.025,
-      "yes_price_6h_pct_change": -7.5,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 1.6,
+      "prev_yes_price": 0.31,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.6,
+      "yes_price_6h_change": -0.03,
+      "yes_price_6h_pct_change": -9.0,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.6,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -797,9 +797,16 @@
           "mp": 0.1094,
           "bid": 0.29,
           "ask": 0.33
+        },
+        {
+          "t": "2026-11-05T23:07:23Z",
+          "p": 0.305,
+          "mp": 0.1094,
+          "bid": 0.29,
+          "ask": 0.32
         }
       ],
-      "prev_10m_yes_price": 0.305
+      "prev_10m_yes_price": 0.31
     },
     {
       "question": "Will the highest temperature in Cape Town be 21°C on November 7?",
@@ -1229,5 +1236,5 @@
   "confidence": 0.0332,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-05T22:52:27.532536+00:00"
+  "last_price_refresh": "2026-11-05T23:07:22.555449+00:00"
 }
