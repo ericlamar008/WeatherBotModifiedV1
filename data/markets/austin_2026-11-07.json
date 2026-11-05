@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Austin be between 68-69°F on November 7?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.6
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.3
     },
     {
       "question": "Will the highest temperature in Austin be between 70-71°F on November 7?",
@@ -177,8 +179,8 @@
       "belief_prob": 0.1989,
       "ev": -0.2688,
       "kelly": 0.0,
-      "swing_edge": -0.071,
-      "swing_upside_pct": -26.1,
+      "swing_edge": 0.006,
+      "swing_upside_pct": 3.1,
       "sell_value": 0.11,
       "scan6h_model_prob": 0.201,
       "prev_scan6h_model_prob": 0.201,
@@ -207,7 +209,8 @@
           "bid": 0.11,
           "ask": 0.28
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.195
     },
     {
       "question": "Will the highest temperature in Austin be between 72-73°F on November 7?",
@@ -264,7 +267,8 @@
           "bid": null,
           "ask": 0.6
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.3
     },
     {
       "question": "Will the highest temperature in Austin be between 76-77°F on November 7?",
@@ -321,7 +325,8 @@
           "bid": 0.002,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.006
     },
     {
       "question": "Will the highest temperature in Austin be between 78-79°F on November 7?",
@@ -378,7 +383,8 @@
           "bid": 0.002,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.006
     },
     {
       "question": "Will the highest temperature in Austin be 80°F or higher on November 7?",
@@ -435,7 +441,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -447,5 +454,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-05T20:24:34.243527+00:00"
 }

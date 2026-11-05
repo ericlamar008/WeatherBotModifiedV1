@@ -94,7 +94,8 @@
           "bid": 0.001,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.002
     },
     {
       "question": "Will the highest temperature in Istanbul be 7°C on November 7?",
@@ -121,8 +122,8 @@
       "belief_prob": 0.0482,
       "ev": -0.2741,
       "kelly": 0.0,
-      "swing_edge": -0.0138,
-      "swing_upside_pct": -20.8,
+      "swing_edge": 0.0126,
+      "swing_upside_pct": 31.5,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.0526,
       "prev_scan6h_model_prob": 0.0526,
@@ -151,7 +152,8 @@
           "bid": 0.001,
           "ask": 0.079
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.04
     },
     {
       "question": "Will the highest temperature in Istanbul be 10°C on November 7?",
@@ -160,11 +162,11 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.43,
+      "yes_price": 0.435,
       "no_price": 0.57,
-      "best_bid": 0.31,
+      "best_bid": 0.32,
       "best_ask": 0.55,
-      "bid_ask_spread": 0.24,
+      "bid_ask_spread": 0.23,
       "volume": 88.0,
       "spread": 0.24,
       "yes_token_id": "57882534444709630616965164612693828859507170538373745259357512609993168193970",
@@ -172,14 +174,14 @@
       "model_prob": 0.1914,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.43,
-      "effective_ask": 0.51,
-      "market_prob": 0.43,
-      "belief_prob": 0.2749,
-      "ev": -0.461,
+      "ask": 0.435,
+      "effective_ask": 0.515,
+      "market_prob": 0.435,
+      "belief_prob": 0.2767,
+      "ev": -0.4627,
       "kelly": 0.0,
-      "swing_edge": -0.3186,
-      "swing_upside_pct": -62.5,
+      "swing_edge": -0.2436,
+      "swing_upside_pct": -56.0,
       "sell_value": 0.31,
       "scan6h_model_prob": 0.1914,
       "prev_scan6h_model_prob": 0.1914,
@@ -194,12 +196,12 @@
       "scan6h_yes_price": 0.43,
       "prev_scan6h_yes_price": 0.43,
       "prev_yes_price": 0.43,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.2,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 1.2,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.2,
       "price_history": [
         {
           "t": "2026-11-05T20:23:50Z",
@@ -207,8 +209,16 @@
           "mp": 0.1914,
           "bid": 0.31,
           "ask": 0.55
+        },
+        {
+          "t": "2026-11-05T20:24:34Z",
+          "p": 0.435,
+          "mp": 0.1914,
+          "bid": 0.32,
+          "ask": 0.55
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.43
     },
     {
       "question": "Will the highest temperature in Istanbul be 11°C on November 7?",
@@ -235,8 +245,8 @@
       "belief_prob": 0.2778,
       "ev": -0.4903,
       "kelly": 0.0,
-      "swing_edge": -0.368,
-      "swing_upside_pct": -67.5,
+      "swing_edge": -0.288,
+      "swing_upside_pct": -61.9,
       "sell_value": 0.34,
       "scan6h_model_prob": 0.177,
       "prev_scan6h_model_prob": 0.177,
@@ -265,7 +275,8 @@
           "bid": 0.34,
           "ask": 0.59
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.465
     },
     {
       "question": "Will the highest temperature in Istanbul be 12°C on November 7?",
@@ -292,8 +303,8 @@
       "belief_prob": 0.1279,
       "ev": -0.2855,
       "kelly": 0.0,
-      "swing_edge": -0.055,
-      "swing_upside_pct": -30.7,
+      "swing_edge": -0.011,
+      "swing_upside_pct": -8.1,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.124,
       "prev_scan6h_model_prob": 0.124,
@@ -322,7 +333,8 @@
           "bid": 0.08,
           "ask": 0.19
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.135
     },
     {
       "question": "Will the highest temperature in Istanbul be 16°C or higher on November 7?",
@@ -379,7 +391,8 @@
           "bid": 0.001,
           "ask": 0.004
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0025
     }
   ],
   "live_allocation": [],
@@ -391,5 +404,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-05T20:24:34.243527+00:00"
 }

@@ -63,8 +63,8 @@
       "belief_prob": 0.0151,
       "ev": -0.3519,
       "kelly": 0.0,
-      "swing_edge": -0.0108,
-      "swing_upside_pct": -46.4,
+      "swing_edge": -0.0075,
+      "swing_upside_pct": -37.5,
       "sell_value": 0.002,
       "scan6h_model_prob": 0.0125,
       "prev_scan6h_model_prob": 0.0125,
@@ -93,7 +93,8 @@
           "bid": 0.002,
           "ask": 0.038
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.02
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 74-75°F on November 7?",
@@ -150,7 +151,8 @@
           "bid": 0.001,
           "ask": 0.004
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0025
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 76-77°F on November 7?",
@@ -207,7 +209,8 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 82-83°F on November 7?",
@@ -234,8 +237,8 @@
       "belief_prob": 0.232,
       "ev": -0.1874,
       "kelly": 0.0,
-      "swing_edge": -0.0794,
-      "swing_upside_pct": -27.8,
+      "swing_edge": -0.0739,
+      "swing_upside_pct": -26.4,
       "sell_value": 0.26,
       "scan6h_model_prob": 0.2061,
       "prev_scan6h_model_prob": 0.2061,
@@ -264,7 +267,8 @@
           "bid": 0.26,
           "ask": 0.3
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.28
     },
     {
       "question": "Will the highest temperature in Los Angeles be 92°F or higher on November 7?",
@@ -321,7 +325,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -350,5 +355,6 @@
   "success_probability": 0.5547,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-05T20:24:34.243527+00:00"
 }

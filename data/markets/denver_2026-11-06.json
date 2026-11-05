@@ -93,7 +93,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the highest temperature in Denver be between 46-47°F on November 6?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the highest temperature in Denver be between 48-49°F on November 6?",
@@ -207,7 +209,8 @@
           "bid": 0.001,
           "ask": 0.004
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0025
     },
     {
       "question": "Will the highest temperature in Denver be between 50-51°F on November 6?",
@@ -264,7 +267,8 @@
           "bid": 0.004,
           "ask": 0.018
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.011
     },
     {
       "question": "Will the highest temperature in Denver be between 52-53°F on November 6?",
@@ -273,11 +277,11 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.0235,
+      "yes_price": 0.033,
       "no_price": 0.9765,
       "best_bid": 0.009,
-      "best_ask": 0.038,
-      "bid_ask_spread": 0.029,
+      "best_ask": 0.057,
+      "bid_ask_spread": 0.048,
       "volume": 62.0,
       "spread": 0.029,
       "yes_token_id": "55589979912832155208292531908051278455709056721529308532410726253122244066880",
@@ -285,14 +289,14 @@
       "model_prob": 0.1578,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0235,
-      "effective_ask": 0.0235,
-      "market_prob": 0.0235,
-      "belief_prob": 0.1108,
-      "ev": 3.7149,
-      "kelly": 0.0224,
-      "swing_edge": 0.1343,
-      "swing_upside_pct": 571.5,
+      "ask": 0.033,
+      "effective_ask": 0.0429,
+      "market_prob": 0.033,
+      "belief_prob": 0.1141,
+      "ev": 1.6597,
+      "kelly": 0.0186,
+      "swing_edge": 0.1248,
+      "swing_upside_pct": 378.2,
       "sell_value": 0.009,
       "scan6h_model_prob": 0.1578,
       "prev_scan6h_model_prob": 0.1578,
@@ -307,12 +311,12 @@
       "scan6h_yes_price": 0.0235,
       "prev_scan6h_yes_price": 0.0235,
       "prev_yes_price": 0.0235,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0095,
+      "yes_price_10m_pct_change": 40.4,
+      "yes_price_6h_change": 0.0095,
+      "yes_price_6h_pct_change": 40.4,
+      "yes_price_change": 0.0095,
+      "yes_price_pct_change": 40.4,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -320,8 +324,16 @@
           "mp": 0.1578,
           "bid": 0.009,
           "ask": 0.038
+        },
+        {
+          "t": "2026-11-05T20:24:34Z",
+          "p": 0.033,
+          "mp": 0.1578,
+          "bid": 0.009,
+          "ask": 0.057
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0235
     },
     {
       "question": "Will the highest temperature in Denver be between 54-55°F on November 6?",
@@ -378,7 +390,8 @@
           "bid": 0.04,
           "ask": 0.05
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.045
     },
     {
       "question": "Will the highest temperature in Denver be between 56-57°F on November 6?",
@@ -435,7 +448,8 @@
           "bid": 0.21,
           "ask": 0.24
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.225
     },
     {
       "question": "Will the highest temperature in Denver be between 58-59°F on November 6?",
@@ -492,7 +506,8 @@
           "bid": 0.52,
           "ask": 0.53
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.525
     },
     {
       "question": "Will the highest temperature in Denver be between 60-61°F on November 6?",
@@ -549,7 +564,8 @@
           "bid": 0.188,
           "ask": 0.19
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.189
     },
     {
       "question": "Will the highest temperature in Denver be between 62-63°F on November 6?",
@@ -606,7 +622,8 @@
           "bid": 0.006,
           "ask": 0.019
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0125
     },
     {
       "question": "Will the highest temperature in Denver be 64°F or higher on November 6?",
@@ -663,7 +680,8 @@
           "bid": 0.001,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.002
     }
   ],
   "live_allocation": [],
@@ -675,5 +693,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-05T20:24:34.243527+00:00"
 }

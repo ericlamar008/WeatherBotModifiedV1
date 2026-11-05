@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 27°C on November 6?",
@@ -150,7 +151,8 @@
           "bid": 0.001,
           "ask": 0.004
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0025
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 28°C on November 6?",
@@ -159,11 +161,11 @@
         28.0,
         28.0
       ],
-      "yes_price": 0.011,
+      "yes_price": 0.012,
       "no_price": 0.989,
       "best_bid": 0.004,
-      "best_ask": 0.018,
-      "bid_ask_spread": 0.014,
+      "best_ask": 0.02,
+      "bid_ask_spread": 0.016,
       "volume": 342.0,
       "spread": 0.014,
       "yes_token_id": "35875996431398308435411916835006568810631267526903524896421297153488199842820",
@@ -171,14 +173,14 @@
       "model_prob": 0.0172,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.011,
-      "effective_ask": 0.011,
-      "market_prob": 0.011,
-      "belief_prob": 0.015,
-      "ev": 0.3636,
-      "kelly": 0.001,
-      "swing_edge": 0.0062,
-      "swing_upside_pct": 56.4,
+      "ask": 0.012,
+      "effective_ask": 0.012,
+      "market_prob": 0.012,
+      "belief_prob": 0.0154,
+      "ev": 0.2833,
+      "kelly": 0.0009,
+      "swing_edge": 0.0052,
+      "swing_upside_pct": 43.3,
       "sell_value": 0.004,
       "scan6h_model_prob": 0.0172,
       "prev_scan6h_model_prob": 0.0172,
@@ -193,12 +195,12 @@
       "scan6h_yes_price": 0.011,
       "prev_scan6h_yes_price": 0.011,
       "prev_yes_price": 0.011,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.001,
+      "yes_price_10m_pct_change": 9.1,
+      "yes_price_6h_change": 0.001,
+      "yes_price_6h_pct_change": 9.1,
+      "yes_price_change": 0.001,
+      "yes_price_pct_change": 9.1,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -207,7 +209,8 @@
           "bid": 0.004,
           "ask": 0.018
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.011
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 29°C on November 6?",
@@ -216,11 +219,11 @@
         29.0,
         29.0
       ],
-      "yes_price": 0.038,
+      "yes_price": 0.0325,
       "no_price": 0.962,
       "best_bid": 0.03,
-      "best_ask": 0.046,
-      "bid_ask_spread": 0.016,
+      "best_ask": 0.035,
+      "bid_ask_spread": 0.005,
       "volume": 117.0,
       "spread": 0.016,
       "yes_token_id": "16131856433226873201704871467508299849937236526167881587479303233655709327099",
@@ -228,14 +231,14 @@
       "model_prob": 0.044,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.038,
-      "effective_ask": 0.038,
-      "market_prob": 0.038,
-      "belief_prob": 0.0419,
-      "ev": 0.1026,
-      "kelly": 0.001,
-      "swing_edge": 0.006,
-      "swing_upside_pct": 15.8,
+      "ask": 0.0325,
+      "effective_ask": 0.0325,
+      "market_prob": 0.0325,
+      "belief_prob": 0.04,
+      "ev": 0.2308,
+      "kelly": 0.0019,
+      "swing_edge": 0.0115,
+      "swing_upside_pct": 35.4,
       "sell_value": 0.03,
       "scan6h_model_prob": 0.044,
       "prev_scan6h_model_prob": 0.044,
@@ -250,12 +253,12 @@
       "scan6h_yes_price": 0.038,
       "prev_scan6h_yes_price": 0.038,
       "prev_yes_price": 0.038,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0055,
+      "yes_price_10m_pct_change": -14.5,
+      "yes_price_6h_change": -0.0055,
+      "yes_price_6h_pct_change": -14.5,
+      "yes_price_change": -0.0055,
+      "yes_price_pct_change": -14.5,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -263,8 +266,16 @@
           "mp": 0.044,
           "bid": 0.03,
           "ask": 0.046
+        },
+        {
+          "t": "2026-11-05T20:24:34Z",
+          "p": 0.0325,
+          "mp": 0.044,
+          "bid": 0.03,
+          "ask": 0.035
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.038
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 30°C on November 6?",
@@ -273,11 +284,11 @@
         30.0,
         30.0
       ],
-      "yes_price": 0.1,
+      "yes_price": 0.09,
       "no_price": 0.9,
-      "best_bid": 0.09,
+      "best_bid": 0.07,
       "best_ask": 0.11,
-      "bid_ask_spread": 0.02,
+      "bid_ask_spread": 0.04,
       "volume": 818.0,
       "spread": 0.02,
       "yes_token_id": "14464919182140631585030464111052648107724741771687619306345191391275140591512",
@@ -285,14 +296,14 @@
       "model_prob": 0.1076,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1,
-      "effective_ask": 0.1,
-      "market_prob": 0.1,
-      "belief_prob": 0.1049,
-      "ev": 0.049,
-      "kelly": 0.0014,
-      "swing_edge": 0.0076,
-      "swing_upside_pct": 7.6,
+      "ask": 0.09,
+      "effective_ask": 0.0955,
+      "market_prob": 0.09,
+      "belief_prob": 0.1014,
+      "ev": 0.0618,
+      "kelly": 0.0016,
+      "swing_edge": 0.0176,
+      "swing_upside_pct": 19.6,
       "sell_value": 0.09,
       "scan6h_model_prob": 0.1076,
       "prev_scan6h_model_prob": 0.1076,
@@ -307,12 +318,12 @@
       "scan6h_yes_price": 0.1,
       "prev_scan6h_yes_price": 0.1,
       "prev_yes_price": 0.1,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.01,
+      "yes_price_10m_pct_change": -10.0,
+      "yes_price_6h_change": -0.01,
+      "yes_price_6h_pct_change": -10.0,
+      "yes_price_change": -0.01,
+      "yes_price_pct_change": -10.0,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -320,8 +331,16 @@
           "mp": 0.1076,
           "bid": 0.09,
           "ask": 0.11
+        },
+        {
+          "t": "2026-11-05T20:24:34Z",
+          "p": 0.09,
+          "mp": 0.1076,
+          "bid": 0.07,
+          "ask": 0.11
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.1
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 31°C on November 6?",
@@ -378,7 +397,8 @@
           "bid": 0.25,
           "ask": 0.27
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.26
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 32°C on November 6?",
@@ -387,11 +407,11 @@
         32.0,
         32.0
       ],
-      "yes_price": 0.37,
+      "yes_price": 0.375,
       "no_price": 0.63,
       "best_bid": 0.36,
-      "best_ask": 0.38,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.39,
+      "bid_ask_spread": 0.03,
       "volume": 1890.0,
       "spread": 0.02,
       "yes_token_id": "44629440738890563895228425299544174400874178775621780992247176372738656256290",
@@ -399,14 +419,14 @@
       "model_prob": 0.2617,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.37,
-      "effective_ask": 0.37,
-      "market_prob": 0.37,
-      "belief_prob": 0.2996,
-      "ev": -0.1903,
+      "ask": 0.375,
+      "effective_ask": 0.375,
+      "market_prob": 0.375,
+      "belief_prob": 0.3014,
+      "ev": -0.1963,
       "kelly": 0.0,
-      "swing_edge": -0.1083,
-      "swing_upside_pct": -29.3,
+      "swing_edge": -0.1133,
+      "swing_upside_pct": -30.2,
       "sell_value": 0.36,
       "scan6h_model_prob": 0.2617,
       "prev_scan6h_model_prob": 0.2617,
@@ -421,12 +441,12 @@
       "scan6h_yes_price": 0.37,
       "prev_scan6h_yes_price": 0.37,
       "prev_yes_price": 0.37,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.4,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 1.4,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.4,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -434,8 +454,16 @@
           "mp": 0.2617,
           "bid": 0.36,
           "ask": 0.38
+        },
+        {
+          "t": "2026-11-05T20:24:34Z",
+          "p": 0.375,
+          "mp": 0.2617,
+          "bid": 0.36,
+          "ask": 0.39
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.37
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 33°C on November 6?",
@@ -444,11 +472,11 @@
         33.0,
         33.0
       ],
-      "yes_price": 0.19,
+      "yes_price": 0.185,
       "no_price": 0.81,
       "best_bid": 0.17,
-      "best_ask": 0.21,
-      "bid_ask_spread": 0.04,
+      "best_ask": 0.2,
+      "bid_ask_spread": 0.03,
       "volume": 569.0,
       "spread": 0.04,
       "yes_token_id": "71069499456822683363252221556030893864952014698142312292219672730348137702335",
@@ -456,14 +484,14 @@
       "model_prob": 0.1911,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.19,
-      "effective_ask": 0.1955,
-      "market_prob": 0.19,
-      "belief_prob": 0.1907,
-      "ev": -0.0246,
-      "kelly": 0.0,
-      "swing_edge": -0.0044,
-      "swing_upside_pct": -2.3,
+      "ask": 0.185,
+      "effective_ask": 0.185,
+      "market_prob": 0.185,
+      "belief_prob": 0.189,
+      "ev": 0.0216,
+      "kelly": 0.0012,
+      "swing_edge": 0.0061,
+      "swing_upside_pct": 3.3,
       "sell_value": 0.17,
       "scan6h_model_prob": 0.1911,
       "prev_scan6h_model_prob": 0.1911,
@@ -478,12 +506,12 @@
       "scan6h_yes_price": 0.19,
       "prev_scan6h_yes_price": 0.19,
       "prev_yes_price": 0.19,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -2.6,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -2.6,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -2.6,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -491,8 +519,16 @@
           "mp": 0.1911,
           "bid": 0.17,
           "ask": 0.21
+        },
+        {
+          "t": "2026-11-05T20:24:34Z",
+          "p": 0.185,
+          "mp": 0.1911,
+          "bid": 0.17,
+          "ask": 0.2
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.19
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 34°C on November 6?",
@@ -549,7 +585,8 @@
           "bid": 0.004,
           "ask": 0.005
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0045
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 35°C on November 6?",
@@ -606,7 +643,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 36°C or higher on November 6?",
@@ -663,7 +701,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -675,5 +714,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-05T20:24:34.243527+00:00"
 }

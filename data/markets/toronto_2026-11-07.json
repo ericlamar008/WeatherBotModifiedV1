@@ -93,7 +93,8 @@
           "bid": 0.002,
           "ask": 0.019
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0105
     },
     {
       "question": "Will the highest temperature in Toronto be 5°C on November 7?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Toronto be 9°C on November 7?",
@@ -177,8 +179,8 @@
       "belief_prob": 0.1266,
       "ev": 0.0088,
       "kelly": 0.0003,
-      "swing_edge": 0.0046,
-      "swing_upside_pct": 3.7,
+      "swing_edge": 0.0101,
+      "swing_upside_pct": 8.4,
       "sell_value": 0.1,
       "scan6h_model_prob": 0.1301,
       "prev_scan6h_model_prob": 0.1301,
@@ -207,7 +209,8 @@
           "bid": 0.1,
           "ask": 0.14
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.12
     },
     {
       "question": "Will the highest temperature in Toronto be 10°C on November 7?",
@@ -234,8 +237,8 @@
       "belief_prob": 0.3533,
       "ev": -0.1078,
       "kelly": 0.0,
-      "swing_edge": -0.0598,
-      "swing_upside_pct": -15.1,
+      "swing_edge": -0.0488,
+      "swing_upside_pct": -12.7,
       "sell_value": 0.36,
       "scan6h_model_prob": 0.3362,
       "prev_scan6h_model_prob": 0.3362,
@@ -264,7 +267,8 @@
           "bid": 0.36,
           "ask": 0.41
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.385
     },
     {
       "question": "Will the highest temperature in Toronto be 11°C on November 7?",
@@ -291,8 +295,8 @@
       "belief_prob": 0.3199,
       "ev": -0.1102,
       "kelly": 0.0,
-      "swing_edge": -0.0343,
-      "swing_upside_pct": -9.5,
+      "swing_edge": 0.0152,
+      "swing_upside_pct": 4.9,
       "sell_value": 0.25,
       "scan6h_model_prob": 0.3252,
       "prev_scan6h_model_prob": 0.3252,
@@ -321,7 +325,8 @@
           "bid": 0.25,
           "ask": 0.37
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.31
     },
     {
       "question": "Will the highest temperature in Toronto be 12°C on November 7?",
@@ -330,11 +335,11 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.11,
+      "yes_price": 0.105,
       "no_price": 0.89,
-      "best_bid": 0.09,
-      "best_ask": 0.13,
-      "bid_ask_spread": 0.04,
+      "best_bid": 0.07,
+      "best_ask": 0.14,
+      "bid_ask_spread": 0.07,
       "volume": 30.0,
       "spread": 0.04,
       "yes_token_id": "91731872134283138005526917536595960376667572259342284240217794306587128444983",
@@ -342,14 +347,14 @@
       "model_prob": 0.1205,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.11,
-      "effective_ask": 0.1155,
-      "market_prob": 0.11,
-      "belief_prob": 0.1168,
-      "ev": 0.0113,
-      "kelly": 0.0004,
-      "swing_edge": 0.005,
-      "swing_upside_pct": 4.3,
+      "ask": 0.105,
+      "effective_ask": 0.127,
+      "market_prob": 0.105,
+      "belief_prob": 0.1151,
+      "ev": -0.0937,
+      "kelly": 0.0,
+      "swing_edge": 0.0155,
+      "swing_upside_pct": 14.8,
       "sell_value": 0.09,
       "scan6h_model_prob": 0.1205,
       "prev_scan6h_model_prob": 0.1205,
@@ -364,12 +369,12 @@
       "scan6h_yes_price": 0.11,
       "prev_scan6h_yes_price": 0.11,
       "prev_yes_price": 0.11,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -4.5,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -4.5,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -4.5,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -377,8 +382,16 @@
           "mp": 0.1205,
           "bid": 0.09,
           "ask": 0.13
+        },
+        {
+          "t": "2026-11-05T20:24:34Z",
+          "p": 0.105,
+          "mp": 0.1205,
+          "bid": 0.07,
+          "ask": 0.14
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.11
     },
     {
       "question": "Will the highest temperature in Toronto be 14°C or higher on November 7?",
@@ -435,7 +448,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -447,5 +461,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-05T20:24:34.243527+00:00"
 }
