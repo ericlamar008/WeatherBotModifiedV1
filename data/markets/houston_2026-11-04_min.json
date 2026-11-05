@@ -32,10 +32,10 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.49,
+      "yes_price": 0.45,
       "no_price": 0.515,
       "best_bid": null,
-      "best_ask": 0.98,
+      "best_ask": 0.9,
       "bid_ask_spread": 0.0,
       "volume": 15.0,
       "spread": 0.0,
@@ -44,14 +44,14 @@
       "model_prob": 0.4251,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.49,
-      "effective_ask": 0.49,
-      "market_prob": 0.49,
-      "belief_prob": 0.4478,
-      "ev": -0.0861,
+      "ask": 0.45,
+      "effective_ask": 0.45,
+      "market_prob": 0.45,
+      "belief_prob": 0.4338,
+      "ev": -0.036,
       "kelly": 0.0,
-      "swing_edge": -0.0649,
-      "swing_upside_pct": -13.2,
+      "swing_edge": -0.0249,
+      "swing_upside_pct": -5.5,
       "sell_value": null,
       "scan6h_model_prob": 0.4251,
       "prev_scan6h_model_prob": 0.4251,
@@ -65,13 +65,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.485,
       "prev_scan6h_yes_price": 0.485,
-      "prev_yes_price": 0.485,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 1.0,
-      "yes_price_6h_change": 0.005,
-      "yes_price_6h_pct_change": 1.0,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 1.0,
+      "prev_yes_price": 0.49,
+      "yes_price_10m_change": -0.04,
+      "yes_price_10m_pct_change": -8.2,
+      "yes_price_6h_change": -0.035,
+      "yes_price_6h_pct_change": -7.2,
+      "yes_price_change": -0.04,
+      "yes_price_pct_change": -8.2,
       "price_history": [
         {
           "t": "2026-11-05T02:59:56Z",
@@ -156,9 +156,16 @@
           "mp": 0.4251,
           "bid": null,
           "ask": 0.98
+        },
+        {
+          "t": "2026-11-05T07:07:25Z",
+          "p": 0.45,
+          "mp": 0.4251,
+          "bid": null,
+          "ask": 0.9
         }
       ],
-      "prev_10m_yes_price": 0.485
+      "prev_10m_yes_price": 0.49
     },
     {
       "question": "Will the lowest temperature in Houston be between 58-59°F on November 4?",
@@ -167,9 +174,9 @@
         58.0,
         59.0
       ],
-      "yes_price": 0.99,
+      "yes_price": 0.9995,
       "no_price": 0.15,
-      "best_bid": 0.98,
+      "best_bid": 0.999,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 25.0,
@@ -179,14 +186,14 @@
       "model_prob": 0.5749,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.99,
-      "effective_ask": 0.99,
-      "market_prob": 0.99,
-      "belief_prob": 0.7202,
-      "ev": -0.2725,
+      "ask": 0.9995,
+      "effective_ask": 0.9995,
+      "market_prob": 0.9995,
+      "belief_prob": 0.7235,
+      "ev": -0.2761,
       "kelly": 0.0,
-      "swing_edge": -0.4151,
-      "swing_upside_pct": -41.9,
+      "swing_edge": -0.4246,
+      "swing_upside_pct": -42.5,
       "sell_value": 0.701,
       "scan6h_model_prob": 0.5749,
       "prev_scan6h_model_prob": 0.5749,
@@ -200,13 +207,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.85,
       "prev_scan6h_yes_price": 0.85,
-      "prev_yes_price": 0.9845,
-      "yes_price_10m_change": 0.0055,
-      "yes_price_10m_pct_change": 0.6,
-      "yes_price_6h_change": 0.14,
-      "yes_price_6h_pct_change": 16.5,
-      "yes_price_change": 0.0055,
-      "yes_price_pct_change": 0.6,
+      "prev_yes_price": 0.99,
+      "yes_price_10m_change": 0.0095,
+      "yes_price_10m_pct_change": 1.0,
+      "yes_price_6h_change": 0.1495,
+      "yes_price_6h_pct_change": 17.6,
+      "yes_price_change": 0.0095,
+      "yes_price_pct_change": 1.0,
       "price_history": [
         {
           "t": "2026-11-05T02:59:56Z",
@@ -312,9 +319,16 @@
           "mp": 0.5749,
           "bid": 0.98,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-05T07:07:25Z",
+          "p": 0.9995,
+          "mp": 0.5749,
+          "bid": 0.999,
+          "ask": 1.0
         }
       ],
-      "prev_10m_yes_price": 0.9845
+      "prev_10m_yes_price": 0.99
     },
     {
       "question": "Will the lowest temperature in Houston be between 60-61°F on November 4?",
@@ -2508,7 +2522,7 @@
       ]
     }
   ],
-  "last_price_refresh": "2026-11-05T06:52:31.345257+00:00",
+  "last_price_refresh": "2026-11-05T07:07:24.316442+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KHOU",
