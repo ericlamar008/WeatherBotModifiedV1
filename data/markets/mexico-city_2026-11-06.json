@@ -630,11 +630,11 @@
         26.0,
         26.0
       ],
-      "yes_price": 0.11,
+      "yes_price": 0.115,
       "no_price": 0.885,
       "best_bid": 0.1,
-      "best_ask": 0.12,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.13,
+      "bid_ask_spread": 0.03,
       "volume": 1113.0,
       "spread": 0.03,
       "yes_token_id": "80203328925668334424728295129316955611230578109881503934889080580015531831284",
@@ -642,14 +642,14 @@
       "model_prob": 0.1269,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.11,
-      "effective_ask": 0.11,
-      "market_prob": 0.11,
-      "belief_prob": 0.121,
-      "ev": 0.1,
-      "kelly": 0.0031,
-      "swing_edge": 0.0169,
-      "swing_upside_pct": 15.4,
+      "ask": 0.115,
+      "effective_ask": 0.115,
+      "market_prob": 0.115,
+      "belief_prob": 0.1227,
+      "ev": 0.067,
+      "kelly": 0.0022,
+      "swing_edge": 0.0119,
+      "swing_upside_pct": 10.3,
       "sell_value": 0.1,
       "scan6h_model_prob": 0.1269,
       "prev_scan6h_model_prob": 0.1269,
@@ -663,13 +663,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.115,
       "prev_scan6h_yes_price": 0.115,
-      "prev_yes_price": 0.115,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -4.3,
+      "prev_yes_price": 0.11,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 4.5,
       "yes_price_6h_change": -0.005,
       "yes_price_6h_pct_change": -4.3,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -4.3,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 4.5,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -684,9 +684,16 @@
           "mp": 0.1269,
           "bid": 0.1,
           "ask": 0.12
+        },
+        {
+          "t": "2026-11-05T21:07:22Z",
+          "p": 0.115,
+          "mp": 0.1269,
+          "bid": 0.1,
+          "ask": 0.13
         }
       ],
-      "prev_10m_yes_price": 0.115
+      "prev_10m_yes_price": 0.11
     },
     {
       "question": "Will the highest temperature in Mexico City be 27°C or higher on November 6?",
@@ -781,5 +788,5 @@
   "confidence": 0.0707,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-05T20:52:27.202382+00:00"
+  "last_price_refresh": "2026-11-05T21:07:21.383231+00:00"
 }
