@@ -277,11 +277,11 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.033,
+      "yes_price": 0.014,
       "no_price": 0.9765,
       "best_bid": 0.009,
-      "best_ask": 0.057,
-      "bid_ask_spread": 0.048,
+      "best_ask": 0.019,
+      "bid_ask_spread": 0.01,
       "volume": 62.0,
       "spread": 0.029,
       "yes_token_id": "55589979912832155208292531908051278455709056721529308532410726253122244066880",
@@ -289,14 +289,14 @@
       "model_prob": 0.1578,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.033,
-      "effective_ask": 0.0429,
-      "market_prob": 0.033,
-      "belief_prob": 0.1141,
-      "ev": 1.6597,
-      "kelly": 0.0186,
-      "swing_edge": 0.1248,
-      "swing_upside_pct": 378.2,
+      "ask": 0.014,
+      "effective_ask": 0.014,
+      "market_prob": 0.014,
+      "belief_prob": 0.1075,
+      "ev": 6.6786,
+      "kelly": 0.0237,
+      "swing_edge": 0.1438,
+      "swing_upside_pct": 1027.1,
       "sell_value": 0.009,
       "scan6h_model_prob": 0.1578,
       "prev_scan6h_model_prob": 0.1578,
@@ -310,13 +310,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0235,
       "prev_scan6h_yes_price": 0.0235,
-      "prev_yes_price": 0.0235,
-      "yes_price_10m_change": 0.0095,
-      "yes_price_10m_pct_change": 40.4,
-      "yes_price_6h_change": 0.0095,
-      "yes_price_6h_pct_change": 40.4,
-      "yes_price_change": 0.0095,
-      "yes_price_pct_change": 40.4,
+      "prev_yes_price": 0.033,
+      "yes_price_10m_change": -0.019,
+      "yes_price_10m_pct_change": -57.6,
+      "yes_price_6h_change": -0.0095,
+      "yes_price_6h_pct_change": -40.4,
+      "yes_price_change": -0.019,
+      "yes_price_pct_change": -57.6,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -331,9 +331,16 @@
           "mp": 0.1578,
           "bid": 0.009,
           "ask": 0.057
+        },
+        {
+          "t": "2026-11-05T20:37:24Z",
+          "p": 0.014,
+          "mp": 0.1578,
+          "bid": 0.009,
+          "ask": 0.019
         }
       ],
-      "prev_10m_yes_price": 0.0235
+      "prev_10m_yes_price": 0.033
     },
     {
       "question": "Will the highest temperature in Denver be between 54-55°F on November 6?",
@@ -694,5 +701,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-05T20:24:34.243527+00:00"
+  "last_price_refresh": "2026-11-05T20:37:23.961325+00:00"
 }
