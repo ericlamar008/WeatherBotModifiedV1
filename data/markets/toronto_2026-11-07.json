@@ -538,11 +538,11 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.105,
+      "yes_price": 0.11,
       "no_price": 0.89,
       "best_bid": 0.09,
-      "best_ask": 0.12,
-      "bid_ask_spread": 0.03,
+      "best_ask": 0.13,
+      "bid_ask_spread": 0.04,
       "volume": 30.0,
       "spread": 0.04,
       "yes_token_id": "91731872134283138005526917536595960376667572259342284240217794306587128444983",
@@ -550,14 +550,14 @@
       "model_prob": 0.1205,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.105,
-      "effective_ask": 0.105,
-      "market_prob": 0.105,
-      "belief_prob": 0.1151,
-      "ev": 0.0962,
-      "kelly": 0.0028,
-      "swing_edge": 0.0155,
-      "swing_upside_pct": 14.8,
+      "ask": 0.11,
+      "effective_ask": 0.1155,
+      "market_prob": 0.11,
+      "belief_prob": 0.1168,
+      "ev": 0.0113,
+      "kelly": 0.0004,
+      "swing_edge": 0.0105,
+      "swing_upside_pct": 9.5,
       "sell_value": 0.09,
       "scan6h_model_prob": 0.1205,
       "prev_scan6h_model_prob": 0.1205,
@@ -571,13 +571,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.11,
       "prev_scan6h_yes_price": 0.11,
-      "prev_yes_price": 0.1,
+      "prev_yes_price": 0.105,
       "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 5.0,
+      "yes_price_10m_pct_change": 4.8,
       "yes_price_6h_change": -0.005,
       "yes_price_6h_pct_change": -4.5,
       "yes_price_change": 0.005,
-      "yes_price_pct_change": 5.0,
+      "yes_price_pct_change": 4.8,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -641,9 +641,16 @@
           "mp": 0.1205,
           "bid": 0.09,
           "ask": 0.12
+        },
+        {
+          "t": "2026-11-05T22:37:22Z",
+          "p": 0.11,
+          "mp": 0.1205,
+          "bid": 0.09,
+          "ask": 0.13
         }
       ],
-      "prev_10m_yes_price": 0.1
+      "prev_10m_yes_price": 0.105
     },
     {
       "question": "Will the highest temperature in Toronto be 14°C or higher on November 7?",
@@ -749,5 +756,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-05T22:22:31.295651+00:00"
+  "last_price_refresh": "2026-11-05T22:37:21.556983+00:00"
 }
