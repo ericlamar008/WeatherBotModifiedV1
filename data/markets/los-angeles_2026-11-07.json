@@ -120,6 +120,13 @@
           "mp": 0.0125,
           "bid": 0.002,
           "ask": 0.038
+        },
+        {
+          "t": "2026-11-05T22:22:32Z",
+          "p": 0.02,
+          "mp": 0.0125,
+          "bid": 0.002,
+          "ask": 0.038
         }
       ],
       "prev_10m_yes_price": 0.02
@@ -202,6 +209,13 @@
         },
         {
           "t": "2026-11-05T21:52:28Z",
+          "p": 0.0025,
+          "mp": 0.013,
+          "bid": 0.001,
+          "ask": 0.004
+        },
+        {
+          "t": "2026-11-05T22:22:32Z",
           "p": 0.0025,
           "mp": 0.013,
           "bid": 0.001,
@@ -292,6 +306,13 @@
           "mp": 0.0292,
           "bid": 0.001,
           "ask": 0.01
+        },
+        {
+          "t": "2026-11-05T22:22:32Z",
+          "p": 0.0055,
+          "mp": 0.0292,
+          "bid": 0.001,
+          "ask": 0.01
         }
       ],
       "prev_10m_yes_price": 0.0055
@@ -303,11 +324,11 @@
         82.0,
         83.0
       ],
-      "yes_price": 0.28,
+      "yes_price": 0.285,
       "no_price": 0.72,
       "best_bid": 0.26,
-      "best_ask": 0.3,
-      "bid_ask_spread": 0.04,
+      "best_ask": 0.31,
+      "bid_ask_spread": 0.05,
       "volume": 52.0,
       "spread": 0.04,
       "yes_token_id": "82166228799962416288065142850318434794194639319972155751465692132190115870461",
@@ -315,14 +336,14 @@
       "model_prob": 0.2061,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.28,
-      "effective_ask": 0.2855,
-      "market_prob": 0.28,
-      "belief_prob": 0.232,
-      "ev": -0.1874,
+      "ask": 0.285,
+      "effective_ask": 0.296,
+      "market_prob": 0.285,
+      "belief_prob": 0.2337,
+      "ev": -0.2105,
       "kelly": 0.0,
-      "swing_edge": -0.0739,
-      "swing_upside_pct": -26.4,
+      "swing_edge": -0.0789,
+      "swing_upside_pct": -27.7,
       "sell_value": 0.26,
       "scan6h_model_prob": 0.2061,
       "prev_scan6h_model_prob": 0.2061,
@@ -336,13 +357,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.28,
       "prev_scan6h_yes_price": 0.28,
-      "prev_yes_price": 0.285,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.8,
+      "prev_yes_price": 0.28,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.8,
       "yes_price_6h_change": 0.005,
       "yes_price_6h_pct_change": 1.8,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.8,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.8,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -385,9 +406,16 @@
           "mp": 0.2061,
           "bid": 0.26,
           "ask": 0.3
+        },
+        {
+          "t": "2026-11-05T22:22:32Z",
+          "p": 0.285,
+          "mp": 0.2061,
+          "bid": 0.26,
+          "ask": 0.31
         }
       ],
-      "prev_10m_yes_price": 0.285
+      "prev_10m_yes_price": 0.28
     },
     {
       "question": "Will the highest temperature in Los Angeles be 92°F or higher on November 7?",
@@ -471,6 +499,13 @@
           "mp": 0.0352,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-05T22:22:32Z",
+          "p": 0.0005,
+          "mp": 0.0352,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -503,5 +538,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-05T22:07:24.302054+00:00"
+  "last_price_refresh": "2026-11-05T22:22:31.295651+00:00"
 }

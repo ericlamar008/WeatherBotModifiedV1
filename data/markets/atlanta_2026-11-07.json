@@ -45,11 +45,11 @@
         64.0,
         65.0
       ],
-      "yes_price": 0.395,
+      "yes_price": 0.405,
       "no_price": 0.595,
-      "best_bid": 0.37,
+      "best_bid": 0.39,
       "best_ask": 0.42,
-      "bid_ask_spread": 0.05,
+      "bid_ask_spread": 0.03,
       "volume": 213.0,
       "spread": 0.05,
       "yes_token_id": "109004316001497344961575347441451570176300555926773488019015312849115873346610",
@@ -57,14 +57,14 @@
       "model_prob": 0.389,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.395,
-      "effective_ask": 0.406,
-      "market_prob": 0.395,
-      "belief_prob": 0.3911,
-      "ev": -0.0367,
+      "ask": 0.405,
+      "effective_ask": 0.405,
+      "market_prob": 0.405,
+      "belief_prob": 0.3946,
+      "ev": -0.0257,
       "kelly": 0.0,
-      "swing_edge": -0.006,
-      "swing_upside_pct": -1.5,
+      "swing_edge": -0.016,
+      "swing_upside_pct": -4.0,
       "sell_value": 0.38,
       "scan6h_model_prob": 0.389,
       "prev_scan6h_model_prob": 0.389,
@@ -78,13 +78,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.405,
       "prev_scan6h_yes_price": 0.405,
-      "prev_yes_price": 0.405,
-      "yes_price_10m_change": -0.01,
-      "yes_price_10m_pct_change": -2.5,
+      "prev_yes_price": 0.395,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 2.5,
       "yes_price_6h_change": -0.01,
       "yes_price_6h_pct_change": -2.5,
-      "yes_price_change": -0.01,
-      "yes_price_pct_change": -2.5,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 2.5,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -127,9 +127,16 @@
           "mp": 0.389,
           "bid": 0.37,
           "ask": 0.42
+        },
+        {
+          "t": "2026-11-05T22:22:32Z",
+          "p": 0.405,
+          "mp": 0.389,
+          "bid": 0.39,
+          "ask": 0.42
         }
       ],
-      "prev_10m_yes_price": 0.405
+      "prev_10m_yes_price": 0.395
     },
     {
       "question": "Will the highest temperature in Atlanta be between 66-67°F on November 7?",
@@ -209,6 +216,13 @@
         },
         {
           "t": "2026-11-05T21:52:28Z",
+          "p": 0.435,
+          "mp": 0.1525,
+          "bid": 0.37,
+          "ask": 0.5
+        },
+        {
+          "t": "2026-11-05T22:22:32Z",
           "p": 0.435,
           "mp": 0.1525,
           "bid": 0.37,
@@ -299,6 +313,13 @@
           "mp": 0.0007,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-05T22:22:32Z",
+          "p": 0.0005,
+          "mp": 0.0007,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -385,6 +406,13 @@
           "mp": 0.0006,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-05T22:22:32Z",
+          "p": 0.0005,
+          "mp": 0.0006,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -417,5 +445,5 @@
   "confidence": 0.032,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-05T22:07:24.302054+00:00"
+  "last_price_refresh": "2026-11-05T22:22:31.295651+00:00"
 }
