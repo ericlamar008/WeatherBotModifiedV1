@@ -364,10 +364,10 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.155,
+      "yes_price": 0.41,
       "no_price": 0.535,
       "best_bid": null,
-      "best_ask": 0.31,
+      "best_ask": 0.82,
       "bid_ask_spread": 0.0,
       "volume": 17.0,
       "spread": 0.0,
@@ -376,14 +376,14 @@
       "model_prob": 0.3548,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.155,
-      "effective_ask": 0.155,
-      "market_prob": 0.155,
-      "belief_prob": 0.2849,
-      "ev": 0.8381,
-      "kelly": 0.0384,
-      "swing_edge": 0.1998,
-      "swing_upside_pct": 128.9,
+      "ask": 0.41,
+      "effective_ask": 0.41,
+      "market_prob": 0.41,
+      "belief_prob": 0.3741,
+      "ev": -0.0876,
+      "kelly": 0.0,
+      "swing_edge": -0.0552,
+      "swing_upside_pct": -13.5,
       "sell_value": null,
       "scan6h_model_prob": 0.3548,
       "prev_scan6h_model_prob": 0.3548,
@@ -397,13 +397,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.465,
       "prev_scan6h_yes_price": 0.465,
-      "prev_yes_price": 0.165,
-      "yes_price_10m_change": -0.01,
-      "yes_price_10m_pct_change": -6.1,
-      "yes_price_6h_change": -0.31,
-      "yes_price_6h_pct_change": -66.7,
-      "yes_price_change": -0.01,
-      "yes_price_pct_change": -6.1,
+      "prev_yes_price": 0.155,
+      "yes_price_10m_change": 0.255,
+      "yes_price_10m_pct_change": 164.5,
+      "yes_price_6h_change": -0.055,
+      "yes_price_6h_pct_change": -11.8,
+      "yes_price_change": 0.255,
+      "yes_price_pct_change": 164.5,
       "price_history": [
         {
           "t": "2026-11-06T14:26:18Z",
@@ -530,9 +530,16 @@
           "mp": 0.3548,
           "bid": null,
           "ask": 0.31
+        },
+        {
+          "t": "2026-11-06T19:37:35Z",
+          "p": 0.41,
+          "mp": 0.3548,
+          "bid": null,
+          "ask": 0.82
         }
       ],
-      "prev_10m_yes_price": 0.165
+      "prev_10m_yes_price": 0.155
     },
     {
       "question": "Will the lowest temperature in Dallas be between 56-57°F on November 6?",
@@ -1712,5 +1719,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T19:22:35.313468+00:00"
+  "last_price_refresh": "2026-11-06T19:37:33.251417+00:00"
 }
