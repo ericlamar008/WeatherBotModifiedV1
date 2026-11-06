@@ -387,11 +387,11 @@
         82.0,
         83.0
       ],
-      "yes_price": 0.31,
+      "yes_price": 0.325,
       "no_price": 0.72,
-      "best_bid": 0.24,
-      "best_ask": 0.38,
-      "bid_ask_spread": 0.14,
+      "best_bid": 0.25,
+      "best_ask": 0.4,
+      "bid_ask_spread": 0.15,
       "volume": 52.0,
       "spread": 0.04,
       "yes_token_id": "82166228799962416288065142850318434794194639319972155751465692132190115870461",
@@ -399,14 +399,14 @@
       "model_prob": 0.2061,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.31,
-      "effective_ask": 0.3705,
-      "market_prob": 0.31,
-      "belief_prob": 0.2425,
-      "ev": -0.3455,
+      "ask": 0.325,
+      "effective_ask": 0.391,
+      "market_prob": 0.325,
+      "belief_prob": 0.2477,
+      "ev": -0.3665,
       "kelly": 0.0,
-      "swing_edge": -0.1039,
-      "swing_upside_pct": -33.5,
+      "swing_edge": -0.1189,
+      "swing_upside_pct": -36.6,
       "sell_value": 0.26,
       "scan6h_model_prob": 0.2061,
       "prev_scan6h_model_prob": 0.2061,
@@ -420,13 +420,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.28,
       "prev_scan6h_yes_price": 0.28,
-      "prev_yes_price": 0.29,
-      "yes_price_10m_change": 0.02,
-      "yes_price_10m_pct_change": 6.9,
-      "yes_price_6h_change": 0.03,
-      "yes_price_6h_pct_change": 10.7,
-      "yes_price_change": 0.02,
-      "yes_price_pct_change": 6.9,
+      "prev_yes_price": 0.31,
+      "yes_price_10m_change": 0.015,
+      "yes_price_10m_pct_change": 4.8,
+      "yes_price_6h_change": 0.045,
+      "yes_price_6h_pct_change": 16.1,
+      "yes_price_change": 0.015,
+      "yes_price_pct_change": 4.8,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -504,9 +504,16 @@
           "mp": 0.2061,
           "bid": 0.24,
           "ask": 0.38
+        },
+        {
+          "t": "2026-11-06T00:07:23Z",
+          "p": 0.325,
+          "mp": 0.2061,
+          "bid": 0.25,
+          "ask": 0.4
         }
       ],
-      "prev_10m_yes_price": 0.29
+      "prev_10m_yes_price": 0.31
     },
     {
       "question": "Will the highest temperature in Los Angeles be 92°F or higher on November 7?",
@@ -650,5 +657,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-05T23:52:25.224318+00:00"
+  "last_price_refresh": "2026-11-06T00:07:22.966586+00:00"
 }
