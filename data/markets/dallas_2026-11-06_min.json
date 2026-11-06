@@ -47,10 +47,10 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.165,
+      "yes_price": 0.17,
       "no_price": 0.835,
       "best_bid": null,
-      "best_ask": 0.33,
+      "best_ask": 0.34,
       "bid_ask_spread": 0.0,
       "volume": 12.0,
       "spread": 0.0,
@@ -59,18 +59,18 @@
       "model_prob": 0.154,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.165,
-      "effective_ask": 0.165,
-      "market_prob": 0.165,
-      "belief_prob": 0.1578,
-      "ev": -0.0436,
+      "ask": 0.17,
+      "effective_ask": 0.17,
+      "market_prob": 0.17,
+      "belief_prob": 0.1596,
+      "ev": -0.0612,
       "kelly": 0.0,
-      "swing_edge": -0.011,
-      "swing_upside_pct": -6.7,
+      "swing_edge": -0.016,
+      "swing_upside_pct": -9.4,
       "sell_value": null,
       "prev_10m_model_prob": 0.0307,
-      "model_prob_10m_change": 0.1233,
-      "model_prob_10m_pct_change": 401.6,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.0307,
       "model_prob_6h_change": 0.1233,
       "model_prob_6h_pct_change": 401.6,
@@ -78,16 +78,16 @@
       "prev_model_prob": 0.0307,
       "model_prob_change": 0.1233,
       "model_prob_pct_change": 401.6,
-      "prev_10m_yes_price": 0.17,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -2.9,
+      "prev_10m_yes_price": 0.165,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 3.0,
       "prev_scan6h_yes_price": 0.31,
-      "yes_price_6h_change": -0.145,
-      "yes_price_6h_pct_change": -46.8,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 3.0,
       "scan6h_yes_price": 0.165,
-      "prev_yes_price": 0.31,
-      "yes_price_change": -0.145,
-      "yes_price_pct_change": -46.8,
+      "prev_yes_price": 0.165,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 3.0,
       "price_history": [
         {
           "t": "2026-11-06T08:24:19Z",
@@ -242,6 +242,13 @@
           "mp": 0.154,
           "bid": null,
           "ask": 0.33
+        },
+        {
+          "t": "2026-11-06T14:29:35Z",
+          "p": 0.17,
+          "mp": 0.154,
+          "bid": null,
+          "ask": 0.34
         }
       ]
     },
@@ -300,7 +307,8 @@
           "bid": null,
           "ask": 0.93
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.465
     },
     {
       "question": "Will the lowest temperature in Dallas be between 56-57°F on November 6?",
@@ -357,7 +365,8 @@
           "bid": 0.75,
           "ask": 1.0
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.875
     },
     {
       "question": "Will the lowest temperature in Dallas be between 58-59°F on November 6?",
@@ -381,7 +390,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -414,7 +423,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Dallas be between 60-61°F on November 6?",
@@ -438,7 +448,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -471,7 +481,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Dallas be between 62-63°F on November 6?",
@@ -495,7 +506,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -658,7 +669,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -821,7 +832,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -973,5 +984,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T14:07:25.344784+00:00"
+  "last_price_refresh": "2026-11-06T14:29:34.083423+00:00"
 }
