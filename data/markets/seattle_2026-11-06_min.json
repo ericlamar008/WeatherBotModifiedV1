@@ -415,11 +415,11 @@
         44.0,
         45.0
       ],
-      "yes_price": 0.402,
+      "yes_price": 0.4745,
       "no_price": 0.964,
       "best_bid": 0.001,
-      "best_ask": 0.803,
-      "bid_ask_spread": 0.802,
+      "best_ask": 0.948,
+      "bid_ask_spread": 0.947,
       "volume": 1.0,
       "spread": 0.07,
       "yes_token_id": "95750386041673802951742756795721497258284120552572249239977225986804342582621",
@@ -427,14 +427,14 @@
       "model_prob": 0.077,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.402,
-      "effective_ask": 0.482,
-      "market_prob": 0.402,
-      "belief_prob": 0.1908,
-      "ev": -0.6041,
+      "ask": 0.4745,
+      "effective_ask": 0.5545,
+      "market_prob": 0.4745,
+      "belief_prob": 0.2161,
+      "ev": -0.6103,
       "kelly": 0.0,
-      "swing_edge": -0.325,
-      "swing_upside_pct": -80.8,
+      "swing_edge": -0.3975,
+      "swing_upside_pct": -83.8,
       "sell_value": 0.001,
       "prev_10m_model_prob": 0.0875,
       "model_prob_10m_change": 0.0,
@@ -446,16 +446,16 @@
       "prev_model_prob": 0.0875,
       "model_prob_change": -0.0105,
       "model_prob_pct_change": -12.0,
-      "prev_10m_yes_price": 0.4175,
-      "yes_price_10m_change": -0.0155,
-      "yes_price_10m_pct_change": -3.7,
+      "prev_10m_yes_price": 0.402,
+      "yes_price_10m_change": 0.0725,
+      "yes_price_10m_pct_change": 18.0,
       "prev_scan6h_yes_price": 0.036,
-      "yes_price_6h_change": 0.366,
-      "yes_price_6h_pct_change": 1016.7,
+      "yes_price_6h_change": 0.4385,
+      "yes_price_6h_pct_change": 1218.1,
       "scan6h_yes_price": 0.036,
-      "prev_yes_price": 0.4175,
-      "yes_price_change": -0.0155,
-      "yes_price_pct_change": -3.7,
+      "prev_yes_price": 0.402,
+      "yes_price_change": 0.0725,
+      "yes_price_pct_change": 18.0,
       "price_history": [
         {
           "t": "2026-11-06T08:24:18Z",
@@ -589,6 +589,13 @@
           "mp": 0.077,
           "bid": 0.001,
           "ask": 0.803
+        },
+        {
+          "t": "2026-11-06T15:37:33Z",
+          "p": 0.4745,
+          "mp": 0.077,
+          "bid": 0.001,
+          "ask": 0.948
         }
       ]
     },
@@ -1086,10 +1093,10 @@
         50.0,
         51.0
       ],
-      "yes_price": 0.0045,
+      "yes_price": 0.0005,
       "no_price": 0.9995,
       "best_bid": null,
-      "best_ask": 0.009,
+      "best_ask": 0.001,
       "bid_ask_spread": 0.0,
       "volume": 220.0,
       "spread": 0.0,
@@ -1098,13 +1105,13 @@
       "model_prob": 0.0,
       "intraday_eliminated": true,
       "side": "YES",
-      "ask": 0.0045,
-      "effective_ask": 0.0045,
-      "market_prob": 0.0045,
-      "belief_prob": 0.0016,
+      "ask": 0.0005,
+      "effective_ask": 0.0005,
+      "market_prob": 0.0005,
+      "belief_prob": 0.0002,
       "ev": -0.6444,
       "kelly": 0.0,
-      "swing_edge": -0.0045,
+      "swing_edge": -0.0005,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "scan6h_model_prob": 0.0,
@@ -1119,13 +1126,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0005,
       "prev_scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.001,
-      "yes_price_10m_change": 0.0035,
-      "yes_price_10m_pct_change": 0.4,
+      "prev_yes_price": 0.0045,
+      "yes_price_10m_change": -0.004,
+      "yes_price_10m_pct_change": -88.9,
       "yes_price_6h_change": 0.004,
       "yes_price_6h_pct_change": 0.4,
-      "yes_price_change": 0.0035,
-      "yes_price_pct_change": 0.4,
+      "yes_price_change": -0.004,
+      "yes_price_pct_change": -88.9,
       "price_history": [
         {
           "t": "2026-11-06T14:25:29Z",
@@ -1154,9 +1161,16 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.009
+        },
+        {
+          "t": "2026-11-06T15:37:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
-      "prev_10m_yes_price": 0.001
+      "prev_10m_yes_price": 0.0045
     },
     {
       "question": "Will the lowest temperature in Seattle be between 52-53°F on November 6?",
@@ -1838,5 +1852,5 @@
   "confidence": 0.2153,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T15:22:38.180415+00:00"
+  "last_price_refresh": "2026-11-06T15:37:31.874764+00:00"
 }
