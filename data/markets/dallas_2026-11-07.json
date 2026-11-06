@@ -371,11 +371,11 @@
         64.0,
         65.0
       ],
-      "yes_price": 0.25,
+      "yes_price": 0.245,
       "no_price": 0.75,
       "best_bid": 0.23,
-      "best_ask": 0.27,
-      "bid_ask_spread": 0.04,
+      "best_ask": 0.26,
+      "bid_ask_spread": 0.03,
       "volume": 54.0,
       "spread": 0.14,
       "yes_token_id": "70882090301832954421304553374006667910834283269269263339537295476739651918050",
@@ -383,14 +383,14 @@
       "model_prob": 0.1148,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.25,
-      "effective_ask": 0.2555,
-      "market_prob": 0.25,
-      "belief_prob": 0.1621,
-      "ev": -0.3656,
+      "ask": 0.245,
+      "effective_ask": 0.245,
+      "market_prob": 0.245,
+      "belief_prob": 0.1604,
+      "ev": -0.3453,
       "kelly": 0.0,
-      "swing_edge": -0.1352,
-      "swing_upside_pct": -54.1,
+      "swing_edge": -0.1302,
+      "swing_upside_pct": -53.1,
       "sell_value": 0.18,
       "scan6h_model_prob": 0.1148,
       "prev_scan6h_model_prob": 0.1148,
@@ -404,11 +404,11 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.25,
       "prev_scan6h_yes_price": 0.25,
-      "prev_yes_price": 0.255,
+      "prev_yes_price": 0.25,
       "yes_price_10m_change": -0.005,
       "yes_price_10m_pct_change": -2.0,
-      "yes_price_6h_change": 0.005,
-      "yes_price_6h_pct_change": 2.0,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -2.0,
       "yes_price_change": -0.005,
       "yes_price_pct_change": -2.0,
       "price_history": [
@@ -544,9 +544,16 @@
           "mp": 0.1148,
           "bid": 0.23,
           "ask": 0.27
+        },
+        {
+          "t": "2026-11-06T02:07:25Z",
+          "p": 0.245,
+          "mp": 0.1148,
+          "bid": 0.23,
+          "ask": 0.26
         }
       ],
-      "prev_10m_yes_price": 0.255
+      "prev_10m_yes_price": 0.25
     },
     {
       "question": "Will the highest temperature in Dallas be between 66-67°F on November 7?",
@@ -1197,5 +1204,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T01:52:26.820759+00:00"
+  "last_price_refresh": "2026-11-06T02:07:24.986827+00:00"
 }

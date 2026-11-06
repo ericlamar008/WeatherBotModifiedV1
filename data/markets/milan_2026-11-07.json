@@ -649,11 +649,11 @@
         11.0,
         11.0
       ],
-      "yes_price": 0.415,
+      "yes_price": 0.45,
       "no_price": 0.525,
-      "best_bid": 0.36,
+      "best_bid": 0.43,
       "best_ask": 0.47,
-      "bid_ask_spread": 0.11,
+      "bid_ask_spread": 0.04,
       "volume": 114.0,
       "spread": 0.03,
       "yes_token_id": "96253026152612847398297702326222305116880012797320523732289256530951329214248",
@@ -661,14 +661,14 @@
       "model_prob": 0.2023,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.415,
-      "effective_ask": 0.459,
-      "market_prob": 0.415,
-      "belief_prob": 0.2767,
-      "ev": -0.3972,
+      "ask": 0.45,
+      "effective_ask": 0.4555,
+      "market_prob": 0.45,
+      "belief_prob": 0.289,
+      "ev": -0.3655,
       "kelly": 0.0,
-      "swing_edge": -0.2127,
-      "swing_upside_pct": -51.3,
+      "swing_edge": -0.2477,
+      "swing_upside_pct": -55.0,
       "sell_value": 0.46,
       "scan6h_model_prob": 0.2023,
       "prev_scan6h_model_prob": 0.2023,
@@ -682,13 +682,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.475,
       "prev_scan6h_yes_price": 0.475,
-      "prev_yes_price": 0.48,
-      "yes_price_10m_change": -0.065,
-      "yes_price_10m_pct_change": -13.5,
-      "yes_price_6h_change": -0.06,
-      "yes_price_6h_pct_change": -12.6,
-      "yes_price_change": -0.065,
-      "yes_price_pct_change": -13.5,
+      "prev_yes_price": 0.415,
+      "yes_price_10m_change": 0.035,
+      "yes_price_10m_pct_change": 8.4,
+      "yes_price_6h_change": -0.025,
+      "yes_price_6h_pct_change": -5.3,
+      "yes_price_change": 0.035,
+      "yes_price_pct_change": 8.4,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -794,9 +794,16 @@
           "mp": 0.2023,
           "bid": 0.36,
           "ask": 0.47
+        },
+        {
+          "t": "2026-11-06T02:07:25Z",
+          "p": 0.45,
+          "mp": 0.2023,
+          "bid": 0.43,
+          "ask": 0.47
         }
       ],
-      "prev_10m_yes_price": 0.48
+      "prev_10m_yes_price": 0.415
     },
     {
       "question": "Will the highest temperature in Milan be 12°C on November 7?",
@@ -1128,5 +1135,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T01:52:26.820759+00:00"
+  "last_price_refresh": "2026-11-06T02:07:24.986827+00:00"
 }

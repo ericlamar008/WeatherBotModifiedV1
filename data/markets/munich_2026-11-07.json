@@ -1052,11 +1052,11 @@
         9.0,
         9.0
       ],
-      "yes_price": 0.2,
+      "yes_price": 0.21,
       "no_price": 0.84,
       "best_bid": 0.19,
-      "best_ask": 0.21,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.23,
+      "bid_ask_spread": 0.04,
       "volume": 101.0,
       "spread": 0.04,
       "yes_token_id": "21329637916180408714762959067406340228509427408091631890131778215413121717714",
@@ -1064,14 +1064,14 @@
       "model_prob": 0.3066,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.2,
-      "effective_ask": 0.2,
-      "market_prob": 0.2,
-      "belief_prob": 0.2693,
-      "ev": 0.3465,
-      "kelly": 0.0217,
-      "swing_edge": 0.1066,
-      "swing_upside_pct": 53.3,
+      "ask": 0.21,
+      "effective_ask": 0.2155,
+      "market_prob": 0.21,
+      "belief_prob": 0.2728,
+      "ev": 0.2659,
+      "kelly": 0.0183,
+      "swing_edge": 0.0966,
+      "swing_upside_pct": 46.0,
       "sell_value": 0.14,
       "scan6h_model_prob": 0.3066,
       "prev_scan6h_model_prob": 0.3066,
@@ -1085,13 +1085,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.16,
       "prev_scan6h_yes_price": 0.16,
-      "prev_yes_price": 0.195,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 2.6,
-      "yes_price_6h_change": 0.04,
-      "yes_price_6h_pct_change": 25.0,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 2.6,
+      "prev_yes_price": 0.2,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 5.0,
+      "yes_price_6h_change": 0.05,
+      "yes_price_6h_pct_change": 31.2,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 5.0,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -1218,9 +1218,16 @@
           "mp": 0.3066,
           "bid": 0.19,
           "ask": 0.21
+        },
+        {
+          "t": "2026-11-06T02:07:25Z",
+          "p": 0.21,
+          "mp": 0.3066,
+          "bid": 0.19,
+          "ask": 0.23
         }
       ],
-      "prev_10m_yes_price": 0.195
+      "prev_10m_yes_price": 0.2
     },
     {
       "question": "Will the highest temperature in Munich be 10°C on November 7?",
@@ -1850,5 +1857,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T01:52:26.820759+00:00"
+  "last_price_refresh": "2026-11-06T02:07:24.986827+00:00"
 }

@@ -755,11 +755,11 @@
         70.0,
         71.0
       ],
-      "yes_price": 0.9765,
+      "yes_price": 0.9785,
       "no_price": 0.0155,
-      "best_bid": 0.957,
+      "best_bid": 0.961,
       "best_ask": 0.996,
-      "bid_ask_spread": 0.039,
+      "bid_ask_spread": 0.035,
       "volume": 7792.0,
       "spread": 0.009,
       "yes_token_id": "58970503674367762118171080831429441019580756905520692285806892911037497703819",
@@ -767,13 +767,13 @@
       "model_prob": 0.1858,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.9765,
-      "effective_ask": 0.9815,
-      "market_prob": 0.9765,
-      "belief_prob": 0.4625,
-      "ev": -0.5288,
+      "ask": 0.9785,
+      "effective_ask": 0.9813,
+      "market_prob": 0.9785,
+      "belief_prob": 0.4632,
+      "ev": -0.528,
       "kelly": 0.0,
-      "swing_edge": -0.7907,
+      "swing_edge": -0.7927,
       "swing_upside_pct": -81.0,
       "sell_value": 0.98,
       "scan6h_model_prob": 0.1858,
@@ -788,13 +788,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.9845,
       "prev_scan6h_yes_price": 0.9845,
-      "prev_yes_price": 0.9925,
-      "yes_price_10m_change": -0.016,
-      "yes_price_10m_pct_change": -1.6,
-      "yes_price_6h_change": -0.008,
-      "yes_price_6h_pct_change": -0.8,
-      "yes_price_change": -0.016,
-      "yes_price_pct_change": -1.6,
+      "prev_yes_price": 0.9765,
+      "yes_price_10m_change": 0.002,
+      "yes_price_10m_pct_change": 0.2,
+      "yes_price_6h_change": -0.006,
+      "yes_price_6h_pct_change": -0.6,
+      "yes_price_change": 0.002,
+      "yes_price_pct_change": 0.2,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -895,7 +895,7 @@
           "ask": 0.996
         }
       ],
-      "prev_10m_yes_price": 0.9925
+      "prev_10m_yes_price": 0.9765
     },
     {
       "question": "Will the highest temperature in New York City be between 72-73°F on November 5?",
@@ -904,11 +904,11 @@
         72.0,
         73.0
       ],
-      "yes_price": 0.023,
+      "yes_price": 0.0175,
       "no_price": 0.976,
       "best_bid": 0.006,
-      "best_ask": 0.04,
-      "bid_ask_spread": 0.034,
+      "best_ask": 0.029,
+      "bid_ask_spread": 0.023,
       "volume": 7770.0,
       "spread": 0.026,
       "yes_token_id": "22853794807915810617212557805759297056973212463541035909072095623958079440708",
@@ -916,14 +916,14 @@
       "model_prob": 0.289,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.023,
-      "effective_ask": 0.0252,
-      "market_prob": 0.023,
-      "belief_prob": 0.1959,
-      "ev": 6.7738,
-      "kelly": 0.0438,
-      "swing_edge": 0.266,
-      "swing_upside_pct": 1156.5,
+      "ask": 0.0175,
+      "effective_ask": 0.0175,
+      "market_prob": 0.0175,
+      "belief_prob": 0.194,
+      "ev": 10.0857,
+      "kelly": 0.0449,
+      "swing_edge": 0.2715,
+      "swing_upside_pct": 1551.4,
       "sell_value": 0.011,
       "scan6h_model_prob": 0.289,
       "prev_scan6h_model_prob": 0.289,
@@ -937,13 +937,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.024,
       "prev_scan6h_yes_price": 0.024,
-      "prev_yes_price": 0.0065,
-      "yes_price_10m_change": 0.0165,
-      "yes_price_10m_pct_change": 253.8,
-      "yes_price_6h_change": -0.001,
-      "yes_price_6h_pct_change": -4.2,
-      "yes_price_change": 0.0165,
-      "yes_price_pct_change": 253.8,
+      "prev_yes_price": 0.023,
+      "yes_price_10m_change": -0.0055,
+      "yes_price_10m_pct_change": -23.9,
+      "yes_price_6h_change": -0.0065,
+      "yes_price_6h_pct_change": -27.1,
+      "yes_price_change": -0.0055,
+      "yes_price_pct_change": -23.9,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -1042,9 +1042,16 @@
           "mp": 0.289,
           "bid": 0.006,
           "ask": 0.04
+        },
+        {
+          "t": "2026-11-06T02:07:25Z",
+          "p": 0.0175,
+          "mp": 0.289,
+          "bid": 0.006,
+          "ask": 0.029
         }
       ],
-      "prev_10m_yes_price": 0.0065
+      "prev_10m_yes_price": 0.023
     },
     {
       "question": "Will the highest temperature in New York City be between 74-75°F on November 5?",
@@ -1642,5 +1649,5 @@
   "confidence": 0.581,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T01:52:26.820759+00:00"
+  "last_price_refresh": "2026-11-06T02:07:24.986827+00:00"
 }
