@@ -48,11 +48,11 @@
         3.0,
         3.0
       ],
-      "yes_price": 0.18,
+      "yes_price": 0.185,
       "no_price": 0.83,
       "best_bid": 0.13,
-      "best_ask": 0.23,
-      "bid_ask_spread": 0.1,
+      "best_ask": 0.24,
+      "bid_ask_spread": 0.11,
       "volume": 5.0,
       "spread": 0.12,
       "yes_token_id": "100976220562678430536761587459874989577072530192049991964144856581294814989473",
@@ -60,14 +60,14 @@
       "model_prob": 0.1051,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.18,
-      "effective_ask": 0.2185,
-      "market_prob": 0.18,
-      "belief_prob": 0.1313,
-      "ev": -0.3991,
+      "ask": 0.185,
+      "effective_ask": 0.229,
+      "market_prob": 0.185,
+      "belief_prob": 0.1331,
+      "ev": -0.4188,
       "kelly": 0.0,
-      "swing_edge": -0.0749,
-      "swing_upside_pct": -41.6,
+      "swing_edge": -0.0799,
+      "swing_upside_pct": -43.2,
       "sell_value": 0.11,
       "scan6h_model_prob": 0.1051,
       "prev_scan6h_model_prob": 0.1051,
@@ -81,13 +81,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.17,
       "prev_scan6h_yes_price": 0.17,
-      "prev_yes_price": 0.17,
-      "yes_price_10m_change": 0.01,
-      "yes_price_10m_pct_change": 5.9,
-      "yes_price_6h_change": 0.01,
-      "yes_price_6h_pct_change": 5.9,
-      "yes_price_change": 0.01,
-      "yes_price_pct_change": 5.9,
+      "prev_yes_price": 0.18,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 2.8,
+      "yes_price_6h_change": 0.015,
+      "yes_price_6h_pct_change": 8.8,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 2.8,
       "price_history": [
         {
           "t": "2026-11-06T20:24:41Z",
@@ -109,9 +109,16 @@
           "mp": 0.1051,
           "bid": 0.13,
           "ask": 0.23
+        },
+        {
+          "t": "2026-11-06T21:22:33Z",
+          "p": 0.185,
+          "mp": 0.1051,
+          "bid": 0.13,
+          "ask": 0.24
         }
       ],
-      "prev_10m_yes_price": 0.17
+      "prev_10m_yes_price": 0.18
     },
     {
       "question": "Will the lowest temperature in Paris be 4°C on November 7?",
@@ -318,6 +325,13 @@
         },
         {
           "t": "2026-11-06T20:52:36Z",
+          "p": 0.365,
+          "mp": 0.1578,
+          "bid": 0.35,
+          "ask": 0.38
+        },
+        {
+          "t": "2026-11-06T21:22:33Z",
           "p": 0.365,
           "mp": 0.1578,
           "bid": 0.35,
@@ -569,6 +583,13 @@
           "mp": 0.1857,
           "bid": 0.21,
           "ask": 0.38
+        },
+        {
+          "t": "2026-11-06T21:22:33Z",
+          "p": 0.295,
+          "mp": 0.1857,
+          "bid": 0.21,
+          "ask": 0.38
         }
       ]
     }
@@ -583,5 +604,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T21:07:29.222971+00:00"
+  "last_price_refresh": "2026-11-06T21:22:32.251825+00:00"
 }
