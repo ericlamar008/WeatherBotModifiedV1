@@ -3,14 +3,14 @@
   "city_name": "Paris",
   "date": "2026-11-05",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-11-05T20:20:41.784256+00:00",
   "committed_allocation": null,
-  "hours_left": 2.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-11-05T23:00:00+00:00",
   "event_end_date": "2026-11-05T12:00:00Z",
-  "last_scan": "2026-11-05T20:20:41.784256+00:00",
+  "last_scan": "2026-11-06T02:20:42.080528+00:00",
   "horizon_days": 0,
   "forecast_mean": 11.82,
   "sigma": 0.952,
@@ -1617,7 +1617,10 @@
       "market_prob": 0.999,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.998
+      "sell_value": 0.998,
+      "won": true,
+      "pnl_units": 0.03,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -1629,5 +1632,31 @@
   "confidence": 0.3279,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T02:07:24.986827+00:00"
+  "last_price_refresh": "2026-11-06T02:07:24.986827+00:00",
+  "actual_temp": 11.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.03,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6626607",
+      "question": "Will the highest temperature in Paris be 11°C on November 5?",
+      "range": [
+        11.0,
+        11.0
+      ],
+      "side": "YES",
+      "price": 0.999,
+      "model_prob": 0.2963,
+      "ev": -0.4573,
+      "market_prob": 0.999,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.998,
+      "won": true,
+      "pnl_units": 0.03,
+      "user_entered": false
+    }
+  ]
 }
