@@ -46,10 +46,10 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.235,
+      "yes_price": 0.15,
       "no_price": 0.77,
       "best_bid": null,
-      "best_ask": 0.47,
+      "best_ask": 0.3,
       "bid_ask_spread": 0.0,
       "volume": 1357.0,
       "spread": 0.0,
@@ -58,14 +58,14 @@
       "model_prob": 0.258,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.235,
-      "effective_ask": 0.235,
-      "market_prob": 0.235,
-      "belief_prob": 0.25,
-      "ev": 0.0638,
-      "kelly": 0.0049,
-      "swing_edge": 0.023,
-      "swing_upside_pct": 9.8,
+      "ask": 0.15,
+      "effective_ask": 0.15,
+      "market_prob": 0.15,
+      "belief_prob": 0.2202,
+      "ev": 0.468,
+      "kelly": 0.0206,
+      "swing_edge": 0.108,
+      "swing_upside_pct": 72.0,
       "sell_value": null,
       "scan6h_model_prob": 0.258,
       "prev_scan6h_model_prob": 0.258,
@@ -79,13 +79,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.23,
       "prev_scan6h_yes_price": 0.23,
-      "prev_yes_price": 0.23,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 2.2,
-      "yes_price_6h_change": 0.005,
-      "yes_price_6h_pct_change": 2.2,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 2.2,
+      "prev_yes_price": 0.235,
+      "yes_price_10m_change": -0.085,
+      "yes_price_10m_pct_change": -36.2,
+      "yes_price_6h_change": -0.08,
+      "yes_price_6h_pct_change": -34.8,
+      "yes_price_change": -0.085,
+      "yes_price_pct_change": -36.2,
       "price_history": [
         {
           "t": "2026-11-06T02:24:15Z",
@@ -100,9 +100,16 @@
           "mp": 0.258,
           "bid": null,
           "ask": 0.47
+        },
+        {
+          "t": "2026-11-06T02:37:31Z",
+          "p": 0.15,
+          "mp": 0.258,
+          "bid": null,
+          "ask": 0.3
         }
       ],
-      "prev_10m_yes_price": 0.23
+      "prev_10m_yes_price": 0.235
     },
     {
       "question": "Will the lowest temperature in Mexico City be 11°C on November 5?",
@@ -538,5 +545,5 @@
   "confidence": 0.3897,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T02:25:46.725160+00:00"
+  "last_price_refresh": "2026-11-06T02:37:28.939708+00:00"
 }
