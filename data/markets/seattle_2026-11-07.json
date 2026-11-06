@@ -93,7 +93,8 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the highest temperature in Seattle be between 58-59°F on November 7?",
@@ -102,11 +103,11 @@
         58.0,
         59.0
       ],
-      "yes_price": 0.08,
+      "yes_price": 0.07,
       "no_price": 0.92,
       "best_bid": 0.06,
-      "best_ask": 0.1,
-      "bid_ask_spread": 0.04,
+      "best_ask": 0.08,
+      "bid_ask_spread": 0.02,
       "volume": 182.0,
       "spread": 0.04,
       "yes_token_id": "68036070370241740947866755821292951502473581287068370681893482425108988070801",
@@ -114,14 +115,14 @@
       "model_prob": 0.057,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.08,
-      "effective_ask": 0.0855,
-      "market_prob": 0.08,
-      "belief_prob": 0.065,
-      "ev": -0.2398,
+      "ask": 0.07,
+      "effective_ask": 0.07,
+      "market_prob": 0.07,
+      "belief_prob": 0.0616,
+      "ev": -0.12,
       "kelly": 0.0,
-      "swing_edge": -0.0285,
-      "swing_upside_pct": -33.3,
+      "swing_edge": -0.013,
+      "swing_upside_pct": -18.6,
       "sell_value": 0.06,
       "scan6h_model_prob": 0.057,
       "prev_scan6h_model_prob": 0.057,
@@ -136,12 +137,12 @@
       "scan6h_yes_price": 0.08,
       "prev_scan6h_yes_price": 0.08,
       "prev_yes_price": 0.08,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.01,
+      "yes_price_10m_pct_change": -12.5,
+      "yes_price_6h_change": -0.01,
+      "yes_price_6h_pct_change": -12.5,
+      "yes_price_change": -0.01,
+      "yes_price_pct_change": -12.5,
       "price_history": [
         {
           "t": "2026-11-06T02:24:10Z",
@@ -149,8 +150,16 @@
           "mp": 0.057,
           "bid": 0.06,
           "ask": 0.1
+        },
+        {
+          "t": "2026-11-06T02:25:47Z",
+          "p": 0.07,
+          "mp": 0.057,
+          "bid": 0.06,
+          "ask": 0.08
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.08
     },
     {
       "question": "Will the highest temperature in Seattle be between 60-61°F on November 7?",
@@ -177,8 +186,8 @@
       "belief_prob": 0.2263,
       "ev": -0.3643,
       "kelly": 0.0,
-      "swing_edge": -0.1936,
-      "swing_upside_pct": -54.4,
+      "swing_edge": -0.1826,
+      "swing_upside_pct": -52.9,
       "sell_value": 0.32,
       "scan6h_model_prob": 0.1624,
       "prev_scan6h_model_prob": 0.1624,
@@ -207,7 +216,8 @@
           "bid": 0.32,
           "ask": 0.37
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.345
     },
     {
       "question": "Will the highest temperature in Seattle be between 62-63°F on November 7?",
@@ -234,8 +244,8 @@
       "belief_prob": 0.3427,
       "ev": -0.1946,
       "kelly": 0.0,
-      "swing_edge": -0.1245,
-      "swing_upside_pct": -29.3,
+      "swing_edge": -0.119,
+      "swing_upside_pct": -28.3,
       "sell_value": 0.4,
       "scan6h_model_prob": 0.301,
       "prev_scan6h_model_prob": 0.301,
@@ -264,7 +274,8 @@
           "bid": 0.4,
           "ask": 0.44
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.42
     },
     {
       "question": "Will the highest temperature in Seattle be between 64-65°F on November 7?",
@@ -321,7 +332,8 @@
           "bid": 0.15,
           "ask": 0.17
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.16
     },
     {
       "question": "Will the highest temperature in Seattle be between 70-71°F on November 7?",
@@ -378,7 +390,8 @@
           "bid": 0.001,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Seattle be 72°F or higher on November 7?",
@@ -435,7 +448,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -447,5 +461,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-06T02:25:46.725160+00:00"
 }

@@ -65,8 +65,8 @@
       "belief_prob": 0.2489,
       "ev": -0.5213,
       "kelly": 0.0,
-      "swing_edge": -0.374,
-      "swing_upside_pct": -71.9,
+      "swing_edge": -0.294,
+      "swing_upside_pct": -66.8,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.146,
       "prev_scan6h_model_prob": 0.146,
@@ -95,7 +95,8 @@
           "bid": 0.08,
           "ask": 0.8
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.44
     },
     {
       "question": "Will the lowest temperature in Madrid be 2°C on November 6?",
@@ -122,8 +123,8 @@
       "belief_prob": 0.108,
       "ev": 0.1077,
       "kelly": 0.0029,
-      "swing_edge": 0.0309,
-      "swing_upside_pct": 31.7,
+      "swing_edge": 0.0584,
+      "swing_upside_pct": 83.4,
       "sell_value": 0.03,
       "scan6h_model_prob": 0.1284,
       "prev_scan6h_model_prob": 0.1284,
@@ -152,7 +153,8 @@
           "bid": 0.03,
           "ask": 0.11
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.07
     },
     {
       "question": "Will the lowest temperature in Madrid be 3°C on November 6?",
@@ -176,7 +178,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -209,7 +211,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Madrid be 5°C on November 6?",
@@ -233,7 +236,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -266,7 +269,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Madrid be 6°C on November 6?",
@@ -290,7 +294,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -323,7 +327,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Madrid be 7°C on November 6?",
@@ -347,7 +352,7 @@
       "ask": 0.001,
       "effective_ask": 0.001,
       "market_prob": 0.001,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0003,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.001,
@@ -380,7 +385,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Madrid be 8°C on November 6?",
@@ -404,7 +410,7 @@
       "ask": 0.001,
       "effective_ask": 0.001,
       "market_prob": 0.001,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0003,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.001,
@@ -437,7 +443,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Madrid be 9°C or higher on November 6?",
@@ -461,7 +468,7 @@
       "ask": 0.001,
       "effective_ask": 0.001,
       "market_prob": 0.001,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0003,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.001,
@@ -494,7 +501,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     }
   ],
   "live_allocation": [
@@ -523,5 +531,6 @@
   "success_probability": 0.4824,
   "confidence": 0.5364,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-06T02:25:46.725160+00:00"
 }
