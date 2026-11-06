@@ -450,11 +450,11 @@
         25.0,
         25.0
       ],
-      "yes_price": 0.0055,
+      "yes_price": 0.005,
       "no_price": 0.9495,
-      "best_bid": 0.004,
+      "best_bid": 0.003,
       "best_ask": 0.007,
-      "bid_ask_spread": 0.003,
+      "bid_ask_spread": 0.004,
       "volume": 7.0,
       "spread": 0.085,
       "yes_token_id": "10967631813848286297783722412181748024356496247906210557446568003727781306490",
@@ -462,13 +462,13 @@
       "model_prob": 0.075,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0055,
-      "effective_ask": 0.0055,
-      "market_prob": 0.0055,
-      "belief_prob": 0.0507,
-      "ev": 8.2182,
+      "ask": 0.005,
+      "effective_ask": 0.005,
+      "market_prob": 0.005,
+      "belief_prob": 0.0505,
+      "ev": 9.1,
       "kelly": 0.0114,
-      "swing_edge": 0.0695,
+      "swing_edge": 0.07,
       "swing_upside_pct": 0.0,
       "sell_value": 0.008,
       "scan6h_model_prob": 0.075,
@@ -483,13 +483,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0505,
       "prev_scan6h_yes_price": 0.0505,
-      "prev_yes_price": 0.006,
+      "prev_yes_price": 0.0055,
       "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -8.3,
-      "yes_price_6h_change": -0.045,
-      "yes_price_6h_pct_change": -89.1,
+      "yes_price_10m_pct_change": -9.1,
+      "yes_price_6h_change": -0.0455,
+      "yes_price_6h_pct_change": -90.1,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -8.3,
+      "yes_price_pct_change": -9.1,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -590,7 +590,7 @@
           "ask": 0.007
         }
       ],
-      "prev_10m_yes_price": 0.006
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the highest temperature in Hong Kong be 26°C on November 7?",
@@ -1102,11 +1102,11 @@
         29.0,
         29.0
       ],
-      "yes_price": 0.155,
+      "yes_price": 0.165,
       "no_price": 0.875,
       "best_bid": 0.14,
-      "best_ask": 0.17,
-      "bid_ask_spread": 0.03,
+      "best_ask": 0.19,
+      "bid_ask_spread": 0.05,
       "volume": 388.0,
       "spread": 0.03,
       "yes_token_id": "44584990949616987038579271531719578301737647691255904645404635060215532858901",
@@ -1114,14 +1114,14 @@
       "model_prob": 0.0779,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.155,
-      "effective_ask": 0.155,
-      "market_prob": 0.155,
-      "belief_prob": 0.1049,
-      "ev": -0.3232,
+      "ask": 0.165,
+      "effective_ask": 0.176,
+      "market_prob": 0.165,
+      "belief_prob": 0.1084,
+      "ev": -0.3841,
       "kelly": 0.0,
-      "swing_edge": -0.0771,
-      "swing_upside_pct": -49.7,
+      "swing_edge": -0.0871,
+      "swing_upside_pct": -52.8,
       "sell_value": 0.11,
       "scan6h_model_prob": 0.0779,
       "prev_scan6h_model_prob": 0.0779,
@@ -1135,13 +1135,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.125,
       "prev_scan6h_yes_price": 0.125,
-      "prev_yes_price": 0.165,
-      "yes_price_10m_change": -0.01,
-      "yes_price_10m_pct_change": -6.1,
-      "yes_price_6h_change": 0.03,
-      "yes_price_6h_pct_change": 24.0,
-      "yes_price_change": -0.01,
-      "yes_price_pct_change": -6.1,
+      "prev_yes_price": 0.155,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 6.5,
+      "yes_price_6h_change": 0.04,
+      "yes_price_6h_pct_change": 32.0,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 6.5,
       "price_history": [
         {
           "t": "2026-11-05T20:23:51Z",
@@ -1233,9 +1233,16 @@
           "mp": 0.0779,
           "bid": 0.14,
           "ask": 0.17
+        },
+        {
+          "t": "2026-11-06T01:37:25Z",
+          "p": 0.165,
+          "mp": 0.0779,
+          "bid": 0.14,
+          "ask": 0.19
         }
       ],
-      "prev_10m_yes_price": 0.165
+      "prev_10m_yes_price": 0.155
     },
     {
       "question": "Will the highest temperature in Hong Kong be 30°C on November 7?",
@@ -1525,5 +1532,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T01:22:28.857770+00:00"
+  "last_price_refresh": "2026-11-06T01:37:23.992013+00:00"
 }

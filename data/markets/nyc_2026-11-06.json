@@ -585,11 +585,11 @@
         66.0,
         67.0
       ],
-      "yes_price": 0.355,
+      "yes_price": 0.36,
       "no_price": 0.63,
       "best_bid": 0.34,
-      "best_ask": 0.37,
-      "bid_ask_spread": 0.03,
+      "best_ask": 0.38,
+      "bid_ask_spread": 0.04,
       "volume": 3845.0,
       "spread": 0.04,
       "yes_token_id": "58893575314203929375955220598136684770605668630372345379575335002525889732648",
@@ -597,14 +597,14 @@
       "model_prob": 0.2656,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.355,
-      "effective_ask": 0.355,
-      "market_prob": 0.355,
-      "belief_prob": 0.2969,
-      "ev": -0.1637,
+      "ask": 0.36,
+      "effective_ask": 0.3655,
+      "market_prob": 0.36,
+      "belief_prob": 0.2986,
+      "ev": -0.183,
       "kelly": 0.0,
-      "swing_edge": -0.0894,
-      "swing_upside_pct": -25.2,
+      "swing_edge": -0.0944,
+      "swing_upside_pct": -26.2,
       "sell_value": 0.35,
       "scan6h_model_prob": 0.2656,
       "prev_scan6h_model_prob": 0.2656,
@@ -618,11 +618,11 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.37,
       "prev_scan6h_yes_price": 0.37,
-      "prev_yes_price": 0.35,
+      "prev_yes_price": 0.355,
       "yes_price_10m_change": 0.005,
       "yes_price_10m_pct_change": 1.4,
-      "yes_price_6h_change": -0.015,
-      "yes_price_6h_pct_change": -4.1,
+      "yes_price_6h_change": -0.01,
+      "yes_price_6h_pct_change": -2.7,
       "yes_price_change": 0.005,
       "yes_price_pct_change": 1.4,
       "price_history": [
@@ -758,9 +758,16 @@
           "mp": 0.2656,
           "bid": 0.34,
           "ask": 0.37
+        },
+        {
+          "t": "2026-11-06T01:37:25Z",
+          "p": 0.36,
+          "mp": 0.2656,
+          "bid": 0.34,
+          "ask": 0.38
         }
       ],
-      "prev_10m_yes_price": 0.35
+      "prev_10m_yes_price": 0.355
     },
     {
       "question": "Will the highest temperature in New York City be between 68-69°F on November 6?",
@@ -1653,5 +1660,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T01:22:28.857770+00:00"
+  "last_price_refresh": "2026-11-06T01:37:23.992013+00:00"
 }

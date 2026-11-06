@@ -585,11 +585,11 @@
         82.0,
         83.0
       ],
-      "yes_price": 0.023,
+      "yes_price": 0.026,
       "no_price": 0.979,
       "best_bid": 0.02,
-      "best_ask": 0.026,
-      "bid_ask_spread": 0.006,
+      "best_ask": 0.032,
+      "bid_ask_spread": 0.012,
       "volume": 1252.0,
       "spread": 0.008,
       "yes_token_id": "63617197762201008423468222617864849577871023319055288242539176810311756791583",
@@ -597,14 +597,14 @@
       "model_prob": 0.248,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.023,
-      "effective_ask": 0.023,
-      "market_prob": 0.023,
-      "belief_prob": 0.1693,
-      "ev": 6.3609,
-      "kelly": 0.0374,
-      "swing_edge": 0.225,
-      "swing_upside_pct": 978.3,
+      "ask": 0.026,
+      "effective_ask": 0.026,
+      "market_prob": 0.026,
+      "belief_prob": 0.1703,
+      "ev": 5.55,
+      "kelly": 0.037,
+      "swing_edge": 0.222,
+      "swing_upside_pct": 853.8,
       "sell_value": 0.017,
       "scan6h_model_prob": 0.248,
       "prev_scan6h_model_prob": 0.248,
@@ -618,13 +618,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.021,
       "prev_scan6h_yes_price": 0.021,
-      "prev_yes_price": 0.0245,
-      "yes_price_10m_change": -0.0015,
-      "yes_price_10m_pct_change": -6.1,
-      "yes_price_6h_change": 0.002,
-      "yes_price_6h_pct_change": 9.5,
-      "yes_price_change": -0.0015,
-      "yes_price_pct_change": -6.1,
+      "prev_yes_price": 0.023,
+      "yes_price_10m_change": 0.003,
+      "yes_price_10m_pct_change": 13.0,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 23.8,
+      "yes_price_change": 0.003,
+      "yes_price_pct_change": 13.0,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -718,7 +718,7 @@
           "ask": 0.026
         }
       ],
-      "prev_10m_yes_price": 0.0245
+      "prev_10m_yes_price": 0.023
     },
     {
       "question": "Will the highest temperature in Miami be between 84-85°F on November 6?",
@@ -727,10 +727,10 @@
         84.0,
         85.0
       ],
-      "yes_price": 0.39,
+      "yes_price": 0.4,
       "no_price": 0.585,
-      "best_bid": 0.37,
-      "best_ask": 0.41,
+      "best_bid": 0.38,
+      "best_ask": 0.42,
       "bid_ask_spread": 0.04,
       "volume": 3916.0,
       "spread": 0.03,
@@ -739,14 +739,14 @@
       "model_prob": 0.2839,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.39,
-      "effective_ask": 0.3955,
-      "market_prob": 0.39,
-      "belief_prob": 0.321,
-      "ev": -0.1884,
+      "ask": 0.4,
+      "effective_ask": 0.4055,
+      "market_prob": 0.4,
+      "belief_prob": 0.3245,
+      "ev": -0.1998,
       "kelly": 0.0,
-      "swing_edge": -0.1061,
-      "swing_upside_pct": -27.2,
+      "swing_edge": -0.1161,
+      "swing_upside_pct": -29.0,
       "sell_value": 0.4,
       "scan6h_model_prob": 0.2839,
       "prev_scan6h_model_prob": 0.2839,
@@ -760,13 +760,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.415,
       "prev_scan6h_yes_price": 0.415,
-      "prev_yes_price": 0.41,
-      "yes_price_10m_change": -0.02,
-      "yes_price_10m_pct_change": -4.9,
-      "yes_price_6h_change": -0.025,
-      "yes_price_6h_pct_change": -6.0,
-      "yes_price_change": -0.02,
-      "yes_price_pct_change": -4.9,
+      "prev_yes_price": 0.39,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 2.6,
+      "yes_price_6h_change": -0.015,
+      "yes_price_6h_pct_change": -3.6,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 2.6,
       "price_history": [
         {
           "t": "2026-11-05T20:23:41Z",
@@ -893,9 +893,16 @@
           "mp": 0.2839,
           "bid": 0.37,
           "ask": 0.41
+        },
+        {
+          "t": "2026-11-06T01:37:25Z",
+          "p": 0.4,
+          "mp": 0.2839,
+          "bid": 0.38,
+          "ask": 0.42
         }
       ],
-      "prev_10m_yes_price": 0.41
+      "prev_10m_yes_price": 0.39
     },
     {
       "question": "Will the highest temperature in Miami be between 86-87°F on November 6?",
@@ -1625,5 +1632,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T01:22:28.857770+00:00"
+  "last_price_refresh": "2026-11-06T01:37:23.992013+00:00"
 }
