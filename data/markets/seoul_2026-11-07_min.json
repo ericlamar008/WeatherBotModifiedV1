@@ -242,10 +242,10 @@
         1.0,
         1.0
       ],
-      "yes_price": 0.085,
+      "yes_price": 0.065,
       "no_price": 0.91,
-      "best_bid": 0.05,
-      "best_ask": 0.12,
+      "best_bid": 0.03,
+      "best_ask": 0.1,
       "bid_ask_spread": 0.07,
       "volume": 200.0,
       "spread": 0.02,
@@ -254,14 +254,14 @@
       "model_prob": 0.217,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.085,
-      "effective_ask": 0.107,
-      "market_prob": 0.085,
-      "belief_prob": 0.1708,
-      "ev": 0.5963,
-      "kelly": 0.0179,
-      "swing_edge": 0.132,
-      "swing_upside_pct": 155.3,
+      "ask": 0.065,
+      "effective_ask": 0.087,
+      "market_prob": 0.065,
+      "belief_prob": 0.1638,
+      "ev": 0.8828,
+      "kelly": 0.021,
+      "swing_edge": 0.152,
+      "swing_upside_pct": 233.8,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.217,
       "prev_scan6h_model_prob": 0.217,
@@ -275,13 +275,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.09,
       "prev_scan6h_yes_price": 0.09,
-      "prev_yes_price": 0.075,
-      "yes_price_10m_change": 0.01,
-      "yes_price_10m_pct_change": 13.3,
-      "yes_price_6h_change": -0.005,
-      "yes_price_6h_pct_change": -5.6,
-      "yes_price_change": 0.01,
-      "yes_price_pct_change": 13.3,
+      "prev_yes_price": 0.085,
+      "yes_price_10m_change": -0.02,
+      "yes_price_10m_pct_change": -23.5,
+      "yes_price_6h_change": -0.025,
+      "yes_price_6h_pct_change": -27.8,
+      "yes_price_change": -0.02,
+      "yes_price_pct_change": -23.5,
       "price_history": [
         {
           "t": "2026-11-06T08:24:19Z",
@@ -303,9 +303,16 @@
           "mp": 0.217,
           "bid": 0.05,
           "ask": 0.12
+        },
+        {
+          "t": "2026-11-06T09:07:24Z",
+          "p": 0.065,
+          "mp": 0.217,
+          "bid": 0.03,
+          "ask": 0.1
         }
       ],
-      "prev_10m_yes_price": 0.075
+      "prev_10m_yes_price": 0.085
     },
     {
       "question": "Will the lowest temperature in Seoul (Incheon) be 3°C on November 7?",
@@ -314,10 +321,10 @@
         3.0,
         3.0
       ],
-      "yes_price": 0.465,
+      "yes_price": 0.515,
       "no_price": 0.535,
-      "best_bid": 0.36,
-      "best_ask": 0.57,
+      "best_bid": 0.41,
+      "best_ask": 0.62,
       "bid_ask_spread": 0.21,
       "volume": 222.0,
       "spread": 0.11,
@@ -326,14 +333,14 @@
       "model_prob": 0.0408,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.465,
-      "effective_ask": 0.545,
-      "market_prob": 0.465,
-      "belief_prob": 0.1893,
-      "ev": -0.6527,
+      "ask": 0.515,
+      "effective_ask": 0.595,
+      "market_prob": 0.515,
+      "belief_prob": 0.2068,
+      "ev": -0.6524,
       "kelly": 0.0,
-      "swing_edge": -0.4242,
-      "swing_upside_pct": -91.2,
+      "swing_edge": -0.4742,
+      "swing_upside_pct": -92.1,
       "sell_value": 0.41,
       "scan6h_model_prob": 0.0408,
       "prev_scan6h_model_prob": 0.0408,
@@ -348,12 +355,12 @@
       "scan6h_yes_price": 0.465,
       "prev_scan6h_yes_price": 0.465,
       "prev_yes_price": 0.465,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.05,
+      "yes_price_10m_pct_change": 10.8,
+      "yes_price_6h_change": 0.05,
+      "yes_price_6h_pct_change": 10.8,
+      "yes_price_change": 0.05,
+      "yes_price_pct_change": 10.8,
       "price_history": [
         {
           "t": "2026-11-06T08:24:19Z",
@@ -368,6 +375,13 @@
           "mp": 0.0408,
           "bid": 0.36,
           "ask": 0.57
+        },
+        {
+          "t": "2026-11-06T09:07:24Z",
+          "p": 0.515,
+          "mp": 0.0408,
+          "bid": 0.41,
+          "ask": 0.62
         }
       ],
       "prev_10m_yes_price": 0.465
@@ -383,5 +397,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-06T08:52:27.629972+00:00"
+  "last_price_refresh": "2026-11-06T09:07:23.553000+00:00"
 }
