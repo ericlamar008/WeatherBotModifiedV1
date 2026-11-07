@@ -93,7 +93,8 @@
           "bid": 0.002,
           "ask": 0.013
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0075
     },
     {
       "question": "Will the highest temperature in Atlanta be between 58-59°F on November 8?",
@@ -150,7 +151,8 @@
           "bid": 0.001,
           "ask": 0.013
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.007
     },
     {
       "question": "Will the highest temperature in Atlanta be between 64-65°F on November 8?",
@@ -159,11 +161,11 @@
         64.0,
         65.0
       ],
-      "yes_price": 0.05,
+      "yes_price": 0.045,
       "no_price": 0.95,
-      "best_bid": 0.04,
+      "best_bid": 0.03,
       "best_ask": 0.06,
-      "bid_ask_spread": 0.02,
+      "bid_ask_spread": 0.03,
       "volume": 16.0,
       "spread": 0.02,
       "yes_token_id": "9191054311085254388132460058816524700472921941278867105532586744670294978790",
@@ -171,14 +173,14 @@
       "model_prob": 0.055,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.05,
-      "effective_ask": 0.05,
-      "market_prob": 0.05,
-      "belief_prob": 0.0533,
-      "ev": 0.066,
-      "kelly": 0.0009,
-      "swing_edge": 0.005,
-      "swing_upside_pct": 10.0,
+      "ask": 0.045,
+      "effective_ask": 0.045,
+      "market_prob": 0.045,
+      "belief_prob": 0.0515,
+      "ev": 0.1444,
+      "kelly": 0.0017,
+      "swing_edge": 0.01,
+      "swing_upside_pct": 22.2,
       "sell_value": 0.04,
       "scan6h_model_prob": 0.055,
       "prev_scan6h_model_prob": 0.055,
@@ -193,12 +195,12 @@
       "scan6h_yes_price": 0.05,
       "prev_scan6h_yes_price": 0.05,
       "prev_yes_price": 0.05,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -10.0,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -10.0,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -10.0,
       "price_history": [
         {
           "t": "2026-11-07T02:23:44Z",
@@ -206,8 +208,16 @@
           "mp": 0.055,
           "bid": 0.04,
           "ask": 0.06
+        },
+        {
+          "t": "2026-11-07T02:28:02Z",
+          "p": 0.045,
+          "mp": 0.055,
+          "bid": 0.03,
+          "ask": 0.06
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.05
     },
     {
       "question": "Will the highest temperature in Atlanta be between 66-67°F on November 8?",
@@ -264,7 +274,8 @@
           "bid": null,
           "ask": 0.21
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.105
     },
     {
       "question": "Will the highest temperature in Atlanta be between 68-69°F on November 8?",
@@ -321,7 +332,8 @@
           "bid": 0.5,
           "ask": 0.53
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.515
     },
     {
       "question": "Will the highest temperature in Atlanta be between 70-71°F on November 8?",
@@ -378,7 +390,8 @@
           "bid": 0.24,
           "ask": 0.26
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.25
     },
     {
       "question": "Will the highest temperature in Atlanta be between 72-73°F on November 8?",
@@ -405,8 +418,8 @@
       "belief_prob": 0.1119,
       "ev": 0.1596,
       "kelly": 0.0043,
-      "swing_edge": 0.0326,
-      "swing_upside_pct": 33.8,
+      "swing_edge": 0.0491,
+      "swing_upside_pct": 61.4,
       "sell_value": 0.05,
       "scan6h_model_prob": 0.1291,
       "prev_scan6h_model_prob": 0.1291,
@@ -435,7 +448,8 @@
           "bid": 0.05,
           "ask": 0.11
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.08
     },
     {
       "question": "Will the highest temperature in Atlanta be 76°F or higher on November 8?",
@@ -492,7 +506,8 @@
           "bid": 0.001,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.002
     }
   ],
   "live_allocation": [],
@@ -504,5 +519,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-07T02:28:01.572275+00:00"
 }

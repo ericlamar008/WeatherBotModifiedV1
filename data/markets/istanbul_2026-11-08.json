@@ -94,7 +94,8 @@
           "bid": 0.001,
           "ask": 0.012
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0065
     },
     {
       "question": "Will the highest temperature in Istanbul be 7°C on November 8?",
@@ -151,7 +152,8 @@
           "bid": 0.002,
           "ask": 0.016
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.009
     },
     {
       "question": "Will the highest temperature in Istanbul be 8°C on November 8?",
@@ -208,7 +210,8 @@
           "bid": 0.005,
           "ask": 0.017
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.011
     },
     {
       "question": "Will the highest temperature in Istanbul be 9°C on November 8?",
@@ -265,7 +268,8 @@
           "bid": 0.02,
           "ask": 0.021
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0205
     },
     {
       "question": "Will the highest temperature in Istanbul be 10°C on November 8?",
@@ -322,7 +326,8 @@
           "bid": 0.33,
           "ask": 0.35
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.34
     },
     {
       "question": "Will the highest temperature in Istanbul be 11°C on November 8?",
@@ -331,11 +336,11 @@
         11.0,
         11.0
       ],
-      "yes_price": 0.515,
+      "yes_price": 0.52,
       "no_price": 0.485,
-      "best_bid": 0.5,
+      "best_bid": 0.51,
       "best_ask": 0.53,
-      "bid_ask_spread": 0.03,
+      "bid_ask_spread": 0.02,
       "volume": 301.0,
       "spread": 0.03,
       "yes_token_id": "31203430370545199340264737497775324539125851985773197368274660012538519363084",
@@ -343,14 +348,14 @@
       "model_prob": 0.3382,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.515,
-      "effective_ask": 0.515,
-      "market_prob": 0.515,
-      "belief_prob": 0.4001,
-      "ev": -0.2231,
+      "ask": 0.52,
+      "effective_ask": 0.52,
+      "market_prob": 0.52,
+      "belief_prob": 0.4018,
+      "ev": -0.2273,
       "kelly": 0.0,
-      "swing_edge": -0.1768,
-      "swing_upside_pct": -34.3,
+      "swing_edge": -0.1818,
+      "swing_upside_pct": -35.0,
       "sell_value": 0.5,
       "scan6h_model_prob": 0.3382,
       "prev_scan6h_model_prob": 0.3382,
@@ -365,12 +370,12 @@
       "scan6h_yes_price": 0.515,
       "prev_scan6h_yes_price": 0.515,
       "prev_yes_price": 0.515,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.0,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 1.0,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.0,
       "price_history": [
         {
           "t": "2026-11-07T02:23:44Z",
@@ -378,8 +383,16 @@
           "mp": 0.3382,
           "bid": 0.5,
           "ask": 0.53
+        },
+        {
+          "t": "2026-11-07T02:28:02Z",
+          "p": 0.52,
+          "mp": 0.3382,
+          "bid": 0.51,
+          "ask": 0.53
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.515
     },
     {
       "question": "Will the highest temperature in Istanbul be 12°C on November 8?",
@@ -436,7 +449,8 @@
           "bid": 0.08,
           "ask": 0.11
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.095
     },
     {
       "question": "Will the highest temperature in Istanbul be 13°C on November 8?",
@@ -493,7 +507,8 @@
           "bid": 0.01,
           "ask": 0.02
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.015
     },
     {
       "question": "Will the highest temperature in Istanbul be 14°C on November 8?",
@@ -550,7 +565,8 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the highest temperature in Istanbul be 15°C on November 8?",
@@ -607,7 +623,8 @@
           "bid": 0.001,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.002
     },
     {
       "question": "Will the highest temperature in Istanbul be 16°C or higher on November 8?",
@@ -664,7 +681,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     }
   ],
   "live_allocation": [],
@@ -676,5 +694,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-07T02:28:01.572275+00:00"
 }
