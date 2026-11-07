@@ -47,9 +47,9 @@
         64.0,
         65.0
       ],
-      "yes_price": 0.545,
+      "yes_price": 0.925,
       "no_price": 0.46,
-      "best_bid": 0.09,
+      "best_bid": 0.85,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 167.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.2765,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.545,
-      "effective_ask": 0.545,
-      "market_prob": 0.545,
-      "belief_prob": 0.3705,
-      "ev": -0.3202,
+      "ask": 0.925,
+      "effective_ask": 0.925,
+      "market_prob": 0.925,
+      "belief_prob": 0.5035,
+      "ev": -0.4557,
       "kelly": 0.0,
-      "swing_edge": -0.2685,
-      "swing_upside_pct": -49.3,
+      "swing_edge": -0.6485,
+      "swing_upside_pct": -70.1,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.2765,
       "prev_scan6h_model_prob": 0.2765,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.54,
       "prev_scan6h_yes_price": 0.54,
-      "prev_yes_price": 0.54,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 0.9,
-      "yes_price_6h_change": 0.005,
-      "yes_price_6h_pct_change": 0.9,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 0.9,
+      "prev_yes_price": 0.545,
+      "yes_price_10m_change": 0.38,
+      "yes_price_10m_pct_change": 69.7,
+      "yes_price_6h_change": 0.385,
+      "yes_price_6h_pct_change": 71.3,
+      "yes_price_change": 0.38,
+      "yes_price_pct_change": 69.7,
       "price_history": [
         {
           "t": "2026-11-07T14:24:27Z",
@@ -101,9 +101,16 @@
           "mp": 0.2765,
           "bid": 0.09,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-07T14:37:30Z",
+          "p": 0.925,
+          "mp": 0.2765,
+          "bid": 0.85,
+          "ask": 1.0
         }
       ],
-      "prev_10m_yes_price": 0.54
+      "prev_10m_yes_price": 0.545
     },
     {
       "question": "Will the lowest temperature in Houston be between 66-67°F on November 7?",
@@ -481,5 +488,5 @@
   "confidence": 0.3258,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T14:26:59.063544+00:00"
+  "last_price_refresh": "2026-11-07T14:37:29.256918+00:00"
 }
