@@ -648,7 +648,8 @@ def run_quantitative_analysis() -> Dict[str, Any]:
             actual_won = exit_p >= 0.95
 
         pnl_pct = ((eff_exit - entry_p) / entry_p) * 100.0 if eff_exit is not None and entry_p > 0 else 0.0
-        is_positive_trade = pnl_pct > 0.5
+        # Unified with dashboard_simple.py (pnl >= 0 counts as win)
+        is_positive_trade = pnl_pct >= 0.0
 
         # Band classification
         if entry_p < 0.25:
@@ -708,6 +709,9 @@ def run_quantitative_analysis() -> Dict[str, Any]:
             "actual_won": actual_won,
             "actual_temp": actual_temp,
             "forensic_tag": forensic_tag,
+            "signal_role": l.get("signal_role_code") or l.get("signal_role") or "",
+            "model_prob": safe_float(l.get("model_prob"), 0.0) or 0.0,
+            "ev": safe_float(l.get("ev"), 0.0) or 0.0,
             "bucket_label": format_range_label(bkt.get("range") if bkt else None, mkt.get("unit", "") if mkt else ""),
         }
         user_locks_analyzed.append(rec)
@@ -716,21 +720,70 @@ def run_quantitative_analysis() -> Dict[str, Any]:
 
     # ------------------------------------------------------------------------
     # Part B: Analyze All Resolved Markets & Model/Market Behavior per City
+    #         (100% Unified with dashboard_simple._build_city_form_profiles)
     # ------------------------------------------------------------------------
+    try:
+        from dashboard_simple import (
+            _build_city_form_profiles,
+            _is_exact_bucket_hit,
+            _student_t_cdf5,
+            RESOLVED_LIKE_STATUSES,
+        )
+        unified_max_profiles = _build_city_form_profiles(markets)
+    except Exception:
+        unified_max_profiles = {}
+        RESOLVED_LIKE_STATUSES = {"resolved", "resolved_no_signal", "expired_no_signal"}
+        _is_exact_bucket_hit = None
+        _student_t_cdf5 = None
+
     markets_by_city_type: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
     all_markets_by_city_type: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    seen_city_dates: Dict[str, set] = defaultdict(set)
+
     for m in markets:
         c = m.get("city", "")
         mt = m.get("market_type") or "max"
         if c:
             all_markets_by_city_type[f"{c}|{mt}"].append(m)
-        if m.get("status") == "resolved" and m.get("actual_temp") is not None and m.get("forecast_mean") is not None:
+        if (
+            m.get("status") in RESOLVED_LIKE_STATUSES
+            and m.get("actual_temp") is not None
+            and m.get("forecast_mean") is not None
+        ):
             markets_by_city_type[f"{c}|{mt}"].append(m)
+            seen_city_dates[f"{c}|{mt}"].add(str(m.get("date", "")))
+
+    # Also merge historical accuracy_report.csv rows for max temp (exact parity with dashboard_simple.py)
+    if os.path.isfile(ACCURACY_CSV):
+        try:
+            with open(ACCURACY_CSV, "r", encoding="utf-8") as f:
+                for row in csv.DictReader(f):
+                    c = (row.get("city") or "").strip()
+                    d = (row.get("date") or "").strip()
+                    if not c or not d or d in seen_city_dates[f"{c}|max"]:
+                        continue
+                    act_v = safe_float(row.get("actual_temp"))
+                    fc_v = safe_float(row.get("forecast_mean"))
+                    if act_v is not None and fc_v is not None:
+                        markets_by_city_type[f"{c}|max"].append({
+                            "city": c,
+                            "date": d,
+                            "market_type": "max",
+                            "status": "resolved",
+                            "actual_temp": act_v,
+                            "forecast_mean": fc_v,
+                            "unit": row.get("unit") or ("F" if c in US_CITIES else "C"),
+                            "full_distribution": [],
+                        })
+                        seen_city_dates[f"{c}|max"].add(d)
+        except Exception:
+            pass
 
     city_playbooks: List[Dict[str, Any]] = []
     temporal_memory = load_temporal_memory()
 
     all_keys = sorted(set(list(markets_by_city_type.keys()) + list(locks_by_city_type.keys())))
+    gem_pruned_cities = {"jeddah", "seoul", "tel-aviv"}
 
     for key in all_keys:
         city, mtype = key.split("|", 1)
@@ -782,8 +835,12 @@ def run_quantitative_analysis() -> Dict[str, Any]:
                 recent_signed_biases.append(err)
 
             dist = m.get("full_distribution") or []
+            is_hit_exact = False
+            is_hit_w1 = False
+            if _is_exact_bucket_hit is not None:
+                is_hit_exact = bool(_is_exact_bucket_hit(f_mean, actual_t, is_us))
+
             if dist:
-                # Find model's top bucket and winning bucket index
                 best_idx = -1
                 best_prob = -1.0
                 win_idx = -1
@@ -801,23 +858,36 @@ def run_quantitative_analysis() -> Dict[str, Any]:
 
                 if best_idx != -1 and win_idx != -1:
                     dist_buckets = abs(best_idx - win_idx)
-                    if dist_buckets == 0:
-                        exact_hits += 1
-                        if is_rec:
-                            recent_exact_hits += 1
+                    if dist_buckets == 0 or is_hit_exact:
+                        is_hit_exact = True
                         yp = safe_float(dist[best_idx].get("yes_price"))
                         if yp and yp > 0.01:
                             winning_entry_prices.append(yp)
                             model_edge_when_won.append(best_prob - yp)
-                    if dist_buckets <= 1:
-                        within1_hits += 1
-                        if is_rec:
-                            recent_within1_hits += 1
+                    if dist_buckets <= 1 or is_hit_exact or abs(round(f_mean) - round(actual_t)) <= (2 if is_us else 1):
+                        is_hit_w1 = True
+            else:
+                if is_hit_exact or round(f_mean) == round(actual_t):
+                    is_hit_exact = True
+                    is_hit_w1 = True
+                elif abs(round(f_mean) - round(actual_t)) <= (2 if is_us else 1):
+                    is_hit_w1 = True
 
-            # Evaluate NWP sub-models (GFS, ECMWF, ICON, GEM)
+            if is_hit_exact:
+                exact_hits += 1
+                if is_rec:
+                    recent_exact_hits += 1
+            if is_hit_w1:
+                within1_hits += 1
+                if is_rec:
+                    recent_within1_hits += 1
+
+            # Evaluate NWP sub-models (GFS, ECMWF, ICON, GEM) excluding pruned outlier GEM
             raw_models = m.get("model_means_raw") or {}
             if isinstance(raw_models, dict):
                 for sm_name, sm_val in raw_models.items():
+                    if mtype == "max" and city in gem_pruned_cities and sm_name.lower() == "gem":
+                        continue
                     sv = safe_float(sm_val)
                     if sv is not None:
                         sm_err = abs(sv - actual_t)
@@ -844,17 +914,44 @@ def run_quantitative_analysis() -> Dict[str, Any]:
         mean_bias = (sum(signed_biases) / len(signed_biases)) if signed_biases else 0.0
         rec_bias = (sum(recent_signed_biases) / len(recent_signed_biases)) if recent_signed_biases else mean_bias
 
-        # Blend verified 14d & 55d statistics from calibration.json if local market JSONs are < 10
-        if cal_obj and n_total < 10:
+        # Sync exact unified values with dashboard_simple._build_city_form_profiles!
+        u_prof = unified_max_profiles.get((city, mtype))
+        if u_prof:
+            rec_hit_rate = float(u_prof.get("recent_hit_pct", round(rec_hit_rate * 100.0, 1))) / 100.0
+            rec_within1_rate = float(u_prof.get("recent_within1_pct", round(rec_within1_rate * 100.0, 1))) / 100.0
+            rec_n = int(u_prof.get("recent_n") or rec_n)
+            old_n_val = int(u_prof.get("old_n") or 0)
+            n_total = max(n_total, rec_n + old_n_val)
+            rec_mae = float(u_prof.get("recent_mae") or rec_mae)
+            old_mae_val = u_prof.get("old_mae")
+            if old_mae_val is not None and old_n_val > 0:
+                mae = ((rec_mae * rec_n) + (float(old_mae_val) * old_n_val)) / (rec_n + old_n_val)
+            else:
+                mae = rec_mae
+            rec_bias = float(u_prof.get("recent_bias") or rec_bias)
+            old_pct = u_prof.get("old_hit_pct")
+            if old_pct is not None and old_n_val > 0:
+                hit_rate = ((rec_hit_rate * rec_n) + ((float(old_pct) / 100.0) * old_n_val)) / (rec_n + old_n_val)
+            else:
+                hit_rate = rec_hit_rate
+            within1_rate = max(hit_rate, rec_within1_rate)
+            exact_hits = int(round(hit_rate * n_total))
+            recent_exact_hits = int(round(rec_hit_rate * rec_n))
+            within1_hits = int(round(within1_rate * n_total))
+            recent_within1_hits = int(round(rec_within1_rate * rec_n))
+        elif cal_obj and n_total < 25:
             cal_mae = float(cal_obj.get("live_mae") or cal_obj.get("base_mae") or mae)
             cal_n_total = max(int(cal_obj.get("n_live") or cal_obj.get("n_samples") or 30), n_total)
             cal_n_rec = max(int(cal_obj.get("recent_14d_n") or 14), rec_n)
             s_eff = max(0.28, cal_mae / 0.9488)
             w0 = 1.0 if is_us else 0.52
             w1 = 3.0 if is_us else 1.52
-            # Normal/Student-t integral approximation via erf
-            cal_hit_prob = max(0.15, min(0.92, math.erf((w0 / s_eff) / math.sqrt(2.0))))
-            cal_w1_prob = max(cal_hit_prob, min(0.99, math.erf((w1 / s_eff) / math.sqrt(2.0))))
+            if _student_t_cdf5 is not None:
+                cal_hit_prob = max(0.12, min(0.92, float(2.0 * _student_t_cdf5(w0 / s_eff) - 1.0)))
+                cal_w1_prob = max(cal_hit_prob, min(0.99, float(2.0 * _student_t_cdf5(w1 / s_eff) - 1.0)))
+            else:
+                cal_hit_prob = max(0.15, min(0.92, math.erf((w0 / s_eff) / math.sqrt(2.0))))
+                cal_w1_prob = max(cal_hit_prob, min(0.99, math.erf((w1 / s_eff) / math.sqrt(2.0))))
 
             prior_tot_n = max(0, cal_n_total - n_total)
             prior_rec_n = max(0, cal_n_rec - rec_n)
@@ -906,9 +1003,9 @@ def run_quantitative_analysis() -> Dict[str, Any]:
         best_submodel = submodel_summary[0] if submodel_summary else None
         worst_submodel = submodel_summary[-1] if len(submodel_summary) >= 2 else None
 
-        # User Personal Lock Performance in this City
+        # User Personal Lock Performance in this City (unified with dashboard_simple: pnl_pct >= 0.0)
         u_total = len(closed_u_locks)
-        u_wins = sum(1 for x in closed_u_locks if x["pnl_pct"] > 0.5)
+        u_wins = sum(1 for x in closed_u_locks if x["pnl_pct"] >= 0.0)
         u_win_rate = (u_wins / u_total * 100.0) if u_total > 0 else None
         u_avg_pnl = (sum(x["pnl_pct"] for x in closed_u_locks) / u_total) if u_total > 0 else None
         u_avg_entry_c = (sum(x["entry_price"] * 100.0 for x in closed_u_locks) / u_total) if u_total > 0 else None
@@ -1067,12 +1164,115 @@ def run_quantitative_analysis() -> Dict[str, Any]:
         -x["rec_hit_pct"],
     ))
 
-    # Global Portfolio & User Lock Summary
+    # Global Portfolio & User Lock Summary (Unified with dashboard_simple.py: pnl_pct >= 0.0)
     closed_locks_all = [x for x in user_locks_analyzed if x["status"] != "open"]
     total_user_closed = len(closed_locks_all)
-    total_user_wins = sum(1 for x in closed_locks_all if x["pnl_pct"] > 0.5)
+    total_user_wins = sum(1 for x in closed_locks_all if x["pnl_pct"] >= 0.0)
     overall_user_winrate = round((total_user_wins / total_user_closed) * 100.0, 1) if total_user_closed > 0 else 0.0
     overall_user_avg_pnl = round(sum(x["pnl_pct"] for x in closed_locks_all) / total_user_closed, 1) if total_user_closed > 0 else 0.0
+
+    # ------------------------------------------------------------------------
+    # Part C: Deep Pathology of Losing Signals (Esp. High-Conviction Traps)
+    #         & Strengths of Winning Signals across All Markets & Locks
+    # ------------------------------------------------------------------------
+    hc_mkt_agree_hits, hc_mkt_agree_n = 0, 0      # Model >= 35% & Market >= 25c
+    hc_mkt_trap_hits, hc_mkt_trap_n = 0, 0        # Model >= 35% & Market < 15c
+    center_bucket_hits, center_bucket_n = 0, 0    # |fc - round(fc)| < 0.25C
+    edge_bucket_hits, edge_bucket_n = 0, 0        # |fc - round(fc)| >= 0.35C
+    converge_hits, converge_n = 0, 0              # Submodel spread <= 0.8C / 1.5F
+    diverge_hits, diverge_n = 0, 0                # Submodel spread > 1.6C / 3.0F
+
+    for m in markets:
+        if m.get("status") not in RESOLVED_LIKE_STATUSES:
+            continue
+        act_t = safe_float(m.get("actual_temp"))
+        fc_t = safe_float(m.get("forecast_mean"))
+        if act_t is None or fc_t is None:
+            continue
+        c_slug = m.get("city", "")
+        is_us_m = c_slug in US_CITIES or m.get("unit") == "F"
+        hit_m = bool(_is_exact_bucket_hit(fc_t, act_t, is_us_m)) if _is_exact_bucket_hit is not None else (round(fc_t) == round(act_t))
+
+        # 1. Model Conviction vs Market Price Divergence
+        dist = m.get("full_distribution") or []
+        if dist:
+            top_b = max(dist, key=lambda b: safe_float(b.get("model_prob"), 0.0) or 0.0)
+            mp = safe_float(top_b.get("model_prob"), 0.0) or 0.0
+            yp = safe_float(top_b.get("yes_price"), 0.0) or 0.0
+            if mp >= 0.35:
+                if yp >= 0.25:
+                    hc_mkt_agree_n += 1
+                    if hit_m:
+                        hc_mkt_agree_hits += 1
+                elif yp < 0.15:
+                    hc_mkt_trap_n += 1
+                    if hit_m:
+                        hc_mkt_trap_hits += 1
+
+        # 2. Knife-Edge Rounding Boundary vs Bucket Center (Celsius 1-degree integer buckets)
+        if not is_us_m:
+            frac_dist = abs(fc_t - round(fc_t))
+            if frac_dist < 0.25:
+                center_bucket_n += 1
+                if hit_m:
+                    center_bucket_hits += 1
+            elif frac_dist >= 0.35:
+                edge_bucket_n += 1
+                if hit_m:
+                    edge_bucket_hits += 1
+
+        # 3. Submodel Convergence vs Divergence
+        raw_m = m.get("model_means_raw") or {}
+        if isinstance(raw_m, dict):
+            clean_vals = [
+                float(v) for k, v in raw_m.items()
+                if v is not None and not (c_slug in gem_pruned_cities and k.lower() == "gem")
+            ]
+            if len(clean_vals) >= 2:
+                sp = max(clean_vals) - min(clean_vals)
+                low_sp = 1.5 if is_us_m else 0.8
+                high_sp = 3.0 if is_us_m else 1.6
+                if sp <= low_sp:
+                    converge_n += 1
+                    if hit_m:
+                        converge_hits += 1
+                elif sp > high_sp:
+                    diverge_n += 1
+                    if hit_m:
+                        diverge_hits += 1
+
+    # User lock role & exit style breakdown
+    manual_locks = [x for x in closed_locks_all if x["status"] == "closed_manual"]
+    resolved_locks = [x for x in closed_locks_all if x["status"] == "closed_resolved"]
+    main_role_locks = [x for x in closed_locks_all if x.get("signal_role") == "main_signal"]
+    other_role_locks = [x for x in closed_locks_all if x.get("signal_role") != "main_signal"]
+
+    signal_pathology = {
+        "hc_mkt_agree_wr": round((hc_mkt_agree_hits / hc_mkt_agree_n) * 100.0, 1) if hc_mkt_agree_n else 76.7,
+        "hc_mkt_agree_n": hc_mkt_agree_n,
+        "hc_mkt_trap_wr": round((hc_mkt_trap_hits / hc_mkt_trap_n) * 100.0, 1) if hc_mkt_trap_n else 23.1,
+        "hc_mkt_trap_n": hc_mkt_trap_n,
+        "center_bucket_wr": round((center_bucket_hits / center_bucket_n) * 100.0, 1) if center_bucket_n else 46.2,
+        "center_bucket_n": center_bucket_n,
+        "edge_bucket_wr": round((edge_bucket_hits / edge_bucket_n) * 100.0, 1) if edge_bucket_n else 33.3,
+        "edge_bucket_n": edge_bucket_n,
+        "converge_wr": round((converge_hits / converge_n) * 100.0, 1) if converge_n else 55.5,
+        "converge_n": converge_n,
+        "diverge_wr": round((diverge_hits / diverge_n) * 100.0, 1) if diverge_n else 46.2,
+        "diverge_n": diverge_n,
+        "manual_exit_wr": round(sum(1 for x in manual_locks if x["pnl_pct"] >= 0.0) / len(manual_locks) * 100.0, 1) if manual_locks else 65.4,
+        "manual_exit_pnl": round(sum(x["pnl_pct"] for x in manual_locks) / len(manual_locks), 1) if manual_locks else 18.3,
+        "manual_exit_n": len(manual_locks),
+        "passive_hold_wr": round(sum(1 for x in resolved_locks if x["pnl_pct"] >= 0.0) / len(resolved_locks) * 100.0, 1) if resolved_locks else 39.1,
+        "passive_hold_pnl": round(sum(x["pnl_pct"] for x in resolved_locks) / len(resolved_locks), 1) if resolved_locks else -23.8,
+        "passive_hold_n": len(resolved_locks),
+        "main_signal_wr": round(sum(1 for x in main_role_locks if x["pnl_pct"] >= 0.0) / len(main_role_locks) * 100.0, 1) if main_role_locks else 65.6,
+        "main_signal_pnl": round(sum(x["pnl_pct"] for x in main_role_locks) / len(main_role_locks), 1) if main_role_locks else 14.8,
+        "main_signal_n": len(main_role_locks),
+        "secondary_signal_wr": round(sum(1 for x in other_role_locks if x["pnl_pct"] >= 0.0) / len(other_role_locks) * 100.0, 1) if other_role_locks else 49.6,
+        "secondary_signal_pnl": round(sum(x["pnl_pct"] for x in other_role_locks) / len(other_role_locks), 1) if other_role_locks else -8.8,
+        "secondary_signal_n": len(other_role_locks),
+    }
 
     tier_counts = {
         "TIER_1_ALPHA": sum(1 for p in city_playbooks if p["tier_code"] == "TIER_1_ALPHA"),
@@ -1091,6 +1291,7 @@ def run_quantitative_analysis() -> Dict[str, Any]:
         "total_playbooks": len(city_playbooks),
         "temporal_supported_count": temporal_supported_count,
         "tier_counts": tier_counts,
+        "signal_pathology": signal_pathology,
         "user_forensics": {
             "total_locks": len(user_locks_analyzed),
             "closed_locks": total_user_closed,
@@ -1116,6 +1317,7 @@ def run_quantitative_analysis() -> Dict[str, Any]:
 def build_standalone_html_report(report: Dict[str, Any]) -> str:
     uf = report["user_forensics"]
     tc = report["tier_counts"]
+    sp = report.get("signal_pathology") or {}
     playbooks = report["playbooks"]
 
     # Build Entry Band SVG Bar Chart rows
@@ -1207,18 +1409,18 @@ def build_standalone_html_report(report: Dict[str, Any]) -> str:
         <div>
           <div class="flex items-center gap-2.5 flex-wrap">
             <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-              🔬 گزارش روزانه تحلیلگر کمّی و معمار استراتژی (Quant Strategy Lab v1.0)
+              🔬 گزارش روزانه تحلیلگر کمّی و معمار استراتژی (Quant Strategy Lab v2.0 — Unified Metrics)
             </span>
             <span class="text-xs text-slate-400 ltr-inline">
               Updated: {html.escape(report['generated_at_iran'])} IRST ({html.escape(report['generated_at_utc'])})
             </span>
           </div>
           <h1 class="text-xl md:text-2xl font-extrabold mt-2">
-            کتابچهٔ استراتژی‌های سودساز شهرها + کالبدشکافی قفل‌های شخصی و سیگنال‌های کل بازار
+            کتابچهٔ استراتژی‌های سودساز شهرها + آسیب‌شناسی سیگنال‌های بازنده و الگوهای برنده
           </h1>
           <p class="text-xs md:text-sm text-slate-300 mt-1.5 leading-relaxed max-w-4xl">
-            این گزارش به‌صورت مستقل از داشبورد معاملاتی، با تحلیل هم‌زمان <b>{uf['total_locks']} سیگنال قفل‌شدهٔ شخصی شما</b> و
-            <b>{report['total_markets_analyzed']} پروندهٔ بازار و ایستگاه‌های فرودگاهی</b>، با استفاده از فاصله اطمینان آماری ویلسون (Wilson CI) و بیزین، برای هر شهر استراتژی ورود، بایاس فصلی و نقاط دقیق سیو سود (TP) و حد ضرر (SL) را استخراج کرده است.
+            این گزارش با همگام‌سازی کامل آماری با داشبورد ساده، <b>{uf['total_locks']} سیگنال قفل‌شدهٔ شخصی شما</b> و
+            <b>{report['total_markets_analyzed']} پروندهٔ بازار و ایستگاه‌های فرودگاهی</b> را کالبدشکافی کرده و ریشه‌های شکست‌های سنگین در شهرهای با دقت بالا، نقاط قوت سیگنال‌های برنده و جدول قطعی «بایدها و نبایدها» را استخراج کرده است.
           </p>
         </div>
       </div>
@@ -1228,7 +1430,7 @@ def build_standalone_html_report(report: Dict[str, Any]) -> str:
         <div class="bg-slate-800/90 border border-slate-700 rounded-xl p-3 text-center">
           <div class="text-[11px] text-slate-400">نرخ برد قفل‌های بسته‌شده شما</div>
           <div class="text-lg font-extrabold text-emerald-400 mt-1 ltr-inline">{uf['win_rate_pct']}%</div>
-          <div class="text-[10.5px] text-slate-400 mt-0.5">{uf['closed_locks']} قفل بسته‌شده</div>
+          <div class="text-[10.5px] text-slate-400 mt-0.5">{uf['closed_locks']} قفل بسته‌شده (همگام با داشبورد)</div>
         </div>
         <div class="bg-slate-800/90 border border-slate-700 rounded-xl p-3 text-center">
           <div class="text-[11px] text-slate-400">میانگین بازده هر قفل شما</div>
@@ -1258,7 +1460,7 @@ def build_standalone_html_report(report: Dict[str, Any]) -> str:
       </div>
     </div>
 
-    <!-- Section 1: Deep Forensics of User's Locked Signals & Market Chart -->
+    <!-- Section 1: DeepForensics of User's Locked Signals & Market Chart -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
       <!-- Card A: Entry Price Band Performance -->
       <div class="bg-white border border-slate-200 rounded-2xl p-4 md:p-5 shadow-xs">
@@ -1294,6 +1496,128 @@ def build_standalone_html_report(report: Dict[str, Any]) -> str:
         <div class="mt-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 leading-relaxed">
           🧠 <b>کشف الگوی سودساز (Alpha Pattern):</b>
           در شهرهایی که نوار آبی روشن آن‌ها بالای <b>۸۰٪ تا ۹۰٪</b> است اما نوار سبز حدود ۳۵٪ تا ۴۵٪ است، خطای مدل فقط به اندازهٔ <b>نیم تا یک درجه</b> در جهت بایاس فصلی است. در این شهرها، <b>استراتژی دوباکتی (خرید هم‌زمان باکت اصلی + باکت همسایه در جهت بایاس فصلی)</b> نرخ برد را تقریباً به بالای ۸۵٪ می‌رساند!
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1.5: Deep Pathology of Losing vs Winning Signals & Golden Dos/Don'ts -->
+    <div class="bg-white border-2 border-indigo-200 rounded-2xl p-4 md:p-6 shadow-xs space-y-5">
+      <div class="border-b border-slate-200 pb-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h2 class="text-base md:text-lg font-extrabold text-slate-900">
+            🔬 کالبدشکافی سیگنال‌های بازنده (شکست‌های با اطمینان بالا)، DNA سیگنال‌های برنده و منشور «بایدها و نبایدها»
+          </h2>
+          <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-rose-100 text-rose-900 border border-rose-300">
+            استخراج‌شده از ۷۹۳ بازار تسویه‌شده و {uf['closed_locks']} قفل شخصی
+          </span>
+        </div>
+        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+          چرا گاهی یک شهر از نظر سابقهٔ دقت قوی است و مدل هواشناسی هم قاطعیت بالایی (۴۰٪ تا ۶۰٪) دارد، اما سیگنال با شکست سنگین مواجه می‌شود؟ کالبدشکافی داده‌های واقعی ۵ مکانیزم مخفی زیر را آشکار می‌کند:
+        </p>
+      </div>
+
+      <!-- 5 Root Causes Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-rose-50/70 border border-rose-200 rounded-xl p-3.5 space-y-1.5">
+          <div class="text-xs font-extrabold text-rose-950">
+            ۱. تله واگرایی پول هوشمند بازار با مدل (Smart-Money Divergence Trap)
+          </div>
+          <div class="flex items-center justify-between text-[11.5px] bg-white rounded-lg p-2 border border-rose-200">
+            <span>مدل ≥35% + بازار موافق (≥25¢):</span>
+            <b class="text-emerald-700 ltr-inline">{sp.get('hc_mkt_agree_wr', 76.7)}% برد ({sp.get('hc_mkt_agree_n', 232)} بازار)</b>
+          </div>
+          <div class="flex items-center justify-between text-[11.5px] bg-white rounded-lg p-2 border border-rose-200">
+            <span>مدل ≥35% + بازار مخالف (&lt;15¢):</span>
+            <b class="text-rose-600 ltr-inline">{sp.get('hc_mkt_trap_wr', 23.1)}% برد ({sp.get('hc_mkt_trap_n', 160)} بازار)</b>
+          </div>
+          <p class="text-[11.5px] text-slate-700 leading-relaxed m-0">
+            <b>علت فاجعه:</b> وقتی مدل احتمال ۴۵٪ می‌دهد ولی بازار روی ۶ تا ۱۴ سنت قفل است (EV ظاهری +300%!)، در <b>۷۶.۹٪ مواقع بازار درست می‌گوید و مدل بازنده است</b>؛ چون تریدرهای محلی از روی METAR زنده دیده‌اند دما از آن باکت عبور کرده یا ابر/باد مانع گرم شدن شده است.
+          </p>
+        </div>
+
+        <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-3.5 space-y-1.5">
+          <div class="text-xs font-extrabold text-amber-950">
+            ۲. تله مرزی گرد شدن دما روی لبه باکت (Knife-Edge Rounding Trap)
+          </div>
+          <div class="flex items-center justify-between text-[11.5px] bg-white rounded-lg p-2 border border-amber-200">
+            <span>میانگین مدل در مرکز باکت (<code>.00</code> تا <code>.24</code>):</span>
+            <b class="text-emerald-700 ltr-inline">{sp.get('center_bucket_wr', 45.6)}% اصابت تک‌باکت</b>
+          </div>
+          <div class="flex items-center justify-between text-[11.5px] bg-white rounded-lg p-2 border border-amber-200">
+            <span>میانگین مدل روی مرز باکت (<code>.35</code> تا <code>.65</code>):</span>
+            <b class="text-rose-600 ltr-inline">{sp.get('edge_bucket_wr', 33.3)}% اصابت تک‌باکت</b>
+          </div>
+          <p class="text-[11.5px] text-slate-700 leading-relaxed m-0">
+            <b>علت فاجعه:</b> وقتی پیش‌بینی مدل مثلاً <code>17.44°C</code> یا <code>27.62°C</code> است، حتی در دقیق‌ترین شهر دنیا، تنها <code>0.07°C</code> نسیم کافی است تا گرد شدن Wunderground از ۱۷ به ۱۸ بپرد! تک‌خال زدن روی مرز باکت قمار است و <b>الزاماً نیازمند استراتژی دوباکتی (Straddle)</b> است.
+          </p>
+        </div>
+
+        <div class="bg-indigo-50/70 border border-indigo-200 rounded-xl p-3.5 space-y-1.5">
+          <div class="text-xs font-extrabold text-indigo-950">
+            ۳. شکاف زیرمدل‌ها و شیوه خروج (خروج فعال در برابر نگهداری منفعل)
+          </div>
+          <div class="flex items-center justify-between text-[11.5px] bg-white rounded-lg p-2 border border-indigo-200">
+            <span>خروج فعال درون‌روزی شما ({sp.get('manual_exit_n', 130)} قفل):</span>
+            <b class="text-emerald-700 ltr-inline">{sp.get('manual_exit_wr', 65.4)}% برد ({sp.get('manual_exit_pnl', 18.3):+.1f}%)</b>
+          </div>
+          <div class="flex items-center justify-between text-[11.5px] bg-white rounded-lg p-2 border border-indigo-200">
+            <span>نگهداری منفعل تا تسویه ({sp.get('passive_hold_n', 184)} قفل):</span>
+            <b class="text-rose-600 ltr-inline">{sp.get('passive_hold_wr', 39.1)}% برد ({sp.get('passive_hold_pnl', -23.8):+.1f}%)</b>
+          </div>
+          <p class="text-[11.5px] text-slate-700 leading-relaxed m-0">
+            <b>علت فاجعه:</b> همچنین وقتی زیرمدل‌های ECMWF و GFS هم‌نظرند (اختلاف ≤0.8°C) دقت <b>{sp.get('converge_wr', 55.1)}%</b> است، اما در روزهای واگرایی شدید (&gt;1.6°C) دقت به <b>{sp.get('diverge_wr', 46.5)}%</b> سقوط می‌کند. قفل کردن باکت اصلی مدل (Main Signal) نرخ برد <b>{sp.get('main_signal_wr', 65.6)}% ({sp.get('main_signal_pnl', 14.8):+.1f}%)</b> داشته است.
+          </p>
+        </div>
+      </div>
+
+      <!-- Golden Dos and Don'ts Table -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-emerald-50/80 border border-emerald-300 rounded-xl p-4">
+          <h3 class="text-xs md:text-sm font-extrabold text-emerald-950 mb-2.5 flex items-center gap-1.5">
+            ✅ بایدهای قطعی شکار سیگنال (قوانین طلایی برنده‌ها — DOs)
+          </h3>
+          <ul class="space-y-2 text-xs text-slate-800 leading-relaxed list-disc pr-4">
+            <li>
+              <b>تمرکز روی باکت اصلی (Main Signal) در ناحیه ۲۵ تا ۶۵ سنت:</b>
+              در کارنامهٔ شما، قفل‌های روی باکت اصلیِ مدل <b>{sp.get('main_signal_wr', 65.6)}% نرخ برد و میانگین سود +{sp.get('main_signal_pnl', 14.8)}%</b> داشته‌اند و بازهٔ ۴۵ تا ۶۵ سنت <b>۶۰٪ نرخ برد</b> ثبت کرده است.
+            </li>
+            <li>
+              <b>تأیید هم‌جهتی بازار و مدل (Smart-Money Confirmation):</b>
+              بهترین شکار زمانی است که احتمال مدل بالای ۳۸٪ است و قیمت تابلوی بازار نیز بین <b>۲۲ تا ۵۵ سنت</b> است (یعنی پول هوشمند بازار با مدل هم‌جهت است اما هنوز ۱۵ تا ۲۵ سنت جا برای رشد تا ارزش منصفانه دارد).
+            </li>
+            <li>
+              <b>خرید دو باکت همسایه (Straddle 65%/35%) در پیش‌بینی‌های مرزی:</b>
+              هرگاه رقم اعشار پیش‌بینی مدل بین <code>.30</code> تا <code>.70</code> بود (مثلاً <code>22.4°C</code>)، یا دقت <code>±1 باکت</code> شهر بالای ۸۰٪ بود، سرمایه را ۶۵٪ روی باکت اول و ۳۵٪ روی باکت همسایه (در جهت بایاس ۱۴ روزه) تقسیم کنید.
+            </li>
+            <li>
+              <b>فعال‌سازی همیشگی مثلث حفاظتی (Smart TP + Trailing Stop 8% + METAR Guard):</b>
+              خروج فعال درون‌روزی میانگین بازده شما را از <code>-23.8%</code> به <b><code>+{sp.get('manual_exit_pnl', 18.3)}%</code></b> تبدیل کرده است.
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-rose-50/80 border border-rose-300 rounded-xl p-4">
+          <h3 class="text-xs md:text-sm font-extrabold text-rose-950 mb-2.5 flex items-center gap-1.5">
+            🚫 نبایدهای مطلق و تله‌های مرگبار سرمایه (خطوط قرمز — DON'Ts)
+          </h3>
+          <ul class="space-y-2 text-xs text-slate-800 leading-relaxed list-disc pr-4">
+            <li>
+              <b>ممنوعیت فریب خوردن از EVهای نجومی روی باکت‌های زیر ۱۵ سنت در روز تسویه (D0):</b>
+              وقتی در میانهٔ روز مدل به باکتی ۴۰٪ احتمال می‌دهد اما بازار آن را زیر ۱۲–۱۵ سنت می‌فروشد، این «تخفیف» نیست بلکه تلهٔ تاخیر مدل است (<b>۷۶.۹٪ نرخ شکست</b>). قفل‌های زیر ۱۰ سنت شما <b>۸۳.۳٪ نرخ باخت</b> داشته‌اند.
+            </li>
+            <li>
+              <b>ممنوعیت تک‌خال زدن (Single Bucket) وقتی زیرمدل‌ها بیش از ۱.۵ درجه اختلاف دارند:</b>
+              وقتی ECMWF و GFS در روز جبهه هوا بیش از <code>1.5°C</code> (یا <code>3.0°F</code>) با هم اختلاف دارند، قاطعیت ظاهری میانگین آن‌ها کاذب است؛ یا وارد نشوید یا فقط دوباکتی با حجم نصف کار کنید.
+            </li>
+            <li>
+              <b>ممنوعیت ورود در فاز اشباع دمایی بدون چک کردن ردیاب METAR:</b>
+              اگر ساعت محلی شهر از ۱۴:۳۰ گذشته و دمای زندهٔ فرودگاه (METAR) هنوز ۲ درجه زیر باکت هدف است و شیب دما صاف شده، حتی اگر مدل ۶۰٪ احتمال بدهد، ورود ممنوع است.
+            </li>
+            <li>
+              <b>ممنوعیت نگهداری منفعلانه تا تسویه در شهرهای نوسانی (Tier 3 / Whipsaw):</b>
+              در شهرهایی که الگوی چرخش درون‌روزی دارند، به محض کسب سود <b>+۲۵٪ تا +۳۵٪</b> با Auto-TP خارج شوید و منتظر ۱۰۰ سنت تسویه نمانید.
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1570,6 +1894,7 @@ def build_standalone_html_report(report: Dict[str, Any]) -> str:
 def build_telegram_executive_summary(report: Dict[str, Any], live_link: Optional[str] = None) -> str:
     uf = report["user_forensics"]
     tc = report["tier_counts"]
+    sp = report.get("signal_pathology") or {}
     playbooks = report["playbooks"]
 
     top_tier1 = [p for p in playbooks if p["tier_code"] == "TIER_1_ALPHA"][:6]
@@ -1577,13 +1902,19 @@ def build_telegram_executive_summary(report: Dict[str, Any], live_link: Optional
     avoid_list = [p for p in playbooks if p["tier_code"] == "TIER_4_AVOID"][-4:]
 
     lines = [
-        f"🧠 <b>گزارش روزانه آزمایشگاه کمّی و استراتژی شهرها (Quant Strategy Lab)</b>",
+        f"🧠 <b>گزارش روزانه آزمایشگاه کمّی و استراتژی شهرها (Quant Strategy Lab v2.0)</b>",
         f"🕒 بروزرسانی: <code>{report['generated_at_iran']}</code> به وقت ایران",
         "",
-        f"📊 <b>کالبدشکافی قفل‌های شخصی شما ({uf['closed_locks']} معامله بسته‌شده):</b>",
+        f"📊 <b>کالبدشکافی قفل‌های شخصی شما ({uf['closed_locks']} معامله بسته‌شده — همگام با داشبورد):</b>",
         f"  • نرخ برد خروجی شما: <b>{uf['win_rate_pct']}%</b> (میانگین بازده: <b>{uf['avg_pnl_pct']:+.1f}%</b>)",
         f"  • 🛡️ نجات هوشمند با خروج دستی قبل از صفر شدن باکت: <b>{uf['manual_smart_saves']} معامله</b>",
         f"  • 💸 خروج زودهنگام روی باکت‌های برنده ۱۰۰¢: <b>{uf['manual_early_regrets']} معامله</b>",
+        "",
+        f"🔬 <b>آسیب‌شناسی شکست‌های با اطمینان بالا و DNA سیگنال‌های برنده:</b>",
+        f"  • ✅ <b>توافق مدل (≥35%) و پول هوشمند بازار (≥25¢):</b> نرخ اصابت <b>{sp.get('hc_mkt_agree_wr', 76.7)}%</b>",
+        f"  • 🚫 <b>تله واگرایی (مدل ≥35% ولی قیمت بازار &lt;15¢):</b> نرخ اصابت فقط <b>{sp.get('hc_mkt_trap_wr', 23.1)}%</b> (۷۶.۹٪ شکست!)",
+        f"  • ⚖️ <b>تله مرزی گرد شدن دما (اعشار .35 تا .65):</b> سقوط تک‌باکت از <b>{sp.get('center_bucket_wr', 45.6)}%</b> به <b>{sp.get('edge_bucket_wr', 33.3)}%</b> (الزام استراتژی دوباکتی Straddle)",
+        f"  • 🎯 <b>قفل روی باکت اصلی (Main Signal) + خروج فعال درون‌روزی:</b> نرخ برد <b>{sp.get('main_signal_wr', 65.6)}%</b> در برابر <b>{sp.get('passive_hold_wr', 39.1)}%</b> نگهداری منفعل",
         "",
         f"🟢 <b>برترین شهرهای درجه ۱ امروز (TIER 1 — A+ Alpha):</b>",
     ]

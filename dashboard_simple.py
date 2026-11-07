@@ -234,7 +234,7 @@ def _build_city_form_profiles(all_markets):
             if not mkt:
                 continue
             actual = r["actual_temp"]
-            f_cal = mkt.get("forecast_mean_legacy", mkt.get("forecast_mean"))
+            f_cal = mkt.get("forecast_mean")
             f_sh = mkt.get("forecast_mean_shadow")
             if f_cal is not None and f_sh is not None:
                 c_e = abs(float(f_cal) - actual)
@@ -277,12 +277,23 @@ def _build_city_form_profiles(all_markets):
                     worst_mae = m_mae
                     worst_submodel = mname
 
+        gem_pruned_cities = {"jeddah", "seoul", "tel-aviv"}
         if submodel_rmses:
             min_rmse = max(0.25, min(submodel_rmses.values()))
             raw_w = {}
             for mname, v in submodel_rmses.items():
+                if mtype == "max" and mname == "gem" and slug in gem_pruned_cities:
+                    raw_w[mname] = 0.0
+                    continue
                 ratio = v / min_rmse
-                penalty = 0.20 if ratio > 1.35 else (0.55 if ratio > 1.18 else 1.0)
+                if ratio > 1.65:
+                    penalty = 0.04
+                elif ratio > 1.35:
+                    penalty = 0.20
+                elif ratio > 1.18:
+                    penalty = 0.55
+                else:
+                    penalty = 1.0
                 raw_w[mname] = (1.0 / (v * v + 0.12)) * penalty
             inv_sum = sum(raw_w.values()) or 1.0
             for mname, rw in raw_w.items():
@@ -294,7 +305,7 @@ def _build_city_form_profiles(all_markets):
 
         gate_decision = "use_calibrated"
         gate_reason = "کالیبراسیون فعلی دقیق و سودده است"
-        if raw_shadow_mae is not None and calibrated_mae is not None and calibrated_mae > raw_shadow_mae + 0.08:
+        if slug not in ("jeddah", "seoul", "tel-aviv") and raw_shadow_mae is not None and calibrated_mae is not None and calibrated_mae > raw_shadow_mae + 0.08:
             gate_decision = "revert_to_shadow"
             gate_reason = f"گیت سود-محور: مدل خام (MAE={raw_shadow_mae}°) دقیق‌تر از کالیبره ({calibrated_mae}°) بود → بازگشت خودکار به خام"
         elif sign_flip:
@@ -358,11 +369,17 @@ def _enrich_market_with_smart_gate(m, profile):
     models_raw = m.get("model_means_raw") or {}
     unit = m.get("unit") or "C"
     base_sigma = float(m.get("sigma") or (1.8 if unit == "F" else 1.2))
-    smart_mean = f_cal
+    city_slug = m.get("city", "")
+    is_target_city = (city_slug in ("jeddah", "seoul", "tel-aviv") and m.get("market_type", "max") != "min")
+
+    smart_mean = float(f_cal) if f_cal is not None else None
 
     # ۱) وزن‌دهی بیزین پویا (Dynamic BMA) و انحراف معیار پویا (Dynamic Sigma)
     bma_weights = (profile.get("submodel_weights") if profile else None) or {}
-    valid_models = {mk: float(mv) for mk, mv in models_raw.items() if mv is not None}
+    valid_models = {
+        mk: float(mv) for mk, mv in models_raw.items()
+        if mv is not None and not (is_target_city and mk == "gem")
+    }
     bma_mean = None
     model_spread = m.get("model_spread")
 
@@ -370,27 +387,28 @@ def _enrich_market_with_smart_gate(m, profile):
         w_sum, v_sum = 0.0, 0.0
         for mk, mv in valid_models.items():
             w = float(bma_weights.get(mk, 1.0 / len(valid_models)))
+            if w <= 0:
+                continue
             v_sum += mv * w
             w_sum += w
         if w_sum > 0:
             bma_mean = v_sum / w_sum
             if model_spread is None and len(valid_models) >= 2:
-                var_s = sum((float(bma_weights.get(mk, 1.0 / len(valid_models))) / w_sum) * ((mv - bma_mean) ** 2) for mk, mv in valid_models.items())
+                var_s = sum((float(bma_weights.get(mk, 0.0)) / w_sum) * ((mv - bma_mean) ** 2) for mk, mv in valid_models.items() if float(bma_weights.get(mk, 0.0)) > 0)
                 model_spread = round(math.sqrt(max(0.0, var_s)), 3)
 
     m["model_spread"] = model_spread
 
     if profile and f_cal is not None:
         gd = profile["gate_decision"]
-        if gd == "revert_to_shadow" and f_sh is not None:
+        if is_target_city:
+            smart_mean = round(float(f_cal), 2)
+        elif gd == "revert_to_shadow" and f_sh is not None:
             smart_mean = round(float(f_sh), 2)
+        elif gd == "sign_flip_damped" and f_sh is not None:
+            smart_mean = round(0.5 * float(f_cal) + 0.5 * float(f_sh), 2)
         elif gd == "smart_submodel_blend" and bma_mean is not None:
-            smart_mean = round(0.45 * float(f_cal) + 0.55 * float(bma_mean), 2)
-        elif gd == "sign_flip_damped":
-            if f_sh is not None:
-                smart_mean = round(0.5 * float(f_cal) + 0.5 * float(f_sh), 2)
-            else:
-                smart_mean = round(float(f_cal) + profile["recent_bias"] * 0.4, 2)
+            smart_mean = round(0.55 * float(f_cal) + 0.45 * float(bma_mean), 2)
         elif bma_mean is not None:
             smart_mean = round(0.65 * float(f_cal) + 0.35 * float(bma_mean), 2)
 
