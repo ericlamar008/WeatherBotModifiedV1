@@ -126,10 +126,10 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.345,
+      "yes_price": 0.42,
       "no_price": 0.65,
       "best_bid": null,
-      "best_ask": 0.69,
+      "best_ask": 0.84,
       "bid_ask_spread": 0.0,
       "volume": 11.0,
       "spread": 0.0,
@@ -138,14 +138,14 @@
       "model_prob": 0.183,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.345,
-      "effective_ask": 0.345,
-      "market_prob": 0.345,
-      "belief_prob": 0.2397,
-      "ev": -0.3052,
+      "ask": 0.42,
+      "effective_ask": 0.42,
+      "market_prob": 0.42,
+      "belief_prob": 0.266,
+      "ev": -0.3667,
       "kelly": 0.0,
-      "swing_edge": -0.162,
-      "swing_upside_pct": -47.0,
+      "swing_edge": -0.237,
+      "swing_upside_pct": -56.4,
       "sell_value": null,
       "scan6h_model_prob": 0.183,
       "prev_scan6h_model_prob": 0.183,
@@ -159,13 +159,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.35,
       "prev_scan6h_yes_price": 0.35,
-      "prev_yes_price": 0.35,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.4,
-      "yes_price_6h_change": -0.005,
-      "yes_price_6h_pct_change": -1.4,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.4,
+      "prev_yes_price": 0.345,
+      "yes_price_10m_change": 0.075,
+      "yes_price_10m_pct_change": 21.7,
+      "yes_price_6h_change": 0.07,
+      "yes_price_6h_pct_change": 20.0,
+      "yes_price_change": 0.075,
+      "yes_price_pct_change": 21.7,
       "price_history": [
         {
           "t": "2026-11-07T14:24:27Z",
@@ -194,9 +194,16 @@
           "mp": 0.183,
           "bid": null,
           "ask": 0.69
+        },
+        {
+          "t": "2026-11-07T15:37:29Z",
+          "p": 0.42,
+          "mp": 0.183,
+          "bid": null,
+          "ask": 0.84
         }
       ],
-      "prev_10m_yes_price": 0.35
+      "prev_10m_yes_price": 0.345
     },
     {
       "question": "Will the lowest temperature in Los Angeles be between 58-59°F on November 7?",
@@ -205,11 +212,11 @@
         58.0,
         59.0
       ],
-      "yes_price": 0.525,
+      "yes_price": 0.555,
       "no_price": 0.425,
-      "best_bid": 0.06,
-      "best_ask": 0.99,
-      "bid_ask_spread": 0.93,
+      "best_bid": 0.11,
+      "best_ask": 1.0,
+      "bid_ask_spread": 0.0,
       "volume": 120.0,
       "spread": 0.81,
       "yes_token_id": "106774607397452546186964244836133791171937148479233897254512279522285315826906",
@@ -217,14 +224,14 @@
       "model_prob": 0.1896,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.525,
-      "effective_ask": 0.605,
-      "market_prob": 0.525,
-      "belief_prob": 0.307,
-      "ev": -0.4926,
+      "ask": 0.555,
+      "effective_ask": 0.555,
+      "market_prob": 0.555,
+      "belief_prob": 0.3175,
+      "ev": -0.4279,
       "kelly": 0.0,
-      "swing_edge": -0.3354,
-      "swing_upside_pct": -63.9,
+      "swing_edge": -0.3654,
+      "swing_upside_pct": -65.8,
       "sell_value": 0.17,
       "scan6h_model_prob": 0.1896,
       "prev_scan6h_model_prob": 0.1896,
@@ -238,13 +245,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.575,
       "prev_scan6h_yes_price": 0.575,
-      "prev_yes_price": 0.56,
-      "yes_price_10m_change": -0.035,
-      "yes_price_10m_pct_change": -6.2,
-      "yes_price_6h_change": -0.05,
-      "yes_price_6h_pct_change": -8.7,
-      "yes_price_change": -0.035,
-      "yes_price_pct_change": -6.2,
+      "prev_yes_price": 0.525,
+      "yes_price_10m_change": 0.03,
+      "yes_price_10m_pct_change": 5.7,
+      "yes_price_6h_change": -0.02,
+      "yes_price_6h_pct_change": -3.5,
+      "yes_price_change": 0.03,
+      "yes_price_pct_change": 5.7,
       "price_history": [
         {
           "t": "2026-11-07T14:24:27Z",
@@ -287,9 +294,16 @@
           "mp": 0.1896,
           "bid": 0.06,
           "ask": 0.99
+        },
+        {
+          "t": "2026-11-07T15:37:29Z",
+          "p": 0.555,
+          "mp": 0.1896,
+          "bid": 0.11,
+          "ask": 1.0
         }
       ],
-      "prev_10m_yes_price": 0.56
+      "prev_10m_yes_price": 0.525
     },
     {
       "question": "Will the lowest temperature in Los Angeles be between 60-61°F on November 7?",
@@ -806,5 +820,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T15:22:35.727675+00:00"
+  "last_price_refresh": "2026-11-07T15:37:28.313272+00:00"
 }
