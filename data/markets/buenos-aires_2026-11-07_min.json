@@ -47,11 +47,11 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.465,
+      "yes_price": 0.45,
       "no_price": 0.575,
-      "best_bid": 0.09,
-      "best_ask": 0.84,
-      "bid_ask_spread": 0.75,
+      "best_bid": 0.08,
+      "best_ask": 0.82,
+      "bid_ask_spread": 0.74,
       "volume": 193.0,
       "spread": 0.65,
       "yes_token_id": "42116348174091470205229459965665444742101630210852075777461473125396196711116",
@@ -59,14 +59,14 @@
       "model_prob": 0.0861,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.465,
-      "effective_ask": 0.545,
-      "market_prob": 0.465,
-      "belief_prob": 0.2187,
-      "ev": -0.5987,
+      "ask": 0.45,
+      "effective_ask": 0.53,
+      "market_prob": 0.45,
+      "belief_prob": 0.2135,
+      "ev": -0.5972,
       "kelly": 0.0,
-      "swing_edge": -0.3789,
-      "swing_upside_pct": -81.5,
+      "swing_edge": -0.3639,
+      "swing_upside_pct": -80.9,
       "sell_value": 0.1,
       "scan6h_model_prob": 0.0861,
       "prev_scan6h_model_prob": 0.0861,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.425,
       "prev_scan6h_yes_price": 0.425,
-      "prev_yes_price": 0.48,
+      "prev_yes_price": 0.465,
       "yes_price_10m_change": -0.015,
-      "yes_price_10m_pct_change": -3.1,
-      "yes_price_6h_change": 0.04,
-      "yes_price_6h_pct_change": 9.4,
+      "yes_price_10m_pct_change": -3.2,
+      "yes_price_6h_change": 0.025,
+      "yes_price_6h_pct_change": 5.9,
       "yes_price_change": -0.015,
-      "yes_price_pct_change": -3.1,
+      "yes_price_pct_change": -3.2,
       "price_history": [
         {
           "t": "2026-11-07T08:25:38Z",
@@ -129,9 +129,16 @@
           "mp": 0.0861,
           "bid": 0.09,
           "ask": 0.84
+        },
+        {
+          "t": "2026-11-07T10:07:34Z",
+          "p": 0.45,
+          "mp": 0.0861,
+          "bid": 0.08,
+          "ask": 0.82
         }
       ],
-      "prev_10m_yes_price": 0.48
+      "prev_10m_yes_price": 0.465
     },
     {
       "question": "Will the lowest temperature in Buenos Aires be 13°C on November 7?",
@@ -563,5 +570,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T09:52:33.791486+00:00"
+  "last_price_refresh": "2026-11-07T10:07:32.724959+00:00"
 }
