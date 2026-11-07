@@ -295,11 +295,11 @@
         68.0,
         69.0
       ],
-      "yes_price": 0.46,
+      "yes_price": 0.41,
       "no_price": 0.56,
-      "best_bid": 0.45,
-      "best_ask": 0.47,
-      "bid_ask_spread": 0.02,
+      "best_bid": 0.39,
+      "best_ask": 0.43,
+      "bid_ask_spread": 0.04,
       "volume": 186.0,
       "spread": 0.24,
       "yes_token_id": "81406197941657483107762484916436662191805729427663823792911247558259624023051",
@@ -307,14 +307,14 @@
       "model_prob": 0.1062,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.46,
-      "effective_ask": 0.46,
-      "market_prob": 0.46,
-      "belief_prob": 0.23,
-      "ev": -0.5,
+      "ask": 0.41,
+      "effective_ask": 0.4155,
+      "market_prob": 0.41,
+      "belief_prob": 0.2125,
+      "ev": -0.4886,
       "kelly": 0.0,
-      "swing_edge": -0.3538,
-      "swing_upside_pct": -76.9,
+      "swing_edge": -0.3038,
+      "swing_upside_pct": -74.1,
       "sell_value": 0.32,
       "scan6h_model_prob": 0.1062,
       "prev_scan6h_model_prob": 0.1062,
@@ -328,13 +328,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.44,
       "prev_scan6h_yes_price": 0.44,
-      "prev_yes_price": 0.405,
-      "yes_price_10m_change": 0.055,
-      "yes_price_10m_pct_change": 13.6,
-      "yes_price_6h_change": 0.02,
-      "yes_price_6h_pct_change": 4.5,
-      "yes_price_change": 0.055,
-      "yes_price_pct_change": 13.6,
+      "prev_yes_price": 0.46,
+      "yes_price_10m_change": -0.05,
+      "yes_price_10m_pct_change": -10.9,
+      "yes_price_6h_change": -0.03,
+      "yes_price_6h_pct_change": -6.8,
+      "yes_price_change": -0.05,
+      "yes_price_pct_change": -10.9,
       "price_history": [
         {
           "t": "2026-11-07T08:24:31Z",
@@ -419,9 +419,16 @@
           "mp": 0.1062,
           "bid": 0.45,
           "ask": 0.47
+        },
+        {
+          "t": "2026-11-07T11:37:29Z",
+          "p": 0.41,
+          "mp": 0.1062,
+          "bid": 0.39,
+          "ask": 0.43
         }
       ],
-      "prev_10m_yes_price": 0.405
+      "prev_10m_yes_price": 0.46
     },
     {
       "question": "Will the highest temperature in Denver be 76°F or higher on November 8?",
@@ -541,5 +548,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T11:22:32.776793+00:00"
+  "last_price_refresh": "2026-11-07T11:37:28.509747+00:00"
 }
