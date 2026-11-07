@@ -191,11 +191,11 @@
         24.0,
         24.0
       ],
-      "yes_price": 0.4,
+      "yes_price": 0.385,
       "no_price": 0.625,
       "best_bid": 0.01,
-      "best_ask": 0.79,
-      "bid_ask_spread": 0.78,
+      "best_ask": 0.76,
+      "bid_ask_spread": 0.75,
       "volume": 140.0,
       "spread": 0.71,
       "yes_token_id": "73791200829274219282342238905383855449789846194407525229139783480109554222095",
@@ -203,14 +203,14 @@
       "model_prob": 0.1157,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.4,
-      "effective_ask": 0.48,
-      "market_prob": 0.4,
-      "belief_prob": 0.2152,
-      "ev": -0.5517,
+      "ask": 0.385,
+      "effective_ask": 0.465,
+      "market_prob": 0.385,
+      "belief_prob": 0.21,
+      "ev": -0.5484,
       "kelly": 0.0,
-      "swing_edge": -0.2843,
-      "swing_upside_pct": -71.1,
+      "swing_edge": -0.2693,
+      "swing_upside_pct": -69.9,
       "sell_value": 0.02,
       "scan6h_model_prob": 0.1157,
       "prev_scan6h_model_prob": 0.1157,
@@ -224,13 +224,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.375,
       "prev_scan6h_yes_price": 0.375,
-      "prev_yes_price": 0.455,
-      "yes_price_10m_change": -0.055,
-      "yes_price_10m_pct_change": -12.1,
-      "yes_price_6h_change": 0.025,
-      "yes_price_6h_pct_change": 6.7,
-      "yes_price_change": -0.055,
-      "yes_price_pct_change": -12.1,
+      "prev_yes_price": 0.4,
+      "yes_price_10m_change": -0.015,
+      "yes_price_10m_pct_change": -3.8,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 2.7,
+      "yes_price_change": -0.015,
+      "yes_price_pct_change": -3.8,
       "price_history": [
         {
           "t": "2026-11-07T08:24:51Z",
@@ -259,9 +259,16 @@
           "mp": 0.1157,
           "bid": 0.01,
           "ask": 0.79
+        },
+        {
+          "t": "2026-11-07T09:37:31Z",
+          "p": 0.385,
+          "mp": 0.1157,
+          "bid": 0.01,
+          "ask": 0.76
         }
       ],
-      "prev_10m_yes_price": 0.455
+      "prev_10m_yes_price": 0.4
     },
     {
       "question": "Will the lowest temperature in Jeddah be 25°C on November 7?",
@@ -648,5 +655,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T09:22:31.375545+00:00"
+  "last_price_refresh": "2026-11-07T09:37:30.247321+00:00"
 }
