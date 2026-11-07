@@ -66,8 +66,8 @@
       "belief_prob": 0.1891,
       "ev": 4.7652,
       "kelly": 0.0404,
-      "swing_edge": 0.2452,
-      "swing_upside_pct": 747.6,
+      "swing_edge": 0.254,
+      "swing_upside_pct": 1058.3,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.278,
       "prev_scan6h_model_prob": 0.278,
@@ -96,7 +96,8 @@
           "bid": 0.001,
           "ask": 0.047
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.024
     },
     {
       "question": "Will the lowest temperature in Ankara be -1°C on November 7?",
@@ -105,11 +106,11 @@
         -1.0,
         -1.0
       ],
-      "yes_price": 0.335,
+      "yes_price": 0.27,
       "no_price": 0.665,
       "best_bid": 0.02,
-      "best_ask": 0.65,
-      "bid_ask_spread": 0.63,
+      "best_ask": 0.52,
+      "bid_ask_spread": 0.5,
       "volume": 1.0,
       "spread": 0.63,
       "yes_token_id": "62150240060451960546129191907932678373741135609623004360812738686700890906378",
@@ -117,14 +118,14 @@
       "model_prob": 0.1677,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.335,
-      "effective_ask": 0.415,
-      "market_prob": 0.335,
-      "belief_prob": 0.2263,
-      "ev": -0.4547,
+      "ask": 0.27,
+      "effective_ask": 0.35,
+      "market_prob": 0.27,
+      "belief_prob": 0.2035,
+      "ev": -0.4186,
       "kelly": 0.0,
-      "swing_edge": -0.2473,
-      "swing_upside_pct": -59.6,
+      "swing_edge": -0.1023,
+      "swing_upside_pct": -37.9,
       "sell_value": 0.02,
       "scan6h_model_prob": 0.1677,
       "prev_scan6h_model_prob": 0.1677,
@@ -139,12 +140,12 @@
       "scan6h_yes_price": 0.335,
       "prev_scan6h_yes_price": 0.335,
       "prev_yes_price": 0.335,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.065,
+      "yes_price_10m_pct_change": -19.4,
+      "yes_price_6h_change": -0.065,
+      "yes_price_6h_pct_change": -19.4,
+      "yes_price_change": -0.065,
+      "yes_price_pct_change": -19.4,
       "price_history": [
         {
           "t": "2026-11-07T14:25:55Z",
@@ -152,8 +153,16 @@
           "mp": 0.1677,
           "bid": 0.02,
           "ask": 0.65
+        },
+        {
+          "t": "2026-11-07T14:27:00Z",
+          "p": 0.27,
+          "mp": 0.1677,
+          "bid": 0.02,
+          "ask": 0.52
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.335
     },
     {
       "question": "Will the lowest temperature in Ankara be 2°C on November 7?",
@@ -177,7 +186,7 @@
       "ask": 0.001,
       "effective_ask": 0.001,
       "market_prob": 0.001,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0003,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.001,
@@ -417,7 +426,7 @@
       "ask": 0.001,
       "effective_ask": 0.001,
       "market_prob": 0.001,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0003,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.001,
@@ -657,7 +666,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -897,7 +906,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1137,8 +1146,8 @@
       "ask": 0.0015,
       "effective_ask": 0.0015,
       "market_prob": 0.0015,
-      "belief_prob": 0.0,
-      "ev": -1.0,
+      "belief_prob": 0.0005,
+      "ev": -0.6667,
       "kelly": 0.0,
       "swing_edge": -0.0015,
       "swing_upside_pct": 0.0,
@@ -1160,8 +1169,8 @@
       "yes_price_6h_change": 0.001,
       "yes_price_6h_pct_change": 0.1,
       "scan6h_yes_price": 0.0015,
-      "prev_yes_price": 0.0005,
-      "yes_price_change": 0.001,
+      "prev_yes_price": 0.001,
+      "yes_price_change": 0.0005,
       "yes_price_pct_change": 0.1,
       "price_history": [
         {
@@ -1366,5 +1375,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T14:07:31.285935+00:00"
+  "last_price_refresh": "2026-11-07T14:26:59.063544+00:00"
 }
