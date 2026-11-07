@@ -47,11 +47,11 @@
         28.0,
         29.0
       ],
-      "yes_price": 0.3205,
+      "yes_price": 0.319,
       "no_price": 0.664,
       "best_bid": 0.003,
       "best_ask": 0.638,
-      "bid_ask_spread": 0.635,
+      "bid_ask_spread": 0.0,
       "volume": 25.0,
       "spread": 0.666,
       "yes_token_id": "69628291616707617162270116945039241092618366450185971213579517208093612088027",
@@ -59,14 +59,14 @@
       "model_prob": 0.1298,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.3205,
-      "effective_ask": 0.4005,
-      "market_prob": 0.3205,
-      "belief_prob": 0.1965,
-      "ev": -0.5094,
+      "ask": 0.319,
+      "effective_ask": 0.319,
+      "market_prob": 0.319,
+      "belief_prob": 0.196,
+      "ev": -0.3856,
       "kelly": 0.0,
-      "swing_edge": -0.1907,
-      "swing_upside_pct": -59.5,
+      "swing_edge": -0.1892,
+      "swing_upside_pct": -59.3,
       "sell_value": 0.003,
       "scan6h_model_prob": 0.1298,
       "prev_scan6h_model_prob": 0.1298,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.336,
       "prev_scan6h_yes_price": 0.336,
-      "prev_yes_price": 0.3345,
-      "yes_price_10m_change": -0.014,
-      "yes_price_10m_pct_change": -4.2,
-      "yes_price_6h_change": -0.0155,
-      "yes_price_6h_pct_change": -4.6,
-      "yes_price_change": -0.014,
-      "yes_price_pct_change": -4.2,
+      "prev_yes_price": 0.3205,
+      "yes_price_10m_change": -0.0015,
+      "yes_price_10m_pct_change": -0.5,
+      "yes_price_6h_change": -0.017,
+      "yes_price_6h_pct_change": -5.1,
+      "yes_price_change": -0.0015,
+      "yes_price_pct_change": -0.5,
       "price_history": [
         {
           "t": "2026-11-07T14:25:56Z",
@@ -103,7 +103,7 @@
           "ask": 0.638
         }
       ],
-      "prev_10m_yes_price": 0.3345
+      "prev_10m_yes_price": 0.3205
     },
     {
       "question": "Will the lowest temperature in Chicago be between 32-33°F on November 7?",
@@ -177,11 +177,11 @@
         34.0,
         35.0
       ],
-      "yes_price": 0.935,
+      "yes_price": 0.945,
       "no_price": 0.065,
       "best_bid": 0.91,
-      "best_ask": 0.96,
-      "bid_ask_spread": 0.05,
+      "best_ask": 0.98,
+      "bid_ask_spread": 0.07,
       "volume": 92.0,
       "spread": 0.05,
       "yes_token_id": "86170331311849988683075828325949355992767361389908919929961753499057730956027",
@@ -189,14 +189,14 @@
       "model_prob": 0.2467,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.935,
-      "effective_ask": 0.946,
-      "market_prob": 0.935,
-      "belief_prob": 0.4876,
-      "ev": -0.4846,
+      "ask": 0.945,
+      "effective_ask": 0.967,
+      "market_prob": 0.945,
+      "belief_prob": 0.4911,
+      "ev": -0.4921,
       "kelly": 0.0,
-      "swing_edge": -0.6883,
-      "swing_upside_pct": -73.6,
+      "swing_edge": -0.6983,
+      "swing_upside_pct": -73.9,
       "sell_value": 0.91,
       "scan6h_model_prob": 0.2467,
       "prev_scan6h_model_prob": 0.2467,
@@ -211,12 +211,12 @@
       "scan6h_yes_price": 0.935,
       "prev_scan6h_yes_price": 0.935,
       "prev_yes_price": 0.935,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 1.1,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 1.1,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 1.1,
       "price_history": [
         {
           "t": "2026-11-07T14:25:56Z",
@@ -231,6 +231,13 @@
           "mp": 0.2467,
           "bid": 0.91,
           "ask": 0.96
+        },
+        {
+          "t": "2026-11-07T15:07:34Z",
+          "p": 0.945,
+          "mp": 0.2467,
+          "bid": 0.91,
+          "ask": 0.98
         }
       ],
       "prev_10m_yes_price": 0.935
@@ -653,5 +660,5 @@
   "confidence": 0.6092,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T14:52:35.646128+00:00"
+  "last_price_refresh": "2026-11-07T15:07:32.778999+00:00"
 }
