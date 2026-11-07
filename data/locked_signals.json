@@ -9312,7 +9312,7 @@
     "entry_bid": 0.54,
     "entry_order_type": "IMMEDIATE_MARKETABLE",
     "limit_buy_price": null,
-    "position_state": "WATCHING",
+    "position_state": "CLOSED",
     "execution_mode": "SHADOW",
     "exit_policy": "MARKETABLE_FAK",
     "smart_autopilot": false,
@@ -9335,13 +9335,13 @@
     "peak_bid": 0.62,
     "rule_version": 1,
     "locked_at": "2026-11-07T10:18:09.113111+00:00",
-    "status": "open",
+    "status": "closed_resolved",
     "last_price": 0.0005,
     "last_pct": -100.0,
-    "exit_price": null,
-    "closed_at": null,
-    "close_reason": null,
-    "actual_temp": null,
+    "exit_price": 0.0,
+    "closed_at": "2026-11-07T20:37:29.007036+00:00",
+    "close_reason": "auto_resolved",
+    "actual_temp": 7.0,
     "last_price_source": "last",
     "last_mid": 0.0005,
     "last_checked_at": "2026-11-07T20:26:15.785199+00:00",
@@ -9423,7 +9423,8 @@
       }
     ],
     "model_fair_cents": 50,
-    "intraday_eliminated": false
+    "intraday_eliminated": false,
+    "notified_close": true
   },
   {
     "issue_number": 114,
@@ -9472,7 +9473,7 @@
     "actual_temp": null,
     "last_price_source": "last",
     "last_mid": 0.0015,
-    "last_checked_at": "2026-11-07T20:26:15.785199+00:00",
+    "last_checked_at": "2026-11-07T20:37:29.007036+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-07T10:19:18Z",
@@ -9632,15 +9633,15 @@
     "rule_version": 1,
     "locked_at": "2026-11-07T18:56:15.124966+00:00",
     "status": "open",
-    "last_price": 0.47,
-    "last_pct": -28.8,
+    "last_price": 0.21,
+    "last_pct": -68.2,
     "exit_price": null,
     "closed_at": null,
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.485,
-    "last_checked_at": "2026-11-07T20:26:15.785199+00:00",
+    "last_mid": 0.465,
+    "last_checked_at": "2026-11-07T20:37:29.007036+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-07T18:56:15Z",
@@ -9676,6 +9677,11 @@
         "t": "2026-11-07T20:26:15Z",
         "p": 0.47,
         "pct": -28.8
+      },
+      {
+        "t": "2026-11-07T20:37:29Z",
+        "p": 0.21,
+        "pct": -68.2
       }
     ],
     "model_fair_cents": 54,
@@ -9728,7 +9734,7 @@
     "actual_temp": null,
     "last_price_source": "last",
     "last_mid": 0.0005,
-    "last_checked_at": "2026-11-07T20:26:15.785199+00:00",
+    "last_checked_at": "2026-11-07T20:37:29.007036+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-07T18:57:44Z",
@@ -9884,15 +9890,15 @@
     "rule_version": 1,
     "locked_at": "2026-11-07T18:59:47.321699+00:00",
     "status": "open",
-    "last_price": 0.42,
-    "last_pct": -8.7,
+    "last_price": 0.45,
+    "last_pct": -2.2,
     "exit_price": null,
     "closed_at": null,
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.455,
-    "last_checked_at": "2026-11-07T20:26:15.785199+00:00",
+    "last_mid": 0.47,
+    "last_checked_at": "2026-11-07T20:37:29.007036+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-07T18:59:47Z",
@@ -9913,6 +9919,11 @@
         "t": "2026-11-07T20:07:29Z",
         "p": 0.42,
         "pct": -8.7
+      },
+      {
+        "t": "2026-11-07T20:37:29Z",
+        "p": 0.45,
+        "pct": -2.2
       }
     ],
     "model_fair_cents": 39,
