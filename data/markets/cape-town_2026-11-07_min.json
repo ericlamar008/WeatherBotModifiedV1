@@ -47,10 +47,10 @@
         -999.0,
         9.0
       ],
-      "yes_price": 0.0205,
+      "yes_price": 0.0255,
       "no_price": 0.96,
       "best_bid": null,
-      "best_ask": 0.041,
+      "best_ask": 0.051,
       "bid_ask_spread": 0.0,
       "volume": 70.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.056,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0205,
-      "effective_ask": 0.0205,
-      "market_prob": 0.0205,
-      "belief_prob": 0.0436,
-      "ev": 1.1268,
-      "kelly": 0.0059,
-      "swing_edge": 0.0355,
-      "swing_upside_pct": 173.2,
+      "ask": 0.0255,
+      "effective_ask": 0.0255,
+      "market_prob": 0.0255,
+      "belief_prob": 0.0453,
+      "ev": 0.7765,
+      "kelly": 0.0051,
+      "swing_edge": 0.0305,
+      "swing_upside_pct": 119.6,
       "sell_value": null,
       "scan6h_model_prob": 0.056,
       "prev_scan6h_model_prob": 0.056,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.04,
       "prev_scan6h_yes_price": 0.04,
-      "prev_yes_price": 0.0255,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -19.6,
-      "yes_price_6h_change": -0.0195,
-      "yes_price_6h_pct_change": -48.8,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -19.6,
+      "prev_yes_price": 0.0205,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 24.4,
+      "yes_price_6h_change": -0.0145,
+      "yes_price_6h_pct_change": -36.2,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 24.4,
       "price_history": [
         {
           "t": "2026-11-07T14:25:56Z",
@@ -157,9 +157,16 @@
           "mp": 0.056,
           "bid": null,
           "ask": 0.041
+        },
+        {
+          "t": "2026-11-07T18:07:30Z",
+          "p": 0.0255,
+          "mp": 0.056,
+          "bid": null,
+          "ask": 0.051
         }
       ],
-      "prev_10m_yes_price": 0.0255
+      "prev_10m_yes_price": 0.0205
     },
     {
       "question": "Will the lowest temperature in Cape Town be 10°C on November 7?",
@@ -168,10 +175,10 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.0215,
+      "yes_price": 0.0245,
       "no_price": 0.9655,
       "best_bid": null,
-      "best_ask": 0.043,
+      "best_ask": 0.049,
       "bid_ask_spread": 0.0,
       "volume": 70.0,
       "spread": 0.0,
@@ -180,14 +187,14 @@
       "model_prob": 0.072,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0215,
-      "effective_ask": 0.0215,
-      "market_prob": 0.0215,
-      "belief_prob": 0.0543,
-      "ev": 1.5256,
-      "kelly": 0.0084,
-      "swing_edge": 0.0505,
-      "swing_upside_pct": 234.9,
+      "ask": 0.0245,
+      "effective_ask": 0.0245,
+      "market_prob": 0.0245,
+      "belief_prob": 0.0554,
+      "ev": 1.2612,
+      "kelly": 0.0079,
+      "swing_edge": 0.0475,
+      "swing_upside_pct": 193.9,
       "sell_value": null,
       "scan6h_model_prob": 0.072,
       "prev_scan6h_model_prob": 0.072,
@@ -201,13 +208,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0345,
       "prev_scan6h_yes_price": 0.0345,
-      "prev_yes_price": 0.0245,
-      "yes_price_10m_change": -0.003,
-      "yes_price_10m_pct_change": -12.2,
-      "yes_price_6h_change": -0.013,
-      "yes_price_6h_pct_change": -37.7,
-      "yes_price_change": -0.003,
-      "yes_price_pct_change": -12.2,
+      "prev_yes_price": 0.0215,
+      "yes_price_10m_change": 0.003,
+      "yes_price_10m_pct_change": 14.0,
+      "yes_price_6h_change": -0.01,
+      "yes_price_6h_pct_change": -29.0,
+      "yes_price_change": 0.003,
+      "yes_price_pct_change": 14.0,
       "price_history": [
         {
           "t": "2026-11-07T14:25:56Z",
@@ -280,7 +287,7 @@
           "ask": 0.043
         }
       ],
-      "prev_10m_yes_price": 0.0245
+      "prev_10m_yes_price": 0.0215
     },
     {
       "question": "Will the lowest temperature in Cape Town be 12°C on November 7?",
@@ -2839,5 +2846,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T17:52:34.474103+00:00"
+  "last_price_refresh": "2026-11-07T18:07:28.914494+00:00"
 }
