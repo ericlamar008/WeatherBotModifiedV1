@@ -400,11 +400,11 @@
         60.0,
         61.0
       ],
-      "yes_price": 0.47,
+      "yes_price": 0.465,
       "no_price": 0.525,
       "best_bid": 0.46,
-      "best_ask": 0.48,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.47,
+      "bid_ask_spread": 0.01,
       "volume": 204.0,
       "spread": 0.03,
       "yes_token_id": "78254411435359384925259976639831075676707508869321415217272031536154783116885",
@@ -412,14 +412,14 @@
       "model_prob": 0.1069,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.47,
-      "effective_ask": 0.47,
-      "market_prob": 0.47,
-      "belief_prob": 0.234,
-      "ev": -0.5021,
+      "ask": 0.465,
+      "effective_ask": 0.465,
+      "market_prob": 0.465,
+      "belief_prob": 0.2322,
+      "ev": -0.5006,
       "kelly": 0.0,
-      "swing_edge": -0.3631,
-      "swing_upside_pct": -77.3,
+      "swing_edge": -0.3581,
+      "swing_upside_pct": -77.0,
       "sell_value": 0.46,
       "scan6h_model_prob": 0.1069,
       "prev_scan6h_model_prob": 0.1069,
@@ -433,11 +433,11 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.475,
       "prev_scan6h_yes_price": 0.475,
-      "prev_yes_price": 0.475,
+      "prev_yes_price": 0.47,
       "yes_price_10m_change": -0.005,
       "yes_price_10m_pct_change": -1.1,
-      "yes_price_6h_change": -0.005,
-      "yes_price_6h_pct_change": -1.1,
+      "yes_price_6h_change": -0.01,
+      "yes_price_6h_pct_change": -2.1,
       "yes_price_change": -0.005,
       "yes_price_pct_change": -1.1,
       "price_history": [
@@ -454,9 +454,16 @@
           "mp": 0.1069,
           "bid": 0.46,
           "ask": 0.48
+        },
+        {
+          "t": "2026-11-07T02:37:33Z",
+          "p": 0.465,
+          "mp": 0.1069,
+          "bid": 0.46,
+          "ask": 0.47
         }
       ],
-      "prev_10m_yes_price": 0.475
+      "prev_10m_yes_price": 0.47
     },
     {
       "question": "Will the highest temperature in Chicago be between 62-63°F on November 8?",
@@ -465,11 +472,11 @@
         62.0,
         63.0
       ],
-      "yes_price": 0.079,
+      "yes_price": 0.0795,
       "no_price": 0.925,
       "best_bid": 0.063,
-      "best_ask": 0.095,
-      "bid_ask_spread": 0.032,
+      "best_ask": 0.096,
+      "bid_ask_spread": 0.033,
       "volume": 353.0,
       "spread": 0.026,
       "yes_token_id": "11966340839944294603077966033583518945683969910408857780038533399413244437982",
@@ -477,14 +484,14 @@
       "model_prob": 0.009,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.079,
-      "effective_ask": 0.0801,
-      "market_prob": 0.079,
-      "belief_prob": 0.0335,
-      "ev": -0.5818,
+      "ask": 0.0795,
+      "effective_ask": 0.0811,
+      "market_prob": 0.0795,
+      "belief_prob": 0.0337,
+      "ev": -0.5845,
       "kelly": 0.0,
-      "swing_edge": -0.07,
-      "swing_upside_pct": -88.6,
+      "swing_edge": -0.0705,
+      "swing_upside_pct": -88.7,
       "sell_value": 0.062,
       "scan6h_model_prob": 0.009,
       "prev_scan6h_model_prob": 0.009,
@@ -498,13 +505,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.075,
       "prev_scan6h_yes_price": 0.075,
-      "prev_yes_price": 0.075,
-      "yes_price_10m_change": 0.004,
-      "yes_price_10m_pct_change": 5.3,
-      "yes_price_6h_change": 0.004,
-      "yes_price_6h_pct_change": 5.3,
-      "yes_price_change": 0.004,
-      "yes_price_pct_change": 5.3,
+      "prev_yes_price": 0.079,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 0.6,
+      "yes_price_6h_change": 0.0045,
+      "yes_price_6h_pct_change": 6.0,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 0.6,
       "price_history": [
         {
           "t": "2026-11-07T02:23:44Z",
@@ -521,7 +528,7 @@
           "ask": 0.095
         }
       ],
-      "prev_10m_yes_price": 0.075
+      "prev_10m_yes_price": 0.079
     },
     {
       "question": "Will the highest temperature in Chicago be between 64-65°F on November 8?",
@@ -725,5 +732,5 @@
   "confidence": 0.4784,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T02:28:01.572275+00:00"
+  "last_price_refresh": "2026-11-07T02:37:33.216993+00:00"
 }
