@@ -758,10 +758,10 @@
         -2.0,
         -2.0
       ],
-      "yes_price": 0.45,
+      "yes_price": 0.4495,
       "no_price": 0.55,
       "best_bid": null,
-      "best_ask": 0.9,
+      "best_ask": 0.899,
       "bid_ask_spread": 0.0,
       "volume": 65.0,
       "spread": 0.0,
@@ -770,13 +770,13 @@
       "model_prob": 0.0791,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.45,
-      "effective_ask": 0.45,
-      "market_prob": 0.45,
-      "belief_prob": 0.2089,
-      "ev": -0.5358,
+      "ask": 0.4495,
+      "effective_ask": 0.4495,
+      "market_prob": 0.4495,
+      "belief_prob": 0.2087,
+      "ev": -0.5357,
       "kelly": 0.0,
-      "swing_edge": -0.3709,
+      "swing_edge": -0.3704,
       "swing_upside_pct": -82.4,
       "sell_value": null,
       "scan6h_model_prob": 0.0791,
@@ -791,13 +791,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.45,
       "prev_scan6h_yes_price": 0.45,
-      "prev_yes_price": 0.4495,
-      "yes_price_10m_change": 0.0005,
-      "yes_price_10m_pct_change": 0.1,
+      "prev_yes_price": 0.45,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -0.1,
       "yes_price_6h_change": -0.0005,
       "yes_price_6h_pct_change": -0.1,
-      "yes_price_change": 0.0005,
-      "yes_price_pct_change": 0.1,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -0.1,
       "price_history": [
         {
           "t": "2026-11-07T14:24:27Z",
@@ -884,7 +884,7 @@
           "ask": 0.9
         }
       ],
-      "prev_10m_yes_price": 0.4495
+      "prev_10m_yes_price": 0.45
     },
     {
       "question": "Will the lowest temperature in Munich be -1°C on November 7?",
@@ -893,11 +893,11 @@
         -1.0,
         -1.0
       ],
-      "yes_price": 0.12,
+      "yes_price": 0.115,
       "no_price": 0.755,
       "best_bid": 0.002,
-      "best_ask": 0.238,
-      "bid_ask_spread": 0.236,
+      "best_ask": 0.228,
+      "bid_ask_spread": 0.226,
       "volume": 1.0,
       "spread": 0.488,
       "yes_token_id": "102871068423967281536498255915578657771301653728551766612013992041283978156225",
@@ -905,14 +905,14 @@
       "model_prob": 0.1123,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.12,
-      "effective_ask": 0.2,
-      "market_prob": 0.12,
-      "belief_prob": 0.115,
-      "ev": -0.425,
+      "ask": 0.115,
+      "effective_ask": 0.195,
+      "market_prob": 0.115,
+      "belief_prob": 0.1132,
+      "ev": -0.4195,
       "kelly": 0.0,
-      "swing_edge": -0.0077,
-      "swing_upside_pct": -6.4,
+      "swing_edge": -0.0027,
+      "swing_upside_pct": -2.3,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.1123,
       "prev_scan6h_model_prob": 0.1123,
@@ -926,13 +926,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.245,
       "prev_scan6h_yes_price": 0.245,
-      "prev_yes_price": 0.125,
+      "prev_yes_price": 0.12,
       "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -4.0,
-      "yes_price_6h_change": -0.125,
-      "yes_price_6h_pct_change": -51.0,
+      "yes_price_10m_pct_change": -4.2,
+      "yes_price_6h_change": -0.13,
+      "yes_price_6h_pct_change": -53.1,
       "yes_price_change": -0.005,
-      "yes_price_pct_change": -4.0,
+      "yes_price_pct_change": -4.2,
       "price_history": [
         {
           "t": "2026-11-07T14:24:27Z",
@@ -1073,9 +1073,16 @@
           "mp": 0.1123,
           "bid": 0.002,
           "ask": 0.238
+        },
+        {
+          "t": "2026-11-07T19:37:31Z",
+          "p": 0.115,
+          "mp": 0.1123,
+          "bid": 0.002,
+          "ask": 0.228
         }
       ],
-      "prev_10m_yes_price": 0.125
+      "prev_10m_yes_price": 0.12
     },
     {
       "question": "Will the lowest temperature in Munich be 0°C on November 7?",
@@ -1538,5 +1545,5 @@
   "confidence": 0.4193,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T19:22:35.262710+00:00"
+  "last_price_refresh": "2026-11-07T19:37:29.762795+00:00"
 }
