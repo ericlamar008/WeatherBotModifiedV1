@@ -544,11 +544,11 @@
         7.0,
         7.0
       ],
-      "yes_price": 0.2875,
+      "yes_price": 0.2845,
       "no_price": 0.6125,
       "best_bid": 0.01,
-      "best_ask": 0.565,
-      "bid_ask_spread": 0.555,
+      "best_ask": 0.559,
+      "bid_ask_spread": 0.549,
       "volume": 109.0,
       "spread": 0.753,
       "yes_token_id": "115602006036100895546920527536731503254193346102745547823400286891999727635533",
@@ -556,14 +556,14 @@
       "model_prob": 0.1621,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.2875,
-      "effective_ask": 0.3675,
-      "market_prob": 0.2875,
-      "belief_prob": 0.206,
-      "ev": -0.4395,
+      "ask": 0.2845,
+      "effective_ask": 0.3645,
+      "market_prob": 0.2845,
+      "belief_prob": 0.2049,
+      "ev": -0.4379,
       "kelly": 0.0,
-      "swing_edge": -0.1254,
-      "swing_upside_pct": -43.6,
+      "swing_edge": -0.1224,
+      "swing_upside_pct": -43.0,
       "sell_value": 0.011,
       "scan6h_model_prob": 0.1621,
       "prev_scan6h_model_prob": 0.1621,
@@ -577,13 +577,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.3875,
       "prev_scan6h_yes_price": 0.3875,
-      "prev_yes_price": 0.3015,
-      "yes_price_10m_change": -0.014,
-      "yes_price_10m_pct_change": -4.6,
-      "yes_price_6h_change": -0.1,
-      "yes_price_6h_pct_change": -25.8,
-      "yes_price_change": -0.014,
-      "yes_price_pct_change": -4.6,
+      "prev_yes_price": 0.2875,
+      "yes_price_10m_change": -0.003,
+      "yes_price_10m_pct_change": -1.0,
+      "yes_price_6h_change": -0.103,
+      "yes_price_6h_pct_change": -26.6,
+      "yes_price_change": -0.003,
+      "yes_price_pct_change": -1.0,
       "price_history": [
         {
           "t": "2026-11-07T14:24:28Z",
@@ -733,7 +733,7 @@
           "ask": 0.565
         }
       ],
-      "prev_10m_yes_price": 0.3015
+      "prev_10m_yes_price": 0.2875
     },
     {
       "question": "Will the lowest temperature in Madrid be 8°C on November 7?",
@@ -742,11 +742,11 @@
         8.0,
         8.0
       ],
-      "yes_price": 0.595,
+      "yes_price": 0.5795,
       "no_price": 0.1915,
-      "best_bid": 0.192,
-      "best_ask": 0.998,
-      "bid_ask_spread": 0.806,
+      "best_bid": 0.167,
+      "best_ask": 0.992,
+      "bid_ask_spread": 0.825,
       "volume": 81.0,
       "spread": 0.377,
       "yes_token_id": "73378420456278793049198628236202262332480528633852362792922496879825493355495",
@@ -754,14 +754,14 @@
       "model_prob": 0.139,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.595,
-      "effective_ask": 0.675,
-      "market_prob": 0.595,
-      "belief_prob": 0.2986,
-      "ev": -0.5576,
+      "ask": 0.5795,
+      "effective_ask": 0.6595,
+      "market_prob": 0.5795,
+      "belief_prob": 0.2932,
+      "ev": -0.5554,
       "kelly": 0.0,
-      "swing_edge": -0.456,
-      "swing_upside_pct": -76.6,
+      "swing_edge": -0.4405,
+      "swing_upside_pct": -76.0,
       "sell_value": 0.62,
       "scan6h_model_prob": 0.139,
       "prev_scan6h_model_prob": 0.139,
@@ -775,13 +775,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.8085,
       "prev_scan6h_yes_price": 0.8085,
-      "prev_yes_price": 0.5425,
-      "yes_price_10m_change": 0.0525,
-      "yes_price_10m_pct_change": 9.7,
-      "yes_price_6h_change": -0.2135,
-      "yes_price_6h_pct_change": -26.4,
-      "yes_price_change": 0.0525,
-      "yes_price_pct_change": 9.7,
+      "prev_yes_price": 0.595,
+      "yes_price_10m_change": -0.0155,
+      "yes_price_10m_pct_change": -2.6,
+      "yes_price_6h_change": -0.229,
+      "yes_price_6h_pct_change": -28.3,
+      "yes_price_change": -0.0155,
+      "yes_price_pct_change": -2.6,
       "price_history": [
         {
           "t": "2026-11-07T14:24:28Z",
@@ -908,9 +908,16 @@
           "mp": 0.139,
           "bid": 0.192,
           "ask": 0.998
+        },
+        {
+          "t": "2026-11-07T20:07:32Z",
+          "p": 0.5795,
+          "mp": 0.139,
+          "bid": 0.167,
+          "ask": 0.992
         }
       ],
-      "prev_10m_yes_price": 0.5425
+      "prev_10m_yes_price": 0.595
     },
     {
       "question": "Will the lowest temperature in Madrid be 9°C on November 7?",
@@ -1650,5 +1657,5 @@
   "confidence": 0.0326,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T19:52:33.303633+00:00"
+  "last_price_refresh": "2026-11-07T20:07:31.327113+00:00"
 }
