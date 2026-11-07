@@ -176,10 +176,10 @@
         -6.0,
         -6.0
       ],
-      "yes_price": 0.0005,
+      "yes_price": 0.005,
       "no_price": 0.999,
       "best_bid": null,
-      "best_ask": 0.001,
+      "best_ask": 0.01,
       "bid_ask_spread": 0.0,
       "volume": 50.0,
       "spread": 0.0,
@@ -188,13 +188,13 @@
       "model_prob": 0.0078,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0005,
-      "effective_ask": 0.0005,
-      "market_prob": 0.0005,
-      "belief_prob": 0.0052,
+      "ask": 0.005,
+      "effective_ask": 0.005,
+      "market_prob": 0.005,
+      "belief_prob": 0.0068,
       "ev": 0.36,
       "kelly": 0.0005,
-      "swing_edge": 0.0073,
+      "swing_edge": 0.0028,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "scan6h_model_prob": 0.0078,
@@ -209,13 +209,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.001,
       "prev_scan6h_yes_price": 0.001,
-      "prev_yes_price": 0.005,
-      "yes_price_10m_change": -0.0045,
-      "yes_price_10m_pct_change": -90.0,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
-      "yes_price_change": -0.0045,
-      "yes_price_pct_change": -90.0,
+      "prev_yes_price": 0.0005,
+      "yes_price_10m_change": 0.0045,
+      "yes_price_10m_pct_change": 0.4,
+      "yes_price_6h_change": 0.004,
+      "yes_price_6h_pct_change": 0.4,
+      "yes_price_change": 0.0045,
+      "yes_price_pct_change": 0.4,
       "price_history": [
         {
           "t": "2026-11-07T14:24:27Z",
@@ -293,9 +293,16 @@
           "mp": 0.0078,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-07T18:37:28Z",
+          "p": 0.005,
+          "mp": 0.0078,
+          "bid": null,
+          "ask": 0.01
         }
       ],
-      "prev_10m_yes_price": 0.005
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Munich be -5°C on November 7?",
@@ -1377,5 +1384,5 @@
   "confidence": 0.4193,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-07T18:22:31.386673+00:00"
+  "last_price_refresh": "2026-11-07T18:37:27.453481+00:00"
 }
