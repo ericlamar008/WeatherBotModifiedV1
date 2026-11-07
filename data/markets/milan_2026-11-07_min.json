@@ -96,7 +96,8 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the lowest temperature in Milan be 2°C on November 7?",
@@ -153,7 +154,8 @@
           "bid": 0.002,
           "ask": 0.02
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.011
     },
     {
       "question": "Will the lowest temperature in Milan be 3°C on November 7?",
@@ -210,7 +212,8 @@
           "bid": 0.001,
           "ask": 0.02
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0105
     },
     {
       "question": "Will the lowest temperature in Milan be 4°C on November 7?",
@@ -237,8 +240,8 @@
       "belief_prob": 0.0543,
       "ev": -0.0109,
       "kelly": 0.0,
-      "swing_edge": 0.0101,
-      "swing_upside_pct": 18.4,
+      "swing_edge": 0.0305,
+      "swing_upside_pct": 88.4,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.065,
       "prev_scan6h_model_prob": 0.065,
@@ -267,7 +270,8 @@
           "bid": 0.001,
           "ask": 0.068
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0345
     },
     {
       "question": "Will the lowest temperature in Milan be 6°C on November 7?",
@@ -324,7 +328,8 @@
           "bid": null,
           "ask": 0.71
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.355
     },
     {
       "question": "Will the lowest temperature in Milan be 7°C on November 7?",
@@ -381,7 +386,8 @@
           "bid": null,
           "ask": 0.7
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.35
     },
     {
       "question": "Will the lowest temperature in Milan be 8°C on November 7?",
@@ -408,8 +414,8 @@
       "belief_prob": 0.3336,
       "ev": -0.5367,
       "kelly": 0.0,
-      "swing_edge": -0.5514,
-      "swing_upside_pct": -76.6,
+      "swing_edge": -0.4714,
+      "swing_upside_pct": -73.7,
       "sell_value": 0.31,
       "scan6h_model_prob": 0.1686,
       "prev_scan6h_model_prob": 0.1686,
@@ -438,7 +444,8 @@
           "bid": 0.31,
           "ask": 0.97
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.64
     },
     {
       "question": "Will the lowest temperature in Milan be 9°C on November 7?",
@@ -462,7 +469,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -495,7 +502,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 10°C on November 7?",
@@ -519,7 +527,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -552,7 +560,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 11°C or higher on November 7?",
@@ -576,7 +585,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -609,7 +618,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -621,5 +631,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-07T08:29:09.064701+00:00"
 }
