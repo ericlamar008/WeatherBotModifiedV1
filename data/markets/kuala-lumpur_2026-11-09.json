@@ -94,7 +94,8 @@
           "bid": 0.001,
           "ask": 0.004
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0025
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 31°C on November 9?",
@@ -121,8 +122,8 @@
       "belief_prob": 0.1434,
       "ev": -0.0144,
       "kelly": 0.0,
-      "swing_edge": -0.0002,
-      "swing_upside_pct": -0.1,
+      "swing_edge": 0.0053,
+      "swing_upside_pct": 3.8,
       "sell_value": 0.12,
       "scan6h_model_prob": 0.1453,
       "prev_scan6h_model_prob": 0.1453,
@@ -151,7 +152,8 @@
           "bid": 0.12,
           "ask": 0.16
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.14
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 32°C on November 9?",
@@ -160,11 +162,11 @@
         32.0,
         32.0
       ],
-      "yes_price": 0.42,
+      "yes_price": 0.415,
       "no_price": 0.58,
       "best_bid": 0.41,
-      "best_ask": 0.43,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.42,
+      "bid_ask_spread": 0.01,
       "volume": 366.0,
       "spread": 0.02,
       "yes_token_id": "19432116836967948616676009232696030133843345688005835939779847199607644944610",
@@ -172,14 +174,14 @@
       "model_prob": 0.2417,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.42,
-      "effective_ask": 0.42,
-      "market_prob": 0.42,
-      "belief_prob": 0.3041,
-      "ev": -0.276,
+      "ask": 0.415,
+      "effective_ask": 0.415,
+      "market_prob": 0.415,
+      "belief_prob": 0.3024,
+      "ev": -0.2713,
       "kelly": 0.0,
-      "swing_edge": -0.1783,
-      "swing_upside_pct": -42.5,
+      "swing_edge": -0.1733,
+      "swing_upside_pct": -41.8,
       "sell_value": 0.41,
       "scan6h_model_prob": 0.2417,
       "prev_scan6h_model_prob": 0.2417,
@@ -194,12 +196,12 @@
       "scan6h_yes_price": 0.42,
       "prev_scan6h_yes_price": 0.42,
       "prev_yes_price": 0.42,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.2,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -1.2,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.2,
       "price_history": [
         {
           "t": "2026-11-08T08:30:57Z",
@@ -207,8 +209,16 @@
           "mp": 0.2417,
           "bid": 0.41,
           "ask": 0.43
+        },
+        {
+          "t": "2026-11-08T08:37:33Z",
+          "p": 0.415,
+          "mp": 0.2417,
+          "bid": 0.41,
+          "ask": 0.42
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.42
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 33°C on November 9?",
@@ -265,7 +275,8 @@
           "bid": 0.32,
           "ask": 0.34
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.33
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 34°C on November 9?",
@@ -292,8 +303,8 @@
       "belief_prob": 0.119,
       "ev": 0.8224,
       "kelly": 0.0144,
-      "swing_edge": 0.0841,
-      "swing_upside_pct": 128.8,
+      "swing_edge": 0.0869,
+      "swing_upside_pct": 139.0,
       "sell_value": 0.045,
       "scan6h_model_prob": 0.1494,
       "prev_scan6h_model_prob": 0.1494,
@@ -322,7 +333,8 @@
           "bid": 0.045,
           "ask": 0.08
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0625
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 35°C on November 9?",
@@ -379,7 +391,8 @@
           "bid": 0.003,
           "ask": 0.005
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.004
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 36°C on November 9?",
@@ -436,7 +449,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the highest temperature in Kuala Lumpur be 37°C or higher on November 9?",
@@ -493,7 +507,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -505,5 +520,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-08T08:37:31.692437+00:00"
 }

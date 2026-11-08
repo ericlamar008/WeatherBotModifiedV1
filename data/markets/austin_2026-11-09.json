@@ -94,7 +94,8 @@
           "bid": 0.001,
           "ask": 0.013
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.007
     },
     {
       "question": "Will the highest temperature in Austin be between 64-65°F on November 9?",
@@ -151,7 +152,8 @@
           "bid": 0.36,
           "ask": 0.38
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.37
     },
     {
       "question": "Will the highest temperature in Austin be between 68-69°F on November 9?",
@@ -178,8 +180,8 @@
       "belief_prob": 0.1378,
       "ev": -0.1846,
       "kelly": 0.0,
-      "swing_edge": -0.0243,
-      "swing_upside_pct": -14.4,
+      "swing_edge": 0.0197,
+      "swing_upside_pct": 15.8,
       "sell_value": 0.07,
       "scan6h_model_prob": 0.1447,
       "prev_scan6h_model_prob": 0.1447,
@@ -208,7 +210,8 @@
           "bid": 0.07,
           "ask": 0.18
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.125
     },
     {
       "question": "Will the highest temperature in Austin be 76°F or higher on November 9?",
@@ -265,7 +268,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -294,5 +298,6 @@
   "success_probability": 0.4794,
   "confidence": 0.3237,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-08T08:37:31.692437+00:00"
 }
