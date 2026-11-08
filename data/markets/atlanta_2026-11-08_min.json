@@ -182,10 +182,10 @@
         50.0,
         51.0
       ],
-      "yes_price": 0.001,
+      "yes_price": 0.0025,
       "no_price": 0.998,
       "best_bid": null,
-      "best_ask": 0.002,
+      "best_ask": 0.005,
       "bid_ask_spread": 0.0,
       "volume": 790.0,
       "spread": 0.0,
@@ -194,13 +194,13 @@
       "model_prob": 0.0,
       "intraday_eliminated": true,
       "side": "YES",
-      "ask": 0.001,
-      "effective_ask": 0.001,
-      "market_prob": 0.001,
-      "belief_prob": 0.0003,
-      "ev": -0.65,
+      "ask": 0.0025,
+      "effective_ask": 0.0025,
+      "market_prob": 0.0025,
+      "belief_prob": 0.0009,
+      "ev": -0.64,
       "kelly": 0.0,
-      "swing_edge": -0.001,
+      "swing_edge": -0.0025,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "scan6h_model_prob": 0.0,
@@ -215,13 +215,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.002,
       "prev_scan6h_yes_price": 0.002,
-      "prev_yes_price": 0.002,
-      "yes_price_10m_change": -0.001,
-      "yes_price_10m_pct_change": -50.0,
-      "yes_price_6h_change": -0.001,
-      "yes_price_6h_pct_change": -50.0,
-      "yes_price_change": -0.001,
-      "yes_price_pct_change": -50.0,
+      "prev_yes_price": 0.001,
+      "yes_price_10m_change": 0.0015,
+      "yes_price_10m_pct_change": 0.1,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 25.0,
+      "yes_price_change": 0.0015,
+      "yes_price_pct_change": 0.1,
       "price_history": [
         {
           "t": "2026-11-08T08:30:58Z",
@@ -308,7 +308,7 @@
           "ask": 0.002
         }
       ],
-      "prev_10m_yes_price": 0.002
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Atlanta be between 52-53°F on November 8?",
@@ -743,5 +743,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T13:52:31.876980+00:00"
+  "last_price_refresh": "2026-11-08T14:07:22.882175+00:00"
 }
