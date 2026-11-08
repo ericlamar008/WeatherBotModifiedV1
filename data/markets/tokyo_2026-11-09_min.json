@@ -119,11 +119,11 @@
         9.0,
         9.0
       ],
-      "yes_price": 0.12,
+      "yes_price": 0.165,
       "no_price": 0.84,
-      "best_bid": 0.09,
-      "best_ask": 0.15,
-      "bid_ask_spread": 0.06,
+      "best_bid": 0.1,
+      "best_ask": 0.23,
+      "bid_ask_spread": 0.13,
       "volume": 23.0,
       "spread": 0.04,
       "yes_token_id": "5433274804251478516301850048881632510673078764377508446599365176653314433292",
@@ -131,14 +131,14 @@
       "model_prob": 0.1417,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.12,
-      "effective_ask": 0.1365,
-      "market_prob": 0.12,
-      "belief_prob": 0.1341,
-      "ev": -0.0176,
+      "ask": 0.165,
+      "effective_ask": 0.22,
+      "market_prob": 0.165,
+      "belief_prob": 0.1499,
+      "ev": -0.3186,
       "kelly": 0.0,
-      "swing_edge": 0.0217,
-      "swing_upside_pct": 18.1,
+      "swing_edge": -0.0233,
+      "swing_upside_pct": -14.1,
       "sell_value": 0.14,
       "scan6h_model_prob": 0.1417,
       "prev_scan6h_model_prob": 0.1417,
@@ -152,13 +152,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.16,
       "prev_scan6h_yes_price": 0.16,
-      "prev_yes_price": 0.145,
-      "yes_price_10m_change": -0.025,
-      "yes_price_10m_pct_change": -17.2,
-      "yes_price_6h_change": -0.04,
-      "yes_price_6h_pct_change": -25.0,
-      "yes_price_change": -0.025,
-      "yes_price_pct_change": -17.2,
+      "prev_yes_price": 0.12,
+      "yes_price_10m_change": 0.045,
+      "yes_price_10m_pct_change": 37.5,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 3.1,
+      "yes_price_change": 0.045,
+      "yes_price_pct_change": 37.5,
       "price_history": [
         {
           "t": "2026-11-08T08:32:48Z",
@@ -187,9 +187,16 @@
           "mp": 0.1417,
           "bid": 0.09,
           "ask": 0.15
+        },
+        {
+          "t": "2026-11-08T09:37:31Z",
+          "p": 0.165,
+          "mp": 0.1417,
+          "bid": 0.1,
+          "ask": 0.23
         }
       ],
-      "prev_10m_yes_price": 0.145
+      "prev_10m_yes_price": 0.12
     },
     {
       "question": "Will the lowest temperature in Tokyo be 10°C on November 9?",
@@ -198,11 +205,11 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.455,
+      "yes_price": 0.45,
       "no_price": 0.55,
       "best_bid": 0.39,
-      "best_ask": 0.52,
-      "bid_ask_spread": 0.13,
+      "best_ask": 0.51,
+      "bid_ask_spread": 0.12,
       "volume": 142.0,
       "spread": 0.1,
       "yes_token_id": "62383680180762896674112269961674525423037450828094486739526071461239682002256",
@@ -210,14 +217,14 @@
       "model_prob": 0.2292,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.455,
-      "effective_ask": 0.51,
-      "market_prob": 0.455,
-      "belief_prob": 0.3082,
-      "ev": -0.3957,
+      "ask": 0.45,
+      "effective_ask": 0.4995,
+      "market_prob": 0.45,
+      "belief_prob": 0.3065,
+      "ev": -0.3864,
       "kelly": 0.0,
-      "swing_edge": -0.2258,
-      "swing_upside_pct": -49.6,
+      "swing_edge": -0.2208,
+      "swing_upside_pct": -49.1,
       "sell_value": 0.4,
       "scan6h_model_prob": 0.2292,
       "prev_scan6h_model_prob": 0.2292,
@@ -231,13 +238,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.45,
       "prev_scan6h_yes_price": 0.45,
-      "prev_yes_price": 0.445,
-      "yes_price_10m_change": 0.01,
-      "yes_price_10m_pct_change": 2.2,
+      "prev_yes_price": 0.455,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.1,
       "yes_price_6h_change": 0.005,
       "yes_price_6h_pct_change": 1.1,
-      "yes_price_change": 0.01,
-      "yes_price_pct_change": 2.2,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.1,
       "price_history": [
         {
           "t": "2026-11-08T08:32:48Z",
@@ -266,9 +273,16 @@
           "mp": 0.2292,
           "bid": 0.39,
           "ask": 0.52
+        },
+        {
+          "t": "2026-11-08T09:37:31Z",
+          "p": 0.45,
+          "mp": 0.2292,
+          "bid": 0.39,
+          "ask": 0.51
         }
       ],
-      "prev_10m_yes_price": 0.445
+      "prev_10m_yes_price": 0.455
     },
     {
       "question": "Will the lowest temperature in Tokyo be 11°C on November 9?",
@@ -583,5 +597,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T09:22:31.926161+00:00"
+  "last_price_refresh": "2026-11-08T09:37:30.519979+00:00"
 }
