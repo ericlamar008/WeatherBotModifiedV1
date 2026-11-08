@@ -48,10 +48,10 @@
         7.0,
         7.0
       ],
-      "yes_price": 0.515,
+      "yes_price": 0.535,
       "no_price": 0.47,
-      "best_bid": 0.1,
-      "best_ask": 0.93,
+      "best_bid": 0.12,
+      "best_ask": 0.95,
       "bid_ask_spread": 0.83,
       "volume": 95.0,
       "spread": 0.84,
@@ -60,14 +60,14 @@
       "model_prob": 0.145,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.515,
-      "effective_ask": 0.595,
-      "market_prob": 0.515,
-      "belief_prob": 0.2745,
-      "ev": -0.5387,
+      "ask": 0.535,
+      "effective_ask": 0.615,
+      "market_prob": 0.535,
+      "belief_prob": 0.2815,
+      "ev": -0.5423,
       "kelly": 0.0,
-      "swing_edge": -0.37,
-      "swing_upside_pct": -71.8,
+      "swing_edge": -0.39,
+      "swing_upside_pct": -72.9,
       "sell_value": 0.11,
       "scan6h_model_prob": 0.145,
       "prev_scan6h_model_prob": 0.145,
@@ -81,13 +81,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.53,
       "prev_scan6h_yes_price": 0.53,
-      "prev_yes_price": 0.52,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.0,
-      "yes_price_6h_change": -0.015,
-      "yes_price_6h_pct_change": -2.8,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.0,
+      "prev_yes_price": 0.515,
+      "yes_price_10m_change": 0.02,
+      "yes_price_10m_pct_change": 3.9,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 0.9,
+      "yes_price_change": 0.02,
+      "yes_price_pct_change": 3.9,
       "price_history": [
         {
           "t": "2026-11-08T08:32:48Z",
@@ -144,9 +144,16 @@
           "mp": 0.145,
           "bid": 0.1,
           "ask": 0.93
+        },
+        {
+          "t": "2026-11-08T10:22:33Z",
+          "p": 0.535,
+          "mp": 0.145,
+          "bid": 0.12,
+          "ask": 0.95
         }
       ],
-      "prev_10m_yes_price": 0.52
+      "prev_10m_yes_price": 0.515
     },
     {
       "question": "Will the lowest temperature in Istanbul be 8°C on November 8?",
@@ -219,6 +226,13 @@
         },
         {
           "t": "2026-11-08T09:52:43Z",
+          "p": 0.001,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.002
+        },
+        {
+          "t": "2026-11-08T10:22:33Z",
           "p": 0.001,
           "mp": 0.0,
           "bid": null,
@@ -302,6 +316,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T10:22:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -377,6 +398,13 @@
         },
         {
           "t": "2026-11-08T09:52:43Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T10:22:33Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -460,6 +488,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T10:22:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -492,5 +527,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T10:07:29.817800+00:00"
+  "last_price_refresh": "2026-11-08T10:22:31.918319+00:00"
 }
