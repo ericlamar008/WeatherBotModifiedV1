@@ -48,11 +48,11 @@
         5.0,
         5.0
       ],
-      "yes_price": 0.935,
+      "yes_price": 0.989,
       "no_price": 0.45,
-      "best_bid": 0.87,
-      "best_ask": 1.0,
-      "bid_ask_spread": 0.0,
+      "best_bid": 0.98,
+      "best_ask": 0.998,
+      "bid_ask_spread": 0.018,
       "volume": 66.0,
       "spread": 0.9,
       "yes_token_id": "35242155601370043039940719907219133158288518624429325307294153813077681637961",
@@ -60,14 +60,14 @@
       "model_prob": 0.217,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.935,
-      "effective_ask": 0.935,
-      "market_prob": 0.935,
-      "belief_prob": 0.4683,
-      "ev": -0.4991,
+      "ask": 0.989,
+      "effective_ask": 0.989,
+      "market_prob": 0.989,
+      "belief_prob": 0.4872,
+      "ev": -0.5074,
       "kelly": 0.0,
-      "swing_edge": -0.718,
-      "swing_upside_pct": -76.8,
+      "swing_edge": -0.772,
+      "swing_upside_pct": -78.1,
       "sell_value": 0.1,
       "scan6h_model_prob": 0.217,
       "prev_scan6h_model_prob": 0.217,
@@ -81,13 +81,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.55,
       "prev_scan6h_yes_price": 0.55,
-      "prev_yes_price": 0.83,
-      "yes_price_10m_change": 0.105,
-      "yes_price_10m_pct_change": 12.7,
-      "yes_price_6h_change": 0.385,
-      "yes_price_6h_pct_change": 70.0,
-      "yes_price_change": 0.105,
-      "yes_price_pct_change": 12.7,
+      "prev_yes_price": 0.935,
+      "yes_price_10m_change": 0.054,
+      "yes_price_10m_pct_change": 5.8,
+      "yes_price_6h_change": 0.439,
+      "yes_price_6h_pct_change": 79.8,
+      "yes_price_change": 0.054,
+      "yes_price_pct_change": 5.8,
       "price_history": [
         {
           "t": "2026-11-08T08:32:48Z",
@@ -137,9 +137,16 @@
           "mp": 0.217,
           "bid": 0.87,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-08T11:07:30Z",
+          "p": 0.989,
+          "mp": 0.217,
+          "bid": 0.98,
+          "ask": 0.998
         }
       ],
-      "prev_10m_yes_price": 0.83
+      "prev_10m_yes_price": 0.935
     },
     {
       "question": "Will the lowest temperature in Madrid be 6°C on November 8?",
@@ -706,10 +713,10 @@
         12.0,
         999.0
       ],
-      "yes_price": 0.001,
+      "yes_price": 0.003,
       "no_price": 0.9985,
       "best_bid": null,
-      "best_ask": 0.002,
+      "best_ask": 0.006,
       "bid_ask_spread": 0.0,
       "volume": 65.0,
       "spread": 0.0,
@@ -718,13 +725,13 @@
       "model_prob": 0.0,
       "intraday_eliminated": true,
       "side": "YES",
-      "ask": 0.001,
-      "effective_ask": 0.001,
-      "market_prob": 0.001,
-      "belief_prob": 0.0003,
+      "ask": 0.003,
+      "effective_ask": 0.003,
+      "market_prob": 0.003,
+      "belief_prob": 0.001,
       "ev": -0.6667,
       "kelly": 0.0,
-      "swing_edge": -0.001,
+      "swing_edge": -0.003,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "scan6h_model_prob": 0.0,
@@ -739,13 +746,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0015,
       "prev_scan6h_yes_price": 0.0015,
-      "prev_yes_price": 0.0015,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -33.3,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -33.3,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -33.3,
+      "prev_yes_price": 0.001,
+      "yes_price_10m_change": 0.002,
+      "yes_price_10m_pct_change": 0.2,
+      "yes_price_6h_change": 0.0015,
+      "yes_price_6h_pct_change": 100.0,
+      "yes_price_change": 0.002,
+      "yes_price_pct_change": 0.2,
       "price_history": [
         {
           "t": "2026-11-08T08:32:48Z",
@@ -790,7 +797,7 @@
           "ask": 0.002
         }
       ],
-      "prev_10m_yes_price": 0.0015
+      "prev_10m_yes_price": 0.001
     }
   ],
   "live_allocation": [
@@ -820,5 +827,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T10:52:35.689090+00:00"
+  "last_price_refresh": "2026-11-08T11:07:29.559447+00:00"
 }
