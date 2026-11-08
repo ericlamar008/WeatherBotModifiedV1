@@ -119,10 +119,10 @@
         40.0,
         41.0
       ],
-      "yes_price": 0.06,
+      "yes_price": 0.075,
       "no_price": 0.935,
       "best_bid": null,
-      "best_ask": 0.12,
+      "best_ask": 0.15,
       "bid_ask_spread": 0.0,
       "volume": 22.0,
       "spread": 0.0,
@@ -131,14 +131,14 @@
       "model_prob": 0.1729,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.06,
-      "effective_ask": 0.06,
-      "market_prob": 0.06,
-      "belief_prob": 0.1334,
-      "ev": 1.2233,
-      "kelly": 0.0195,
-      "swing_edge": 0.1129,
-      "swing_upside_pct": 188.2,
+      "ask": 0.075,
+      "effective_ask": 0.075,
+      "market_prob": 0.075,
+      "belief_prob": 0.1386,
+      "ev": 0.848,
+      "kelly": 0.0172,
+      "swing_edge": 0.0979,
+      "swing_upside_pct": 130.5,
       "sell_value": null,
       "scan6h_model_prob": 0.1729,
       "prev_scan6h_model_prob": 0.1729,
@@ -152,13 +152,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.065,
       "prev_scan6h_yes_price": 0.065,
-      "prev_yes_price": 0.065,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -7.7,
-      "yes_price_6h_change": -0.005,
-      "yes_price_6h_pct_change": -7.7,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -7.7,
+      "prev_yes_price": 0.06,
+      "yes_price_10m_change": 0.015,
+      "yes_price_10m_pct_change": 25.0,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 15.4,
+      "yes_price_change": 0.015,
+      "yes_price_pct_change": 25.0,
       "price_history": [
         {
           "t": "2026-11-08T14:26:33Z",
@@ -180,9 +180,16 @@
           "mp": 0.1729,
           "bid": null,
           "ask": 0.12
+        },
+        {
+          "t": "2026-11-08T15:37:25Z",
+          "p": 0.075,
+          "mp": 0.1729,
+          "bid": null,
+          "ask": 0.15
         }
       ],
-      "prev_10m_yes_price": 0.065
+      "prev_10m_yes_price": 0.06
     },
     {
       "question": "Will the lowest temperature in Atlanta be between 42-43°F on November 8?",
@@ -1222,5 +1229,5 @@
   "confidence": 0.0756,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T15:22:26.938944+00:00"
+  "last_price_refresh": "2026-11-08T15:37:24.114603+00:00"
 }
