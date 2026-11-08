@@ -47,9 +47,9 @@
       ],
       "yes_price": 0.14,
       "no_price": 0.86,
-      "best_bid": 0.13,
-      "best_ask": 0.15,
-      "bid_ask_spread": 0.02,
+      "best_bid": 0.12,
+      "best_ask": 0.16,
+      "bid_ask_spread": 0.04,
       "volume": 848.0,
       "spread": 0.02,
       "yes_token_id": "71336596132413891414685528049662105399417629950157260350673408279720893851402",
@@ -58,10 +58,10 @@
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.14,
-      "effective_ask": 0.14,
+      "effective_ask": 0.1455,
       "market_prob": 0.14,
       "belief_prob": 0.1397,
-      "ev": -0.0021,
+      "ev": -0.0399,
       "kelly": 0.0,
       "swing_edge": -0.0004,
       "swing_upside_pct": -0.3,
@@ -93,7 +93,8 @@
           "bid": 0.13,
           "ask": 0.15
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.14
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 84-85°F on November 9?",
@@ -150,7 +151,8 @@
           "bid": 0.39,
           "ask": 0.41
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.4
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 86-87°F on November 9?",
@@ -177,8 +179,8 @@
       "belief_prob": 0.2201,
       "ev": -0.4986,
       "kelly": 0.0,
-      "swing_edge": -0.3131,
-      "swing_upside_pct": -71.3,
+      "swing_edge": -0.2691,
+      "swing_upside_pct": -68.1,
       "sell_value": 0.34,
       "scan6h_model_prob": 0.1259,
       "prev_scan6h_model_prob": 0.1259,
@@ -207,7 +209,8 @@
           "bid": 0.34,
           "ask": 0.45
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.395
     },
     {
       "question": "Will the highest temperature in Los Angeles be 94°F or higher on November 9?",
@@ -264,7 +267,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -276,5 +280,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-08T02:26:17.538250+00:00"
 }

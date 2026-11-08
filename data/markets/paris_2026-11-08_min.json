@@ -66,8 +66,8 @@
       "belief_prob": 0.2219,
       "ev": -0.5123,
       "kelly": 0.0,
-      "swing_edge": -0.3155,
-      "swing_upside_pct": -69.3,
+      "swing_edge": -0.2355,
+      "swing_upside_pct": -62.8,
       "sell_value": 0.07,
       "scan6h_model_prob": 0.1395,
       "prev_scan6h_model_prob": 0.1395,
@@ -96,7 +96,8 @@
           "bid": 0.07,
           "ask": 0.68
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.375
     },
     {
       "question": "Will the lowest temperature in Paris be 3°C on November 8?",
@@ -123,8 +124,8 @@
       "belief_prob": 0.2519,
       "ev": -0.3192,
       "kelly": 0.0,
-      "swing_edge": -0.1386,
-      "swing_upside_pct": -37.5,
+      "swing_edge": -0.0586,
+      "swing_upside_pct": -20.2,
       "sell_value": 0.11,
       "scan6h_model_prob": 0.2314,
       "prev_scan6h_model_prob": 0.2314,
@@ -153,7 +154,8 @@
           "bid": 0.11,
           "ask": 0.47
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.29
     },
     {
       "question": "Will the lowest temperature in Paris be 4°C on November 8?",
@@ -180,8 +182,8 @@
       "belief_prob": 0.3153,
       "ev": -0.3291,
       "kelly": 0.0,
-      "swing_edge": -0.1949,
-      "swing_upside_pct": -41.5,
+      "swing_edge": -0.1149,
+      "swing_upside_pct": -29.5,
       "sell_value": 0.13,
       "scan6h_model_prob": 0.2751,
       "prev_scan6h_model_prob": 0.2751,
@@ -210,7 +212,8 @@
           "bid": 0.13,
           "ask": 0.65
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.39
     },
     {
       "question": "Will the lowest temperature in Paris be 6°C on November 8?",
@@ -234,7 +237,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -267,7 +270,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Paris be 7°C on November 8?",
@@ -291,7 +295,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -324,7 +328,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Paris be 8°C on November 8?",
@@ -348,7 +353,7 @@
       "ask": 0.001,
       "effective_ask": 0.001,
       "market_prob": 0.001,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0003,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.001,
@@ -381,7 +386,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Paris be 9°C or higher on November 8?",
@@ -405,7 +411,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -438,7 +444,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -450,5 +457,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-08T02:26:17.538250+00:00"
 }
