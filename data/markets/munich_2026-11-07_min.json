@@ -3,15 +3,15 @@
   "city_name": "Munich",
   "date": "2026-11-07",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-11-06T02:20:42.080528+00:00",
   "committed_allocation": null,
-  "hours_left": 2.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-11-07T23:00:00+00:00",
   "event_end_date": "2026-11-07T12:00:00Z",
-  "last_scan": "2026-11-07T02:20:46.176754+00:00",
+  "last_scan": "2026-11-08T02:20:47.359592+00:00",
   "last_lite_refresh": "2026-11-07T20:20:47.086033+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
@@ -2718,7 +2718,10 @@
       "market_prob": 0.979,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.96
+      "sell_value": 0.96,
+      "won": true,
+      "pnl_units": 0.64,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -2730,5 +2733,31 @@
   "confidence": 0.4786,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T02:07:31.095718+00:00"
+  "last_price_refresh": "2026-11-08T02:07:31.095718+00:00",
+  "actual_temp": 3.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.64,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6705552",
+      "question": "Will the lowest temperature in Munich be 3°C or higher on November 7?",
+      "range": [
+        3.0,
+        999.0
+      ],
+      "side": "YES",
+      "price": 0.979,
+      "model_prob": 0.2181,
+      "ev": -0.5074,
+      "market_prob": 0.979,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.96,
+      "won": true,
+      "pnl_units": 0.64,
+      "user_entered": false
+    }
+  ]
 }
