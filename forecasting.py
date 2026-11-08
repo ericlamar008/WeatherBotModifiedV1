@@ -116,7 +116,7 @@ BIAS_CAP_F = 3.6
 ABSOLUTE_BIAS_CAP_F = 10.0
 ABSOLUTE_BIAS_CAP_C = 5.5
 BIAS_CAP_SAFETY_MARGIN = 1.3
-SEASONAL_HALF_LIFE_DAYS = 45
+SEASONAL_HALF_LIFE_DAYS = 21
 # --- FIX (Phase 6 / F6): minimum real per-horizon samples required before
 # trusting the new real-lead-time measurement over the old synthetic scaling.
 MIN_REAL_HORIZON_SAMPLES = 20
@@ -689,18 +689,103 @@ def _get_regime_drift_adjustment(city_slug, unit="C", is_min=False):
     return 0.0
 
 
-# شهرهایی که در آن‌ها مدل کانادایی GEM به دلیل خطای ارتفاع/شبکهٔ ساحلی-بیابانی انحراف سیستماتیک شدید دارد
-_GEM_PRUNED_CITIES = {"jeddah", "seoul", "tel-aviv"}
+# شهرهایی که در آن‌ها مدل کانادایی GEM به دلیل خطای ارتفاع/شبکهٔ ساحلی-بیابانی-کوهپایه‌ای انحراف سیستماتیک شدید دارد
+_GEM_PRUNED_CITIES = {
+    "jeddah", "seoul", "tel-aviv", "toronto", "mexico-city",
+    "seattle", "buenos-aires", "kuala-lumpur", "milan", "shanghai",
+}
+
+# شهرهای دارای کالیبراسیون هوشمند ژئوفیزیکی و تک‌بودجه‌ای متعامد (Geo-Physical & Orthogonal Single-Budget Calibration)
+_GEO_UPGRADED_CITIES = {
+    "jeddah", "tel-aviv", "seoul", "mexico-city", "toronto",
+    "madrid", "milan", "paris", "houston", "miami", "nyc",
+    "kuala-lumpur", "shanghai", "buenos-aires", "denver",
+}
 
 
-def _filter_clean_submodels(raw_means, city_slug=None, unit="C"):
-    """حذف زیرمدل پرت GEM صرفاً در شهرهای هدف (_GEM_PRUNED_CITIES) بدون تغییر در سایر شهرها."""
+def _filter_clean_submodels(raw_means, city_slug=None, unit="C", is_min=False):
+    """حذف زیرمدل پرت GEM در شهرهای هدف (_GEM_PRUNED_CITIES) و همچنین فیلتر اجماع بین‌مدلی
+    (Cross-Model Consensus Outlier Filter) در تمامی بازارهای بیشینه و کمینه زمانی که GEM بیش از
+    ۱.۵ درجه سلسیوس (۲.۷ درجه فارنهایت) از میانهٔ سایر مدل‌های اصلی فاصله داشته باشد."""
     if not raw_means or not isinstance(raw_means, dict):
         return {}
     cleaned = {k: float(v) for k, v in raw_means.items() if v is not None}
-    if city_slug in _GEM_PRUNED_CITIES and "gem" in cleaned and ("ecmwf" in cleaned or "gfs" in cleaned):
+    if not is_min and city_slug in _GEM_PRUNED_CITIES and "gem" in cleaned and ("ecmwf" in cleaned or "gfs" in cleaned):
         cleaned.pop("gem", None)
+    elif len(cleaned) >= 3 and "gem" in cleaned:
+        others = sorted(v for k, v in cleaned.items() if k != "gem")
+        med_other = others[len(others) // 2]
+        outlier_thresh = 2.7 if unit == "F" else 1.5
+        if abs(cleaned["gem"] - med_other) > outlier_thresh:
+            cleaned.pop("gem", None)
     return cleaned
+
+
+def _compute_geo_physical_base_mean(raw_means, city_slug, unit="C", is_min=False):
+    """محاسبهٔ میانگین پایهٔ ژئوفیزیکی ایستگاه بر اساس توپوگرافی فرودگاه (ساحلی، کاسهٔ کوهستانی،
+    فلات مرتفع، دالان جبهه‌ای) و رزولوشن مدل‌های منطقه‌ای (ICON-EU در اروپا، GFS در خلیج مکزیک،
+    ECMWF در کوهپایهٔ راکی و مدیترانه) قبل از اعمال تک‌لایهٔ بایاس متعامد."""
+    cleaned = _filter_clean_submodels(raw_means, city_slug=city_slug, unit=unit, is_min=is_min)
+    if not cleaned:
+        return None
+    ec = cleaned.get("ecmwf")
+    gf = cleaned.get("gfs")
+    ic = cleaned.get("icon_eu")
+    gm = cleaned.get("gem")
+
+    if not is_min:
+        if city_slug == "jeddah" and ec is not None and gf is not None:
+            return 0.50 * ec + 0.50 * gf
+        if city_slug == "tel-aviv" and ec is not None and gf is not None:
+            return ec if (ec - gf) >= 1.80 else (0.72 * ec + 0.28 * gf)
+        if city_slug == "seoul" and ec is not None and gf is not None:
+            return 0.50 * ec + 0.50 * gf
+        if city_slug == "mexico-city" and ec is not None and gf is not None:
+            # کاسهٔ مرتفع ۲۲۳۰ متری (MMMX): توازن بایاس گرم ECMWF و بایاس سرد GFS پس از حذف GEM پرت
+            return 0.52 * ec + 0.48 * gf
+        if city_slug == "toronto" and (ec is not None or gf is not None):
+            # مرز دریاچهٔ انتاریو (CYYZ): حذف GEM (نمونه‌برداری آب سرد دریاچه) و ترکیب GFS/ECMWF
+            return 0.45 * (ec if ec is not None else gf) + 0.55 * (gf if gf is not None else ec)
+        if city_slug == "madrid" and (ic is not None or ec is not None):
+            # فلات ۶۱۰ متری مادرید (LEMD): اولویت مدل منطقه‌ای ۱۳ کیلومتری اروپا (ICON-EU) و ECMWF
+            return 0.55 * (ic if ic is not None else ec) + 0.45 * (ec if ec is not None else ic)
+        if city_slug == "milan" and (ic is not None or ec is not None):
+            # کاسهٔ درهٔ پو (LIMC): ترکیب ICON-EU + ECMWF + GFS بدون آلودگی GEM
+            ic_v = ic if ic is not None else ec
+            ec_v = ec if ec is not None else ic_v
+            gf_v = gf if gf is not None else ec_v
+            return 0.40 * ic_v + 0.35 * ec_v + 0.25 * gf_v
+        if city_slug == "paris" and (gf is not None or gm is not None or ic is not None):
+            # فرودگاه لوبورژه پاریس (LFPB): وزن‌دهی لایهٔ مرزی شهری
+            gf_v = gf if gf is not None else (gm if gm is not None else ic)
+            gm_v = gm if gm is not None else gf_v
+            ic_v = ic if ic is not None else gf_v
+            return 0.45 * gf_v + 0.35 * gm_v + 0.20 * ic_v
+        if city_slug == "houston" and gf is not None:
+            # جلگهٔ ساحلی خلیج مکزیک (KHOU): برتری قاطع مدل آمریکایی GFS نسبت به ECMWF
+            return 0.80 * gf + 0.20 * (ec if ec is not None else gf)
+        if city_slug == "miami" and ec is not None and gf is not None:
+            return 0.45 * ec + 0.55 * gf
+        if city_slug == "nyc" and ec is not None and gf is not None:
+            return 0.55 * ec + 0.45 * gf
+        if city_slug == "kuala-lumpur" and ec is not None and gf is not None:
+            return 0.65 * ec + 0.35 * gf
+        if city_slug == "shanghai" and ec is not None and gf is not None:
+            return 0.55 * ec + 0.45 * gf
+        if city_slug == "buenos-aires" and ec is not None and gf is not None:
+            # گیت جبههٔ سرد پامپرو در مصب ریودلاپلاتا (SAEZ): وقتی GFS بیش از 2.0C سردتر از ECMWF است
+            if (ec - gf) >= 2.0:
+                return 0.75 * gf + 0.25 * ec
+            return 0.65 * ec + 0.35 * gf
+        if city_slug == "denver" and ec is not None and gf is not None:
+            # گیت کوهپایهٔ راکی (KBKF 1726m): در روزهای ناوهٔ سرد که GFS بیش از 1.2F گرم‌تر از ECMWF است، ECMWF ملاک است
+            if (gf - ec) >= 1.2:
+                return ec
+            return 0.65 * ec + 0.35 * gf
+
+    if ec is not None and gf is not None:
+        return 0.622 * ec + 0.378 * gf
+    return sum(cleaned.values()) / len(cleaned)
 
 
 def get_model_weights(city_slug, model_names, min_n=2, is_min=False):
@@ -788,7 +873,7 @@ def build_shadow_mean(model_members, city_slug, horizon_days, unit, is_min=False
     if not raw_means:
         return None, {}
 
-    clean_means = _filter_clean_submodels(raw_means, city_slug=None if is_min else city_slug, unit=unit) or raw_means
+    clean_means = _filter_clean_submodels(raw_means, city_slug=city_slug, unit=unit, is_min=is_min) or raw_means
     weights = get_model_weights(city_slug, list(clean_means.keys()), is_min=is_min)
     if weights is None:
         raw_shadow_mean = sum(clean_means.values()) / len(clean_means)
@@ -1410,29 +1495,35 @@ def save_calibration(cal):
     CALIBRATION_FILE.write_text(json.dumps(cal, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def _clean_uncalibrated_base_mean(m, city_slug, old_bias=0.0):
-    """محاسبهٔ میانگین پایهٔ خام (بدون بایاس قبلی و بدون آلودگی مدل پرت GEM) برای استخراج بایاس واقعی."""
+def _clean_uncalibrated_base_mean(m, city_slug, old_bias=0.0, unit="C", is_min=False):
+    """محاسبهٔ میانگین پایهٔ خام و متعامد (بدون بایاس قبلی و بدون آلودگی مدل پرت GEM) برای استخراج بایاس واقعی."""
     r = m.get("model_means_raw")
-    if isinstance(r, dict) and r.get("ecmwf") is not None and r.get("gfs") is not None:
-        ec = float(r["ecmwf"])
-        gf = float(r["gfs"])
-        if city_slug == "jeddah":
-            return 0.50 * ec + 0.50 * gf
-        if city_slug == "tel-aviv":
-            return ec if (ec - gf) >= 1.80 else (0.72 * ec + 0.28 * gf)
-        if city_slug == "seoul":
-            return 0.50 * ec + 0.50 * gf
-        return 0.622 * ec + 0.378 * gf
+    if isinstance(r, dict) and r:
+        if not is_min and city_slug in _GEO_UPGRADED_CITIES:
+            geo_b = _compute_geo_physical_base_mean(r, city_slug, unit=unit, is_min=False)
+            if geo_b is not None:
+                return geo_b
+        if r.get("ecmwf") is not None and r.get("gfs") is not None:
+            return 0.622 * float(r["ecmwf"]) + 0.378 * float(r["gfs"])
+        clean_r = _filter_clean_submodels(r, city_slug=city_slug, unit=unit, is_min=is_min)
+        if clean_r:
+            return sum(clean_r.values()) / len(clean_r)
+    if m.get("uncalibrated_mean") is not None:
+        return float(m["uncalibrated_mean"])
+    if is_min:
+        # در فایل‌های قدیمی بازار کمینه که model_means_raw نداشتند، forecast_mean همان مقدار خام اولیه است؛
+        # کم کردن old_bias متغیر باعث حلقهٔ بازخورد و انباشت تصاعدی بایاس می‌شد.
+        return float(m["forecast_mean"])
     return float(m["forecast_mean"]) - float(old_bias or 0.0)
 
 
-def _compute_smart_live_calibration_entry(group, old, unit, city_slug, ref_prior=None):
-    """گیت کالیبراسیون هوشمند ۱۴ روزه (Champion-Challenger + ترمز تغییر فصل)."""
+def _compute_smart_live_calibration_entry(group, old, unit, city_slug, ref_prior=None, is_min=False):
+    """گیت کالیبراسیون هوشمند ۱۴ روزه (معماری تک‌بودجه‌ای متعامد + تطبیق سریع فصلی EWMA)."""
     sorted_group = sorted(
         [m for m in group if m.get("forecast_mean") is not None and m.get("actual_temp") is not None],
         key=lambda m: str(m.get("date", "")),
     )
-    if len(sorted_group) < 5:
+    if len(sorted_group) < 5 and not (is_min and len(sorted_group) >= 2):
         return None
 
     prior_src = ref_prior if (ref_prior and int(ref_prior.get("n") or ref_prior.get("n_live") or 0) > int(old.get("n_live") or old.get("n") or 0)) else old
@@ -1444,17 +1535,39 @@ def _compute_smart_live_calibration_entry(group, old, unit, city_slug, ref_prior
     recent = sorted_group[-14:]
     abs_errors = []
     signed_errors = []
-    for m in recent:
-        act = float(m["actual_temp"])
-        raw_base = _clean_uncalibrated_base_mean(m, city_slug, old_bias=old_bias)
-        signed_errors.append(act - raw_base)
-        if city_slug in ("jeddah", "seoul", "tel-aviv") and isinstance(m.get("model_means_raw"), dict):
-            abs_errors.append(abs((raw_base + old_bias) - act))
-        else:
-            abs_errors.append(abs(float(m["forecast_mean"]) - act))
+    ewma_weights = []
+    n_rec = len(recent)
 
-    live_mae = sum(abs_errors) / len(abs_errors)
-    live_bias_raw = sum(signed_errors) / len(signed_errors)
+    for idx, m in enumerate(recent):
+        act = float(m["actual_temp"])
+        raw_base = _clean_uncalibrated_base_mean(m, city_slug, old_bias=old_bias, unit=unit, is_min=is_min)
+        r_dict = m.get("model_means_raw") if isinstance(m.get("model_means_raw"), dict) else {}
+        # در دنور و بوئنوس آیرس، روزهای عبور جبههٔ سرد شدید وارد بایاس روزهای عادی نمی‌شوند
+        is_frontal_day = False
+        if not is_min and city_slug == "denver" and r_dict.get("gfs") is not None and r_dict.get("ecmwf") is not None:
+            if (float(r_dict["gfs"]) - float(r_dict["ecmwf"])) >= 1.2:
+                is_frontal_day = True
+        elif not is_min and city_slug == "buenos-aires" and r_dict.get("ecmwf") is not None and r_dict.get("gfs") is not None:
+            if (float(r_dict["ecmwf"]) - float(r_dict["gfs"])) >= 2.0:
+                is_frontal_day = True
+
+        if not is_frontal_day:
+            signed_errors.append(act - raw_base)
+            ewma_weights.append(0.88 ** (n_rec - 1 - idx))
+
+        abs_errors.append(abs(float(m["forecast_mean"]) - act))
+
+    live_mae = sum(abs_errors) / len(abs_errors) if abs_errors else old_sigma
+    if signed_errors:
+        if not is_min and city_slug in _GEO_UPGRADED_CITIES:
+            live_bias_raw = sum(e * w for e, w in zip(signed_errors, ewma_weights)) / (sum(ewma_weights) or 1.0)
+        elif is_min:
+            live_bias_raw = sum(e * w for e, w in zip(signed_errors, ewma_weights)) / (sum(ewma_weights) or 1.0)
+        else:
+            live_bias_raw = sum(signed_errors) / len(signed_errors)
+    else:
+        live_bias_raw = 0.0
+
     n_live = len(recent)
     cap = _bias_cap(unit, city_slug, observed_raw_bias=live_bias_raw)
 
@@ -1469,20 +1582,39 @@ def _compute_smart_live_calibration_entry(group, old, unit, city_slug, ref_prior
         if abs(b5) >= thresh and abs(b30) >= thresh and (b5 * b30 < 0):
             sign_flip = True
 
-    # بررسی Champion-Challenger (مقایسه MAE کالیبره با MAE مدل Shadow)
+    # بررسی Champion-Challenger (فقط زمانی به خام برگرد که واقعاً بدون بایاس دقیق‌تر از بایاس‌دار باشد)
     shadow_samples = [m for m in recent if m.get("forecast_mean_shadow") is not None]
     revert_to_shadow = False
-    if len(shadow_samples) >= 5 and city_slug not in ("jeddah", "seoul", "tel-aviv"):
+    if len(shadow_samples) >= 5 and not is_min and city_slug not in _GEO_UPGRADED_CITIES:
         cal_mae = sum(abs(m["forecast_mean"] - m["actual_temp"]) for m in shadow_samples) / len(shadow_samples)
         sh_mae = sum(abs(m["forecast_mean_shadow"] - m["actual_temp"]) for m in shadow_samples) / len(shadow_samples)
         if sh_mae < cal_mae * 0.96:
             revert_to_shadow = True
 
-    w_live = min(0.75, n_live / (n_live + 10))
-    new_sigma = round(max(0.55, old_sigma * (1 - w_live) + live_mae * w_live), 3)
-    new_bias_raw = old_bias * (1 - w_live) + live_bias_raw * w_live
-    if sign_flip:
-        new_bias_raw *= 0.35
+    if not is_min and city_slug in _GEO_UPGRADED_CITIES:
+        if city_slug in ("jeddah", "tel-aviv", "mexico-city"):
+            new_bias_raw = 0.0
+        else:
+            pos_c = sum(1 for r in signed_errors if r > 0)
+            neg_c = sum(1 for r in signed_errors if r < 0)
+            consistency = max(pos_c, neg_c) / max(1, len(signed_errors))
+            shrink = 0.92 if consistency >= 0.75 else (len(signed_errors) / (len(signed_errors) + 3.0))
+            new_bias_raw = live_bias_raw * shrink
+        w_live = min(0.85, n_live / (n_live + 4))
+        new_sigma = round(max(0.50 if unit == "C" else 0.90, old_sigma * (1 - w_live) + live_mae * w_live), 3)
+    elif is_min:
+        shrink_min = len(signed_errors) / (len(signed_errors) + 2.5)
+        cand_bias = live_bias_raw * shrink_min
+        new_bias_raw = cand_bias if abs(cand_bias) >= 0.25 else 0.0
+        w_live = min(0.75, n_live / (n_live + 8))
+        new_sigma = round(max(0.55 if unit == "C" else 0.95, old_sigma * (1 - w_live) + live_mae * w_live), 3)
+    else:
+        w_live = min(0.75, n_live / (n_live + 10))
+        new_sigma = round(max(0.55, old_sigma * (1 - w_live) + live_mae * w_live), 3)
+        new_bias_raw = old_bias * (1 - w_live) + live_bias_raw * w_live
+        if sign_flip:
+            new_bias_raw *= 0.35
+
     new_bias = round(max(-cap, min(cap, new_bias_raw)), 3)
 
     old_n_live = int(prior_src.get("n") or prior_src.get("n_live") or old.get("n_live") or old.get("n") or 0)
@@ -1490,7 +1622,12 @@ def _compute_smart_live_calibration_entry(group, old, unit, city_slug, ref_prior
     old_live_mae = float(prior_src.get("live_mae") or prior_src.get("base_mae") or old_sigma)
     old_live_bias = float(prior_src.get("live_bias_raw") or prior_src.get("base_bias_raw") or old_bias)
 
-    if len(sorted_group) < old_rec_n and old_n_live > len(sorted_group):
+    if not is_min and city_slug in _GEO_UPGRADED_CITIES:
+        blended_mae = live_mae
+        blended_bias = new_bias
+        eff_n_live = max(len(sorted_group), old_n_live)
+        eff_rec_n = n_live
+    elif len(sorted_group) < old_rec_n and old_n_live > len(sorted_group):
         prior_w = max(0, old_rec_n - n_live)
         tot_rec = n_live + prior_w
         blended_mae = (live_mae * n_live + old_live_mae * prior_w) / tot_rec
@@ -1513,7 +1650,7 @@ def _compute_smart_live_calibration_entry(group, old, unit, city_slug, ref_prior
         "recent_14d_n": eff_rec_n,
         "live_mae": round(blended_mae, 3),
         "live_bias_raw": round(blended_bias, 3),
-        "gate_status": "sign_flip_damped" if sign_flip else ("revert_to_shadow" if revert_to_shadow else "use_calibrated"),
+        "gate_status": "sign_flip_damped" if (sign_flip and city_slug not in _GEO_UPGRADED_CITIES) else ("revert_to_shadow" if revert_to_shadow else "use_calibrated"),
         "source": "smart_gated_14d",
         "updated_at": datetime.now(timezone.utc).isoformat(),
     }
@@ -1542,7 +1679,7 @@ def update_calibration_from_live(markets, locations):
                 group = city_all
             key = f"{city_slug}_D{h}"
             old = cal.get(key, {})
-            entry = _compute_smart_live_calibration_entry(group, old, unit, city_slug, ref_prior=ref_d2 if h in (0, 1) else None)
+            entry = _compute_smart_live_calibration_entry(group, old, unit, city_slug, ref_prior=ref_d2 if h in (0, 1) else None, is_min=False)
             if entry:
                 cal[key] = entry
     save_calibration(cal)
@@ -1565,11 +1702,11 @@ def update_calibration_from_live_min(markets, locations):
         ref_d2 = cal.get(f"{city_slug}_min_D2", {})
         for h in range(4):
             group = [m for m in city_all if m.get("horizon_days") == h]
-            if len(group) < 5 and h in (0, 1) and len(city_all) >= 5:
+            if len(group) < 5 and h in (0, 1) and len(city_all) >= 2:
                 group = city_all
             key = f"{city_slug}_min_D{h}"
             old = cal.get(key, {})
-            entry = _compute_smart_live_calibration_entry(group, old, unit, city_slug, ref_prior=ref_d2 if h in (0, 1) else None)
+            entry = _compute_smart_live_calibration_entry(group, old, unit, city_slug, ref_prior=ref_d2 if h in (0, 1) else None, is_min=True)
             if entry:
                 cal[key] = entry
     save_calibration(cal)
@@ -1586,6 +1723,8 @@ def get_sigma(city_slug, horizon_days, unit):
 
 
 def get_gate_status(city_slug, horizon_days=0, is_min=False):
+    if not is_min and city_slug in _GEO_UPGRADED_CITIES:
+        return "use_calibrated"
     cal = load_calibration()
     h = min(horizon_days, 3)
     key = f"{city_slug}_min_D{h}" if is_min else f"{city_slug}_D{h}"
@@ -1599,7 +1738,7 @@ def get_bias(city_slug, horizon_days, unit):
     h = min(horizon_days, 3)
     key = f"{city_slug}_D{h}"
     if key in cal:
-        if cal[key].get("gate_status") == "revert_to_shadow" and city_slug not in _GEM_PRUNED_CITIES:
+        if cal[key].get("gate_status") == "revert_to_shadow" and city_slug not in _GEO_UPGRADED_CITIES:
             return 0.0
         raw = cal[key].get("live_bias_raw", cal[key].get("base_bias_raw"))
         cap = _bias_cap(unit, city_slug, observed_raw_bias=raw)
@@ -1713,34 +1852,37 @@ def build_calibrated_distribution(members, city_slug, horizon_days, unit, model_
 
     raw_mean = sum(members) / len(members)
 
-    # اگر زیرمدل‌ها (ECMWF, GFS, GEM, ICON) موجود باشند، میانگین BMA وزن‌دار را با میانگین انسمبل ترکیب می‌کنیم
+    # کالیبراسیون هوشمند ژئوفیزیکی + معماری تک‌بودجه‌ای متعامد (بدون تجمیع لایه‌ها)
     model_spread = 0.0
+    use_single_budget = False
     if model_members and isinstance(model_members, dict):
         raw_means_all = {k: (sum(v) / len(v)) for k, v in model_members.items() if v}
-        raw_means = _filter_clean_submodels(raw_means_all, city_slug=city_slug, unit=unit) or raw_means_all
+        raw_means = _filter_clean_submodels(raw_means_all, city_slug=city_slug, unit=unit, is_min=False) or raw_means_all
         if raw_means:
             weights = get_model_weights(city_slug, list(raw_means.keys()), is_min=False)
-            if city_slug == "jeddah" and "ecmwf" in raw_means and "gfs" in raw_means:
-                # در جده میانگین متوازن ۵۰/۵۰ بین ECMWF (گرم‌ساحلی) و GFS (خنک‌دریایی) بدون GEM به صورت خودکار بایاس دو مدل را خنثی کرده و بالاترین دقت (85.7%) را دارد
-                raw_mean = 0.50 * raw_means["ecmwf"] + 0.50 * raw_means["gfs"]
-                bias = 0.0
-            elif city_slug == "tel-aviv" and "ecmwf" in raw_means and "gfs" in raw_means:
-                # در تل‌آویو مدل GFS سلول دریایی مدیترانه (۱.۸- درجه سردتر) را نمونه‌برداری می‌کند؛ در روزهای باد شرقی/شاراو که شکاف >= 1.8C است، ECMWF ملاک است و در سایر روزها ترکیب 72/28 بدون GEM
-                ec_v, gf_v = raw_means["ecmwf"], raw_means["gfs"]
-                raw_mean = ec_v if (ec_v - gf_v) >= 1.80 else (0.72 * ec_v + 0.28 * gf_v)
-                bias = 0.0
-            elif city_slug == "seoul" and "ecmwf" in raw_means and "gfs" in raw_means:
-                # در سئول حذف کامل GEM پرت و میانگین متوازن ۵۰/۵۰ بین ECMWF و GFS
-                ec_v, gf_v = raw_means["ecmwf"], raw_means["gfs"]
-                raw_mean = 0.50 * ec_v + 0.50 * gf_v
-                if abs(ec_v - gf_v) <= 0.25:
+            if city_slug in _GEO_UPGRADED_CITIES:
+                geo_base = _compute_geo_physical_base_mean(raw_means_all, city_slug, unit=unit, is_min=False)
+                if geo_base is not None:
+                    raw_mean = geo_base
+                    use_single_budget = True
+                if city_slug in ("jeddah", "tel-aviv", "mexico-city"):
                     bias = 0.0
+                elif city_slug == "seoul" and "ecmwf" in raw_means and "gfs" in raw_means:
+                    if abs(raw_means["ecmwf"] - raw_means["gfs"]) <= 0.25:
+                        bias = 0.0
+                elif city_slug == "denver" and "ecmwf" in raw_means and "gfs" in raw_means:
+                    if (raw_means["gfs"] - raw_means["ecmwf"]) >= 1.2:
+                        bias = -0.50
+                elif city_slug == "buenos-aires" and "ecmwf" in raw_means and "gfs" in raw_means:
+                    if (raw_means["ecmwf"] - raw_means["gfs"]) >= 2.0:
+                        bias = 0.0
             elif weights:
                 bma_raw = sum(weights[m] * raw_means[m] for m in raw_means)
                 raw_mean = 0.45 * raw_mean + 0.55 * bma_raw
             model_spread = compute_model_spread(raw_means, weights)
 
-    regime_adj = _get_regime_drift_adjustment(city_slug, unit=unit, is_min=False)
+    # در شهرهای ارتقایافتهٔ ژئوفیزیکی، بایاس ۱۴ روزهٔ EWMA کل پسماند را به‌صورت تک‌بودجه‌ای پوشش می‌دهد (بدون جمع شدن مجدد regime_adj)
+    regime_adj = 0.0 if use_single_budget else _get_regime_drift_adjustment(city_slug, unit=unit, is_min=False)
     corrected_mean = raw_mean + bias + regime_adj
 
     if len(members) > 1:
@@ -1767,7 +1909,7 @@ def build_calibrated_distribution(members, city_slug, horizon_days, unit, model_
 
 
 def build_calibrated_distribution_min(members, city_slug, horizon_days, unit, model_members=None):
-    """(فاز ۶) معادل build_calibrated_distribution برای کمینه همراه با BMA و Dynamic Sigma."""
+    """(فاز ۶) معادل build_calibrated_distribution برای کمینه همراه با فیلتر اجماع زیرمدل‌ها و تک‌بودجه کردن کالیبراسیون."""
     calibrated_sigma = get_sigma_min(city_slug, horizon_days, unit)
     bias = get_bias_min(city_slug, horizon_days, unit)
     if not members:
@@ -1777,12 +1919,14 @@ def build_calibrated_distribution_min(members, city_slug, horizon_days, unit, mo
     model_spread = 0.0
     if model_members and isinstance(model_members, dict):
         raw_means_all = {k: (sum(v) / len(v)) for k, v in model_members.items() if v}
-        raw_means = _filter_clean_submodels(raw_means_all, city_slug=None, unit=unit) or raw_means_all
+        raw_means = _filter_clean_submodels(raw_means_all, city_slug=city_slug, unit=unit, is_min=True) or raw_means_all
         if raw_means:
             weights = get_model_weights(city_slug, list(raw_means.keys()), is_min=True)
             if weights:
                 bma_raw = sum(weights[m] * raw_means[m] for m in raw_means)
                 raw_mean = 0.45 * raw_mean + 0.55 * bma_raw
+            else:
+                raw_mean = sum(raw_means.values()) / len(raw_means)
             model_spread = compute_model_spread(raw_means, weights)
 
     if len(members) > 1:
@@ -1803,7 +1947,8 @@ def build_calibrated_distribution_min(members, city_slug, horizon_days, unit, mo
     else:
         final_sigma = base_sigma
 
-    regime_adj = _get_regime_drift_adjustment(city_slug, unit=unit, is_min=True)
+    # جلوگیری از جمع شدن هم‌زمان بایاس ۱۴ روزه و regime_adj در بازارهای کمینه (تک‌بودجه‌ای)
+    regime_adj = 0.0 if abs(bias) >= 0.25 else _get_regime_drift_adjustment(city_slug, unit=unit, is_min=True)
     corrected_mean = raw_mean + bias + regime_adj
     return round(corrected_mean, 2), round(final_sigma, 3)
 
@@ -1853,7 +1998,7 @@ def full_bucket_distribution(
     gmm_components = []
     if model_means_raw and isinstance(model_means_raw, dict) and len(model_means_raw) >= 2:
         raw_valid = {k: float(v) for k, v in model_means_raw.items() if v is not None}
-        valid_models = _filter_clean_submodels(raw_valid, city_slug=None if is_min else city_slug, unit=unit) or raw_valid
+        valid_models = _filter_clean_submodels(raw_valid, city_slug=city_slug, unit=unit, is_min=is_min) or raw_valid
         if len(valid_models) >= 2:
             weights = get_model_weights(city_slug, list(valid_models.keys()), is_min=is_min) if city_slug else None
             spread_val = compute_model_spread(valid_models, weights)
@@ -1865,7 +2010,8 @@ def full_bucket_distribution(
                     (get_bias_min(city_slug, horizon_days, unit) if is_min else get_bias(city_slug, horizon_days, unit))
                     if city_slug else 0.0
                 )
-                regime_adj = _get_regime_drift_adjustment(city_slug, unit=unit, is_min=is_min) if city_slug else 0.0
+                use_single = (not is_min and city_slug in _GEO_UPGRADED_CITIES) or (is_min and abs(bias) >= 0.25)
+                regime_adj = 0.0 if (not city_slug or use_single) else _get_regime_drift_adjustment(city_slug, unit=unit, is_min=is_min)
                 comp_sigma = max(0.45 if unit == "C" else 0.85, sigma * 0.82)
                 for m_name, raw_v in valid_models.items():
                     comp_mu = raw_v + bias + regime_adj

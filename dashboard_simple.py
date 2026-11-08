@@ -192,9 +192,18 @@ def _build_city_form_profiles(all_markets):
             old_bias = round(sum(r["signed_bias"] for r in older) / len(older), 2)
 
         # Blend with verified 14-day & 55-day statistics in data/calibration.json when local market JSONs are < 10
+        geo_upgraded_cities = {
+            "jeddah", "tel-aviv", "seoul",
+            "mexico-city", "toronto",
+            "madrid", "milan", "paris",
+            "houston", "miami", "nyc",
+            "kuala-lumpur", "shanghai",
+            "buenos-aires", "denver",
+        }
         cal_key = f"{slug}_min_D0" if mtype == "min" else f"{slug}_D0"
         cal_entry = cal_data.get(cal_key)
-        if cal_entry and len(active_recent) < 10:
+        min_direct_records = 5 if (mtype == "max" and slug in geo_upgraded_cities) else 10
+        if cal_entry and len(active_recent) < min_direct_records:
             cal_mae = float(cal_entry.get("live_mae") or cal_entry.get("base_mae") or r_mae)
             cal_n_total = int(cal_entry.get("n_live") or cal_entry.get("n_samples") or 30)
             cal_n_rec = max(int(cal_entry.get("recent_14d_n") or 14), 10)
@@ -219,6 +228,15 @@ def _build_city_form_profiles(all_markets):
                 s_old = max(0.28, old_mae / 0.9488)
                 old_hit_pct = round(max(0.15, min(0.92, 2.0 * _student_t_cdf5(w0 / s_old) - 1.0)) * 100, 1)
                 old_bias = round(-float(cal_entry.get("live_bias_raw") or cal_entry.get("base_bias_raw") or 0.0), 2)
+        elif cal_entry and old_hit_pct is None:
+            cal_mae = float(cal_entry.get("base_mae") or cal_entry.get("live_mae") or r_mae)
+            cal_n_total = int(cal_entry.get("n_live") or cal_entry.get("n_samples") or 30)
+            old_n_eff = max(10, cal_n_total - len(active_recent))
+            old_mae = round(cal_mae, 2)
+            w0 = 1.0 if is_us else 0.52
+            s_old = max(0.28, old_mae / 0.9488)
+            old_hit_pct = round(max(0.15, min(0.92, 2.0 * _student_t_cdf5(w0 / s_old) - 1.0)) * 100, 1)
+            old_bias = round(-float(cal_entry.get("base_bias_raw") or 0.0), 2)
 
         hit_delta = round(recent_hit_pct - old_hit_pct, 1) if old_hit_pct is not None else None
 
@@ -278,6 +296,14 @@ def _build_city_form_profiles(all_markets):
                     worst_submodel = mname
 
         gem_pruned_cities = {"jeddah", "seoul", "tel-aviv"}
+        geo_upgraded_cities = {
+            "jeddah", "tel-aviv", "seoul",
+            "mexico-city", "toronto",
+            "madrid", "milan", "paris",
+            "houston", "miami", "nyc",
+            "kuala-lumpur", "shanghai",
+            "buenos-aires", "denver",
+        }
         if submodel_rmses:
             min_rmse = max(0.25, min(submodel_rmses.values()))
             raw_w = {}
@@ -305,7 +331,10 @@ def _build_city_form_profiles(all_markets):
 
         gate_decision = "use_calibrated"
         gate_reason = "کالیبراسیون فعلی دقیق و سودده است"
-        if slug not in ("jeddah", "seoul", "tel-aviv") and raw_shadow_mae is not None and calibrated_mae is not None and calibrated_mae > raw_shadow_mae + 0.08:
+        if slug in geo_upgraded_cities and mtype == "max":
+            gate_decision = "use_calibrated"
+            gate_reason = "کالیبراسیون ژئوفیزیکی ایستگاه و تک‌بودجه‌ای (Single-Budget EWMA) فعال است"
+        elif slug not in geo_upgraded_cities and raw_shadow_mae is not None and calibrated_mae is not None and calibrated_mae > raw_shadow_mae + 0.15 and abs(r_bias) < 0.35:
             gate_decision = "revert_to_shadow"
             gate_reason = f"گیت سود-محور: مدل خام (MAE={raw_shadow_mae}°) دقیق‌تر از کالیبره ({calibrated_mae}°) بود → بازگشت خودکار به خام"
         elif sign_flip:
@@ -370,16 +399,32 @@ def _enrich_market_with_smart_gate(m, profile):
     unit = m.get("unit") or "C"
     base_sigma = float(m.get("sigma") or (1.8 if unit == "F" else 1.2))
     city_slug = m.get("city", "")
-    is_target_city = (city_slug in ("jeddah", "seoul", "tel-aviv") and m.get("market_type", "max") != "min")
+    is_min_mkt = (m.get("market_type") == "min")
+    geo_upgraded_cities = {
+        "jeddah", "tel-aviv", "seoul",
+        "mexico-city", "toronto",
+        "madrid", "milan", "paris",
+        "houston", "miami", "nyc",
+        "kuala-lumpur", "shanghai",
+        "buenos-aires", "denver",
+    }
+    is_target_city = (city_slug in geo_upgraded_cities and not is_min_mkt) or is_min_mkt
 
     smart_mean = float(f_cal) if f_cal is not None else None
 
-    # ۱) وزن‌دهی بیزین پویا (Dynamic BMA) و انحراف معیار پویا (Dynamic Sigma)
+    # ۱) فیلتر زیرمدل‌های پرت (Cross-Model Outlier Filter برای GEM) و محاسبه واگرایی
     bma_weights = (profile.get("submodel_weights") if profile else None) or {}
     valid_models = {
         mk: float(mv) for mk, mv in models_raw.items()
-        if mv is not None and not (is_target_city and mk == "gem")
+        if mv is not None and not (not is_min_mkt and city_slug in ("jeddah", "seoul", "tel-aviv") and mk == "gem")
     }
+    if "gem" in valid_models and len(valid_models) >= 3:
+        others = sorted(v for k, v in valid_models.items() if k != "gem")
+        med_other = others[len(others) // 2] if len(others) % 2 == 1 else 0.5 * (others[len(others) // 2 - 1] + others[len(others) // 2])
+        outlier_thresh = 2.7 if str(unit).upper() == "F" else 1.5
+        if abs(valid_models["gem"] - med_other) > outlier_thresh:
+            valid_models.pop("gem", None)
+
     bma_mean = None
     model_spread = m.get("model_spread")
 
@@ -407,18 +452,12 @@ def _enrich_market_with_smart_gate(m, profile):
             smart_mean = round(float(f_sh), 2)
         elif gd == "sign_flip_damped" and f_sh is not None:
             smart_mean = round(0.5 * float(f_cal) + 0.5 * float(f_sh), 2)
-        elif gd == "smart_submodel_blend" and bma_mean is not None:
-            smart_mean = round(0.55 * float(f_cal) + 0.45 * float(bma_mean), 2)
-        elif bma_mean is not None:
-            smart_mean = round(0.65 * float(f_cal) + 0.35 * float(bma_mean), 2)
+        else:
+            # جلوگیری از پاک شدن بایاس کالیبراسیون توسط میانگین خام BMA
+            smart_mean = round(float(f_cal), 2)
 
-    # تعدیل پویا بر اساس واگرایی زیرمدل‌ها (Dynamic Sigma)
+    # جلوگیری از تورم مضاعف سیگما (سیگمای کالیبره‌شده در forecasting.py قبلاً واگرایی را لحاظ کرده است)
     sigma = base_sigma
-    if model_spread is not None and model_spread > 0:
-        spread_thresh = 1.1 if unit == "F" else 0.6
-        if model_spread > spread_thresh:
-            infl = min(0.50, 0.22 * (model_spread - spread_thresh))
-            sigma = round(base_sigma * (1.0 + infl), 2)
 
     m["smart_forecast_mean"] = smart_mean
     m["smart_sigma"] = sigma
