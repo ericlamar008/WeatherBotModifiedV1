@@ -47,11 +47,11 @@
         3.0,
         3.0
       ],
-      "yes_price": 0.4695,
+      "yes_price": 0.469,
       "no_price": 0.5305,
       "best_bid": 0.001,
-      "best_ask": 0.938,
-      "bid_ask_spread": 0.937,
+      "best_ask": 0.937,
+      "bid_ask_spread": 0.936,
       "volume": 22.0,
       "spread": 0.937,
       "yes_token_id": "22961256237660981387497086794194555108528471420490282674387185193634372679608",
@@ -59,14 +59,14 @@
       "model_prob": 0.2385,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.4695,
-      "effective_ask": 0.5495,
-      "market_prob": 0.4695,
-      "belief_prob": 0.3193,
-      "ev": -0.4189,
+      "ask": 0.469,
+      "effective_ask": 0.549,
+      "market_prob": 0.469,
+      "belief_prob": 0.3192,
+      "ev": -0.4186,
       "kelly": 0.0,
-      "swing_edge": -0.311,
-      "swing_upside_pct": -56.6,
+      "swing_edge": -0.2305,
+      "swing_upside_pct": -49.1,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.2385,
       "prev_scan6h_model_prob": 0.2385,
@@ -81,12 +81,12 @@
       "scan6h_yes_price": 0.4695,
       "prev_scan6h_yes_price": 0.4695,
       "prev_yes_price": 0.4695,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -0.1,
+      "yes_price_6h_change": -0.0005,
+      "yes_price_6h_pct_change": -0.1,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -0.1,
       "price_history": [
         {
           "t": "2026-11-08T14:27:08Z",
@@ -95,7 +95,8 @@
           "bid": 0.001,
           "ask": 0.938
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.4695
     },
     {
       "question": "Will the lowest temperature in Toronto be 4°C on November 8?",
@@ -152,7 +153,8 @@
           "bid": null,
           "ask": 0.93
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.465
     },
     {
       "question": "Will the lowest temperature in Toronto be 6°C on November 8?",
@@ -176,7 +178,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -209,7 +211,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Toronto be 7°C on November 8?",
@@ -233,7 +236,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -266,7 +269,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Toronto be 8°C on November 8?",
@@ -290,7 +294,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -323,7 +327,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Toronto be 9°C on November 8?",
@@ -347,7 +352,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -380,7 +385,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Toronto be 10°C or higher on November 8?",
@@ -404,7 +410,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -437,7 +443,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -449,5 +456,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-08T14:28:01.969830+00:00"
 }

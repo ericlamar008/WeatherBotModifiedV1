@@ -96,7 +96,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Istanbul be 7°C on November 8?",
@@ -127,8 +128,8 @@
       "swing_upside_pct": -76.9,
       "sell_value": 0.23,
       "prev_10m_model_prob": 0.145,
-      "model_prob_10m_change": -0.0032,
-      "model_prob_10m_pct_change": -2.2,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.145,
       "model_prob_6h_change": -0.0032,
       "model_prob_6h_pct_change": -2.2,
@@ -143,9 +144,9 @@
       "yes_price_6h_change": 0.085,
       "yes_price_6h_pct_change": 16.0,
       "scan6h_yes_price": 0.615,
-      "prev_yes_price": 0.53,
-      "yes_price_change": 0.085,
-      "yes_price_pct_change": 16.0,
+      "prev_yes_price": 0.52,
+      "yes_price_change": 0.095,
+      "yes_price_pct_change": 18.3,
       "price_history": [
         {
           "t": "2026-11-08T08:32:48Z",
@@ -339,8 +340,8 @@
       "ask": 0.002,
       "effective_ask": 0.002,
       "market_prob": 0.002,
-      "belief_prob": 0.0,
-      "ev": -1.0,
+      "belief_prob": 0.0007,
+      "ev": -0.65,
       "kelly": 0.0,
       "swing_edge": -0.002,
       "swing_upside_pct": 0.0,
@@ -481,7 +482,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -623,7 +624,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -765,7 +766,7 @@
       "ask": 0.001,
       "effective_ask": 0.001,
       "market_prob": 0.001,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0003,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.001,
@@ -788,9 +789,9 @@
       "yes_price_6h_change": 0.0005,
       "yes_price_6h_pct_change": 0.1,
       "scan6h_yes_price": 0.001,
-      "prev_yes_price": 0.0005,
-      "yes_price_change": 0.0005,
-      "yes_price_pct_change": 0.1,
+      "prev_yes_price": 0.0025,
+      "yes_price_change": -0.0015,
+      "yes_price_pct_change": -60.0,
       "price_history": [
         {
           "t": "2026-11-08T08:32:48Z",
@@ -913,5 +914,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T14:07:22.882175+00:00"
+  "last_price_refresh": "2026-11-08T14:28:01.969830+00:00"
 }
