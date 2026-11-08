@@ -47,11 +47,11 @@
         3.0,
         3.0
       ],
-      "yes_price": 0.3415,
+      "yes_price": 0.3445,
       "no_price": 0.5305,
       "best_bid": 0.001,
-      "best_ask": 0.682,
-      "bid_ask_spread": 0.681,
+      "best_ask": 0.688,
+      "bid_ask_spread": 0.687,
       "volume": 22.0,
       "spread": 0.937,
       "yes_token_id": "22961256237660981387497086794194555108528471420490282674387185193634372679608",
@@ -59,14 +59,14 @@
       "model_prob": 0.2385,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.3415,
-      "effective_ask": 0.4215,
-      "market_prob": 0.3415,
-      "belief_prob": 0.2746,
-      "ev": -0.3485,
+      "ask": 0.3445,
+      "effective_ask": 0.4245,
+      "market_prob": 0.3445,
+      "belief_prob": 0.2756,
+      "ev": -0.3508,
       "kelly": 0.0,
-      "swing_edge": -0.103,
-      "swing_upside_pct": -30.2,
+      "swing_edge": -0.106,
+      "swing_upside_pct": -30.8,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.2385,
       "prev_scan6h_model_prob": 0.2385,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.4695,
       "prev_scan6h_yes_price": 0.4695,
-      "prev_yes_price": 0.36,
-      "yes_price_10m_change": -0.0185,
-      "yes_price_10m_pct_change": -5.1,
-      "yes_price_6h_change": -0.128,
-      "yes_price_6h_pct_change": -27.3,
-      "yes_price_change": -0.0185,
-      "yes_price_pct_change": -5.1,
+      "prev_yes_price": 0.3415,
+      "yes_price_10m_change": 0.003,
+      "yes_price_10m_pct_change": 0.9,
+      "yes_price_6h_change": -0.125,
+      "yes_price_6h_pct_change": -26.6,
+      "yes_price_change": 0.003,
+      "yes_price_pct_change": 0.9,
       "price_history": [
         {
           "t": "2026-11-08T14:27:08Z",
@@ -129,9 +129,16 @@
           "mp": 0.2385,
           "bid": 0.001,
           "ask": 0.682
+        },
+        {
+          "t": "2026-11-08T16:52:31Z",
+          "p": 0.3445,
+          "mp": 0.2385,
+          "bid": 0.001,
+          "ask": 0.688
         }
       ],
-      "prev_10m_yes_price": 0.36
+      "prev_10m_yes_price": 0.3415
     },
     {
       "question": "Will the lowest temperature in Toronto be 4°C on November 8?",
@@ -236,6 +243,13 @@
           "mp": 0.3552,
           "bid": null,
           "ask": 0.59
+        },
+        {
+          "t": "2026-11-08T16:52:31Z",
+          "p": 0.295,
+          "mp": 0.3552,
+          "bid": null,
+          "ask": 0.59
         }
       ],
       "prev_10m_yes_price": 0.305
@@ -325,6 +339,13 @@
         },
         {
           "t": "2026-11-08T16:37:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T16:52:31Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -422,6 +443,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T16:52:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -511,6 +539,13 @@
         },
         {
           "t": "2026-11-08T16:37:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T16:52:31Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -608,6 +643,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T16:52:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -701,6 +743,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T16:52:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -716,5 +765,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T16:37:30.277841+00:00"
+  "last_price_refresh": "2026-11-08T16:52:30.339141+00:00"
 }
