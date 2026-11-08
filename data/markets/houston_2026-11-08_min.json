@@ -147,11 +147,11 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.4545,
+      "yes_price": 0.4035,
       "no_price": 0.9945,
       "best_bid": 0.002,
-      "best_ask": 0.907,
-      "bid_ask_spread": 0.905,
+      "best_ask": 0.805,
+      "bid_ask_spread": 0.803,
       "volume": 111.0,
       "spread": 0.009,
       "yes_token_id": "61529705097905000230305677509014236900210120129472438160245683562274629393014",
@@ -159,14 +159,14 @@
       "model_prob": 0.0357,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.4545,
-      "effective_ask": 0.5345,
-      "market_prob": 0.4545,
-      "belief_prob": 0.1823,
-      "ev": -0.6589,
+      "ask": 0.4035,
+      "effective_ask": 0.4835,
+      "market_prob": 0.4035,
+      "belief_prob": 0.1644,
+      "ev": -0.66,
       "kelly": 0.0,
-      "swing_edge": -0.4188,
-      "swing_upside_pct": -92.1,
+      "swing_edge": -0.3678,
+      "swing_upside_pct": -91.2,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.0357,
       "prev_scan6h_model_prob": 0.0357,
@@ -180,13 +180,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0055,
       "prev_scan6h_yes_price": 0.0055,
-      "prev_yes_price": 0.453,
-      "yes_price_10m_change": 0.0015,
-      "yes_price_10m_pct_change": 0.3,
-      "yes_price_6h_change": 0.449,
-      "yes_price_6h_pct_change": 8163.6,
-      "yes_price_change": 0.0015,
-      "yes_price_pct_change": 0.3,
+      "prev_yes_price": 0.4545,
+      "yes_price_10m_change": -0.051,
+      "yes_price_10m_pct_change": -11.2,
+      "yes_price_6h_change": 0.398,
+      "yes_price_6h_pct_change": 7236.4,
+      "yes_price_change": -0.051,
+      "yes_price_pct_change": -11.2,
       "price_history": [
         {
           "t": "2026-11-08T14:27:08Z",
@@ -250,9 +250,16 @@
           "mp": 0.0357,
           "bid": 0.002,
           "ask": 0.907
+        },
+        {
+          "t": "2026-11-08T17:07:25Z",
+          "p": 0.4035,
+          "mp": 0.0357,
+          "bid": 0.002,
+          "ask": 0.805
         }
       ],
-      "prev_10m_yes_price": 0.453
+      "prev_10m_yes_price": 0.4545
     },
     {
       "question": "Will the lowest temperature in Houston be between 58-59°F on November 8?",
@@ -261,11 +268,11 @@
         58.0,
         59.0
       ],
-      "yes_price": 0.0905,
+      "yes_price": 0.09,
       "no_price": 0.9095,
-      "best_bid": 0.001,
-      "best_ask": 0.18,
-      "bid_ask_spread": 0.179,
+      "best_bid": 0.002,
+      "best_ask": 0.178,
+      "bid_ask_spread": 0.176,
       "volume": 25.0,
       "spread": 0.179,
       "yes_token_id": "37829387234483743900439321989840516260942868130182685646970643615961423852323",
@@ -273,14 +280,14 @@
       "model_prob": 0.1463,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0905,
-      "effective_ask": 0.1705,
-      "market_prob": 0.0905,
-      "belief_prob": 0.1268,
-      "ev": -0.2563,
+      "ask": 0.09,
+      "effective_ask": 0.17,
+      "market_prob": 0.09,
+      "belief_prob": 0.1266,
+      "ev": -0.2553,
       "kelly": 0.0,
-      "swing_edge": 0.0558,
-      "swing_upside_pct": 61.7,
+      "swing_edge": 0.0563,
+      "swing_upside_pct": 62.6,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.1463,
       "prev_scan6h_model_prob": 0.1463,
@@ -294,13 +301,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0905,
       "prev_scan6h_yes_price": 0.0905,
-      "prev_yes_price": 0.091,
+      "prev_yes_price": 0.0905,
       "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.5,
-      "yes_price_6h_change": 0.0005,
-      "yes_price_6h_pct_change": 0.6,
+      "yes_price_10m_pct_change": -0.6,
+      "yes_price_6h_change": -0.0005,
+      "yes_price_6h_pct_change": -0.6,
       "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.5,
+      "yes_price_pct_change": -0.6,
       "price_history": [
         {
           "t": "2026-11-08T14:27:08Z",
@@ -352,7 +359,7 @@
           "ask": 0.18
         }
       ],
-      "prev_10m_yes_price": 0.091
+      "prev_10m_yes_price": 0.0905
     },
     {
       "question": "Will the lowest temperature in Houston be between 62-63°F on November 8?",
@@ -882,5 +889,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T16:52:30.339141+00:00"
+  "last_price_refresh": "2026-11-08T17:07:23.693604+00:00"
 }
