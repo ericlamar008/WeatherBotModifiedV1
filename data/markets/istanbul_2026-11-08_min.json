@@ -48,11 +48,11 @@
         7.0,
         7.0
       ],
-      "yes_price": 0.52,
+      "yes_price": 0.515,
       "no_price": 0.47,
-      "best_bid": 0.11,
+      "best_bid": 0.1,
       "best_ask": 0.93,
-      "bid_ask_spread": 0.82,
+      "bid_ask_spread": 0.83,
       "volume": 95.0,
       "spread": 0.84,
       "yes_token_id": "94064701394219947794816289703716370847994206320231585160584151433581137733040",
@@ -60,14 +60,14 @@
       "model_prob": 0.145,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.52,
-      "effective_ask": 0.6,
-      "market_prob": 0.52,
-      "belief_prob": 0.2762,
-      "ev": -0.5397,
+      "ask": 0.515,
+      "effective_ask": 0.595,
+      "market_prob": 0.515,
+      "belief_prob": 0.2745,
+      "ev": -0.5387,
       "kelly": 0.0,
-      "swing_edge": -0.375,
-      "swing_upside_pct": -72.1,
+      "swing_edge": -0.37,
+      "swing_upside_pct": -71.8,
       "sell_value": 0.11,
       "scan6h_model_prob": 0.145,
       "prev_scan6h_model_prob": 0.145,
@@ -81,13 +81,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.53,
       "prev_scan6h_yes_price": 0.53,
-      "prev_yes_price": 0.51,
-      "yes_price_10m_change": 0.01,
-      "yes_price_10m_pct_change": 2.0,
-      "yes_price_6h_change": -0.01,
-      "yes_price_6h_pct_change": -1.9,
-      "yes_price_change": 0.01,
-      "yes_price_pct_change": 2.0,
+      "prev_yes_price": 0.52,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.0,
+      "yes_price_6h_change": -0.015,
+      "yes_price_6h_pct_change": -2.8,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.0,
       "price_history": [
         {
           "t": "2026-11-08T08:32:48Z",
@@ -137,9 +137,16 @@
           "mp": 0.145,
           "bid": 0.11,
           "ask": 0.93
+        },
+        {
+          "t": "2026-11-08T10:07:31Z",
+          "p": 0.515,
+          "mp": 0.145,
+          "bid": 0.1,
+          "ask": 0.93
         }
       ],
-      "prev_10m_yes_price": 0.51
+      "prev_10m_yes_price": 0.52
     },
     {
       "question": "Will the lowest temperature in Istanbul be 8°C on November 8?",
@@ -485,5 +492,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T09:52:41.105824+00:00"
+  "last_price_refresh": "2026-11-08T10:07:29.817800+00:00"
 }
