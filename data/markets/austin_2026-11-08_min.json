@@ -47,11 +47,11 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.1,
+      "yes_price": 0.065,
       "no_price": 0.575,
-      "best_bid": 0.04,
-      "best_ask": 0.16,
-      "bid_ask_spread": 0.12,
+      "best_bid": 0.03,
+      "best_ask": 0.1,
+      "bid_ask_spread": 0.07,
       "volume": 20.0,
       "spread": 0.67,
       "yes_token_id": "106602617965627655562582057335298842312363548203984216953752352771371519053272",
@@ -59,14 +59,14 @@
       "model_prob": 0.2712,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1,
-      "effective_ask": 0.1495,
-      "market_prob": 0.1,
-      "belief_prob": 0.2113,
-      "ev": 0.4134,
-      "kelly": 0.0182,
-      "swing_edge": 0.1712,
-      "swing_upside_pct": 171.2,
+      "ask": 0.065,
+      "effective_ask": 0.087,
+      "market_prob": 0.065,
+      "belief_prob": 0.199,
+      "ev": 1.2874,
+      "kelly": 0.0307,
+      "swing_edge": 0.2062,
+      "swing_upside_pct": 317.2,
       "sell_value": 0.09,
       "scan6h_model_prob": 0.2712,
       "prev_scan6h_model_prob": 0.2712,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.425,
       "prev_scan6h_yes_price": 0.425,
-      "prev_yes_price": 0.055,
-      "yes_price_10m_change": 0.045,
-      "yes_price_10m_pct_change": 81.8,
-      "yes_price_6h_change": -0.325,
-      "yes_price_6h_pct_change": -76.5,
-      "yes_price_change": 0.045,
-      "yes_price_pct_change": 81.8,
+      "prev_yes_price": 0.1,
+      "yes_price_10m_change": -0.035,
+      "yes_price_10m_pct_change": -35.0,
+      "yes_price_6h_change": -0.36,
+      "yes_price_6h_pct_change": -84.7,
+      "yes_price_change": -0.035,
+      "yes_price_pct_change": -35.0,
       "price_history": [
         {
           "t": "2026-11-08T20:25:05Z",
@@ -171,9 +171,16 @@
           "mp": 0.2712,
           "bid": 0.04,
           "ask": 0.16
+        },
+        {
+          "t": "2026-11-08T23:17:29Z",
+          "p": 0.065,
+          "mp": 0.2712,
+          "bid": 0.03,
+          "ask": 0.1
         }
       ],
-      "prev_10m_yes_price": 0.055
+      "prev_10m_yes_price": 0.1
     },
     {
       "question": "Will the lowest temperature in Austin be between 60-61°F on November 8?",
@@ -394,6 +401,13 @@
         },
         {
           "t": "2026-11-08T22:57:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T23:17:29Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -708,6 +722,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T23:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -1014,6 +1035,13 @@
         },
         {
           "t": "2026-11-08T22:57:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T23:17:29Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1328,6 +1356,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T23:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -1638,6 +1673,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-08T23:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     }
@@ -1669,5 +1711,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T23:07:35.941903+00:00"
+  "last_price_refresh": "2026-11-08T23:17:28.221065+00:00"
 }
