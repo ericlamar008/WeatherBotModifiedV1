@@ -210,10 +210,10 @@
         4.0,
         4.0
       ],
-      "yes_price": 0.09,
+      "yes_price": 0.105,
       "no_price": 0.535,
       "best_bid": null,
-      "best_ask": 0.18,
+      "best_ask": 0.21,
       "bid_ask_spread": 0.0,
       "volume": 122.0,
       "spread": 0.0,
@@ -222,14 +222,14 @@
       "model_prob": 0.3552,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.09,
-      "effective_ask": 0.09,
-      "market_prob": 0.09,
-      "belief_prob": 0.2624,
-      "ev": 1.9156,
-      "kelly": 0.0474,
-      "swing_edge": 0.2652,
-      "swing_upside_pct": 294.7,
+      "ask": 0.105,
+      "effective_ask": 0.105,
+      "market_prob": 0.105,
+      "belief_prob": 0.2676,
+      "ev": 1.5486,
+      "kelly": 0.0454,
+      "swing_edge": 0.2502,
+      "swing_upside_pct": 238.3,
       "sell_value": null,
       "scan6h_model_prob": 0.3552,
       "prev_scan6h_model_prob": 0.3552,
@@ -243,13 +243,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.465,
       "prev_scan6h_yes_price": 0.465,
-      "prev_yes_price": 0.085,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 5.9,
-      "yes_price_6h_change": -0.375,
-      "yes_price_6h_pct_change": -80.6,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 5.9,
+      "prev_yes_price": 0.09,
+      "yes_price_10m_change": 0.015,
+      "yes_price_10m_pct_change": 16.7,
+      "yes_price_6h_change": -0.36,
+      "yes_price_6h_pct_change": -77.4,
+      "yes_price_change": 0.015,
+      "yes_price_pct_change": 16.7,
       "price_history": [
         {
           "t": "2026-11-08T14:27:08Z",
@@ -376,9 +376,16 @@
           "mp": 0.3552,
           "bid": null,
           "ask": 0.18
+        },
+        {
+          "t": "2026-11-08T19:47:27Z",
+          "p": 0.105,
+          "mp": 0.3552,
+          "bid": null,
+          "ask": 0.21
         }
       ],
-      "prev_10m_yes_price": 0.085
+      "prev_10m_yes_price": 0.09
     },
     {
       "question": "Will the lowest temperature in Toronto be 6°C on November 8?",
@@ -1171,5 +1178,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-08T19:37:25.863496+00:00"
+  "last_price_refresh": "2026-11-08T19:47:26.456035+00:00"
 }
