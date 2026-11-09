@@ -197,11 +197,11 @@
         72.0,
         73.0
       ],
-      "yes_price": 0.175,
+      "yes_price": 0.185,
       "no_price": 0.81,
-      "best_bid": 0.1,
-      "best_ask": 0.25,
-      "bid_ask_spread": 0.15,
+      "best_bid": 0.13,
+      "best_ask": 0.24,
+      "bid_ask_spread": 0.11,
       "volume": 21.0,
       "spread": 0.12,
       "yes_token_id": "8542776793933874679924614365528266714960160740857597904497413256929839052089",
@@ -209,14 +209,14 @@
       "model_prob": 0.2338,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.175,
-      "effective_ask": 0.241,
-      "market_prob": 0.175,
-      "belief_prob": 0.2132,
-      "ev": -0.1154,
+      "ask": 0.185,
+      "effective_ask": 0.229,
+      "market_prob": 0.185,
+      "belief_prob": 0.2167,
+      "ev": -0.0537,
       "kelly": 0.0,
-      "swing_edge": 0.0588,
-      "swing_upside_pct": 33.6,
+      "swing_edge": 0.0488,
+      "swing_upside_pct": 26.4,
       "sell_value": 0.13,
       "scan6h_model_prob": 0.2338,
       "prev_scan6h_model_prob": 0.2338,
@@ -230,13 +230,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.19,
       "prev_scan6h_yes_price": 0.19,
-      "prev_yes_price": 0.18,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -2.8,
-      "yes_price_6h_change": -0.015,
-      "yes_price_6h_pct_change": -7.9,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -2.8,
+      "prev_yes_price": 0.175,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 5.7,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -2.6,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 5.7,
       "price_history": [
         {
           "t": "2026-11-09T08:42:47Z",
@@ -279,9 +279,16 @@
           "mp": 0.2338,
           "bid": 0.1,
           "ask": 0.25
+        },
+        {
+          "t": "2026-11-09T09:47:33Z",
+          "p": 0.185,
+          "mp": 0.2338,
+          "bid": 0.13,
+          "ask": 0.24
         }
       ],
-      "prev_10m_yes_price": 0.18
+      "prev_10m_yes_price": 0.175
     },
     {
       "question": "Will the highest temperature in Austin be between 74-75°F on November 10?",
@@ -582,5 +589,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T09:37:30.301255+00:00"
+  "last_price_refresh": "2026-11-09T09:47:31.663682+00:00"
 }
