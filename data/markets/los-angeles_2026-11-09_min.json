@@ -368,10 +368,10 @@
         60.0,
         61.0
       ],
-      "yes_price": 0.345,
+      "yes_price": 0.42,
       "no_price": 0.655,
       "best_bid": null,
-      "best_ask": 0.69,
+      "best_ask": 0.84,
       "bid_ask_spread": 0.0,
       "volume": 5.0,
       "spread": 0.0,
@@ -380,14 +380,14 @@
       "model_prob": 0.1919,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.345,
-      "effective_ask": 0.345,
-      "market_prob": 0.345,
-      "belief_prob": 0.2455,
-      "ev": -0.2884,
+      "ask": 0.42,
+      "effective_ask": 0.42,
+      "market_prob": 0.42,
+      "belief_prob": 0.2717,
+      "ev": -0.3531,
       "kelly": 0.0,
-      "swing_edge": -0.1531,
-      "swing_upside_pct": -44.4,
+      "swing_edge": -0.2281,
+      "swing_upside_pct": -54.3,
       "sell_value": null,
       "scan6h_model_prob": 0.1919,
       "prev_scan6h_model_prob": 0.1919,
@@ -401,13 +401,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.345,
       "prev_scan6h_yes_price": 0.345,
-      "prev_yes_price": 0.485,
-      "yes_price_10m_change": -0.14,
-      "yes_price_10m_pct_change": -28.9,
-      "yes_price_6h_change": 0.14,
-      "yes_price_6h_pct_change": 40.6,
-      "yes_price_change": -0.14,
-      "yes_price_pct_change": -28.9,
+      "prev_yes_price": 0.345,
+      "yes_price_10m_change": 0.075,
+      "yes_price_10m_pct_change": 21.7,
+      "yes_price_6h_change": 0.075,
+      "yes_price_6h_pct_change": 21.7,
+      "yes_price_change": 0.075,
+      "yes_price_pct_change": 21.7,
       "price_history": [
         {
           "t": "2026-11-09T14:25:38Z",
@@ -478,9 +478,16 @@
           "mp": 0.1919,
           "bid": null,
           "ask": 0.69
+        },
+        {
+          "t": "2026-11-09T16:47:32Z",
+          "p": 0.42,
+          "mp": 0.1919,
+          "bid": null,
+          "ask": 0.84
         }
       ],
-      "prev_10m_yes_price": 0.485
+      "prev_10m_yes_price": 0.345
     },
     {
       "question": "Will the lowest temperature in Los Angeles be between 62-63°F on November 9?",
@@ -1214,5 +1221,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T16:37:29.744834+00:00"
+  "last_price_refresh": "2026-11-09T16:47:30.508584+00:00"
 }
