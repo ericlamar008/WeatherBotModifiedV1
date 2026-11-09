@@ -3,16 +3,16 @@
   "city_name": "Austin",
   "date": "2026-11-08",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-11-07T02:20:46.176754+00:00",
   "committed_allocation": null,
-  "hours_left": 3.0,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-11-09T06:00:00+00:00",
   "event_end_date": "2026-11-08T12:00:00Z",
   "last_scan": "2026-11-09T02:20:44.715381+00:00",
-  "last_lite_refresh": "2026-11-09T02:58:33.800654+00:00",
+  "last_lite_refresh": "2026-11-09T08:38:35.353472+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KAUS",
@@ -2534,7 +2534,10 @@
       "market_prob": 0.89,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.86
+      "sell_value": 0.86,
+      "won": true,
+      "pnl_units": 3.71,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -2546,5 +2549,31 @@
   "confidence": 0.6733,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T08:37:30.322540+00:00"
+  "last_price_refresh": "2026-11-09T08:37:30.322540+00:00",
+  "actual_temp": 58.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 3.71,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6742491",
+      "question": "Will the lowest temperature in Austin be between 58-59°F on November 8?",
+      "range": [
+        58.0,
+        59.0
+      ],
+      "side": "YES",
+      "price": 0.89,
+      "model_prob": 0.3688,
+      "ev": -0.3919,
+      "market_prob": 0.89,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.86,
+      "won": true,
+      "pnl_units": 3.71,
+      "user_entered": false
+    }
+  ]
 }
