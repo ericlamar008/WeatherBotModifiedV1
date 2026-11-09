@@ -47,10 +47,10 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.465,
+      "yes_price": 0.42,
       "no_price": 0.655,
       "best_bid": null,
-      "best_ask": 0.93,
+      "best_ask": 0.84,
       "bid_ask_spread": 0.0,
       "volume": 5.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.3269,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.465,
-      "effective_ask": 0.465,
-      "market_prob": 0.465,
-      "belief_prob": 0.3752,
-      "ev": -0.1931,
+      "ask": 0.42,
+      "effective_ask": 0.42,
+      "market_prob": 0.42,
+      "belief_prob": 0.3595,
+      "ev": -0.144,
       "kelly": 0.0,
-      "swing_edge": -0.1381,
-      "swing_upside_pct": -29.7,
+      "swing_edge": -0.0931,
+      "swing_upside_pct": -22.2,
       "sell_value": null,
       "scan6h_model_prob": 0.3269,
       "prev_scan6h_model_prob": 0.3269,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.345,
       "prev_scan6h_yes_price": 0.345,
-      "prev_yes_price": 0.16,
-      "yes_price_10m_change": 0.305,
-      "yes_price_10m_pct_change": 190.6,
-      "yes_price_6h_change": 0.12,
-      "yes_price_6h_pct_change": 34.8,
-      "yes_price_change": 0.305,
-      "yes_price_pct_change": 190.6,
+      "prev_yes_price": 0.465,
+      "yes_price_10m_change": -0.045,
+      "yes_price_10m_pct_change": -9.7,
+      "yes_price_6h_change": 0.075,
+      "yes_price_6h_pct_change": 21.7,
+      "yes_price_change": -0.045,
+      "yes_price_pct_change": -9.7,
       "price_history": [
         {
           "t": "2026-11-09T14:25:41Z",
@@ -213,9 +213,16 @@
           "mp": 0.3269,
           "bid": null,
           "ask": 0.93
+        },
+        {
+          "t": "2026-11-09T19:57:33Z",
+          "p": 0.42,
+          "mp": 0.3269,
+          "bid": null,
+          "ask": 0.84
         }
       ],
-      "prev_10m_yes_price": 0.16
+      "prev_10m_yes_price": 0.465
     },
     {
       "question": "Will the lowest temperature in Dallas be between 56-57°F on November 9?",
@@ -383,6 +390,13 @@
           "mp": 0.3884,
           "bid": 0.68,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-09T19:57:33Z",
+          "p": 0.84,
+          "mp": 0.3884,
+          "bid": 0.68,
+          "ask": 1.0
         }
       ],
       "prev_10m_yes_price": 0.835
@@ -535,6 +549,13 @@
         },
         {
           "t": "2026-11-09T19:37:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T19:57:33Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -695,6 +716,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T19:57:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -851,6 +879,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T19:57:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -883,5 +918,5 @@
   "confidence": 0.0898,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T19:47:30.497121+00:00"
+  "last_price_refresh": "2026-11-09T19:57:32.056915+00:00"
 }
