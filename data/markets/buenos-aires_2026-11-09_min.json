@@ -47,9 +47,9 @@
         -999.0,
         9.0
       ],
-      "yes_price": 0.9935,
+      "yes_price": 0.9995,
       "no_price": 0.0065,
-      "best_bid": 0.987,
+      "best_bid": 0.999,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 1128.0,
@@ -59,14 +59,14 @@
       "model_prob": 1.0,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.9935,
-      "effective_ask": 0.9935,
-      "market_prob": 0.9935,
-      "belief_prob": 0.9977,
-      "ev": 0.0042,
-      "kelly": 0.1615,
-      "swing_edge": 0.0065,
-      "swing_upside_pct": 0.7,
+      "ask": 0.9995,
+      "effective_ask": 0.9995,
+      "market_prob": 0.9995,
+      "belief_prob": 0.9998,
+      "ev": 0.0003,
+      "kelly": 0.15,
+      "swing_edge": 0.0005,
+      "swing_upside_pct": 0.1,
       "sell_value": 0.987,
       "scan6h_model_prob": 1.0,
       "prev_scan6h_model_prob": 1.0,
@@ -81,18 +81,25 @@
       "scan6h_yes_price": 0.9935,
       "prev_scan6h_yes_price": 0.9935,
       "prev_yes_price": 0.9935,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.006,
+      "yes_price_10m_pct_change": 0.6,
+      "yes_price_6h_change": 0.006,
+      "yes_price_6h_pct_change": 0.6,
+      "yes_price_change": 0.006,
+      "yes_price_pct_change": 0.6,
       "price_history": [
         {
           "t": "2026-11-09T08:42:59Z",
           "p": 0.9935,
           "mp": 1.0,
           "bid": 0.987,
+          "ask": 1.0
+        },
+        {
+          "t": "2026-11-09T08:57:34Z",
+          "p": 0.9995,
+          "mp": 1.0,
+          "bid": 0.999,
           "ask": 1.0
         }
       ],
@@ -706,5 +713,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T08:47:31.221482+00:00"
+  "last_price_refresh": "2026-11-09T08:57:32.521627+00:00"
 }
