@@ -3,15 +3,15 @@
   "city_name": "Jeddah",
   "date": "2026-11-08",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-11-07T02:20:46.176754+00:00",
   "committed_allocation": null,
-  "hours_left": 0.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-11-08T21:00:00+00:00",
   "event_end_date": "2026-11-08T12:00:00Z",
-  "last_scan": "2026-11-08T02:20:47.359592+00:00",
+  "last_scan": "2026-11-09T02:20:44.715381+00:00",
   "last_lite_refresh": "2026-11-08T20:20:45.921258+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
@@ -3511,7 +3511,10 @@
       "market_prob": 0.99,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.981
+      "sell_value": 0.981,
+      "won": true,
+      "pnl_units": 0.3,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -3523,5 +3526,31 @@
   "confidence": 0.9654,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T02:17:31.681382+00:00"
+  "last_price_refresh": "2026-11-09T02:17:31.681382+00:00",
+  "actual_temp": 25.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.3,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6740047",
+      "question": "Will the lowest temperature in Jeddah be 25°C on November 8?",
+      "range": [
+        25.0,
+        25.0
+      ],
+      "side": "YES",
+      "price": 0.99,
+      "model_prob": 0.3504,
+      "ev": -0.4199,
+      "market_prob": 0.99,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.981,
+      "won": true,
+      "pnl_units": 0.3,
+      "user_entered": false
+    }
+  ]
 }
