@@ -93,7 +93,8 @@
           "bid": 0.001,
           "ask": 0.015
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.008
     },
     {
       "question": "Will the highest temperature in Toronto be 9°C on November 10?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Toronto be 10°C on November 10?",
@@ -207,7 +209,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Toronto be 11°C on November 10?",
@@ -264,7 +267,8 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the highest temperature in Toronto be 12°C on November 10?",
@@ -273,11 +277,11 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.0485,
+      "yes_price": 0.0385,
       "no_price": 0.9515,
       "best_bid": 0.002,
-      "best_ask": 0.095,
-      "bid_ask_spread": 0.093,
+      "best_ask": 0.075,
+      "bid_ask_spread": 0.073,
       "volume": 38.0,
       "spread": 0.093,
       "yes_token_id": "74656458667284765194282512873180082605346336320265729849231837735532443194544",
@@ -285,14 +289,14 @@
       "model_prob": 0.0962,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0485,
-      "effective_ask": 0.0832,
-      "market_prob": 0.0485,
-      "belief_prob": 0.0795,
-      "ev": -0.0445,
-      "kelly": 0.0,
-      "swing_edge": 0.013,
-      "swing_upside_pct": 15.6,
+      "ask": 0.0385,
+      "effective_ask": 0.0621,
+      "market_prob": 0.0385,
+      "belief_prob": 0.076,
+      "ev": 0.2238,
+      "kelly": 0.0037,
+      "swing_edge": 0.0577,
+      "swing_upside_pct": 149.9,
       "sell_value": 0.002,
       "scan6h_model_prob": 0.0962,
       "prev_scan6h_model_prob": 0.0962,
@@ -307,12 +311,12 @@
       "scan6h_yes_price": 0.0485,
       "prev_scan6h_yes_price": 0.0485,
       "prev_yes_price": 0.0485,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.01,
+      "yes_price_10m_pct_change": -20.6,
+      "yes_price_6h_change": -0.01,
+      "yes_price_6h_pct_change": -20.6,
+      "yes_price_change": -0.01,
+      "yes_price_pct_change": -20.6,
       "price_history": [
         {
           "t": "2026-11-09T02:23:50Z",
@@ -320,8 +324,16 @@
           "mp": 0.0962,
           "bid": 0.002,
           "ask": 0.095
+        },
+        {
+          "t": "2026-11-09T02:37:29Z",
+          "p": 0.0385,
+          "mp": 0.0962,
+          "bid": 0.002,
+          "ask": 0.075
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0485
     },
     {
       "question": "Will the highest temperature in Toronto be 14°C on November 10?",
@@ -378,7 +390,8 @@
           "bid": 0.026,
           "ask": 0.04
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.033
     },
     {
       "question": "Will the highest temperature in Toronto be 15°C on November 10?",
@@ -405,8 +418,8 @@
       "belief_prob": 0.1697,
       "ev": -0.2475,
       "kelly": 0.0,
-      "swing_edge": -0.0829,
-      "swing_upside_pct": -36.8,
+      "swing_edge": -0.0774,
+      "swing_upside_pct": -35.2,
       "sell_value": 0.2,
       "scan6h_model_prob": 0.1426,
       "prev_scan6h_model_prob": 0.1426,
@@ -435,7 +448,8 @@
           "bid": 0.2,
           "ask": 0.24
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.22
     },
     {
       "question": "Will the highest temperature in Toronto be 16°C on November 10?",
@@ -492,7 +506,8 @@
           "bid": 0.45,
           "ask": 0.48
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.465
     },
     {
       "question": "Will the highest temperature in Toronto be 17°C on November 10?",
@@ -519,7 +534,7 @@
       "belief_prob": 0.0821,
       "ev": -0.6359,
       "kelly": 0.0,
-      "swing_edge": -0.2177,
+      "swing_edge": -0.2122,
       "swing_upside_pct": -96.5,
       "sell_value": 0.2,
       "scan6h_model_prob": 0.0078,
@@ -549,7 +564,8 @@
           "bid": 0.2,
           "ask": 0.24
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.22
     }
   ],
   "live_allocation": [],
@@ -561,5 +577,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-09T02:37:28.949272+00:00"
 }

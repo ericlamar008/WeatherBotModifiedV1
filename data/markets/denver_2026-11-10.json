@@ -93,7 +93,8 @@
           "bid": 0.001,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Denver be between 66-67°F on November 10?",
@@ -120,8 +121,8 @@
       "belief_prob": 0.4754,
       "ev": 0.5262,
       "kelly": 0.0595,
-      "swing_edge": 0.2906,
-      "swing_upside_pct": 93.3,
+      "swing_edge": 0.3621,
+      "swing_upside_pct": 150.9,
       "sell_value": 0.16,
       "scan6h_model_prob": 0.6021,
       "prev_scan6h_model_prob": 0.6021,
@@ -150,7 +151,8 @@
           "bid": 0.16,
           "ask": 0.32
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.24
     },
     {
       "question": "Will the highest temperature in Denver be 78°F or higher on November 10?",
@@ -207,7 +209,8 @@
           "bid": 0.001,
           "ask": 0.004
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0025
     }
   ],
   "live_allocation": [
@@ -236,5 +239,6 @@
   "success_probability": 0.7795,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-09T02:37:28.949272+00:00"
 }
