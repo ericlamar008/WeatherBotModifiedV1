@@ -11335,7 +11335,7 @@
     "actual_temp": null,
     "last_price_source": "mid_unchanged",
     "last_mid": 0.54,
-    "last_checked_at": "2026-11-09T20:47:33.085823+00:00",
+    "last_checked_at": "2026-11-09T20:57:30.517833+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-09T08:00:09Z",
@@ -11573,7 +11573,7 @@
     "actual_temp": null,
     "last_price_source": "bid",
     "last_mid": 0.485,
-    "last_checked_at": "2026-11-09T20:47:33.085823+00:00",
+    "last_checked_at": "2026-11-09T20:57:30.517833+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-09T08:00:57Z",
@@ -11827,7 +11827,7 @@
     "actual_temp": null,
     "last_price_source": "bid",
     "last_mid": 0.285,
-    "last_checked_at": "2026-11-09T20:47:33.085823+00:00",
+    "last_checked_at": "2026-11-09T20:57:30.517833+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-09T08:03:01Z",
@@ -12151,7 +12151,7 @@
     "entry_bid": 0.72,
     "entry_order_type": "IMMEDIATE_MARKETABLE",
     "limit_buy_price": null,
-    "position_state": "WATCHING",
+    "position_state": "CLOSED",
     "execution_mode": "SHADOW",
     "exit_policy": "MARKETABLE_FAK",
     "smart_autopilot": false,
@@ -12171,19 +12171,19 @@
     "usdc_amount": 5.0,
     "quantity_shares": 6.76,
     "filled_shares": 6.76,
-    "peak_bid": 0.85,
+    "peak_bid": 0.96,
     "rule_version": 1,
     "locked_at": "2026-11-09T14:35:55.713754+00:00",
-    "status": "open",
-    "last_price": 0.85,
-    "last_pct": 13.3,
-    "exit_price": null,
-    "closed_at": null,
+    "status": "closed_auto_tp",
+    "last_price": 0.96,
+    "last_pct": 28.0,
+    "exit_price": 0.96,
+    "closed_at": "2026-11-09T20:57:30.517833+00:00",
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.87,
-    "last_checked_at": "2026-11-09T20:47:33.085823+00:00",
+    "last_mid": 0.975,
+    "last_checked_at": "2026-11-09T20:57:30.517833+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-09T14:35:55Z",
@@ -12329,9 +12329,17 @@
         "t": "2026-11-09T20:47:33Z",
         "p": 0.85,
         "pct": 13.3
+      },
+      {
+        "t": "2026-11-09T20:57:30Z",
+        "p": 0.96,
+        "pct": 28.0
       }
     ],
     "model_fair_cents": 37,
-    "intraday_eliminated": false
+    "intraday_eliminated": false,
+    "latched_exit_reason": "TAKE_PROFIT",
+    "outcome_pct": 28.0,
+    "notified_close": true
   }
 ]
