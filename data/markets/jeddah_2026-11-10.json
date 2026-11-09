@@ -94,7 +94,8 @@
           "bid": 0.001,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Jeddah be 31°C on November 10?",
@@ -151,7 +152,8 @@
           "bid": 0.11,
           "ask": 0.12
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.115
     },
     {
       "question": "Will the highest temperature in Jeddah be 32°C on November 10?",
@@ -178,8 +180,8 @@
       "belief_prob": 0.2648,
       "ev": -0.2107,
       "kelly": 0.0,
-      "swing_edge": -0.1058,
-      "swing_upside_pct": -31.5,
+      "swing_edge": -0.1003,
+      "swing_upside_pct": -30.4,
       "sell_value": 0.31,
       "scan6h_model_prob": 0.2297,
       "prev_scan6h_model_prob": 0.2297,
@@ -208,7 +210,8 @@
           "bid": 0.31,
           "ask": 0.35
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.33
     },
     {
       "question": "Will the highest temperature in Jeddah be 33°C on November 10?",
@@ -217,11 +220,11 @@
         33.0,
         33.0
       ],
-      "yes_price": 0.365,
+      "yes_price": 0.355,
       "no_price": 0.635,
-      "best_bid": 0.35,
+      "best_bid": 0.33,
       "best_ask": 0.38,
-      "bid_ask_spread": 0.03,
+      "bid_ask_spread": 0.05,
       "volume": 30.0,
       "spread": 0.03,
       "yes_token_id": "86054962981836915015512182958055489229600432870173171680669603412089292172650",
@@ -229,14 +232,14 @@
       "model_prob": 0.1879,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.365,
-      "effective_ask": 0.365,
-      "market_prob": 0.365,
-      "belief_prob": 0.2499,
-      "ev": -0.3153,
+      "ask": 0.355,
+      "effective_ask": 0.366,
+      "market_prob": 0.355,
+      "belief_prob": 0.2464,
+      "ev": -0.3268,
       "kelly": 0.0,
-      "swing_edge": -0.1771,
-      "swing_upside_pct": -48.5,
+      "swing_edge": -0.1671,
+      "swing_upside_pct": -47.1,
       "sell_value": 0.35,
       "scan6h_model_prob": 0.1879,
       "prev_scan6h_model_prob": 0.1879,
@@ -251,12 +254,12 @@
       "scan6h_yes_price": 0.365,
       "prev_scan6h_yes_price": 0.365,
       "prev_yes_price": 0.365,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.01,
+      "yes_price_10m_pct_change": -2.7,
+      "yes_price_6h_change": -0.01,
+      "yes_price_6h_pct_change": -2.7,
+      "yes_price_change": -0.01,
+      "yes_price_pct_change": -2.7,
       "price_history": [
         {
           "t": "2026-11-09T08:42:47Z",
@@ -264,8 +267,16 @@
           "mp": 0.1879,
           "bid": 0.35,
           "ask": 0.38
+        },
+        {
+          "t": "2026-11-09T08:47:31Z",
+          "p": 0.355,
+          "mp": 0.1879,
+          "bid": 0.33,
+          "ask": 0.38
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.365
     },
     {
       "question": "Will the highest temperature in Jeddah be 34°C on November 10?",
@@ -292,8 +303,8 @@
       "belief_prob": 0.1194,
       "ev": -0.1794,
       "kelly": 0.0,
-      "swing_edge": -0.0372,
-      "swing_upside_pct": -25.6,
+      "swing_edge": -0.0317,
+      "swing_upside_pct": -22.6,
       "sell_value": 0.12,
       "scan6h_model_prob": 0.1083,
       "prev_scan6h_model_prob": 0.1083,
@@ -322,7 +333,8 @@
           "bid": 0.12,
           "ask": 0.16
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.14
     },
     {
       "question": "Will the highest temperature in Jeddah be 35°C on November 10?",
@@ -379,7 +391,8 @@
           "bid": 0.009,
           "ask": 0.015
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.012
     },
     {
       "question": "Will the highest temperature in Jeddah be 37°C or higher on November 10?",
@@ -436,7 +449,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -448,5 +462,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-09T08:47:31.221482+00:00"
 }

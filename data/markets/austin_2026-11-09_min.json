@@ -95,7 +95,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Austin be between 50-51°F on November 9?",
@@ -152,7 +153,8 @@
           "bid": 0.001,
           "ask": 0.03
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0155
     },
     {
       "question": "Will the lowest temperature in Austin be between 54-55°F on November 9?",
@@ -161,11 +163,11 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.365,
+      "yes_price": 0.36,
       "no_price": 0.635,
       "best_bid": 0.01,
-      "best_ask": 0.72,
-      "bid_ask_spread": 0.71,
+      "best_ask": 0.71,
+      "bid_ask_spread": 0.7,
       "volume": 31.0,
       "spread": 0.71,
       "yes_token_id": "22668065642418327635986544448744583525229307302589662045874939956010782024458",
@@ -173,14 +175,14 @@
       "model_prob": 0.2205,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.365,
-      "effective_ask": 0.445,
-      "market_prob": 0.365,
-      "belief_prob": 0.2711,
-      "ev": -0.3908,
+      "ask": 0.36,
+      "effective_ask": 0.44,
+      "market_prob": 0.36,
+      "belief_prob": 0.2693,
+      "ev": -0.388,
       "kelly": 0.0,
-      "swing_edge": -0.2245,
-      "swing_upside_pct": -50.4,
+      "swing_edge": -0.1395,
+      "swing_upside_pct": -38.8,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.2205,
       "prev_scan6h_model_prob": 0.2205,
@@ -195,12 +197,12 @@
       "scan6h_yes_price": 0.365,
       "prev_scan6h_yes_price": 0.365,
       "prev_yes_price": 0.365,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.4,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -1.4,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.4,
       "price_history": [
         {
           "t": "2026-11-09T08:42:57Z",
@@ -208,8 +210,16 @@
           "mp": 0.2205,
           "bid": 0.01,
           "ask": 0.72
+        },
+        {
+          "t": "2026-11-09T08:47:32Z",
+          "p": 0.36,
+          "mp": 0.2205,
+          "bid": 0.01,
+          "ask": 0.71
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.365
     },
     {
       "question": "Will the lowest temperature in Austin be between 60-61°F on November 9?",
@@ -233,8 +243,8 @@
       "ask": 0.0015,
       "effective_ask": 0.0015,
       "market_prob": 0.0015,
-      "belief_prob": 0.0,
-      "ev": -1.0,
+      "belief_prob": 0.0005,
+      "ev": -0.6667,
       "kelly": 0.0,
       "swing_edge": -0.0015,
       "swing_upside_pct": 0.0,
@@ -266,7 +276,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the lowest temperature in Austin be between 62-63°F on November 9?",
@@ -290,7 +301,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -323,7 +334,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Austin be between 64-65°F on November 9?",
@@ -347,7 +359,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -380,7 +392,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Austin be 66°F or higher on November 9?",
@@ -404,7 +417,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -437,7 +450,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -466,5 +480,6 @@
   "success_probability": 0.5583,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-09T08:47:31.221482+00:00"
 }

@@ -67,8 +67,8 @@
       "swing_upside_pct": 0.0,
       "sell_value": 0.001,
       "prev_10m_model_prob": 0.0005,
-      "model_prob_10m_change": 0.0013,
-      "model_prob_10m_pct_change": 0.1,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.0005,
       "model_prob_6h_change": 0.0013,
       "model_prob_6h_pct_change": null,
@@ -236,11 +236,11 @@
         64.0,
         65.0
       ],
-      "yes_price": 0.0635,
+      "yes_price": 0.0605,
       "no_price": 0.9365,
       "best_bid": 0.014,
-      "best_ask": 0.113,
-      "bid_ask_spread": 0.099,
+      "best_ask": 0.107,
+      "bid_ask_spread": 0.093,
       "volume": 10.0,
       "spread": 0.099,
       "yes_token_id": "100922596212873818938843578831196891788140181469306443947765434161303954111225",
@@ -248,14 +248,14 @@
       "model_prob": 0.068,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0635,
-      "effective_ask": 0.1015,
-      "market_prob": 0.0635,
-      "belief_prob": 0.0664,
-      "ev": -0.3458,
+      "ask": 0.0605,
+      "effective_ask": 0.0951,
+      "market_prob": 0.0605,
+      "belief_prob": 0.0654,
+      "ev": -0.3123,
       "kelly": 0.0,
-      "swing_edge": -0.0335,
-      "swing_upside_pct": -33.0,
+      "swing_edge": 0.0075,
+      "swing_upside_pct": 12.4,
       "sell_value": 0.014,
       "scan6h_model_prob": 0.068,
       "prev_scan6h_model_prob": 0.068,
@@ -270,12 +270,12 @@
       "scan6h_yes_price": 0.0635,
       "prev_scan6h_yes_price": 0.0635,
       "prev_yes_price": 0.0635,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.003,
+      "yes_price_10m_pct_change": -4.7,
+      "yes_price_6h_change": -0.003,
+      "yes_price_6h_pct_change": -4.7,
+      "yes_price_change": -0.003,
+      "yes_price_pct_change": -4.7,
       "price_history": [
         {
           "t": "2026-11-09T08:42:47Z",
@@ -284,7 +284,8 @@
           "bid": 0.014,
           "ask": 0.113
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0635
     },
     {
       "question": "Will the highest temperature in Denver be between 66-67°F on November 10?",
@@ -315,8 +316,8 @@
       "swing_upside_pct": 75.0,
       "sell_value": 0.14,
       "prev_10m_model_prob": 0.6265,
-      "model_prob_10m_change": -0.3553,
-      "model_prob_10m_pct_change": -56.7,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.6265,
       "model_prob_6h_change": -0.3553,
       "model_prob_6h_pct_change": -56.7,
@@ -331,9 +332,9 @@
       "yes_price_6h_change": -0.085,
       "yes_price_6h_pct_change": -35.4,
       "scan6h_yes_price": 0.155,
-      "prev_yes_price": 0.24,
-      "yes_price_change": -0.085,
-      "yes_price_pct_change": -35.4,
+      "prev_yes_price": 0.145,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 6.9,
       "price_history": [
         {
           "t": "2026-11-09T02:23:50Z",
@@ -546,7 +547,8 @@
           "bid": 0.41,
           "ask": 0.44
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.425
     },
     {
       "question": "Will the highest temperature in Denver be between 70-71°F on November 10?",
@@ -603,7 +605,8 @@
           "bid": 0.31,
           "ask": 0.32
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.315
     },
     {
       "question": "Will the highest temperature in Denver be between 74-75°F on November 10?",
@@ -660,7 +663,8 @@
           "bid": 0.003,
           "ask": 0.013
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.008
     },
     {
       "question": "Will the highest temperature in Denver be 78°F or higher on November 10?",
@@ -691,8 +695,8 @@
       "swing_upside_pct": 0.0,
       "sell_value": 0.001,
       "prev_10m_model_prob": 0.0001,
-      "model_prob_10m_change": 0.0012,
-      "model_prob_10m_pct_change": 0.1,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.0001,
       "model_prob_6h_change": 0.0012,
       "model_prob_6h_pct_change": null,
@@ -881,6 +885,6 @@
   "confidence": 0.2101,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T08:37:30.322540+00:00",
+  "last_price_refresh": "2026-11-09T08:47:31.221482+00:00",
   "last_lite_refresh": "2026-11-09T08:38:35.353472+00:00"
 }
