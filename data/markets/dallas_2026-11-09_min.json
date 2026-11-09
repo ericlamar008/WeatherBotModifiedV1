@@ -47,10 +47,10 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.42,
+      "yes_price": 0.415,
       "no_price": 0.655,
       "best_bid": null,
-      "best_ask": 0.84,
+      "best_ask": 0.83,
       "bid_ask_spread": 0.0,
       "volume": 5.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.3269,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.42,
-      "effective_ask": 0.42,
-      "market_prob": 0.42,
-      "belief_prob": 0.3595,
-      "ev": -0.144,
+      "ask": 0.415,
+      "effective_ask": 0.415,
+      "market_prob": 0.415,
+      "belief_prob": 0.3577,
+      "ev": -0.1381,
       "kelly": 0.0,
-      "swing_edge": -0.0931,
-      "swing_upside_pct": -22.2,
+      "swing_edge": -0.0881,
+      "swing_upside_pct": -21.2,
       "sell_value": null,
       "scan6h_model_prob": 0.3269,
       "prev_scan6h_model_prob": 0.3269,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.345,
       "prev_scan6h_yes_price": 0.345,
-      "prev_yes_price": 0.465,
-      "yes_price_10m_change": -0.045,
-      "yes_price_10m_pct_change": -9.7,
-      "yes_price_6h_change": 0.075,
-      "yes_price_6h_pct_change": 21.7,
-      "yes_price_change": -0.045,
-      "yes_price_pct_change": -9.7,
+      "prev_yes_price": 0.42,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.2,
+      "yes_price_6h_change": 0.07,
+      "yes_price_6h_pct_change": 20.3,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.2,
       "price_history": [
         {
           "t": "2026-11-09T14:25:41Z",
@@ -220,9 +220,16 @@
           "mp": 0.3269,
           "bid": null,
           "ask": 0.84
+        },
+        {
+          "t": "2026-11-09T20:07:39Z",
+          "p": 0.415,
+          "mp": 0.3269,
+          "bid": null,
+          "ask": 0.83
         }
       ],
-      "prev_10m_yes_price": 0.465
+      "prev_10m_yes_price": 0.42
     },
     {
       "question": "Will the lowest temperature in Dallas be between 56-57°F on November 9?",
@@ -918,5 +925,5 @@
   "confidence": 0.0898,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T19:57:32.056915+00:00"
+  "last_price_refresh": "2026-11-09T20:07:37.711246+00:00"
 }
