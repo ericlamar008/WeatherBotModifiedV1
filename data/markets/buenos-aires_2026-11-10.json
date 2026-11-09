@@ -240,11 +240,11 @@
         25.0,
         25.0
       ],
-      "yes_price": 0.0405,
+      "yes_price": 0.037,
       "no_price": 0.9595,
-      "best_bid": 0.01,
-      "best_ask": 0.071,
-      "bid_ask_spread": 0.061,
+      "best_bid": 0.009,
+      "best_ask": 0.065,
+      "bid_ask_spread": 0.056,
       "volume": 5.0,
       "spread": 0.061,
       "yes_token_id": "106225690921860673615212272012301448051637038171422967078507588918812106431239",
@@ -252,14 +252,14 @@
       "model_prob": 0.0763,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0405,
-      "effective_ask": 0.0576,
-      "market_prob": 0.0405,
-      "belief_prob": 0.0638,
-      "ev": 0.1076,
-      "kelly": 0.0016,
-      "swing_edge": 0.0358,
-      "swing_upside_pct": 88.4,
+      "ask": 0.037,
+      "effective_ask": 0.0513,
+      "market_prob": 0.037,
+      "belief_prob": 0.0625,
+      "ev": 0.2183,
+      "kelly": 0.003,
+      "swing_edge": 0.0393,
+      "swing_upside_pct": 106.2,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.0763,
       "prev_scan6h_model_prob": 0.0763,
@@ -273,13 +273,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0405,
       "prev_scan6h_yes_price": 0.0405,
-      "prev_yes_price": 0.0325,
-      "yes_price_10m_change": 0.008,
-      "yes_price_10m_pct_change": 24.6,
-      "yes_price_6h_change": -0.008,
-      "yes_price_6h_pct_change": -19.8,
-      "yes_price_change": 0.008,
-      "yes_price_pct_change": 24.6,
+      "prev_yes_price": 0.0405,
+      "yes_price_10m_change": -0.0035,
+      "yes_price_10m_pct_change": -8.6,
+      "yes_price_6h_change": -0.0035,
+      "yes_price_6h_pct_change": -8.6,
+      "yes_price_change": -0.0035,
+      "yes_price_pct_change": -8.6,
       "price_history": [
         {
           "t": "2026-11-09T02:23:50Z",
@@ -303,7 +303,7 @@
           "ask": 0.071
         }
       ],
-      "prev_10m_yes_price": 0.0325
+      "prev_10m_yes_price": 0.0405
     },
     {
       "question": "Will the highest temperature in Buenos Aires be 26°C on November 10?",
@@ -362,6 +362,13 @@
         },
         {
           "t": "2026-11-09T02:37:29Z",
+          "p": 0.095,
+          "mp": 0.1675,
+          "bid": 0.08,
+          "ask": 0.11
+        },
+        {
+          "t": "2026-11-09T02:57:34Z",
           "p": 0.095,
           "mp": 0.1675,
           "bid": 0.08,
@@ -427,6 +434,13 @@
         },
         {
           "t": "2026-11-09T02:37:29Z",
+          "p": 0.37,
+          "mp": 0.2559,
+          "bid": 0.35,
+          "ask": 0.39
+        },
+        {
+          "t": "2026-11-09T02:57:34Z",
           "p": 0.37,
           "mp": 0.2559,
           "bid": 0.35,
@@ -641,5 +655,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T02:47:32.114465+00:00"
+  "last_price_refresh": "2026-11-09T02:57:33.187897+00:00"
 }

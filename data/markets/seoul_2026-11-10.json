@@ -305,11 +305,11 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.052,
+      "yes_price": 0.0535,
       "no_price": 0.945,
-      "best_bid": 0.038,
-      "best_ask": 0.066,
-      "bid_ask_spread": 0.028,
+      "best_bid": 0.043,
+      "best_ask": 0.064,
+      "bid_ask_spread": 0.021,
       "volume": 529.0,
       "spread": 0.032,
       "yes_token_id": "101298398088840484437753769932468024932200029381046965278254098103787201255917",
@@ -317,14 +317,14 @@
       "model_prob": 0.0948,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.052,
-      "effective_ask": 0.052,
-      "market_prob": 0.052,
-      "belief_prob": 0.0798,
-      "ev": 0.5346,
-      "kelly": 0.0073,
-      "swing_edge": 0.0428,
-      "swing_upside_pct": 82.3,
+      "ask": 0.0535,
+      "effective_ask": 0.0535,
+      "market_prob": 0.0535,
+      "belief_prob": 0.0803,
+      "ev": 0.5009,
+      "kelly": 0.0071,
+      "swing_edge": 0.0413,
+      "swing_upside_pct": 77.2,
       "sell_value": 0.039,
       "scan6h_model_prob": 0.0948,
       "prev_scan6h_model_prob": 0.0948,
@@ -338,13 +338,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.055,
       "prev_scan6h_yes_price": 0.055,
-      "prev_yes_price": 0.0535,
-      "yes_price_10m_change": -0.0015,
-      "yes_price_10m_pct_change": -2.8,
-      "yes_price_6h_change": -0.003,
-      "yes_price_6h_pct_change": -5.5,
-      "yes_price_change": -0.0015,
-      "yes_price_pct_change": -2.8,
+      "prev_yes_price": 0.052,
+      "yes_price_10m_change": 0.0015,
+      "yes_price_10m_pct_change": 2.9,
+      "yes_price_6h_change": -0.0015,
+      "yes_price_6h_pct_change": -2.7,
+      "yes_price_change": 0.0015,
+      "yes_price_pct_change": 2.9,
       "price_history": [
         {
           "t": "2026-11-09T02:23:49Z",
@@ -361,7 +361,7 @@
           "ask": 0.066
         }
       ],
-      "prev_10m_yes_price": 0.0535
+      "prev_10m_yes_price": 0.052
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 11°C on November 10?",
@@ -435,10 +435,10 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.465,
+      "yes_price": 0.475,
       "no_price": 0.54,
-      "best_bid": 0.45,
-      "best_ask": 0.48,
+      "best_bid": 0.46,
+      "best_ask": 0.49,
       "bid_ask_spread": 0.03,
       "volume": 1336.0,
       "spread": 0.04,
@@ -447,14 +447,14 @@
       "model_prob": 0.367,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.465,
-      "effective_ask": 0.465,
-      "market_prob": 0.465,
-      "belief_prob": 0.4013,
-      "ev": -0.137,
+      "ask": 0.475,
+      "effective_ask": 0.475,
+      "market_prob": 0.475,
+      "belief_prob": 0.4048,
+      "ev": -0.1478,
       "kelly": 0.0,
-      "swing_edge": -0.098,
-      "swing_upside_pct": -21.1,
+      "swing_edge": -0.108,
+      "swing_upside_pct": -22.7,
       "sell_value": 0.44,
       "scan6h_model_prob": 0.367,
       "prev_scan6h_model_prob": 0.367,
@@ -468,13 +468,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.46,
       "prev_scan6h_yes_price": 0.46,
-      "prev_yes_price": 0.46,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 1.1,
-      "yes_price_6h_change": 0.005,
-      "yes_price_6h_pct_change": 1.1,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 1.1,
+      "prev_yes_price": 0.465,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 2.2,
+      "yes_price_6h_change": 0.015,
+      "yes_price_6h_pct_change": 3.3,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 2.2,
       "price_history": [
         {
           "t": "2026-11-09T02:23:49Z",
@@ -489,9 +489,16 @@
           "mp": 0.367,
           "bid": 0.45,
           "ask": 0.48
+        },
+        {
+          "t": "2026-11-09T02:57:34Z",
+          "p": 0.475,
+          "mp": 0.367,
+          "bid": 0.46,
+          "ask": 0.49
         }
       ],
-      "prev_10m_yes_price": 0.46
+      "prev_10m_yes_price": 0.465
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 13°C on November 10?",
@@ -764,5 +771,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T02:47:32.114465+00:00"
+  "last_price_refresh": "2026-11-09T02:57:33.187897+00:00"
 }
