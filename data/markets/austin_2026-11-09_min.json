@@ -247,10 +247,10 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.45,
+      "yes_price": 0.445,
       "no_price": 0.635,
       "best_bid": 0.01,
-      "best_ask": 0.9,
+      "best_ask": 0.89,
       "bid_ask_spread": 0.0,
       "volume": 31.0,
       "spread": 0.71,
@@ -259,14 +259,14 @@
       "model_prob": 0.2205,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.45,
-      "effective_ask": 0.45,
-      "market_prob": 0.45,
-      "belief_prob": 0.3008,
-      "ev": -0.3316,
+      "ask": 0.445,
+      "effective_ask": 0.445,
+      "market_prob": 0.445,
+      "belief_prob": 0.2991,
+      "ev": -0.3279,
       "kelly": 0.0,
-      "swing_edge": -0.2295,
-      "swing_upside_pct": -51.0,
+      "swing_edge": -0.2245,
+      "swing_upside_pct": -50.4,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.2205,
       "prev_scan6h_model_prob": 0.2205,
@@ -280,13 +280,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.365,
       "prev_scan6h_yes_price": 0.365,
-      "prev_yes_price": 0.425,
-      "yes_price_10m_change": 0.025,
-      "yes_price_10m_pct_change": 5.9,
-      "yes_price_6h_change": 0.085,
-      "yes_price_6h_pct_change": 23.3,
-      "yes_price_change": 0.025,
-      "yes_price_pct_change": 5.9,
+      "prev_yes_price": 0.45,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.1,
+      "yes_price_6h_change": 0.08,
+      "yes_price_6h_pct_change": 21.9,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.1,
       "price_history": [
         {
           "t": "2026-11-09T08:42:57Z",
@@ -378,9 +378,16 @@
           "mp": 0.2205,
           "bid": 0.01,
           "ask": 0.9
+        },
+        {
+          "t": "2026-11-09T11:07:35Z",
+          "p": 0.445,
+          "mp": 0.2205,
+          "bid": 0.01,
+          "ask": 0.89
         }
       ],
-      "prev_10m_yes_price": 0.425
+      "prev_10m_yes_price": 0.45
     },
     {
       "question": "Will the lowest temperature in Austin be between 60-61°F on November 9?",
@@ -810,5 +817,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T10:57:24.125234+00:00"
+  "last_price_refresh": "2026-11-09T11:07:33.915469+00:00"
 }

@@ -1238,11 +1238,11 @@
         13.0,
         13.0
       ],
-      "yes_price": 0.036,
+      "yes_price": 0.0375,
       "no_price": 0.986,
       "best_bid": 0.005,
-      "best_ask": 0.067,
-      "bid_ask_spread": 0.062,
+      "best_ask": 0.07,
+      "bid_ask_spread": 0.065,
       "volume": 16.0,
       "spread": 0.018,
       "yes_token_id": "57260552661310370349682485858712124134610414060172881256867070646229955857749",
@@ -1250,14 +1250,14 @@
       "model_prob": 0.2249,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.036,
-      "effective_ask": 0.0536,
-      "market_prob": 0.036,
-      "belief_prob": 0.1588,
-      "ev": 1.9627,
-      "kelly": 0.0278,
-      "swing_edge": 0.1889,
-      "swing_upside_pct": 524.7,
+      "ask": 0.0375,
+      "effective_ask": 0.0568,
+      "market_prob": 0.0375,
+      "belief_prob": 0.1593,
+      "ev": 1.8046,
+      "kelly": 0.0272,
+      "swing_edge": 0.1874,
+      "swing_upside_pct": 499.7,
       "sell_value": 0.005,
       "scan6h_model_prob": 0.2249,
       "prev_scan6h_model_prob": 0.2249,
@@ -1271,13 +1271,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.014,
       "prev_scan6h_yes_price": 0.014,
-      "prev_yes_price": 0.0375,
-      "yes_price_10m_change": -0.0015,
-      "yes_price_10m_pct_change": -4.0,
-      "yes_price_6h_change": 0.022,
-      "yes_price_6h_pct_change": 157.1,
-      "yes_price_change": -0.0015,
-      "yes_price_pct_change": -4.0,
+      "prev_yes_price": 0.036,
+      "yes_price_10m_change": 0.0015,
+      "yes_price_10m_pct_change": 4.2,
+      "yes_price_6h_change": 0.0235,
+      "yes_price_6h_pct_change": 167.9,
+      "yes_price_change": 0.0015,
+      "yes_price_pct_change": 4.2,
       "price_history": [
         {
           "t": "2026-11-09T08:42:47Z",
@@ -1350,7 +1350,7 @@
           "ask": 0.067
         }
       ],
-      "prev_10m_yes_price": 0.0375
+      "prev_10m_yes_price": 0.036
     },
     {
       "question": "Will the highest temperature in Toronto be 14°C on November 10?",
@@ -2365,6 +2365,13 @@
           "mp": 0.017,
           "bid": 0.18,
           "ask": 0.2
+        },
+        {
+          "t": "2026-11-09T11:07:34Z",
+          "p": 0.19,
+          "mp": 0.017,
+          "bid": 0.18,
+          "ask": 0.2
         }
       ]
     },
@@ -2493,6 +2500,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T10:57:24.125234+00:00",
+  "last_price_refresh": "2026-11-09T11:07:33.915469+00:00",
   "last_lite_refresh": "2026-11-09T08:38:35.353472+00:00"
 }
