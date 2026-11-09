@@ -47,10 +47,10 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.25,
+      "yes_price": 0.19,
       "no_price": 0.655,
       "best_bid": null,
-      "best_ask": 0.5,
+      "best_ask": 0.38,
       "bid_ask_spread": 0.0,
       "volume": 5.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.3269,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.25,
-      "effective_ask": 0.25,
-      "market_prob": 0.25,
-      "belief_prob": 0.3,
-      "ev": 0.2,
-      "kelly": 0.0167,
-      "swing_edge": 0.0769,
-      "swing_upside_pct": 30.8,
+      "ask": 0.19,
+      "effective_ask": 0.19,
+      "market_prob": 0.19,
+      "belief_prob": 0.279,
+      "ev": 0.4684,
+      "kelly": 0.0275,
+      "swing_edge": 0.1369,
+      "swing_upside_pct": 72.1,
       "sell_value": null,
       "scan6h_model_prob": 0.3269,
       "prev_scan6h_model_prob": 0.3269,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.345,
       "prev_scan6h_yes_price": 0.345,
-      "prev_yes_price": 0.16,
-      "yes_price_10m_change": 0.09,
-      "yes_price_10m_pct_change": 56.2,
-      "yes_price_6h_change": -0.095,
-      "yes_price_6h_pct_change": -27.5,
-      "yes_price_change": 0.09,
-      "yes_price_pct_change": 56.2,
+      "prev_yes_price": 0.25,
+      "yes_price_10m_change": -0.06,
+      "yes_price_10m_pct_change": -24.0,
+      "yes_price_6h_change": -0.155,
+      "yes_price_6h_pct_change": -44.9,
+      "yes_price_change": -0.06,
+      "yes_price_pct_change": -24.0,
       "price_history": [
         {
           "t": "2026-11-09T14:25:41Z",
@@ -178,9 +178,16 @@
           "mp": 0.3269,
           "bid": null,
           "ask": 0.5
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
+          "p": 0.19,
+          "mp": 0.3269,
+          "bid": null,
+          "ask": 0.38
         }
       ],
-      "prev_10m_yes_price": 0.16
+      "prev_10m_yes_price": 0.25
     },
     {
       "question": "Will the lowest temperature in Dallas be between 56-57°F on November 9?",
@@ -320,6 +327,13 @@
           "mp": 0.3884,
           "bid": 0.68,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
+          "p": 0.84,
+          "mp": 0.3884,
+          "bid": 0.68,
+          "ask": 1.0
         }
       ],
       "prev_10m_yes_price": 0.835
@@ -444,6 +458,13 @@
         },
         {
           "t": "2026-11-09T17:57:37Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -576,6 +597,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -704,6 +732,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -736,5 +771,5 @@
   "confidence": 0.0898,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T18:07:33.687769+00:00"
+  "last_price_refresh": "2026-11-09T18:37:29.798927+00:00"
 }

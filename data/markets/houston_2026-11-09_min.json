@@ -47,11 +47,11 @@
         -999.0,
         51.0
       ],
-      "yes_price": 0.001,
+      "yes_price": 0.0015,
       "no_price": 0.999,
-      "best_bid": null,
+      "best_bid": 0.001,
       "best_ask": 0.002,
-      "bid_ask_spread": 0.0,
+      "bid_ask_spread": 0.001,
       "volume": 15.0,
       "spread": 0.0,
       "yes_token_id": "2602203850629244554872334643844043693542395883754215178422395231180622718960",
@@ -59,13 +59,13 @@
       "model_prob": 0.0023,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.001,
-      "effective_ask": 0.001,
-      "market_prob": 0.001,
-      "belief_prob": 0.0018,
-      "ev": 0.8,
-      "kelly": 0.0002,
-      "swing_edge": 0.0013,
+      "ask": 0.0015,
+      "effective_ask": 0.0015,
+      "market_prob": 0.0015,
+      "belief_prob": 0.002,
+      "ev": 0.3333,
+      "kelly": 0.0001,
+      "swing_edge": 0.0008,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "prev_10m_model_prob": 0.0241,
@@ -79,15 +79,15 @@
       "model_prob_change": -0.0218,
       "model_prob_pct_change": -90.5,
       "prev_10m_yes_price": 0.001,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 0.1,
       "prev_scan6h_yes_price": 0.001,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 0.1,
       "scan6h_yes_price": 0.001,
       "prev_yes_price": 0.001,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 0.1,
       "price_history": [
         {
           "t": "2026-11-09T08:42:48Z",
@@ -284,6 +284,13 @@
           "mp": 0.0023,
           "bid": null,
           "ask": 0.002
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
+          "p": 0.0015,
+          "mp": 0.0023,
+          "bid": 0.001,
+          "ask": 0.002
         }
       ]
     },
@@ -294,11 +301,11 @@
         58.0,
         59.0
       ],
-      "yes_price": 0.475,
+      "yes_price": 0.48,
       "no_price": 0.53,
       "best_bid": 0.03,
-      "best_ask": 0.92,
-      "bid_ask_spread": 0.89,
+      "best_ask": 0.93,
+      "bid_ask_spread": 0.9,
       "volume": 10.0,
       "spread": 0.88,
       "yes_token_id": "8089126465045695483084306162590201359276156800071459676699591008804192332804",
@@ -306,14 +313,14 @@
       "model_prob": 0.3549,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.475,
-      "effective_ask": 0.555,
-      "market_prob": 0.475,
-      "belief_prob": 0.3969,
-      "ev": -0.2849,
+      "ask": 0.48,
+      "effective_ask": 0.56,
+      "market_prob": 0.48,
+      "belief_prob": 0.3987,
+      "ev": -0.288,
       "kelly": 0.0,
-      "swing_edge": -0.1201,
-      "swing_upside_pct": -25.3,
+      "swing_edge": -0.1251,
+      "swing_upside_pct": -26.1,
       "sell_value": 0.03,
       "scan6h_model_prob": 0.3549,
       "prev_scan6h_model_prob": 0.3549,
@@ -327,13 +334,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.47,
       "prev_scan6h_yes_price": 0.47,
-      "prev_yes_price": 0.48,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.0,
-      "yes_price_6h_change": 0.005,
-      "yes_price_6h_pct_change": 1.1,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.0,
+      "prev_yes_price": 0.475,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.1,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 2.1,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.1,
       "price_history": [
         {
           "t": "2026-11-09T14:25:37Z",
@@ -453,9 +460,16 @@
           "mp": 0.3549,
           "bid": 0.03,
           "ask": 0.92
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
+          "p": 0.48,
+          "mp": 0.3549,
+          "bid": 0.03,
+          "ask": 0.93
         }
       ],
-      "prev_10m_yes_price": 0.48
+      "prev_10m_yes_price": 0.475
     },
     {
       "question": "Will the lowest temperature in Houston be between 60-61°F on November 9?",
@@ -464,11 +478,11 @@
         60.0,
         61.0
       ],
-      "yes_price": 0.475,
+      "yes_price": 0.415,
       "no_price": 0.51,
-      "best_bid": 0.03,
-      "best_ask": 0.92,
-      "bid_ask_spread": 0.89,
+      "best_bid": 0.04,
+      "best_ask": 0.79,
+      "bid_ask_spread": 0.75,
       "volume": 5.0,
       "spread": 0.86,
       "yes_token_id": "101732101265056058793289213986954553507776620049548329073319811673206281290995",
@@ -476,14 +490,14 @@
       "model_prob": 0.5308,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.475,
-      "effective_ask": 0.555,
-      "market_prob": 0.475,
-      "belief_prob": 0.5113,
-      "ev": -0.0787,
+      "ask": 0.415,
+      "effective_ask": 0.495,
+      "market_prob": 0.415,
+      "belief_prob": 0.4903,
+      "ev": -0.0095,
       "kelly": 0.0,
-      "swing_edge": 0.0558,
-      "swing_upside_pct": 11.7,
+      "swing_edge": 0.1158,
+      "swing_upside_pct": 27.9,
       "sell_value": 0.06,
       "scan6h_model_prob": 0.5308,
       "prev_scan6h_model_prob": 0.5308,
@@ -497,13 +511,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.49,
       "prev_scan6h_yes_price": 0.49,
-      "prev_yes_price": 0.53,
-      "yes_price_10m_change": -0.055,
-      "yes_price_10m_pct_change": -10.4,
-      "yes_price_6h_change": -0.015,
-      "yes_price_6h_pct_change": -3.1,
-      "yes_price_change": -0.055,
-      "yes_price_pct_change": -10.4,
+      "prev_yes_price": 0.475,
+      "yes_price_10m_change": -0.06,
+      "yes_price_10m_pct_change": -12.6,
+      "yes_price_6h_change": -0.075,
+      "yes_price_6h_pct_change": -15.3,
+      "yes_price_change": -0.06,
+      "yes_price_pct_change": -12.6,
       "price_history": [
         {
           "t": "2026-11-09T14:25:37Z",
@@ -637,9 +651,16 @@
           "mp": 0.5308,
           "bid": 0.03,
           "ask": 0.92
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
+          "p": 0.415,
+          "mp": 0.5308,
+          "bid": 0.04,
+          "ask": 0.79
         }
       ],
-      "prev_10m_yes_price": 0.53
+      "prev_10m_yes_price": 0.475
     },
     {
       "question": "Will the lowest temperature in Houston be between 62-63°F on November 9?",
@@ -881,6 +902,13 @@
         },
         {
           "t": "2026-11-09T17:57:37Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1132,6 +1160,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -1375,6 +1410,13 @@
         },
         {
           "t": "2026-11-09T17:57:37Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1626,6 +1668,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -1873,6 +1922,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-09T18:37:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     }
@@ -1887,5 +1943,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T18:07:33.687769+00:00"
+  "last_price_refresh": "2026-11-09T18:37:29.798927+00:00"
 }
