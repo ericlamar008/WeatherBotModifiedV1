@@ -3,16 +3,16 @@
   "city_name": "Buenos Aires",
   "date": "2026-11-08",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-11-07T02:20:46.176754+00:00",
   "committed_allocation": null,
-  "hours_left": 0.7,
+  "hours_left": 0.0,
   "time_status": "local_day_open",
   "local_day_end_utc": "2026-11-09T03:00:00+00:00",
   "event_end_date": "2026-11-08T12:00:00Z",
   "last_scan": "2026-11-09T02:20:44.715381+00:00",
-  "last_lite_refresh": "2026-11-08T20:20:45.921258+00:00",
+  "last_lite_refresh": "2026-11-09T02:58:33.800654+00:00",
   "horizon_days": 0,
   "forecast_mean": 4.68,
   "sigma": 2.484,
@@ -4313,7 +4313,10 @@
       "market_prob": 0.9905,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.981
+      "sell_value": 0.981,
+      "won": true,
+      "pnl_units": 0.29,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -4325,5 +4328,31 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T02:57:33.187897+00:00"
+  "last_price_refresh": "2026-11-09T02:57:33.187897+00:00",
+  "actual_temp": 5.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.29,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6745857",
+      "question": "Will the lowest temperature in Buenos Aires be 5°C or below on November 8?",
+      "range": [
+        -999.0,
+        5.0
+      ],
+      "side": "YES",
+      "price": 0.9905,
+      "model_prob": 0.6686,
+      "ev": -0.2112,
+      "market_prob": 0.9905,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.981,
+      "won": true,
+      "pnl_units": 0.29,
+      "user_entered": false
+    }
+  ]
 }
