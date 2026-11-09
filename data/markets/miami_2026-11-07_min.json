@@ -3,7 +3,7 @@
   "city_name": "Miami",
   "date": "2026-11-07",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-11-06T02:20:42.080528+00:00",
   "committed_allocation": null,
@@ -12,7 +12,7 @@
   "local_day_end_utc": "2026-11-08T05:00:00+00:00",
   "event_end_date": "2026-11-07T12:00:00Z",
   "last_scan": "2026-11-09T02:20:44.715381+00:00",
-  "last_lite_refresh": "2026-11-09T08:38:35.353472+00:00",
+  "last_lite_refresh": "2026-11-09T14:20:48.750908+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KMIA",
@@ -4313,7 +4313,10 @@
       "market_prob": 0.74,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.52
+      "sell_value": 0.52,
+      "won": false,
+      "pnl_units": -30.0,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -4325,5 +4328,31 @@
   "confidence": 0.6557,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-09T14:17:25.699539+00:00"
+  "last_price_refresh": "2026-11-09T14:17:25.699539+00:00",
+  "actual_temp": 74.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "loss",
+  "pnl_units": -30.0,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6707502",
+      "question": "Will the lowest temperature in Miami be between 72-73°F on November 7?",
+      "range": [
+        72.0,
+        73.0
+      ],
+      "side": "YES",
+      "price": 0.74,
+      "model_prob": 0.289,
+      "ev": -0.4551,
+      "market_prob": 0.74,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.52,
+      "won": false,
+      "pnl_units": -30.0,
+      "user_entered": false
+    }
+  ]
 }
