@@ -65,8 +65,8 @@
       "belief_prob": 0.021,
       "ev": -0.5035,
       "kelly": 0.0,
-      "swing_edge": -0.0254,
-      "swing_upside_pct": -60.0,
+      "swing_edge": -0.0116,
+      "swing_upside_pct": -40.7,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.0169,
       "prev_scan6h_model_prob": 0.0169,
@@ -95,7 +95,8 @@
           "bid": 0.001,
           "ask": 0.056
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0285
     },
     {
       "question": "Will the lowest temperature in Miami be between 68-69°F on November 9?",
@@ -122,8 +123,8 @@
       "belief_prob": 0.0455,
       "ev": 0.7843,
       "kelly": 0.0051,
-      "swing_edge": 0.0335,
-      "swing_upside_pct": 131.4,
+      "swing_edge": 0.0385,
+      "swing_upside_pct": 187.8,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.059,
       "prev_scan6h_model_prob": 0.059,
@@ -152,7 +153,8 @@
           "bid": 0.001,
           "ask": 0.04
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0205
     },
     {
       "question": "Will the lowest temperature in Miami be between 74-75°F on November 9?",
@@ -163,9 +165,9 @@
       ],
       "yes_price": 0.85,
       "no_price": 0.15,
-      "best_bid": 0.71,
-      "best_ask": 0.99,
-      "bid_ask_spread": 0.28,
+      "best_bid": 0.7,
+      "best_ask": 1.0,
+      "bid_ask_spread": 0.0,
       "volume": 104.0,
       "spread": 0.28,
       "yes_token_id": "84220477675362833379225266870538675304883959518430432717072384343818593695418",
@@ -174,13 +176,13 @@
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.85,
-      "effective_ask": 0.93,
+      "effective_ask": 0.85,
       "market_prob": 0.85,
       "belief_prob": 0.5799,
-      "ev": -0.3765,
+      "ev": -0.3178,
       "kelly": 0.0,
-      "swing_edge": -0.4956,
-      "swing_upside_pct": -53.3,
+      "swing_edge": -0.4156,
+      "swing_upside_pct": -48.9,
       "sell_value": 0.71,
       "scan6h_model_prob": 0.4344,
       "prev_scan6h_model_prob": 0.4344,
@@ -209,7 +211,8 @@
           "bid": 0.71,
           "ask": 0.99
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.85
     },
     {
       "question": "Will the lowest temperature in Miami be between 76-77°F on November 9?",
@@ -233,7 +236,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -266,7 +269,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Miami be between 78-79°F on November 9?",
@@ -290,7 +294,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -323,7 +327,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Miami be between 82-83°F on November 9?",
@@ -347,7 +352,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -380,7 +385,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Miami be 84°F or higher on November 9?",
@@ -404,7 +410,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -437,7 +443,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -466,5 +473,6 @@
   "success_probability": 0.598,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-09T14:37:27.535673+00:00"
 }

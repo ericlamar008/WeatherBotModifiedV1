@@ -47,11 +47,11 @@
         44.0,
         45.0
       ],
-      "yes_price": 0.485,
+      "yes_price": 0.535,
       "no_price": 0.515,
-      "best_bid": 0.07,
+      "best_bid": 0.17,
       "best_ask": 0.9,
-      "bid_ask_spread": 0.83,
+      "bid_ask_spread": 0.73,
       "volume": 65.0,
       "spread": 0.83,
       "yes_token_id": "2307215140923247539177618018315806993197396472302023722304332886864628145992",
@@ -59,14 +59,14 @@
       "model_prob": 0.6913,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.485,
-      "effective_ask": 0.565,
-      "market_prob": 0.485,
-      "belief_prob": 0.6191,
-      "ev": 0.0958,
-      "kelly": 0.0311,
-      "swing_edge": 0.1263,
-      "swing_upside_pct": 22.4,
+      "ask": 0.535,
+      "effective_ask": 0.615,
+      "market_prob": 0.535,
+      "belief_prob": 0.6366,
+      "ev": 0.0351,
+      "kelly": 0.014,
+      "swing_edge": 0.1563,
+      "swing_upside_pct": 29.2,
       "sell_value": 0.07,
       "scan6h_model_prob": 0.6913,
       "prev_scan6h_model_prob": 0.6913,
@@ -81,12 +81,12 @@
       "scan6h_yes_price": 0.485,
       "prev_scan6h_yes_price": 0.485,
       "prev_yes_price": 0.485,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.05,
+      "yes_price_10m_pct_change": 10.3,
+      "yes_price_6h_change": 0.05,
+      "yes_price_6h_pct_change": 10.3,
+      "yes_price_change": 0.05,
+      "yes_price_pct_change": 10.3,
       "price_history": [
         {
           "t": "2026-11-09T14:25:41Z",
@@ -94,8 +94,16 @@
           "mp": 0.6913,
           "bid": 0.07,
           "ask": 0.9
+        },
+        {
+          "t": "2026-11-09T14:37:28Z",
+          "p": 0.535,
+          "mp": 0.6913,
+          "bid": 0.17,
+          "ask": 0.9
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.485
     },
     {
       "question": "Will the lowest temperature in Seattle be between 46-47°F on November 9?",
@@ -119,7 +127,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -152,7 +160,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Seattle be between 48-49°F on November 9?",
@@ -176,7 +185,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -209,7 +218,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Seattle be between 50-51°F on November 9?",
@@ -233,7 +243,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -266,7 +276,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Seattle be 52°F or higher on November 9?",
@@ -290,7 +301,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -323,7 +334,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -352,5 +364,6 @@
   "success_probability": 0.7956,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-09T14:37:27.535673+00:00"
 }
