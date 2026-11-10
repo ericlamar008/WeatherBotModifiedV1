@@ -1980,9 +1980,9 @@
         22.0,
         22.0
       ],
-      "yes_price": 0.994,
+      "yes_price": 0.99,
       "no_price": 0.005,
-      "best_bid": 0.988,
+      "best_bid": 0.98,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 10258.0,
@@ -1992,14 +1992,14 @@
       "model_prob": 0.325,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.994,
-      "effective_ask": 0.994,
-      "market_prob": 0.994,
-      "belief_prob": 0.5592,
-      "ev": -0.4374,
+      "ask": 0.99,
+      "effective_ask": 0.99,
+      "market_prob": 0.99,
+      "belief_prob": 0.5577,
+      "ev": -0.4367,
       "kelly": 0.0,
-      "swing_edge": -0.669,
-      "swing_upside_pct": -67.3,
+      "swing_edge": -0.665,
+      "swing_upside_pct": -67.2,
       "sell_value": 0.99,
       "prev_10m_model_prob": 0.3749,
       "model_prob_10m_change": 0.0,
@@ -2011,24 +2011,17 @@
       "prev_model_prob": 0.3749,
       "model_prob_change": -0.0499,
       "model_prob_pct_change": -13.3,
-      "prev_10m_yes_price": 0.99,
-      "yes_price_10m_change": 0.004,
-      "yes_price_10m_pct_change": 0.4,
+      "prev_10m_yes_price": 0.994,
+      "yes_price_10m_change": -0.004,
+      "yes_price_10m_pct_change": -0.4,
       "prev_scan6h_yes_price": 0.9985,
-      "yes_price_6h_change": -0.001,
-      "yes_price_6h_pct_change": -0.1,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -0.5,
       "scan6h_yes_price": 0.995,
-      "prev_yes_price": 0.99,
-      "yes_price_change": 0.004,
-      "yes_price_pct_change": 0.4,
+      "prev_yes_price": 0.994,
+      "yes_price_change": -0.004,
+      "yes_price_pct_change": -0.4,
       "price_history": [
-        {
-          "t": "2026-11-10T03:17:30Z",
-          "p": 0.585,
-          "mp": 0.386,
-          "bid": 0.53,
-          "ask": 0.64
-        },
         {
           "t": "2026-11-10T03:37:29Z",
           "p": 0.615,
@@ -2356,6 +2349,13 @@
           "p": 0.994,
           "mp": 0.325,
           "bid": 0.988,
+          "ask": 1.0
+        },
+        {
+          "t": "2026-11-10T15:17:28Z",
+          "p": 0.99,
+          "mp": 0.325,
+          "bid": 0.98,
           "ask": 1.0
         }
       ]
@@ -4323,6 +4323,6 @@
   "confidence": 0.0787,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-10T15:07:36.550562+00:00",
+  "last_price_refresh": "2026-11-10T15:17:27.945735+00:00",
   "last_lite_refresh": "2026-11-10T14:43:01.440936+00:00"
 }
