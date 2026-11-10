@@ -96,7 +96,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Milan be 4°C on November 10?",
@@ -105,11 +106,11 @@
         4.0,
         4.0
       ],
-      "yes_price": 0.4995,
+      "yes_price": 0.4695,
       "no_price": 0.5005,
-      "best_bid": null,
-      "best_ask": 0.999,
-      "bid_ask_spread": 0.0,
+      "best_bid": 0.001,
+      "best_ask": 0.938,
+      "bid_ask_spread": 0.937,
       "volume": 55.0,
       "spread": 0.0,
       "yes_token_id": "73266657304711746391454494378053439315375594742270455774823353805511133668082",
@@ -117,14 +118,14 @@
       "model_prob": 0.1722,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.4995,
-      "effective_ask": 0.4995,
-      "market_prob": 0.4995,
-      "belief_prob": 0.2868,
-      "ev": -0.4258,
+      "ask": 0.4695,
+      "effective_ask": 0.5495,
+      "market_prob": 0.4695,
+      "belief_prob": 0.2763,
+      "ev": -0.4972,
       "kelly": 0.0,
-      "swing_edge": -0.3273,
-      "swing_upside_pct": -65.5,
+      "swing_edge": -0.2973,
+      "swing_upside_pct": -63.3,
       "sell_value": null,
       "scan6h_model_prob": 0.1722,
       "prev_scan6h_model_prob": 0.1722,
@@ -139,12 +140,12 @@
       "scan6h_yes_price": 0.4995,
       "prev_scan6h_yes_price": 0.4995,
       "prev_yes_price": 0.4995,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.03,
+      "yes_price_10m_pct_change": -6.0,
+      "yes_price_6h_change": -0.03,
+      "yes_price_6h_pct_change": -6.0,
+      "yes_price_change": -0.03,
+      "yes_price_pct_change": -6.0,
       "price_history": [
         {
           "t": "2026-11-10T20:27:32Z",
@@ -152,8 +153,16 @@
           "mp": 0.1722,
           "bid": null,
           "ask": 0.999
+        },
+        {
+          "t": "2026-11-10T20:37:35Z",
+          "p": 0.4695,
+          "mp": 0.1722,
+          "bid": 0.001,
+          "ask": 0.938
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.4995
     },
     {
       "question": "Will the lowest temperature in Milan be 6°C on November 10?",
@@ -162,11 +171,11 @@
         6.0,
         6.0
       ],
-      "yes_price": 0.51,
+      "yes_price": 0.49,
       "no_price": 0.49,
-      "best_bid": 0.02,
-      "best_ask": 1.0,
-      "bid_ask_spread": 0.0,
+      "best_bid": 0.04,
+      "best_ask": 0.94,
+      "bid_ask_spread": 0.9,
       "volume": 6.0,
       "spread": 0.98,
       "yes_token_id": "17174026465476147923891002721042660303179947594820384520402607797036845684204",
@@ -174,14 +183,14 @@
       "model_prob": 0.3842,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.51,
-      "effective_ask": 0.51,
-      "market_prob": 0.51,
-      "belief_prob": 0.4282,
-      "ev": -0.1604,
+      "ask": 0.49,
+      "effective_ask": 0.57,
+      "market_prob": 0.49,
+      "belief_prob": 0.4212,
+      "ev": -0.2611,
       "kelly": 0.0,
-      "swing_edge": -0.1258,
-      "swing_upside_pct": -24.7,
+      "swing_edge": -0.1058,
+      "swing_upside_pct": -21.6,
       "sell_value": 0.02,
       "scan6h_model_prob": 0.3842,
       "prev_scan6h_model_prob": 0.3842,
@@ -196,12 +205,12 @@
       "scan6h_yes_price": 0.51,
       "prev_scan6h_yes_price": 0.51,
       "prev_yes_price": 0.51,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.02,
+      "yes_price_10m_pct_change": -3.9,
+      "yes_price_6h_change": -0.02,
+      "yes_price_6h_pct_change": -3.9,
+      "yes_price_change": -0.02,
+      "yes_price_pct_change": -3.9,
       "price_history": [
         {
           "t": "2026-11-10T20:27:32Z",
@@ -209,8 +218,16 @@
           "mp": 0.3842,
           "bid": 0.02,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-10T20:37:35Z",
+          "p": 0.49,
+          "mp": 0.3842,
+          "bid": 0.04,
+          "ask": 0.94
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.51
     },
     {
       "question": "Will the lowest temperature in Milan be 7°C on November 10?",
@@ -234,7 +251,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -267,7 +284,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 8°C on November 10?",
@@ -291,7 +309,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -324,7 +342,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 9°C on November 10?",
@@ -348,7 +367,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -381,7 +400,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 10°C on November 10?",
@@ -405,7 +425,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -438,7 +458,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 11°C on November 10?",
@@ -462,7 +483,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -495,7 +516,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 12°C or higher on November 10?",
@@ -519,7 +541,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -552,7 +574,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -564,5 +587,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-10T20:37:33.081210+00:00"
 }
