@@ -394,11 +394,11 @@
         18.0,
         18.0
       ],
-      "yes_price": 0.61,
+      "yes_price": 0.6,
       "no_price": 0.325,
-      "best_bid": 0.54,
-      "best_ask": 0.68,
-      "bid_ask_spread": 0.14,
+      "best_bid": 0.51,
+      "best_ask": 0.69,
+      "bid_ask_spread": 0.18,
       "volume": 532.0,
       "spread": 0.05,
       "yes_token_id": "109490984445916184502290429049163738694104139080976016661283749587992801449841",
@@ -406,14 +406,14 @@
       "model_prob": 0.3262,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.61,
-      "effective_ask": 0.6705,
-      "market_prob": 0.61,
-      "belief_prob": 0.4255,
-      "ev": -0.3654,
+      "ask": 0.6,
+      "effective_ask": 0.68,
+      "market_prob": 0.6,
+      "belief_prob": 0.422,
+      "ev": -0.3794,
       "kelly": 0.0,
-      "swing_edge": -0.2838,
-      "swing_upside_pct": -46.5,
+      "swing_edge": -0.2738,
+      "swing_upside_pct": -45.6,
       "sell_value": 0.65,
       "scan6h_model_prob": 0.3262,
       "prev_scan6h_model_prob": 0.3262,
@@ -427,13 +427,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.675,
       "prev_scan6h_yes_price": 0.675,
-      "prev_yes_price": 0.595,
-      "yes_price_10m_change": 0.015,
-      "yes_price_10m_pct_change": 2.5,
-      "yes_price_6h_change": -0.065,
-      "yes_price_6h_pct_change": -9.6,
-      "yes_price_change": 0.015,
-      "yes_price_pct_change": 2.5,
+      "prev_yes_price": 0.61,
+      "yes_price_10m_change": -0.01,
+      "yes_price_10m_pct_change": -1.6,
+      "yes_price_6h_change": -0.075,
+      "yes_price_6h_pct_change": -11.1,
+      "yes_price_change": -0.01,
+      "yes_price_pct_change": -1.6,
       "price_history": [
         {
           "t": "2026-11-10T08:27:49Z",
@@ -567,9 +567,16 @@
           "mp": 0.3262,
           "bid": 0.54,
           "ask": 0.68
+        },
+        {
+          "t": "2026-11-10T12:47:25Z",
+          "p": 0.6,
+          "mp": 0.3262,
+          "bid": 0.51,
+          "ask": 0.69
         }
       ],
-      "prev_10m_yes_price": 0.595
+      "prev_10m_yes_price": 0.61
     },
     {
       "question": "Will the lowest temperature in Hong Kong be 19°C on November 11?",
@@ -759,5 +766,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-10T12:37:25.182786+00:00"
+  "last_price_refresh": "2026-11-10T12:47:24.864465+00:00"
 }
