@@ -94,7 +94,8 @@
           "bid": 0.2,
           "ask": 0.22
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.21
     },
     {
       "question": "Will the highest temperature in Atlanta be between 70-71°F on November 11?",
@@ -103,10 +104,10 @@
         70.0,
         71.0
       ],
-      "yes_price": 0.445,
+      "yes_price": 0.395,
       "no_price": 0.555,
-      "best_bid": 0.43,
-      "best_ask": 0.46,
+      "best_bid": 0.38,
+      "best_ask": 0.41,
       "bid_ask_spread": 0.03,
       "volume": 558.0,
       "spread": 0.03,
@@ -115,14 +116,14 @@
       "model_prob": 0.4047,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.445,
-      "effective_ask": 0.445,
-      "market_prob": 0.445,
-      "belief_prob": 0.4188,
-      "ev": -0.0589,
-      "kelly": 0.0,
-      "swing_edge": -0.0403,
-      "swing_upside_pct": -9.1,
+      "ask": 0.395,
+      "effective_ask": 0.395,
+      "market_prob": 0.395,
+      "belief_prob": 0.4013,
+      "ev": 0.0159,
+      "kelly": 0.0026,
+      "swing_edge": 0.0097,
+      "swing_upside_pct": 2.5,
       "sell_value": 0.43,
       "scan6h_model_prob": 0.4047,
       "prev_scan6h_model_prob": 0.4047,
@@ -137,12 +138,12 @@
       "scan6h_yes_price": 0.445,
       "prev_scan6h_yes_price": 0.445,
       "prev_yes_price": 0.445,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.05,
+      "yes_price_10m_pct_change": -11.2,
+      "yes_price_6h_change": -0.05,
+      "yes_price_6h_pct_change": -11.2,
+      "yes_price_change": -0.05,
+      "yes_price_pct_change": -11.2,
       "price_history": [
         {
           "t": "2026-11-10T08:27:48Z",
@@ -150,8 +151,16 @@
           "mp": 0.4047,
           "bid": 0.43,
           "ask": 0.46
+        },
+        {
+          "t": "2026-11-10T08:37:25Z",
+          "p": 0.395,
+          "mp": 0.4047,
+          "bid": 0.38,
+          "ask": 0.41
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.445
     },
     {
       "question": "Will the highest temperature in Atlanta be between 72-73°F on November 11?",
@@ -160,11 +169,11 @@
         72.0,
         73.0
       ],
-      "yes_price": 0.28,
+      "yes_price": 0.285,
       "no_price": 0.72,
-      "best_bid": 0.26,
+      "best_bid": 0.27,
       "best_ask": 0.3,
-      "bid_ask_spread": 0.04,
+      "bid_ask_spread": 0.03,
       "volume": 902.0,
       "spread": 0.04,
       "yes_token_id": "35703623888484783127577417662101318780282503057857411453596602126191384069876",
@@ -172,14 +181,14 @@
       "model_prob": 0.2044,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.28,
-      "effective_ask": 0.2855,
-      "market_prob": 0.28,
-      "belief_prob": 0.2309,
-      "ev": -0.1912,
+      "ask": 0.285,
+      "effective_ask": 0.285,
+      "market_prob": 0.285,
+      "belief_prob": 0.2326,
+      "ev": -0.1839,
       "kelly": 0.0,
-      "swing_edge": -0.0811,
-      "swing_upside_pct": -28.4,
+      "swing_edge": -0.0806,
+      "swing_upside_pct": -28.3,
       "sell_value": 0.26,
       "scan6h_model_prob": 0.2044,
       "prev_scan6h_model_prob": 0.2044,
@@ -194,12 +203,12 @@
       "scan6h_yes_price": 0.28,
       "prev_scan6h_yes_price": 0.28,
       "prev_yes_price": 0.28,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.8,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 1.8,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.8,
       "price_history": [
         {
           "t": "2026-11-10T08:27:48Z",
@@ -207,8 +216,16 @@
           "mp": 0.2044,
           "bid": 0.26,
           "ask": 0.3
+        },
+        {
+          "t": "2026-11-10T08:37:25Z",
+          "p": 0.285,
+          "mp": 0.2044,
+          "bid": 0.27,
+          "ask": 0.3
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.28
     },
     {
       "question": "Will the highest temperature in Atlanta be 80°F or higher on November 11?",
@@ -265,7 +282,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -294,5 +312,6 @@
   "success_probability": 0.4412,
   "confidence": 0.2092,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-10T08:37:25.195418+00:00"
 }
