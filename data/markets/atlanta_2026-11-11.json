@@ -472,11 +472,11 @@
         66.0,
         67.0
       ],
-      "yes_price": 0.0245,
+      "yes_price": 0.025,
       "no_price": 0.9505,
-      "best_bid": 0.02,
+      "best_bid": 0.021,
       "best_ask": 0.029,
-      "bid_ask_spread": 0.009,
+      "bid_ask_spread": 0.008,
       "volume": 223.0,
       "spread": 0.021,
       "yes_token_id": "115519249408071335218901971865202156875323811427586719575598236134964084100967",
@@ -484,14 +484,14 @@
       "model_prob": 0.0586,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0245,
-      "effective_ask": 0.0245,
-      "market_prob": 0.0245,
-      "belief_prob": 0.0467,
-      "ev": 0.9061,
-      "kelly": 0.0057,
-      "swing_edge": 0.0341,
-      "swing_upside_pct": 139.2,
+      "ask": 0.025,
+      "effective_ask": 0.025,
+      "market_prob": 0.025,
+      "belief_prob": 0.0468,
+      "ev": 0.872,
+      "kelly": 0.0056,
+      "swing_edge": 0.0336,
+      "swing_upside_pct": 134.4,
       "sell_value": 0.039,
       "scan6h_model_prob": 0.0586,
       "prev_scan6h_model_prob": 0.0586,
@@ -505,13 +505,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0495,
       "prev_scan6h_yes_price": 0.0495,
-      "prev_yes_price": 0.034,
-      "yes_price_10m_change": -0.0095,
-      "yes_price_10m_pct_change": -27.9,
-      "yes_price_6h_change": -0.025,
-      "yes_price_6h_pct_change": -50.5,
-      "yes_price_change": -0.0095,
-      "yes_price_pct_change": -27.9,
+      "prev_yes_price": 0.0245,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 2.0,
+      "yes_price_6h_change": -0.0245,
+      "yes_price_6h_pct_change": -49.5,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 2.0,
       "price_history": [
         {
           "t": "2026-11-10T14:46:17Z",
@@ -605,7 +605,7 @@
           "ask": 0.029
         }
       ],
-      "prev_10m_yes_price": 0.034
+      "prev_10m_yes_price": 0.0245
     },
     {
       "question": "Will the highest temperature in Atlanta be between 68-69°F on November 11?",
@@ -1555,6 +1555,13 @@
           "mp": 0.1432,
           "bid": 0.28,
           "ask": 0.3
+        },
+        {
+          "t": "2026-11-10T19:07:31Z",
+          "p": 0.29,
+          "mp": 0.1432,
+          "bid": 0.28,
+          "ask": 0.3
         }
       ]
     },
@@ -2045,5 +2052,5 @@
   "confidence": 0.0189,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-10T18:57:31.124401+00:00"
+  "last_price_refresh": "2026-11-10T19:07:30.533591+00:00"
 }
