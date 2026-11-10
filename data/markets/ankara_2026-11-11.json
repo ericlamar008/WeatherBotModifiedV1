@@ -94,7 +94,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the highest temperature in Ankara be 4°C on November 11?",
@@ -151,7 +152,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Ankara be 5°C on November 11?",
@@ -208,7 +210,8 @@
           "bid": 0.001,
           "ask": 0.019
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.01
     },
     {
       "question": "Will the highest temperature in Ankara be 6°C on November 11?",
@@ -265,7 +268,8 @@
           "bid": 0.001,
           "ask": 0.004
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0025
     },
     {
       "question": "Will the highest temperature in Ankara be 8°C on November 11?",
@@ -322,7 +326,8 @@
           "bid": 0.05,
           "ask": 0.08
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.065
     },
     {
       "question": "Will the highest temperature in Ankara be 9°C on November 11?",
@@ -379,7 +384,8 @@
           "bid": 0.27,
           "ask": 0.3
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.285
     },
     {
       "question": "Will the highest temperature in Ankara be 10°C on November 11?",
@@ -436,7 +442,8 @@
           "bid": 0.35,
           "ask": 0.37
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.36
     },
     {
       "question": "Will the highest temperature in Ankara be 11°C on November 11?",
@@ -445,11 +452,11 @@
         11.0,
         11.0
       ],
-      "yes_price": 0.2,
+      "yes_price": 0.195,
       "no_price": 0.8,
       "best_bid": 0.19,
-      "best_ask": 0.21,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.2,
+      "bid_ask_spread": 0.01,
       "volume": 243.0,
       "spread": 0.02,
       "yes_token_id": "19513066638849812965626112331140878517018229476577087506557479767616869886282",
@@ -457,14 +464,14 @@
       "model_prob": 0.4555,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.2,
-      "effective_ask": 0.2,
-      "market_prob": 0.2,
-      "belief_prob": 0.3661,
-      "ev": 0.8305,
-      "kelly": 0.0519,
-      "swing_edge": 0.2555,
-      "swing_upside_pct": 127.7,
+      "ask": 0.195,
+      "effective_ask": 0.195,
+      "market_prob": 0.195,
+      "belief_prob": 0.3643,
+      "ev": 0.8682,
+      "kelly": 0.0526,
+      "swing_edge": 0.2605,
+      "swing_upside_pct": 133.6,
       "sell_value": 0.19,
       "scan6h_model_prob": 0.4555,
       "prev_scan6h_model_prob": 0.4555,
@@ -479,12 +486,12 @@
       "scan6h_yes_price": 0.2,
       "prev_scan6h_yes_price": 0.2,
       "prev_yes_price": 0.2,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -2.5,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -2.5,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -2.5,
       "price_history": [
         {
           "t": "2026-11-10T02:27:34Z",
@@ -492,8 +499,16 @@
           "mp": 0.4555,
           "bid": 0.19,
           "ask": 0.21
+        },
+        {
+          "t": "2026-11-10T02:37:30Z",
+          "p": 0.195,
+          "mp": 0.4555,
+          "bid": 0.19,
+          "ask": 0.2
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.2
     },
     {
       "question": "Will the highest temperature in Ankara be 12°C on November 11?",
@@ -550,7 +565,8 @@
           "bid": 0.027,
           "ask": 0.054
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0405
     }
   ],
   "live_allocation": [
@@ -579,5 +595,6 @@
   "success_probability": 0.3246,
   "confidence": 0.0212,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-10T02:37:29.914352+00:00"
 }

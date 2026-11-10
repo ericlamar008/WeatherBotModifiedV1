@@ -93,7 +93,8 @@
           "bid": 0.3,
           "ask": 0.32
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.31
     },
     {
       "question": "Will the highest temperature in Cape Town be 25°C on November 11?",
@@ -150,7 +151,8 @@
           "bid": 0.35,
           "ask": 0.37
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.36
     },
     {
       "question": "Will the highest temperature in Cape Town be 26°C on November 11?",
@@ -177,8 +179,8 @@
       "belief_prob": 0.1497,
       "ev": -0.0982,
       "kelly": 0.0,
-      "swing_edge": -0.0192,
-      "swing_upside_pct": -11.6,
+      "swing_edge": -0.0082,
+      "swing_upside_pct": -5.3,
       "sell_value": 0.13,
       "scan6h_model_prob": 0.1468,
       "prev_scan6h_model_prob": 0.1468,
@@ -207,7 +209,8 @@
           "bid": 0.13,
           "ask": 0.18
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.155
     },
     {
       "question": "Will the highest temperature in Cape Town be 27°C on November 11?",
@@ -216,11 +219,11 @@
         27.0,
         27.0
       ],
-      "yes_price": 0.085,
+      "yes_price": 0.09,
       "no_price": 0.915,
       "best_bid": 0.04,
-      "best_ask": 0.13,
-      "bid_ask_spread": 0.09,
+      "best_ask": 0.14,
+      "bid_ask_spread": 0.1,
       "volume": 20.0,
       "spread": 0.09,
       "yes_token_id": "22879029457376098496568836983385928363417447714016535345858071695414685217110",
@@ -228,14 +231,14 @@
       "model_prob": 0.1105,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.085,
-      "effective_ask": 0.118,
-      "market_prob": 0.085,
-      "belief_prob": 0.1016,
-      "ev": -0.139,
+      "ask": 0.09,
+      "effective_ask": 0.1285,
+      "market_prob": 0.09,
+      "belief_prob": 0.1033,
+      "ev": -0.1961,
       "kelly": 0.0,
-      "swing_edge": -0.0075,
-      "swing_upside_pct": -6.4,
+      "swing_edge": 0.0205,
+      "swing_upside_pct": 22.8,
       "sell_value": 0.04,
       "scan6h_model_prob": 0.1105,
       "prev_scan6h_model_prob": 0.1105,
@@ -250,12 +253,12 @@
       "scan6h_yes_price": 0.085,
       "prev_scan6h_yes_price": 0.085,
       "prev_yes_price": 0.085,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 5.9,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 5.9,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 5.9,
       "price_history": [
         {
           "t": "2026-11-10T02:28:13Z",
@@ -263,8 +266,16 @@
           "mp": 0.1105,
           "bid": 0.04,
           "ask": 0.13
+        },
+        {
+          "t": "2026-11-10T02:37:30Z",
+          "p": 0.09,
+          "mp": 0.1105,
+          "bid": 0.04,
+          "ask": 0.14
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.085
     },
     {
       "question": "Will the highest temperature in Cape Town be 29°C on November 11?",
@@ -321,7 +332,8 @@
           "bid": 0.002,
           "ask": 0.019
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0105
     },
     {
       "question": "Will the highest temperature in Cape Town be 30°C or higher on November 11?",
@@ -378,7 +390,8 @@
           "bid": 0.001,
           "ask": 0.005
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.003
     }
   ],
   "live_allocation": [],
@@ -390,5 +403,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-10T02:37:29.914352+00:00"
 }

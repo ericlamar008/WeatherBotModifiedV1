@@ -96,7 +96,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Paris be 3°C on November 10?",
@@ -153,7 +154,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Paris be 4°C on November 10?",
@@ -210,7 +212,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Paris be 5°C on November 10?",
@@ -237,8 +240,8 @@
       "belief_prob": 0.0696,
       "ev": 0.8811,
       "kelly": 0.0085,
-      "swing_edge": 0.056,
-      "swing_upside_pct": 151.4,
+      "swing_edge": 0.067,
+      "swing_upside_pct": 257.7,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.093,
       "prev_scan6h_model_prob": 0.093,
@@ -267,7 +270,8 @@
           "bid": 0.001,
           "ask": 0.051
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.026
     },
     {
       "question": "Will the lowest temperature in Paris be 6°C on November 10?",
@@ -324,7 +328,8 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the lowest temperature in Paris be 7°C on November 10?",
@@ -351,8 +356,8 @@
       "belief_prob": 0.2631,
       "ev": 0.2529,
       "kelly": 0.0168,
-      "swing_edge": 0.1248,
-      "swing_upside_pct": 59.4,
+      "swing_edge": 0.2048,
+      "swing_upside_pct": 157.5,
       "sell_value": 0.04,
       "scan6h_model_prob": 0.3348,
       "prev_scan6h_model_prob": 0.3348,
@@ -381,7 +386,8 @@
           "bid": 0.04,
           "ask": 0.22
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.13
     },
     {
       "question": "Will the lowest temperature in Paris be 8°C on November 10?",
@@ -408,8 +414,8 @@
       "belief_prob": 0.4397,
       "ev": -0.4363,
       "kelly": 0.0,
-      "swing_edge": -0.4804,
-      "swing_upside_pct": -61.6,
+      "swing_edge": -0.4004,
+      "swing_upside_pct": -57.2,
       "sell_value": 0.5,
       "scan6h_model_prob": 0.2996,
       "prev_scan6h_model_prob": 0.2996,
@@ -438,7 +444,8 @@
           "bid": 0.5,
           "ask": 0.9
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.7
     },
     {
       "question": "Will the lowest temperature in Paris be 9°C on November 10?",
@@ -462,7 +469,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -495,7 +502,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Paris be 10°C on November 10?",
@@ -519,7 +527,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -552,7 +560,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Paris be 11°C on November 10?",
@@ -576,7 +585,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -609,7 +618,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Paris be 12°C or higher on November 10?",
@@ -633,7 +643,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -666,7 +676,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -695,5 +706,6 @@
   "success_probability": 0.517,
   "confidence": 0.1142,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-10T02:37:29.914352+00:00"
 }
