@@ -387,11 +387,11 @@
         1.0,
         1.0
       ],
-      "yes_price": 0.102,
+      "yes_price": 0.103,
       "no_price": 0.9935,
-      "best_bid": 0.005,
+      "best_bid": 0.007,
       "best_ask": 0.199,
-      "bid_ask_spread": 0.194,
+      "bid_ask_spread": 0.192,
       "volume": 130.0,
       "spread": 0.007,
       "yes_token_id": "19990082412336707291386821863182840336245863981752993837053490549536326631483",
@@ -399,14 +399,14 @@
       "model_prob": 0.0358,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.102,
-      "effective_ask": 0.182,
-      "market_prob": 0.102,
-      "belief_prob": 0.059,
-      "ev": -0.6758,
+      "ask": 0.103,
+      "effective_ask": 0.183,
+      "market_prob": 0.103,
+      "belief_prob": 0.0593,
+      "ev": -0.676,
       "kelly": 0.0,
-      "swing_edge": -0.0662,
-      "swing_upside_pct": -64.9,
+      "swing_edge": -0.0672,
+      "swing_upside_pct": -65.2,
       "sell_value": 0.003,
       "scan6h_model_prob": 0.0358,
       "prev_scan6h_model_prob": 0.0358,
@@ -420,13 +420,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0065,
       "prev_scan6h_yes_price": 0.0065,
-      "prev_yes_price": 0.106,
-      "yes_price_10m_change": -0.004,
-      "yes_price_10m_pct_change": -3.8,
-      "yes_price_6h_change": 0.0955,
-      "yes_price_6h_pct_change": 1469.2,
-      "yes_price_change": -0.004,
-      "yes_price_pct_change": -3.8,
+      "prev_yes_price": 0.102,
+      "yes_price_10m_change": 0.001,
+      "yes_price_10m_pct_change": 1.0,
+      "yes_price_6h_change": 0.0965,
+      "yes_price_6h_pct_change": 1484.6,
+      "yes_price_change": 0.001,
+      "yes_price_pct_change": 1.0,
       "price_history": [
         {
           "t": "2026-11-09T20:24:26Z",
@@ -590,7 +590,7 @@
           "ask": 0.199
         }
       ],
-      "prev_10m_yes_price": 0.106
+      "prev_10m_yes_price": 0.102
     },
     {
       "question": "Will the lowest temperature in Seoul (Incheon) be 2°C on November 10?",
@@ -965,6 +965,13 @@
         },
         {
           "t": "2026-11-10T01:47:34Z",
+          "p": 0.93,
+          "mp": 0.1461,
+          "bid": 0.86,
+          "ask": 1.0
+        },
+        {
+          "t": "2026-11-10T02:07:33Z",
           "p": 0.93,
           "mp": 0.1461,
           "bid": 0.86,
@@ -2810,5 +2817,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-10T01:57:29.552847+00:00"
+  "last_price_refresh": "2026-11-10T02:07:32.615222+00:00"
 }
