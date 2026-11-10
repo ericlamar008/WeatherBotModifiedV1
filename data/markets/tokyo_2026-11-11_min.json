@@ -170,10 +170,10 @@
         8.0,
         8.0
       ],
-      "yes_price": 0.4,
+      "yes_price": 0.39,
       "no_price": 0.59,
-      "best_bid": 0.34,
-      "best_ask": 0.46,
+      "best_bid": 0.33,
+      "best_ask": 0.45,
       "bid_ask_spread": 0.12,
       "volume": 236.0,
       "spread": 0.16,
@@ -182,14 +182,14 @@
       "model_prob": 0.1247,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.4,
-      "effective_ask": 0.4495,
-      "market_prob": 0.4,
-      "belief_prob": 0.2211,
-      "ev": -0.5081,
+      "ask": 0.39,
+      "effective_ask": 0.4395,
+      "market_prob": 0.39,
+      "belief_prob": 0.2176,
+      "ev": -0.5049,
       "kelly": 0.0,
-      "swing_edge": -0.2753,
-      "swing_upside_pct": -68.8,
+      "swing_edge": -0.2653,
+      "swing_upside_pct": -68.0,
       "sell_value": 0.33,
       "scan6h_model_prob": 0.1247,
       "prev_scan6h_model_prob": 0.1247,
@@ -203,13 +203,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.41,
       "prev_scan6h_yes_price": 0.41,
-      "prev_yes_price": 0.41,
+      "prev_yes_price": 0.4,
       "yes_price_10m_change": -0.01,
-      "yes_price_10m_pct_change": -2.4,
-      "yes_price_6h_change": -0.01,
-      "yes_price_6h_pct_change": -2.4,
+      "yes_price_10m_pct_change": -2.5,
+      "yes_price_6h_change": -0.02,
+      "yes_price_6h_pct_change": -4.9,
       "yes_price_change": -0.01,
-      "yes_price_pct_change": -2.4,
+      "yes_price_pct_change": -2.5,
       "price_history": [
         {
           "t": "2026-11-10T14:46:18Z",
@@ -224,9 +224,16 @@
           "mp": 0.1247,
           "bid": 0.34,
           "ask": 0.46
+        },
+        {
+          "t": "2026-11-10T14:57:34Z",
+          "p": 0.39,
+          "mp": 0.1247,
+          "bid": 0.33,
+          "ask": 0.45
         }
       ],
-      "prev_10m_yes_price": 0.41
+      "prev_10m_yes_price": 0.4
     },
     {
       "question": "Will the lowest temperature in Tokyo be 9°C on November 11?",
@@ -536,5 +543,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-10T14:49:56.378012+00:00"
+  "last_price_refresh": "2026-11-10T14:57:32.166744+00:00"
 }
