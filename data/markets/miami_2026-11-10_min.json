@@ -536,10 +536,10 @@
         70.0,
         71.0
       ],
-      "yes_price": 0.055,
+      "yes_price": 0.05,
       "no_price": 0.92,
       "best_bid": null,
-      "best_ask": 0.11,
+      "best_ask": 0.1,
       "bid_ask_spread": 0.0,
       "volume": 2.0,
       "spread": 0.0,
@@ -548,14 +548,14 @@
       "model_prob": 0.1003,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.055,
-      "effective_ask": 0.055,
-      "market_prob": 0.055,
-      "belief_prob": 0.0844,
-      "ev": 0.5345,
-      "kelly": 0.0078,
-      "swing_edge": 0.0453,
-      "swing_upside_pct": 82.4,
+      "ask": 0.05,
+      "effective_ask": 0.05,
+      "market_prob": 0.05,
+      "belief_prob": 0.0827,
+      "ev": 0.654,
+      "kelly": 0.0086,
+      "swing_edge": 0.0503,
+      "swing_upside_pct": 100.6,
       "sell_value": null,
       "scan6h_model_prob": 0.1003,
       "prev_scan6h_model_prob": 0.1003,
@@ -569,13 +569,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.08,
       "prev_scan6h_yes_price": 0.08,
-      "prev_yes_price": 0.06,
+      "prev_yes_price": 0.055,
       "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -8.3,
-      "yes_price_6h_change": -0.025,
-      "yes_price_6h_pct_change": -31.2,
+      "yes_price_10m_pct_change": -9.1,
+      "yes_price_6h_change": -0.03,
+      "yes_price_6h_pct_change": -37.5,
       "yes_price_change": -0.005,
-      "yes_price_pct_change": -8.3,
+      "yes_price_pct_change": -9.1,
       "price_history": [
         {
           "t": "2026-11-10T14:46:18Z",
@@ -702,9 +702,16 @@
           "mp": 0.1003,
           "bid": null,
           "ask": 0.11
+        },
+        {
+          "t": "2026-11-10T20:07:28Z",
+          "p": 0.05,
+          "mp": 0.1003,
+          "bid": null,
+          "ask": 0.1
         }
       ],
-      "prev_10m_yes_price": 0.06
+      "prev_10m_yes_price": 0.055
     },
     {
       "question": "Will the lowest temperature in Miami be between 74-75°F on November 10?",
@@ -1726,5 +1733,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-10T19:57:24.789873+00:00"
+  "last_price_refresh": "2026-11-10T20:07:26.836559+00:00"
 }
