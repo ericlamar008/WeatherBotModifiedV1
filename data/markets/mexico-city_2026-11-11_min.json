@@ -47,10 +47,10 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.055,
+      "yes_price": 0.05,
       "no_price": 0.92,
       "best_bid": null,
-      "best_ask": 0.11,
+      "best_ask": 0.1,
       "bid_ask_spread": 0.0,
       "volume": 22.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.1247,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.055,
-      "effective_ask": 0.055,
-      "market_prob": 0.055,
-      "belief_prob": 0.1003,
-      "ev": 0.8236,
-      "kelly": 0.012,
-      "swing_edge": 0.0697,
-      "swing_upside_pct": 126.7,
+      "ask": 0.05,
+      "effective_ask": 0.05,
+      "market_prob": 0.05,
+      "belief_prob": 0.0986,
+      "ev": 0.972,
+      "kelly": 0.0128,
+      "swing_edge": 0.0747,
+      "swing_upside_pct": 149.4,
       "sell_value": null,
       "scan6h_model_prob": 0.1247,
       "prev_scan6h_model_prob": 0.1247,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.08,
       "prev_scan6h_yes_price": 0.08,
-      "prev_yes_price": 0.06,
+      "prev_yes_price": 0.055,
       "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -8.3,
-      "yes_price_6h_change": -0.025,
-      "yes_price_6h_pct_change": -31.2,
+      "yes_price_10m_pct_change": -9.1,
+      "yes_price_6h_change": -0.03,
+      "yes_price_6h_pct_change": -37.5,
       "yes_price_change": -0.005,
-      "yes_price_pct_change": -8.3,
+      "yes_price_pct_change": -9.1,
       "price_history": [
         {
           "t": "2026-11-11T14:27:44Z",
@@ -178,9 +178,16 @@
           "mp": 0.1247,
           "bid": null,
           "ask": 0.11
+        },
+        {
+          "t": "2026-11-11T18:07:32Z",
+          "p": 0.05,
+          "mp": 0.1247,
+          "bid": null,
+          "ask": 0.1
         }
       ],
-      "prev_10m_yes_price": 0.06
+      "prev_10m_yes_price": 0.055
     },
     {
       "question": "Will the lowest temperature in Mexico City be 11°C on November 11?",
@@ -992,5 +999,5 @@
   "confidence": 0.6365,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-11T17:57:32.224593+00:00"
+  "last_price_refresh": "2026-11-11T18:07:30.934433+00:00"
 }
