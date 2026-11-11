@@ -47,11 +47,11 @@
         44.0,
         45.0
       ],
-      "yes_price": 0.0305,
+      "yes_price": 0.0255,
       "no_price": 0.9695,
       "best_bid": 0.001,
-      "best_ask": 0.06,
-      "bid_ask_spread": 0.059,
+      "best_ask": 0.05,
+      "bid_ask_spread": 0.049,
       "volume": 20.0,
       "spread": 0.059,
       "yes_token_id": "102430182439102920410728630874648975889577862919917601661590332951942202105788",
@@ -59,14 +59,14 @@
       "model_prob": 0.039,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0305,
-      "effective_ask": 0.0464,
-      "market_prob": 0.0305,
-      "belief_prob": 0.036,
-      "ev": -0.2241,
+      "ask": 0.0255,
+      "effective_ask": 0.036,
+      "market_prob": 0.0255,
+      "belief_prob": 0.0343,
+      "ev": -0.0472,
       "kelly": 0.0,
-      "swing_edge": -0.0074,
-      "swing_upside_pct": -15.9,
+      "swing_edge": 0.0135,
+      "swing_upside_pct": 52.9,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.039,
       "prev_scan6h_model_prob": 0.039,
@@ -81,12 +81,12 @@
       "scan6h_yes_price": 0.0305,
       "prev_scan6h_yes_price": 0.0305,
       "prev_yes_price": 0.0305,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -16.4,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -16.4,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -16.4,
       "price_history": [
         {
           "t": "2026-11-11T02:25:45Z",
@@ -94,8 +94,16 @@
           "mp": 0.039,
           "bid": 0.001,
           "ask": 0.06
+        },
+        {
+          "t": "2026-11-11T02:37:27Z",
+          "p": 0.0255,
+          "mp": 0.039,
+          "bid": 0.001,
+          "ask": 0.05
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0305
     },
     {
       "question": "Will the lowest temperature in New York City be between 48-49°F on November 11?",
@@ -122,8 +130,8 @@
       "belief_prob": 0.1278,
       "ev": 0.2444,
       "kelly": 0.007,
-      "swing_edge": 0.0484,
-      "swing_upside_pct": 47.1,
+      "swing_edge": 0.0666,
+      "swing_upside_pct": 78.8,
       "sell_value": 0.053,
       "scan6h_model_prob": 0.1511,
       "prev_scan6h_model_prob": 0.1511,
@@ -152,7 +160,8 @@
           "bid": 0.053,
           "ask": 0.116
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0845
     },
     {
       "question": "Will the lowest temperature in New York City be between 50-51°F on November 11?",
@@ -179,8 +188,8 @@
       "belief_prob": 0.2699,
       "ev": -0.3385,
       "kelly": 0.0,
-      "swing_edge": -0.1947,
-      "swing_upside_pct": -47.7,
+      "swing_edge": -0.1617,
+      "swing_upside_pct": -43.1,
       "sell_value": 0.33,
       "scan6h_model_prob": 0.2133,
       "prev_scan6h_model_prob": 0.2133,
@@ -209,7 +218,8 @@
           "bid": 0.33,
           "ask": 0.42
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.375
     },
     {
       "question": "Will the lowest temperature in New York City be between 52-53°F on November 11?",
@@ -236,8 +246,8 @@
       "belief_prob": 0.3094,
       "ev": -0.4619,
       "kelly": 0.0,
-      "swing_edge": -0.3655,
-      "swing_upside_pct": -63.6,
+      "swing_edge": -0.2855,
+      "swing_upside_pct": -57.7,
       "sell_value": 0.39,
       "scan6h_model_prob": 0.2095,
       "prev_scan6h_model_prob": 0.2095,
@@ -266,7 +276,8 @@
           "bid": 0.39,
           "ask": 0.6
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.495
     },
     {
       "question": "Will the lowest temperature in New York City be between 56-57°F on November 11?",
@@ -323,7 +334,8 @@
           "bid": 0.001,
           "ask": 0.019
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.01
     }
   ],
   "live_allocation": [],
@@ -335,5 +347,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-11T02:37:26.646058+00:00"
 }

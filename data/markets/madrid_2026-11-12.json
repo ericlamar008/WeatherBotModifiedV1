@@ -94,7 +94,8 @@
           "bid": 0.001,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.002
     },
     {
       "question": "Will the highest temperature in Madrid be 12°C on November 12?",
@@ -151,7 +152,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Madrid be 13°C on November 12?",
@@ -208,7 +210,8 @@
           "bid": 0.001,
           "ask": 0.015
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.008
     },
     {
       "question": "Will the highest temperature in Madrid be 14°C on November 12?",
@@ -265,7 +268,8 @@
           "bid": 0.003,
           "ask": 0.016
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0095
     },
     {
       "question": "Will the highest temperature in Madrid be 15°C on November 12?",
@@ -274,11 +278,11 @@
         15.0,
         15.0
       ],
-      "yes_price": 0.036,
+      "yes_price": 0.041,
       "no_price": 0.964,
       "best_bid": 0.024,
-      "best_ask": 0.048,
-      "bid_ask_spread": 0.024,
+      "best_ask": 0.058,
+      "bid_ask_spread": 0.034,
       "volume": 27.0,
       "spread": 0.024,
       "yes_token_id": "70034365465416969600707537666608352819210926915827877782365847538711698029847",
@@ -286,14 +290,14 @@
       "model_prob": 0.0858,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.036,
-      "effective_ask": 0.036,
-      "market_prob": 0.036,
-      "belief_prob": 0.0684,
-      "ev": 0.9,
-      "kelly": 0.0084,
-      "swing_edge": 0.0498,
-      "swing_upside_pct": 138.3,
+      "ask": 0.041,
+      "effective_ask": 0.0432,
+      "market_prob": 0.041,
+      "belief_prob": 0.0701,
+      "ev": 0.6227,
+      "kelly": 0.007,
+      "swing_edge": 0.0448,
+      "swing_upside_pct": 109.3,
       "sell_value": 0.024,
       "scan6h_model_prob": 0.0858,
       "prev_scan6h_model_prob": 0.0858,
@@ -308,12 +312,12 @@
       "scan6h_yes_price": 0.036,
       "prev_scan6h_yes_price": 0.036,
       "prev_yes_price": 0.036,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 13.9,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 13.9,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 13.9,
       "price_history": [
         {
           "t": "2026-11-11T02:24:30Z",
@@ -321,8 +325,16 @@
           "mp": 0.0858,
           "bid": 0.024,
           "ask": 0.048
+        },
+        {
+          "t": "2026-11-11T02:37:27Z",
+          "p": 0.041,
+          "mp": 0.0858,
+          "bid": 0.024,
+          "ask": 0.058
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.036
     },
     {
       "question": "Will the highest temperature in Madrid be 16°C on November 12?",
@@ -379,7 +391,8 @@
           "bid": 0.23,
           "ask": 0.26
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.245
     },
     {
       "question": "Will the highest temperature in Madrid be 17°C on November 12?",
@@ -436,7 +449,8 @@
           "bid": 0.52,
           "ask": 0.55
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.535
     },
     {
       "question": "Will the highest temperature in Madrid be 18°C on November 12?",
@@ -493,7 +507,8 @@
           "bid": 0.18,
           "ask": 0.19
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.185
     },
     {
       "question": "Will the highest temperature in Madrid be 19°C on November 12?",
@@ -550,7 +565,8 @@
           "bid": 0.022,
           "ask": 0.024
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.023
     },
     {
       "question": "Will the highest temperature in Madrid be 20°C on November 12?",
@@ -607,7 +623,8 @@
           "bid": 0.003,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.006
     },
     {
       "question": "Will the highest temperature in Madrid be 21°C or higher on November 12?",
@@ -664,7 +681,8 @@
           "bid": 0.001,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     }
   ],
   "live_allocation": [
@@ -693,5 +711,6 @@
   "success_probability": 0.4303,
   "confidence": 0.1153,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-11T02:37:26.646058+00:00"
 }

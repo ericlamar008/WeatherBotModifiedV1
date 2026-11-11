@@ -95,7 +95,8 @@
           "bid": null,
           "ask": 0.12
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.06
     },
     {
       "question": "Will the lowest temperature in Miami be between 72-73°F on November 11?",
@@ -122,8 +123,8 @@
       "belief_prob": 0.1799,
       "ev": -0.2358,
       "kelly": 0.0,
-      "swing_edge": -0.0768,
-      "swing_upside_pct": -32.6,
+      "swing_edge": -0.0609,
+      "swing_upside_pct": -27.7,
       "sell_value": 0.19,
       "scan6h_model_prob": 0.1586,
       "prev_scan6h_model_prob": 0.1586,
@@ -152,7 +153,8 @@
           "bid": 0.19,
           "ask": 0.249
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.2195
     },
     {
       "question": "Will the lowest temperature in Miami be between 74-75°F on November 11?",
@@ -161,11 +163,11 @@
         74.0,
         75.0
       ],
-      "yes_price": 0.472,
+      "yes_price": 0.4705,
       "no_price": 0.528,
-      "best_bid": 0.375,
-      "best_ask": 0.569,
-      "bid_ask_spread": 0.194,
+      "best_bid": 0.376,
+      "best_ask": 0.565,
+      "bid_ask_spread": 0.189,
       "volume": 95.0,
       "spread": 0.194,
       "yes_token_id": "113621020514951754929965561864431252468718642531141327373159945000581270020559",
@@ -173,14 +175,14 @@
       "model_prob": 0.2661,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.472,
-      "effective_ask": 0.552,
-      "market_prob": 0.472,
-      "belief_prob": 0.3382,
-      "ev": -0.3873,
+      "ask": 0.4705,
+      "effective_ask": 0.5505,
+      "market_prob": 0.4705,
+      "belief_prob": 0.3376,
+      "ev": -0.3867,
       "kelly": 0.0,
-      "swing_edge": -0.2859,
-      "swing_upside_pct": -51.8,
+      "swing_edge": -0.2044,
+      "swing_upside_pct": -43.4,
       "sell_value": 0.375,
       "scan6h_model_prob": 0.2661,
       "prev_scan6h_model_prob": 0.2661,
@@ -195,12 +197,12 @@
       "scan6h_yes_price": 0.472,
       "prev_scan6h_yes_price": 0.472,
       "prev_yes_price": 0.472,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0015,
+      "yes_price_10m_pct_change": -0.3,
+      "yes_price_6h_change": -0.0015,
+      "yes_price_6h_pct_change": -0.3,
+      "yes_price_change": -0.0015,
+      "yes_price_pct_change": -0.3,
       "price_history": [
         {
           "t": "2026-11-11T02:25:45Z",
@@ -209,7 +211,8 @@
           "bid": 0.375,
           "ask": 0.569
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.472
     },
     {
       "question": "Will the lowest temperature in Miami be between 76-77°F on November 11?",
@@ -236,8 +239,8 @@
       "belief_prob": 0.2304,
       "ev": -0.1622,
       "kelly": 0.0,
-      "swing_edge": -0.0256,
-      "swing_upside_pct": -9.3,
+      "swing_edge": 0.0544,
+      "swing_upside_pct": 27.9,
       "sell_value": 0.06,
       "scan6h_model_prob": 0.2494,
       "prev_scan6h_model_prob": 0.2494,
@@ -266,7 +269,8 @@
           "bid": 0.06,
           "ask": 0.33
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.195
     },
     {
       "question": "Will the lowest temperature in Miami be between 78-79°F on November 11?",
@@ -293,8 +297,8 @@
       "belief_prob": 0.1014,
       "ev": 0.5528,
       "kelly": 0.0097,
-      "swing_edge": 0.0692,
-      "swing_upside_pct": 106.0,
+      "swing_edge": 0.0945,
+      "swing_upside_pct": 236.2,
       "sell_value": 0.002,
       "scan6h_model_prob": 0.1345,
       "prev_scan6h_model_prob": 0.1345,
@@ -323,7 +327,8 @@
           "bid": 0.002,
           "ask": 0.078
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.04
     },
     {
       "question": "Will the lowest temperature in Miami be between 82-83°F on November 11?",
@@ -380,7 +385,8 @@
           "bid": null,
           "ask": 0.02
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.01
     },
     {
       "question": "Will the lowest temperature in Miami be 84°F or higher on November 11?",
@@ -437,7 +443,8 @@
           "bid": 0.001,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     }
   ],
   "live_allocation": [],
@@ -449,5 +456,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-11T02:37:26.646058+00:00"
 }
