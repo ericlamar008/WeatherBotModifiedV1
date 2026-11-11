@@ -240,11 +240,11 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.1065,
+      "yes_price": 0.11,
       "no_price": 0.893,
       "best_bid": 0.086,
-      "best_ask": 0.127,
-      "bid_ask_spread": 0.041,
+      "best_ask": 0.134,
+      "bid_ask_spread": 0.048,
       "volume": 42.0,
       "spread": 0.042,
       "yes_token_id": "80875382259297579247558149807444989632012063401839340447936885053135877435879",
@@ -252,14 +252,14 @@
       "model_prob": 0.0297,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1065,
-      "effective_ask": 0.1125,
-      "market_prob": 0.1065,
-      "belief_prob": 0.0566,
-      "ev": -0.4969,
+      "ask": 0.11,
+      "effective_ask": 0.1199,
+      "market_prob": 0.11,
+      "belief_prob": 0.0578,
+      "ev": -0.5179,
       "kelly": 0.0,
-      "swing_edge": -0.0768,
-      "swing_upside_pct": -72.1,
+      "swing_edge": -0.0803,
+      "swing_upside_pct": -73.0,
       "sell_value": 0.086,
       "scan6h_model_prob": 0.0297,
       "prev_scan6h_model_prob": 0.0297,
@@ -273,13 +273,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.107,
       "prev_scan6h_yes_price": 0.107,
-      "prev_yes_price": 0.1035,
-      "yes_price_10m_change": 0.003,
-      "yes_price_10m_pct_change": 2.9,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.5,
-      "yes_price_change": 0.003,
-      "yes_price_pct_change": 2.9,
+      "prev_yes_price": 0.1065,
+      "yes_price_10m_change": 0.0035,
+      "yes_price_10m_pct_change": 3.3,
+      "yes_price_6h_change": 0.003,
+      "yes_price_6h_pct_change": 2.8,
+      "yes_price_change": 0.0035,
+      "yes_price_pct_change": 3.3,
       "price_history": [
         {
           "t": "2026-11-11T02:25:44Z",
@@ -296,7 +296,7 @@
           "ask": 0.127
         }
       ],
-      "prev_10m_yes_price": 0.1035
+      "prev_10m_yes_price": 0.1065
     },
     {
       "question": "Will the highest temperature in Seattle be between 58-59°F on November 12?",
@@ -305,11 +305,11 @@
         58.0,
         59.0
       ],
-      "yes_price": 0.3,
+      "yes_price": 0.305,
       "no_price": 0.695,
-      "best_bid": 0.29,
+      "best_bid": 0.3,
       "best_ask": 0.31,
-      "bid_ask_spread": 0.02,
+      "bid_ask_spread": 0.01,
       "volume": 720.0,
       "spread": 0.01,
       "yes_token_id": "111558178263973631618713539250109895517343659924111775955588517969014493296872",
@@ -317,14 +317,14 @@
       "model_prob": 0.1001,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.3,
-      "effective_ask": 0.3,
-      "market_prob": 0.3,
-      "belief_prob": 0.1701,
-      "ev": -0.433,
+      "ask": 0.305,
+      "effective_ask": 0.305,
+      "market_prob": 0.305,
+      "belief_prob": 0.1718,
+      "ev": -0.4367,
       "kelly": 0.0,
-      "swing_edge": -0.1999,
-      "swing_upside_pct": -66.6,
+      "swing_edge": -0.2049,
+      "swing_upside_pct": -67.2,
       "sell_value": 0.3,
       "scan6h_model_prob": 0.1001,
       "prev_scan6h_model_prob": 0.1001,
@@ -338,13 +338,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.305,
       "prev_scan6h_yes_price": 0.305,
-      "prev_yes_price": 0.305,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.6,
+      "prev_yes_price": 0.3,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.7,
       "yes_price_6h_change": -0.005,
       "yes_price_6h_pct_change": -1.6,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.6,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.7,
       "price_history": [
         {
           "t": "2026-11-11T02:25:44Z",
@@ -359,9 +359,16 @@
           "mp": 0.1001,
           "bid": 0.29,
           "ask": 0.31
+        },
+        {
+          "t": "2026-11-11T02:57:30Z",
+          "p": 0.305,
+          "mp": 0.1001,
+          "bid": 0.3,
+          "ask": 0.31
         }
       ],
-      "prev_10m_yes_price": 0.305
+      "prev_10m_yes_price": 0.3
     },
     {
       "question": "Will the highest temperature in Seattle be between 60-61°F on November 12?",
@@ -485,6 +492,13 @@
         },
         {
           "t": "2026-11-11T02:37:27Z",
+          "p": 0.15,
+          "mp": 0.3305,
+          "bid": 0.13,
+          "ask": 0.17
+        },
+        {
+          "t": "2026-11-11T02:57:30Z",
           "p": 0.15,
           "mp": 0.3305,
           "bid": 0.13,
@@ -699,5 +713,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-11T02:47:33.127207+00:00"
+  "last_price_refresh": "2026-11-11T02:57:29.536678+00:00"
 }

@@ -306,11 +306,11 @@
         9.0,
         9.0
       ],
-      "yes_price": 0.0125,
+      "yes_price": 0.012,
       "no_price": 0.988,
-      "best_bid": 0.01,
+      "best_bid": 0.009,
       "best_ask": 0.015,
-      "bid_ask_spread": 0.005,
+      "bid_ask_spread": 0.006,
       "volume": 235.0,
       "spread": 0.006,
       "yes_token_id": "76669457922819022892179449555170218234743002184766751927723952159262058390862",
@@ -318,14 +318,14 @@
       "model_prob": 0.1658,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0125,
-      "effective_ask": 0.0125,
-      "market_prob": 0.0125,
-      "belief_prob": 0.1121,
-      "ev": 7.968,
-      "kelly": 0.0252,
-      "swing_edge": 0.1533,
-      "swing_upside_pct": 1226.4,
+      "ask": 0.012,
+      "effective_ask": 0.012,
+      "market_prob": 0.012,
+      "belief_prob": 0.112,
+      "ev": 8.3333,
+      "kelly": 0.0253,
+      "swing_edge": 0.1538,
+      "swing_upside_pct": 1281.7,
       "sell_value": 0.009,
       "scan6h_model_prob": 0.1658,
       "prev_scan6h_model_prob": 0.1658,
@@ -339,13 +339,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.012,
       "prev_scan6h_yes_price": 0.012,
-      "prev_yes_price": 0.012,
-      "yes_price_10m_change": 0.0005,
-      "yes_price_10m_pct_change": 4.2,
+      "prev_yes_price": 0.0125,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -4.0,
       "yes_price_6h_change": 0.0005,
       "yes_price_6h_pct_change": 4.2,
-      "yes_price_change": 0.0005,
-      "yes_price_pct_change": 4.2,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -4.0,
       "price_history": [
         {
           "t": "2026-11-11T02:24:30Z",
@@ -362,7 +362,7 @@
           "ask": 0.015
         }
       ],
-      "prev_10m_yes_price": 0.012
+      "prev_10m_yes_price": 0.0125
     },
     {
       "question": "Will the highest temperature in Paris be 10°C on November 12?",
@@ -627,6 +627,13 @@
           "mp": 0.0227,
           "bid": 0.062,
           "ask": 0.079
+        },
+        {
+          "t": "2026-11-11T02:57:30Z",
+          "p": 0.0685,
+          "mp": 0.0227,
+          "bid": 0.061,
+          "ask": 0.076
         }
       ],
       "prev_10m_yes_price": 0.0705
@@ -707,5 +714,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-11T02:47:33.127207+00:00"
+  "last_price_refresh": "2026-11-11T02:57:29.536678+00:00"
 }
