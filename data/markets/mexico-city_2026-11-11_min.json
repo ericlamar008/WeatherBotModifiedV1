@@ -47,10 +47,10 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.07,
+      "yes_price": 0.065,
       "no_price": 0.92,
       "best_bid": null,
-      "best_ask": 0.14,
+      "best_ask": 0.13,
       "bid_ask_spread": 0.0,
       "volume": 22.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.1247,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.07,
-      "effective_ask": 0.07,
-      "market_prob": 0.07,
-      "belief_prob": 0.1056,
-      "ev": 0.5086,
-      "kelly": 0.0096,
-      "swing_edge": 0.0547,
-      "swing_upside_pct": 78.1,
+      "ask": 0.065,
+      "effective_ask": 0.065,
+      "market_prob": 0.065,
+      "belief_prob": 0.1038,
+      "ev": 0.5969,
+      "kelly": 0.0104,
+      "swing_edge": 0.0597,
+      "swing_upside_pct": 91.8,
       "sell_value": null,
       "scan6h_model_prob": 0.1247,
       "prev_scan6h_model_prob": 0.1247,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.08,
       "prev_scan6h_yes_price": 0.08,
-      "prev_yes_price": 0.05,
-      "yes_price_10m_change": 0.02,
-      "yes_price_10m_pct_change": 40.0,
-      "yes_price_6h_change": -0.01,
-      "yes_price_6h_pct_change": -12.5,
-      "yes_price_change": 0.02,
-      "yes_price_pct_change": 40.0,
+      "prev_yes_price": 0.07,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -7.1,
+      "yes_price_6h_change": -0.015,
+      "yes_price_6h_pct_change": -18.8,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -7.1,
       "price_history": [
         {
           "t": "2026-11-11T14:27:44Z",
@@ -150,9 +150,16 @@
           "mp": 0.1247,
           "bid": null,
           "ask": 0.14
+        },
+        {
+          "t": "2026-11-11T17:07:32Z",
+          "p": 0.065,
+          "mp": 0.1247,
+          "bid": null,
+          "ask": 0.13
         }
       ],
-      "prev_10m_yes_price": 0.05
+      "prev_10m_yes_price": 0.07
     },
     {
       "question": "Will the lowest temperature in Mexico City be 11°C on November 11?",
@@ -838,5 +845,5 @@
   "confidence": 0.6365,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-11T16:57:30.174599+00:00"
+  "last_price_refresh": "2026-11-11T17:07:31.454550+00:00"
 }
