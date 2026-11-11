@@ -65,8 +65,8 @@
       "belief_prob": 0.0751,
       "ev": -0.3742,
       "kelly": 0.0,
-      "swing_edge": -0.0397,
-      "swing_upside_pct": -33.1,
+      "swing_edge": 0.0148,
+      "swing_upside_pct": 22.6,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.0803,
       "prev_scan6h_model_prob": 0.0803,
@@ -95,7 +95,8 @@
           "bid": 0.001,
           "ask": 0.13
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0655
     },
     {
       "question": "Will the lowest temperature in Toronto be 3°C on November 11?",
@@ -126,8 +127,8 @@
       "swing_upside_pct": -13.2,
       "sell_value": null,
       "prev_10m_model_prob": 0.2892,
-      "model_prob_10m_change": 0.0147,
-      "model_prob_10m_pct_change": 5.1,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.2892,
       "model_prob_6h_change": 0.0147,
       "model_prob_6h_pct_change": 5.1,
@@ -142,9 +143,9 @@
       "yes_price_6h_change": -0.185,
       "yes_price_6h_pct_change": -34.6,
       "scan6h_yes_price": 0.35,
-      "prev_yes_price": 0.535,
-      "yes_price_change": -0.185,
-      "yes_price_pct_change": -34.6,
+      "prev_yes_price": 0.475,
+      "yes_price_change": -0.125,
+      "yes_price_pct_change": -26.3,
       "price_history": [
         {
           "t": "2026-11-11T08:41:51Z",
@@ -413,7 +414,8 @@
           "bid": 0.09,
           "ask": 1.0
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.545
     },
     {
       "question": "Will the lowest temperature in Toronto be 5°C on November 11?",
@@ -437,7 +439,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -621,7 +623,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -805,7 +807,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -978,5 +980,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-11T14:17:36.244603+00:00"
+  "last_price_refresh": "2026-11-11T14:37:28.432384+00:00"
 }
