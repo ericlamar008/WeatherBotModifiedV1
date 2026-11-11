@@ -47,11 +47,11 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.8,
+      "yes_price": 0.755,
       "no_price": 0.27,
-      "best_bid": 0.61,
+      "best_bid": 0.52,
       "best_ask": 0.99,
-      "bid_ask_spread": 0.38,
+      "bid_ask_spread": 0.47,
       "volume": 207.0,
       "spread": 0.44,
       "yes_token_id": "109429616994868848127455236646643331254225845516059465999395860418492692653992",
@@ -59,14 +59,14 @@
       "model_prob": 0.4683,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.8,
-      "effective_ask": 0.88,
-      "market_prob": 0.8,
-      "belief_prob": 0.5844,
-      "ev": -0.3359,
+      "ask": 0.755,
+      "effective_ask": 0.835,
+      "market_prob": 0.755,
+      "belief_prob": 0.5686,
+      "ev": -0.319,
       "kelly": 0.0,
-      "swing_edge": -0.3317,
-      "swing_upside_pct": -41.5,
+      "swing_edge": -0.2867,
+      "swing_upside_pct": -38.0,
       "sell_value": 0.51,
       "scan6h_model_prob": 0.4683,
       "prev_scan6h_model_prob": 0.4683,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.73,
       "prev_scan6h_yes_price": 0.73,
-      "prev_yes_price": 0.775,
-      "yes_price_10m_change": 0.025,
-      "yes_price_10m_pct_change": 3.2,
-      "yes_price_6h_change": 0.07,
-      "yes_price_6h_pct_change": 9.6,
-      "yes_price_change": 0.025,
-      "yes_price_pct_change": 3.2,
+      "prev_yes_price": 0.8,
+      "yes_price_10m_change": -0.045,
+      "yes_price_10m_pct_change": -5.6,
+      "yes_price_6h_change": 0.025,
+      "yes_price_6h_pct_change": 3.4,
+      "yes_price_change": -0.045,
+      "yes_price_pct_change": -5.6,
       "price_history": [
         {
           "t": "2026-11-11T14:27:43Z",
@@ -171,9 +171,16 @@
           "mp": 0.4683,
           "bid": 0.61,
           "ask": 0.99
+        },
+        {
+          "t": "2026-11-11T16:57:31Z",
+          "p": 0.755,
+          "mp": 0.4683,
+          "bid": 0.52,
+          "ask": 0.99
         }
       ],
-      "prev_10m_yes_price": 0.775
+      "prev_10m_yes_price": 0.8
     },
     {
       "question": "Will the lowest temperature in Seattle be between 54-55°F on November 11?",
@@ -267,6 +274,13 @@
         },
         {
           "t": "2026-11-11T16:37:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-11T16:57:31Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -371,6 +385,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-11T16:57:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -467,6 +488,13 @@
         },
         {
           "t": "2026-11-11T16:37:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-11T16:57:31Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -571,6 +599,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-11T16:57:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -667,6 +702,13 @@
         },
         {
           "t": "2026-11-11T16:37:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-11T16:57:31Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -771,6 +813,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-11T16:57:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -871,6 +920,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-11T16:57:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -903,5 +959,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-11T16:47:31.201934+00:00"
+  "last_price_refresh": "2026-11-11T16:57:30.174599+00:00"
 }
