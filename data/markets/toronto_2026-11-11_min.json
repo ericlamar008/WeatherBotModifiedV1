@@ -47,11 +47,11 @@
         3.0,
         3.0
       ],
-      "yes_price": 0.43,
+      "yes_price": 0.485,
       "no_price": 0.465,
       "best_bid": 0.02,
-      "best_ask": 0.84,
-      "bid_ask_spread": 0.82,
+      "best_ask": 0.95,
+      "bid_ask_spread": 0.93,
       "volume": 5.0,
       "spread": 0.41,
       "yes_token_id": "41735514338784871483934737253705060271715566171904466772798307611654957570019",
@@ -59,14 +59,14 @@
       "model_prob": 0.2892,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.43,
-      "effective_ask": 0.51,
-      "market_prob": 0.43,
-      "belief_prob": 0.3385,
-      "ev": -0.3363,
+      "ask": 0.485,
+      "effective_ask": 0.565,
+      "market_prob": 0.485,
+      "belief_prob": 0.3577,
+      "ev": -0.3669,
       "kelly": 0.0,
-      "swing_edge": -0.1408,
-      "swing_upside_pct": -32.7,
+      "swing_edge": -0.1958,
+      "swing_upside_pct": -40.4,
       "sell_value": 0.33,
       "scan6h_model_prob": 0.2892,
       "prev_scan6h_model_prob": 0.2892,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.535,
       "prev_scan6h_yes_price": 0.535,
-      "prev_yes_price": 0.415,
-      "yes_price_10m_change": 0.015,
-      "yes_price_10m_pct_change": 3.6,
-      "yes_price_6h_change": -0.105,
-      "yes_price_6h_pct_change": -19.6,
-      "yes_price_change": 0.015,
-      "yes_price_pct_change": 3.6,
+      "prev_yes_price": 0.43,
+      "yes_price_10m_change": 0.055,
+      "yes_price_10m_pct_change": 12.8,
+      "yes_price_6h_change": -0.05,
+      "yes_price_6h_pct_change": -9.3,
+      "yes_price_change": 0.055,
+      "yes_price_pct_change": 12.8,
       "price_history": [
         {
           "t": "2026-11-11T08:41:51Z",
@@ -269,9 +269,16 @@
           "mp": 0.2892,
           "bid": 0.02,
           "ask": 0.84
+        },
+        {
+          "t": "2026-11-11T13:57:27Z",
+          "p": 0.485,
+          "mp": 0.2892,
+          "bid": 0.02,
+          "ask": 0.95
         }
       ],
-      "prev_10m_yes_price": 0.415
+      "prev_10m_yes_price": 0.43
     },
     {
       "question": "Will the lowest temperature in Toronto be 5°C on November 11?",
@@ -428,6 +435,13 @@
         },
         {
           "t": "2026-11-11T13:37:31Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-11T13:57:27Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -595,6 +609,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-11T13:57:27Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -758,6 +779,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-11T13:57:27Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -790,5 +818,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-11T13:47:31.209815+00:00"
+  "last_price_refresh": "2026-11-11T13:57:26.224221+00:00"
 }
