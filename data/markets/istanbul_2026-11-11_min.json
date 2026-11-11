@@ -861,10 +861,10 @@
         8.0,
         8.0
       ],
-      "yes_price": 0.25,
+      "yes_price": 0.255,
       "no_price": 0.735,
       "best_bid": null,
-      "best_ask": 0.5,
+      "best_ask": 0.51,
       "bid_ask_spread": 0.0,
       "volume": 35.0,
       "spread": 0.0,
@@ -873,14 +873,14 @@
       "model_prob": 0.3268,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.25,
-      "effective_ask": 0.25,
-      "market_prob": 0.25,
-      "belief_prob": 0.2999,
-      "ev": 0.1996,
-      "kelly": 0.0166,
-      "swing_edge": 0.0768,
-      "swing_upside_pct": 30.7,
+      "ask": 0.255,
+      "effective_ask": 0.255,
+      "market_prob": 0.255,
+      "belief_prob": 0.3017,
+      "ev": 0.1831,
+      "kelly": 0.0157,
+      "swing_edge": 0.0718,
+      "swing_upside_pct": 28.2,
       "sell_value": null,
       "scan6h_model_prob": 0.3268,
       "prev_scan6h_model_prob": 0.3268,
@@ -894,13 +894,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.265,
       "prev_scan6h_yes_price": 0.265,
-      "prev_yes_price": 0.265,
-      "yes_price_10m_change": -0.015,
-      "yes_price_10m_pct_change": -5.7,
-      "yes_price_6h_change": -0.015,
-      "yes_price_6h_pct_change": -5.7,
-      "yes_price_change": -0.015,
-      "yes_price_pct_change": -5.7,
+      "prev_yes_price": 0.25,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 2.0,
+      "yes_price_6h_change": -0.01,
+      "yes_price_6h_pct_change": -3.8,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 2.0,
       "price_history": [
         {
           "t": "2026-11-11T08:41:51Z",
@@ -1006,9 +1006,16 @@
           "mp": 0.3268,
           "bid": null,
           "ask": 0.5
+        },
+        {
+          "t": "2026-11-11T13:07:36Z",
+          "p": 0.255,
+          "mp": 0.3268,
+          "bid": null,
+          "ask": 0.51
         }
       ],
-      "prev_10m_yes_price": 0.265
+      "prev_10m_yes_price": 0.25
     },
     {
       "question": "Will the lowest temperature in Istanbul be 9°C on November 11?",
@@ -2187,5 +2194,5 @@
   "confidence": 0.3622,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-11T12:57:28.873296+00:00"
+  "last_price_refresh": "2026-11-11T13:07:33.369252+00:00"
 }
