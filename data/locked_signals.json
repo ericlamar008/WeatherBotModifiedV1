@@ -12987,7 +12987,7 @@
     "entry_bid": 0.12,
     "entry_order_type": "IMMEDIATE_MARKETABLE",
     "limit_buy_price": null,
-    "position_state": "WATCHING",
+    "position_state": "CLOSED",
     "execution_mode": "SHADOW",
     "exit_policy": "MARKETABLE_FAK",
     "smart_autopilot": false,
@@ -13007,19 +13007,19 @@
     "usdc_amount": 5.0,
     "quantity_shares": 33.33,
     "filled_shares": 33.33,
-    "peak_bid": 0.22,
+    "peak_bid": 0.38,
     "rule_version": 1,
     "locked_at": "2026-11-11T15:15:14.832170+00:00",
-    "status": "open",
-    "last_price": 0.22,
-    "last_pct": 57.1,
-    "exit_price": null,
-    "closed_at": null,
+    "status": "closed_auto_tp",
+    "last_price": 0.38,
+    "last_pct": 171.4,
+    "exit_price": 0.38,
+    "closed_at": "2026-11-11T16:07:30.672564+00:00",
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.225,
-    "last_checked_at": "2026-11-11T15:57:31.238832+00:00",
+    "last_mid": 0.405,
+    "last_checked_at": "2026-11-11T16:07:30.672564+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-11T15:15:14Z",
@@ -13045,10 +13045,18 @@
         "t": "2026-11-11T15:57:31Z",
         "p": 0.22,
         "pct": 57.1
+      },
+      {
+        "t": "2026-11-11T16:07:30Z",
+        "p": 0.38,
+        "pct": 171.4
       }
     ],
     "model_fair_cents": 43,
-    "intraday_eliminated": false
+    "intraday_eliminated": false,
+    "latched_exit_reason": "TAKE_PROFIT",
+    "outcome_pct": 171.4,
+    "notified_close": true
   },
   {
     "issue_number": 143,
@@ -13089,15 +13097,15 @@
     "rule_version": 1,
     "locked_at": "2026-11-11T15:16:02.784883+00:00",
     "status": "open",
-    "last_price": 0.37,
-    "last_pct": -9.8,
+    "last_price": 0.36,
+    "last_pct": -12.2,
     "exit_price": null,
     "closed_at": null,
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.38,
-    "last_checked_at": "2026-11-11T15:57:31.238832+00:00",
+    "last_mid": 0.375,
+    "last_checked_at": "2026-11-11T16:07:30.672564+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-11T15:16:02Z",
@@ -13118,6 +13126,11 @@
         "t": "2026-11-11T15:57:31Z",
         "p": 0.37,
         "pct": -9.8
+      },
+      {
+        "t": "2026-11-11T16:07:30Z",
+        "p": 0.36,
+        "pct": -12.2
       }
     ],
     "model_fair_cents": 58,
