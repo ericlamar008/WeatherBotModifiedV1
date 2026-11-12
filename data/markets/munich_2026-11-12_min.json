@@ -48,11 +48,11 @@
         5.0,
         5.0
       ],
-      "yes_price": 0.465,
+      "yes_price": 0.48,
       "no_price": 0.535,
       "best_bid": 0.04,
-      "best_ask": 0.89,
-      "bid_ask_spread": 0.85,
+      "best_ask": 0.92,
+      "bid_ask_spread": 0.88,
       "volume": 4.0,
       "spread": 0.85,
       "yes_token_id": "178149738638978672353268379132574930094703304975671720719381916589716437117",
@@ -60,14 +60,14 @@
       "model_prob": 0.2135,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.465,
-      "effective_ask": 0.545,
-      "market_prob": 0.465,
-      "belief_prob": 0.3015,
-      "ev": -0.4468,
+      "ask": 0.48,
+      "effective_ask": 0.56,
+      "market_prob": 0.48,
+      "belief_prob": 0.3068,
+      "ev": -0.4521,
       "kelly": 0.0,
-      "swing_edge": -0.3315,
-      "swing_upside_pct": -60.8,
+      "swing_edge": -0.2665,
+      "swing_upside_pct": -55.5,
       "sell_value": 0.04,
       "scan6h_model_prob": 0.2135,
       "prev_scan6h_model_prob": 0.2135,
@@ -82,12 +82,12 @@
       "scan6h_yes_price": 0.465,
       "prev_scan6h_yes_price": 0.465,
       "prev_yes_price": 0.465,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.015,
+      "yes_price_10m_pct_change": 3.2,
+      "yes_price_6h_change": 0.015,
+      "yes_price_6h_pct_change": 3.2,
+      "yes_price_change": 0.015,
+      "yes_price_pct_change": 3.2,
       "price_history": [
         {
           "t": "2026-11-12T20:25:59Z",
@@ -95,8 +95,16 @@
           "mp": 0.2135,
           "bid": 0.04,
           "ask": 0.89
+        },
+        {
+          "t": "2026-11-12T20:37:31Z",
+          "p": 0.48,
+          "mp": 0.2135,
+          "bid": 0.04,
+          "ask": 0.92
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.465
     },
     {
       "question": "Will the lowest temperature in Munich be 6°C on November 12?",
@@ -105,11 +113,11 @@
         6.0,
         6.0
       ],
-      "yes_price": 0.695,
+      "yes_price": 0.665,
       "no_price": 0.305,
-      "best_bid": 0.44,
+      "best_bid": 0.38,
       "best_ask": 0.95,
-      "bid_ask_spread": 0.51,
+      "bid_ask_spread": 0.57,
       "volume": 52.0,
       "spread": 0.51,
       "yes_token_id": "91033619498366332729586752203654690349411923994928824106277515565543402581671",
@@ -117,14 +125,14 @@
       "model_prob": 0.1687,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.695,
-      "effective_ask": 0.775,
-      "market_prob": 0.695,
-      "belief_prob": 0.3529,
-      "ev": -0.5446,
+      "ask": 0.665,
+      "effective_ask": 0.745,
+      "market_prob": 0.665,
+      "belief_prob": 0.3424,
+      "ev": -0.5404,
       "kelly": 0.0,
-      "swing_edge": -0.6063,
-      "swing_upside_pct": -78.2,
+      "swing_edge": -0.4963,
+      "swing_upside_pct": -74.6,
       "sell_value": 0.44,
       "scan6h_model_prob": 0.1687,
       "prev_scan6h_model_prob": 0.1687,
@@ -139,12 +147,12 @@
       "scan6h_yes_price": 0.695,
       "prev_scan6h_yes_price": 0.695,
       "prev_yes_price": 0.695,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.03,
+      "yes_price_10m_pct_change": -4.3,
+      "yes_price_6h_change": -0.03,
+      "yes_price_6h_pct_change": -4.3,
+      "yes_price_change": -0.03,
+      "yes_price_pct_change": -4.3,
       "price_history": [
         {
           "t": "2026-11-12T20:25:59Z",
@@ -152,8 +160,16 @@
           "mp": 0.1687,
           "bid": 0.44,
           "ask": 0.95
+        },
+        {
+          "t": "2026-11-12T20:37:31Z",
+          "p": 0.665,
+          "mp": 0.1687,
+          "bid": 0.38,
+          "ask": 0.95
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.695
     },
     {
       "question": "Will the lowest temperature in Munich be 7°C on November 12?",
@@ -210,7 +226,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Munich be 8°C on November 12?",
@@ -267,7 +284,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Munich be 9°C on November 12?",
@@ -324,7 +342,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Munich be 10°C on November 12?",
@@ -381,7 +400,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Munich be 11°C on November 12?",
@@ -438,7 +458,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Munich be 12°C on November 12?",
@@ -447,10 +468,10 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.0015,
+      "yes_price": 0.003,
       "no_price": 0.9985,
       "best_bid": null,
-      "best_ask": 0.003,
+      "best_ask": 0.006,
       "bid_ask_spread": 0.0,
       "volume": 2679.0,
       "spread": 0.0,
@@ -459,13 +480,13 @@
       "model_prob": 0.0027,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0015,
-      "effective_ask": 0.0015,
-      "market_prob": 0.0015,
-      "belief_prob": 0.0023,
-      "ev": 0.5333,
-      "kelly": 0.0002,
-      "swing_edge": 0.0012,
+      "ask": 0.003,
+      "effective_ask": 0.003,
+      "market_prob": 0.003,
+      "belief_prob": 0.0028,
+      "ev": -0.0667,
+      "kelly": 0.0,
+      "swing_edge": -0.0003,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "scan6h_model_prob": 0.0027,
@@ -481,12 +502,12 @@
       "scan6h_yes_price": 0.0015,
       "prev_scan6h_yes_price": 0.0015,
       "prev_yes_price": 0.0015,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0015,
+      "yes_price_10m_pct_change": 100.0,
+      "yes_price_6h_change": 0.0015,
+      "yes_price_6h_pct_change": 100.0,
+      "yes_price_change": 0.0015,
+      "yes_price_pct_change": 100.0,
       "price_history": [
         {
           "t": "2026-11-12T20:25:59Z",
@@ -495,7 +516,8 @@
           "bid": null,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the lowest temperature in Munich be 13°C or higher on November 12?",
@@ -504,10 +526,10 @@
         13.0,
         999.0
       ],
-      "yes_price": 0.0015,
+      "yes_price": 0.003,
       "no_price": 0.9985,
       "best_bid": null,
-      "best_ask": 0.003,
+      "best_ask": 0.006,
       "bid_ask_spread": 0.0,
       "volume": 1468.0,
       "spread": 0.0,
@@ -516,13 +538,13 @@
       "model_prob": 0.0035,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0015,
-      "effective_ask": 0.0015,
-      "market_prob": 0.0015,
-      "belief_prob": 0.0028,
-      "ev": 0.8667,
-      "kelly": 0.0003,
-      "swing_edge": 0.002,
+      "ask": 0.003,
+      "effective_ask": 0.003,
+      "market_prob": 0.003,
+      "belief_prob": 0.0033,
+      "ev": 0.1,
+      "kelly": 0.0001,
+      "swing_edge": 0.0005,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "scan6h_model_prob": 0.0035,
@@ -538,12 +560,12 @@
       "scan6h_yes_price": 0.0015,
       "prev_scan6h_yes_price": 0.0015,
       "prev_yes_price": 0.0015,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0015,
+      "yes_price_10m_pct_change": 100.0,
+      "yes_price_6h_change": 0.0015,
+      "yes_price_6h_pct_change": 100.0,
+      "yes_price_change": 0.0015,
+      "yes_price_pct_change": 100.0,
       "price_history": [
         {
           "t": "2026-11-12T20:25:59Z",
@@ -552,7 +574,8 @@
           "bid": null,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     }
   ],
   "live_allocation": [],
@@ -564,5 +587,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-12T20:37:30.623606+00:00"
 }
