@@ -175,11 +175,11 @@
         31.0,
         31.0
       ],
-      "yes_price": 0.056,
+      "yes_price": 0.0505,
       "no_price": 0.9655,
       "best_bid": 0.021,
-      "best_ask": 0.091,
-      "bid_ask_spread": 0.07,
+      "best_ask": 0.08,
+      "bid_ask_spread": 0.059,
       "volume": 29.0,
       "spread": 0.027,
       "yes_token_id": "30312930024682405864140379062917782014321462994404047512035502109951768979730",
@@ -187,14 +187,14 @@
       "model_prob": 0.2061,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.056,
-      "effective_ask": 0.078,
-      "market_prob": 0.056,
-      "belief_prob": 0.1536,
-      "ev": 0.9692,
-      "kelly": 0.0205,
-      "swing_edge": 0.1501,
-      "swing_upside_pct": 268.0,
+      "ask": 0.0505,
+      "effective_ask": 0.0665,
+      "market_prob": 0.0505,
+      "belief_prob": 0.1516,
+      "ev": 1.2797,
+      "kelly": 0.0228,
+      "swing_edge": 0.1556,
+      "swing_upside_pct": 308.1,
       "sell_value": 0.021,
       "scan6h_model_prob": 0.2061,
       "prev_scan6h_model_prob": 0.2061,
@@ -208,13 +208,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0345,
       "prev_scan6h_yes_price": 0.0345,
-      "prev_yes_price": 0.0395,
-      "yes_price_10m_change": 0.0165,
-      "yes_price_10m_pct_change": 41.8,
-      "yes_price_6h_change": 0.0215,
-      "yes_price_6h_pct_change": 62.3,
-      "yes_price_change": 0.0165,
-      "yes_price_pct_change": 41.8,
+      "prev_yes_price": 0.056,
+      "yes_price_10m_change": -0.0055,
+      "yes_price_10m_pct_change": -9.8,
+      "yes_price_6h_change": 0.016,
+      "yes_price_6h_pct_change": 46.4,
+      "yes_price_change": -0.0055,
+      "yes_price_pct_change": -9.8,
       "price_history": [
         {
           "t": "2026-11-12T02:24:50Z",
@@ -236,9 +236,16 @@
           "mp": 0.2061,
           "bid": 0.021,
           "ask": 0.091
+        },
+        {
+          "t": "2026-11-12T02:57:34Z",
+          "p": 0.0505,
+          "mp": 0.2061,
+          "bid": 0.021,
+          "ask": 0.08
         }
       ],
-      "prev_10m_yes_price": 0.0395
+      "prev_10m_yes_price": 0.056
     },
     {
       "question": "Will the highest temperature in Jeddah be 32°C on November 13?",
@@ -297,6 +304,13 @@
         },
         {
           "t": "2026-11-12T02:37:29Z",
+          "p": 0.17,
+          "mp": 0.3999,
+          "bid": 0.16,
+          "ask": 0.18
+        },
+        {
+          "t": "2026-11-12T02:57:34Z",
           "p": 0.17,
           "mp": 0.3999,
           "bid": 0.16,
@@ -379,9 +393,9 @@
       ],
       "yes_price": 0.295,
       "no_price": 0.73,
-      "best_bid": 0.26,
-      "best_ask": 0.33,
-      "bid_ask_spread": 0.07,
+      "best_bid": 0.27,
+      "best_ask": 0.32,
+      "bid_ask_spread": 0.05,
       "volume": 176.0,
       "spread": 0.02,
       "yes_token_id": "37146193055412623560344711411935090825917883061562517630706141094955002615113",
@@ -390,10 +404,10 @@
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.295,
-      "effective_ask": 0.317,
+      "effective_ask": 0.306,
       "market_prob": 0.295,
       "belief_prob": 0.1449,
-      "ev": -0.5429,
+      "ev": -0.5265,
       "kelly": 0.0,
       "swing_edge": -0.231,
       "swing_upside_pct": -78.3,
@@ -648,5 +662,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T02:47:31.580453+00:00"
+  "last_price_refresh": "2026-11-12T02:57:33.433670+00:00"
 }
