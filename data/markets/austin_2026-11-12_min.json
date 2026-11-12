@@ -47,11 +47,11 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.38,
+      "yes_price": 0.375,
       "no_price": 0.63,
       "best_bid": 0.01,
-      "best_ask": 0.75,
-      "bid_ask_spread": 0.74,
+      "best_ask": 0.74,
+      "bid_ask_spread": 0.73,
       "volume": 5.0,
       "spread": 0.72,
       "yes_token_id": "68979610035237477225411433474792252370343091511599801005689882304326215801904",
@@ -59,14 +59,14 @@
       "model_prob": 0.2853,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.38,
-      "effective_ask": 0.46,
-      "market_prob": 0.38,
-      "belief_prob": 0.3184,
-      "ev": -0.3078,
+      "ask": 0.375,
+      "effective_ask": 0.455,
+      "market_prob": 0.375,
+      "belief_prob": 0.3167,
+      "ev": -0.304,
       "kelly": 0.0,
-      "swing_edge": -0.0947,
-      "swing_upside_pct": -24.9,
+      "swing_edge": -0.0897,
+      "swing_upside_pct": -23.9,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.2853,
       "prev_scan6h_model_prob": 0.2853,
@@ -80,11 +80,11 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.37,
       "prev_scan6h_yes_price": 0.37,
-      "prev_yes_price": 0.385,
+      "prev_yes_price": 0.38,
       "yes_price_10m_change": -0.005,
       "yes_price_10m_pct_change": -1.3,
-      "yes_price_6h_change": 0.01,
-      "yes_price_6h_pct_change": 2.7,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 1.4,
       "yes_price_change": -0.005,
       "yes_price_pct_change": -1.3,
       "price_history": [
@@ -129,9 +129,16 @@
           "mp": 0.2853,
           "bid": 0.01,
           "ask": 0.75
+        },
+        {
+          "t": "2026-11-12T09:47:27Z",
+          "p": 0.375,
+          "mp": 0.2853,
+          "bid": 0.01,
+          "ask": 0.74
         }
       ],
-      "prev_10m_yes_price": 0.385
+      "prev_10m_yes_price": 0.38
     },
     {
       "question": "Will the lowest temperature in Austin be between 56-57°F on November 12?",
@@ -449,5 +456,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T09:37:26.093620+00:00"
+  "last_price_refresh": "2026-11-12T09:47:26.278010+00:00"
 }
