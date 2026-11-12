@@ -48,11 +48,11 @@
         5.0,
         5.0
       ],
-      "yes_price": 0.315,
+      "yes_price": 0.3,
       "no_price": 0.535,
       "best_bid": 0.02,
-      "best_ask": 0.61,
-      "bid_ask_spread": 0.59,
+      "best_ask": 0.58,
+      "bid_ask_spread": 0.56,
       "volume": 4.0,
       "spread": 0.85,
       "yes_token_id": "178149738638978672353268379132574930094703304975671720719381916589716437117",
@@ -60,14 +60,14 @@
       "model_prob": 0.2135,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.315,
-      "effective_ask": 0.395,
-      "market_prob": 0.315,
-      "belief_prob": 0.249,
-      "ev": -0.3696,
+      "ask": 0.3,
+      "effective_ask": 0.38,
+      "market_prob": 0.3,
+      "belief_prob": 0.2438,
+      "ev": -0.3584,
       "kelly": 0.0,
-      "swing_edge": -0.1015,
-      "swing_upside_pct": -32.2,
+      "swing_edge": -0.0865,
+      "swing_upside_pct": -28.8,
       "sell_value": 0.04,
       "scan6h_model_prob": 0.2135,
       "prev_scan6h_model_prob": 0.2135,
@@ -81,13 +81,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.465,
       "prev_scan6h_yes_price": 0.465,
-      "prev_yes_price": 0.405,
-      "yes_price_10m_change": -0.09,
-      "yes_price_10m_pct_change": -22.2,
-      "yes_price_6h_change": -0.15,
-      "yes_price_6h_pct_change": -32.3,
-      "yes_price_change": -0.09,
-      "yes_price_pct_change": -22.2,
+      "prev_yes_price": 0.315,
+      "yes_price_10m_change": -0.015,
+      "yes_price_10m_pct_change": -4.8,
+      "yes_price_6h_change": -0.165,
+      "yes_price_6h_pct_change": -35.5,
+      "yes_price_change": -0.015,
+      "yes_price_pct_change": -4.8,
       "price_history": [
         {
           "t": "2026-11-12T20:25:59Z",
@@ -144,9 +144,16 @@
           "mp": 0.2135,
           "bid": 0.02,
           "ask": 0.61
+        },
+        {
+          "t": "2026-11-12T21:57:37Z",
+          "p": 0.3,
+          "mp": 0.2135,
+          "bid": 0.02,
+          "ask": 0.58
         }
       ],
-      "prev_10m_yes_price": 0.405
+      "prev_10m_yes_price": 0.315
     },
     {
       "question": "Will the lowest temperature in Munich be 6°C on November 12?",
@@ -330,6 +337,13 @@
           "mp": 0.0992,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T21:57:37Z",
+          "p": 0.0005,
+          "mp": 0.0992,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -405,6 +419,13 @@
         },
         {
           "t": "2026-11-12T21:37:35Z",
+          "p": 0.0005,
+          "mp": 0.0492,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T21:57:37Z",
           "p": 0.0005,
           "mp": 0.0492,
           "bid": null,
@@ -488,6 +509,13 @@
           "mp": 0.023,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T21:57:37Z",
+          "p": 0.0005,
+          "mp": 0.023,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -563,6 +591,13 @@
         },
         {
           "t": "2026-11-12T21:37:35Z",
+          "p": 0.0005,
+          "mp": 0.0108,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T21:57:37Z",
           "p": 0.0005,
           "mp": 0.0108,
           "bid": null,
@@ -646,6 +681,13 @@
           "mp": 0.0052,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T21:57:37Z",
+          "p": 0.0005,
+          "mp": 0.0052,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -725,6 +767,13 @@
           "mp": 0.0027,
           "bid": null,
           "ask": 0.002
+        },
+        {
+          "t": "2026-11-12T21:57:37Z",
+          "p": 0.0005,
+          "mp": 0.0027,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.001
@@ -804,6 +853,13 @@
           "mp": 0.0035,
           "bid": null,
           "ask": 0.002
+        },
+        {
+          "t": "2026-11-12T21:57:37Z",
+          "p": 0.0005,
+          "mp": 0.0035,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.001
@@ -819,5 +875,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T21:47:32.091505+00:00"
+  "last_price_refresh": "2026-11-12T21:57:35.597703+00:00"
 }
