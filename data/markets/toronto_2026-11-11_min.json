@@ -95,7 +95,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Toronto be 1°C on November 11?",
@@ -126,8 +127,8 @@
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "prev_10m_model_prob": 0.1004,
-      "model_prob_10m_change": 0.0177,
-      "model_prob_10m_pct_change": 17.6,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.1004,
       "model_prob_6h_change": 0.0177,
       "model_prob_6h_pct_change": 17.6,
@@ -142,8 +143,8 @@
       "yes_price_6h_change": -0.0645,
       "yes_price_6h_pct_change": -99.2,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.065,
-      "yes_price_change": -0.0645,
+      "prev_yes_price": 0.0645,
+      "yes_price_change": -0.064,
       "yes_price_pct_change": -99.2,
       "price_history": [
         {
@@ -429,8 +430,8 @@
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "prev_10m_model_prob": 0.2814,
-      "model_prob_10m_change": -0.0293,
-      "model_prob_10m_pct_change": -10.4,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.2814,
       "model_prob_6h_change": -0.0293,
       "model_prob_6h_pct_change": -10.4,
@@ -445,9 +446,9 @@
       "yes_price_6h_change": -0.4695,
       "yes_price_6h_pct_change": -99.9,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.47,
-      "yes_price_change": -0.4695,
-      "yes_price_pct_change": -99.9,
+      "prev_yes_price": 0.005,
+      "yes_price_change": -0.0045,
+      "yes_price_pct_change": -90.0,
       "price_history": [
         {
           "t": "2026-11-11T13:07:36Z",
@@ -816,8 +817,8 @@
       "swing_upside_pct": -71.8,
       "sell_value": 0.999,
       "prev_10m_model_prob": 0.3295,
-      "model_prob_10m_change": -0.048,
-      "model_prob_10m_pct_change": -14.6,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.3295,
       "model_prob_6h_change": -0.048,
       "model_prob_6h_pct_change": -14.6,
@@ -832,9 +833,9 @@
       "yes_price_6h_change": 0.1795,
       "yes_price_6h_pct_change": 21.9,
       "scan6h_yes_price": 0.9995,
-      "prev_yes_price": 0.82,
-      "yes_price_change": 0.1795,
-      "yes_price_pct_change": 21.9,
+      "prev_yes_price": 0.9945,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 0.5,
       "price_history": [
         {
           "t": "2026-11-11T14:27:43Z",
@@ -1119,7 +1120,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1506,7 +1507,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1893,7 +1894,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -2286,5 +2287,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T02:17:29.564903+00:00"
+  "last_price_refresh": "2026-11-12T02:37:28.840854+00:00"
 }

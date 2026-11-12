@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the highest temperature in Tokyo be 14°C on November 13?",
@@ -102,10 +103,10 @@
         14.0,
         14.0
       ],
-      "yes_price": 0.001,
+      "yes_price": 0.0015,
       "no_price": 0.999,
       "best_bid": null,
-      "best_ask": 0.002,
+      "best_ask": 0.003,
       "bid_ask_spread": 0.0,
       "volume": 540.0,
       "spread": 0.0,
@@ -114,13 +115,13 @@
       "model_prob": 0.0006,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.001,
-      "effective_ask": 0.001,
-      "market_prob": 0.001,
-      "belief_prob": 0.0007,
-      "ev": -0.3,
+      "ask": 0.0015,
+      "effective_ask": 0.0015,
+      "market_prob": 0.0015,
+      "belief_prob": 0.0009,
+      "ev": -0.4,
       "kelly": 0.0,
-      "swing_edge": -0.0004,
+      "swing_edge": -0.0009,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "scan6h_model_prob": 0.0006,
@@ -136,12 +137,12 @@
       "scan6h_yes_price": 0.001,
       "prev_scan6h_yes_price": 0.001,
       "prev_yes_price": 0.001,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 0.1,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 0.1,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 0.1,
       "price_history": [
         {
           "t": "2026-11-12T02:24:50Z",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the highest temperature in Tokyo be 16°C on November 13?",
@@ -207,7 +209,8 @@
           "bid": 0.005,
           "ask": 0.006
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the highest temperature in Tokyo be 17°C on November 13?",
@@ -264,7 +267,8 @@
           "bid": 0.04,
           "ask": 0.05
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.045
     },
     {
       "question": "Will the highest temperature in Tokyo be 18°C on November 13?",
@@ -321,7 +325,8 @@
           "bid": 0.26,
           "ask": 0.29
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.275
     },
     {
       "question": "Will the highest temperature in Tokyo be 19°C on November 13?",
@@ -330,10 +335,10 @@
         19.0,
         19.0
       ],
-      "yes_price": 0.435,
+      "yes_price": 0.445,
       "no_price": 0.565,
-      "best_bid": 0.43,
-      "best_ask": 0.44,
+      "best_bid": 0.44,
+      "best_ask": 0.45,
       "bid_ask_spread": 0.01,
       "volume": 552.0,
       "spread": 0.01,
@@ -342,14 +347,14 @@
       "model_prob": 0.3465,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.435,
-      "effective_ask": 0.435,
-      "market_prob": 0.435,
-      "belief_prob": 0.3775,
-      "ev": -0.1322,
+      "ask": 0.445,
+      "effective_ask": 0.445,
+      "market_prob": 0.445,
+      "belief_prob": 0.381,
+      "ev": -0.1438,
       "kelly": 0.0,
-      "swing_edge": -0.0885,
-      "swing_upside_pct": -20.3,
+      "swing_edge": -0.0985,
+      "swing_upside_pct": -22.1,
       "sell_value": 0.43,
       "scan6h_model_prob": 0.3465,
       "prev_scan6h_model_prob": 0.3465,
@@ -364,12 +369,12 @@
       "scan6h_yes_price": 0.435,
       "prev_scan6h_yes_price": 0.435,
       "prev_yes_price": 0.435,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 2.3,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 2.3,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 2.3,
       "price_history": [
         {
           "t": "2026-11-12T02:24:50Z",
@@ -377,8 +382,16 @@
           "mp": 0.3465,
           "bid": 0.43,
           "ask": 0.44
+        },
+        {
+          "t": "2026-11-12T02:37:29Z",
+          "p": 0.445,
+          "mp": 0.3465,
+          "bid": 0.44,
+          "ask": 0.45
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.435
     },
     {
       "question": "Will the highest temperature in Tokyo be 20°C on November 13?",
@@ -387,11 +400,11 @@
         20.0,
         20.0
       ],
-      "yes_price": 0.16,
+      "yes_price": 0.175,
       "no_price": 0.84,
       "best_bid": 0.15,
-      "best_ask": 0.17,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.2,
+      "bid_ask_spread": 0.05,
       "volume": 643.0,
       "spread": 0.02,
       "yes_token_id": "35907346402457988850680042518095807547452187214763528494474017840047961978011",
@@ -399,14 +412,14 @@
       "model_prob": 0.3555,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.16,
-      "effective_ask": 0.16,
-      "market_prob": 0.16,
-      "belief_prob": 0.2871,
-      "ev": 0.7944,
-      "kelly": 0.0378,
-      "swing_edge": 0.1955,
-      "swing_upside_pct": 122.2,
+      "ask": 0.175,
+      "effective_ask": 0.186,
+      "market_prob": 0.175,
+      "belief_prob": 0.2923,
+      "ev": 0.5715,
+      "kelly": 0.0326,
+      "swing_edge": 0.1805,
+      "swing_upside_pct": 103.1,
       "sell_value": 0.15,
       "scan6h_model_prob": 0.3555,
       "prev_scan6h_model_prob": 0.3555,
@@ -421,12 +434,12 @@
       "scan6h_yes_price": 0.16,
       "prev_scan6h_yes_price": 0.16,
       "prev_yes_price": 0.16,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.015,
+      "yes_price_10m_pct_change": 9.4,
+      "yes_price_6h_change": 0.015,
+      "yes_price_6h_pct_change": 9.4,
+      "yes_price_change": 0.015,
+      "yes_price_pct_change": 9.4,
       "price_history": [
         {
           "t": "2026-11-12T02:24:50Z",
@@ -434,8 +447,16 @@
           "mp": 0.3555,
           "bid": 0.15,
           "ask": 0.17
+        },
+        {
+          "t": "2026-11-12T02:37:29Z",
+          "p": 0.175,
+          "mp": 0.3555,
+          "bid": 0.15,
+          "ask": 0.2
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.16
     },
     {
       "question": "Will the highest temperature in Tokyo be 21°C on November 13?",
@@ -444,11 +465,11 @@
         21.0,
         21.0
       ],
-      "yes_price": 0.034,
+      "yes_price": 0.037,
       "no_price": 0.966,
-      "best_bid": 0.028,
-      "best_ask": 0.04,
-      "bid_ask_spread": 0.012,
+      "best_bid": 0.027,
+      "best_ask": 0.047,
+      "bid_ask_spread": 0.02,
       "volume": 136.0,
       "spread": 0.012,
       "yes_token_id": "23426825499847722150194096535699497027222503862327217559975514187572030312685",
@@ -456,14 +477,14 @@
       "model_prob": 0.1184,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.034,
-      "effective_ask": 0.034,
-      "market_prob": 0.034,
-      "belief_prob": 0.0889,
-      "ev": 1.6147,
-      "kelly": 0.0142,
-      "swing_edge": 0.0844,
-      "swing_upside_pct": 248.2,
+      "ask": 0.037,
+      "effective_ask": 0.037,
+      "market_prob": 0.037,
+      "belief_prob": 0.0899,
+      "ev": 1.4297,
+      "kelly": 0.0137,
+      "swing_edge": 0.0814,
+      "swing_upside_pct": 220.0,
       "sell_value": 0.028,
       "scan6h_model_prob": 0.1184,
       "prev_scan6h_model_prob": 0.1184,
@@ -478,12 +499,12 @@
       "scan6h_yes_price": 0.034,
       "prev_scan6h_yes_price": 0.034,
       "prev_yes_price": 0.034,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.003,
+      "yes_price_10m_pct_change": 8.8,
+      "yes_price_6h_change": 0.003,
+      "yes_price_6h_pct_change": 8.8,
+      "yes_price_change": 0.003,
+      "yes_price_pct_change": 8.8,
       "price_history": [
         {
           "t": "2026-11-12T02:24:50Z",
@@ -492,7 +513,8 @@
           "bid": 0.028,
           "ask": 0.04
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.034
     },
     {
       "question": "Will the highest temperature in Tokyo be 22°C on November 13?",
@@ -549,7 +571,8 @@
           "bid": 0.006,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.008
     },
     {
       "question": "Will the highest temperature in Tokyo be 23°C or higher on November 13?",
@@ -606,7 +629,8 @@
           "bid": 0.001,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.002
     }
   ],
   "live_allocation": [],
@@ -618,5 +642,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-12T02:37:28.840854+00:00"
 }

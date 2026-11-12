@@ -93,7 +93,8 @@
           "bid": 0.001,
           "ask": 0.004
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0025
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 60-61°F on November 13?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 62-63°F on November 13?",
@@ -207,7 +209,8 @@
           "bid": 0.001,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 64-65°F on November 13?",
@@ -264,7 +267,8 @@
           "bid": 0.004,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.007
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 66-67°F on November 13?",
@@ -273,11 +277,11 @@
         66.0,
         67.0
       ],
-      "yes_price": 0.09,
+      "yes_price": 0.085,
       "no_price": 0.91,
       "best_bid": 0.08,
-      "best_ask": 0.1,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.09,
+      "bid_ask_spread": 0.01,
       "volume": 3.0,
       "spread": 0.02,
       "yes_token_id": "69714885002195351784005698302679104705200746932569274642470327803838520410374",
@@ -285,14 +289,14 @@
       "model_prob": 0.0926,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.09,
-      "effective_ask": 0.09,
-      "market_prob": 0.09,
-      "belief_prob": 0.0917,
-      "ev": 0.0189,
-      "kelly": 0.0005,
-      "swing_edge": 0.0026,
-      "swing_upside_pct": 2.9,
+      "ask": 0.085,
+      "effective_ask": 0.085,
+      "market_prob": 0.085,
+      "belief_prob": 0.0899,
+      "ev": 0.0576,
+      "kelly": 0.0013,
+      "swing_edge": 0.0076,
+      "swing_upside_pct": 8.9,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.0926,
       "prev_scan6h_model_prob": 0.0926,
@@ -307,12 +311,12 @@
       "scan6h_yes_price": 0.09,
       "prev_scan6h_yes_price": 0.09,
       "prev_yes_price": 0.09,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -5.6,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -5.6,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -5.6,
       "price_history": [
         {
           "t": "2026-11-12T02:24:47Z",
@@ -320,8 +324,16 @@
           "mp": 0.0926,
           "bid": 0.08,
           "ask": 0.1
+        },
+        {
+          "t": "2026-11-12T02:37:29Z",
+          "p": 0.085,
+          "mp": 0.0926,
+          "bid": 0.08,
+          "ask": 0.09
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.09
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 68-69°F on November 13?",
@@ -348,8 +360,8 @@
       "belief_prob": 0.317,
       "ev": -0.2721,
       "kelly": 0.0,
-      "swing_edge": -0.1793,
-      "swing_upside_pct": -41.2,
+      "swing_edge": -0.1738,
+      "swing_upside_pct": -40.4,
       "sell_value": 0.41,
       "scan6h_model_prob": 0.2562,
       "prev_scan6h_model_prob": 0.2562,
@@ -378,7 +390,8 @@
           "bid": 0.41,
           "ask": 0.45
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.43
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 70-71°F on November 13?",
@@ -405,8 +418,8 @@
       "belief_prob": 0.3615,
       "ev": -0.1096,
       "kelly": 0.0,
-      "swing_edge": -0.0626,
-      "swing_upside_pct": -15.4,
+      "swing_edge": -0.0516,
+      "swing_upside_pct": -13.1,
       "sell_value": 0.37,
       "scan6h_model_prob": 0.3434,
       "prev_scan6h_model_prob": 0.3434,
@@ -435,7 +448,8 @@
           "bid": 0.37,
           "ask": 0.42
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.395
     },
     {
       "question": "Will the highest temperature in Los Angeles be between 72-73°F on November 13?",
@@ -492,7 +506,8 @@
           "bid": 0.06,
           "ask": 0.09
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.075
     },
     {
       "question": "Will the highest temperature in Los Angeles be 78°F or higher on November 13?",
@@ -549,7 +564,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     }
   ],
   "live_allocation": [],
@@ -561,5 +577,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-12T02:37:28.840854+00:00"
 }
