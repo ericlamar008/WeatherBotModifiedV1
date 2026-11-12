@@ -333,11 +333,11 @@
         74.0,
         75.0
       ],
-      "yes_price": 0.0315,
+      "yes_price": 0.0305,
       "no_price": 0.965,
-      "best_bid": 0.023,
+      "best_bid": 0.021,
       "best_ask": 0.04,
-      "bid_ask_spread": 0.017,
+      "bid_ask_spread": 0.019,
       "volume": 117.0,
       "spread": 0.01,
       "yes_token_id": "90744937226653935907193717023430197136000855797059847806678490227408150786981",
@@ -345,14 +345,14 @@
       "model_prob": 0.0799,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0315,
-      "effective_ask": 0.0315,
-      "market_prob": 0.0315,
-      "belief_prob": 0.063,
-      "ev": 1.0,
-      "kelly": 0.0081,
-      "swing_edge": 0.0484,
-      "swing_upside_pct": 153.7,
+      "ask": 0.0305,
+      "effective_ask": 0.0305,
+      "market_prob": 0.0305,
+      "belief_prob": 0.0626,
+      "ev": 1.0525,
+      "kelly": 0.0083,
+      "swing_edge": 0.0494,
+      "swing_upside_pct": 162.0,
       "sell_value": 0.03,
       "scan6h_model_prob": 0.0799,
       "prev_scan6h_model_prob": 0.0799,
@@ -366,13 +366,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.035,
       "prev_scan6h_yes_price": 0.035,
-      "prev_yes_price": 0.031,
-      "yes_price_10m_change": 0.0005,
-      "yes_price_10m_pct_change": 1.6,
-      "yes_price_6h_change": -0.0035,
-      "yes_price_6h_pct_change": -10.0,
-      "yes_price_change": 0.0005,
-      "yes_price_pct_change": 1.6,
+      "prev_yes_price": 0.0315,
+      "yes_price_10m_change": -0.001,
+      "yes_price_10m_pct_change": -3.2,
+      "yes_price_6h_change": -0.0045,
+      "yes_price_6h_pct_change": -12.9,
+      "yes_price_change": -0.001,
+      "yes_price_pct_change": -3.2,
       "price_history": [
         {
           "t": "2026-11-12T02:24:47Z",
@@ -394,9 +394,16 @@
           "mp": 0.0799,
           "bid": 0.023,
           "ask": 0.04
+        },
+        {
+          "t": "2026-11-12T03:17:31Z",
+          "p": 0.0305,
+          "mp": 0.0799,
+          "bid": 0.021,
+          "ask": 0.04
         }
       ],
-      "prev_10m_yes_price": 0.031
+      "prev_10m_yes_price": 0.0315
     },
     {
       "question": "Will the highest temperature in Dallas be between 76-77°F on November 13?",
@@ -625,5 +632,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T03:07:30.131447+00:00"
+  "last_price_refresh": "2026-11-12T03:17:30.632497+00:00"
 }
