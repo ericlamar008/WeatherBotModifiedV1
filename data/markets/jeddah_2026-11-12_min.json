@@ -47,10 +47,10 @@
         23.0,
         23.0
       ],
-      "yes_price": 0.07,
+      "yes_price": 0.065,
       "no_price": 0.545,
       "best_bid": null,
-      "best_ask": 0.14,
+      "best_ask": 0.13,
       "bid_ask_spread": 0.0,
       "volume": 15.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.1815,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.07,
-      "effective_ask": 0.07,
-      "market_prob": 0.07,
-      "belief_prob": 0.1425,
-      "ev": 1.0357,
-      "kelly": 0.0195,
-      "swing_edge": 0.1115,
-      "swing_upside_pct": 159.3,
+      "ask": 0.065,
+      "effective_ask": 0.065,
+      "market_prob": 0.065,
+      "belief_prob": 0.1407,
+      "ev": 1.1646,
+      "kelly": 0.0202,
+      "swing_edge": 0.1165,
+      "swing_upside_pct": 179.2,
       "sell_value": null,
       "scan6h_model_prob": 0.1815,
       "prev_scan6h_model_prob": 0.1815,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.455,
       "prev_scan6h_yes_price": 0.455,
-      "prev_yes_price": 0.075,
+      "prev_yes_price": 0.07,
       "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -6.7,
-      "yes_price_6h_change": -0.385,
-      "yes_price_6h_pct_change": -84.6,
+      "yes_price_10m_pct_change": -7.1,
+      "yes_price_6h_change": -0.39,
+      "yes_price_6h_pct_change": -85.7,
       "yes_price_change": -0.005,
-      "yes_price_pct_change": -6.7,
+      "yes_price_pct_change": -7.1,
       "price_history": [
         {
           "t": "2026-11-12T08:44:00Z",
@@ -227,9 +227,16 @@
           "mp": 0.1815,
           "bid": null,
           "ask": 0.14
+        },
+        {
+          "t": "2026-11-12T14:17:38Z",
+          "p": 0.065,
+          "mp": 0.1815,
+          "bid": null,
+          "ask": 0.13
         }
       ],
-      "prev_10m_yes_price": 0.075
+      "prev_10m_yes_price": 0.07
     },
     {
       "question": "Will the lowest temperature in Jeddah be 24°C on November 12?",
@@ -574,6 +581,13 @@
           "mp": 0.2538,
           "bid": 0.87,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-12T14:17:38Z",
+          "p": 0.935,
+          "mp": 0.2538,
+          "bid": 0.87,
+          "ask": 1.0
         }
       ],
       "prev_10m_yes_price": 0.55
@@ -733,6 +747,13 @@
         },
         {
           "t": "2026-11-12T13:57:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T14:17:38Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -900,6 +921,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T14:17:38Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -1063,6 +1091,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T14:17:38Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -1078,5 +1113,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T14:07:33.845291+00:00"
+  "last_price_refresh": "2026-11-12T14:17:36.757107+00:00"
 }
