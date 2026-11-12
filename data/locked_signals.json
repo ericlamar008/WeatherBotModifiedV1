@@ -13360,7 +13360,7 @@
     "entry_bid": 0.42,
     "entry_order_type": "IMMEDIATE_MARKETABLE",
     "limit_buy_price": null,
-    "position_state": "WATCHING",
+    "position_state": "CLOSED",
     "execution_mode": "SHADOW",
     "exit_policy": "MARKETABLE_FAK",
     "smart_autopilot": false,
@@ -13383,16 +13383,16 @@
     "peak_bid": 0.46,
     "rule_version": 1,
     "locked_at": "2026-11-11T21:50:47.090802+00:00",
-    "status": "open",
+    "status": "closed_auto_metar",
     "last_price": 0.0005,
     "last_pct": -100.0,
-    "exit_price": null,
-    "closed_at": null,
+    "exit_price": 0.0005,
+    "closed_at": "2026-11-12T14:37:29.331549+00:00",
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "last",
     "last_mid": 0.0005,
-    "last_checked_at": "2026-11-12T14:17:35.683589+00:00",
+    "last_checked_at": "2026-11-12T14:37:29.331549+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-11T21:50:47Z",
@@ -13590,8 +13590,11 @@
         "pct": -100.0
       }
     ],
-    "model_fair_cents": 61,
-    "intraday_eliminated": false
+    "model_fair_cents": 0,
+    "intraday_eliminated": true,
+    "latched_exit_reason": "METAR_ELIMINATED",
+    "outcome_pct": -100.0,
+    "notified_close": true
   },
   {
     "issue_number": 146,
@@ -13806,7 +13809,7 @@
     "actual_temp": null,
     "last_price_source": "last",
     "last_mid": 0.0005,
-    "last_checked_at": "2026-11-12T14:17:35.683589+00:00",
+    "last_checked_at": "2026-11-12T14:37:29.331549+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-12T07:11:25Z",
@@ -13919,7 +13922,7 @@
         "pct": -100.0
       }
     ],
-    "model_fair_cents": 54,
+    "model_fair_cents": 50,
     "intraday_eliminated": false
   },
   {
@@ -13961,15 +13964,15 @@
     "rule_version": 1,
     "locked_at": "2026-11-12T07:12:17.697279+00:00",
     "status": "open",
-    "last_price": 0.003,
+    "last_price": 0.001,
     "last_pct": -100.0,
     "exit_price": null,
     "closed_at": null,
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.0075,
-    "last_checked_at": "2026-11-12T14:17:35.683589+00:00",
+    "last_mid": 0.0015,
+    "last_checked_at": "2026-11-12T14:37:29.331549+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-12T07:12:17Z",
@@ -14102,7 +14105,7 @@
         "pct": -100.0
       }
     ],
-    "model_fair_cents": 83,
+    "model_fair_cents": 89,
     "intraday_eliminated": false
   }
 ]
