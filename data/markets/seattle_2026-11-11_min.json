@@ -3,7 +3,7 @@
   "city_name": "Seattle",
   "date": "2026-11-11",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-11-10T02:23:01.014787+00:00",
   "committed_allocation": null,
@@ -12,7 +12,7 @@
   "local_day_end_utc": "2026-11-12T08:00:00+00:00",
   "event_end_date": "2026-11-11T12:00:00Z",
   "last_scan": "2026-11-12T02:20:49.104179+00:00",
-  "last_lite_refresh": "2026-11-12T08:38:24.852855+00:00",
+  "last_lite_refresh": "2026-11-12T14:20:50.586787+00:00",
   "resolve_source_info": {
     "source_code": "noaa",
     "station": "KSEA",
@@ -4208,7 +4208,10 @@
       "market_prob": 0.775,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.56
+      "sell_value": 0.56,
+      "won": true,
+      "pnl_units": 8.71,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -4220,5 +4223,31 @@
   "confidence": 0.2812,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T14:17:36.757107+00:00"
+  "last_price_refresh": "2026-11-12T14:17:36.757107+00:00",
+  "actual_temp": 52.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 8.71,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6901133",
+      "question": "Will the lowest temperature in Seattle be between 52-53°F on November 11?",
+      "range": [
+        52.0,
+        53.0
+      ],
+      "side": "YES",
+      "price": 0.775,
+      "model_prob": 0.6046,
+      "ev": -0.2232,
+      "market_prob": 0.775,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.56,
+      "won": true,
+      "pnl_units": 8.71,
+      "user_entered": false
+    }
+  ]
 }
