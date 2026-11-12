@@ -133,10 +133,10 @@
         46.0,
         47.0
       ],
-      "yes_price": 0.48,
+      "yes_price": 0.485,
       "no_price": 0.53,
       "best_bid": null,
-      "best_ask": 0.96,
+      "best_ask": 0.97,
       "bid_ask_spread": 0.0,
       "volume": 35.0,
       "spread": 0.0,
@@ -145,14 +145,14 @@
       "model_prob": 0.0613,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.48,
-      "effective_ask": 0.48,
-      "market_prob": 0.48,
-      "belief_prob": 0.2078,
-      "ev": -0.5671,
+      "ask": 0.485,
+      "effective_ask": 0.485,
+      "market_prob": 0.485,
+      "belief_prob": 0.2096,
+      "ev": -0.5678,
       "kelly": 0.0,
-      "swing_edge": -0.4187,
-      "swing_upside_pct": -87.2,
+      "swing_edge": -0.4237,
+      "swing_upside_pct": -87.4,
       "sell_value": null,
       "scan6h_model_prob": 0.0613,
       "prev_scan6h_model_prob": 0.0613,
@@ -166,13 +166,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.47,
       "prev_scan6h_yes_price": 0.47,
-      "prev_yes_price": 0.46,
-      "yes_price_10m_change": 0.02,
-      "yes_price_10m_pct_change": 4.3,
-      "yes_price_6h_change": 0.01,
-      "yes_price_6h_pct_change": 2.1,
-      "yes_price_change": 0.02,
-      "yes_price_pct_change": 4.3,
+      "prev_yes_price": 0.48,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.0,
+      "yes_price_6h_change": 0.015,
+      "yes_price_6h_pct_change": 3.2,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.0,
       "price_history": [
         {
           "t": "2026-11-12T14:24:55Z",
@@ -215,9 +215,16 @@
           "mp": 0.0613,
           "bid": null,
           "ask": 0.96
+        },
+        {
+          "t": "2026-11-12T16:09:26Z",
+          "p": 0.485,
+          "mp": 0.0613,
+          "bid": null,
+          "ask": 0.97
         }
       ],
-      "prev_10m_yes_price": 0.46
+      "prev_10m_yes_price": 0.48
     },
     {
       "question": "Will the lowest temperature in Seattle be between 48-49°F on November 12?",
@@ -226,11 +233,11 @@
         48.0,
         49.0
       ],
-      "yes_price": 0.51,
+      "yes_price": 0.475,
       "no_price": 0.54,
       "best_bid": 0.02,
-      "best_ask": 1.0,
-      "bid_ask_spread": 0.0,
+      "best_ask": 0.93,
+      "bid_ask_spread": 0.91,
       "volume": 5.0,
       "spread": 0.88,
       "yes_token_id": "108452880484196946695187165416509828882511762910095392846927406771324326711856",
@@ -238,14 +245,14 @@
       "model_prob": 0.2639,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.51,
-      "effective_ask": 0.51,
-      "market_prob": 0.51,
-      "belief_prob": 0.35,
-      "ev": -0.3137,
+      "ask": 0.475,
+      "effective_ask": 0.555,
+      "market_prob": 0.475,
+      "belief_prob": 0.3378,
+      "ev": -0.3914,
       "kelly": 0.0,
-      "swing_edge": -0.2461,
-      "swing_upside_pct": -48.3,
+      "swing_edge": -0.2111,
+      "swing_upside_pct": -44.4,
       "sell_value": 0.02,
       "scan6h_model_prob": 0.2639,
       "prev_scan6h_model_prob": 0.2639,
@@ -259,13 +266,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.46,
       "prev_scan6h_yes_price": 0.46,
-      "prev_yes_price": 0.465,
-      "yes_price_10m_change": 0.045,
-      "yes_price_10m_pct_change": 9.7,
-      "yes_price_6h_change": 0.05,
-      "yes_price_6h_pct_change": 10.9,
-      "yes_price_change": 0.045,
-      "yes_price_pct_change": 9.7,
+      "prev_yes_price": 0.51,
+      "yes_price_10m_change": -0.035,
+      "yes_price_10m_pct_change": -6.9,
+      "yes_price_6h_change": 0.015,
+      "yes_price_6h_pct_change": 3.3,
+      "yes_price_change": -0.035,
+      "yes_price_pct_change": -6.9,
       "price_history": [
         {
           "t": "2026-11-12T14:24:55Z",
@@ -308,9 +315,16 @@
           "mp": 0.2639,
           "bid": 0.02,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-12T16:09:26Z",
+          "p": 0.475,
+          "mp": 0.2639,
+          "bid": 0.02,
+          "ask": 0.93
         }
       ],
-      "prev_10m_yes_price": 0.465
+      "prev_10m_yes_price": 0.51
     },
     {
       "question": "Will the lowest temperature in Seattle be between 50-51°F on November 12?",
@@ -863,5 +877,5 @@
   "confidence": 0.2064,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T15:57:34.968522+00:00"
+  "last_price_refresh": "2026-11-12T16:09:25.096000+00:00"
 }
