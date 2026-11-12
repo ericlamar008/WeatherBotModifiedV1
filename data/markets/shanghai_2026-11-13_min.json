@@ -379,11 +379,11 @@
         15.0,
         15.0
       ],
-      "yes_price": 0.72,
+      "yes_price": 0.725,
       "no_price": 0.285,
       "best_bid": 0.53,
-      "best_ask": 0.91,
-      "bid_ask_spread": 0.38,
+      "best_ask": 0.92,
+      "bid_ask_spread": 0.39,
       "volume": 432.0,
       "spread": 0.37,
       "yes_token_id": "3392053889124224184040323258908055475613710635239246243059280123632206008993",
@@ -391,14 +391,14 @@
       "model_prob": 0.575,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.72,
-      "effective_ask": 0.8,
-      "market_prob": 0.72,
-      "belief_prob": 0.6258,
-      "ev": -0.2177,
+      "ask": 0.725,
+      "effective_ask": 0.805,
+      "market_prob": 0.725,
+      "belief_prob": 0.6275,
+      "ev": -0.2205,
       "kelly": 0.0,
-      "swing_edge": -0.145,
-      "swing_upside_pct": -20.1,
+      "swing_edge": -0.15,
+      "swing_upside_pct": -20.7,
       "sell_value": 0.53,
       "scan6h_model_prob": 0.575,
       "prev_scan6h_model_prob": 0.575,
@@ -412,11 +412,11 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.715,
       "prev_scan6h_yes_price": 0.715,
-      "prev_yes_price": 0.715,
+      "prev_yes_price": 0.72,
       "yes_price_10m_change": 0.005,
       "yes_price_10m_pct_change": 0.7,
-      "yes_price_6h_change": 0.005,
-      "yes_price_6h_pct_change": 0.7,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 1.4,
       "yes_price_change": 0.005,
       "yes_price_pct_change": 0.7,
       "price_history": [
@@ -433,9 +433,16 @@
           "mp": 0.575,
           "bid": 0.53,
           "ask": 0.91
+        },
+        {
+          "t": "2026-11-12T20:57:30Z",
+          "p": 0.725,
+          "mp": 0.575,
+          "bid": 0.53,
+          "ask": 0.92
         }
       ],
-      "prev_10m_yes_price": 0.715
+      "prev_10m_yes_price": 0.72
     },
     {
       "question": "Will the lowest temperature in Shanghai be 16°C on November 13?",
@@ -790,5 +797,5 @@
   "confidence": 0.4073,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T20:47:30.729980+00:00"
+  "last_price_refresh": "2026-11-12T20:57:29.093483+00:00"
 }
