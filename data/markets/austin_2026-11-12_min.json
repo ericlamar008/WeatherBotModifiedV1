@@ -47,11 +47,11 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.37,
+      "yes_price": 0.345,
       "no_price": 0.63,
       "best_bid": 0.01,
-      "best_ask": 0.73,
-      "bid_ask_spread": 0.72,
+      "best_ask": 0.68,
+      "bid_ask_spread": 0.67,
       "volume": 5.0,
       "spread": 0.72,
       "yes_token_id": "68979610035237477225411433474792252370343091511599801005689882304326215801904",
@@ -59,14 +59,14 @@
       "model_prob": 0.2853,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.37,
-      "effective_ask": 0.45,
-      "market_prob": 0.37,
-      "belief_prob": 0.3149,
-      "ev": -0.3002,
+      "ask": 0.345,
+      "effective_ask": 0.425,
+      "market_prob": 0.345,
+      "belief_prob": 0.3062,
+      "ev": -0.2795,
       "kelly": 0.0,
-      "swing_edge": -0.1647,
-      "swing_upside_pct": -36.6,
+      "swing_edge": -0.0597,
+      "swing_upside_pct": -17.3,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.2853,
       "prev_scan6h_model_prob": 0.2853,
@@ -81,12 +81,12 @@
       "scan6h_yes_price": 0.37,
       "prev_scan6h_yes_price": 0.37,
       "prev_yes_price": 0.37,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.025,
+      "yes_price_10m_pct_change": -6.8,
+      "yes_price_6h_change": -0.025,
+      "yes_price_6h_pct_change": -6.8,
+      "yes_price_change": -0.025,
+      "yes_price_pct_change": -6.8,
       "price_history": [
         {
           "t": "2026-11-12T08:43:58Z",
@@ -94,8 +94,16 @@
           "mp": 0.2853,
           "bid": 0.01,
           "ask": 0.73
+        },
+        {
+          "t": "2026-11-12T08:47:27Z",
+          "p": 0.345,
+          "mp": 0.2853,
+          "bid": 0.01,
+          "ask": 0.68
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.37
     },
     {
       "question": "Will the lowest temperature in Austin be between 56-57°F on November 12?",
@@ -119,8 +127,8 @@
       "ask": 0.0015,
       "effective_ask": 0.0015,
       "market_prob": 0.0015,
-      "belief_prob": 0.0,
-      "ev": -1.0,
+      "belief_prob": 0.0005,
+      "ev": -0.6667,
       "kelly": 0.0,
       "swing_edge": -0.0015,
       "swing_upside_pct": 0.0,
@@ -152,7 +160,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the lowest temperature in Austin be between 58-59°F on November 12?",
@@ -176,7 +185,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -209,7 +218,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Austin be between 60-61°F on November 12?",
@@ -233,7 +243,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -266,7 +276,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Austin be between 64-65°F on November 12?",
@@ -290,7 +301,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -323,7 +334,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -352,5 +364,6 @@
   "success_probability": 0.5503,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-12T08:47:25.991510+00:00"
 }
