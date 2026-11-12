@@ -47,10 +47,10 @@
         13.0,
         13.0
       ],
-      "yes_price": 0.385,
+      "yes_price": 0.335,
       "no_price": 0.705,
       "best_bid": 0.02,
-      "best_ask": 0.77,
+      "best_ask": 0.67,
       "bid_ask_spread": 0.0,
       "volume": 61.0,
       "spread": 0.55,
@@ -59,14 +59,14 @@
       "model_prob": 0.3242,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.385,
-      "effective_ask": 0.385,
-      "market_prob": 0.385,
-      "belief_prob": 0.3455,
-      "ev": -0.1026,
+      "ask": 0.335,
+      "effective_ask": 0.335,
+      "market_prob": 0.335,
+      "belief_prob": 0.328,
+      "ev": -0.0209,
       "kelly": 0.0,
-      "swing_edge": -0.0608,
-      "swing_upside_pct": -15.8,
+      "swing_edge": -0.0108,
+      "swing_upside_pct": -3.2,
       "sell_value": 0.02,
       "scan6h_model_prob": 0.3242,
       "prev_scan6h_model_prob": 0.3242,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.295,
       "prev_scan6h_yes_price": 0.295,
-      "prev_yes_price": 0.42,
-      "yes_price_10m_change": -0.035,
-      "yes_price_10m_pct_change": -8.3,
-      "yes_price_6h_change": 0.09,
-      "yes_price_6h_pct_change": 30.5,
-      "yes_price_change": -0.035,
-      "yes_price_pct_change": -8.3,
+      "prev_yes_price": 0.385,
+      "yes_price_10m_change": -0.05,
+      "yes_price_10m_pct_change": -13.0,
+      "yes_price_6h_change": 0.04,
+      "yes_price_6h_pct_change": 13.6,
+      "yes_price_change": -0.05,
+      "yes_price_pct_change": -13.0,
       "price_history": [
         {
           "t": "2026-11-12T03:41:42Z",
@@ -157,9 +157,16 @@
           "mp": 0.3242,
           "bid": 0.02,
           "ask": 0.77
+        },
+        {
+          "t": "2026-11-12T06:37:25Z",
+          "p": 0.335,
+          "mp": 0.3242,
+          "bid": 0.02,
+          "ask": 0.67
         }
       ],
-      "prev_10m_yes_price": 0.42
+      "prev_10m_yes_price": 0.385
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 15°C on November 12?",
@@ -267,6 +274,13 @@
         },
         {
           "t": "2026-11-12T06:17:27Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T06:37:25Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -385,6 +399,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T06:37:25Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -499,6 +520,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-12T06:37:25Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -531,5 +559,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T06:17:24.829997+00:00"
+  "last_price_refresh": "2026-11-12T06:37:23.988711+00:00"
 }
