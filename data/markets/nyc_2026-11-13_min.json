@@ -47,11 +47,11 @@
         38.0,
         39.0
       ],
-      "yes_price": 0.325,
+      "yes_price": 0.34,
       "no_price": 0.615,
-      "best_bid": 0.23,
+      "best_bid": 0.26,
       "best_ask": 0.42,
-      "bid_ask_spread": 0.19,
+      "bid_ask_spread": 0.16,
       "volume": 136.0,
       "spread": 0.19,
       "yes_token_id": "48070940914742716566615396253279733291745666066312997615739031545840453272491",
@@ -59,14 +59,14 @@
       "model_prob": 0.0597,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.325,
-      "effective_ask": 0.405,
-      "market_prob": 0.325,
-      "belief_prob": 0.1526,
-      "ev": -0.6232,
+      "ask": 0.34,
+      "effective_ask": 0.4115,
+      "market_prob": 0.34,
+      "belief_prob": 0.1578,
+      "ev": -0.6165,
       "kelly": 0.0,
-      "swing_edge": -0.2653,
-      "swing_upside_pct": -81.6,
+      "swing_edge": -0.2803,
+      "swing_upside_pct": -82.4,
       "sell_value": 0.29,
       "scan6h_model_prob": 0.0597,
       "prev_scan6h_model_prob": 0.0597,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.385,
       "prev_scan6h_yes_price": 0.385,
-      "prev_yes_price": 0.33,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.5,
-      "yes_price_6h_change": -0.06,
-      "yes_price_6h_pct_change": -15.6,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.5,
+      "prev_yes_price": 0.325,
+      "yes_price_10m_change": 0.015,
+      "yes_price_10m_pct_change": 4.6,
+      "yes_price_6h_change": -0.045,
+      "yes_price_6h_pct_change": -11.7,
+      "yes_price_change": 0.015,
+      "yes_price_pct_change": 4.6,
       "price_history": [
         {
           "t": "2026-11-12T14:24:55Z",
@@ -192,9 +192,16 @@
           "mp": 0.0597,
           "bid": 0.23,
           "ask": 0.42
+        },
+        {
+          "t": "2026-11-12T19:07:31Z",
+          "p": 0.34,
+          "mp": 0.0597,
+          "bid": 0.26,
+          "ask": 0.42
         }
       ],
-      "prev_10m_yes_price": 0.33
+      "prev_10m_yes_price": 0.325
     },
     {
       "question": "Will the lowest temperature in New York City be between 40-41°F on November 13?",
@@ -689,5 +696,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-12T18:57:30.366220+00:00"
+  "last_price_refresh": "2026-11-12T19:07:30.237646+00:00"
 }
