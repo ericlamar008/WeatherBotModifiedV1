@@ -3,11 +3,11 @@
   "city_name": "Denver",
   "date": "2026-11-11",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-11-10T02:23:01.014787+00:00",
   "committed_allocation": null,
-  "hours_left": 3.4,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-11-12T07:00:00+00:00",
   "event_end_date": "2026-11-11T12:00:00Z",
   "last_scan": "2026-11-12T02:20:49.104179+00:00",
@@ -4311,7 +4311,10 @@
       "market_prob": 0.0005,
       "role": "main_signal",
       "units": 28.5,
-      "sell_value": null
+      "sell_value": null,
+      "won": false,
+      "pnl_units": -28.5,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 28.5,
@@ -4324,5 +4327,31 @@
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
   "last_price_refresh": "2026-11-12T08:37:24.116687+00:00",
-  "last_lite_refresh": "2026-11-12T03:38:34.943134+00:00"
+  "last_lite_refresh": "2026-11-12T08:38:24.852855+00:00",
+  "actual_temp": 62.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "loss",
+  "pnl_units": -28.5,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "6900628",
+      "question": "Will the highest temperature in Denver be between 64-65°F on November 11?",
+      "range": [
+        64.0,
+        65.0
+      ],
+      "side": "YES",
+      "price": 0.0005,
+      "model_prob": 0.5787,
+      "ev": 751.6,
+      "market_prob": 0.0005,
+      "role": "main_signal",
+      "units": 28.5,
+      "sell_value": null,
+      "won": false,
+      "pnl_units": -28.5,
+      "user_entered": false
+    }
+  ]
 }
