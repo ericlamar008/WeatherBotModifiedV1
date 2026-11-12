@@ -65,8 +65,8 @@
       "belief_prob": 0.314,
       "ev": -0.1627,
       "kelly": 0.0,
-      "swing_edge": -0.0508,
-      "swing_upside_pct": -13.5,
+      "swing_edge": 0.0292,
+      "swing_upside_pct": 9.9,
       "sell_value": 0.02,
       "scan6h_model_prob": 0.3242,
       "prev_scan6h_model_prob": 0.3242,
@@ -95,7 +95,8 @@
           "bid": 0.02,
           "ask": 0.57
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.295
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 15°C on November 12?",
@@ -119,7 +120,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -152,7 +153,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 16°C on November 12?",
@@ -176,7 +178,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -209,7 +211,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 18°C or higher on November 12?",
@@ -233,7 +236,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -266,7 +269,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -295,5 +299,6 @@
   "success_probability": 0.5764,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-12T03:47:30.755443+00:00"
 }
