@@ -47,9 +47,9 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.925,
+      "yes_price": 0.965,
       "no_price": 0.625,
-      "best_bid": 0.85,
+      "best_bid": 0.93,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 6.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.2559,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.925,
-      "effective_ask": 0.925,
-      "market_prob": 0.925,
-      "belief_prob": 0.4901,
-      "ev": -0.4702,
+      "ask": 0.965,
+      "effective_ask": 0.965,
+      "market_prob": 0.965,
+      "belief_prob": 0.5041,
+      "ev": -0.4776,
       "kelly": 0.0,
-      "swing_edge": -0.6691,
-      "swing_upside_pct": -72.3,
+      "swing_edge": -0.7091,
+      "swing_upside_pct": -73.5,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.2559,
       "prev_scan6h_model_prob": 0.2559,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.375,
       "prev_scan6h_yes_price": 0.375,
-      "prev_yes_price": 0.51,
-      "yes_price_10m_change": 0.415,
-      "yes_price_10m_pct_change": 81.4,
-      "yes_price_6h_change": 0.55,
-      "yes_price_6h_pct_change": 146.7,
-      "yes_price_change": 0.415,
-      "yes_price_pct_change": 81.4,
+      "prev_yes_price": 0.925,
+      "yes_price_10m_change": 0.04,
+      "yes_price_10m_pct_change": 4.3,
+      "yes_price_6h_change": 0.59,
+      "yes_price_6h_pct_change": 157.3,
+      "yes_price_change": 0.04,
+      "yes_price_pct_change": 4.3,
       "price_history": [
         {
           "t": "2026-11-13T08:42:47Z",
@@ -276,9 +276,16 @@
           "mp": 0.2559,
           "bid": 0.85,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-13T14:37:28Z",
+          "p": 0.965,
+          "mp": 0.2559,
+          "bid": 0.93,
+          "ask": 1.0
         }
       ],
-      "prev_10m_yes_price": 0.51
+      "prev_10m_yes_price": 0.925
     },
     {
       "question": "Will the lowest temperature in Houston be between 58-59°F on November 13?",
@@ -446,6 +453,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-13T14:37:28Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -478,5 +492,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-13T14:17:27.235991+00:00"
+  "last_price_refresh": "2026-11-13T14:37:27.403006+00:00"
 }
