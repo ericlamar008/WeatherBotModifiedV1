@@ -1116,53 +1116,68 @@ tr:hover td{background:rgba(246,248,251,0.65)}
           </div>
         </div>
 
-        <!-- Weather-Smart Guards & Execution Policy -->
-        <div class="modal-grid-2" style="margin-top:10px">
-          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px;font-size:12px">
-            <div style="font-weight:700;margin-bottom:6px">🌡️ محافظ‌های هوشمند بازار آب‌وهوا</div>
-            <label style="display:flex;align-items:center;gap:6px;margin-bottom:6px;cursor:pointer">
-              <input type="checkbox" id="modalMetarStop" checked>
-              <span>خروج فوری در صورت عبور دمای واقعی فرودگاه (METAR) از باکت</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:6px;margin-bottom:6px;cursor:pointer">
-              <input type="checkbox" id="modalAutoSell99" checked>
-              <span>فروش خودکار در 99.5¢ (نقد کردن سود قبل از تسویه UMA)</span>
-            </label>
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:6px">
-              <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
-                <input type="checkbox" id="modalTrailingEnabled">
-                <span>حد ضرر متحرک (Trailing Stop)</span>
+          <!-- Weather-Smart Guards & Execution Policy -->
+          <div class="modal-grid-2" style="margin-top:10px">
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px;font-size:12px">
+              <div style="font-weight:700;margin-bottom:6px">🌡️ محافظ‌های هوشمند آب‌وهوا و ضد نوسان کاذب</div>
+              <label style="display:flex;align-items:center;gap:6px;margin-bottom:6px;cursor:pointer">
+                <input type="checkbox" id="modalMetarStop" checked>
+                <span>خروج فوری در صورت عبور دمای واقعی فرودگاه (METAR) از باکت</span>
               </label>
-              <div style="display:flex;align-items:center;gap:4px">
-                <input type="number" id="modalTrailingPct" value="8" min="2" max="50" style="width:52px;border:1px solid var(--border);border-radius:6px;padding:3px;text-align:center;font-weight:700" class="ltr-inline">
-                <span>%</span>
+              <label style="display:flex;align-items:center;gap:6px;margin-bottom:6px;cursor:pointer">
+                <input type="checkbox" id="modalAutoSell99" checked>
+                <span>فروش خودکار در 99.5¢ (نقد کردن سود قبل از تسویه UMA)</span>
+              </label>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                  <input type="checkbox" id="modalProfitRatchet" checked>
+                  <span>🔒 قفل سود پلکانی و ریسک‌فری خودکار (Profit Ratchet)</span>
+                </label>
+                <div style="display:flex;align-items:center;gap:4px">
+                  <span style="font-size:10.5px;color:var(--text-dim)">ریسک‌فری در:</span>
+                  <input type="number" id="modalBreakEvenPct" value="15" min="5" max="80" style="width:46px;border:1px solid var(--border);border-radius:6px;padding:2px;text-align:center;font-weight:700" class="ltr-inline">
+                  <span>%</span>
+                </div>
+              </div>
+              <label style="display:flex;align-items:center;gap:6px;margin-bottom:6px;cursor:pointer">
+                <input type="checkbox" id="modalSlConfirmModel" checked>
+                <span>🛡️ محافظ ضد نوسان کاذب استاپ (تأیید با مدل + ۲ تیک متوالی)</span>
+              </label>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:6px">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                  <input type="checkbox" id="modalTrailingEnabled" checked>
+                  <span>📈 حد ضرر متحرک (Trailing) پس از +18% سود</span>
+                </label>
+                <div style="display:flex;align-items:center;gap:4px">
+                  <input type="number" id="modalTrailingPct" value="8" min="2" max="50" style="width:52px;border:1px solid var(--border);border-radius:6px;padding:3px;text-align:center;font-weight:700" class="ltr-inline">
+                  <span>%</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px;font-size:12px">
-            <div style="font-weight:700;margin-bottom:6px">⚙️ سیاست ارسال سفارش فروش به CLOB</div>
-            <select id="modalExitPolicy" style="width:100%;border:1px solid var(--border);border-radius:8px;padding:6px;font-size:11.5px;font-weight:600;background:var(--surface-2);font-family:inherit;margin-bottom:8px">
-              <option value="MARKETABLE_FAK">MARKETABLE_FAK (پیشنهادی - فروش فوری تا کف مجاز)</option>
-              <option value="MARKETABLE_FOK">MARKETABLE_FOK (یا کل حجم یکجا یا لغو)</option>
-              <option value="STRICT_LIMIT">STRICT_LIMIT (سفارش لیمیت GTC در اوردربوک)</option>
-            </select>
-            <div class="modal-grid-2" style="gap:8px">
-              <div>
-                <span style="display:block;font-size:10.5px;color:var(--text-dim)">حداکثر اسلیپیج (%)</span>
-                <input type="number" id="modalSlippagePct" value="2.0" step="0.5" min="0.5" max="15" class="modal-input ltr-inline" style="padding:4px">
-              </div>
-              <div>
-                <span style="display:block;font-size:10.5px;color:var(--text-dim)">گام قیمت (Tick Size)</span>
-                <select id="modalTickSize" class="modal-input ltr-inline" style="padding:4px">
-                  <option value="0.01">0.01 (1¢)</option>
-                  <option value="0.001">0.001 (0.1¢)</option>
-                </select>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px;font-size:12px">
+              <div style="font-weight:700;margin-bottom:6px">⚙️ سیاست ارسال سفارش فروش به CLOB</div>
+              <select id="modalExitPolicy" style="width:100%;border:1px solid var(--border);border-radius:8px;padding:6px;font-size:11.5px;font-weight:600;background:var(--surface-2);font-family:inherit;margin-bottom:8px">
+                <option value="MARKETABLE_FAK">MARKETABLE_FAK (پیشنهادی - فروش فوری تا کف مجاز)</option>
+                <option value="MARKETABLE_FOK">MARKETABLE_FOK (یا کل حجم یکجا یا لغو)</option>
+                <option value="STRICT_LIMIT">STRICT_LIMIT (سفارش لیمیت GTC در اوردربوک)</option>
+              </select>
+              <div class="modal-grid-2" style="gap:8px">
+                <div>
+                  <span style="display:block;font-size:10.5px;color:var(--text-dim)">حداکثر اسلیپیج (%)</span>
+                  <input type="number" id="modalSlippagePct" value="2.0" step="0.5" min="0.5" max="15" class="modal-input ltr-inline" style="padding:4px">
+                </div>
+                <div>
+                  <span style="display:block;font-size:10.5px;color:var(--text-dim)">گام قیمت (Tick Size)</span>
+                  <select id="modalTickSize" class="modal-input ltr-inline" style="padding:4px">
+                    <option value="0.01">0.01 (1¢)</option>
+                    <option value="0.001">0.001 (0.1¢)</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
       <!-- Visual SL <-- Entry --> TP Risk/Reward Bar -->
       <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-top:12px">
@@ -1190,7 +1205,7 @@ tr:hover td{background:rgba(246,248,251,0.65)}
           </span>
         </div>
         <p id="simHelpText" style="font-size:11.5px;color:#78350f;margin:0 0 8px 0">
-          یک قیمت Best Bid فرضی وارد کنید تا عملکرد موتور Auto-Exit (سیو سود، حد ضرر یا METAR) را در لحظه تست کنید:
+          یک قیمت Best Bid فرضی وارد کنید تا عملکرد موتور Auto-Exit (سیو سود، قفل سود پلکانی، محافظ ضد نوسان کاذب استاپ یا METAR) را در لحظه تست کنید:
         </p>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
           <div style="display:flex;align-items:center;gap:4px;background:#fff;border:1px solid rgba(245,158,11,0.45);border-radius:8px;padding:5px 10px">
@@ -1707,8 +1722,11 @@ function submitOrderModal() {
   var slEn = modalState.smartAutopilot ? true : document.getElementById('modalSlEnabled').checked;
   var metarStop = modalState.smartAutopilot ? true : document.getElementById('modalMetarStop').checked;
   var sell99 = modalState.smartAutopilot ? true : document.getElementById('modalAutoSell99').checked;
-  var trailEn = modalState.smartAutopilot ? false : document.getElementById('modalTrailingEnabled').checked;
+  var trailEn = modalState.smartAutopilot ? true : document.getElementById('modalTrailingEnabled').checked;
   var trailPct = parseFloat(document.getElementById('modalTrailingPct').value) || 8.0;
+  var ratchetEn = modalState.smartAutopilot ? true : (document.getElementById('modalProfitRatchet') ? document.getElementById('modalProfitRatchet').checked : true);
+  var bePct = document.getElementById('modalBreakEvenPct') ? (parseFloat(document.getElementById('modalBreakEvenPct').value) || 15.0) : 15.0;
+  var slConfModel = modalState.smartAutopilot ? true : (document.getElementById('modalSlConfirmModel') ? document.getElementById('modalSlConfirmModel').checked : true);
   var exitPol = document.getElementById('modalExitPolicy').value || 'MARKETABLE_FAK';
   var slipPct = parseFloat(document.getElementById('modalSlippagePct').value) || 2.0;
   var tickSz = parseFloat(document.getElementById('modalTickSize').value) || 0.01;
@@ -1741,6 +1759,11 @@ function submitOrderModal() {
     tick_size: tickSz,
     trailing_stop_enabled: trailEn,
     trailing_offset_pct: trailPct,
+    trailing_activation_pct: 18.0,
+    profit_ratchet_enabled: ratchetEn,
+    break_even_trigger_pct: bePct,
+    sl_confirm_with_model: slConfModel,
+    sl_confirm_ticks: slConfModel ? 2 : 1,
     metar_auto_stop: metarStop,
     auto_sell_99c: sell99
   };

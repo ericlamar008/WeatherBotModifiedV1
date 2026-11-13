@@ -338,13 +338,18 @@ def _build_city_blocks(locks_subset, now, is_min):
                     star = True
                     lines.append(f" \u2705 سفارش خرید شرطی در قیمت {curr_c}\u00a2 پر شد و چتر TP/SL فعال گردید!")
 
-            # ارزیابی خودکار خروج (Auto-Exit Engine: TP / SL / METAR / Trailing)
+            # ارزیابی خودکار خروج (Auto-Exit Engine v3.5: TP / Profit Ratchet / Adaptive Trailing / Anti-Whipsaw SL / METAR)
             auto_exit_on = l.get("auto_exit_enabled", True)
             auto_closed_reason = None
             auto_closed_status = None
+            whipsaw_guard_msg = None
+            active_ratchet_c = None
 
             if l.get("peak_bid") is None or float(current) > float(l.get("peak_bid", 0)):
                 l["peak_bid"] = round(float(current), 4)
+
+            peak_val = float(l.get("peak_bid") or current)
+            peak_gain_pct = ((peak_val - entry) / entry * 100.0) if entry > 0 else 0.0
 
             if auto_exit_on and l.get("status") == "open" and l.get("position_state") != "ENTRY_PENDING":
                 tp_on = l.get("tp_enabled", True)
@@ -353,8 +358,34 @@ def _build_city_blocks(locks_subset, now, is_min):
                 sl_p = float(l["sl_price"]) if l.get("sl_price") is not None else round(entry * (1.0 - STOP_LOSS_PCT / 100.0), 4)
                 metar_stop = l.get("metar_auto_stop", True)
                 sell_99c = l.get("auto_sell_99c", True)
-                trail_on = l.get("trailing_stop_enabled", False)
+                trail_on = l.get("trailing_stop_enabled", bool(l.get("smart_autopilot", False)))
                 trail_offset = float(l.get("trailing_offset_pct", 8.0))
+                trail_act_pct = float(l.get("trailing_activation_pct", 18.0 if l.get("smart_autopilot", False) else 0.0))
+                ratchet_on = l.get("profit_ratchet_enabled", True)
+                be_trig_pct = float(l.get("break_even_trigger_pct", 15.0))
+                sl_confirm_model = l.get("sl_confirm_with_model", True)
+                sl_confirm_ticks = int(l.get("sl_confirm_ticks", 2 if l.get("smart_autopilot", True) else 1))
+
+                # محاسبه کف سود قفل‌شدهٔ پلکانی (Profit Ratchet & Break-Even Shield)
+                ratchet_floor = None
+                if ratchet_on and peak_val > entry and entry > 0:
+                    if peak_gain_pct >= 60.0:
+                        ratchet_floor = max(entry * 1.42, peak_val * 0.88)
+                    elif peak_gain_pct >= 40.0:
+                        ratchet_floor = max(entry * 1.25, peak_val * 0.86)
+                    elif peak_gain_pct >= 25.0:
+                        ratchet_floor = max(entry * 1.12, entry + 0.01)
+                    elif peak_gain_pct >= max(5.0, be_trig_pct):
+                        ratchet_floor = max(entry * 1.02, entry + 0.005)
+
+                    if tp_on and tp_p > entry and ((peak_val - entry) / (tp_p - entry)) >= 0.85:
+                        near_tp_fl = entry + (peak_val - entry) * 0.72
+                        if ratchet_floor is None or near_tp_fl > ratchet_floor:
+                            ratchet_floor = near_tp_fl
+
+                    if ratchet_floor is not None:
+                        ratchet_floor = round(min(peak_val - 0.005, ratchet_floor), 4)
+                        active_ratchet_c = _to_cents(ratchet_floor)
 
                 if metar_stop and intraday_elim and side == "YES":
                     auto_closed_reason = "METAR_ELIMINATED"
@@ -365,14 +396,40 @@ def _build_city_blocks(locks_subset, now, is_min):
                 elif tp_on and float(current) >= tp_p:
                     auto_closed_reason = "TAKE_PROFIT"
                     auto_closed_status = "closed_auto_tp"
-                elif sl_on and float(current) <= sl_p:
-                    auto_closed_reason = "STOP_LOSS"
-                    auto_closed_status = "closed_auto_sl"
-                elif trail_on and float(l.get("peak_bid", current)) > entry:
-                    stop_lvl = float(l["peak_bid"]) * (1.0 - trail_offset / 100.0)
+                elif ratchet_floor is not None and float(current) <= ratchet_floor:
+                    auto_closed_reason = "PROFIT_RATCHET"
+                    auto_closed_status = "closed_auto_trailing"
+                elif trail_on and peak_val > entry and peak_gain_pct >= trail_act_pct:
+                    eff_offset = min(trail_offset, 6.0) if peak_gain_pct >= 45.0 else trail_offset
+                    stop_lvl = peak_val * (1.0 - eff_offset / 100.0)
                     if float(current) <= stop_lvl:
                         auto_closed_reason = "TRAILING_STOP"
                         auto_closed_status = "closed_auto_trailing"
+                elif sl_on and float(current) <= sl_p:
+                    breach_cnt = int(l.get("sl_breach_count") or 0) + 1
+                    l["sl_breach_count"] = breach_cnt
+                    catastrophic_drop = float(current) <= (sl_p * 0.60)
+                    model_strong = (
+                        sl_confirm_model
+                        and fair_c is not None
+                        and entry_c is not None
+                        and fair_c >= max(int(entry_c * 0.95), int(_to_cents(sl_p) * 1.30))
+                    )
+                    req_ticks = max(1, sl_confirm_ticks)
+                    if model_strong and req_ticks < 2:
+                        req_ticks = 2
+
+                    if not catastrophic_drop and breach_cnt < req_ticks:
+                        whipsaw_guard_msg = (
+                            f"    \U0001F6E1\uFE0F محافظ ضد نوسان کاذب (برخورد {breach_cnt}/{req_ticks}): قیمت به زیر استاپ رفت اما مدل هواشناسی ({fair_c}\u00a2) قوی است — جلوگیری از فروش هیجانی در کف!"
+                            if model_strong
+                            else f"    \U0001F6E1\uFE0F محافظ تایید دو مرحله‌ای استاپ (برخورد {breach_cnt}/{req_ticks}) — انتظار برای تایید پایداری افت در اسکن بعدی."
+                        )
+                    else:
+                        auto_closed_reason = "STOP_LOSS"
+                        auto_closed_status = "closed_auto_sl"
+                else:
+                    l["sl_breach_count"] = 0
 
             if auto_closed_status:
                 l["status"] = auto_closed_status
@@ -407,6 +464,10 @@ def _build_city_blocks(locks_subset, now, is_min):
 
             if auto_closed_status:
                 lines.append(f"    \u26A1 خروج خودکار اجرا شد ({auto_closed_reason}) در قیمت {curr_c}\u00a2!")
+            elif whipsaw_guard_msg:
+                lines.append(whipsaw_guard_msg)
+            elif active_ratchet_c is not None and not auto_closed_status:
+                lines.append(f"    \U0001F512 سپر قفل سود پلکانی فعال است: کف سود تضمین‌شده در {active_ratchet_c}\u00a2 (قله: {_to_cents(peak_val)}\u00a2)")
 
             # مشاور هوشمند سیو سود و نوسان‌گیری پیش از Resolve
             if intraday_elim and side == "YES":

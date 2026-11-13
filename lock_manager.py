@@ -348,8 +348,13 @@ def process_lock_issues():
         sl_enabled = bool(data.get("sl_enabled", True)) if auto_exit_enabled else False
         metar_auto_stop = bool(data.get("metar_auto_stop", True)) if auto_exit_enabled else False
         auto_sell_99c = bool(data.get("auto_sell_99c", True)) if auto_exit_enabled else False
-        trailing_stop_enabled = bool(data.get("trailing_stop_enabled", False)) if auto_exit_enabled else False
-        trailing_offset_pct = float(data.get("trailing_offset_pct") or 10.0)
+        trailing_stop_enabled = bool(data.get("trailing_stop_enabled", True if smart_autopilot else False)) if auto_exit_enabled else False
+        trailing_offset_pct = float(data.get("trailing_offset_pct") or 8.0)
+        trailing_activation_pct = float(data.get("trailing_activation_pct") or 18.0)
+        profit_ratchet_enabled = bool(data.get("profit_ratchet_enabled", True)) if auto_exit_enabled else False
+        break_even_trigger_pct = float(data.get("break_even_trigger_pct") or 15.0)
+        sl_confirm_with_model = bool(data.get("sl_confirm_with_model", True)) if auto_exit_enabled else False
+        sl_confirm_ticks = int(data.get("sl_confirm_ticks") or 2)
 
         ref_entry = entry_price if entry_price and entry_price > 0 else 0.20
         if auto_exit_enabled or is_edit_request:
@@ -399,6 +404,11 @@ def process_lock_issues():
             existing_open_lock["sl_pct"] = sl_pct
             existing_open_lock["trailing_stop_enabled"] = trailing_stop_enabled
             existing_open_lock["trailing_offset_pct"] = trailing_offset_pct
+            existing_open_lock["trailing_activation_pct"] = trailing_activation_pct
+            existing_open_lock["profit_ratchet_enabled"] = profit_ratchet_enabled
+            existing_open_lock["break_even_trigger_pct"] = break_even_trigger_pct
+            existing_open_lock["sl_confirm_with_model"] = sl_confirm_with_model
+            existing_open_lock["sl_confirm_ticks"] = sl_confirm_ticks
             existing_open_lock["metar_auto_stop"] = metar_auto_stop
             existing_open_lock["auto_sell_99c"] = auto_sell_99c
             existing_open_lock["max_slippage_pct"] = float(data.get("max_slippage_pct") or existing_open_lock.get("max_slippage_pct") or 2.0)
@@ -446,6 +456,12 @@ def process_lock_issues():
             "sl_pct": sl_pct,
             "trailing_stop_enabled": trailing_stop_enabled,
             "trailing_offset_pct": trailing_offset_pct,
+            "trailing_activation_pct": trailing_activation_pct,
+            "profit_ratchet_enabled": profit_ratchet_enabled,
+            "break_even_trigger_pct": break_even_trigger_pct,
+            "sl_confirm_with_model": sl_confirm_with_model,
+            "sl_confirm_ticks": sl_confirm_ticks,
+            "sl_breach_count": 0,
             "metar_auto_stop": metar_auto_stop,
             "auto_sell_99c": auto_sell_99c,
             "max_slippage_pct": float(data.get("max_slippage_pct") or 2.0),

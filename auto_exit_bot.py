@@ -75,6 +75,7 @@ class ExitPolicy(str, Enum):
 
 class TriggerReason(str, Enum):
     TAKE_PROFIT = "TAKE_PROFIT"
+    PROFIT_RATCHET = "PROFIT_RATCHET"
     STOP_LOSS = "STOP_LOSS"
     TRAILING_STOP = "TRAILING_STOP"
     METAR_ELIMINATED = "METAR_ELIMINATED"
@@ -113,6 +114,66 @@ def round_to_tick(price: Decimal, tick_size: Decimal, rounding=ROUND_DOWN) -> De
     if res > max_p:
         return max_p
     return res
+
+
+def compute_profit_ratchet_floor(
+    entry_price: Decimal,
+    peak_bid: Optional[Decimal],
+    tp_price: Optional[Decimal] = None,
+    break_even_trigger_pct: Decimal = Decimal("15.0"),
+    tick_size: Decimal = Decimal("0.01"),
+) -> Tuple[Optional[Decimal], Optional[str]]:
+    """
+    Multi-Stage Profit Ratchet & Break-Even Shield:
+    Once peak_bid rises meaningfully above entry_price, builds a ratchet floor
+    so an in-profit position can NEVER round-trip back into a loss:
+      - Stage 1 (Peak >= break_even_trigger_pct, default +15%): Break-Even + 2% (min +1 tick)
+      - Stage 2 (Peak >= +25%): Lock in at least +12% profit
+      - Stage 3 (Peak >= +40%): Lock in at least +25% profit
+      - Stage 4 (Peak >= +60%): Lock in at least +42% profit
+      - Stage 5 (Peak reached >= 85% of distance to TP): Lock in 70% of peak gain
+    """
+    if peak_bid is None or entry_price <= Decimal("0") or peak_bid <= entry_price:
+        return None, None
+
+    tick = tick_size if tick_size > Decimal("0") else Decimal("0.01")
+    gain_pct = ((peak_bid - entry_price) / entry_price) * Decimal("100")
+    be_trig = max(Decimal("5.0"), break_even_trigger_pct)
+
+    floor_px: Optional[Decimal] = None
+    stage_label: Optional[str] = None
+
+    if gain_pct >= Decimal("60.0"):
+        cand = max(entry_price * Decimal("1.42"), peak_bid * Decimal("0.88"))
+        floor_px = round_to_tick(cand, tick, ROUND_DOWN)
+        stage_label = "پله ۴ قفل سود (حداقل +42% سود تضمین‌شده)"
+    elif gain_pct >= Decimal("40.0"):
+        cand = max(entry_price * Decimal("1.25"), peak_bid * Decimal("0.86"))
+        floor_px = round_to_tick(cand, tick, ROUND_DOWN)
+        stage_label = "پله ۳ قفل سود (حداقل +25% سود تضمین‌شده)"
+    elif gain_pct >= Decimal("25.0"):
+        cand = max(entry_price * Decimal("1.12"), entry_price + tick)
+        floor_px = round_to_tick(cand, tick, ROUND_DOWN)
+        stage_label = "پله ۲ قفل سود (حداقل +12% سود تضمین‌شده)"
+    elif gain_pct >= be_trig:
+        cand = max(entry_price * Decimal("1.02"), entry_price + tick)
+        floor_px = round_to_tick(cand, tick, ROUND_DOWN)
+        stage_label = "پله ۱ سپر ریسک‌فری (Break-Even + سود پایه)"
+
+    # Stage 5: Near-TP Protection (if peak reached >= 85% of the way to TP)
+    if tp_price is not None and tp_price > entry_price:
+        target_span = tp_price - entry_price
+        achieved_span = peak_bid - entry_price
+        if target_span > Decimal("0") and (achieved_span / target_span) >= Decimal("0.85"):
+            near_tp_floor = round_to_tick(entry_price + achieved_span * Decimal("0.72"), tick, ROUND_DOWN)
+            if floor_px is None or near_tp_floor > floor_px:
+                floor_px = near_tp_floor
+                stage_label = "محافظ نزدیکی به هدف TP (قفل ۷۲٪ سود قله)"
+
+    if floor_px is not None and floor_px >= peak_bid:
+        floor_px = max(entry_price, peak_bid - tick)
+
+    return floor_px, stage_label
 
 
 def validate_exit_rules(
@@ -163,9 +224,9 @@ def compute_smart_autopilot_params(
     tick_size: float = 0.01,
 ) -> Dict[str, Any]:
     """
-    Implements Chapter 5 of the Master Specification:
+    Implements Chapter 5 of the Master Specification + v3.5 Anti-Whipsaw & Profit Ratchet:
     Computes optimal Entry Price, Limit Buy Price, Take-Profit (aligned with calibrated
-    Weather Model Fair Value), and tiered Stop-Loss based on bucket price level.
+    Weather Model Fair Value), tiered Stop-Loss, Profit Ratchet, and Anti-Whipsaw SL guards.
     """
     tick_d = to_decimal(tick_size, "0.01")
     if tick_d <= Decimal("0"):
@@ -178,7 +239,6 @@ def compute_smart_autopilot_params(
 
     # 1. Smart Entry Price
     if entry_order_type == EntryOrderType.CONDITIONAL_LIMIT_GTC.value:
-        # Suggest 2 cents below current ask or 82% of model fair value, whichever is lower (min 1 tick)
         cand1 = ask_d - Decimal("0.02")
         cand2 = m_prob_d * Decimal("0.82")
         raw_limit = min(cand1, cand2) if m_prob_d > Decimal("0.03") else cand1
@@ -204,9 +264,9 @@ def compute_smart_autopilot_params(
     # 3. Tiered Smart Stop-Loss based on bucket price level
     max_sl = max(tick_d, entry_d - tick_d)
     if entry_d < Decimal("0.15"):
-        raw_sl = entry_d * Decimal("0.62")  # ~ -38% for cheap volatile buckets
+        raw_sl = entry_d * Decimal("0.58")  # ~ -42% breathing room for cheap volatile buckets
     elif entry_d < Decimal("0.35"):
-        raw_sl = entry_d * Decimal("0.72")  # ~ -28% for mid-range buckets
+        raw_sl = entry_d * Decimal("0.70")  # ~ -30% for mid-range buckets
     else:
         raw_sl = entry_d * Decimal("0.78")  # ~ -22% for high-probability buckets
 
@@ -226,8 +286,13 @@ def compute_smart_autopilot_params(
         "sl_enabled": True,
         "sl_price": float(sl_d),
         "sl_pct": round(sl_pct, 1),
-        "trailing_stop_enabled": False,
+        "trailing_stop_enabled": True,
         "trailing_offset_pct": 8.0,
+        "trailing_activation_pct": 18.0,
+        "profit_ratchet_enabled": True,
+        "break_even_trigger_pct": 15.0,
+        "sl_confirm_with_model": True,
+        "sl_confirm_ticks": 2,
         "metar_auto_stop": True,
         "auto_sell_99c": True,
         "exit_policy": ExitPolicy.MARKETABLE_FAK.value,
@@ -256,6 +321,7 @@ class MarketSnapshot:
     bids: List[OrderBookLevel] = field(default_factory=list)
     asks: List[OrderBookLevel] = field(default_factory=list)
     intraday_eliminated: bool = False
+    model_fair_price: Optional[Decimal] = None
 
     def is_fresh(self, now_ms: Optional[int] = None, max_age_ms: int = DEFAULT_MAX_PRICE_AGE_MS) -> bool:
         if now_ms is None:
@@ -275,6 +341,12 @@ class ExitRuleConfig:
     sl_pct: Optional[Decimal] = None
     trailing_stop_enabled: bool = False
     trailing_offset_pct: Decimal = Decimal("8.0")
+    trailing_activation_pct: Decimal = Decimal("0.0")
+    profit_ratchet_enabled: bool = False
+    break_even_trigger_pct: Decimal = Decimal("15.0")
+    sl_confirm_with_model: bool = False
+    sl_confirm_ticks: int = 1
+    sl_breach_count: int = 0
     peak_bid: Optional[Decimal] = None
     metar_auto_stop: bool = True
     auto_sell_99c: bool = True
@@ -466,19 +538,7 @@ class TriggerEngine:
                 details=f"Best bid ({best_bid}) reached >= 99.5c auto-settlement lock",
             )
 
-        # 6. Priority #3: Stop-Loss (SL)
-        if rules.sl_enabled and rules.sl_price is not None:
-            if best_bid <= rules.sl_price:
-                return TriggerDecision(
-                    should_exit=True,
-                    reason=TriggerReason.STOP_LOSS,
-                    observed_best_bid=best_bid,
-                    trigger_price=rules.sl_price,
-                    rule_version=rules.version,
-                    details=f"حد ضرر (SL) فعال شد: Best Bid ({best_bid}) <= SL ({rules.sl_price})",
-                )
-
-        # 7. Priority #4: Take-Profit (TP)
+        # 6. Priority #3: Take-Profit (TP)
         if rules.tp_enabled and rules.tp_price is not None:
             if best_bid >= rules.tp_price:
                 return TriggerDecision(
@@ -490,24 +550,93 @@ class TriggerEngine:
                     details=f"سیو سود (TP) فعال شد: Best Bid ({best_bid}) >= TP ({rules.tp_price})",
                 )
 
-        # 8. Priority #5: Trailing Stop
+        # 7. Priority #4: Smart Profit Ratchet & Break-Even Shield
+        if rules.profit_ratchet_enabled and rules.peak_bid is not None and rules.peak_bid > position.entry_price:
+            ratchet_floor, stage_desc = compute_profit_ratchet_floor(
+                entry_price=position.entry_price,
+                peak_bid=rules.peak_bid,
+                tp_price=rules.tp_price if rules.tp_enabled else None,
+                break_even_trigger_pct=rules.break_even_trigger_pct,
+                tick_size=position.tick_size,
+            )
+            if ratchet_floor is not None and best_bid <= ratchet_floor:
+                return TriggerDecision(
+                    should_exit=True,
+                    reason=TriggerReason.PROFIT_RATCHET,
+                    observed_best_bid=best_bid,
+                    trigger_price=ratchet_floor,
+                    rule_version=rules.version,
+                    details=f"قفل سود پلکانی ({stage_desc}) فعال شد: Best Bid ({best_bid}) <= کف سود قفل‌شده ({ratchet_floor}) پس از قلهٔ {rules.peak_bid}",
+                )
+
+        # 8. Priority #5: Adaptive Profit-Activated Trailing Stop
         if (
             rules.trailing_stop_enabled
             and rules.peak_bid is not None
             and rules.peak_bid > position.entry_price
             and rules.trailing_offset_pct > Decimal("0")
         ):
-            trail_factor = Decimal("1") - (rules.trailing_offset_pct / Decimal("100"))
-            trailing_stop_price = round_to_tick(rules.peak_bid * trail_factor, position.tick_size, ROUND_DOWN)
-            if best_bid <= trailing_stop_price:
+            peak_gain_pct = ((rules.peak_bid - position.entry_price) / position.entry_price) * Decimal("100")
+            if peak_gain_pct >= rules.trailing_activation_pct:
+                # Dynamic tightening when profit exceeds +45% so large gains never evaporate
+                eff_offset = min(rules.trailing_offset_pct, Decimal("6.0")) if peak_gain_pct >= Decimal("45.0") else rules.trailing_offset_pct
+                trail_factor = Decimal("1") - (eff_offset / Decimal("100"))
+                trailing_stop_price = round_to_tick(rules.peak_bid * trail_factor, position.tick_size, ROUND_DOWN)
+                if best_bid <= trailing_stop_price:
+                    return TriggerDecision(
+                        should_exit=True,
+                        reason=TriggerReason.TRAILING_STOP,
+                        observed_best_bid=best_bid,
+                        trigger_price=trailing_stop_price,
+                        rule_version=rules.version,
+                        details=f"حد ضرر متحرک (Trailing Stop) فعال شد: Best Bid ({best_bid}) <= {trailing_stop_price} (قله: {rules.peak_bid})",
+                    )
+
+        # 9. Priority #6: Anti-Whipsaw Stop-Loss (SL) with Model Confirmation & Multi-Tick Persistence
+        if rules.sl_enabled and rules.sl_price is not None:
+            if best_bid <= rules.sl_price:
+                rules.sl_breach_count = int(rules.sl_breach_count or 0) + 1
+                emergency_crash_floor = rules.sl_price * Decimal("0.60")
+                is_catastrophic_drop = best_bid <= emergency_crash_floor
+
+                # Check if weather model still strongly supports the bucket (Orderbook Whipsaw Guard)
+                model_still_strong = False
+                if rules.sl_confirm_with_model and snapshot.model_fair_price is not None:
+                    if (
+                        snapshot.model_fair_price >= position.entry_price * Decimal("0.95")
+                        and snapshot.model_fair_price >= rules.sl_price * Decimal("1.30")
+                    ):
+                        model_still_strong = True
+
+                required_ticks = max(1, int(rules.sl_confirm_ticks or 1))
+                if model_still_strong and required_ticks < 2:
+                    required_ticks = 2
+
+                if not is_catastrophic_drop and rules.sl_breach_count < required_ticks:
+                    guard_note = (
+                        f"فیلتر ضد نوسان کاذب فعال شد (برخورد {rules.sl_breach_count} از {required_ticks}) — "
+                        f"قیمت Bid ({best_bid}) به زیر SL ({rules.sl_price}) رفت اما از فروش هیجانی در کف جلوگیری شد"
+                    )
+                    if model_still_strong:
+                        guard_note += f" چون ارزش منصفانه مدل ({snapshot.model_fair_price}) همچنان قوی و بالای قیمت ورود است."
+                    return TriggerDecision(
+                        should_exit=False,
+                        observed_best_bid=best_bid,
+                        trigger_price=rules.sl_price,
+                        rule_version=rules.version,
+                        details=guard_note,
+                    )
+
                 return TriggerDecision(
                     should_exit=True,
-                    reason=TriggerReason.TRAILING_STOP,
+                    reason=TriggerReason.STOP_LOSS,
                     observed_best_bid=best_bid,
-                    trigger_price=trailing_stop_price,
+                    trigger_price=rules.sl_price,
                     rule_version=rules.version,
-                    details=f"حد ضرر متحرک (Trailing Stop) فعال شد: Best Bid ({best_bid}) <= {trailing_stop_price} (قله: {rules.peak_bid})",
+                    details=f"حد ضرر (SL) پس از تایید پایداری فعال شد: Best Bid ({best_bid}) <= SL ({rules.sl_price})",
                 )
+            else:
+                rules.sl_breach_count = 0
 
         return TriggerDecision(False, observed_best_bid=best_bid, rule_version=rules.version, details="No trigger hit")
 
@@ -1221,9 +1350,53 @@ def run_self_tests() -> Dict[str, Any]:
         event_type="SELF_TEST",
     )
 
+    # Test 8: Smart Profit Ratchet & Break-Even Shield (prevents profit round-trip into loss)
+    ratchet_rules = ExitRuleConfig(
+        position_id="pos_active_test",
+        tp_enabled=True,
+        tp_price=Decimal("0.650"),
+        sl_enabled=True,
+        sl_price=Decimal("0.300"),
+        profit_ratchet_enabled=True,
+        break_even_trigger_pct=Decimal("15.0"),
+        peak_bid=Decimal("0.510"),  # +27.5% above 0.400 entry -> Stage 2 locks in +12% (0.448)
+    )
+    pullback_snap = MarketSnapshot(
+        token_id="tok_active",
+        best_bid=Decimal("0.445"),
+        best_ask=Decimal("0.455"),
+        tick_size=Decimal("0.001"),
+        timestamp_ms=now_ms,
+    )
+    ratchet_trig = TriggerEngine.evaluate(active_pos, ratchet_rules, pullback_snap, now_ms=now_ms)
+    assert ratchet_trig.should_exit and ratchet_trig.reason == TriggerReason.PROFIT_RATCHET, f"Expected PROFIT_RATCHET, got {ratchet_trig}"
+
+    # Test 9: Anti-Whipsaw Stop-Loss (Model-Confirmed + 2-Tick Persistence blocks single-tick fake dip)
+    whipsaw_rules = ExitRuleConfig(
+        position_id="pos_active_test",
+        tp_enabled=True,
+        tp_price=Decimal("0.550"),
+        sl_enabled=True,
+        sl_price=Decimal("0.320"),
+        sl_confirm_with_model=True,
+        sl_confirm_ticks=2,
+    )
+    fake_dip_snap = MarketSnapshot(
+        token_id="tok_active",
+        best_bid=Decimal("0.310"),
+        best_ask=Decimal("0.350"),
+        tick_size=Decimal("0.001"),
+        timestamp_ms=now_ms,
+        model_fair_price=Decimal("0.480"),  # Model still strongly favors bucket (> entry 0.400)
+    )
+    dip_trig_1 = TriggerEngine.evaluate(active_pos, whipsaw_rules, fake_dip_snap, now_ms=now_ms)
+    assert not dip_trig_1.should_exit and whipsaw_rules.sl_breach_count == 1, "First fake dip should be guarded!"
+    dip_trig_2 = TriggerEngine.evaluate(active_pos, whipsaw_rules, fake_dip_snap, now_ms=now_ms)
+    assert dip_trig_2.should_exit and dip_trig_2.reason == TriggerReason.STOP_LOSS, "Second persistent dip should exit!"
+
     return {
         "ok": True,
-        "tests_passed": 7,
+        "tests_passed": 9,
         "smart_autopilot_sample": smart,
         "shadow_fill_avg_price": str(sim_res.avg_fill_price),
     }
@@ -1231,4 +1404,4 @@ def run_self_tests() -> Dict[str, Any]:
 
 if __name__ == "__main__":
     result = run_self_tests()
-    print("Auto-Exit Bot v3.0 Master Spec self-tests passed:", json.dumps(result, ensure_ascii=False))
+    print("Auto-Exit Bot v3.5 Master Spec self-tests passed:", json.dumps(result, ensure_ascii=False))
