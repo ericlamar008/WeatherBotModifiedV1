@@ -545,11 +545,11 @@
         26.0,
         26.0
       ],
-      "yes_price": 0.145,
+      "yes_price": 0.15,
       "no_price": 0.85,
       "best_bid": 0.14,
-      "best_ask": 0.15,
-      "bid_ask_spread": 0.01,
+      "best_ask": 0.16,
+      "bid_ask_spread": 0.02,
       "volume": 457.0,
       "spread": 0.02,
       "yes_token_id": "47268768383319990430830504223910403610368400885941566781832489538876662798057",
@@ -557,14 +557,14 @@
       "model_prob": 0.1768,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.145,
-      "effective_ask": 0.145,
-      "market_prob": 0.145,
-      "belief_prob": 0.1657,
-      "ev": 0.1428,
-      "kelly": 0.0061,
-      "swing_edge": 0.0318,
-      "swing_upside_pct": 21.9,
+      "ask": 0.15,
+      "effective_ask": 0.15,
+      "market_prob": 0.15,
+      "belief_prob": 0.1674,
+      "ev": 0.116,
+      "kelly": 0.0051,
+      "swing_edge": 0.0268,
+      "swing_upside_pct": 17.9,
       "sell_value": 0.14,
       "scan6h_model_prob": 0.1768,
       "prev_scan6h_model_prob": 0.1768,
@@ -578,13 +578,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.15,
       "prev_scan6h_yes_price": 0.15,
-      "prev_yes_price": 0.15,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -3.3,
+      "prev_yes_price": 0.145,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 3.4,
       "yes_price_6h_change": -0.005,
       "yes_price_6h_pct_change": -3.3,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -3.3,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 3.4,
       "price_history": [
         {
           "t": "2026-11-13T20:25:08Z",
@@ -634,9 +634,16 @@
           "mp": 0.1768,
           "bid": 0.14,
           "ask": 0.15
+        },
+        {
+          "t": "2026-11-13T22:47:25Z",
+          "p": 0.15,
+          "mp": 0.1768,
+          "bid": 0.14,
+          "ask": 0.16
         }
       ],
-      "prev_10m_yes_price": 0.15
+      "prev_10m_yes_price": 0.145
     },
     {
       "question": "Will the highest temperature in Hong Kong be 27°C on November 15?",
@@ -1173,5 +1180,5 @@
   "confidence": 0.3982,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-13T22:37:24.409099+00:00"
+  "last_price_refresh": "2026-11-13T22:47:25.345002+00:00"
 }
