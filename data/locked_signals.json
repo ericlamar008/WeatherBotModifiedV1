@@ -14569,7 +14569,7 @@
     "entry_bid": 0.17,
     "entry_order_type": "IMMEDIATE_MARKETABLE",
     "limit_buy_price": null,
-    "position_state": "WATCHING",
+    "position_state": "CLOSED",
     "execution_mode": "SHADOW",
     "exit_policy": "MARKETABLE_FAK",
     "smart_autopilot": false,
@@ -14589,25 +14589,20 @@
     "usdc_amount": 5.0,
     "quantity_shares": 27.78,
     "filled_shares": 27.78,
-    "peak_bid": 0.29,
+    "peak_bid": 0.39,
     "rule_version": 1,
     "locked_at": "2026-11-12T15:24:03.114156+00:00",
-    "status": "open",
-    "last_price": 0.29,
-    "last_pct": 52.6,
-    "exit_price": null,
-    "closed_at": null,
+    "status": "closed_auto_tp",
+    "last_price": 0.39,
+    "last_pct": 105.3,
+    "exit_price": 0.39,
+    "closed_at": "2026-11-13T10:37:25.798361+00:00",
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.365,
-    "last_checked_at": "2026-11-13T10:17:26.235074+00:00",
+    "last_mid": 0.425,
+    "last_checked_at": "2026-11-13T10:37:25.798361+00:00",
     "price_trajectory": [
-      {
-        "t": "2026-11-12T17:07:30Z",
-        "p": 0.14,
-        "pct": -26.3
-      },
       {
         "t": "2026-11-12T18:07:30Z",
         "p": 0.13,
@@ -14842,10 +14837,18 @@
         "t": "2026-11-13T10:17:26Z",
         "p": 0.29,
         "pct": 52.6
+      },
+      {
+        "t": "2026-11-13T10:37:25Z",
+        "p": 0.39,
+        "pct": 105.3
       }
     ],
     "model_fair_cents": 57,
-    "intraday_eliminated": false
+    "intraday_eliminated": false,
+    "latched_exit_reason": "TAKE_PROFIT",
+    "outcome_pct": 105.3,
+    "notified_close": true
   },
   {
     "issue_number": 153,
