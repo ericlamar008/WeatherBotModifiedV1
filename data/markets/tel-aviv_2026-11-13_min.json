@@ -47,10 +47,10 @@
         11.0,
         11.0
       ],
-      "yes_price": 0.18,
+      "yes_price": 0.175,
       "no_price": 0.82,
       "best_bid": null,
-      "best_ask": 0.36,
+      "best_ask": 0.35,
       "bid_ask_spread": 0.0,
       "volume": 35.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.0213,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.18,
-      "effective_ask": 0.18,
-      "market_prob": 0.18,
-      "belief_prob": 0.0768,
-      "ev": -0.5733,
+      "ask": 0.175,
+      "effective_ask": 0.175,
+      "market_prob": 0.175,
+      "belief_prob": 0.0751,
+      "ev": -0.5709,
       "kelly": 0.0,
-      "swing_edge": -0.1587,
-      "swing_upside_pct": -88.2,
+      "swing_edge": -0.1537,
+      "swing_upside_pct": -87.8,
       "sell_value": null,
       "scan6h_model_prob": 0.0213,
       "prev_scan6h_model_prob": 0.0213,
@@ -81,12 +81,12 @@
       "scan6h_yes_price": 0.18,
       "prev_scan6h_yes_price": 0.18,
       "prev_yes_price": 0.18,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -2.8,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -2.8,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -2.8,
       "price_history": [
         {
           "t": "2026-11-13T14:41:55Z",
@@ -94,8 +94,16 @@
           "mp": 0.0213,
           "bid": null,
           "ask": 0.36
+        },
+        {
+          "t": "2026-11-13T14:47:26Z",
+          "p": 0.175,
+          "mp": 0.0213,
+          "bid": null,
+          "ask": 0.35
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.18
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 12°C on November 13?",
@@ -152,7 +160,8 @@
           "bid": null,
           "ask": 0.89
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.445
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 13°C on November 13?",
@@ -209,7 +218,8 @@
           "bid": null,
           "ask": 0.93
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.465
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 14°C on November 13?",
@@ -266,7 +276,8 @@
           "bid": 0.87,
           "ask": 1.0
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.935
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 15°C on November 13?",
@@ -290,7 +301,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -323,7 +334,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -352,5 +364,6 @@
   "success_probability": 0.2644,
   "confidence": 0.2399,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-13T14:47:26.191945+00:00"
 }
