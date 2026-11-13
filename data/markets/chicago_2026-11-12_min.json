@@ -47,9 +47,9 @@
         38.0,
         39.0
       ],
-      "yes_price": 0.98,
+      "yes_price": 0.999,
       "no_price": 0.465,
-      "best_bid": 0.96,
+      "best_bid": 0.998,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 469.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.2355,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.98,
-      "effective_ask": 0.98,
-      "market_prob": 0.98,
-      "belief_prob": 0.4961,
-      "ev": -0.4938,
+      "ask": 0.999,
+      "effective_ask": 0.999,
+      "market_prob": 0.999,
+      "belief_prob": 0.5027,
+      "ev": -0.4968,
       "kelly": 0.0,
-      "swing_edge": -0.7445,
-      "swing_upside_pct": -76.0,
+      "swing_edge": -0.7635,
+      "swing_upside_pct": -76.4,
       "sell_value": 0.15,
       "scan6h_model_prob": 0.2355,
       "prev_scan6h_model_prob": 0.2355,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.535,
       "prev_scan6h_yes_price": 0.535,
-      "prev_yes_price": 0.975,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 0.5,
-      "yes_price_6h_change": 0.445,
-      "yes_price_6h_pct_change": 83.2,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 0.5,
+      "prev_yes_price": 0.98,
+      "yes_price_10m_change": 0.019,
+      "yes_price_10m_pct_change": 1.9,
+      "yes_price_6h_change": 0.464,
+      "yes_price_6h_pct_change": 86.7,
+      "yes_price_change": 0.019,
+      "yes_price_pct_change": 1.9,
       "price_history": [
         {
           "t": "2026-11-13T03:02:25Z",
@@ -192,9 +192,16 @@
           "mp": 0.2355,
           "bid": 0.96,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-13T07:07:25Z",
+          "p": 0.999,
+          "mp": 0.2355,
+          "bid": 0.998,
+          "ask": 1.0
         }
       ],
-      "prev_10m_yes_price": 0.975
+      "prev_10m_yes_price": 0.98
     },
     {
       "question": "Will the lowest temperature in Chicago be between 42-43°F on November 12?",
@@ -508,5 +515,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-13T06:57:24.100081+00:00"
+  "last_price_refresh": "2026-11-13T07:07:24.096038+00:00"
 }
