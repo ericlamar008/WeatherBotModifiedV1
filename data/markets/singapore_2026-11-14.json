@@ -466,6 +466,13 @@
           "mp": 0.308,
           "bid": 0.18,
           "ask": 0.22
+        },
+        {
+          "t": "2026-11-13T21:17:26Z",
+          "p": 0.2,
+          "mp": 0.308,
+          "bid": 0.18,
+          "ask": 0.22
         }
       ],
       "prev_10m_yes_price": 0.195
@@ -556,11 +563,11 @@
         32.0,
         32.0
       ],
-      "yes_price": 0.265,
+      "yes_price": 0.25,
       "no_price": 0.725,
-      "best_bid": 0.24,
-      "best_ask": 0.29,
-      "bid_ask_spread": 0.05,
+      "best_bid": 0.23,
+      "best_ask": 0.27,
+      "bid_ask_spread": 0.04,
       "volume": 644.0,
       "spread": 0.03,
       "yes_token_id": "25815754411066288566837919855922557420304921675261986491526639453520675939373",
@@ -568,14 +575,14 @@
       "model_prob": 0.1597,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.265,
-      "effective_ask": 0.276,
-      "market_prob": 0.265,
-      "belief_prob": 0.1966,
-      "ev": -0.2877,
+      "ask": 0.25,
+      "effective_ask": 0.2555,
+      "market_prob": 0.25,
+      "belief_prob": 0.1913,
+      "ev": -0.2513,
       "kelly": 0.0,
-      "swing_edge": -0.1053,
-      "swing_upside_pct": -39.7,
+      "swing_edge": -0.0903,
+      "swing_upside_pct": -36.1,
       "sell_value": 0.26,
       "scan6h_model_prob": 0.1597,
       "prev_scan6h_model_prob": 0.1597,
@@ -589,13 +596,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.275,
       "prev_scan6h_yes_price": 0.275,
-      "prev_yes_price": 0.26,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 1.9,
-      "yes_price_6h_change": -0.01,
-      "yes_price_6h_pct_change": -3.6,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 1.9,
+      "prev_yes_price": 0.265,
+      "yes_price_10m_change": -0.015,
+      "yes_price_10m_pct_change": -5.7,
+      "yes_price_6h_change": -0.025,
+      "yes_price_6h_pct_change": -9.1,
+      "yes_price_change": -0.015,
+      "yes_price_pct_change": -5.7,
       "price_history": [
         {
           "t": "2026-11-13T20:25:08Z",
@@ -624,9 +631,16 @@
           "mp": 0.1597,
           "bid": 0.24,
           "ask": 0.29
+        },
+        {
+          "t": "2026-11-13T21:17:26Z",
+          "p": 0.25,
+          "mp": 0.1597,
+          "bid": 0.23,
+          "ask": 0.27
         }
       ],
-      "prev_10m_yes_price": 0.26
+      "prev_10m_yes_price": 0.265
     },
     {
       "question": "Will the highest temperature in Singapore be 33°C on November 14?",
@@ -695,6 +709,13 @@
           "p": 0.0475,
           "mp": 0.0399,
           "bid": 0.034,
+          "ask": 0.061
+        },
+        {
+          "t": "2026-11-13T21:17:26Z",
+          "p": 0.049,
+          "mp": 0.0399,
+          "bid": 0.037,
           "ask": 0.061
         }
       ],
@@ -855,5 +876,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-13T21:07:26.819498+00:00"
+  "last_price_refresh": "2026-11-13T21:17:25.822837+00:00"
 }
