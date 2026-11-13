@@ -47,11 +47,11 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.27,
+      "yes_price": 0.42,
       "no_price": 0.625,
-      "best_bid": 0.01,
-      "best_ask": 0.53,
-      "bid_ask_spread": 0.52,
+      "best_bid": 0.03,
+      "best_ask": 0.81,
+      "bid_ask_spread": 0.78,
       "volume": 6.0,
       "spread": 0.73,
       "yes_token_id": "52118953191687569917324656864245775833197964258854695214052959435841986780965",
@@ -59,14 +59,14 @@
       "model_prob": 0.2559,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.27,
-      "effective_ask": 0.35,
-      "market_prob": 0.27,
-      "belief_prob": 0.2608,
-      "ev": -0.2549,
+      "ask": 0.42,
+      "effective_ask": 0.5,
+      "market_prob": 0.42,
+      "belief_prob": 0.3133,
+      "ev": -0.3734,
       "kelly": 0.0,
-      "swing_edge": -0.0141,
-      "swing_upside_pct": -5.2,
+      "swing_edge": -0.1641,
+      "swing_upside_pct": -39.1,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.2559,
       "prev_scan6h_model_prob": 0.2559,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.375,
       "prev_scan6h_yes_price": 0.375,
-      "prev_yes_price": 0.385,
-      "yes_price_10m_change": -0.115,
-      "yes_price_10m_pct_change": -29.9,
-      "yes_price_6h_change": -0.105,
-      "yes_price_6h_pct_change": -28.0,
-      "yes_price_change": -0.115,
-      "yes_price_pct_change": -29.9,
+      "prev_yes_price": 0.27,
+      "yes_price_10m_change": 0.15,
+      "yes_price_10m_pct_change": 55.6,
+      "yes_price_6h_change": 0.045,
+      "yes_price_6h_pct_change": 12.0,
+      "yes_price_change": 0.15,
+      "yes_price_pct_change": 55.6,
       "price_history": [
         {
           "t": "2026-11-13T08:42:47Z",
@@ -129,9 +129,16 @@
           "mp": 0.2559,
           "bid": 0.01,
           "ask": 0.53
+        },
+        {
+          "t": "2026-11-13T09:47:26Z",
+          "p": 0.42,
+          "mp": 0.2559,
+          "bid": 0.03,
+          "ask": 0.81
         }
       ],
-      "prev_10m_yes_price": 0.385
+      "prev_10m_yes_price": 0.27
     },
     {
       "question": "Will the lowest temperature in Houston be between 58-59°F on November 13?",
@@ -233,5 +240,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-13T09:37:28.206946+00:00"
+  "last_price_refresh": "2026-11-13T09:47:25.380078+00:00"
 }
