@@ -1195,11 +1195,11 @@
         18.0,
         18.0
       ],
-      "yes_price": 0.0445,
+      "yes_price": 0.04,
       "no_price": 0.9545,
-      "best_bid": 0.032,
-      "best_ask": 0.057,
-      "bid_ask_spread": 0.025,
+      "best_bid": 0.026,
+      "best_ask": 0.054,
+      "bid_ask_spread": 0.028,
       "volume": 133.0,
       "spread": 0.027,
       "yes_token_id": "86161035544128547229886418023398980334466882649125626144821549900753952291820",
@@ -1207,14 +1207,14 @@
       "model_prob": 0.1514,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0445,
-      "effective_ask": 0.0445,
-      "market_prob": 0.0445,
-      "belief_prob": 0.114,
-      "ev": 1.5618,
-      "kelly": 0.0182,
-      "swing_edge": 0.1069,
-      "swing_upside_pct": 240.2,
+      "ask": 0.04,
+      "effective_ask": 0.04,
+      "market_prob": 0.04,
+      "belief_prob": 0.1124,
+      "ev": 1.81,
+      "kelly": 0.0189,
+      "swing_edge": 0.1114,
+      "swing_upside_pct": 278.5,
       "sell_value": 0.032,
       "scan6h_model_prob": 0.1514,
       "prev_scan6h_model_prob": 0.1514,
@@ -1228,13 +1228,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0455,
       "prev_scan6h_yes_price": 0.0455,
-      "prev_yes_price": 0.041,
-      "yes_price_10m_change": 0.0035,
-      "yes_price_10m_pct_change": 8.5,
-      "yes_price_6h_change": -0.001,
-      "yes_price_6h_pct_change": -2.2,
-      "yes_price_change": 0.0035,
-      "yes_price_pct_change": 8.5,
+      "prev_yes_price": 0.0445,
+      "yes_price_10m_change": -0.0045,
+      "yes_price_10m_pct_change": -10.1,
+      "yes_price_6h_change": -0.0055,
+      "yes_price_6h_pct_change": -12.1,
+      "yes_price_change": -0.0045,
+      "yes_price_pct_change": -10.1,
       "price_history": [
         {
           "t": "2026-11-13T20:25:08Z",
@@ -1333,9 +1333,16 @@
           "mp": 0.1514,
           "bid": 0.032,
           "ask": 0.057
+        },
+        {
+          "t": "2026-11-14T00:47:38Z",
+          "p": 0.04,
+          "mp": 0.1514,
+          "bid": 0.026,
+          "ask": 0.054
         }
       ],
-      "prev_10m_yes_price": 0.041
+      "prev_10m_yes_price": 0.0445
     },
     {
       "question": "Will the highest temperature in Tokyo be 19°C on November 15?",
@@ -1632,5 +1639,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-14T00:37:31.143887+00:00"
+  "last_price_refresh": "2026-11-14T00:47:38.163929+00:00"
 }
