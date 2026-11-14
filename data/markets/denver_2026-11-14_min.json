@@ -47,10 +47,10 @@
         32.0,
         33.0
       ],
-      "yes_price": 0.42,
+      "yes_price": 0.405,
       "no_price": 0.58,
       "best_bid": null,
-      "best_ask": 0.84,
+      "best_ask": 0.81,
       "bid_ask_spread": 0.0,
       "volume": 335.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.3652,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.42,
-      "effective_ask": 0.42,
-      "market_prob": 0.42,
-      "belief_prob": 0.3844,
-      "ev": -0.0848,
+      "ask": 0.405,
+      "effective_ask": 0.405,
+      "market_prob": 0.405,
+      "belief_prob": 0.3791,
+      "ev": -0.064,
       "kelly": 0.0,
-      "swing_edge": -0.0548,
-      "swing_upside_pct": -13.0,
+      "swing_edge": -0.0398,
+      "swing_upside_pct": -9.8,
       "sell_value": null,
       "scan6h_model_prob": 0.3652,
       "prev_scan6h_model_prob": 0.3652,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.42,
       "prev_scan6h_yes_price": 0.42,
-      "prev_yes_price": 0.425,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.2,
-      "yes_price_6h_change": 0.005,
-      "yes_price_6h_pct_change": 1.2,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.2,
+      "prev_yes_price": 0.42,
+      "yes_price_10m_change": -0.015,
+      "yes_price_10m_pct_change": -3.6,
+      "yes_price_6h_change": -0.015,
+      "yes_price_6h_pct_change": -3.6,
+      "yes_price_change": -0.015,
+      "yes_price_pct_change": -3.6,
       "price_history": [
         {
           "t": "2026-11-14T20:24:24Z",
@@ -115,9 +115,16 @@
           "mp": 0.3652,
           "bid": null,
           "ask": 0.84
+        },
+        {
+          "t": "2026-11-14T21:17:28Z",
+          "p": 0.405,
+          "mp": 0.3652,
+          "bid": null,
+          "ask": 0.81
         }
       ],
-      "prev_10m_yes_price": 0.425
+      "prev_10m_yes_price": 0.42
     },
     {
       "question": "Will the lowest temperature in Denver be between 34-35°F on November 14?",
@@ -504,5 +511,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-14T21:07:32.179436+00:00"
+  "last_price_refresh": "2026-11-14T21:17:27.748818+00:00"
 }
