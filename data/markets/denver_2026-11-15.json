@@ -94,7 +94,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Denver be between 46-47°F on November 15?",
@@ -151,7 +152,8 @@
           "bid": 0.001,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the highest temperature in Denver be between 48-49°F on November 15?",
@@ -208,7 +210,8 @@
           "bid": 0.002,
           "ask": 0.02
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.011
     },
     {
       "question": "Will the highest temperature in Denver be between 50-51°F on November 15?",
@@ -265,7 +268,8 @@
           "bid": 0.015,
           "ask": 0.026
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0205
     },
     {
       "question": "Will the highest temperature in Denver be between 52-53°F on November 15?",
@@ -292,8 +296,8 @@
       "belief_prob": 0.1025,
       "ev": -0.0376,
       "kelly": 0.0,
-      "swing_edge": 0.0027,
-      "swing_upside_pct": 2.5,
+      "swing_edge": 0.0192,
+      "swing_upside_pct": 21.3,
       "sell_value": 0.06,
       "scan6h_model_prob": 0.1092,
       "prev_scan6h_model_prob": 0.1092,
@@ -322,7 +326,8 @@
           "bid": 0.06,
           "ask": 0.12
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.09
     },
     {
       "question": "Will the highest temperature in Denver be between 54-55°F on November 15?",
@@ -349,8 +354,8 @@
       "belief_prob": 0.272,
       "ev": 0.0522,
       "kelly": 0.0046,
-      "swing_edge": 0.0415,
-      "swing_upside_pct": 16.1,
+      "swing_edge": 0.08,
+      "swing_upside_pct": 36.4,
       "sell_value": 0.17,
       "scan6h_model_prob": 0.3,
       "prev_scan6h_model_prob": 0.3,
@@ -379,7 +384,8 @@
           "bid": 0.17,
           "ask": 0.27
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.22
     },
     {
       "question": "Will the highest temperature in Denver be between 56-57°F on November 15?",
@@ -388,11 +394,11 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.315,
+      "yes_price": 0.32,
       "no_price": 0.685,
-      "best_bid": 0.26,
+      "best_bid": 0.27,
       "best_ask": 0.37,
-      "bid_ask_spread": 0.11,
+      "bid_ask_spread": 0.1,
       "volume": 67.0,
       "spread": 0.11,
       "yes_token_id": "2253257883746148401954059595818797646961559126521519234238546413291281115668",
@@ -400,14 +406,14 @@
       "model_prob": 0.3436,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.315,
-      "effective_ask": 0.359,
-      "market_prob": 0.315,
-      "belief_prob": 0.3336,
-      "ev": -0.0708,
+      "ask": 0.32,
+      "effective_ask": 0.3585,
+      "market_prob": 0.32,
+      "belief_prob": 0.3353,
+      "ev": -0.0647,
       "kelly": 0.0,
-      "swing_edge": -0.0154,
-      "swing_upside_pct": -4.3,
+      "swing_edge": 0.0236,
+      "swing_upside_pct": 7.4,
       "sell_value": 0.26,
       "scan6h_model_prob": 0.3436,
       "prev_scan6h_model_prob": 0.3436,
@@ -422,12 +428,12 @@
       "scan6h_yes_price": 0.315,
       "prev_scan6h_yes_price": 0.315,
       "prev_yes_price": 0.315,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.6,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 1.6,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.6,
       "price_history": [
         {
           "t": "2026-11-14T08:44:13Z",
@@ -435,8 +441,16 @@
           "mp": 0.3436,
           "bid": 0.26,
           "ask": 0.37
+        },
+        {
+          "t": "2026-11-14T08:47:27Z",
+          "p": 0.32,
+          "mp": 0.3436,
+          "bid": 0.27,
+          "ask": 0.37
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.315
     },
     {
       "question": "Will the highest temperature in Denver be between 58-59°F on November 15?",
@@ -463,8 +477,8 @@
       "belief_prob": 0.185,
       "ev": -0.3588,
       "kelly": 0.0,
-      "swing_edge": -0.1385,
-      "swing_upside_pct": -48.0,
+      "swing_edge": -0.1,
+      "swing_upside_pct": -40.0,
       "sell_value": 0.2,
       "scan6h_model_prob": 0.15,
       "prev_scan6h_model_prob": 0.15,
@@ -493,7 +507,8 @@
           "bid": 0.2,
           "ask": 0.3
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.25
     },
     {
       "question": "Will the highest temperature in Denver be 64°F or higher on November 15?",
@@ -502,11 +517,11 @@
         64.0,
         999.0
       ],
-      "yes_price": 0.0145,
+      "yes_price": 0.015,
       "no_price": 0.9855,
-      "best_bid": 0.001,
+      "best_bid": 0.002,
       "best_ask": 0.028,
-      "bid_ask_spread": 0.027,
+      "bid_ask_spread": 0.026,
       "volume": 10.0,
       "spread": 0.027,
       "yes_token_id": "25998365040079981925738812988105112799138346182256168973876751591819301484839",
@@ -514,14 +529,14 @@
       "model_prob": 0.0053,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0145,
-      "effective_ask": 0.0145,
-      "market_prob": 0.0145,
-      "belief_prob": 0.0085,
-      "ev": -0.4138,
+      "ask": 0.015,
+      "effective_ask": 0.015,
+      "market_prob": 0.015,
+      "belief_prob": 0.0087,
+      "ev": -0.42,
       "kelly": 0.0,
-      "swing_edge": -0.0092,
-      "swing_upside_pct": -63.4,
+      "swing_edge": -0.0097,
+      "swing_upside_pct": -64.7,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.0053,
       "prev_scan6h_model_prob": 0.0053,
@@ -536,12 +551,12 @@
       "scan6h_yes_price": 0.0145,
       "prev_scan6h_yes_price": 0.0145,
       "prev_yes_price": 0.0145,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 3.4,
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 3.4,
       "price_history": [
         {
           "t": "2026-11-14T08:44:13Z",
@@ -550,7 +565,8 @@
           "bid": 0.001,
           "ask": 0.028
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0145
     }
   ],
   "live_allocation": [],
@@ -562,5 +578,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-14T08:47:26.222646+00:00"
 }
