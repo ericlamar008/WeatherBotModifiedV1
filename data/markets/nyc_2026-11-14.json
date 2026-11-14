@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the highest temperature in New York City be between 38-39°F on November 14?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in New York City be between 40-41°F on November 14?",
@@ -207,7 +209,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the highest temperature in New York City be between 42-43°F on November 14?",
@@ -264,7 +267,8 @@
           "bid": 0.005,
           "ask": 0.007
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.006
     },
     {
       "question": "Will the highest temperature in New York City be between 44-45°F on November 14?",
@@ -321,7 +325,8 @@
           "bid": 0.147,
           "ask": 0.168
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.1575
     },
     {
       "question": "Will the highest temperature in New York City be between 46-47°F on November 14?",
@@ -378,7 +383,8 @@
           "bid": 0.644,
           "ask": 0.65
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.647
     },
     {
       "question": "Will the highest temperature in New York City be between 48-49°F on November 14?",
@@ -387,11 +393,11 @@
         48.0,
         49.0
       ],
-      "yes_price": 0.1665,
+      "yes_price": 0.166,
       "no_price": 0.8335,
       "best_bid": 0.139,
-      "best_ask": 0.194,
-      "bid_ask_spread": 0.055,
+      "best_ask": 0.193,
+      "bid_ask_spread": 0.054,
       "volume": 3031.0,
       "spread": 0.055,
       "yes_token_id": "96925883850495522113118154766221927091410181353477693336021047657206087493290",
@@ -399,14 +405,14 @@
       "model_prob": 0.2401,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1665,
-      "effective_ask": 0.1803,
-      "market_prob": 0.1665,
-      "belief_prob": 0.2143,
-      "ev": 0.1886,
-      "kelly": 0.0104,
-      "swing_edge": 0.0598,
-      "swing_upside_pct": 33.2,
+      "ask": 0.166,
+      "effective_ask": 0.1792,
+      "market_prob": 0.166,
+      "belief_prob": 0.2142,
+      "ev": 0.1953,
+      "kelly": 0.0107,
+      "swing_edge": 0.0741,
+      "swing_upside_pct": 44.6,
       "sell_value": 0.139,
       "scan6h_model_prob": 0.2401,
       "prev_scan6h_model_prob": 0.2401,
@@ -421,12 +427,12 @@
       "scan6h_yes_price": 0.1665,
       "prev_scan6h_yes_price": 0.1665,
       "prev_yes_price": 0.1665,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -0.3,
+      "yes_price_6h_change": -0.0005,
+      "yes_price_6h_pct_change": -0.3,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -0.3,
       "price_history": [
         {
           "t": "2026-11-14T02:27:25Z",
@@ -435,7 +441,8 @@
           "bid": 0.139,
           "ask": 0.194
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.1665
     },
     {
       "question": "Will the highest temperature in New York City be between 50-51°F on November 14?",
@@ -492,7 +499,8 @@
           "bid": 0.007,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0085
     },
     {
       "question": "Will the highest temperature in New York City be between 52-53°F on November 14?",
@@ -549,7 +557,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the highest temperature in New York City be between 54-55°F on November 14?",
@@ -606,7 +615,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in New York City be 56°F or higher on November 14?",
@@ -663,7 +673,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -692,5 +703,6 @@
   "success_probability": 0.6241,
   "confidence": 0.9829,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-14T02:37:25.580272+00:00"
 }

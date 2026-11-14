@@ -47,11 +47,11 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.305,
+      "yes_price": 0.45,
       "no_price": 0.695,
-      "best_bid": 0.08,
-      "best_ask": 0.53,
-      "bid_ask_spread": 0.45,
+      "best_bid": 0.25,
+      "best_ask": 0.65,
+      "bid_ask_spread": 0.4,
       "volume": 27.0,
       "spread": 0.45,
       "yes_token_id": "10402590957904049328758424148457279885296481516102044007930554007586677777173",
@@ -59,14 +59,14 @@
       "model_prob": 0.1318,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.305,
-      "effective_ask": 0.385,
-      "market_prob": 0.305,
-      "belief_prob": 0.1924,
-      "ev": -0.5003,
+      "ask": 0.45,
+      "effective_ask": 0.53,
+      "market_prob": 0.45,
+      "belief_prob": 0.2432,
+      "ev": -0.5411,
       "kelly": 0.0,
-      "swing_edge": -0.2532,
-      "swing_upside_pct": -65.8,
+      "swing_edge": -0.3182,
+      "swing_upside_pct": -70.7,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.1318,
       "prev_scan6h_model_prob": 0.1318,
@@ -81,12 +81,12 @@
       "scan6h_yes_price": 0.305,
       "prev_scan6h_yes_price": 0.305,
       "prev_yes_price": 0.305,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.145,
+      "yes_price_10m_pct_change": 47.5,
+      "yes_price_6h_change": 0.145,
+      "yes_price_6h_pct_change": 47.5,
+      "yes_price_change": 0.145,
+      "yes_price_pct_change": 47.5,
       "price_history": [
         {
           "t": "2026-11-14T02:28:06Z",
@@ -94,8 +94,16 @@
           "mp": 0.1318,
           "bid": 0.08,
           "ask": 0.53
+        },
+        {
+          "t": "2026-11-14T02:37:26Z",
+          "p": 0.45,
+          "mp": 0.1318,
+          "bid": 0.25,
+          "ask": 0.65
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.305
     },
     {
       "question": "Will the lowest temperature in Ankara be 11°C or higher on November 14?",
@@ -119,7 +127,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -152,7 +160,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -181,5 +190,6 @@
   "success_probability": 0.5584,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-14T02:37:25.580272+00:00"
 }

@@ -93,7 +93,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the highest temperature in Miami be between 70-71°F on November 15?",
@@ -150,7 +151,8 @@
           "bid": 0.001,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Miami be between 72-73°F on November 15?",
@@ -207,7 +209,8 @@
           "bid": 0.004,
           "ask": 0.016
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.01
     },
     {
       "question": "Will the highest temperature in Miami be between 74-75°F on November 15?",
@@ -264,7 +267,8 @@
           "bid": 0.006,
           "ask": 0.017
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0115
     },
     {
       "question": "Will the highest temperature in Miami be between 76-77°F on November 15?",
@@ -291,8 +295,8 @@
       "belief_prob": 0.3769,
       "ev": 2.2632,
       "kelly": 0.0739,
-      "swing_edge": 0.4051,
-      "swing_upside_pct": 350.7,
+      "swing_edge": 0.4106,
+      "swing_upside_pct": 373.3,
       "sell_value": 0.09,
       "scan6h_model_prob": 0.5206,
       "prev_scan6h_model_prob": 0.5206,
@@ -321,7 +325,8 @@
           "bid": 0.09,
           "ask": 0.13
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.11
     },
     {
       "question": "Will the highest temperature in Miami be between 78-79°F on November 15?",
@@ -378,7 +383,8 @@
           "bid": 0.54,
           "ask": 0.57
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.555
     },
     {
       "question": "Will the highest temperature in Miami be between 80-81°F on November 15?",
@@ -387,11 +393,11 @@
         80.0,
         81.0
       ],
-      "yes_price": 0.32,
+      "yes_price": 0.33,
       "no_price": 0.68,
-      "best_bid": 0.3,
+      "best_bid": 0.32,
       "best_ask": 0.34,
-      "bid_ask_spread": 0.04,
+      "bid_ask_spread": 0.02,
       "volume": 2168.0,
       "spread": 0.04,
       "yes_token_id": "44252986642089055078012870513954562687996556132693345402177477558920805215204",
@@ -399,14 +405,14 @@
       "model_prob": 0.0336,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.32,
-      "effective_ask": 0.3255,
-      "market_prob": 0.32,
-      "belief_prob": 0.1338,
-      "ev": -0.5889,
+      "ask": 0.33,
+      "effective_ask": 0.33,
+      "market_prob": 0.33,
+      "belief_prob": 0.1373,
+      "ev": -0.5839,
       "kelly": 0.0,
-      "swing_edge": -0.2919,
-      "swing_upside_pct": -89.7,
+      "swing_edge": -0.2964,
+      "swing_upside_pct": -89.8,
       "sell_value": 0.3,
       "scan6h_model_prob": 0.0336,
       "prev_scan6h_model_prob": 0.0336,
@@ -421,12 +427,12 @@
       "scan6h_yes_price": 0.32,
       "prev_scan6h_yes_price": 0.32,
       "prev_yes_price": 0.32,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 3.1,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 3.1,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 3.1,
       "price_history": [
         {
           "t": "2026-11-14T02:27:25Z",
@@ -434,8 +440,16 @@
           "mp": 0.0336,
           "bid": 0.3,
           "ask": 0.34
+        },
+        {
+          "t": "2026-11-14T02:37:26Z",
+          "p": 0.33,
+          "mp": 0.0336,
+          "bid": 0.32,
+          "ask": 0.34
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.32
     },
     {
       "question": "Will the highest temperature in Miami be between 82-83°F on November 15?",
@@ -492,7 +506,8 @@
           "bid": 0.016,
           "ask": 0.029
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0225
     },
     {
       "question": "Will the highest temperature in Miami be between 84-85°F on November 15?",
@@ -549,7 +564,8 @@
           "bid": 0.003,
           "ask": 0.016
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0095
     },
     {
       "question": "Will the highest temperature in Miami be 88°F or higher on November 15?",
@@ -606,7 +622,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -618,5 +635,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-14T02:37:25.580272+00:00"
 }

@@ -63,8 +63,8 @@
       "belief_prob": 0.1162,
       "ev": 0.1014,
       "kelly": 0.003,
-      "swing_edge": 0.0194,
-      "swing_upside_pct": 18.4,
+      "swing_edge": 0.0249,
+      "swing_upside_pct": 24.9,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.1249,
       "prev_scan6h_model_prob": 0.1249,
@@ -93,7 +93,8 @@
           "bid": 0.08,
           "ask": 0.12
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.1
     },
     {
       "question": "Will the highest temperature in Buenos Aires be 27°C on November 15?",
@@ -120,8 +121,8 @@
       "belief_prob": 0.2486,
       "ev": -0.0637,
       "kelly": 0.0,
-      "swing_edge": -0.023,
-      "swing_upside_pct": -8.7,
+      "swing_edge": -0.0175,
+      "swing_upside_pct": -6.7,
       "sell_value": 0.24,
       "scan6h_model_prob": 0.2425,
       "prev_scan6h_model_prob": 0.2425,
@@ -150,7 +151,8 @@
           "bid": 0.24,
           "ask": 0.28
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.26
     },
     {
       "question": "Will the highest temperature in Buenos Aires be 28°C on November 15?",
@@ -159,11 +161,11 @@
         28.0,
         28.0
       ],
-      "yes_price": 0.336,
+      "yes_price": 0.344,
       "no_price": 0.664,
-      "best_bid": 0.321,
-      "best_ask": 0.351,
-      "bid_ask_spread": 0.03,
+      "best_bid": 0.331,
+      "best_ask": 0.357,
+      "bid_ask_spread": 0.026,
       "volume": 616.0,
       "spread": 0.03,
       "yes_token_id": "113267411147402064233466781044459052427060668698525117418469324931845174250712",
@@ -171,14 +173,14 @@
       "model_prob": 0.2731,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.336,
-      "effective_ask": 0.336,
-      "market_prob": 0.336,
-      "belief_prob": 0.2951,
-      "ev": -0.1217,
+      "ask": 0.344,
+      "effective_ask": 0.344,
+      "market_prob": 0.344,
+      "belief_prob": 0.2979,
+      "ev": -0.134,
       "kelly": 0.0,
-      "swing_edge": -0.0629,
-      "swing_upside_pct": -18.7,
+      "swing_edge": -0.0709,
+      "swing_upside_pct": -20.6,
       "sell_value": 0.321,
       "scan6h_model_prob": 0.2731,
       "prev_scan6h_model_prob": 0.2731,
@@ -193,12 +195,12 @@
       "scan6h_yes_price": 0.336,
       "prev_scan6h_yes_price": 0.336,
       "prev_yes_price": 0.336,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.008,
+      "yes_price_10m_pct_change": 2.4,
+      "yes_price_6h_change": 0.008,
+      "yes_price_6h_pct_change": 2.4,
+      "yes_price_change": 0.008,
+      "yes_price_pct_change": 2.4,
       "price_history": [
         {
           "t": "2026-11-14T02:27:45Z",
@@ -206,8 +208,16 @@
           "mp": 0.2731,
           "bid": 0.321,
           "ask": 0.351
+        },
+        {
+          "t": "2026-11-14T02:37:26Z",
+          "p": 0.344,
+          "mp": 0.2731,
+          "bid": 0.331,
+          "ask": 0.357
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.336
     },
     {
       "question": "Will the highest temperature in Buenos Aires be 29°C on November 15?",
@@ -234,8 +244,8 @@
       "belief_prob": 0.1786,
       "ev": -0.1136,
       "kelly": 0.0,
-      "swing_edge": -0.0326,
-      "swing_upside_pct": -16.2,
+      "swing_edge": -0.0276,
+      "swing_upside_pct": -14.0,
       "sell_value": 0.177,
       "scan6h_model_prob": 0.1689,
       "prev_scan6h_model_prob": 0.1689,
@@ -264,7 +274,8 @@
           "bid": 0.177,
           "ask": 0.216
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.1965
     },
     {
       "question": "Will the highest temperature in Buenos Aires be 30°C on November 15?",
@@ -291,8 +302,8 @@
       "belief_prob": 0.0699,
       "ev": -0.0477,
       "kelly": 0.0,
-      "swing_edge": -0.003,
-      "swing_upside_pct": -4.1,
+      "swing_edge": 0.0014,
+      "swing_upside_pct": 2.0,
       "sell_value": 0.05,
       "scan6h_model_prob": 0.0704,
       "prev_scan6h_model_prob": 0.0704,
@@ -321,7 +332,8 @@
           "bid": 0.05,
           "ask": 0.088
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.069
     },
     {
       "question": "Will the highest temperature in Buenos Aires be 32°C or higher on November 15?",
@@ -378,7 +390,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -390,5 +403,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-14T02:37:25.580272+00:00"
 }

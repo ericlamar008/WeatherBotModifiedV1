@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Houston be between 56-57°F on November 14?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Houston be between 58-59°F on November 14?",
@@ -207,7 +209,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Houston be between 60-61°F on November 14?",
@@ -264,7 +267,8 @@
           "bid": 0.003,
           "ask": 0.007
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Houston be between 62-63°F on November 14?",
@@ -321,7 +325,8 @@
           "bid": 0.011,
           "ask": 0.018
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0145
     },
     {
       "question": "Will the highest temperature in Houston be between 64-65°F on November 14?",
@@ -378,7 +383,8 @@
           "bid": 0.11,
           "ask": 0.14
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.125
     },
     {
       "question": "Will the highest temperature in Houston be between 66-67°F on November 14?",
@@ -435,7 +441,8 @@
           "bid": 0.47,
           "ask": 0.48
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.475
     },
     {
       "question": "Will the highest temperature in Houston be between 68-69°F on November 14?",
@@ -492,7 +499,8 @@
           "bid": 0.31,
           "ask": 0.34
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.325
     },
     {
       "question": "Will the highest temperature in Houston be between 70-71°F on November 14?",
@@ -501,11 +509,11 @@
         70.0,
         71.0
       ],
-      "yes_price": 0.057,
+      "yes_price": 0.0585,
       "no_price": 0.943,
-      "best_bid": 0.043,
-      "best_ask": 0.071,
-      "bid_ask_spread": 0.028,
+      "best_bid": 0.047,
+      "best_ask": 0.07,
+      "bid_ask_spread": 0.023,
       "volume": 3028.0,
       "spread": 0.028,
       "yes_token_id": "48347289366314418345259472202183868492912121194927749471721686910488266725197",
@@ -513,14 +521,14 @@
       "model_prob": 0.022,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.057,
-      "effective_ask": 0.057,
-      "market_prob": 0.057,
-      "belief_prob": 0.0343,
-      "ev": -0.3982,
+      "ask": 0.0585,
+      "effective_ask": 0.0585,
+      "market_prob": 0.0585,
+      "belief_prob": 0.0348,
+      "ev": -0.4051,
       "kelly": 0.0,
-      "swing_edge": -0.035,
-      "swing_upside_pct": -61.4,
+      "swing_edge": -0.0365,
+      "swing_upside_pct": -62.4,
       "sell_value": 0.043,
       "scan6h_model_prob": 0.022,
       "prev_scan6h_model_prob": 0.022,
@@ -535,12 +543,12 @@
       "scan6h_yes_price": 0.057,
       "prev_scan6h_yes_price": 0.057,
       "prev_yes_price": 0.057,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0015,
+      "yes_price_10m_pct_change": 2.6,
+      "yes_price_6h_change": 0.0015,
+      "yes_price_6h_pct_change": 2.6,
+      "yes_price_change": 0.0015,
+      "yes_price_pct_change": 2.6,
       "price_history": [
         {
           "t": "2026-11-14T02:27:26Z",
@@ -549,7 +557,8 @@
           "bid": 0.043,
           "ask": 0.071
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.057
     },
     {
       "question": "Will the highest temperature in Houston be between 72-73°F on November 14?",
@@ -606,7 +615,8 @@
           "bid": 0.004,
           "ask": 0.006
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.005
     },
     {
       "question": "Will the highest temperature in Houston be 74°F or higher on November 14?",
@@ -663,7 +673,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -692,5 +703,6 @@
   "success_probability": 0.4842,
   "confidence": 0.4285,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-14T02:37:25.580272+00:00"
 }
