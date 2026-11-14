@@ -1263,11 +1263,11 @@
         21.0,
         21.0
       ],
-      "yes_price": 0.014,
+      "yes_price": 0.0165,
       "no_price": 0.969,
       "best_bid": 0.006,
-      "best_ask": 0.022,
-      "bid_ask_spread": 0.016,
+      "best_ask": 0.027,
+      "bid_ask_spread": 0.021,
       "volume": 1711.0,
       "spread": 0.004,
       "yes_token_id": "103245280489866867463102641664020306618243244654126222524034479879848250201680",
@@ -1275,14 +1275,14 @@
       "model_prob": 0.3218,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.014,
-      "effective_ask": 0.014,
-      "market_prob": 0.014,
-      "belief_prob": 0.2141,
-      "ev": 14.2929,
-      "kelly": 0.0507,
-      "swing_edge": 0.3078,
-      "swing_upside_pct": 2198.6,
+      "ask": 0.0165,
+      "effective_ask": 0.0165,
+      "market_prob": 0.0165,
+      "belief_prob": 0.2149,
+      "ev": 12.0242,
+      "kelly": 0.0504,
+      "swing_edge": 0.3053,
+      "swing_upside_pct": 1850.3,
       "sell_value": 0.029,
       "scan6h_model_prob": 0.3218,
       "prev_scan6h_model_prob": 0.3218,
@@ -1296,13 +1296,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.031,
       "prev_scan6h_yes_price": 0.031,
-      "prev_yes_price": 0.015,
-      "yes_price_10m_change": -0.001,
-      "yes_price_10m_pct_change": -6.7,
-      "yes_price_6h_change": -0.017,
-      "yes_price_6h_pct_change": -54.8,
-      "yes_price_change": -0.001,
-      "yes_price_pct_change": -6.7,
+      "prev_yes_price": 0.014,
+      "yes_price_10m_change": 0.0025,
+      "yes_price_10m_pct_change": 17.9,
+      "yes_price_6h_change": -0.0145,
+      "yes_price_6h_pct_change": -46.8,
+      "yes_price_change": 0.0025,
+      "yes_price_pct_change": 17.9,
       "price_history": [
         {
           "t": "2026-11-13T20:25:08Z",
@@ -1424,7 +1424,7 @@
           "ask": 0.022
         }
       ],
-      "prev_10m_yes_price": 0.015
+      "prev_10m_yes_price": 0.014
     },
     {
       "question": "Will the highest temperature in Shanghai be 22°C on November 14?",
@@ -1433,10 +1433,10 @@
         22.0,
         22.0
       ],
-      "yes_price": 0.0005,
+      "yes_price": 0.006,
       "no_price": 0.999,
       "best_bid": null,
-      "best_ask": 0.001,
+      "best_ask": 0.012,
       "bid_ask_spread": 0.0,
       "volume": 600.0,
       "spread": 0.0,
@@ -1445,13 +1445,13 @@
       "model_prob": 0.0854,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0005,
-      "effective_ask": 0.0005,
-      "market_prob": 0.0005,
-      "belief_prob": 0.0557,
-      "ev": 21.56,
-      "kelly": 0.0135,
-      "swing_edge": 0.0849,
+      "ask": 0.006,
+      "effective_ask": 0.006,
+      "market_prob": 0.006,
+      "belief_prob": 0.0576,
+      "ev": 8.6,
+      "kelly": 0.013,
+      "swing_edge": 0.0794,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "scan6h_model_prob": 0.0854,
@@ -1466,13 +1466,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.001,
       "prev_scan6h_yes_price": 0.001,
-      "prev_yes_price": 0.0025,
-      "yes_price_10m_change": -0.002,
-      "yes_price_10m_pct_change": -80.0,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.1,
-      "yes_price_change": -0.002,
-      "yes_price_pct_change": -80.0,
+      "prev_yes_price": 0.0005,
+      "yes_price_10m_change": 0.0055,
+      "yes_price_10m_pct_change": 0.5,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 0.5,
+      "yes_price_change": 0.0055,
+      "yes_price_pct_change": 0.5,
       "price_history": [
         {
           "t": "2026-11-13T20:25:08Z",
@@ -1585,9 +1585,16 @@
           "mp": 0.0854,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-14T01:47:29Z",
+          "p": 0.006,
+          "mp": 0.0854,
+          "bid": null,
+          "ask": 0.012
         }
       ],
-      "prev_10m_yes_price": 0.0025
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Shanghai be 23°C on November 14?",
@@ -1926,5 +1933,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-14T01:37:24.586201+00:00"
+  "last_price_refresh": "2026-11-14T01:47:28.356242+00:00"
 }
