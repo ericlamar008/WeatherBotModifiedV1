@@ -47,10 +47,10 @@
         50.0,
         51.0
       ],
-      "yes_price": 0.045,
+      "yes_price": 0.05,
       "no_price": 0.77,
       "best_bid": 0.01,
-      "best_ask": 0.09,
+      "best_ask": 0.1,
       "bid_ask_spread": 0.0,
       "volume": 19.0,
       "spread": 0.44,
@@ -59,14 +59,14 @@
       "model_prob": 0.2465,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.045,
-      "effective_ask": 0.045,
-      "market_prob": 0.045,
-      "belief_prob": 0.176,
-      "ev": 2.9111,
-      "kelly": 0.0343,
-      "swing_edge": 0.2015,
-      "swing_upside_pct": 447.8,
+      "ask": 0.05,
+      "effective_ask": 0.05,
+      "market_prob": 0.05,
+      "belief_prob": 0.1777,
+      "ev": 2.554,
+      "kelly": 0.0336,
+      "swing_edge": 0.1965,
+      "swing_upside_pct": 393.0,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.2465,
       "prev_scan6h_model_prob": 0.2465,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.23,
       "prev_scan6h_yes_price": 0.23,
-      "prev_yes_price": 0.055,
-      "yes_price_10m_change": -0.01,
-      "yes_price_10m_pct_change": -18.2,
-      "yes_price_6h_change": -0.185,
-      "yes_price_6h_pct_change": -80.4,
-      "yes_price_change": -0.01,
-      "yes_price_pct_change": -18.2,
+      "prev_yes_price": 0.045,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 11.1,
+      "yes_price_6h_change": -0.18,
+      "yes_price_6h_pct_change": -78.3,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 11.1,
       "price_history": [
         {
           "t": "2026-11-14T14:26:12Z",
@@ -192,9 +192,16 @@
           "mp": 0.2465,
           "bid": 0.01,
           "ask": 0.09
+        },
+        {
+          "t": "2026-11-14T18:17:29Z",
+          "p": 0.05,
+          "mp": 0.2465,
+          "bid": 0.01,
+          "ask": 0.1
         }
       ],
-      "prev_10m_yes_price": 0.055
+      "prev_10m_yes_price": 0.045
     },
     {
       "question": "Will the lowest temperature in Houston be between 52-53°F on November 14?",
@@ -490,6 +497,13 @@
           "mp": 0.2321,
           "bid": 0.94,
           "ask": 0.999
+        },
+        {
+          "t": "2026-11-14T18:17:29Z",
+          "p": 0.9695,
+          "mp": 0.2321,
+          "bid": 0.94,
+          "ask": 0.999
         }
       ],
       "prev_10m_yes_price": 0.97
@@ -614,6 +628,13 @@
         },
         {
           "t": "2026-11-14T17:57:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-14T18:17:29Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -746,6 +767,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-14T18:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -870,6 +898,13 @@
         },
         {
           "t": "2026-11-14T17:57:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-14T18:17:29Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1002,6 +1037,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-14T18:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -1130,6 +1172,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-14T18:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -1162,5 +1211,5 @@
   "confidence": 0.0947,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-14T18:07:32.808223+00:00"
+  "last_price_refresh": "2026-11-14T18:17:28.203445+00:00"
 }
