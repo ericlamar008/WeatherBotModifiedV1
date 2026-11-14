@@ -47,10 +47,10 @@
         24.0,
         24.0
       ],
-      "yes_price": 0.065,
+      "yes_price": 0.06,
       "no_price": 0.915,
       "best_bid": null,
-      "best_ask": 0.13,
+      "best_ask": 0.12,
       "bid_ask_spread": 0.0,
       "volume": 15.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.0919,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.065,
-      "effective_ask": 0.065,
-      "market_prob": 0.065,
-      "belief_prob": 0.0825,
-      "ev": 0.2692,
-      "kelly": 0.0047,
-      "swing_edge": 0.0269,
-      "swing_upside_pct": 41.4,
+      "ask": 0.06,
+      "effective_ask": 0.06,
+      "market_prob": 0.06,
+      "belief_prob": 0.0807,
+      "ev": 0.345,
+      "kelly": 0.0055,
+      "swing_edge": 0.0319,
+      "swing_upside_pct": 53.2,
       "sell_value": null,
       "scan6h_model_prob": 0.0919,
       "prev_scan6h_model_prob": 0.0919,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.085,
       "prev_scan6h_yes_price": 0.085,
-      "prev_yes_price": 0.08,
-      "yes_price_10m_change": -0.015,
-      "yes_price_10m_pct_change": -18.8,
-      "yes_price_6h_change": -0.02,
-      "yes_price_6h_pct_change": -23.5,
-      "yes_price_change": -0.015,
-      "yes_price_pct_change": -18.8,
+      "prev_yes_price": 0.065,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -7.7,
+      "yes_price_6h_change": -0.025,
+      "yes_price_6h_pct_change": -29.4,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -7.7,
       "price_history": [
         {
           "t": "2026-11-14T08:44:16Z",
@@ -115,9 +115,16 @@
           "mp": 0.0919,
           "bid": null,
           "ask": 0.13
+        },
+        {
+          "t": "2026-11-14T09:57:32Z",
+          "p": 0.06,
+          "mp": 0.0919,
+          "bid": null,
+          "ask": 0.12
         }
       ],
-      "prev_10m_yes_price": 0.08
+      "prev_10m_yes_price": 0.065
     },
     {
       "question": "Will the lowest temperature in Jeddah be 25°C on November 14?",
@@ -183,6 +190,13 @@
         },
         {
           "t": "2026-11-14T09:37:25Z",
+          "p": 0.075,
+          "mp": 0.1822,
+          "bid": null,
+          "ask": 0.15
+        },
+        {
+          "t": "2026-11-14T09:57:32Z",
           "p": 0.075,
           "mp": 0.1822,
           "bid": null,
@@ -273,6 +287,13 @@
           "mp": 0.2964,
           "bid": 0.01,
           "ask": 0.89
+        },
+        {
+          "t": "2026-11-14T09:57:32Z",
+          "p": 0.45,
+          "mp": 0.2964,
+          "bid": 0.01,
+          "ask": 0.89
         }
       ],
       "prev_10m_yes_price": 0.455
@@ -341,6 +362,13 @@
         },
         {
           "t": "2026-11-14T09:37:25Z",
+          "p": 0.935,
+          "mp": 0.3462,
+          "bid": 0.87,
+          "ask": 1.0
+        },
+        {
+          "t": "2026-11-14T09:57:32Z",
           "p": 0.935,
           "mp": 0.3462,
           "bid": 0.87,
@@ -417,6 +445,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-14T09:57:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -485,6 +520,13 @@
         },
         {
           "t": "2026-11-14T09:37:25Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-14T09:57:32Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -561,6 +603,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-14T09:57:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -593,5 +642,5 @@
   "confidence": 0.2156,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-14T09:47:27.273854+00:00"
+  "last_price_refresh": "2026-11-14T09:57:30.837673+00:00"
 }
