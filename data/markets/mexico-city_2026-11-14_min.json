@@ -363,11 +363,11 @@
         11.0,
         11.0
       ],
-      "yes_price": 0.22,
+      "yes_price": 0.485,
       "no_price": 0.725,
       "best_bid": 0.01,
-      "best_ask": 0.43,
-      "bid_ask_spread": 0.42,
+      "best_ask": 0.96,
+      "bid_ask_spread": 0.95,
       "volume": 220.0,
       "spread": 0.53,
       "yes_token_id": "40638975333632117984998566180814521324590367452238199534391540888211510999573",
@@ -375,14 +375,14 @@
       "model_prob": 0.343,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.22,
-      "effective_ask": 0.3,
-      "market_prob": 0.22,
-      "belief_prob": 0.3,
-      "ev": 0.0,
+      "ask": 0.485,
+      "effective_ask": 0.565,
+      "market_prob": 0.485,
+      "belief_prob": 0.3927,
+      "ev": -0.305,
       "kelly": 0.0,
-      "swing_edge": 0.123,
-      "swing_upside_pct": 55.9,
+      "swing_edge": -0.142,
+      "swing_upside_pct": -29.3,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.343,
       "prev_scan6h_model_prob": 0.343,
@@ -396,13 +396,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.275,
       "prev_scan6h_yes_price": 0.275,
-      "prev_yes_price": 0.395,
-      "yes_price_10m_change": -0.175,
-      "yes_price_10m_pct_change": -44.3,
-      "yes_price_6h_change": -0.055,
-      "yes_price_6h_pct_change": -20.0,
-      "yes_price_change": -0.175,
-      "yes_price_pct_change": -44.3,
+      "prev_yes_price": 0.22,
+      "yes_price_10m_change": 0.265,
+      "yes_price_10m_pct_change": 120.5,
+      "yes_price_6h_change": 0.21,
+      "yes_price_6h_pct_change": 76.4,
+      "yes_price_change": 0.265,
+      "yes_price_pct_change": 120.5,
       "price_history": [
         {
           "t": "2026-11-14T20:24:24Z",
@@ -452,9 +452,16 @@
           "mp": 0.343,
           "bid": 0.01,
           "ask": 0.43
+        },
+        {
+          "t": "2026-11-14T21:47:31Z",
+          "p": 0.485,
+          "mp": 0.343,
+          "bid": 0.01,
+          "ask": 0.96
         }
       ],
-      "prev_10m_yes_price": 0.395
+      "prev_10m_yes_price": 0.22
     },
     {
       "question": "Will the lowest temperature in Mexico City be 12°C on November 14?",
@@ -463,11 +470,11 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.93,
+      "yes_price": 0.805,
       "no_price": 0.125,
-      "best_bid": 0.87,
+      "best_bid": 0.62,
       "best_ask": 0.99,
-      "bid_ask_spread": 0.12,
+      "bid_ask_spread": 0.37,
       "volume": 56.0,
       "spread": 0.23,
       "yes_token_id": "111725670604296514996787565648149018332703476485338247295832175831089683864018",
@@ -475,14 +482,14 @@
       "model_prob": 0.1657,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.93,
-      "effective_ask": 0.9795,
-      "market_prob": 0.93,
-      "belief_prob": 0.4332,
-      "ev": -0.5577,
+      "ask": 0.805,
+      "effective_ask": 0.885,
+      "market_prob": 0.805,
+      "belief_prob": 0.3895,
+      "ev": -0.5599,
       "kelly": 0.0,
-      "swing_edge": -0.7643,
-      "swing_upside_pct": -82.2,
+      "swing_edge": -0.6393,
+      "swing_upside_pct": -79.4,
       "sell_value": 0.76,
       "scan6h_model_prob": 0.1657,
       "prev_scan6h_model_prob": 0.1657,
@@ -496,13 +503,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.875,
       "prev_scan6h_yes_price": 0.875,
-      "prev_yes_price": 0.845,
-      "yes_price_10m_change": 0.085,
-      "yes_price_10m_pct_change": 10.1,
-      "yes_price_6h_change": 0.055,
-      "yes_price_6h_pct_change": 6.3,
-      "yes_price_change": 0.085,
-      "yes_price_pct_change": 10.1,
+      "prev_yes_price": 0.93,
+      "yes_price_10m_change": -0.125,
+      "yes_price_10m_pct_change": -13.4,
+      "yes_price_6h_change": -0.07,
+      "yes_price_6h_pct_change": -8.0,
+      "yes_price_change": -0.125,
+      "yes_price_pct_change": -13.4,
       "price_history": [
         {
           "t": "2026-11-14T20:24:24Z",
@@ -545,9 +552,16 @@
           "mp": 0.1657,
           "bid": 0.87,
           "ask": 0.99
+        },
+        {
+          "t": "2026-11-14T21:47:31Z",
+          "p": 0.805,
+          "mp": 0.1657,
+          "bid": 0.62,
+          "ask": 0.99
         }
       ],
-      "prev_10m_yes_price": 0.845
+      "prev_10m_yes_price": 0.93
     },
     {
       "question": "Will the lowest temperature in Mexico City be 13°C on November 14?",
@@ -718,5 +732,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-14T21:37:28.616842+00:00"
+  "last_price_refresh": "2026-11-14T21:47:29.857271+00:00"
 }
