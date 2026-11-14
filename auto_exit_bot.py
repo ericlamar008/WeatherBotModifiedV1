@@ -807,6 +807,22 @@ class OrderBookSimulator:
         )
 
 
+def sanitize_sensitive_text(text: str) -> str:
+    """
+    حذف و ماسک کردن هرگونه کلید خصوصی، رمز پروکسی یا سکرت از متن خطاها و لاگ‌ها
+    تا در صورت بروز خطای شبکه، هیچ اطلاعات حساسی در کنسول یا دیتابیس ثبت نشود.
+    """
+    import re
+    if not text:
+        return ""
+    s = str(text)
+    # Mask proxy credentials: http(s)://user:pass@host -> http(s)://***:***@host
+    s = re.sub(r"((?:https?|socks5h?)://)([^:/@\s]+):([^@\s]+)@", r"\1***:***@", s)
+    # Mask 64-hex private keys
+    s = re.sub(r"(?:0x)?[a-fA-F0-9]{64}", "0x***REDACTED_KEY***", s)
+    return s
+
+
 class PolymarketMetaMaskConnector:
     """
     Implements Chapter 4 & Chapter 15 of the Master Specification:
@@ -814,24 +830,80 @@ class PolymarketMetaMaskConnector:
       - signature_type = 2 (Gnosis Safe Proxy created via MetaMask on polymarket.com)
       - signature_type = 0 (Direct MetaMask EOA wallet)
     Supports both L1 EIP-712 signing and L2 HMAC API credentials, plus NegRisk multi-outcome markets.
+    Includes Selective Low-Bandwidth Proxy routing (POLY_PROXY_URL / POLYMARKET_PROXY_URL) so that
+    ONLY Polymarket CLOB order execution routes through the proxy (< 5 MB/month).
     """
 
     def __init__(self) -> None:
         self.host = os.environ.get("POLY_CLOB_HOST", "https://clob.polymarket.com")
         self.chain_id = int(os.environ.get("POLY_CHAIN_ID", "137"))
-        self.private_key = os.environ.get("POLY_PRIVATE_KEY", "").strip()
-        self.funder = os.environ.get("POLY_FUNDER_ADDRESS", "").strip()
-        self.signature_type = int(
-            os.environ.get("POLY_SIGNATURE_TYPE", "2" if self.funder else "0")
+        self.private_key = (
+            os.environ.get("POLY_PRIVATE_KEY")
+            or os.environ.get("POLYMARKET_PRIVATE_KEY")
+            or ""
+        ).strip()
+        self.funder = (
+            os.environ.get("POLY_FUNDER_ADDRESS")
+            or os.environ.get("POLYMARKET_FUNDER_ADDRESS")
+            or ""
+        ).strip()
+        sig_env = (
+            os.environ.get("POLY_SIGNATURE_TYPE")
+            or os.environ.get("POLYMARKET_SIGNATURE_TYPE")
         )
+        self.signature_type = int(sig_env if sig_env is not None else ("2" if self.funder else "0"))
         self.api_key = os.environ.get("POLY_API_KEY", "").strip()
         self.api_secret = os.environ.get("POLY_API_SECRET", "").strip()
         self.api_passphrase = os.environ.get("POLY_API_PASSPHRASE", "").strip()
+        self.proxy_url = (
+            os.environ.get("POLY_PROXY_URL")
+            or os.environ.get("POLYMARKET_PROXY_URL")
+            or ""
+        ).strip()
         self._client = None
+
+    def _scoped_clob_proxy(self):
+        """
+        کانتکست‌منیجر هوشمند کم‌مصرف:
+        پروکسی را فقط در لحظهٔ ارسال بستهٔ ۲ کیلوبایتی سفارش به clob.polymarket.com فعال می‌کند
+        و بلافاصله پس از اتمام دستور، اینترنت مستقیم گیت‌هاب را بازمی‌گرداند تا حجم پروکسی (حتی ۱ گیگ در ماه)
+        اصلاً مصرف نشود.
+        """
+        from contextlib import contextmanager
+
+        @contextmanager
+        def _ctx():
+            if not self.proxy_url:
+                yield
+                return
+            keys = ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy", "NO_PROXY", "no_proxy")
+            saved = {k: os.environ.get(k) for k in keys}
+            no_proxy_hosts = (
+                "localhost,127.0.0.1,github.com,api.github.com,api.telegram.org,"
+                "api.open-meteo.com,ensemble-api.open-meteo.com,api.weather.gov,"
+                "api.weather.com,aviationweather.gov,gamma-api.polymarket.com"
+            )
+            try:
+                os.environ["HTTP_PROXY"] = self.proxy_url
+                os.environ["HTTPS_PROXY"] = self.proxy_url
+                os.environ["http_proxy"] = self.proxy_url
+                os.environ["https_proxy"] = self.proxy_url
+                os.environ["NO_PROXY"] = no_proxy_hosts
+                os.environ["no_proxy"] = no_proxy_hosts
+                yield
+            finally:
+                for k, v in saved.items():
+                    if v is None:
+                        os.environ.pop(k, None)
+                    else:
+                        os.environ[k] = v
+
+        return _ctx()
 
     def get_account_status(self) -> Dict[str, Any]:
         has_pk = bool(self.private_key and len(self.private_key) >= 64)
         has_funder = bool(self.funder and self.funder.startswith("0x"))
+        has_proxy = bool(self.proxy_url)
         sig_label = (
             "MetaMask Gnosis Safe Proxy (Type 2)"
             if self.signature_type == 2
@@ -857,6 +929,7 @@ class PolymarketMetaMaskConnector:
             "live_ready": live_ready,
             "has_private_key": has_pk,
             "has_funder_address": has_funder,
+            "has_proxy": has_proxy,
             "funder_Preview": masked_funder,
             "signature_type": self.signature_type,
             "signature_label": sig_label,
@@ -864,7 +937,7 @@ class PolymarketMetaMaskConnector:
             "py_clob_installed": py_clob_installed,
             "recommended_mode": "LIVE" if live_ready else "SHADOW",
             "status_text": (
-                f"✅ متصل به کیف‌پول متامسک ({sig_label})"
+                f"✅ متصل به کیف‌پول متامسک ({sig_label})" + (" + پروکسی CLOB فعال" if has_proxy else "")
                 if live_ready
                 else "🛡️ حالت ایمن SHADOW / PAPER فعال است (کلید خصوصی متامسک پس از انتقال به سرور در .env قرار می‌گیرد)"
             ),
@@ -879,23 +952,24 @@ class PolymarketMetaMaskConnector:
         from py_clob_client.client import ClobClient
         from py_clob_client.clob_types import ApiCreds
 
-        client = ClobClient(
-            host=self.host,
-            key=self.private_key,
-            chain_id=self.chain_id,
-            signature_type=self.signature_type,
-            funder=self.funder if self.funder else None,
-        )
-        if self.api_key and self.api_secret and self.api_passphrase:
-            creds = ApiCreds(
-                api_key=self.api_key,
-                api_secret=self.api_secret,
-                api_passphrase=self.api_passphrase,
+        with self._scoped_clob_proxy():
+            client = ClobClient(
+                host=self.host,
+                key=self.private_key,
+                chain_id=self.chain_id,
+                signature_type=self.signature_type,
+                funder=self.funder if self.funder else None,
             )
-            client.set_api_creds(creds)
-        else:
-            creds = client.create_or_derive_api_creds()
-            client.set_api_creds(creds)
+            if self.api_key and self.api_secret and self.api_passphrase:
+                creds = ApiCreds(
+                    api_key=self.api_key,
+                    api_secret=self.api_secret,
+                    api_passphrase=self.api_passphrase,
+                )
+                client.set_api_creds(creds)
+            else:
+                creds = client.create_or_derive_api_creds()
+                client.set_api_creds(creds)
 
         self._client = client
         return client
@@ -916,24 +990,25 @@ class PolymarketMetaMaskConnector:
             from py_clob_client.clob_types import OrderArgs, OrderType, PartialCreateOrderOptions
             from py_clob_client.order_builder.constants import SELL
 
-            client = self._get_client()
-            order_args = OrderArgs(
-                token_id=plan.token_id,
-                price=float(plan.selected_order_price),
-                size=float(plan.quantity),
-                side=SELL,
-            )
-            options = PartialCreateOrderOptions(
-                tick_size=str(plan.tick_size),
-                neg_risk=neg_risk,
-            )
-            signed_order = client.create_order(order_args, options)
-            ot_map = {
-                "FAK": getattr(OrderType, "FAK", OrderType.FOK),
-                "FOK": OrderType.FOK,
-                "GTC": OrderType.GTC,
-            }
-            resp = client.post_order(signed_order, ot_map.get(plan.order_type, OrderType.FOK))
+            with self._scoped_clob_proxy():
+                client = self._get_client()
+                order_args = OrderArgs(
+                    token_id=plan.token_id,
+                    price=float(plan.selected_order_price),
+                    size=float(plan.quantity),
+                    side=SELL,
+                )
+                options = PartialCreateOrderOptions(
+                    tick_size=str(plan.tick_size),
+                    neg_risk=neg_risk,
+                )
+                signed_order = client.create_order(order_args, options)
+                ot_map = {
+                    "FAK": getattr(OrderType, "FAK", OrderType.FOK),
+                    "FOK": OrderType.FOK,
+                    "GTC": OrderType.GTC,
+                }
+                resp = client.post_order(signed_order, ot_map.get(plan.order_type, OrderType.FOK))
             order_id = resp.get("orderID") or resp.get("id") or f"live_{int(time.time()*1000)}"
             success = bool(resp.get("success", True))
             return ExecutionResult(
@@ -944,10 +1019,11 @@ class PolymarketMetaMaskConnector:
                 filled_shares=plan.quantity if success else Decimal("0"),
                 remaining_shares=Decimal("0") if success else plan.quantity,
                 avg_fill_price=plan.selected_order_price if success else None,
-                message="سفارش فروش واقعی در CLOB پلی‌مارکت ثبت و اجرا شد." if success else str(resp),
+                message="سفارش فروش واقعی در CLOB پلی‌مارکت ثبت و اجرا شد." if success else sanitize_sensitive_text(str(resp)),
                 raw_response=resp,
             )
         except Exception as e:
+            safe_err = sanitize_sensitive_text(str(e))
             return ExecutionResult(
                 ok=False,
                 mode=ExecutionMode.LIVE,
@@ -956,7 +1032,7 @@ class PolymarketMetaMaskConnector:
                 filled_shares=Decimal("0"),
                 remaining_shares=plan.quantity,
                 avg_fill_price=None,
-                message=f"خطا در ارسال سفارش LIVE به پلی‌مارکت: {e}",
+                message=f"خطا در ارسال سفارش LIVE به پلی‌مارکت: {safe_err}",
             )
 
 

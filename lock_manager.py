@@ -70,9 +70,46 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "").strip()
 API_BASE = f"https://api.github.com/repos/{GITHUB_REPOSITORY}"
 LOCKS_FILE = Path("data/locked_signals.json")
 
+# فقط مالک مخزن (یا نام‌های کاربری مجاز تعریف‌شده در AUTHORIZED_GITHUB_USERS) حق ثبت یا حذف قفل دارند
+REPO_OWNER = (GITHUB_REPOSITORY.split("/")[0] if "/" in GITHUB_REPOSITORY else GITHUB_REPOSITORY).strip().lower()
+EXTRA_AUTHORIZED_USERS = {
+    u.strip().lower()
+    for u in os.environ.get("AUTHORIZED_GITHUB_USERS", "").split(",")
+    if u.strip()
+}
+
 HEADERS = {"Accept": "application/vnd.github+json"}
 if GITHUB_TOKEN:
     HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+
+
+def _is_authorized_issue_author(issue: dict) -> bool:
+    """
+    قفل امنیتی مخزن Public:
+    بررسی می‌کند که سازندهٔ Issue حتماً مالک اصلی ریپازیتوری (یا همکار مجاز) باشد.
+    اگر هر کاربر غریبه‌ای در گیت‌هاب Issue باز کند، فوراً رد می‌شود.
+    """
+    user_obj = issue.get("user") or {}
+    login = str(user_obj.get("login") or "").strip().lower()
+    assoc = str(issue.get("author_association") or "").strip().upper()
+
+    if login and (login == REPO_OWNER or login in EXTRA_AUTHORIZED_USERS):
+        return True
+    if assoc in ("OWNER", "MEMBER", "COLLABORATOR"):
+        return True
+    return False
+
+
+def _validate_lock_identifiers(city: str, date_str: str, market_id: str) -> bool:
+    """جلوگیری از تزریق مقادیر مخرب در نام شهر، تاریخ یا شناسه بازار."""
+    import re
+    if not city or not re.match(r"^[a-zA-Z0-9_-]{2,45}$", str(city)):
+        return False
+    if not date_str or not re.match(r"^\d{4}-\d{2}-\d{2}$", str(date_str)):
+        return False
+    if not market_id or not re.match(r"^[a-zA-Z0-9_-]{1,90}$", str(market_id)):
+        return False
+    return True
 
 
 def _load_locks():
@@ -264,14 +301,27 @@ def process_lock_issues():
             # نادیده گرفته می‌شود، بسته هم نمی‌شود.
             continue
 
+        # قفل امنیتی: فقط صاحب ریپو مجاز به ثبت یا ویرایش قفل است
+        if not _is_authorized_issue_author(issue):
+            sender = (issue.get("user") or {}).get("login", "unknown")
+            print(f"[lock_manager] ⛔ درخواست غیرمجاز LOCK از کاربر '{sender}' در issue #{number} مسدود شد.")
+            _close_issue(
+                number,
+                "⛔ دسترسی غیرمجاز: فقط مالک مخزن مجاز به ثبت یا ویرایش سفارش است.",
+                extra_label="unauthorized",
+            )
+            continue
+
         try:
             data = json.loads(issue["body"])
             market_id_raw = str(data["market_id"])
             market_id, _, parsed_token_id = market_id_raw.partition("|")
             token_id = str(data.get("token_id") or parsed_token_id or "").strip() or None
-            city, date = data["city"], data["date"]
-            dashboard_price = float(data["price"])
-            market_type = data.get("market_type") or "max"  # (فاز ۶) پیش‌فرض "max"
+            city, date = str(data["city"]).strip(), str(data["date"]).strip()
+            if not _validate_lock_identifiers(city, date, market_id):
+                raise ValueError("شناسه شهر، تاریخ یا بازار نامعتبر است")
+            dashboard_price = max(0.001, min(0.999, float(data["price"])))
+            market_type = "min" if data.get("market_type") == "min" else "max"
         except Exception as e:
             _close_issue(
                 number,
@@ -510,11 +560,24 @@ def process_unlock_issues():
         if not title.startswith("UNLOCK "):
             continue
 
+        # قفل امنیتی: فقط صاحب ریپو مجاز به حذف یا بستن قفل است
+        if not _is_authorized_issue_author(issue):
+            sender = (issue.get("user") or {}).get("login", "unknown")
+            print(f"[lock_manager] ⛔ درخواست غیرمجاز UNLOCK از کاربر '{sender}' در issue #{number} مسدود شد.")
+            _close_issue(
+                number,
+                "⛔ دسترسی غیرمجاز: فقط مالک مخزن مجاز به حذف قفل است.",
+                extra_label="unauthorized",
+            )
+            continue
+
         try:
             data = json.loads(issue["body"])
-            city = data["city"]
-            date = data["date"]
+            city = str(data["city"]).strip()
+            date = str(data["date"]).strip()
             market_id, _, _ = str(data["market_id"]).partition("|")
+            if not _validate_lock_identifiers(city, date, market_id):
+                raise ValueError("شناسه شهر، تاریخ یا بازار نامعتبر است")
         except Exception as e:
             _close_issue(number, f"\u26a0\ufe0f فرمت این درخواست حذف قفل قابل خواندن نبود ({e}).")
             continue
