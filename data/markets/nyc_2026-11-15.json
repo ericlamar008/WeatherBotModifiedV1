@@ -305,11 +305,11 @@
         46.0,
         47.0
       ],
-      "yes_price": 0.014,
+      "yes_price": 0.0145,
       "no_price": 0.9855,
-      "best_bid": 0.006,
+      "best_bid": 0.007,
       "best_ask": 0.022,
-      "bid_ask_spread": 0.016,
+      "bid_ask_spread": 0.015,
       "volume": 471.0,
       "spread": 0.015,
       "yes_token_id": "24541157336927696714058003781353573071870295481968214098781622193431408349011",
@@ -317,14 +317,14 @@
       "model_prob": 0.2908,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.014,
-      "effective_ask": 0.014,
-      "market_prob": 0.014,
-      "belief_prob": 0.1939,
-      "ev": 12.85,
+      "ask": 0.0145,
+      "effective_ask": 0.0145,
+      "market_prob": 0.0145,
+      "belief_prob": 0.1941,
+      "ev": 12.3862,
       "kelly": 0.0456,
-      "swing_edge": 0.2768,
-      "swing_upside_pct": 1977.1,
+      "swing_edge": 0.2763,
+      "swing_upside_pct": 1905.5,
       "sell_value": 0.007,
       "scan6h_model_prob": 0.2908,
       "prev_scan6h_model_prob": 0.2908,
@@ -338,13 +338,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0145,
       "prev_scan6h_yes_price": 0.0145,
-      "prev_yes_price": 0.0145,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -3.4,
+      "prev_yes_price": 0.014,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 3.6,
       "yes_price_6h_change": -0.0005,
       "yes_price_6h_pct_change": -3.4,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -3.4,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 3.6,
       "price_history": [
         {
           "t": "2026-11-14T02:27:25Z",
@@ -361,7 +361,7 @@
           "ask": 0.022
         }
       ],
-      "prev_10m_yes_price": 0.0145
+      "prev_10m_yes_price": 0.014
     },
     {
       "question": "Will the highest temperature in New York City be between 48-49°F on November 15?",
@@ -564,6 +564,13 @@
         },
         {
           "t": "2026-11-14T02:37:26Z",
+          "p": 0.095,
+          "mp": 0.008,
+          "bid": 0.09,
+          "ask": 0.1
+        },
+        {
+          "t": "2026-11-14T02:57:31Z",
           "p": 0.095,
           "mp": 0.008,
           "bid": 0.09,
@@ -795,5 +802,5 @@
   "confidence": 0.0435,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-14T02:47:24.351102+00:00"
+  "last_price_refresh": "2026-11-14T02:57:30.543344+00:00"
 }

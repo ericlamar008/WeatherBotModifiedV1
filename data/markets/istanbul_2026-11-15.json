@@ -436,10 +436,10 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.52,
+      "yes_price": 0.506,
       "no_price": 0.4745,
-      "best_bid": 0.457,
-      "best_ask": 0.583,
+      "best_bid": 0.443,
+      "best_ask": 0.569,
       "bid_ask_spread": 0.126,
       "volume": 90.0,
       "spread": 0.147,
@@ -448,14 +448,14 @@
       "model_prob": 0.3386,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.52,
-      "effective_ask": 0.5728,
-      "market_prob": 0.52,
-      "belief_prob": 0.4021,
-      "ev": -0.298,
+      "ask": 0.506,
+      "effective_ask": 0.5588,
+      "market_prob": 0.506,
+      "belief_prob": 0.3972,
+      "ev": -0.2892,
       "kelly": 0.0,
-      "swing_edge": -0.1814,
-      "swing_upside_pct": -34.9,
+      "swing_edge": -0.1674,
+      "swing_upside_pct": -33.1,
       "sell_value": 0.452,
       "scan6h_model_prob": 0.3386,
       "prev_scan6h_model_prob": 0.3386,
@@ -469,13 +469,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.5255,
       "prev_scan6h_yes_price": 0.5255,
-      "prev_yes_price": 0.5235,
-      "yes_price_10m_change": -0.0035,
-      "yes_price_10m_pct_change": -0.7,
-      "yes_price_6h_change": -0.0055,
-      "yes_price_6h_pct_change": -1.0,
-      "yes_price_change": -0.0035,
-      "yes_price_pct_change": -0.7,
+      "prev_yes_price": 0.52,
+      "yes_price_10m_change": -0.014,
+      "yes_price_10m_pct_change": -2.7,
+      "yes_price_6h_change": -0.0195,
+      "yes_price_6h_pct_change": -3.7,
+      "yes_price_change": -0.014,
+      "yes_price_pct_change": -2.7,
       "price_history": [
         {
           "t": "2026-11-14T02:27:35Z",
@@ -490,9 +490,16 @@
           "mp": 0.3386,
           "bid": 0.457,
           "ask": 0.583
+        },
+        {
+          "t": "2026-11-14T02:57:31Z",
+          "p": 0.506,
+          "mp": 0.3386,
+          "bid": 0.443,
+          "ask": 0.569
         }
       ],
-      "prev_10m_yes_price": 0.5235
+      "prev_10m_yes_price": 0.52
     },
     {
       "question": "Will the highest temperature in Istanbul be 13°C on November 15?",
@@ -501,11 +508,11 @@
         13.0,
         13.0
       ],
-      "yes_price": 0.4355,
+      "yes_price": 0.4345,
       "no_price": 0.5465,
       "best_bid": 0.404,
-      "best_ask": 0.467,
-      "bid_ask_spread": 0.063,
+      "best_ask": 0.465,
+      "bid_ask_spread": 0.061,
       "volume": 103.0,
       "spread": 0.099,
       "yes_token_id": "52122945063575014678737809991119276801189979359692529068399700218193277310816",
@@ -513,14 +520,14 @@
       "model_prob": 0.4834,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.4355,
-      "effective_ask": 0.4536,
-      "market_prob": 0.4355,
-      "belief_prob": 0.4666,
-      "ev": 0.0287,
-      "kelly": 0.0059,
-      "swing_edge": 0.0479,
-      "swing_upside_pct": 11.0,
+      "ask": 0.4345,
+      "effective_ask": 0.4516,
+      "market_prob": 0.4345,
+      "belief_prob": 0.4663,
+      "ev": 0.0326,
+      "kelly": 0.0067,
+      "swing_edge": 0.0489,
+      "swing_upside_pct": 11.3,
       "sell_value": 0.404,
       "scan6h_model_prob": 0.4834,
       "prev_scan6h_model_prob": 0.4834,
@@ -534,11 +541,11 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.4535,
       "prev_scan6h_yes_price": 0.4535,
-      "prev_yes_price": 0.4365,
+      "prev_yes_price": 0.4355,
       "yes_price_10m_change": -0.001,
       "yes_price_10m_pct_change": -0.2,
-      "yes_price_6h_change": -0.018,
-      "yes_price_6h_pct_change": -4.0,
+      "yes_price_6h_change": -0.019,
+      "yes_price_6h_pct_change": -4.2,
       "yes_price_change": -0.001,
       "yes_price_pct_change": -0.2,
       "price_history": [
@@ -555,9 +562,16 @@
           "mp": 0.4834,
           "bid": 0.404,
           "ask": 0.469
+        },
+        {
+          "t": "2026-11-14T02:57:31Z",
+          "p": 0.4345,
+          "mp": 0.4834,
+          "bid": 0.404,
+          "ask": 0.465
         }
       ],
-      "prev_10m_yes_price": 0.4365
+      "prev_10m_yes_price": 0.4355
     },
     {
       "question": "Will the highest temperature in Istanbul be 14°C on November 15?",
@@ -765,5 +779,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-14T02:47:24.351102+00:00"
+  "last_price_refresh": "2026-11-14T02:57:30.543344+00:00"
 }

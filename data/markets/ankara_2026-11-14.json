@@ -566,11 +566,11 @@
         16.0,
         16.0
       ],
-      "yes_price": 0.285,
+      "yes_price": 0.29,
       "no_price": 0.705,
       "best_bid": 0.27,
-      "best_ask": 0.3,
-      "bid_ask_spread": 0.03,
+      "best_ask": 0.31,
+      "bid_ask_spread": 0.04,
       "volume": 959.0,
       "spread": 0.03,
       "yes_token_id": "95176048589095009880449621136020035498485173975718917783770136577523899971305",
@@ -578,14 +578,14 @@
       "model_prob": 0.3894,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.285,
-      "effective_ask": 0.285,
-      "market_prob": 0.285,
-      "belief_prob": 0.3529,
-      "ev": 0.2382,
-      "kelly": 0.0237,
-      "swing_edge": 0.1044,
-      "swing_upside_pct": 36.6,
+      "ask": 0.29,
+      "effective_ask": 0.2955,
+      "market_prob": 0.29,
+      "belief_prob": 0.3546,
+      "ev": 0.2,
+      "kelly": 0.021,
+      "swing_edge": 0.0994,
+      "swing_upside_pct": 34.3,
       "sell_value": 0.28,
       "scan6h_model_prob": 0.3894,
       "prev_scan6h_model_prob": 0.3894,
@@ -599,13 +599,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.295,
       "prev_scan6h_yes_price": 0.295,
-      "prev_yes_price": 0.295,
-      "yes_price_10m_change": -0.01,
-      "yes_price_10m_pct_change": -3.4,
-      "yes_price_6h_change": -0.01,
-      "yes_price_6h_pct_change": -3.4,
-      "yes_price_change": -0.01,
-      "yes_price_pct_change": -3.4,
+      "prev_yes_price": 0.285,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.8,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -1.7,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.8,
       "price_history": [
         {
           "t": "2026-11-14T02:27:35Z",
@@ -620,9 +620,16 @@
           "mp": 0.3894,
           "bid": 0.27,
           "ask": 0.3
+        },
+        {
+          "t": "2026-11-14T02:57:31Z",
+          "p": 0.29,
+          "mp": 0.3894,
+          "bid": 0.27,
+          "ask": 0.31
         }
       ],
-      "prev_10m_yes_price": 0.295
+      "prev_10m_yes_price": 0.285
     },
     {
       "question": "Will the highest temperature in Ankara be 17°C on November 14?",
@@ -765,5 +772,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-14T02:47:24.351102+00:00"
+  "last_price_refresh": "2026-11-14T02:57:30.543344+00:00"
 }
