@@ -259,11 +259,11 @@
         50.0,
         51.0
       ],
-      "yes_price": 0.455,
+      "yes_price": 0.385,
       "no_price": 0.64,
-      "best_bid": 0.03,
-      "best_ask": 0.88,
-      "bid_ask_spread": 0.85,
+      "best_bid": 0.05,
+      "best_ask": 0.72,
+      "bid_ask_spread": 0.67,
       "volume": 7.0,
       "spread": 0.64,
       "yes_token_id": "62593558212828204560224312734136158674407218999128494925566572229014398387854",
@@ -271,14 +271,14 @@
       "model_prob": 0.3357,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.455,
-      "effective_ask": 0.535,
-      "market_prob": 0.455,
-      "belief_prob": 0.3775,
-      "ev": -0.2944,
+      "ask": 0.385,
+      "effective_ask": 0.465,
+      "market_prob": 0.385,
+      "belief_prob": 0.353,
+      "ev": -0.2409,
       "kelly": 0.0,
-      "swing_edge": -0.1193,
-      "swing_upside_pct": -26.2,
+      "swing_edge": -0.0493,
+      "swing_upside_pct": -12.8,
       "sell_value": 0.04,
       "scan6h_model_prob": 0.3357,
       "prev_scan6h_model_prob": 0.3357,
@@ -292,13 +292,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.36,
       "prev_scan6h_yes_price": 0.36,
-      "prev_yes_price": 0.5,
-      "yes_price_10m_change": -0.045,
-      "yes_price_10m_pct_change": -9.0,
-      "yes_price_6h_change": 0.095,
-      "yes_price_6h_pct_change": 26.4,
-      "yes_price_change": -0.045,
-      "yes_price_pct_change": -9.0,
+      "prev_yes_price": 0.455,
+      "yes_price_10m_change": -0.07,
+      "yes_price_10m_pct_change": -15.4,
+      "yes_price_6h_change": 0.025,
+      "yes_price_6h_pct_change": 6.9,
+      "yes_price_change": -0.07,
+      "yes_price_pct_change": -15.4,
       "price_history": [
         {
           "t": "2026-11-15T08:42:11Z",
@@ -488,9 +488,16 @@
           "mp": 0.3357,
           "bid": 0.03,
           "ask": 0.88
+        },
+        {
+          "t": "2026-11-15T14:17:30Z",
+          "p": 0.385,
+          "mp": 0.3357,
+          "bid": 0.05,
+          "ask": 0.72
         }
       ],
-      "prev_10m_yes_price": 0.5
+      "prev_10m_yes_price": 0.455
     },
     {
       "question": "Will the lowest temperature in Austin be between 54-55°F on November 15?",
@@ -654,6 +661,13 @@
         },
         {
           "t": "2026-11-15T13:57:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T14:17:30Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -828,6 +842,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T14:17:30Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -994,6 +1015,13 @@
         },
         {
           "t": "2026-11-15T13:57:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T14:17:30Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1168,6 +1196,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T14:17:30Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -1334,6 +1369,13 @@
         },
         {
           "t": "2026-11-15T13:57:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T14:17:30Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1508,6 +1550,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T14:17:30Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -1523,5 +1572,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-15T14:07:38.695973+00:00"
+  "last_price_refresh": "2026-11-15T14:17:29.270350+00:00"
 }
