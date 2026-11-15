@@ -331,11 +331,11 @@
         42.0,
         43.0
       ],
-      "yes_price": 0.12,
+      "yes_price": 0.1155,
       "no_price": 0.8705,
       "best_bid": 0.001,
-      "best_ask": 0.239,
-      "bid_ask_spread": 0.238,
+      "best_ask": 0.23,
+      "bid_ask_spread": 0.229,
       "volume": 5.0,
       "spread": 0.239,
       "yes_token_id": "2874720108455739654344617560078321219029950726285527948709294011073824650180",
@@ -343,14 +343,14 @@
       "model_prob": 0.0103,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.12,
-      "effective_ask": 0.2,
-      "market_prob": 0.12,
-      "belief_prob": 0.0487,
-      "ev": -0.7565,
+      "ask": 0.1155,
+      "effective_ask": 0.1955,
+      "market_prob": 0.1155,
+      "belief_prob": 0.0471,
+      "ev": -0.7591,
       "kelly": 0.0,
-      "swing_edge": -0.1097,
-      "swing_upside_pct": -91.4,
+      "swing_edge": -0.1052,
+      "swing_upside_pct": -91.1,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.0103,
       "prev_scan6h_model_prob": 0.0103,
@@ -364,13 +364,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.1295,
       "prev_scan6h_yes_price": 0.1295,
-      "prev_yes_price": 0.1205,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -0.4,
-      "yes_price_6h_change": -0.0095,
-      "yes_price_6h_pct_change": -7.3,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -0.4,
+      "prev_yes_price": 0.12,
+      "yes_price_10m_change": -0.0045,
+      "yes_price_10m_pct_change": -3.8,
+      "yes_price_6h_change": -0.014,
+      "yes_price_6h_pct_change": -10.8,
+      "yes_price_change": -0.0045,
+      "yes_price_pct_change": -3.8,
       "price_history": [
         {
           "t": "2026-11-14T20:24:23Z",
@@ -469,9 +469,16 @@
           "mp": 0.0103,
           "bid": 0.001,
           "ask": 0.239
+        },
+        {
+          "t": "2026-11-15T00:47:32Z",
+          "p": 0.1155,
+          "mp": 0.0103,
+          "bid": 0.001,
+          "ask": 0.23
         }
       ],
-      "prev_10m_yes_price": 0.1205
+      "prev_10m_yes_price": 0.12
     },
     {
       "question": "Will the lowest temperature in Seattle be between 48-49°F on November 14?",
@@ -1069,5 +1076,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-15T00:37:32.114609+00:00"
+  "last_price_refresh": "2026-11-15T00:47:30.721033+00:00"
 }
