@@ -16148,7 +16148,7 @@
     "entry_bid": 0.35,
     "entry_order_type": "IMMEDIATE_MARKETABLE",
     "limit_buy_price": null,
-    "position_state": "WATCHING",
+    "position_state": "CLOSED",
     "execution_mode": "SHADOW",
     "exit_policy": "MARKETABLE_FAK",
     "smart_autopilot": false,
@@ -16177,12 +16177,12 @@
     "peak_bid": 0.365,
     "rule_version": 1,
     "locked_at": "2026-11-14T14:49:47.898525+00:00",
-    "status": "open",
+    "status": "closed_manual",
     "last_price": 0.1,
     "last_pct": -73.0,
-    "exit_price": null,
-    "closed_at": null,
-    "close_reason": null,
+    "exit_price": 0.1,
+    "closed_at": "2026-11-15T08:44:20.553587+00:00",
+    "close_reason": "manual_unlock",
     "actual_temp": null,
     "last_price_source": "bid",
     "last_mid": 0.115,
@@ -16310,7 +16310,10 @@
       }
     ],
     "model_fair_cents": 55,
-    "intraday_eliminated": false
+    "intraday_eliminated": false,
+    "exit_price_source": "bid",
+    "unlock_issue_number": 167,
+    "unlock_issue_id": 6401957901
   },
   {
     "issue_number": 164,
