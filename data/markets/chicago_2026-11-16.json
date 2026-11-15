@@ -370,11 +370,11 @@
         50.0,
         51.0
       ],
-      "yes_price": 0.19,
+      "yes_price": 0.185,
       "no_price": 0.81,
       "best_bid": 0.18,
-      "best_ask": 0.2,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.19,
+      "bid_ask_spread": 0.01,
       "volume": 2085.0,
       "spread": 0.02,
       "yes_token_id": "32920669913908065740925171083616129841905311338089676880984318504217043859044",
@@ -382,14 +382,14 @@
       "model_prob": 0.5455,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.19,
-      "effective_ask": 0.19,
-      "market_prob": 0.19,
-      "belief_prob": 0.4211,
-      "ev": 1.2163,
-      "kelly": 0.0713,
-      "swing_edge": 0.3555,
-      "swing_upside_pct": 187.1,
+      "ask": 0.185,
+      "effective_ask": 0.185,
+      "market_prob": 0.185,
+      "belief_prob": 0.4193,
+      "ev": 1.2665,
+      "kelly": 0.0719,
+      "swing_edge": 0.3605,
+      "swing_upside_pct": 194.9,
       "sell_value": 0.18,
       "scan6h_model_prob": 0.5455,
       "prev_scan6h_model_prob": 0.5455,
@@ -404,12 +404,12 @@
       "scan6h_yes_price": 0.19,
       "prev_scan6h_yes_price": 0.19,
       "prev_yes_price": 0.19,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -2.6,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -2.6,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -2.6,
       "price_history": [
         {
           "t": "2026-11-15T02:22:19Z",
@@ -424,6 +424,13 @@
           "mp": 0.5455,
           "bid": 0.18,
           "ask": 0.2
+        },
+        {
+          "t": "2026-11-15T02:47:25Z",
+          "p": 0.185,
+          "mp": 0.5455,
+          "bid": 0.18,
+          "ask": 0.19
         }
       ],
       "prev_10m_yes_price": 0.19
@@ -435,11 +442,11 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.515,
+      "yes_price": 0.52,
       "no_price": 0.47,
       "best_bid": 0.51,
-      "best_ask": 0.52,
-      "bid_ask_spread": 0.01,
+      "best_ask": 0.53,
+      "bid_ask_spread": 0.02,
       "volume": 769.0,
       "spread": 0.02,
       "yes_token_id": "80752756387854180199466980325885744583645506694989191024480405282425537814567",
@@ -447,14 +454,14 @@
       "model_prob": 0.0768,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.515,
-      "effective_ask": 0.515,
-      "market_prob": 0.515,
-      "belief_prob": 0.2302,
-      "ev": -0.553,
+      "ask": 0.52,
+      "effective_ask": 0.52,
+      "market_prob": 0.52,
+      "belief_prob": 0.2319,
+      "ev": -0.554,
       "kelly": 0.0,
-      "swing_edge": -0.4382,
-      "swing_upside_pct": -85.1,
+      "swing_edge": -0.4432,
+      "swing_upside_pct": -85.2,
       "sell_value": 0.52,
       "scan6h_model_prob": 0.0768,
       "prev_scan6h_model_prob": 0.0768,
@@ -468,13 +475,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.53,
       "prev_scan6h_yes_price": 0.53,
-      "prev_yes_price": 0.53,
-      "yes_price_10m_change": -0.015,
-      "yes_price_10m_pct_change": -2.8,
-      "yes_price_6h_change": -0.015,
-      "yes_price_6h_pct_change": -2.8,
-      "yes_price_change": -0.015,
-      "yes_price_pct_change": -2.8,
+      "prev_yes_price": 0.515,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.0,
+      "yes_price_6h_change": -0.01,
+      "yes_price_6h_pct_change": -1.9,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.0,
       "price_history": [
         {
           "t": "2026-11-15T02:22:19Z",
@@ -489,9 +496,16 @@
           "mp": 0.0768,
           "bid": 0.51,
           "ask": 0.52
+        },
+        {
+          "t": "2026-11-15T02:47:25Z",
+          "p": 0.52,
+          "mp": 0.0768,
+          "bid": 0.51,
+          "ask": 0.53
         }
       ],
-      "prev_10m_yes_price": 0.53
+      "prev_10m_yes_price": 0.515
     },
     {
       "question": "Will the highest temperature in Chicago be between 54-55°F on November 16?",
@@ -781,5 +795,5 @@
   "confidence": 0.1926,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-15T02:37:31.466502+00:00"
+  "last_price_refresh": "2026-11-15T02:47:24.332627+00:00"
 }
