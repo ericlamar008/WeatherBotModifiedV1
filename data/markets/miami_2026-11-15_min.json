@@ -69,8 +69,8 @@
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "prev_10m_model_prob": 0.065,
-      "model_prob_10m_change": -0.0017,
-      "model_prob_10m_pct_change": -2.6,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.065,
       "model_prob_6h_change": -0.0017,
       "model_prob_6h_pct_change": -2.6,
@@ -85,9 +85,9 @@
       "yes_price_6h_change": -0.0025,
       "yes_price_6h_pct_change": -20.8,
       "scan6h_yes_price": 0.0095,
-      "prev_yes_price": 0.012,
-      "yes_price_change": -0.0025,
-      "yes_price_pct_change": -20.8,
+      "prev_yes_price": 0.01,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -5.0,
       "price_history": [
         {
           "t": "2026-11-15T02:24:25Z",
@@ -379,8 +379,8 @@
       "swing_upside_pct": 877.3,
       "sell_value": 0.002,
       "prev_10m_model_prob": 0.105,
-      "model_prob_10m_change": 0.0025,
-      "model_prob_10m_pct_change": 2.4,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.105,
       "model_prob_6h_change": 0.0025,
       "model_prob_6h_pct_change": 2.4,
@@ -395,9 +395,9 @@
       "yes_price_6h_change": -0.004,
       "yes_price_6h_pct_change": -26.7,
       "scan6h_yes_price": 0.011,
-      "prev_yes_price": 0.015,
-      "yes_price_change": -0.004,
-      "yes_price_pct_change": -26.7,
+      "prev_yes_price": 0.0105,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 4.8,
       "price_history": [
         {
           "t": "2026-11-15T02:24:25Z",
@@ -685,12 +685,12 @@
       "belief_prob": 0.1297,
       "ev": 2.727,
       "kelly": 0.0246,
-      "swing_edge": 0.151,
-      "swing_upside_pct": 433.9,
+      "swing_edge": 0.1603,
+      "swing_upside_pct": 628.6,
       "sell_value": 0.002,
       "prev_10m_model_prob": 0.166,
-      "model_prob_10m_change": 0.0198,
-      "model_prob_10m_pct_change": 11.9,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.166,
       "model_prob_6h_change": 0.0198,
       "model_prob_6h_pct_change": 11.9,
@@ -995,12 +995,12 @@
       "belief_prob": 0.1851,
       "ev": 4.3037,
       "kelly": 0.0389,
-      "swing_edge": 0.2364,
-      "swing_upside_pct": 677.4,
+      "swing_edge": 0.2463,
+      "swing_upside_pct": 985.2,
       "sell_value": 0.001,
       "prev_10m_model_prob": 0.2134,
-      "model_prob_10m_change": 0.0579,
-      "model_prob_10m_pct_change": 27.1,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
       "prev_scan6h_model_prob": 0.2134,
       "model_prob_6h_change": 0.0579,
       "model_prob_6h_pct_change": 27.1,
@@ -1015,9 +1015,9 @@
       "yes_price_6h_change": -0.0635,
       "yes_price_6h_pct_change": -71.8,
       "scan6h_yes_price": 0.025,
-      "prev_yes_price": 0.0885,
-      "yes_price_change": -0.0635,
-      "yes_price_pct_change": -71.8,
+      "prev_yes_price": 0.0415,
+      "yes_price_change": -0.0165,
+      "yes_price_pct_change": -39.8,
       "price_history": [
         {
           "t": "2026-11-15T02:24:25Z",
@@ -1326,8 +1326,8 @@
       "belief_prob": 0.5459,
       "ev": -0.4446,
       "kelly": 0.0,
-      "swing_edge": -0.6673,
-      "swing_upside_pct": -67.9,
+      "swing_edge": -0.6579,
+      "swing_upside_pct": -67.6,
       "sell_value": 0.95,
       "scan6h_model_prob": 0.3156,
       "prev_scan6h_model_prob": 0.3156,
@@ -1356,7 +1356,8 @@
           "bid": 0.95,
           "ask": 0.997
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.9735
     },
     {
       "question": "Will the lowest temperature in Miami be between 62-63°F on November 15?",
@@ -1380,7 +1381,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1413,7 +1414,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Miami be between 64-65°F on November 15?",
@@ -1437,7 +1439,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1460,9 +1462,9 @@
       "yes_price_6h_change": -0.0335,
       "yes_price_6h_pct_change": -98.5,
       "scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.034,
-      "yes_price_change": -0.0335,
-      "yes_price_pct_change": -98.5,
+      "prev_yes_price": 0.035,
+      "yes_price_change": -0.0345,
+      "yes_price_pct_change": -98.6,
       "price_history": [
         {
           "t": "2026-11-15T02:24:25Z",
@@ -1747,7 +1749,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1924,7 +1926,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -2240,5 +2242,5 @@
   "confidence": 0.9661,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-15T14:17:29.270350+00:00"
+  "last_price_refresh": "2026-11-15T14:37:29.279107+00:00"
 }
