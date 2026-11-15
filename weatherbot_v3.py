@@ -633,50 +633,40 @@ def _attach_distribution_changes(old_dist, new_dist, update_model=True, update_p
                 }]
             continue
 
-        # ۱) تغییرات احتمال مدل (model_prob) -- هم نسبت به اسکن قبلی و هم نسبت به اسکن ۶ ساعتهٔ اخیر
+        # ۱) تغییرات احتمال مدل (model_prob) -- فقط در اسکن‌هایی که مدل هواشناسی واقعاً اجرا شده (update_model=True)
         old_model_10m = old.get("model_prob")
-        ref_model_6h = old.get("scan6h_model_prob")
-        if ref_model_6h is None:
-            ref_model_6h = old_model_10m
+        ref_model_6h = old_model_10m if old_model_10m is not None else old.get("scan6h_model_prob")
 
-        if new_model is not None and old_model_10m is not None:
-            diff_m_10m = round(float(new_model) - float(old_model_10m), 4)
-            if abs(diff_m_10m) >= 0.0005:
-                c["prev_10m_model_prob"] = round(float(old_model_10m), 4)
-                c["model_prob_10m_change"] = diff_m_10m
-                c["model_prob_10m_pct_change"] = (
-                    round(diff_m_10m / float(old_model_10m) * 100.0, 1)
-                    if float(old_model_10m) > 0.001 else round(diff_m_10m * 100.0, 1)
-                )
-            else:
-                c["prev_10m_model_prob"] = old.get("prev_10m_model_prob", round(float(old_model_10m), 4))
-                c["model_prob_10m_change"] = old.get("model_prob_10m_change", old.get("model_prob_change", 0.0)) if is_6h else 0.0
-                c["model_prob_10m_pct_change"] = old.get("model_prob_10m_pct_change", old.get("model_prob_pct_change", 0.0)) if is_6h else 0.0
-
-        if is_6h and update_model and ref_model_6h is not None and new_model is not None:
+        if update_model and ref_model_6h is not None and new_model is not None:
             diff_m = round(float(new_model) - float(ref_model_6h), 4)
+            prev_m = round(float(ref_model_6h), 4)
             if abs(diff_m) >= 0.0005:
-                prev_m = round(float(ref_model_6h), 4)
                 pct_m = (
-                    round((float(new_model) - float(ref_model_6h)) / float(ref_model_6h) * 100.0, 1)
-                    if float(ref_model_6h) > 0.001 else None
+                    round(diff_m / float(ref_model_6h) * 100.0, 1)
+                    if float(ref_model_6h) > 0.001 else round(diff_m * 100.0, 1)
                 )
                 c["prev_scan6h_model_prob"] = prev_m
                 c["model_prob_6h_change"] = diff_m
                 c["model_prob_6h_pct_change"] = pct_m
             else:
-                c["prev_scan6h_model_prob"] = old.get("prev_scan6h_model_prob", old.get("prev_model_prob", round(float(ref_model_6h), 4)))
-                c["model_prob_6h_change"] = old.get("model_prob_6h_change", old.get("model_prob_change", 0.0))
-                c["model_prob_6h_pct_change"] = old.get("model_prob_6h_pct_change", old.get("model_prob_pct_change", 0.0))
+                c["prev_scan6h_model_prob"] = prev_m
+                c["model_prob_6h_change"] = 0.0
+                c["model_prob_6h_pct_change"] = 0.0
 
             c["scan6h_model_prob"] = round(float(new_model), 4)
+            c["prev_10m_model_prob"] = c["prev_scan6h_model_prob"]
+            c["model_prob_10m_change"] = c["model_prob_6h_change"]
+            c["model_prob_10m_pct_change"] = c["model_prob_6h_pct_change"]
             c["prev_model_prob"] = c["prev_scan6h_model_prob"]
             c["model_prob_change"] = c["model_prob_6h_change"]
             c["model_prob_pct_change"] = c["model_prob_6h_pct_change"]
         else:
+            # در اسکن سبک ۱۰ دقیقه‌ای قیمت (update_model=False)، مدل هواشناسی اجرا نشده است؛
+            # بنابراین تغییرات احتمال مدل از آخرین اسکن هواشناسی بدون دست‌کاری حفظ می‌شوند.
             for k in (
                 "scan6h_model_prob", "prev_scan6h_model_prob",
                 "model_prob_6h_change", "model_prob_6h_pct_change",
+                "prev_10m_model_prob", "model_prob_10m_change", "model_prob_10m_pct_change",
                 "prev_model_prob", "model_prob_change", "model_prob_pct_change",
             ):
                 if k in old:
@@ -684,63 +674,50 @@ def _attach_distribution_changes(old_dist, new_dist, update_model=True, update_p
             if "scan6h_model_prob" not in c and ref_model_6h is not None:
                 c["scan6h_model_prob"] = round(float(ref_model_6h), 4)
 
-        # ۲) تغییرات قیمت و احتمال بازار (yes_price) -- هم نسبت به اسکن سبک ۱۰ دقیقه‌ای قبلی و هم نسبت به اسکن ۶ ساعتهٔ قبلی
+        # ۲) تغییرات قیمت و احتمال بازار (yes_price) -- هم نسبت به اسکن قبلی و هم نسبت به آخرین اسکن ۶ ساعتهٔ قبلی
         old_price_10m = old.get("yes_price")
         ref_price_6h = old.get("scan6h_yes_price")
         if ref_price_6h is None:
             ref_price_6h = old.get("ask") if old.get("ask") is not None else old_price_10m
 
-        # الف) تغییر نسبت به اسکن سبک ۱۰ دقیقه‌ای قبلی
+        # الف) تغییر نسبت به اسکن قبلی (۱۰ دقیقه‌ای یا ۶ ساعتهٔ بلافصل قبلی)
         if update_price and old_price_10m is not None and new_price is not None:
             diff_10m = round(float(new_price) - float(old_price_10m), 4)
+            c["prev_10m_yes_price"] = round(float(old_price_10m), 4)
             if abs(diff_10m) >= 0.0005:
-                c["prev_10m_yes_price"] = round(float(old_price_10m), 4)
                 c["yes_price_10m_change"] = diff_10m
                 c["yes_price_10m_pct_change"] = (
                     round(diff_10m / float(old_price_10m) * 100.0, 1)
                     if float(old_price_10m) > 0.001 else round(diff_10m * 100.0, 1)
                 )
             else:
-                c["prev_10m_yes_price"] = old.get("prev_10m_yes_price", round(float(old_price_10m), 4))
-                c["yes_price_10m_change"] = old.get("yes_price_10m_change", 0.0)
-                c["yes_price_10m_pct_change"] = old.get("yes_price_10m_pct_change", 0.0)
+                c["yes_price_10m_change"] = 0.0
+                c["yes_price_10m_pct_change"] = 0.0
 
-        # ب) تغییر نسبت به اسکن ۶ ساعتهٔ قبلی
+        # ب) تغییر نسبت به آخرین نتیجهٔ اسکن ۶ ساعتهٔ قبلی
         if is_6h and update_price and ref_price_6h is not None and new_price is not None:
             diff_p_6h = round(float(new_price) - float(ref_price_6h), 4)
+            prev_p6 = round(float(ref_price_6h), 4)
+            c["prev_scan6h_yes_price"] = prev_p6
             if abs(diff_p_6h) >= 0.0005:
-                prev_p6 = round(float(ref_price_6h), 4)
                 pct_p6 = (
-                    round((float(new_price) - float(ref_price_6h)) / float(ref_price_6h) * 100.0, 1)
+                    round(diff_p_6h / float(ref_price_6h) * 100.0, 1)
                     if float(ref_price_6h) > 0.001 else round(diff_p_6h * 100.0, 1)
                 )
-                c["prev_scan6h_yes_price"] = prev_p6
                 c["yes_price_6h_change"] = diff_p_6h
                 c["yes_price_6h_pct_change"] = pct_p6
             else:
-                prev_p6 = old.get("prev_scan6h_yes_price", old.get("prev_yes_price"))
-                if prev_p6 is not None and abs(float(new_price) - float(prev_p6)) >= 0.0005:
-                    diff_prev = round(float(new_price) - float(prev_p6), 4)
-                    pct_prev = (
-                        round(diff_prev / float(prev_p6) * 100.0, 1)
-                        if float(prev_p6) > 0.001 else round(diff_prev * 100.0, 1)
-                    )
-                    c["prev_scan6h_yes_price"] = round(float(prev_p6), 4)
-                    c["yes_price_6h_change"] = diff_prev
-                    c["yes_price_6h_pct_change"] = pct_prev
-                else:
-                    c["prev_scan6h_yes_price"] = round(float(ref_price_6h), 4)
-                    c["yes_price_6h_change"] = old.get("yes_price_6h_change", old.get("yes_price_change", 0.0))
-                    c["yes_price_6h_pct_change"] = old.get("yes_price_6h_pct_change", old.get("yes_price_pct_change", 0.0))
+                c["yes_price_6h_change"] = 0.0
+                c["yes_price_6h_pct_change"] = 0.0
 
             c["scan6h_yes_price"] = round(float(new_price), 4)
-            c["prev_yes_price"] = c["prev_scan6h_yes_price"]
-            c["yes_price_change"] = c["yes_price_6h_change"]
-            c["yes_price_pct_change"] = c["yes_price_6h_pct_change"]
+            c["prev_yes_price"] = c.get("prev_10m_yes_price", prev_p6)
+            c["yes_price_change"] = c.get("yes_price_10m_change", 0.0)
+            c["yes_price_pct_change"] = c.get("yes_price_10m_pct_change", 0.0)
 
         elif update_price and new_price is not None:
             # حالت اسکن سبک ۱۰ دقیقه‌ای (scan_mode="10m"):
-            # مبنای ۶ ساعته (scan6h_yes_price) را حفظ می‌کنیم تا اسکن ۶ ساعتهٔ بعدی با آن مقایسه شود
+            # مبنای آخرین اسکن ۶ ساعته (scan6h_yes_price) حفظ می‌شود و تغییر فعلی دقیقاً نسبت به آن سنجیده می‌شود.
             if ref_price_6h is not None:
                 c["scan6h_yes_price"] = round(float(ref_price_6h), 4)
             if "prev_scan6h_yes_price" in old:
@@ -756,17 +733,12 @@ def _attach_distribution_changes(old_dist, new_dist, update_model=True, update_p
                 c["yes_price_6h_change"] = diff_p6
                 c["yes_price_6h_pct_change"] = pct_p6
             else:
-                c["yes_price_6h_change"] = old.get("yes_price_6h_change", 0.0)
-                c["yes_price_6h_pct_change"] = old.get("yes_price_6h_pct_change", 0.0)
+                c["yes_price_6h_change"] = 0.0
+                c["yes_price_6h_pct_change"] = 0.0
 
-            if abs(float(c.get("yes_price_10m_change") or 0.0)) >= 0.0005:
-                c["prev_yes_price"] = c.get("prev_10m_yes_price", round(float(old_price_10m or new_price), 4))
-                c["yes_price_change"] = c["yes_price_10m_change"]
-                c["yes_price_pct_change"] = c["yes_price_10m_pct_change"]
-            else:
-                c["prev_yes_price"] = round(float(base_p or new_price), 4)
-                c["yes_price_change"] = c.get("yes_price_6h_change", old.get("yes_price_change", 0.0))
-                c["yes_price_pct_change"] = c.get("yes_price_6h_pct_change", old.get("yes_price_pct_change", 0.0))
+            c["prev_yes_price"] = c.get("prev_10m_yes_price", round(float(old_price_10m or new_price), 4))
+            c["yes_price_change"] = c.get("yes_price_10m_change", 0.0)
+            c["yes_price_pct_change"] = c.get("yes_price_10m_pct_change", 0.0)
         else:
             for k in (
                 "scan6h_yes_price", "prev_scan6h_yes_price",

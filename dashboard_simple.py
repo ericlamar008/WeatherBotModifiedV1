@@ -580,6 +580,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="referrer" content="no-referrer">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -2262,55 +2264,64 @@ def _bucket_table(city_slug, city_name, date, unit_sym, full_distribution, locke
         yes_price = b.get("yes_price")
 
         m_6h_chg = b.get("model_prob_6h_change")
-        if m_6h_chg is None or abs(float(m_6h_chg)) < 0.0005:
+        if m_6h_chg is None:
             m_6h_chg = b.get("model_prob_change")
-        if (m_6h_chg is None or abs(float(m_6h_chg)) < 0.0005) and model_prob is not None and b.get("prev_scan6h_model_prob") is not None:
-            m_6h_chg = round(float(model_prob) - float(b["prev_scan6h_model_prob"]), 4)
-        if (m_6h_chg is None or abs(float(m_6h_chg)) < 0.0005) and model_prob is not None and raw_model_prob is not None:
-            if abs(float(model_prob) - float(raw_model_prob)) >= 0.0005:
-                m_6h_chg = round(float(model_prob) - float(raw_model_prob), 4)
+        if m_6h_chg is None and raw_model_prob is not None and b.get("prev_scan6h_model_prob") is not None:
+            m_6h_chg = round(float(raw_model_prob) - float(b["prev_scan6h_model_prob"]), 4)
         if m_6h_chg is None:
             m_6h_chg = 0.0
 
         m_10m_chg = b.get("model_prob_10m_change")
         if m_10m_chg is None:
-            if model_prob is not None and raw_model_prob is not None and abs(float(model_prob) - float(raw_model_prob)) >= 0.0005:
-                m_10m_chg = round(float(model_prob) - float(raw_model_prob), 4)
-            elif b.get("model_prob_change") is not None:
-                m_10m_chg = b.get("model_prob_change")
+            m_10m_chg = b.get("model_prob_change") if b.get("model_prob_change") is not None else m_6h_chg
+
+        if is_elim and b.get("prev_scan6h_model_prob") is not None and float(b["prev_scan6h_model_prob"]) > 0.0005:
+            smart_m_6h_chg = -round(float(b["prev_scan6h_model_prob"]), 4)
+            smart_m_10m_chg = smart_m_6h_chg
+        else:
+            smart_m_6h_chg = m_6h_chg
+            smart_m_10m_chg = m_10m_chg
+
+        # تغییرات نسبت به اسکن قبلی (10m) و نسبت به آخرین اسکن ۶ ساعته (6h) به صورت کاملاً مجزا
+        p_10m_chg = b.get("yes_price_10m_change")
+        if p_10m_chg is None and yes_price is not None and b.get("prev_10m_yes_price") is not None:
+            p_10m_chg = round(float(yes_price) - float(b["prev_10m_yes_price"]), 4)
+        if p_10m_chg is None:
+            p_10m_chg = b.get("yes_price_change") if b.get("yes_price_change") is not None else 0.0
+
+        p_10m_pct = b.get("yes_price_10m_pct_change")
+        if p_10m_pct is None and yes_price is not None and p_10m_chg is not None:
+            prev_10m_p = float(b.get("prev_10m_yes_price") if b.get("prev_10m_yes_price") is not None else (float(yes_price) - float(p_10m_chg)))
+            if abs(float(p_10m_chg)) < 0.0005:
+                p_10m_pct = 0.0
+            elif prev_10m_p > 0.001:
+                p_10m_pct = round((float(p_10m_chg) / prev_10m_p) * 100.0, 1)
             else:
-                m_10m_chg = m_6h_chg
+                p_10m_pct = round(float(p_10m_chg) * 100.0, 1)
 
-        price_change = b.get("yes_price_change")
-        if (price_change is None or abs(float(price_change)) < 0.0005) and b.get("yes_price_6h_change") is not None:
-            price_change = b.get("yes_price_6h_change")
-        if (price_change is None or abs(float(price_change)) < 0.0005) and yes_price is not None:
-            ref_6h = b.get("scan6h_yes_price") if b.get("scan6h_yes_price") is not None else b.get("ask")
-            if ref_6h is not None and abs(float(yes_price) - float(ref_6h)) >= 0.0005:
-                price_change = round(float(yes_price) - float(ref_6h), 4)
+        p_6h_chg = b.get("yes_price_6h_change")
+        if p_6h_chg is None and yes_price is not None:
+            ref_6h = b.get("scan6h_yes_price") if b.get("scan6h_yes_price") is not None else b.get("prev_scan6h_yes_price")
+            if ref_6h is not None:
+                p_6h_chg = round(float(yes_price) - float(ref_6h), 4)
+        if p_6h_chg is None:
+            p_6h_chg = 0.0
 
-        price_pct_change = b.get("yes_price_pct_change")
-        if (price_pct_change is None or abs(float(price_pct_change)) < 0.05) and b.get("yes_price_6h_pct_change") is not None:
-            price_pct_change = b.get("yes_price_6h_pct_change")
-        if (price_pct_change is None or abs(float(price_pct_change)) < 0.05) and price_change is not None and yes_price is not None:
-            prev_p = float(yes_price) - float(price_change)
-            if prev_p > 0.001 and abs(float(price_change)) >= 0.0005:
-                price_pct_change = round((float(price_change) / prev_p) * 100.0, 1)
-            elif abs(float(price_change)) >= 0.0005:
-                price_pct_change = round(float(price_change) * 100.0, 1)
+        p_6h_pct = b.get("yes_price_6h_pct_change")
+        if p_6h_pct is None and yes_price is not None and p_6h_chg is not None:
+            prev_6h_p = float(yes_price) - float(p_6h_chg)
+            if abs(float(p_6h_chg)) < 0.0005:
+                p_6h_pct = 0.0
+            elif prev_6h_p > 0.001:
+                p_6h_pct = round((float(p_6h_chg) / prev_6h_p) * 100.0, 1)
             else:
-                price_pct_change = 0.0
-
-        p_10m_chg = b.get("yes_price_10m_change", price_change)
-        p_6h_chg = b.get("yes_price_6h_change", price_change)
-        p_10m_pct = b.get("yes_price_10m_pct_change", price_pct_change)
-        p_6h_pct = b.get("yes_price_6h_pct_change", price_pct_change)
+                p_6h_pct = round(float(p_6h_chg) * 100.0, 1)
 
         model_str_smart = f"{model_prob * 100:.1f}%" if model_prob is not None else "-"
-        if model_prob is not None and (m_10m_chg is not None or m_6h_chg is not None):
+        if model_prob is not None and (smart_m_10m_chg is not None or smart_m_6h_chg is not None):
             model_str_smart += _format_pct_paren(
-                float(m_10m_chg) * 100.0 if m_10m_chg is not None else None,
-                float(m_6h_chg) * 100.0 if m_6h_chg is not None else None,
+                float(smart_m_10m_chg) * 100.0 if smart_m_10m_chg is not None else None,
+                float(smart_m_6h_chg) * 100.0 if smart_m_6h_chg is not None else None,
             )
         model_str_leg = f"{raw_model_prob * 100:.1f}%" if raw_model_prob is not None else model_str_smart
         if raw_model_prob is not None and (m_10m_chg is not None or m_6h_chg is not None):
@@ -3282,9 +3293,15 @@ def build_simple_dashboard():
     html = html.replace("GITHUB_REPO_PLACEHOLDER", GITHUB_REPO)
 
     OUTPUT_FILE.write_text(html, encoding="utf-8")
+    robots_txt = "User-agent: *\nDisallow: /\n"
+    try:
+        Path("robots.txt").write_text(robots_txt, encoding="utf-8")
+    except Exception:
+        pass
     if DOCS_OUTPUT_FILE.parent.exists():
         try:
             shutil.copyfile(OUTPUT_FILE, DOCS_OUTPUT_FILE)
+            (DOCS_OUTPUT_FILE.parent / "robots.txt").write_text(robots_txt, encoding="utf-8")
         except Exception:
             pass
     return str(OUTPUT_FILE.resolve())

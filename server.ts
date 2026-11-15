@@ -13,7 +13,13 @@ const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '512kb' }));
+app.use((_req, res, next) => {
+  res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet, noimageindex');
+  res.setHeader('Referrer-Policy', 'no-referrer');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  next();
+});
 
 const DATA_DIR = path.join(__dirname, 'data');
 const MARKETS_DIR = path.join(DATA_DIR, 'markets');
@@ -870,22 +876,19 @@ function enrichMarketWithSmartGate(market: any, profile: any | undefined): any {
         bestBucketId = midStr;
       }
 
-      // 1. Model probability changes: both previous scan (10m/smart) and 6-hour scan (6h)
+      // 1. Model probability changes: temporal change across weather scans (without static smart vs legacy conflation)
       let modelProb6hChange: number | null =
-        b.model_prob_6h_change != null && Math.abs(Number(b.model_prob_6h_change)) >= 0.0005
+        b.model_prob_6h_change != null
           ? Number(b.model_prob_6h_change)
           : b.model_prob_change != null
           ? Number(b.model_prob_change)
           : null;
       const committedBucket = committedDistById.get(midStr);
-      if ((modelProb6hChange == null || Math.abs(modelProb6hChange) < 0.0005) && b.prev_scan6h_model_prob != null) {
+      if (modelProb6hChange == null && b.prev_scan6h_model_prob != null) {
         modelProb6hChange = Number((legacyModelProb - Number(b.prev_scan6h_model_prob)).toFixed(4));
       }
-      if ((modelProb6hChange == null || Math.abs(modelProb6hChange) < 0.0005) && committedBucket?.model_prob != null) {
+      if (modelProb6hChange == null && committedBucket?.model_prob != null) {
         modelProb6hChange = Number((legacyModelProb - Number(committedBucket.model_prob)).toFixed(4));
-      }
-      if ((modelProb6hChange == null || Math.abs(modelProb6hChange) < 0.0005) && fShadow != null && Math.abs(legacyModelProb - shadowModelProb) >= 0.0005) {
-        modelProb6hChange = Number((legacyModelProb - shadowModelProb).toFixed(4));
       }
       if (modelProb6hChange == null) {
         modelProb6hChange = 0.0;
@@ -899,75 +902,68 @@ function enrichMarketWithSmartGate(market: any, profile: any | undefined): any {
           : modelProb6hChange;
 
       let smartModelProb6hChange: number = modelProb6hChange;
-      if (b.prev_scan6h_model_prob != null && Math.abs(smartModelProb - Number(b.prev_scan6h_model_prob)) >= 0.0005) {
-        smartModelProb6hChange = Number((smartModelProb - Number(b.prev_scan6h_model_prob)).toFixed(4));
-      } else if (Math.abs(smartModelProb6hChange) < 0.0005 && Math.abs(smartModelProb - legacyModelProb) >= 0.0005) {
-        smartModelProb6hChange = Number((smartModelProb - legacyModelProb).toFixed(4));
-      }
-
       let smartModelProbChange: number = modelProb10mChange;
-      if (Math.abs(smartModelProb - legacyModelProb) >= 0.0005) {
-        smartModelProbChange = Number((smartModelProb - legacyModelProb).toFixed(4));
+      if (isElim && b.prev_scan6h_model_prob != null && Number(b.prev_scan6h_model_prob) > 0.0005) {
+        smartModelProb6hChange = -Number(Number(b.prev_scan6h_model_prob).toFixed(4));
+        smartModelProbChange = smartModelProb6hChange;
       }
 
-      // 2. Price & Market probability change (from previous 6-hour scan scan6h_yes_price/ask, or 30m refresh, or committed/allocation baseline)
-      let yesPriceChange: number | null =
-        b.yes_price_change != null && Math.abs(Number(b.yes_price_change)) >= 0.0005
-          ? Number(b.yes_price_change)
-          : b.yes_price_6h_change != null && Math.abs(Number(b.yes_price_6h_change)) >= 0.0005
-          ? Number(b.yes_price_6h_change)
-          : null;
-
-      // Fallback to 6-hour scan snapshot stored in scan6h_yes_price or ask
-      if (yesPriceChange == null || Math.abs(yesPriceChange) < 0.0005) {
-        const ref6hPrice = b.scan6h_yes_price != null ? Number(b.scan6h_yes_price) : b.ask != null ? Number(b.ask) : null;
-        if (ref6hPrice != null && Math.abs(yesPrice - ref6hPrice) >= 0.0005) {
-          yesPriceChange = Number((yesPrice - ref6hPrice).toFixed(4));
-        }
+      // 2. Price & Market probability change: separate 10m (previous scan) and 6h (last 6h scan)
+      let yesPrice10mChange: number | null =
+        b.yes_price_10m_change != null ? Number(b.yes_price_10m_change) : null;
+      if (yesPrice10mChange == null && b.prev_10m_yes_price != null) {
+        yesPrice10mChange = Number((yesPrice - Number(b.prev_10m_yes_price)).toFixed(4));
       }
-      if ((yesPriceChange == null || Math.abs(yesPriceChange) < 0.0005) && committedBucket?.yes_price != null) {
-        yesPriceChange = Number((yesPrice - Number(committedBucket.yes_price)).toFixed(4));
-      }
-      if ((yesPriceChange == null || Math.abs(yesPriceChange) < 0.0005) && allocPriceById.has(midStr)) {
-        const entryP = allocPriceById.get(midStr)!;
-        yesPriceChange = Number((yesPrice - entryP).toFixed(4));
-      }
-      if (yesPriceChange == null) {
-        yesPriceChange = 0.0;
+      if (yesPrice10mChange == null) {
+        yesPrice10mChange = b.yes_price_change != null ? Number(b.yes_price_change) : 0.0;
       }
 
-      // Relative percentage change in YES price (e.g. 0.20 -> 0.25 = +25.0%)
-      let yesPricePctChange: number | null =
-        b.yes_price_pct_change != null && Math.abs(Number(b.yes_price_pct_change)) >= 0.05
-          ? Number(b.yes_price_pct_change)
-          : b.yes_price_6h_pct_change != null && Math.abs(Number(b.yes_price_6h_pct_change)) >= 0.05
-          ? Number(b.yes_price_6h_pct_change)
-          : null;
-      if (yesPricePctChange == null && yesPriceChange != null) {
-        const prevPrice =
-          b.prev_scan6h_yes_price != null
-            ? Number(b.prev_scan6h_yes_price)
-            : b.prev_yes_price != null
-            ? Number(b.prev_yes_price)
-            : yesPrice - yesPriceChange;
-        if (prevPrice > 0.001 && Math.abs(yesPriceChange) >= 0.0005) {
-          yesPricePctChange = Number(((yesPriceChange / prevPrice) * 100).toFixed(1));
-        } else if (Math.abs(yesPriceChange) >= 0.0005) {
-          yesPricePctChange = Number((yesPriceChange * 100).toFixed(1));
+      let yesPrice10mPctChange: number | null =
+        b.yes_price_10m_pct_change != null ? Number(b.yes_price_10m_pct_change) : null;
+      if (yesPrice10mPctChange == null) {
+        const prev10mPrice =
+          b.prev_10m_yes_price != null ? Number(b.prev_10m_yes_price) : yesPrice - yesPrice10mChange;
+        if (Math.abs(yesPrice10mChange) < 0.0005) {
+          yesPrice10mPctChange = 0.0;
+        } else if (prev10mPrice > 0.001) {
+          yesPrice10mPctChange = Number(((yesPrice10mChange / prev10mPrice) * 100).toFixed(1));
         } else {
-          yesPricePctChange = 0.0;
+          yesPrice10mPctChange = Number((yesPrice10mChange * 100).toFixed(1));
         }
       }
 
-      // Also compute explicit 10m and 6h price/model changes so the UI can show both in 6h scans
-      const yesPrice10mChange =
-        b.yes_price_10m_change != null ? Number(b.yes_price_10m_change) : yesPriceChange;
-      const yesPrice10mPctChange =
-        b.yes_price_10m_pct_change != null ? Number(b.yes_price_10m_pct_change) : yesPricePctChange;
-      const yesPrice6hChange =
-        b.yes_price_6h_change != null ? Number(b.yes_price_6h_change) : yesPriceChange;
-      const yesPrice6hPctChange =
-        b.yes_price_6h_pct_change != null ? Number(b.yes_price_6h_pct_change) : yesPricePctChange;
+      let yesPrice6hChange: number | null =
+        b.yes_price_6h_change != null ? Number(b.yes_price_6h_change) : null;
+      if (yesPrice6hChange == null) {
+        const ref6hPrice =
+          b.scan6h_yes_price != null
+            ? Number(b.scan6h_yes_price)
+            : b.prev_scan6h_yes_price != null
+            ? Number(b.prev_scan6h_yes_price)
+            : null;
+        if (ref6hPrice != null) {
+          yesPrice6hChange = Number((yesPrice - ref6hPrice).toFixed(4));
+        }
+      }
+      if (yesPrice6hChange == null) {
+        yesPrice6hChange = 0.0;
+      }
+
+      let yesPrice6hPctChange: number | null =
+        b.yes_price_6h_pct_change != null ? Number(b.yes_price_6h_pct_change) : null;
+      if (yesPrice6hPctChange == null) {
+        const prev6hPrice = yesPrice - yesPrice6hChange;
+        if (Math.abs(yesPrice6hChange) < 0.0005) {
+          yesPrice6hPctChange = 0.0;
+        } else if (prev6hPrice > 0.001) {
+          yesPrice6hPctChange = Number(((yesPrice6hChange / prev6hPrice) * 100).toFixed(1));
+        } else {
+          yesPrice6hPctChange = Number((yesPrice6hChange * 100).toFixed(1));
+        }
+      }
+
+      const yesPriceChange = yesPrice10mChange;
+      const yesPricePctChange = yesPrice10mPctChange;
 
       return {
         ...b,
@@ -1608,6 +1604,62 @@ app.get('/api/polymarket/account-status', (_req, res) => {
   }
 });
 
+// Helper: Multi-Stage Profit Ratchet & Break-Even Shield floor
+function computeProfitRatchetFloorTS(
+  entryPrice: number,
+  peakBid: number | null | undefined,
+  tpPrice?: number | null,
+  breakEvenTriggerPct: number = 15.0,
+  tickSize: number = 0.01
+): number | null {
+  if (!peakBid || entryPrice <= 0 || peakBid <= entryPrice) return null;
+  const tick = tickSize > 0 ? tickSize : 0.01;
+  const roundDown = (v: number) => {
+    const steps = Math.floor((v + 1e-9) / tick);
+    return Math.max(tick, Math.min(1 - tick, Number((steps * tick).toFixed(4))));
+  };
+
+  const peakGainPct = ((peakBid - entryPrice) / entryPrice) * 100;
+  let floorVal: number | null = null;
+
+  // Stage 1: Break-Even Shield (Risk-Free Trade)
+  if (peakGainPct >= Math.max(5.0, breakEvenTriggerPct)) {
+    const beCandidate = Math.max(entryPrice * 1.02, entryPrice + tick);
+    floorVal = roundDown(beCandidate);
+    if (floorVal <= entryPrice) {
+      floorVal = Math.min(0.999, Number((entryPrice + tick).toFixed(4)));
+    }
+  }
+  // Stage 2: Peak >= +25% -> lock at least +12% profit
+  if (peakGainPct >= 25.0) {
+    const s2 = roundDown(entryPrice * 1.12);
+    floorVal = floorVal != null ? Math.max(floorVal, s2) : s2;
+  }
+  // Stage 3: Peak >= +40% -> lock at least +25% profit (or 86% of peak)
+  if (peakGainPct >= 40.0) {
+    const s3 = roundDown(Math.max(entryPrice * 1.25, peakBid * 0.86));
+    floorVal = floorVal != null ? Math.max(floorVal, s3) : s3;
+  }
+  // Stage 4: Peak >= +60% -> lock at least +42% profit (or 88% of peak)
+  if (peakGainPct >= 60.0) {
+    const s4 = roundDown(Math.max(entryPrice * 1.42, peakBid * 0.88));
+    floorVal = floorVal != null ? Math.max(floorVal, s4) : s4;
+  }
+  // Stage 5: Near-TP Lock (reached >= 85% of the distance to TP) -> lock 72% of peak gain
+  if (tpPrice != null && tpPrice > entryPrice) {
+    const targetSpan = tpPrice - entryPrice;
+    const achievedSpan = peakBid - entryPrice;
+    if (targetSpan > 0 && achievedSpan / targetSpan >= 0.85) {
+      const nearTpFloor = roundDown(entryPrice + achievedSpan * 0.72);
+      floorVal = floorVal != null ? Math.max(floorVal, nearTpFloor) : nearTpFloor;
+    }
+  }
+  if (floorVal != null && floorVal >= peakBid) {
+    floorVal = roundDown(peakBid - tick);
+  }
+  return floorVal;
+}
+
 // POST /api/locks - Register an Order (Immediate or Conditional Limit Buy) & Auto-Exit Position
 app.post('/api/locks', (req, res) => {
   try {
@@ -1635,8 +1687,13 @@ app.post('/api/locks', (req, res) => {
       sl_pct,
       max_slippage_pct = 2.0,
       tick_size = 0.01,
-      trailing_stop_enabled = false,
+      trailing_stop_enabled = true,
       trailing_offset_pct = 8.0,
+      trailing_activation_pct = 18.0,
+      profit_ratchet_enabled = true,
+      break_even_trigger_pct = 15.0,
+      sl_confirm_with_model = true,
+      sl_confirm_ticks = 2,
       metar_auto_stop = true,
       auto_sell_99c = true,
     } = req.body;
@@ -1753,7 +1810,7 @@ app.post('/api/locks', (req, res) => {
       last_price_source: 'dashboard',
       last_mid: Number(price) || effectiveEntryPrice,
       last_checked_at: nowIso,
-      // Auto-Exit Bot v3.0 Master Spec fields
+      // Auto-Exit Bot v3.5 Master Spec fields
       execution_mode,
       position_state: initialState,
       exit_policy,
@@ -1771,6 +1828,12 @@ app.post('/api/locks', (req, res) => {
       tick_size: Number(tick_size) || 0.01,
       trailing_stop_enabled: Boolean(trailing_stop_enabled),
       trailing_offset_pct: Number(trailing_offset_pct) || 8.0,
+      trailing_activation_pct: Number(trailing_activation_pct) || 18.0,
+      profit_ratchet_enabled: Boolean(profit_ratchet_enabled),
+      break_even_trigger_pct: Number(break_even_trigger_pct) || 15.0,
+      sl_confirm_with_model: Boolean(sl_confirm_with_model),
+      sl_confirm_ticks: Number(sl_confirm_ticks) || 2,
+      sl_breach_count: 0,
       peak_bid: effectiveEntryPrice,
       metar_auto_stop: Boolean(metar_auto_stop),
       auto_sell_99c: Boolean(auto_sell_99c),
@@ -1793,7 +1856,7 @@ app.post('/api/locks', (req, res) => {
         ? `🔒 قفل معمولی در قیمت ${(effectiveEntryPrice * 100).toFixed(1)}¢ ثبت شد.`
         : isConditionalLimit
         ? `⏳ سفارش خرید شرطی [${execution_mode}] در قیمت ${(effectiveEntryPrice * 100).toFixed(1)}¢ ثبت شد (وضعیت: ENTRY_PENDING — به محض پر شدن، TP/SL خودکار مسلح می‌شود).`
-        : `⚡ خرید فوری [${execution_mode}] انجام شد و چتر خروج خودکار TP/SL فعال گردید (وضعیت: WATCHING).`,
+        : `⚡ خرید فوری [${execution_mode}] انجام شد و چتر خروج خودکار TP/SL + قفل سود پلکانی فعال گردید (وضعیت: WATCHING).`,
       lock: newLock,
     });
   } catch (err: any) {
@@ -1824,6 +1887,11 @@ app.patch('/api/locks/rules', (req, res) => {
       max_slippage_pct,
       trailing_stop_enabled,
       trailing_offset_pct,
+      trailing_activation_pct,
+      profit_ratchet_enabled,
+      break_even_trigger_pct,
+      sl_confirm_with_model,
+      sl_confirm_ticks,
       metar_auto_stop,
       auto_sell_99c,
     } = req.body;
@@ -1891,6 +1959,11 @@ app.patch('/api/locks/rules', (req, res) => {
     if (max_slippage_pct != null) target.max_slippage_pct = Number(max_slippage_pct);
     if (trailing_stop_enabled != null) target.trailing_stop_enabled = Boolean(trailing_stop_enabled);
     if (trailing_offset_pct != null) target.trailing_offset_pct = Number(trailing_offset_pct);
+    if (trailing_activation_pct != null) target.trailing_activation_pct = Number(trailing_activation_pct);
+    if (profit_ratchet_enabled != null) target.profit_ratchet_enabled = Boolean(profit_ratchet_enabled);
+    if (break_even_trigger_pct != null) target.break_even_trigger_pct = Number(break_even_trigger_pct);
+    if (sl_confirm_with_model != null) target.sl_confirm_with_model = Boolean(sl_confirm_with_model);
+    if (sl_confirm_ticks != null) target.sl_confirm_ticks = Number(sl_confirm_ticks);
     if (metar_auto_stop != null) target.metar_auto_stop = Boolean(metar_auto_stop);
     if (auto_sell_99c != null) target.auto_sell_99c = Boolean(auto_sell_99c);
     target.rule_version = currentVer + 1;
@@ -2003,6 +2076,13 @@ app.post('/api/locks/simulate-tick', (req, res) => {
 
     let triggeredReason: string | null = null;
     let newStatus = 'open';
+    let antiWhipsawNote: string | null = null;
+
+    const ratchetEnabled = target.profit_ratchet_enabled !== false;
+    const beTriggerPct = Number(target.break_even_trigger_pct || 15.0);
+    const ratchetFloor = ratchetEnabled
+      ? computeProfitRatchetFloorTS(entry, Number(target.peak_bid), target.tp_price, beTriggerPct, Number(target.tick_size || 0.01))
+      : null;
 
     if (force_metar_eliminated && target.metar_auto_stop !== false && (target.side || 'YES') === 'YES') {
       triggeredReason = 'METAR_ELIMINATED';
@@ -2010,22 +2090,49 @@ app.post('/api/locks/simulate-tick', (req, res) => {
     } else if (target.auto_sell_99c !== false && bid >= 0.995) {
       triggeredReason = 'AUTO_SELL_99C';
       newStatus = 'closed_auto_tp';
-    } else if (target.sl_enabled && target.sl_price != null && bid <= Number(target.sl_price)) {
-      triggeredReason = 'STOP_LOSS';
-      newStatus = 'closed_auto_sl';
     } else if (target.tp_enabled && target.tp_price != null && bid >= Number(target.tp_price)) {
       triggeredReason = 'TAKE_PROFIT';
       newStatus = 'closed_auto_tp';
+    } else if (ratchetFloor != null && bid <= ratchetFloor) {
+      triggeredReason = 'PROFIT_RATCHET';
+      newStatus = 'closed_auto_trailing';
     } else if (
       target.trailing_stop_enabled &&
       target.peak_bid != null &&
       Number(target.peak_bid) > entry
     ) {
-      const offsetFrac = Number(target.trailing_offset_pct || 8.0) / 100;
-      const trailStopLevel = Number((Number(target.peak_bid) * (1 - offsetFrac)).toFixed(4));
-      if (bid <= trailStopLevel) {
-        triggeredReason = 'TRAILING_STOP';
-        newStatus = 'closed_auto_trailing';
+      const peakGainPct = ((Number(target.peak_bid) - entry) / entry) * 100;
+      const activationPct = Number(target.trailing_activation_pct || 18.0);
+      if (peakGainPct >= activationPct) {
+        let effOffset = Number(target.trailing_offset_pct || 8.0);
+        if (peakGainPct >= 45.0) {
+          effOffset = Math.min(effOffset, 6.0);
+        }
+        const offsetFrac = effOffset / 100;
+        const trailStopLevel = Number((Number(target.peak_bid) * (1 - offsetFrac)).toFixed(4));
+        if (bid <= trailStopLevel) {
+          triggeredReason = 'TRAILING_STOP';
+          newStatus = 'closed_auto_trailing';
+        }
+      }
+    }
+
+    if (!triggeredReason && target.sl_enabled && target.sl_price != null) {
+      const slPriceNum = Number(target.sl_price);
+      if (bid <= slPriceNum) {
+        const confirmTicks = Math.max(1, Number(target.sl_confirm_ticks || 2));
+        const catastrophicFloor = slPriceNum * 0.6;
+        const nextBreach = Number(target.sl_breach_count || 0) + 1;
+        target.sl_breach_count = nextBreach;
+
+        if (bid <= catastrophicFloor || nextBreach >= confirmTicks) {
+          triggeredReason = 'STOP_LOSS';
+          newStatus = 'closed_auto_sl';
+        } else {
+          antiWhipsawNote = `🛡️ محافظ ضد نوسان کاذب (Anti-Whipsaw SL): قیمت شبیه‌سازی (${(bid * 100).toFixed(1)}¢) به زیر حد ضرر (${(slPriceNum * 100).toFixed(1)}¢) رسید، اما ربات برای جلوگیری از شکار شدن در نوسان لحظه‌ای اردربوک منتظر تأیید در تیک بعدی است (${nextBreach}/${confirmTicks}). اگر دوباره تیک بزنید، استاپ اجرا می‌شود!`;
+        }
+      } else {
+        target.sl_breach_count = 0;
       }
     }
 
@@ -2065,22 +2172,41 @@ app.post('/api/locks/simulate-tick', (req, res) => {
       saveLocks(locks);
       syncLockToAuditDb(target, `AUTO_EXIT_${triggeredReason}`);
 
+      const reasonPersianMap: Record<string, string> = {
+        TAKE_PROFIT: '🎯 حد سیو سود (TAKE_PROFIT)',
+        PROFIT_RATCHET: '🔒 سپر قفل سود پلکانی / ریسک‌فری (PROFIT_RATCHET)',
+        TRAILING_STOP: '📈 حد ضرر متحرک هوشمند (TRAILING_STOP)',
+        STOP_LOSS: '🛑 حد ضرر تاییدشده (STOP_LOSS)',
+        METAR_ELIMINATED: '🌡️ ابطال باکت با دمای فرودگاه (METAR)',
+        AUTO_SELL_99C: '💰 فروش خودکار در 99.5¢',
+      };
+
       res.json({
         ok: true,
         triggered: true,
         blocked: false,
         reason: triggeredReason,
-        message: `🎯 ماشه [${triggeredReason}] در قیمت ${(bid * 100).toFixed(1)}¢ فعال شد و پوزیشن به‌طور خودکار با سفارش ${target.exit_policy || 'MARKETABLE_FAK'} بسته شد (${target.last_pct >= 0 ? '+' : ''}${target.last_pct}%)!`,
+        message: `${reasonPersianMap[triggeredReason] || triggeredReason} در قیمت ${(bid * 100).toFixed(1)}¢ فعال شد و پوزیشن به‌طور خودکار با سفارش ${target.exit_policy || 'MARKETABLE_FAK'} بسته شد (${target.last_pct >= 0 ? '+' : ''}${target.last_pct}%)!`,
         lock: target,
       });
       return;
     }
 
+    const updatedRatchetFloor = ratchetEnabled
+      ? computeProfitRatchetFloorTS(entry, Number(target.peak_bid), target.tp_price, beTriggerPct, Number(target.tick_size || 0.01))
+      : null;
+    const ratchetInfo =
+      updatedRatchetFloor != null
+        ? ` | 🔒 کف سود قفل‌شده (Profit Ratchet): ${(updatedRatchetFloor * 100).toFixed(1)}¢ (سقف دیده شده: ${(Number(target.peak_bid) * 100).toFixed(1)}¢)`
+        : '';
+
     saveLocks(locks);
     res.json({
       ok: true,
       triggered: false,
-      message: `قیمت Bid به ${(bid * 100).toFixed(1)}¢ (${target.last_pct >= 0 ? '+' : ''}${target.last_pct}%) بروزرسانی شد — هیچ ماشه TP/SL فعال نشد (وضعیت: WATCHING).`,
+      message:
+        antiWhipsawNote ||
+        `قیمت Bid به ${(bid * 100).toFixed(1)}¢ (${target.last_pct >= 0 ? '+' : ''}${target.last_pct}%) بروزرسانی شد — هیچ ماشه خروجی فعال نشد${ratchetInfo}.`,
       lock: target,
     });
   } catch (err: any) {
