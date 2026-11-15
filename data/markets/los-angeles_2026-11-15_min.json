@@ -119,10 +119,10 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.045,
+      "yes_price": 0.07,
       "no_price": 0.945,
       "best_bid": null,
-      "best_ask": 0.09,
+      "best_ask": 0.14,
       "bid_ask_spread": 0.0,
       "volume": 35.0,
       "spread": 0.0,
@@ -131,14 +131,14 @@
       "model_prob": 0.1196,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.045,
-      "effective_ask": 0.045,
-      "market_prob": 0.045,
-      "belief_prob": 0.0935,
-      "ev": 1.0778,
-      "kelly": 0.0127,
-      "swing_edge": 0.0746,
-      "swing_upside_pct": 165.8,
+      "ask": 0.07,
+      "effective_ask": 0.07,
+      "market_prob": 0.07,
+      "belief_prob": 0.1022,
+      "ev": 0.46,
+      "kelly": 0.0087,
+      "swing_edge": 0.0496,
+      "swing_upside_pct": 70.9,
       "sell_value": null,
       "scan6h_model_prob": 0.1196,
       "prev_scan6h_model_prob": 0.1196,
@@ -153,12 +153,12 @@
       "scan6h_yes_price": 0.055,
       "prev_scan6h_yes_price": 0.055,
       "prev_yes_price": 0.045,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": -0.01,
-      "yes_price_6h_pct_change": -18.2,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.025,
+      "yes_price_10m_pct_change": 55.6,
+      "yes_price_6h_change": 0.015,
+      "yes_price_6h_pct_change": 27.3,
+      "yes_price_change": 0.025,
+      "yes_price_pct_change": 55.6,
       "price_history": [
         {
           "t": "2026-11-15T20:23:42Z",
@@ -187,6 +187,13 @@
           "mp": 0.1196,
           "bid": null,
           "ask": 0.09
+        },
+        {
+          "t": "2026-11-15T21:17:29Z",
+          "p": 0.07,
+          "mp": 0.1196,
+          "bid": null,
+          "ask": 0.14
         }
       ],
       "prev_10m_yes_price": 0.045
@@ -259,6 +266,13 @@
           "mp": 0.1588,
           "bid": null,
           "ask": 0.15
+        },
+        {
+          "t": "2026-11-15T21:17:29Z",
+          "p": 0.075,
+          "mp": 0.1588,
+          "bid": null,
+          "ask": 0.15
         }
       ],
       "prev_10m_yes_price": 0.075
@@ -303,13 +317,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.15,
       "prev_scan6h_yes_price": 0.15,
-      "prev_yes_price": 0.19,
-      "yes_price_10m_change": -0.115,
-      "yes_price_10m_pct_change": -60.5,
+      "prev_yes_price": 0.075,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.075,
       "yes_price_6h_pct_change": -50.0,
-      "yes_price_change": -0.115,
-      "yes_price_pct_change": -60.5,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-15T20:23:42Z",
@@ -340,7 +354,7 @@
           "ask": 0.15
         }
       ],
-      "prev_10m_yes_price": 0.19
+      "prev_10m_yes_price": 0.075
     },
     {
       "question": "Will the lowest temperature in Los Angeles be between 58-59°F on November 15?",
@@ -514,5 +528,5 @@
   "confidence": 0.7213,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-15T21:07:32.253671+00:00"
+  "last_price_refresh": "2026-11-15T21:17:28.229350+00:00"
 }
