@@ -16186,7 +16186,7 @@
     "actual_temp": null,
     "last_price_source": "bid",
     "last_mid": 0.16,
-    "last_checked_at": "2026-11-15T02:17:23.201021+00:00",
+    "last_checked_at": "2026-11-15T02:37:30.788809+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-14T14:49:47Z",
@@ -16284,7 +16284,7 @@
         "pct": -59.5
       }
     ],
-    "model_fair_cents": 56,
+    "model_fair_cents": 55,
     "intraday_eliminated": false
   },
   {
@@ -16509,15 +16509,15 @@
     "rule_version": 1,
     "locked_at": "2026-11-14T14:51:33.893870+00:00",
     "status": "open",
-    "last_price": 0.217,
-    "last_pct": -42.1,
+    "last_price": 0.193,
+    "last_pct": -50.0,
     "exit_price": null,
     "closed_at": null,
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.2685,
-    "last_checked_at": "2026-11-15T02:17:23.201021+00:00",
+    "last_mid": 0.2535,
+    "last_checked_at": "2026-11-15T02:37:30.788809+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-14T14:51:33Z",
@@ -16558,9 +16558,14 @@
         "t": "2026-11-15T02:17:23Z",
         "p": 0.217,
         "pct": -42.1
+      },
+      {
+        "t": "2026-11-15T02:37:30Z",
+        "p": 0.193,
+        "pct": -50.0
       }
     ],
-    "model_fair_cents": 48,
+    "model_fair_cents": 29,
     "intraday_eliminated": false
   },
   {
@@ -16578,7 +16583,7 @@
     "entry_bid": 0.46,
     "entry_order_type": "IMMEDIATE_MARKETABLE",
     "limit_buy_price": null,
-    "position_state": "WATCHING",
+    "position_state": "CLOSED",
     "execution_mode": "SHADOW",
     "exit_policy": "MARKETABLE_FAK",
     "smart_autopilot": false,
@@ -16604,19 +16609,19 @@
     "usdc_amount": 5.0,
     "quantity_shares": 10.64,
     "filled_shares": 10.64,
-    "peak_bid": 0.64,
+    "peak_bid": 0.67,
     "rule_version": 1,
     "locked_at": "2026-11-14T14:53:16.474238+00:00",
-    "status": "open",
-    "last_price": 0.64,
-    "last_pct": 36.2,
-    "exit_price": null,
-    "closed_at": null,
+    "status": "closed_auto_tp",
+    "last_price": 0.67,
+    "last_pct": 42.6,
+    "exit_price": 0.67,
+    "closed_at": "2026-11-15T02:37:30.788809+00:00",
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.67,
-    "last_checked_at": "2026-11-15T02:17:23.201021+00:00",
+    "last_mid": 0.685,
+    "last_checked_at": "2026-11-15T02:37:30.788809+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-14T14:53:16Z",
@@ -16672,9 +16677,17 @@
         "t": "2026-11-15T02:17:23Z",
         "p": 0.64,
         "pct": 36.2
+      },
+      {
+        "t": "2026-11-15T02:37:30Z",
+        "p": 0.67,
+        "pct": 42.6
       }
     ],
-    "model_fair_cents": 59,
-    "intraday_eliminated": false
+    "model_fair_cents": 49,
+    "intraday_eliminated": false,
+    "latched_exit_reason": "TAKE_PROFIT",
+    "outcome_pct": 42.6,
+    "notified_close": true
   }
 ]
