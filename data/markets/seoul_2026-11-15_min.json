@@ -3,16 +3,16 @@
   "city_name": "Seoul",
   "date": "2026-11-15",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-11-14T02:20:49.310654+00:00",
   "committed_allocation": null,
-  "hours_left": 0.7,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-11-15T15:00:00+00:00",
   "event_end_date": "2026-11-15T12:00:00Z",
   "last_scan": "2026-11-15T02:20:41.367264+00:00",
-  "last_lite_refresh": "2026-11-15T14:20:49.197801+00:00",
+  "last_lite_refresh": "2026-11-15T20:20:49.273527+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "RKSI",
@@ -4313,7 +4313,10 @@
       "market_prob": 0.8835,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.776
+      "sell_value": 0.776,
+      "won": true,
+      "pnl_units": 3.96,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -4325,5 +4328,31 @@
   "confidence": 0.982,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-15T20:17:28.804573+00:00"
+  "last_price_refresh": "2026-11-15T20:17:28.804573+00:00",
+  "actual_temp": 9.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 3.96,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "7006520",
+      "question": "Will the lowest temperature in Seoul (Incheon) be 9°C on November 15?",
+      "range": [
+        9.0,
+        9.0
+      ],
+      "side": "YES",
+      "price": 0.8835,
+      "model_prob": 0.5768,
+      "ev": -0.29,
+      "market_prob": 0.8835,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.776,
+      "won": true,
+      "pnl_units": 3.96,
+      "user_entered": false
+    }
+  ]
 }
