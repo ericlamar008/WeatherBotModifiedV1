@@ -674,11 +674,11 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.315,
+      "yes_price": 0.32,
       "no_price": 0.7,
       "best_bid": 0.09,
-      "best_ask": 0.54,
-      "bid_ask_spread": 0.45,
+      "best_ask": 0.55,
+      "bid_ask_spread": 0.46,
       "volume": 10.0,
       "spread": 0.52,
       "yes_token_id": "967958083522147919419877586224535282106454497288659488527399708430419841126",
@@ -686,14 +686,14 @@
       "model_prob": 0.208,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.315,
-      "effective_ask": 0.395,
-      "market_prob": 0.315,
-      "belief_prob": 0.2454,
-      "ev": -0.3787,
+      "ask": 0.32,
+      "effective_ask": 0.4,
+      "market_prob": 0.32,
+      "belief_prob": 0.2472,
+      "ev": -0.382,
       "kelly": 0.0,
-      "swing_edge": -0.107,
-      "swing_upside_pct": -34.0,
+      "swing_edge": -0.112,
+      "swing_upside_pct": -35.0,
       "sell_value": 0.04,
       "scan6h_model_prob": 0.208,
       "prev_scan6h_model_prob": 0.208,
@@ -707,13 +707,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.3,
       "prev_scan6h_yes_price": 0.3,
-      "prev_yes_price": 0.335,
-      "yes_price_10m_change": -0.02,
-      "yes_price_10m_pct_change": -6.0,
-      "yes_price_6h_change": 0.015,
-      "yes_price_6h_pct_change": 5.0,
-      "yes_price_change": -0.02,
-      "yes_price_pct_change": -6.0,
+      "prev_yes_price": 0.315,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.6,
+      "yes_price_6h_change": 0.02,
+      "yes_price_6h_pct_change": 6.7,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.6,
       "price_history": [
         {
           "t": "2026-11-15T14:24:50Z",
@@ -805,9 +805,16 @@
           "mp": 0.208,
           "bid": 0.09,
           "ask": 0.54
+        },
+        {
+          "t": "2026-11-15T17:17:34Z",
+          "p": 0.32,
+          "mp": 0.208,
+          "bid": 0.09,
+          "ask": 0.55
         }
       ],
-      "prev_10m_yes_price": 0.335
+      "prev_10m_yes_price": 0.315
     },
     {
       "question": "Will the lowest temperature in Austin be between 54-55°F on November 15?",
@@ -1035,6 +1042,13 @@
         },
         {
           "t": "2026-11-15T16:57:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T17:17:34Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1272,6 +1286,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T17:17:34Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -1501,6 +1522,13 @@
         },
         {
           "t": "2026-11-15T16:57:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T17:17:34Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1738,6 +1766,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T17:17:34Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -1967,6 +2002,13 @@
         },
         {
           "t": "2026-11-15T16:57:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T17:17:34Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -2204,6 +2246,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-15T17:17:34Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     }
@@ -2235,5 +2284,5 @@
   "confidence": 0.0511,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-15T17:07:28.384076+00:00"
+  "last_price_refresh": "2026-11-15T17:17:32.154422+00:00"
 }
