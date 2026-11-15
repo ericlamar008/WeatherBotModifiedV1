@@ -16313,7 +16313,8 @@
     "intraday_eliminated": false,
     "exit_price_source": "bid",
     "unlock_issue_number": 167,
-    "unlock_issue_id": 6401957901
+    "unlock_issue_id": 6401957901,
+    "notified_close": true
   },
   {
     "issue_number": 164,
@@ -16537,15 +16538,15 @@
     "rule_version": 1,
     "locked_at": "2026-11-14T14:51:33.893870+00:00",
     "status": "open",
-    "last_price": 0.184,
-    "last_pct": -52.6,
+    "last_price": 0.186,
+    "last_pct": -50.0,
     "exit_price": null,
     "closed_at": null,
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.263,
-    "last_checked_at": "2026-11-15T08:37:27.654226+00:00",
+    "last_mid": 0.2485,
+    "last_checked_at": "2026-11-15T08:47:35.891988+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-14T14:51:33Z",
@@ -16708,7 +16709,7 @@
         "pct": -50.0
       }
     ],
-    "model_fair_cents": 52,
+    "model_fair_cents": 55,
     "intraday_eliminated": false
   },
   {
@@ -16874,15 +16875,32 @@
     "usdc_amount": 5.0,
     "quantity_shares": 16.67,
     "filled_shares": 16.67,
-    "peak_bid": 0.29,
+    "peak_bid": 0.31,
     "rule_version": 1,
     "locked_at": "2026-11-15T08:45:42.095569+00:00",
     "status": "open",
-    "last_price": null,
-    "last_pct": null,
+    "last_price": 0.31,
+    "last_pct": 0.0,
     "exit_price": null,
     "closed_at": null,
     "close_reason": null,
-    "actual_temp": null
+    "actual_temp": null,
+    "last_price_source": "mid_unchanged",
+    "last_mid": 0.31,
+    "last_checked_at": "2026-11-15T08:47:35.891988+00:00",
+    "price_trajectory": [
+      {
+        "t": "2026-11-15T08:45:42Z",
+        "p": 0.31,
+        "pct": 0.0
+      },
+      {
+        "t": "2026-11-15T08:47:35Z",
+        "p": 0.31,
+        "pct": 0.0
+      }
+    ],
+    "model_fair_cents": 40,
+    "intraday_eliminated": false
   }
 ]

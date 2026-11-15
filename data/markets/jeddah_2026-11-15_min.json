@@ -95,7 +95,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Jeddah be 22°C on November 15?",
@@ -152,7 +153,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Jeddah be 24°C on November 15?",
@@ -209,7 +211,8 @@
           "bid": null,
           "ask": 0.15
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.075
     },
     {
       "question": "Will the lowest temperature in Jeddah be 25°C on November 15?",
@@ -218,10 +221,10 @@
         25.0,
         25.0
       ],
-      "yes_price": 0.13,
+      "yes_price": 0.17,
       "no_price": 0.87,
       "best_bid": null,
-      "best_ask": 0.26,
+      "best_ask": 0.34,
       "bid_ask_spread": 0.0,
       "volume": 335.0,
       "spread": 0.0,
@@ -230,14 +233,14 @@
       "model_prob": 0.1825,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.13,
-      "effective_ask": 0.13,
-      "market_prob": 0.13,
-      "belief_prob": 0.1641,
-      "ev": 0.2623,
-      "kelly": 0.0098,
-      "swing_edge": 0.0525,
-      "swing_upside_pct": 40.4,
+      "ask": 0.17,
+      "effective_ask": 0.17,
+      "market_prob": 0.17,
+      "belief_prob": 0.1781,
+      "ev": 0.0476,
+      "kelly": 0.0024,
+      "swing_edge": 0.0125,
+      "swing_upside_pct": 7.4,
       "sell_value": null,
       "scan6h_model_prob": 0.1825,
       "prev_scan6h_model_prob": 0.1825,
@@ -252,12 +255,12 @@
       "scan6h_yes_price": 0.13,
       "prev_scan6h_yes_price": 0.13,
       "prev_yes_price": 0.13,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.04,
+      "yes_price_10m_pct_change": 30.8,
+      "yes_price_6h_change": 0.04,
+      "yes_price_6h_pct_change": 30.8,
+      "yes_price_change": 0.04,
+      "yes_price_pct_change": 30.8,
       "price_history": [
         {
           "t": "2026-11-15T08:42:11Z",
@@ -265,8 +268,16 @@
           "mp": 0.1825,
           "bid": null,
           "ask": 0.26
+        },
+        {
+          "t": "2026-11-15T08:47:38Z",
+          "p": 0.17,
+          "mp": 0.1825,
+          "bid": null,
+          "ask": 0.34
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.13
     },
     {
       "question": "Will the lowest temperature in Jeddah be 26°C on November 15?",
@@ -323,7 +334,8 @@
           "bid": null,
           "ask": 0.17
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.085
     },
     {
       "question": "Will the lowest temperature in Jeddah be 27°C on November 15?",
@@ -380,7 +392,8 @@
           "bid": 0.83,
           "ask": 1.0
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.915
     },
     {
       "question": "Will the lowest temperature in Jeddah be 28°C on November 15?",
@@ -404,7 +417,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -437,7 +450,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -466,5 +480,6 @@
   "success_probability": 0.4751,
   "confidence": 0.6745,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-15T08:47:36.579902+00:00"
 }

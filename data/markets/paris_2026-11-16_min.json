@@ -66,8 +66,8 @@
       "belief_prob": 0.1375,
       "ev": 0.5714,
       "kelly": 0.0137,
-      "swing_edge": 0.0918,
-      "swing_upside_pct": 104.9,
+      "swing_edge": 0.1193,
+      "swing_upside_pct": 198.8,
       "sell_value": 0.02,
       "scan6h_model_prob": 0.1793,
       "prev_scan6h_model_prob": 0.1793,
@@ -96,7 +96,8 @@
           "bid": 0.02,
           "ask": 0.1
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.06
     },
     {
       "question": "Will the lowest temperature in Paris be 8°C on November 16?",
@@ -153,7 +154,8 @@
           "bid": 0.06,
           "ask": 0.08
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.07
     },
     {
       "question": "Will the lowest temperature in Paris be 9°C on November 16?",
@@ -180,8 +182,8 @@
       "belief_prob": 0.2359,
       "ev": -0.4583,
       "kelly": 0.0,
-      "swing_edge": -0.3041,
-      "swing_upside_pct": -69.8,
+      "swing_edge": -0.2986,
+      "swing_upside_pct": -69.4,
       "sell_value": 0.41,
       "scan6h_model_prob": 0.1314,
       "prev_scan6h_model_prob": 0.1314,
@@ -210,7 +212,8 @@
           "bid": 0.41,
           "ask": 0.45
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.43
     },
     {
       "question": "Will the lowest temperature in Paris be 10°C on November 16?",
@@ -219,11 +222,11 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.455,
+      "yes_price": 0.415,
       "no_price": 0.545,
-      "best_bid": 0.38,
-      "best_ask": 0.53,
-      "bid_ask_spread": 0.15,
+      "best_bid": 0.4,
+      "best_ask": 0.43,
+      "bid_ask_spread": 0.03,
       "volume": 182.0,
       "spread": 0.15,
       "yes_token_id": "1519025128998163534184012712470107225848728478052058507253126668283666587814",
@@ -231,14 +234,14 @@
       "model_prob": 0.0813,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.455,
-      "effective_ask": 0.521,
-      "market_prob": 0.455,
-      "belief_prob": 0.2121,
-      "ev": -0.5929,
+      "ask": 0.415,
+      "effective_ask": 0.415,
+      "market_prob": 0.415,
+      "belief_prob": 0.1981,
+      "ev": -0.5227,
       "kelly": 0.0,
-      "swing_edge": -0.4397,
-      "swing_upside_pct": -84.4,
+      "swing_edge": -0.3337,
+      "swing_upside_pct": -80.4,
       "sell_value": 0.38,
       "scan6h_model_prob": 0.0813,
       "prev_scan6h_model_prob": 0.0813,
@@ -253,12 +256,12 @@
       "scan6h_yes_price": 0.455,
       "prev_scan6h_yes_price": 0.455,
       "prev_yes_price": 0.455,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.04,
+      "yes_price_10m_pct_change": -8.8,
+      "yes_price_6h_change": -0.04,
+      "yes_price_6h_pct_change": -8.8,
+      "yes_price_change": -0.04,
+      "yes_price_pct_change": -8.8,
       "price_history": [
         {
           "t": "2026-11-15T08:42:11Z",
@@ -266,8 +269,16 @@
           "mp": 0.0813,
           "bid": 0.38,
           "ask": 0.53
+        },
+        {
+          "t": "2026-11-15T08:47:38Z",
+          "p": 0.415,
+          "mp": 0.0813,
+          "bid": 0.4,
+          "ask": 0.43
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.455
     }
   ],
   "live_allocation": [],
@@ -279,5 +290,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-15T08:47:36.579902+00:00"
 }
