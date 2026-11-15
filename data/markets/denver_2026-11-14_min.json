@@ -238,11 +238,11 @@
         34.0,
         35.0
       ],
-      "yes_price": 0.7,
+      "yes_price": 0.62,
       "no_price": 0.405,
-      "best_bid": 0.41,
+      "best_bid": 0.25,
       "best_ask": 0.99,
-      "bid_ask_spread": 0.58,
+      "bid_ask_spread": 0.74,
       "volume": 126.0,
       "spread": 0.81,
       "yes_token_id": "35080643724264620384865592040951723777433257056601839683476086248549809689657",
@@ -250,14 +250,14 @@
       "model_prob": 0.491,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.7,
-      "effective_ask": 0.78,
-      "market_prob": 0.7,
-      "belief_prob": 0.5641,
-      "ev": -0.2768,
+      "ask": 0.62,
+      "effective_ask": 0.7,
+      "market_prob": 0.62,
+      "belief_prob": 0.5362,
+      "ev": -0.234,
       "kelly": 0.0,
-      "swing_edge": -0.209,
-      "swing_upside_pct": -29.9,
+      "swing_edge": -0.129,
+      "swing_upside_pct": -20.8,
       "sell_value": 0.19,
       "scan6h_model_prob": 0.491,
       "prev_scan6h_model_prob": 0.491,
@@ -271,13 +271,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.595,
       "prev_scan6h_yes_price": 0.595,
-      "prev_yes_price": 0.62,
-      "yes_price_10m_change": 0.08,
-      "yes_price_10m_pct_change": 12.9,
-      "yes_price_6h_change": 0.105,
-      "yes_price_6h_pct_change": 17.6,
-      "yes_price_change": 0.08,
-      "yes_price_pct_change": 12.9,
+      "prev_yes_price": 0.7,
+      "yes_price_10m_change": -0.08,
+      "yes_price_10m_pct_change": -11.4,
+      "yes_price_6h_change": 0.025,
+      "yes_price_6h_pct_change": 4.2,
+      "yes_price_change": -0.08,
+      "yes_price_pct_change": -11.4,
       "price_history": [
         {
           "t": "2026-11-14T20:24:24Z",
@@ -418,9 +418,16 @@
           "mp": 0.491,
           "bid": 0.41,
           "ask": 0.99
+        },
+        {
+          "t": "2026-11-15T01:47:31Z",
+          "p": 0.62,
+          "mp": 0.491,
+          "bid": 0.25,
+          "ask": 0.99
         }
       ],
-      "prev_10m_yes_price": 0.62
+      "prev_10m_yes_price": 0.7
     },
     {
       "question": "Will the lowest temperature in Denver be between 36-37°F on November 14?",
@@ -1085,5 +1092,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-15T01:37:27.208236+00:00"
+  "last_price_refresh": "2026-11-15T01:47:29.780799+00:00"
 }

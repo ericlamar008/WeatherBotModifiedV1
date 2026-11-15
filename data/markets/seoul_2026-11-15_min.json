@@ -47,11 +47,11 @@
         9.0,
         9.0
       ],
-      "yes_price": 0.89,
+      "yes_price": 0.895,
       "no_price": 0.645,
       "best_bid": 0.86,
-      "best_ask": 0.92,
-      "bid_ask_spread": 0.06,
+      "best_ask": 0.93,
+      "bid_ask_spread": 0.07,
       "volume": 31.0,
       "spread": 0.45,
       "yes_token_id": "34637667925776314179499484483567859530412760642060705175563010581967737117350",
@@ -59,14 +59,14 @@
       "model_prob": 0.4441,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.89,
-      "effective_ask": 0.9065,
-      "market_prob": 0.89,
-      "belief_prob": 0.6002,
-      "ev": -0.3379,
+      "ask": 0.895,
+      "effective_ask": 0.917,
+      "market_prob": 0.895,
+      "belief_prob": 0.6019,
+      "ev": -0.3436,
       "kelly": 0.0,
-      "swing_edge": -0.4459,
-      "swing_upside_pct": -50.1,
+      "swing_edge": -0.4509,
+      "swing_upside_pct": -50.4,
       "sell_value": 0.13,
       "scan6h_model_prob": 0.4441,
       "prev_scan6h_model_prob": 0.4441,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.355,
       "prev_scan6h_yes_price": 0.355,
-      "prev_yes_price": 0.895,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -0.6,
-      "yes_price_6h_change": 0.535,
-      "yes_price_6h_pct_change": 150.7,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -0.6,
+      "prev_yes_price": 0.89,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 0.6,
+      "yes_price_6h_change": 0.54,
+      "yes_price_6h_pct_change": 152.1,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 0.6,
       "price_history": [
         {
           "t": "2026-11-14T20:24:22Z",
@@ -269,9 +269,16 @@
           "mp": 0.4441,
           "bid": 0.86,
           "ask": 0.92
+        },
+        {
+          "t": "2026-11-15T01:47:31Z",
+          "p": 0.895,
+          "mp": 0.4441,
+          "bid": 0.86,
+          "ask": 0.93
         }
       ],
-      "prev_10m_yes_price": 0.895
+      "prev_10m_yes_price": 0.89
     },
     {
       "question": "Will the lowest temperature in Seoul (Incheon) be 10°C on November 15?",
@@ -967,5 +974,5 @@
   "confidence": 0.3077,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-15T01:37:27.208236+00:00"
+  "last_price_refresh": "2026-11-15T01:47:29.780799+00:00"
 }
