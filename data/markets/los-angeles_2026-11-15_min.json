@@ -3,16 +3,16 @@
   "city_name": "Los Angeles",
   "date": "2026-11-15",
   "unit": "F",
-  "status": "open",
+  "status": "resolved",
   "market_type": "min",
   "created_at": "2026-11-14T02:20:49.310654+00:00",
   "committed_allocation": null,
-  "hours_left": 5.0,
-  "time_status": "local_day_open",
+  "hours_left": 0.0,
+  "time_status": "awaiting_settlement",
   "local_day_end_utc": "2026-11-16T08:00:00+00:00",
   "event_end_date": "2026-11-15T12:00:00Z",
   "last_scan": "2026-11-16T02:20:57.893157+00:00",
-  "last_lite_refresh": "2026-11-16T02:58:44.608316+00:00",
+  "last_lite_refresh": "2026-11-16T08:20:54.112438+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
     "station": "KLAX",
@@ -2182,7 +2182,10 @@
       "market_prob": 0.96,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.921
+      "sell_value": 0.921,
+      "won": true,
+      "pnl_units": 1.25,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -2194,5 +2197,31 @@
   "confidence": 0.707,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-16T08:17:39.771736+00:00"
+  "last_price_refresh": "2026-11-16T08:17:39.771736+00:00",
+  "actual_temp": 58.5,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 1.25,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "7011803",
+      "question": "Will the lowest temperature in Los Angeles be between 58-59°F on November 15?",
+      "range": [
+        58.0,
+        59.0
+      ],
+      "side": "YES",
+      "price": 0.96,
+      "model_prob": 0.1859,
+      "ev": -0.5369,
+      "market_prob": 0.96,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.921,
+      "won": true,
+      "pnl_units": 1.25,
+      "user_entered": false
+    }
+  ]
 }
