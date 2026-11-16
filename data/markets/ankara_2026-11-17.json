@@ -404,13 +404,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.37,
       "prev_scan6h_yes_price": 0.37,
-      "prev_yes_price": 0.37,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.4,
+      "prev_yes_price": 0.365,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.005,
       "yes_price_6h_pct_change": -1.4,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.4,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-16T02:21:55Z",
@@ -427,7 +427,7 @@
           "ask": 0.39
         }
       ],
-      "prev_10m_yes_price": 0.37
+      "prev_10m_yes_price": 0.365
     },
     {
       "question": "Will the highest temperature in Ankara be 14°C on November 17?",
@@ -566,11 +566,11 @@
         16.0,
         16.0
       ],
-      "yes_price": 0.028,
+      "yes_price": 0.012,
       "no_price": 0.971,
       "best_bid": 0.004,
-      "best_ask": 0.052,
-      "bid_ask_spread": 0.048,
+      "best_ask": 0.02,
+      "bid_ask_spread": 0.016,
       "volume": 50.0,
       "spread": 0.05,
       "yes_token_id": "60445895693912620602879957027086806555728576200645619545164401152680894106926",
@@ -578,14 +578,14 @@
       "model_prob": 0.1062,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.028,
-      "effective_ask": 0.0379,
-      "market_prob": 0.028,
-      "belief_prob": 0.0788,
-      "ev": 1.0792,
-      "kelly": 0.0106,
-      "swing_edge": 0.0782,
-      "swing_upside_pct": 279.3,
+      "ask": 0.012,
+      "effective_ask": 0.012,
+      "market_prob": 0.012,
+      "belief_prob": 0.0732,
+      "ev": 5.1,
+      "kelly": 0.0155,
+      "swing_edge": 0.0942,
+      "swing_upside_pct": 785.0,
       "sell_value": 0.004,
       "scan6h_model_prob": 0.1062,
       "prev_scan6h_model_prob": 0.1062,
@@ -599,13 +599,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.029,
       "prev_scan6h_yes_price": 0.029,
-      "prev_yes_price": 0.029,
-      "yes_price_10m_change": -0.001,
-      "yes_price_10m_pct_change": -3.4,
-      "yes_price_6h_change": -0.001,
-      "yes_price_6h_pct_change": -3.4,
-      "yes_price_change": -0.001,
-      "yes_price_pct_change": -3.4,
+      "prev_yes_price": 0.028,
+      "yes_price_10m_change": -0.016,
+      "yes_price_10m_pct_change": -57.1,
+      "yes_price_6h_change": -0.017,
+      "yes_price_6h_pct_change": -58.6,
+      "yes_price_change": -0.016,
+      "yes_price_pct_change": -57.1,
       "price_history": [
         {
           "t": "2026-11-16T02:21:55Z",
@@ -620,9 +620,16 @@
           "mp": 0.1062,
           "bid": 0.004,
           "ask": 0.052
+        },
+        {
+          "t": "2026-11-16T02:47:30Z",
+          "p": 0.012,
+          "mp": 0.1062,
+          "bid": 0.004,
+          "ask": 0.02
         }
       ],
-      "prev_10m_yes_price": 0.029
+      "prev_10m_yes_price": 0.028
     },
     {
       "question": "Will the highest temperature in Ankara be 17°C on November 17?",
@@ -765,5 +772,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-16T02:37:31.185664+00:00"
+  "last_price_refresh": "2026-11-16T02:47:29.268591+00:00"
 }
