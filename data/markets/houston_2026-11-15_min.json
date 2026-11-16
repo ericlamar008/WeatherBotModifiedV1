@@ -7,11 +7,11 @@
   "market_type": "min",
   "created_at": "2026-11-14T02:20:49.310654+00:00",
   "committed_allocation": null,
-  "hours_left": 9.7,
+  "hours_left": 3.7,
   "time_status": "local_day_open",
   "local_day_end_utc": "2026-11-16T06:00:00+00:00",
   "event_end_date": "2026-11-15T12:00:00Z",
-  "last_scan": "2026-11-15T02:20:41.367264+00:00",
+  "last_scan": "2026-11-16T02:20:57.893157+00:00",
   "last_lite_refresh": "2026-11-15T20:20:49.273527+00:00",
   "resolve_source_info": {
     "source_code": "wunderground",
@@ -19,22 +19,22 @@
     "source_label": "Wunderground (KHOU)",
     "provider_note": "Weather.com / NWS",
     "url": "https://www.wunderground.com/history/daily/KHOU/date/2026-11-15",
-    "forecast_temp": 51.8,
-    "rounded_temp": 52,
-    "baseline_temp": 50.6,
-    "temp_change": 1.2,
-    "temp_pct_change": 2.4,
+    "forecast_temp": 50.9,
+    "rounded_temp": 51,
+    "baseline_temp": 51.8,
+    "temp_change": -0.9,
+    "temp_pct_change": -1.7,
     "target_bucket": "≤53°F",
-    "gap_vs_bot": -2.4,
+    "gap_vs_bot": -3.1,
     "weight_in_signal": 0
   },
   "horizon_days": 0,
-  "forecast_mean": 54.19,
-  "sigma": 1.91,
-  "forecast_mean_shadow": 54.47,
+  "forecast_mean": 54.03,
+  "sigma": 2.298,
+  "forecast_mean_shadow": 54.46,
   "model_means_raw": {
     "ecmwf": 54.49,
-    "gfs": 52.8,
+    "gfs": 51.88,
     "gem": 51.17
   },
   "model_spread": 1.66,
@@ -52,7 +52,7 @@
       "best_bid": 0.999,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
-      "volume": 191.0,
+      "volume": 202.0,
       "spread": 0.001,
       "yes_token_id": "51088379187030196003875467663904264457010002464516293438706603299242613350901",
       "no_token_id": "108014271595592565057686011621202718793149933467173455541695321674823975687490",
@@ -340,6 +340,13 @@
           "mp": 1.0,
           "bid": 0.999,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-16T02:21:59Z",
+          "p": 0.9995,
+          "mp": 1.0,
+          "bid": 0.999,
+          "ask": 1.0
         }
       ]
     },
@@ -365,7 +372,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0002,
+      "belief_prob": 0.0,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -639,6 +646,13 @@
         },
         {
           "t": "2026-11-16T02:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-16T02:21:59Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -668,7 +682,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0002,
+      "belief_prob": 0.0,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -942,6 +956,13 @@
         },
         {
           "t": "2026-11-16T02:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-16T02:21:59Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -971,7 +992,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0002,
+      "belief_prob": 0.0,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1245,6 +1266,13 @@
         },
         {
           "t": "2026-11-16T02:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-16T02:21:59Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1274,7 +1302,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0002,
+      "belief_prob": 0.0,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1548,6 +1576,13 @@
         },
         {
           "t": "2026-11-16T02:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-16T02:21:59Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1577,7 +1612,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0002,
+      "belief_prob": 0.0,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1851,6 +1886,13 @@
         },
         {
           "t": "2026-11-16T02:17:29Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-16T02:21:59Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1880,7 +1922,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0002,
+      "belief_prob": 0.0,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -2158,6 +2200,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-16T02:21:59Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     }
@@ -2181,11 +2230,11 @@
     }
   ],
   "total_allocated_units": 30.0,
-  "portfolio_score": -0.120151,
+  "portfolio_score": -0.102659,
   "worst_case_loss_frac": 0.3,
   "best_case_pnl_units": 0.02,
   "worst_case_pnl_units": -30.0,
-  "success_probability": 0.6629,
+  "success_probability": 0.7119,
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
