@@ -17457,19 +17457,19 @@
     "usdc_amount": 5.0,
     "quantity_shares": 10.2,
     "filled_shares": 10.2,
-    "peak_bid": 0.55,
+    "peak_bid": 0.61,
     "rule_version": 1,
     "locked_at": "2026-11-16T16:16:07.108673+00:00",
     "status": "open",
-    "last_price": 0.55,
-    "last_pct": 14.6,
+    "last_price": 0.61,
+    "last_pct": 27.1,
     "exit_price": null,
     "closed_at": null,
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.63,
-    "last_checked_at": "2026-11-16T16:57:27.544691+00:00",
+    "last_mid": 0.66,
+    "last_checked_at": "2026-11-16T17:07:31.198518+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-16T16:16:07Z",
@@ -17485,6 +17485,11 @@
         "t": "2026-11-16T16:57:27Z",
         "p": 0.55,
         "pct": 14.6
+      },
+      {
+        "t": "2026-11-16T17:07:31Z",
+        "p": 0.61,
+        "pct": 27.1
       }
     ],
     "model_fair_cents": 43,
@@ -17505,7 +17510,7 @@
     "entry_bid": 0.266,
     "entry_order_type": "IMMEDIATE_MARKETABLE",
     "limit_buy_price": null,
-    "position_state": "WATCHING",
+    "position_state": "CLOSED",
     "execution_mode": "SHADOW",
     "exit_policy": "MARKETABLE_FAK",
     "smart_autopilot": false,
@@ -17534,16 +17539,16 @@
     "peak_bid": 0.462,
     "rule_version": 1,
     "locked_at": "2026-11-16T16:16:57.673639+00:00",
-    "status": "open",
-    "last_price": 0.461,
-    "last_pct": 21.1,
-    "exit_price": null,
-    "closed_at": null,
+    "status": "closed_auto_trailing",
+    "last_price": 0.391,
+    "last_pct": 2.6,
+    "exit_price": 0.391,
+    "closed_at": "2026-11-16T17:07:31.198518+00:00",
     "close_reason": null,
     "actual_temp": null,
     "last_price_source": "bid",
-    "last_mid": 0.484,
-    "last_checked_at": "2026-11-16T16:57:27.544691+00:00",
+    "last_mid": 0.538,
+    "last_checked_at": "2026-11-16T17:07:31.198518+00:00",
     "price_trajectory": [
       {
         "t": "2026-11-16T16:16:57Z",
@@ -17569,9 +17574,17 @@
         "t": "2026-11-16T16:47:45Z",
         "p": 0.462,
         "pct": 21.1
+      },
+      {
+        "t": "2026-11-16T17:07:31Z",
+        "p": 0.391,
+        "pct": 2.6
       }
     ],
     "model_fair_cents": 50,
-    "intraday_eliminated": false
+    "intraday_eliminated": false,
+    "latched_exit_reason": "PROFIT_RATCHET",
+    "outcome_pct": 2.6,
+    "notified_close": true
   }
 ]
