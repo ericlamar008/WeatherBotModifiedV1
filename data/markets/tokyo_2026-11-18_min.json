@@ -46,11 +46,11 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.355,
+      "yes_price": 0.375,
       "no_price": 0.55,
-      "best_bid": 0.21,
+      "best_bid": 0.25,
       "best_ask": 0.5,
-      "bid_ask_spread": 0.29,
+      "bid_ask_spread": 0.25,
       "volume": 349.0,
       "spread": 0.04,
       "yes_token_id": "64659037718903668533021437505666567942791381505407733364027990036443635613470",
@@ -58,14 +58,14 @@
       "model_prob": 0.0522,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.355,
-      "effective_ask": 0.435,
-      "market_prob": 0.355,
-      "belief_prob": 0.1582,
-      "ev": -0.6363,
+      "ask": 0.375,
+      "effective_ask": 0.455,
+      "market_prob": 0.375,
+      "belief_prob": 0.1652,
+      "ev": -0.6369,
       "kelly": 0.0,
-      "swing_edge": -0.3028,
-      "swing_upside_pct": -85.3,
+      "swing_edge": -0.3228,
+      "swing_upside_pct": -86.1,
       "sell_value": 0.43,
       "prev_scan6h_model_prob": 0.0559,
       "model_prob_6h_change": -0.0037,
@@ -77,16 +77,16 @@
       "prev_model_prob": 0.0559,
       "model_prob_change": -0.0037,
       "model_prob_pct_change": -6.6,
-      "prev_10m_yes_price": 0.335,
+      "prev_10m_yes_price": 0.355,
       "yes_price_10m_change": 0.02,
-      "yes_price_10m_pct_change": 6.0,
+      "yes_price_10m_pct_change": 5.6,
       "prev_scan6h_yes_price": 0.32,
-      "yes_price_6h_change": -0.095,
-      "yes_price_6h_pct_change": -21.1,
+      "yes_price_6h_change": -0.075,
+      "yes_price_6h_pct_change": -16.7,
       "scan6h_yes_price": 0.45,
-      "prev_yes_price": 0.335,
+      "prev_yes_price": 0.355,
       "yes_price_change": 0.02,
-      "yes_price_pct_change": 6.0,
+      "yes_price_pct_change": 5.6,
       "price_history": [
         {
           "t": "2026-11-17T02:28:07Z",
@@ -416,6 +416,13 @@
           "mp": 0.0522,
           "bid": 0.21,
           "ask": 0.5
+        },
+        {
+          "t": "2026-11-17T13:57:38Z",
+          "p": 0.375,
+          "mp": 0.0522,
+          "bid": 0.25,
+          "ask": 0.5
         }
       ]
     },
@@ -468,13 +475,6 @@
       "yes_price_change": 0.0,
       "yes_price_pct_change": 0.0,
       "price_history": [
-        {
-          "t": "2026-11-17T03:17:30Z",
-          "p": 0.525,
-          "mp": 0.1494,
-          "bid": 0.38,
-          "ask": 0.67
-        },
         {
           "t": "2026-11-17T03:37:29Z",
           "p": 0.485,
@@ -803,6 +803,13 @@
           "mp": 0.1362,
           "bid": 0.35,
           "ask": 0.69
+        },
+        {
+          "t": "2026-11-17T13:57:38Z",
+          "p": 0.52,
+          "mp": 0.1362,
+          "bid": 0.36,
+          "ask": 0.68
         }
       ]
     },
@@ -844,16 +851,16 @@
       "prev_model_prob": 0.2759,
       "model_prob_change": -0.0189,
       "model_prob_pct_change": -6.9,
-      "prev_10m_yes_price": 0.065,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -7.7,
+      "prev_10m_yes_price": 0.06,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.07,
       "yes_price_6h_change": -0.005,
       "yes_price_6h_pct_change": -7.7,
       "scan6h_yes_price": 0.065,
-      "prev_yes_price": 0.065,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -7.7,
+      "prev_yes_price": 0.06,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-17T02:28:07Z",
@@ -1423,6 +1430,13 @@
           "mp": 0.036,
           "bid": 0.001,
           "ask": 0.01
+        },
+        {
+          "t": "2026-11-17T13:57:38Z",
+          "p": 0.0055,
+          "mp": 0.036,
+          "bid": 0.001,
+          "ask": 0.01
         }
       ]
     }
@@ -1437,6 +1451,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-17T13:47:44.531721+00:00",
+  "last_price_refresh": "2026-11-17T13:57:36.852797+00:00",
   "last_lite_refresh": "2026-11-17T08:35:00.645091+00:00"
 }
