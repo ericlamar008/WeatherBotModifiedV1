@@ -48,9 +48,9 @@
         5.0,
         5.0
       ],
-      "yes_price": 0.935,
+      "yes_price": 0.815,
       "no_price": 0.065,
-      "best_bid": 0.87,
+      "best_bid": 0.63,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 333.0,
@@ -60,14 +60,14 @@
       "model_prob": 0.1828,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.935,
-      "effective_ask": 0.935,
-      "market_prob": 0.935,
-      "belief_prob": 0.4461,
-      "ev": -0.5229,
+      "ask": 0.815,
+      "effective_ask": 0.815,
+      "market_prob": 0.815,
+      "belief_prob": 0.4041,
+      "ev": -0.5042,
       "kelly": 0.0,
-      "swing_edge": -0.7522,
-      "swing_upside_pct": -80.4,
+      "swing_edge": -0.6322,
+      "swing_upside_pct": -77.6,
       "sell_value": 0.87,
       "scan6h_model_prob": 0.1828,
       "prev_scan6h_model_prob": 0.1828,
@@ -81,13 +81,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.935,
       "prev_scan6h_yes_price": 0.935,
-      "prev_yes_price": 0.805,
-      "yes_price_10m_change": 0.13,
-      "yes_price_10m_pct_change": 16.1,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.13,
-      "yes_price_pct_change": 16.1,
+      "prev_yes_price": 0.935,
+      "yes_price_10m_change": -0.12,
+      "yes_price_10m_pct_change": -12.8,
+      "yes_price_6h_change": -0.12,
+      "yes_price_6h_pct_change": -12.8,
+      "yes_price_change": -0.12,
+      "yes_price_pct_change": -12.8,
       "price_history": [
         {
           "t": "2026-11-17T08:40:59Z",
@@ -214,9 +214,16 @@
           "mp": 0.1828,
           "bid": 0.87,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-17T13:17:35Z",
+          "p": 0.815,
+          "mp": 0.1828,
+          "bid": 0.63,
+          "ask": 1.0
         }
       ],
-      "prev_10m_yes_price": 0.805
+      "prev_10m_yes_price": 0.935
     },
     {
       "question": "Will the lowest temperature in Ankara be 7°C on November 17?",
@@ -359,6 +366,13 @@
         },
         {
           "t": "2026-11-17T12:57:42Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-17T13:17:35Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -512,6 +526,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-17T13:17:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -657,6 +678,13 @@
         },
         {
           "t": "2026-11-17T12:57:42Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-17T13:17:35Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -810,6 +838,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-17T13:17:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -959,6 +994,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-17T13:17:35Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -991,5 +1033,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-17T13:07:32.940042+00:00"
+  "last_price_refresh": "2026-11-17T13:17:34.322920+00:00"
 }
