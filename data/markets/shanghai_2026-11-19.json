@@ -60,7 +60,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Shanghai be 7°C on November 19?",
@@ -117,7 +118,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Shanghai be 8°C on November 19?",
@@ -174,7 +176,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -207,7 +209,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Shanghai be 9°C on November 19?",
@@ -264,7 +267,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Shanghai be 10°C on November 19?",
@@ -321,7 +325,8 @@
           "bid": 0.004,
           "ask": 0.008
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.006
     },
     {
       "question": "Will the highest temperature in Shanghai be 11°C on November 19?",
@@ -330,11 +335,11 @@
         11.0,
         11.0
       ],
-      "yes_price": 0.0375,
+      "yes_price": 0.033,
       "no_price": 0.9625,
-      "best_bid": 0.031,
-      "best_ask": 0.044,
-      "bid_ask_spread": 0.013,
+      "best_bid": 0.024,
+      "best_ask": 0.042,
+      "bid_ask_spread": 0.018,
       "volume": 2752.0,
       "spread": 0.013,
       "yes_token_id": "40901969395382915052589266492107507159914915629232666229642250200191856107855",
@@ -342,14 +347,14 @@
       "model_prob": 0.182,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0375,
-      "effective_ask": 0.0375,
-      "market_prob": 0.0375,
-      "belief_prob": 0.1314,
-      "ev": 2.504,
-      "kelly": 0.0244,
-      "swing_edge": 0.1445,
-      "swing_upside_pct": 385.3,
+      "ask": 0.033,
+      "effective_ask": 0.033,
+      "market_prob": 0.033,
+      "belief_prob": 0.1298,
+      "ev": 2.9333,
+      "kelly": 0.025,
+      "swing_edge": 0.149,
+      "swing_upside_pct": 451.5,
       "sell_value": 0.031,
       "scan6h_model_prob": 0.182,
       "prev_scan6h_model_prob": 0.182,
@@ -364,12 +369,12 @@
       "scan6h_yes_price": 0.0375,
       "prev_scan6h_yes_price": 0.0375,
       "prev_yes_price": 0.0375,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0045,
+      "yes_price_10m_pct_change": -12.0,
+      "yes_price_6h_change": -0.0045,
+      "yes_price_6h_pct_change": -12.0,
+      "yes_price_change": -0.0045,
+      "yes_price_pct_change": -12.0,
       "price_history": [
         {
           "t": "2026-11-18T20:25:42Z",
@@ -377,8 +382,16 @@
           "mp": 0.182,
           "bid": 0.031,
           "ask": 0.044
+        },
+        {
+          "t": "2026-11-18T20:37:32Z",
+          "p": 0.033,
+          "mp": 0.182,
+          "bid": 0.024,
+          "ask": 0.042
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0375
     },
     {
       "question": "Will the highest temperature in Shanghai be 12°C on November 19?",
@@ -387,11 +400,11 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.3,
+      "yes_price": 0.27,
       "no_price": 0.7,
-      "best_bid": 0.29,
-      "best_ask": 0.31,
-      "bid_ask_spread": 0.02,
+      "best_bid": 0.25,
+      "best_ask": 0.29,
+      "bid_ask_spread": 0.04,
       "volume": 2903.0,
       "spread": 0.02,
       "yes_token_id": "4186269841531672623885505169564061404687157025475295605438857477455428438394",
@@ -399,14 +412,14 @@
       "model_prob": 0.4717,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.3,
-      "effective_ask": 0.3,
-      "market_prob": 0.3,
-      "belief_prob": 0.4116,
-      "ev": 0.372,
-      "kelly": 0.0399,
-      "swing_edge": 0.1717,
-      "swing_upside_pct": 57.2,
+      "ask": 0.27,
+      "effective_ask": 0.2755,
+      "market_prob": 0.27,
+      "belief_prob": 0.4011,
+      "ev": 0.4559,
+      "kelly": 0.0433,
+      "swing_edge": 0.2017,
+      "swing_upside_pct": 74.7,
       "sell_value": 0.29,
       "scan6h_model_prob": 0.4717,
       "prev_scan6h_model_prob": 0.4717,
@@ -421,12 +434,12 @@
       "scan6h_yes_price": 0.3,
       "prev_scan6h_yes_price": 0.3,
       "prev_yes_price": 0.3,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.03,
+      "yes_price_10m_pct_change": -10.0,
+      "yes_price_6h_change": -0.03,
+      "yes_price_6h_pct_change": -10.0,
+      "yes_price_change": -0.03,
+      "yes_price_pct_change": -10.0,
       "price_history": [
         {
           "t": "2026-11-18T20:25:42Z",
@@ -434,8 +447,16 @@
           "mp": 0.4717,
           "bid": 0.29,
           "ask": 0.31
+        },
+        {
+          "t": "2026-11-18T20:37:32Z",
+          "p": 0.27,
+          "mp": 0.4717,
+          "bid": 0.25,
+          "ask": 0.29
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.3
     },
     {
       "question": "Will the highest temperature in Shanghai be 13°C on November 19?",
@@ -444,11 +465,11 @@
         13.0,
         13.0
       ],
-      "yes_price": 0.595,
+      "yes_price": 0.64,
       "no_price": 0.405,
-      "best_bid": 0.58,
-      "best_ask": 0.61,
-      "bid_ask_spread": 0.03,
+      "best_bid": 0.62,
+      "best_ask": 0.66,
+      "bid_ask_spread": 0.04,
       "volume": 2061.0,
       "spread": 0.03,
       "yes_token_id": "114395844777560530333559562953371505129170961326906845729885223771104946309377",
@@ -456,14 +477,14 @@
       "model_prob": 0.251,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.595,
-      "effective_ask": 0.595,
-      "market_prob": 0.595,
-      "belief_prob": 0.3714,
-      "ev": -0.3758,
+      "ask": 0.64,
+      "effective_ask": 0.6455,
+      "market_prob": 0.64,
+      "belief_prob": 0.3871,
+      "ev": -0.4003,
       "kelly": 0.0,
-      "swing_edge": -0.344,
-      "swing_upside_pct": -57.8,
+      "swing_edge": -0.389,
+      "swing_upside_pct": -60.8,
       "sell_value": 0.58,
       "scan6h_model_prob": 0.251,
       "prev_scan6h_model_prob": 0.251,
@@ -478,12 +499,12 @@
       "scan6h_yes_price": 0.595,
       "prev_scan6h_yes_price": 0.595,
       "prev_yes_price": 0.595,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.045,
+      "yes_price_10m_pct_change": 7.6,
+      "yes_price_6h_change": 0.045,
+      "yes_price_6h_pct_change": 7.6,
+      "yes_price_change": 0.045,
+      "yes_price_pct_change": 7.6,
       "price_history": [
         {
           "t": "2026-11-18T20:25:42Z",
@@ -491,8 +512,16 @@
           "mp": 0.251,
           "bid": 0.58,
           "ask": 0.61
+        },
+        {
+          "t": "2026-11-18T20:37:32Z",
+          "p": 0.64,
+          "mp": 0.251,
+          "bid": 0.62,
+          "ask": 0.66
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.595
     },
     {
       "question": "Will the highest temperature in Shanghai be 14°C on November 19?",
@@ -549,7 +578,8 @@
           "bid": 0.07,
           "ask": 0.1
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.085
     },
     {
       "question": "Will the highest temperature in Shanghai be 15°C on November 19?",
@@ -558,11 +588,11 @@
         15.0,
         15.0
       ],
-      "yes_price": 0.0075,
+      "yes_price": 0.006,
       "no_price": 0.9925,
-      "best_bid": 0.005,
-      "best_ask": 0.01,
-      "bid_ask_spread": 0.005,
+      "best_bid": 0.004,
+      "best_ask": 0.008,
+      "bid_ask_spread": 0.004,
       "volume": 1022.0,
       "spread": 0.005,
       "yes_token_id": "97790835162892713955643199329163092819022601486432616928120883685934546576596",
@@ -570,13 +600,13 @@
       "model_prob": 0.0083,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0075,
-      "effective_ask": 0.0075,
-      "market_prob": 0.0075,
-      "belief_prob": 0.008,
-      "ev": 0.0667,
-      "kelly": 0.0001,
-      "swing_edge": 0.0008,
+      "ask": 0.006,
+      "effective_ask": 0.006,
+      "market_prob": 0.006,
+      "belief_prob": 0.0075,
+      "ev": 0.25,
+      "kelly": 0.0004,
+      "swing_edge": 0.0023,
       "swing_upside_pct": 0.0,
       "sell_value": 0.005,
       "scan6h_model_prob": 0.0083,
@@ -592,12 +622,12 @@
       "scan6h_yes_price": 0.0075,
       "prev_scan6h_yes_price": 0.0075,
       "prev_yes_price": 0.0075,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0015,
+      "yes_price_10m_pct_change": -20.0,
+      "yes_price_6h_change": -0.0015,
+      "yes_price_6h_pct_change": -20.0,
+      "yes_price_change": -0.0015,
+      "yes_price_pct_change": -20.0,
       "price_history": [
         {
           "t": "2026-11-18T20:25:42Z",
@@ -606,7 +636,8 @@
           "bid": 0.005,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0075
     },
     {
       "question": "Will the highest temperature in Shanghai be 16°C or higher on November 19?",
@@ -663,7 +694,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     }
   ],
   "live_allocation": [],
@@ -675,5 +707,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-18T20:37:32.101722+00:00"
 }

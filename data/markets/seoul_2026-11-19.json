@@ -60,7 +60,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 1°C on November 19?",
@@ -117,7 +118,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 2°C on November 19?",
@@ -174,7 +176,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -207,7 +209,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 3°C on November 19?",
@@ -264,7 +267,8 @@
           "bid": 0.006,
           "ask": 0.02
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.013
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 4°C on November 19?",
@@ -321,7 +325,8 @@
           "bid": 0.06,
           "ask": 0.08
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.07
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 5°C on November 19?",
@@ -330,11 +335,11 @@
         5.0,
         5.0
       ],
-      "yes_price": 0.59,
+      "yes_price": 0.585,
       "no_price": 0.41,
-      "best_bid": 0.57,
+      "best_bid": 0.56,
       "best_ask": 0.61,
-      "bid_ask_spread": 0.04,
+      "bid_ask_spread": 0.05,
       "volume": 2338.0,
       "spread": 0.04,
       "yes_token_id": "114860714151712067309406282749972993200781035698030394054509740568995208159797",
@@ -342,14 +347,14 @@
       "model_prob": 0.4547,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.59,
-      "effective_ask": 0.5955,
-      "market_prob": 0.59,
-      "belief_prob": 0.5021,
-      "ev": -0.1568,
+      "ask": 0.585,
+      "effective_ask": 0.596,
+      "market_prob": 0.585,
+      "belief_prob": 0.5003,
+      "ev": -0.1606,
       "kelly": 0.0,
-      "swing_edge": -0.1408,
-      "swing_upside_pct": -23.6,
+      "swing_edge": -0.1303,
+      "swing_upside_pct": -22.3,
       "sell_value": 0.57,
       "scan6h_model_prob": 0.4547,
       "prev_scan6h_model_prob": 0.4547,
@@ -364,12 +369,12 @@
       "scan6h_yes_price": 0.59,
       "prev_scan6h_yes_price": 0.59,
       "prev_yes_price": 0.59,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -0.8,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -0.8,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -0.8,
       "price_history": [
         {
           "t": "2026-11-18T20:25:41Z",
@@ -377,8 +382,16 @@
           "mp": 0.4547,
           "bid": 0.57,
           "ask": 0.61
+        },
+        {
+          "t": "2026-11-18T20:37:32Z",
+          "p": 0.585,
+          "mp": 0.4547,
+          "bid": 0.56,
+          "ask": 0.61
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.59
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 6°C on November 19?",
@@ -387,11 +400,11 @@
         6.0,
         6.0
       ],
-      "yes_price": 0.31,
+      "yes_price": 0.32,
       "no_price": 0.69,
       "best_bid": 0.3,
-      "best_ask": 0.32,
-      "bid_ask_spread": 0.02,
+      "best_ask": 0.34,
+      "bid_ask_spread": 0.04,
       "volume": 2756.0,
       "spread": 0.02,
       "yes_token_id": "48705869354787648280637786351928674911195673753169683002364791953470496469072",
@@ -399,14 +412,14 @@
       "model_prob": 0.359,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.31,
-      "effective_ask": 0.31,
-      "market_prob": 0.31,
-      "belief_prob": 0.3418,
-      "ev": 0.1026,
-      "kelly": 0.0115,
-      "swing_edge": 0.049,
-      "swing_upside_pct": 15.8,
+      "ask": 0.32,
+      "effective_ask": 0.3255,
+      "market_prob": 0.32,
+      "belief_prob": 0.3453,
+      "ev": 0.0608,
+      "kelly": 0.0073,
+      "swing_edge": 0.039,
+      "swing_upside_pct": 12.2,
       "sell_value": 0.3,
       "scan6h_model_prob": 0.359,
       "prev_scan6h_model_prob": 0.359,
@@ -421,12 +434,12 @@
       "scan6h_yes_price": 0.31,
       "prev_scan6h_yes_price": 0.31,
       "prev_yes_price": 0.31,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 3.2,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 3.2,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 3.2,
       "price_history": [
         {
           "t": "2026-11-18T20:25:41Z",
@@ -434,8 +447,16 @@
           "mp": 0.359,
           "bid": 0.3,
           "ask": 0.32
+        },
+        {
+          "t": "2026-11-18T20:37:32Z",
+          "p": 0.32,
+          "mp": 0.359,
+          "bid": 0.3,
+          "ask": 0.34
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.31
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 7°C on November 19?",
@@ -444,11 +465,11 @@
         7.0,
         7.0
       ],
-      "yes_price": 0.038,
+      "yes_price": 0.0385,
       "no_price": 0.962,
       "best_bid": 0.031,
-      "best_ask": 0.045,
-      "bid_ask_spread": 0.014,
+      "best_ask": 0.046,
+      "bid_ask_spread": 0.015,
       "volume": 1053.0,
       "spread": 0.014,
       "yes_token_id": "29156298912821999997209068292006694607545223302996193369162313677407478231507",
@@ -456,14 +477,14 @@
       "model_prob": 0.0616,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.038,
-      "effective_ask": 0.038,
-      "market_prob": 0.038,
-      "belief_prob": 0.0533,
-      "ev": 0.4026,
-      "kelly": 0.004,
-      "swing_edge": 0.0236,
-      "swing_upside_pct": 62.1,
+      "ask": 0.0385,
+      "effective_ask": 0.0385,
+      "market_prob": 0.0385,
+      "belief_prob": 0.0535,
+      "ev": 0.3896,
+      "kelly": 0.0039,
+      "swing_edge": 0.0231,
+      "swing_upside_pct": 60.0,
       "sell_value": 0.031,
       "scan6h_model_prob": 0.0616,
       "prev_scan6h_model_prob": 0.0616,
@@ -478,12 +499,12 @@
       "scan6h_yes_price": 0.038,
       "prev_scan6h_yes_price": 0.038,
       "prev_yes_price": 0.038,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 1.3,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 1.3,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 1.3,
       "price_history": [
         {
           "t": "2026-11-18T20:25:41Z",
@@ -492,7 +513,8 @@
           "bid": 0.031,
           "ask": 0.045
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.038
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 8°C on November 19?",
@@ -549,7 +571,8 @@
           "bid": 0.005,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.007
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 9°C on November 19?",
@@ -606,7 +629,8 @@
           "bid": 0.003,
           "ask": 0.004
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0035
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 10°C or higher on November 19?",
@@ -663,7 +687,8 @@
           "bid": 0.001,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.002
     }
   ],
   "live_allocation": [],
@@ -675,5 +700,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-18T20:37:32.101722+00:00"
 }

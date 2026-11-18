@@ -96,7 +96,8 @@
           "bid": null,
           "ask": 0.069
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0345
     },
     {
       "question": "Will the lowest temperature in Ankara be 5°C on November 18?",
@@ -105,10 +106,10 @@
         5.0,
         5.0
       ],
-      "yes_price": 0.49,
+      "yes_price": 0.4895,
       "no_price": 0.51,
       "best_bid": null,
-      "best_ask": 0.98,
+      "best_ask": 0.979,
       "bid_ask_spread": 0.0,
       "volume": 180.0,
       "spread": 0.0,
@@ -117,14 +118,14 @@
       "model_prob": 0.2877,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.49,
-      "effective_ask": 0.49,
-      "market_prob": 0.49,
-      "belief_prob": 0.3585,
-      "ev": -0.2684,
+      "ask": 0.4895,
+      "effective_ask": 0.4895,
+      "market_prob": 0.4895,
+      "belief_prob": 0.3583,
+      "ev": -0.268,
       "kelly": 0.0,
-      "swing_edge": -0.2023,
-      "swing_upside_pct": -41.3,
+      "swing_edge": -0.2018,
+      "swing_upside_pct": -41.2,
       "sell_value": null,
       "scan6h_model_prob": 0.2877,
       "prev_scan6h_model_prob": 0.2877,
@@ -139,12 +140,12 @@
       "scan6h_yes_price": 0.49,
       "prev_scan6h_yes_price": 0.49,
       "prev_yes_price": 0.49,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -0.1,
+      "yes_price_6h_change": -0.0005,
+      "yes_price_6h_pct_change": -0.1,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -0.1,
       "price_history": [
         {
           "t": "2026-11-18T20:25:41Z",
@@ -153,7 +154,8 @@
           "bid": null,
           "ask": 0.98
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.49
     },
     {
       "question": "Will the lowest temperature in Ankara be 6°C on November 18?",
@@ -210,7 +212,8 @@
           "bid": 0.91,
           "ask": 1.0
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.955
     },
     {
       "question": "Will the lowest temperature in Ankara be 7°C on November 18?",
@@ -234,7 +237,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -267,7 +270,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Ankara be 8°C on November 18?",
@@ -291,7 +295,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -324,7 +328,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -336,5 +341,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-18T20:37:32.101722+00:00"
 }
