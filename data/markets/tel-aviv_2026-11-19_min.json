@@ -7,12 +7,12 @@
   "market_type": "min",
   "created_at": "2026-11-19T02:20:46.413273+00:00",
   "committed_allocation": null,
-  "hours_left": 13.7,
+  "hours_left": 7.7,
   "time_status": "local_day_open",
   "local_day_end_utc": "2026-11-19T22:00:00+00:00",
   "event_end_date": "2026-11-19T12:00:00Z",
   "last_scan": "2026-11-19T02:20:46.413273+00:00",
-  "last_lite_refresh": "2026-11-19T08:20:53.377812+00:00",
+  "last_lite_refresh": "2026-11-19T14:20:58.458138+00:00",
   "resolve_source_info": {
     "source_code": "noaa",
     "station": "LLBG",
@@ -33,11 +33,11 @@
   "sigma": 1.113,
   "forecast_mean_shadow": 14.04,
   "model_means_raw": {
-    "ecmwf": 15.14,
-    "gfs": 16.17,
+    "ecmwf": 15.13,
+    "gfs": 16.2,
     "gem": 12.69
   },
-  "model_spread": 1.74,
+  "model_spread": 1.755,
   "observed_intraday_temp": 14.0,
   "full_distribution": [
     {
@@ -48,7 +48,7 @@
         12.0
       ],
       "yes_price": 0.055,
-      "no_price": 0.85,
+      "no_price": 0.945,
       "best_bid": null,
       "best_ask": 0.11,
       "bid_ask_spread": 0.0,
@@ -68,25 +68,26 @@
       "swing_edge": 0.0662,
       "swing_upside_pct": 120.4,
       "sell_value": null,
-      "scan6h_model_prob": 0.1212,
       "prev_scan6h_model_prob": 0.1212,
-      "prev_10m_model_prob": 0.1212,
-      "prev_model_prob": 0.1212,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
       "model_prob_6h_change": 0.0,
       "model_prob_6h_pct_change": 0.0,
+      "scan6h_model_prob": 0.1212,
+      "prev_10m_model_prob": 0.1212,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
+      "prev_model_prob": 0.1212,
       "model_prob_change": 0.0,
       "model_prob_pct_change": 0.0,
-      "scan6h_yes_price": 0.15,
+      "prev_10m_yes_price": 0.055,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.15,
-      "prev_yes_price": 0.06,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -8.3,
       "yes_price_6h_change": -0.095,
       "yes_price_6h_pct_change": -63.3,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -8.3,
+      "scan6h_yes_price": 0.055,
+      "prev_yes_price": 0.055,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-19T08:24:03Z",
@@ -241,9 +242,15 @@
           "mp": 0.1212,
           "bid": null,
           "ask": 0.11
+        },
+        {
+          "t": "2026-11-19T14:24:33Z",
+          "p": 0.055,
+          "mp": 0.1212,
+          "bid": null,
+          "ask": 0.11
         }
-      ],
-      "prev_10m_yes_price": 0.06
+      ]
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 13°C on November 19?",
@@ -253,7 +260,7 @@
         13.0
       ],
       "yes_price": 0.07,
-      "no_price": 0.885,
+      "no_price": 0.93,
       "best_bid": null,
       "best_ask": 0.14,
       "bid_ask_spread": 0.0,
@@ -273,23 +280,24 @@
       "swing_edge": 0.2587,
       "swing_upside_pct": 369.6,
       "sell_value": null,
-      "scan6h_model_prob": 0.3287,
       "prev_scan6h_model_prob": 0.3287,
-      "prev_10m_model_prob": 0.3287,
-      "prev_model_prob": 0.3287,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
       "model_prob_6h_change": 0.0,
       "model_prob_6h_pct_change": 0.0,
+      "scan6h_model_prob": 0.3287,
+      "prev_10m_model_prob": 0.3287,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
+      "prev_model_prob": 0.3287,
       "model_prob_change": 0.0,
       "model_prob_pct_change": 0.0,
-      "scan6h_yes_price": 0.115,
-      "prev_scan6h_yes_price": 0.115,
-      "prev_yes_price": 0.07,
+      "prev_10m_yes_price": 0.07,
       "yes_price_10m_change": 0.0,
       "yes_price_10m_pct_change": 0.0,
+      "prev_scan6h_yes_price": 0.115,
       "yes_price_6h_change": -0.045,
       "yes_price_6h_pct_change": -39.1,
+      "scan6h_yes_price": 0.07,
+      "prev_yes_price": 0.07,
       "yes_price_change": 0.0,
       "yes_price_pct_change": 0.0,
       "price_history": [
@@ -439,9 +447,15 @@
           "mp": 0.3287,
           "bid": null,
           "ask": 0.14
+        },
+        {
+          "t": "2026-11-19T14:24:33Z",
+          "p": 0.07,
+          "mp": 0.3287,
+          "bid": null,
+          "ask": 0.14
         }
-      ],
-      "prev_10m_yes_price": 0.07
+      ]
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 14°C on November 19?",
@@ -471,23 +485,24 @@
       "swing_edge": -0.4411,
       "swing_upside_pct": -47.2,
       "sell_value": 0.87,
-      "scan6h_model_prob": 0.4939,
       "prev_scan6h_model_prob": 0.4939,
-      "prev_10m_model_prob": 0.4939,
-      "prev_model_prob": 0.4939,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
       "model_prob_6h_change": 0.0,
       "model_prob_6h_pct_change": 0.0,
+      "scan6h_model_prob": 0.4939,
+      "prev_10m_model_prob": 0.4939,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
+      "prev_model_prob": 0.4939,
       "model_prob_change": 0.0,
       "model_prob_pct_change": 0.0,
-      "scan6h_yes_price": 0.935,
-      "prev_scan6h_yes_price": 0.935,
-      "prev_yes_price": 0.935,
+      "prev_10m_yes_price": 0.935,
       "yes_price_10m_change": 0.0,
       "yes_price_10m_pct_change": 0.0,
+      "prev_scan6h_yes_price": 0.935,
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
+      "scan6h_yes_price": 0.935,
+      "prev_yes_price": 0.935,
       "yes_price_change": 0.0,
       "yes_price_pct_change": 0.0,
       "price_history": [
@@ -616,9 +631,15 @@
           "mp": 0.4939,
           "bid": 0.87,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-19T14:24:33Z",
+          "p": 0.935,
+          "mp": 0.4939,
+          "bid": 0.87,
+          "ask": 1.0
         }
-      ],
-      "prev_10m_yes_price": 0.935
+      ]
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 15°C on November 19?",
@@ -642,29 +663,30 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0002,
+      "belief_prob": 0.0,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
       "swing_upside_pct": 0.0,
       "sell_value": null,
-      "scan6h_model_prob": 0.0,
       "prev_scan6h_model_prob": 0.0,
-      "prev_10m_model_prob": 0.0,
-      "prev_model_prob": 0.0,
-      "model_prob_10m_change": 0.0,
-      "model_prob_10m_pct_change": 0.0,
       "model_prob_6h_change": 0.0,
       "model_prob_6h_pct_change": 0.0,
+      "scan6h_model_prob": 0.0,
+      "prev_10m_model_prob": 0.0,
+      "model_prob_10m_change": 0.0,
+      "model_prob_10m_pct_change": 0.0,
+      "prev_model_prob": 0.0,
       "model_prob_change": 0.0,
       "model_prob_pct_change": 0.0,
-      "scan6h_yes_price": 0.0005,
-      "prev_scan6h_yes_price": 0.0005,
-      "prev_yes_price": 0.0005,
+      "prev_10m_yes_price": 0.0005,
       "yes_price_10m_change": 0.0,
       "yes_price_10m_pct_change": 0.0,
+      "prev_scan6h_yes_price": 0.0005,
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
+      "scan6h_yes_price": 0.0005,
+      "prev_yes_price": 0.0005,
       "yes_price_change": 0.0,
       "yes_price_pct_change": 0.0,
       "price_history": [
@@ -793,9 +815,15 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-19T14:24:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
-      ],
-      "prev_10m_yes_price": 0.0005
+      ]
     }
   ],
   "live_allocation": [
@@ -817,12 +845,12 @@
     }
   ],
   "total_allocated_units": 30.0,
-  "portfolio_score": -0.148458,
+  "portfolio_score": -0.129061,
   "worst_case_loss_frac": 0.3,
   "best_case_pnl_units": 2.09,
   "worst_case_pnl_units": -30.0,
-  "success_probability": 0.5518,
-  "confidence": 0.7022,
+  "success_probability": 0.6032,
+  "confidence": 0.8144,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
   "last_price_refresh": "2026-11-19T14:17:40.264423+00:00"
