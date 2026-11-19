@@ -740,16 +740,16 @@
       "prev_model_prob": 0.1318,
       "model_prob_change": 0.0361,
       "model_prob_pct_change": 27.4,
-      "prev_10m_yes_price": 0.0365,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -1.4,
+      "prev_10m_yes_price": 0.036,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.057,
       "yes_price_6h_change": -0.0155,
       "yes_price_6h_pct_change": -30.1,
       "scan6h_yes_price": 0.0515,
-      "prev_yes_price": 0.0365,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -1.4,
+      "prev_yes_price": 0.036,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -1708,6 +1708,13 @@
           "mp": 0.0259,
           "bid": 0.26,
           "ask": 0.3
+        },
+        {
+          "t": "2026-11-19T10:07:40Z",
+          "p": 0.28,
+          "mp": 0.0259,
+          "bid": 0.26,
+          "ask": 0.3
         }
       ]
     },
@@ -1718,11 +1725,11 @@
         78.0,
         79.0
       ],
-      "yes_price": 0.041,
+      "yes_price": 0.0415,
       "no_price": 0.947,
-      "best_bid": 0.032,
+      "best_bid": 0.033,
       "best_ask": 0.05,
-      "bid_ask_spread": 0.018,
+      "bid_ask_spread": 0.017,
       "volume": 48.0,
       "spread": 0.034,
       "yes_token_id": "22938522517165170436345314182357832771118330063875074943565397810488223497858",
@@ -1730,14 +1737,14 @@
       "model_prob": 0.0036,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.041,
-      "effective_ask": 0.041,
-      "market_prob": 0.041,
-      "belief_prob": 0.0167,
-      "ev": -0.5927,
+      "ask": 0.0415,
+      "effective_ask": 0.0415,
+      "market_prob": 0.0415,
+      "belief_prob": 0.0169,
+      "ev": -0.5928,
       "kelly": 0.0,
-      "swing_edge": -0.0374,
-      "swing_upside_pct": -91.2,
+      "swing_edge": -0.0379,
+      "swing_upside_pct": -91.3,
       "sell_value": 0.036,
       "scan6h_model_prob": 0.0036,
       "prev_scan6h_model_prob": 0.0036,
@@ -1751,13 +1758,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.053,
       "prev_scan6h_yes_price": 0.053,
-      "prev_yes_price": 0.048,
-      "yes_price_10m_change": -0.007,
-      "yes_price_10m_pct_change": -14.6,
-      "yes_price_6h_change": -0.012,
-      "yes_price_6h_pct_change": -22.6,
-      "yes_price_change": -0.007,
-      "yes_price_pct_change": -14.6,
+      "prev_yes_price": 0.041,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 1.2,
+      "yes_price_6h_change": -0.0115,
+      "yes_price_6h_pct_change": -21.7,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 1.2,
       "price_history": [
         {
           "t": "2026-11-19T08:23:40Z",
@@ -1802,7 +1809,7 @@
           "ask": 0.05
         }
       ],
-      "prev_10m_yes_price": 0.048
+      "prev_10m_yes_price": 0.041
     },
     {
       "question": "Will the highest temperature in Dallas be between 80-81°F on November 20?",
@@ -2253,6 +2260,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-19T09:57:45.551628+00:00",
+  "last_price_refresh": "2026-11-19T10:07:39.172294+00:00",
   "last_lite_refresh": "2026-11-19T08:20:53.377812+00:00"
 }
