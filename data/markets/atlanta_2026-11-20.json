@@ -537,16 +537,16 @@
       "prev_model_prob": 0.2392,
       "model_prob_change": 0.0334,
       "model_prob_pct_change": 14.0,
-      "prev_10m_yes_price": 0.0315,
-      "yes_price_10m_change": 0.0055,
-      "yes_price_10m_pct_change": 17.5,
+      "prev_10m_yes_price": 0.037,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.082,
       "yes_price_6h_change": -0.0055,
       "yes_price_6h_pct_change": -12.9,
       "scan6h_yes_price": 0.0425,
-      "prev_yes_price": 0.0315,
-      "yes_price_change": 0.0055,
-      "yes_price_pct_change": 17.5,
+      "prev_yes_price": 0.037,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -711,11 +711,11 @@
         68.0,
         69.0
       ],
-      "yes_price": 0.32,
+      "yes_price": 0.325,
       "no_price": 0.685,
-      "best_bid": 0.3,
+      "best_bid": 0.31,
       "best_ask": 0.34,
-      "bid_ask_spread": 0.04,
+      "bid_ask_spread": 0.03,
       "volume": 711.0,
       "spread": 0.03,
       "yes_token_id": "54486688197719983054640067963907738441651714955052086079973173936739529636106",
@@ -723,14 +723,14 @@
       "model_prob": 0.2471,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.32,
-      "effective_ask": 0.3255,
-      "market_prob": 0.32,
-      "belief_prob": 0.2726,
-      "ev": -0.1625,
+      "ask": 0.325,
+      "effective_ask": 0.325,
+      "market_prob": 0.325,
+      "belief_prob": 0.2744,
+      "ev": -0.1557,
       "kelly": 0.0,
-      "swing_edge": -0.0729,
-      "swing_upside_pct": -22.8,
+      "swing_edge": -0.0779,
+      "swing_upside_pct": -24.0,
       "sell_value": 0.3,
       "prev_scan6h_model_prob": 0.1592,
       "model_prob_6h_change": 0.0879,
@@ -743,15 +743,15 @@
       "model_prob_change": 0.0879,
       "model_prob_pct_change": 55.2,
       "prev_10m_yes_price": 0.32,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.6,
       "prev_scan6h_yes_price": 0.305,
-      "yes_price_6h_change": 0.005,
-      "yes_price_6h_pct_change": 1.6,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 3.2,
       "scan6h_yes_price": 0.315,
       "prev_yes_price": 0.32,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.6,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -954,6 +954,13 @@
           "p": 0.32,
           "mp": 0.2471,
           "bid": 0.3,
+          "ask": 0.34
+        },
+        {
+          "t": "2026-11-19T08:57:32Z",
+          "p": 0.325,
+          "mp": 0.2471,
+          "bid": 0.31,
           "ask": 0.34
         }
       ]
@@ -1414,6 +1421,13 @@
           "mp": 0.0495,
           "bid": 0.14,
           "ask": 0.15
+        },
+        {
+          "t": "2026-11-19T08:57:32Z",
+          "p": 0.145,
+          "mp": 0.0495,
+          "bid": 0.14,
+          "ask": 0.15
         }
       ]
     },
@@ -1457,13 +1471,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.012,
       "prev_scan6h_yes_price": 0.012,
-      "prev_yes_price": 0.012,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -4.2,
+      "prev_yes_price": 0.0115,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.0005,
       "yes_price_6h_pct_change": -4.2,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -4.2,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-19T08:24:00Z",
@@ -1480,7 +1494,7 @@
           "ask": 0.02
         }
       ],
-      "prev_10m_yes_price": 0.012
+      "prev_10m_yes_price": 0.0115
     }
   ],
   "live_allocation": [],
@@ -1493,6 +1507,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-19T08:47:29.872402+00:00",
+  "last_price_refresh": "2026-11-19T08:57:31.646991+00:00",
   "last_lite_refresh": "2026-11-19T08:20:53.377812+00:00"
 }
