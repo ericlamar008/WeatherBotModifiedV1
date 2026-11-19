@@ -95,7 +95,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the lowest temperature in Munich be 1°C on November 19?",
@@ -139,8 +140,8 @@
       "yes_price_10m_change": 0.0,
       "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.025,
-      "yes_price_6h_change": -0.024,
-      "yes_price_6h_pct_change": -96.0,
+      "yes_price_6h_change": 0.0,
+      "yes_price_6h_pct_change": 0.0,
       "scan6h_yes_price": 0.001,
       "prev_yes_price": 0.001,
       "yes_price_change": 0.0,
@@ -323,8 +324,8 @@
       "yes_price_10m_change": 0.0,
       "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.09,
-      "yes_price_6h_change": 0.01,
-      "yes_price_6h_pct_change": 11.1,
+      "yes_price_6h_change": 0.0,
+      "yes_price_6h_pct_change": 0.0,
       "scan6h_yes_price": 0.1,
       "prev_yes_price": 0.1,
       "yes_price_change": 0.0,
@@ -633,10 +634,10 @@
         3.0,
         3.0
       ],
-      "yes_price": 0.22,
+      "yes_price": 0.345,
       "no_price": 0.78,
       "best_bid": null,
-      "best_ask": 0.44,
+      "best_ask": 0.69,
       "bid_ask_spread": 0.0,
       "volume": 5.0,
       "spread": 0.0,
@@ -645,14 +646,14 @@
       "model_prob": 0.2797,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.22,
-      "effective_ask": 0.22,
-      "market_prob": 0.22,
-      "belief_prob": 0.2588,
-      "ev": 0.1764,
-      "kelly": 0.0124,
-      "swing_edge": 0.0597,
-      "swing_upside_pct": 27.1,
+      "ask": 0.345,
+      "effective_ask": 0.345,
+      "market_prob": 0.345,
+      "belief_prob": 0.3026,
+      "ev": -0.1229,
+      "kelly": 0.0,
+      "swing_edge": -0.0653,
+      "swing_upside_pct": -18.9,
       "sell_value": null,
       "prev_scan6h_model_prob": 0.2797,
       "model_prob_6h_change": 0.0,
@@ -664,16 +665,16 @@
       "prev_model_prob": 0.2797,
       "model_prob_change": 0.0,
       "model_prob_pct_change": 0.0,
-      "prev_10m_yes_price": 0.345,
-      "yes_price_10m_change": -0.125,
-      "yes_price_10m_pct_change": -36.2,
+      "prev_10m_yes_price": 0.22,
+      "yes_price_10m_change": 0.125,
+      "yes_price_10m_pct_change": 56.8,
       "prev_scan6h_yes_price": 0.35,
-      "yes_price_6h_change": -0.13,
-      "yes_price_6h_pct_change": -37.1,
+      "yes_price_6h_change": 0.125,
+      "yes_price_6h_pct_change": 56.8,
       "scan6h_yes_price": 0.22,
-      "prev_yes_price": 0.345,
-      "yes_price_change": -0.125,
-      "yes_price_pct_change": -36.2,
+      "prev_yes_price": 0.22,
+      "yes_price_change": 0.125,
+      "yes_price_pct_change": 56.8,
       "price_history": [
         {
           "t": "2026-11-19T08:24:02Z",
@@ -968,6 +969,13 @@
           "mp": 0.2797,
           "bid": null,
           "ask": 0.44
+        },
+        {
+          "t": "2026-11-19T20:37:36Z",
+          "p": 0.345,
+          "mp": 0.2797,
+          "bid": null,
+          "ask": 0.69
         }
       ]
     },
@@ -978,9 +986,9 @@
         4.0,
         4.0
       ],
-      "yes_price": 0.81,
+      "yes_price": 0.935,
       "no_price": 0.19,
-      "best_bid": 0.62,
+      "best_bid": 0.87,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 171.0,
@@ -990,14 +998,14 @@
       "model_prob": 0.2684,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.81,
-      "effective_ask": 0.81,
-      "market_prob": 0.81,
-      "belief_prob": 0.458,
-      "ev": -0.4346,
+      "ask": 0.935,
+      "effective_ask": 0.935,
+      "market_prob": 0.935,
+      "belief_prob": 0.5017,
+      "ev": -0.4634,
       "kelly": 0.0,
-      "swing_edge": -0.5416,
-      "swing_upside_pct": -66.9,
+      "swing_edge": -0.6666,
+      "swing_upside_pct": -71.3,
       "sell_value": 0.62,
       "prev_scan6h_model_prob": 0.2684,
       "model_prob_6h_change": 0.0,
@@ -1009,16 +1017,16 @@
       "prev_model_prob": 0.2684,
       "model_prob_change": 0.0,
       "model_prob_pct_change": 0.0,
-      "prev_10m_yes_price": 0.655,
-      "yes_price_10m_change": 0.155,
-      "yes_price_10m_pct_change": 23.7,
+      "prev_10m_yes_price": 0.81,
+      "yes_price_10m_change": 0.125,
+      "yes_price_10m_pct_change": 15.4,
       "prev_scan6h_yes_price": 0.875,
-      "yes_price_6h_change": -0.065,
-      "yes_price_6h_pct_change": -7.4,
+      "yes_price_6h_change": 0.125,
+      "yes_price_6h_pct_change": 15.4,
       "scan6h_yes_price": 0.81,
-      "prev_yes_price": 0.655,
-      "yes_price_change": 0.155,
-      "yes_price_pct_change": 23.7,
+      "prev_yes_price": 0.81,
+      "yes_price_change": 0.125,
+      "yes_price_pct_change": 15.4,
       "price_history": [
         {
           "t": "2026-11-19T08:24:02Z",
@@ -1313,6 +1321,13 @@
           "mp": 0.2684,
           "bid": 0.62,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-19T20:37:36Z",
+          "p": 0.935,
+          "mp": 0.2684,
+          "bid": 0.87,
+          "ask": 1.0
         }
       ]
     },
@@ -1338,7 +1353,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1371,7 +1386,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Munich be 6°C on November 19?",
@@ -1395,7 +1411,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1782,7 +1798,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1815,7 +1831,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Munich be 8°C on November 19?",
@@ -1839,7 +1856,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -1872,7 +1889,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Munich be 9°C on November 19?",
@@ -1896,7 +1914,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -2289,6 +2307,6 @@
   "confidence": 0.1798,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-19T20:17:34.512000+00:00",
+  "last_price_refresh": "2026-11-19T20:37:34.593101+00:00",
   "last_lite_refresh": "2026-11-19T20:20:56.255258+00:00"
 }
