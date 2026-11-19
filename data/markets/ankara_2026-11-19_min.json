@@ -47,11 +47,11 @@
         9.0,
         9.0
       ],
-      "yes_price": 0.45,
+      "yes_price": 0.335,
       "no_price": 0.5,
-      "best_bid": 0.22,
-      "best_ask": 0.68,
-      "bid_ask_spread": 0.46,
+      "best_bid": 0.04,
+      "best_ask": 0.63,
+      "bid_ask_spread": 0.59,
       "volume": 34.0,
       "spread": 0.0,
       "yes_token_id": "10165101477233709295405038629696766013907577803295937401227572626506922000155",
@@ -59,14 +59,14 @@
       "model_prob": 0.2196,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.45,
-      "effective_ask": 0.53,
-      "market_prob": 0.45,
-      "belief_prob": 0.3002,
-      "ev": -0.4336,
+      "ask": 0.335,
+      "effective_ask": 0.415,
+      "market_prob": 0.335,
+      "belief_prob": 0.26,
+      "ev": -0.3735,
       "kelly": 0.0,
-      "swing_edge": -0.2304,
-      "swing_upside_pct": -51.2,
+      "swing_edge": -0.1154,
+      "swing_upside_pct": -34.4,
       "sell_value": null,
       "prev_scan6h_model_prob": 0.2482,
       "model_prob_6h_change": -0.0286,
@@ -78,24 +78,17 @@
       "prev_model_prob": 0.2482,
       "model_prob_change": -0.0286,
       "model_prob_pct_change": -11.5,
-      "prev_10m_yes_price": 0.5,
-      "yes_price_10m_change": -0.05,
-      "yes_price_10m_pct_change": -10.0,
+      "prev_10m_yes_price": 0.45,
+      "yes_price_10m_change": -0.115,
+      "yes_price_10m_pct_change": -25.6,
       "prev_scan6h_yes_price": 0.4,
-      "yes_price_6h_change": -0.05,
-      "yes_price_6h_pct_change": -10.0,
+      "yes_price_6h_change": -0.165,
+      "yes_price_6h_pct_change": -33.0,
       "scan6h_yes_price": 0.5,
-      "prev_yes_price": 0.5,
-      "yes_price_change": -0.05,
-      "yes_price_pct_change": -10.0,
+      "prev_yes_price": 0.45,
+      "yes_price_change": -0.115,
+      "yes_price_pct_change": -25.6,
       "price_history": [
-        {
-          "t": "2026-11-19T05:57:35Z",
-          "p": 0.4,
-          "mp": 0.2478,
-          "bid": 0.16,
-          "ask": 0.64
-        },
         {
           "t": "2026-11-19T06:07:41Z",
           "p": 0.39,
@@ -424,6 +417,13 @@
           "mp": 0.2196,
           "bid": 0.22,
           "ask": 0.68
+        },
+        {
+          "t": "2026-11-19T16:17:42Z",
+          "p": 0.335,
+          "mp": 0.2196,
+          "bid": 0.04,
+          "ask": 0.63
         }
       ]
     },
@@ -465,16 +465,16 @@
       "prev_model_prob": 0.1526,
       "model_prob_change": -0.0212,
       "model_prob_pct_change": -13.9,
-      "prev_10m_yes_price": 0.555,
-      "yes_price_10m_change": -0.085,
-      "yes_price_10m_pct_change": -15.3,
+      "prev_10m_yes_price": 0.47,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.45,
       "yes_price_6h_change": 0.02,
       "yes_price_6h_pct_change": 4.4,
       "scan6h_yes_price": 0.45,
-      "prev_yes_price": 0.555,
-      "yes_price_change": -0.085,
-      "yes_price_pct_change": -15.3,
+      "prev_yes_price": 0.47,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-19T06:07:41Z",
@@ -1156,6 +1156,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-19T16:17:42Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -1497,6 +1504,13 @@
         },
         {
           "t": "2026-11-19T15:57:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-19T16:17:42Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1846,6 +1860,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-19T16:17:42Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     }
@@ -1860,6 +1881,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-19T16:07:34.005266+00:00",
+  "last_price_refresh": "2026-11-19T16:17:40.919621+00:00",
   "last_lite_refresh": "2026-11-19T14:20:58.458138+00:00"
 }
