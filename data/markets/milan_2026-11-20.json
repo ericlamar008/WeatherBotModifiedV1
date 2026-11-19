@@ -94,7 +94,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Milan be 3°C on November 20?",
@@ -151,7 +152,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Milan be 4°C on November 20?",
@@ -208,7 +210,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Milan be 5°C on November 20?",
@@ -265,7 +268,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Milan be 6°C on November 20?",
@@ -322,7 +326,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Milan be 7°C on November 20?",
@@ -379,7 +384,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Milan be 8°C on November 20?",
@@ -436,7 +442,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Milan be 9°C on November 20?",
@@ -493,7 +500,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Milan be 10°C on November 20?",
@@ -550,7 +558,8 @@
           "bid": 0.003,
           "ask": 0.016
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0095
     },
     {
       "question": "Will the highest temperature in Milan be 11°C on November 20?",
@@ -559,11 +568,11 @@
         11.0,
         11.0
       ],
-      "yes_price": 0.015,
+      "yes_price": 0.0155,
       "no_price": 0.985,
       "best_bid": 0.008,
-      "best_ask": 0.022,
-      "bid_ask_spread": 0.014,
+      "best_ask": 0.023,
+      "bid_ask_spread": 0.015,
       "volume": 737.0,
       "spread": 0.014,
       "yes_token_id": "9545241104592361402886715051883903796251409728898477892685988107869369137551",
@@ -571,14 +580,14 @@
       "model_prob": 0.0099,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.015,
-      "effective_ask": 0.015,
-      "market_prob": 0.015,
-      "belief_prob": 0.0117,
-      "ev": -0.22,
+      "ask": 0.0155,
+      "effective_ask": 0.0155,
+      "market_prob": 0.0155,
+      "belief_prob": 0.0119,
+      "ev": -0.2323,
       "kelly": 0.0,
-      "swing_edge": -0.0051,
-      "swing_upside_pct": -34.0,
+      "swing_edge": -0.0056,
+      "swing_upside_pct": -36.1,
       "sell_value": 0.008,
       "scan6h_model_prob": 0.0099,
       "prev_scan6h_model_prob": 0.0099,
@@ -593,12 +602,12 @@
       "scan6h_yes_price": 0.015,
       "prev_scan6h_yes_price": 0.015,
       "prev_yes_price": 0.015,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 3.3,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 3.3,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 3.3,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -607,7 +616,8 @@
           "bid": 0.008,
           "ask": 0.022
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.015
     },
     {
       "question": "Will the highest temperature in Milan be 12°C or higher on November 20?",
@@ -664,7 +674,8 @@
           "bid": 0.968,
           "ask": 0.979
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.9735
     }
   ],
   "live_allocation": [
@@ -693,5 +704,6 @@
   "success_probability": 0.978,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-19T02:37:28.549807+00:00"
 }

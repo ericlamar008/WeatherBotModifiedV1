@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Miami be between 72-73°F on November 19?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Miami be between 74-75°F on November 19?",
@@ -207,7 +209,8 @@
           "bid": 0.004,
           "ask": 0.008
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.006
     },
     {
       "question": "Will the highest temperature in Miami be between 76-77°F on November 19?",
@@ -216,11 +219,11 @@
         76.0,
         77.0
       ],
-      "yes_price": 0.0275,
+      "yes_price": 0.028,
       "no_price": 0.9725,
       "best_bid": 0.023,
-      "best_ask": 0.032,
-      "bid_ask_spread": 0.009,
+      "best_ask": 0.033,
+      "bid_ask_spread": 0.01,
       "volume": 665.0,
       "spread": 0.009,
       "yes_token_id": "106976744361431914171845205768645108251932589648152869257045517555918079976727",
@@ -228,14 +231,14 @@
       "model_prob": 0.0143,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0275,
-      "effective_ask": 0.0275,
-      "market_prob": 0.0275,
-      "belief_prob": 0.0189,
-      "ev": -0.3127,
+      "ask": 0.028,
+      "effective_ask": 0.028,
+      "market_prob": 0.028,
+      "belief_prob": 0.0191,
+      "ev": -0.3179,
       "kelly": 0.0,
-      "swing_edge": -0.0132,
-      "swing_upside_pct": -48.0,
+      "swing_edge": -0.0137,
+      "swing_upside_pct": -48.9,
       "sell_value": 0.023,
       "scan6h_model_prob": 0.0143,
       "prev_scan6h_model_prob": 0.0143,
@@ -250,12 +253,12 @@
       "scan6h_yes_price": 0.0275,
       "prev_scan6h_yes_price": 0.0275,
       "prev_yes_price": 0.0275,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 1.8,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 1.8,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 1.8,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -264,7 +267,8 @@
           "bid": 0.023,
           "ask": 0.032
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0275
     },
     {
       "question": "Will the highest temperature in Miami be between 78-79°F on November 19?",
@@ -273,11 +277,11 @@
         78.0,
         79.0
       ],
-      "yes_price": 0.17,
+      "yes_price": 0.175,
       "no_price": 0.83,
-      "best_bid": 0.15,
+      "best_bid": 0.16,
       "best_ask": 0.19,
-      "bid_ask_spread": 0.04,
+      "bid_ask_spread": 0.03,
       "volume": 964.0,
       "spread": 0.04,
       "yes_token_id": "53315423178674014674976164420068398361679461574678072975084132353338411367532",
@@ -285,14 +289,14 @@
       "model_prob": 0.1353,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.17,
-      "effective_ask": 0.1755,
-      "market_prob": 0.17,
-      "belief_prob": 0.1474,
-      "ev": -0.1601,
+      "ask": 0.175,
+      "effective_ask": 0.175,
+      "market_prob": 0.175,
+      "belief_prob": 0.1492,
+      "ev": -0.1474,
       "kelly": 0.0,
-      "swing_edge": -0.0402,
-      "swing_upside_pct": -22.9,
+      "swing_edge": -0.0397,
+      "swing_upside_pct": -22.7,
       "sell_value": 0.15,
       "scan6h_model_prob": 0.1353,
       "prev_scan6h_model_prob": 0.1353,
@@ -307,12 +311,12 @@
       "scan6h_yes_price": 0.17,
       "prev_scan6h_yes_price": 0.17,
       "prev_yes_price": 0.17,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 2.9,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 2.9,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 2.9,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -320,8 +324,16 @@
           "mp": 0.1353,
           "bid": 0.15,
           "ask": 0.19
+        },
+        {
+          "t": "2026-11-19T02:37:29Z",
+          "p": 0.175,
+          "mp": 0.1353,
+          "bid": 0.16,
+          "ask": 0.19
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.17
     },
     {
       "question": "Will the highest temperature in Miami be between 80-81°F on November 19?",
@@ -330,11 +342,11 @@
         80.0,
         81.0
       ],
-      "yes_price": 0.44,
+      "yes_price": 0.435,
       "no_price": 0.56,
-      "best_bid": 0.43,
+      "best_bid": 0.42,
       "best_ask": 0.45,
-      "bid_ask_spread": 0.02,
+      "bid_ask_spread": 0.03,
       "volume": 4668.0,
       "spread": 0.02,
       "yes_token_id": "47242630413426154784291955947618675917861875855583783022962776640212016573240",
@@ -342,14 +354,14 @@
       "model_prob": 0.5609,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.44,
-      "effective_ask": 0.44,
-      "market_prob": 0.44,
-      "belief_prob": 0.5186,
-      "ev": 0.1786,
-      "kelly": 0.0351,
-      "swing_edge": 0.1209,
-      "swing_upside_pct": 27.5,
+      "ask": 0.435,
+      "effective_ask": 0.435,
+      "market_prob": 0.435,
+      "belief_prob": 0.5168,
+      "ev": 0.188,
+      "kelly": 0.0362,
+      "swing_edge": 0.1259,
+      "swing_upside_pct": 28.9,
       "sell_value": 0.43,
       "scan6h_model_prob": 0.5609,
       "prev_scan6h_model_prob": 0.5609,
@@ -364,12 +376,12 @@
       "scan6h_yes_price": 0.44,
       "prev_scan6h_yes_price": 0.44,
       "prev_yes_price": 0.44,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.1,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -1.1,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.1,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -377,8 +389,16 @@
           "mp": 0.5609,
           "bid": 0.43,
           "ask": 0.45
+        },
+        {
+          "t": "2026-11-19T02:37:29Z",
+          "p": 0.435,
+          "mp": 0.5609,
+          "bid": 0.42,
+          "ask": 0.45
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.44
     },
     {
       "question": "Will the highest temperature in Miami be between 82-83°F on November 19?",
@@ -387,11 +407,11 @@
         82.0,
         83.0
       ],
-      "yes_price": 0.3245,
+      "yes_price": 0.324,
       "no_price": 0.6755,
-      "best_bid": 0.3,
-      "best_ask": 0.349,
-      "bid_ask_spread": 0.049,
+      "best_bid": 0.301,
+      "best_ask": 0.347,
+      "bid_ask_spread": 0.046,
       "volume": 2025.0,
       "spread": 0.049,
       "yes_token_id": "113573093759375022353899241344409894877556235291226767400485682314817499895075",
@@ -399,14 +419,14 @@
       "model_prob": 0.2538,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.3245,
-      "effective_ask": 0.335,
-      "market_prob": 0.3245,
-      "belief_prob": 0.2785,
-      "ev": -0.1687,
+      "ask": 0.324,
+      "effective_ask": 0.3328,
+      "market_prob": 0.324,
+      "belief_prob": 0.2784,
+      "ev": -0.1635,
       "kelly": 0.0,
-      "swing_edge": -0.0812,
-      "swing_upside_pct": -24.2,
+      "swing_edge": -0.0702,
+      "swing_upside_pct": -21.7,
       "sell_value": 0.3,
       "scan6h_model_prob": 0.2538,
       "prev_scan6h_model_prob": 0.2538,
@@ -421,12 +441,12 @@
       "scan6h_yes_price": 0.3245,
       "prev_scan6h_yes_price": 0.3245,
       "prev_yes_price": 0.3245,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -0.2,
+      "yes_price_6h_change": -0.0005,
+      "yes_price_6h_pct_change": -0.2,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -0.2,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -435,7 +455,8 @@
           "bid": 0.3,
           "ask": 0.349
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.3245
     },
     {
       "question": "Will the highest temperature in Miami be between 84-85°F on November 19?",
@@ -444,10 +465,10 @@
         84.0,
         85.0
       ],
-      "yes_price": 0.0555,
+      "yes_price": 0.0575,
       "no_price": 0.9445,
-      "best_bid": 0.043,
-      "best_ask": 0.068,
+      "best_bid": 0.045,
+      "best_ask": 0.07,
       "bid_ask_spread": 0.025,
       "volume": 809.0,
       "spread": 0.025,
@@ -456,14 +477,14 @@
       "model_prob": 0.0282,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0555,
-      "effective_ask": 0.0555,
-      "market_prob": 0.0555,
-      "belief_prob": 0.0378,
-      "ev": -0.3189,
+      "ask": 0.0575,
+      "effective_ask": 0.0575,
+      "market_prob": 0.0575,
+      "belief_prob": 0.0385,
+      "ev": -0.3304,
       "kelly": 0.0,
-      "swing_edge": -0.0273,
-      "swing_upside_pct": -49.2,
+      "swing_edge": -0.0293,
+      "swing_upside_pct": -51.0,
       "sell_value": 0.043,
       "scan6h_model_prob": 0.0282,
       "prev_scan6h_model_prob": 0.0282,
@@ -478,12 +499,12 @@
       "scan6h_yes_price": 0.0555,
       "prev_scan6h_yes_price": 0.0555,
       "prev_yes_price": 0.0555,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.002,
+      "yes_price_10m_pct_change": 3.6,
+      "yes_price_6h_change": 0.002,
+      "yes_price_6h_pct_change": 3.6,
+      "yes_price_change": 0.002,
+      "yes_price_pct_change": 3.6,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -492,7 +513,8 @@
           "bid": 0.043,
           "ask": 0.068
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0555
     },
     {
       "question": "Will the highest temperature in Miami be between 86-87°F on November 19?",
@@ -549,7 +571,8 @@
           "bid": 0.004,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0065
     },
     {
       "question": "Will the highest temperature in Miami be between 88-89°F on November 19?",
@@ -606,7 +629,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Miami be 90°F or higher on November 19?",
@@ -663,7 +687,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -692,5 +717,6 @@
   "success_probability": 0.4949,
   "confidence": 0.2414,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-19T02:37:28.549807+00:00"
 }
