@@ -307,9 +307,9 @@
       ],
       "yes_price": 0.34,
       "no_price": 0.665,
-      "best_bid": 0.32,
-      "best_ask": 0.36,
-      "bid_ask_spread": 0.04,
+      "best_bid": 0.31,
+      "best_ask": 0.37,
+      "bid_ask_spread": 0.06,
       "volume": 158.0,
       "spread": 0.03,
       "yes_token_id": "56466271412649029831618655721597679727406554996208789528186257786923300270629",
@@ -318,10 +318,10 @@
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.34,
-      "effective_ask": 0.3455,
+      "effective_ask": 0.3565,
       "market_prob": 0.34,
       "belief_prob": 0.2966,
-      "ev": -0.1415,
+      "ev": -0.168,
       "kelly": 0.0,
       "swing_edge": -0.0667,
       "swing_upside_pct": -19.6,
@@ -338,13 +338,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.335,
       "prev_scan6h_yes_price": 0.335,
-      "prev_yes_price": 0.335,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 1.5,
+      "prev_yes_price": 0.34,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": 0.005,
       "yes_price_6h_pct_change": 1.5,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 1.5,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-19T02:24:02Z",
@@ -361,7 +361,7 @@
           "ask": 0.36
         }
       ],
-      "prev_10m_yes_price": 0.335
+      "prev_10m_yes_price": 0.34
     },
     {
       "question": "Will the highest temperature in Denver be between 54-55°F on November 19?",
@@ -420,6 +420,13 @@
         },
         {
           "t": "2026-11-19T02:37:29Z",
+          "p": 0.325,
+          "mp": 0.4343,
+          "bid": 0.3,
+          "ask": 0.35
+        },
+        {
+          "t": "2026-11-19T02:57:40Z",
           "p": 0.325,
           "mp": 0.4343,
           "bid": 0.3,
@@ -554,6 +561,13 @@
           "mp": 0.0337,
           "bid": 0.013,
           "ask": 0.06
+        },
+        {
+          "t": "2026-11-19T02:57:40Z",
+          "p": 0.0365,
+          "mp": 0.0337,
+          "bid": 0.013,
+          "ask": 0.06
         }
       ],
       "prev_10m_yes_price": 0.0365
@@ -615,6 +629,13 @@
         },
         {
           "t": "2026-11-19T02:37:29Z",
+          "p": 0.033,
+          "mp": 0.007,
+          "bid": 0.011,
+          "ask": 0.055
+        },
+        {
+          "t": "2026-11-19T02:57:40Z",
           "p": 0.033,
           "mp": 0.007,
           "bid": 0.011,
@@ -764,5 +785,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-19T02:47:27.640298+00:00"
+  "last_price_refresh": "2026-11-19T02:57:39.239337+00:00"
 }
