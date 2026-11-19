@@ -77,16 +77,16 @@
       "prev_model_prob": 0.0006,
       "model_prob_change": 0.0,
       "model_prob_pct_change": 0.0,
-      "prev_10m_yes_price": 0.0025,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -20.0,
+      "prev_10m_yes_price": 0.002,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.0025,
       "yes_price_6h_change": -0.0005,
       "yes_price_6h_pct_change": -20.0,
       "scan6h_yes_price": 0.0025,
-      "prev_yes_price": 0.0025,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -20.0,
+      "prev_yes_price": 0.002,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -245,6 +245,13 @@
         {
           "t": "2026-11-19T09:37:32Z",
           "p": 0.0025,
+          "mp": 0.0006,
+          "bid": 0.001,
+          "ask": 0.004
+        },
+        {
+          "t": "2026-11-19T09:57:46Z",
+          "p": 0.002,
           "mp": 0.0006,
           "bid": 0.001,
           "ask": 0.004
@@ -456,6 +463,13 @@
         },
         {
           "t": "2026-11-19T09:37:32Z",
+          "p": 0.0005,
+          "mp": 0.0009,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-19T09:57:46Z",
           "p": 0.0005,
           "mp": 0.0009,
           "bid": null,
@@ -672,6 +686,13 @@
           "mp": 0.0028,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-19T09:57:46Z",
+          "p": 0.0005,
+          "mp": 0.0028,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -682,11 +703,11 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.0175,
+      "yes_price": 0.0205,
       "no_price": 0.98,
       "best_bid": 0.01,
-      "best_ask": 0.025,
-      "bid_ask_spread": 0.015,
+      "best_ask": 0.031,
+      "bid_ask_spread": 0.021,
       "volume": 41.0,
       "spread": 0.02,
       "yes_token_id": "105608398346841908694953909627898210799978008481558183696436937227794835836591",
@@ -694,14 +715,14 @@
       "model_prob": 0.0499,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0175,
-      "effective_ask": 0.0175,
-      "market_prob": 0.0175,
-      "belief_prob": 0.0386,
-      "ev": 1.2057,
-      "kelly": 0.0054,
-      "swing_edge": 0.0324,
-      "swing_upside_pct": 185.1,
+      "ask": 0.0205,
+      "effective_ask": 0.0205,
+      "market_prob": 0.0205,
+      "belief_prob": 0.0396,
+      "ev": 0.9317,
+      "kelly": 0.0049,
+      "swing_edge": 0.0294,
+      "swing_upside_pct": 143.4,
       "sell_value": 0.01,
       "prev_scan6h_model_prob": 0.0536,
       "model_prob_6h_change": -0.0037,
@@ -713,16 +734,16 @@
       "prev_model_prob": 0.0536,
       "model_prob_change": -0.0037,
       "model_prob_pct_change": -6.9,
-      "prev_10m_yes_price": 0.018,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -2.8,
+      "prev_10m_yes_price": 0.0175,
+      "yes_price_10m_change": 0.003,
+      "yes_price_10m_pct_change": 17.1,
       "prev_scan6h_yes_price": 0.021,
-      "yes_price_6h_change": -0.0025,
-      "yes_price_6h_pct_change": -12.5,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 2.5,
       "scan6h_yes_price": 0.02,
-      "prev_yes_price": 0.018,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -2.8,
+      "prev_yes_price": 0.0175,
+      "yes_price_change": 0.003,
+      "yes_price_pct_change": 17.1,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -891,6 +912,13 @@
           "mp": 0.0499,
           "bid": 0.01,
           "ask": 0.026
+        },
+        {
+          "t": "2026-11-19T09:57:46Z",
+          "p": 0.0205,
+          "mp": 0.0499,
+          "bid": 0.01,
+          "ask": 0.031
         }
       ]
     },
@@ -901,11 +929,11 @@
         13.0,
         13.0
       ],
-      "yes_price": 0.1435,
+      "yes_price": 0.144,
       "no_price": 0.856,
       "best_bid": 0.125,
-      "best_ask": 0.162,
-      "bid_ask_spread": 0.037,
+      "best_ask": 0.163,
+      "bid_ask_spread": 0.038,
       "volume": 156.0,
       "spread": 0.038,
       "yes_token_id": "24582397520311099048142504734412413755698615646671019546536837871004381280923",
@@ -913,14 +941,14 @@
       "model_prob": 0.2141,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1435,
-      "effective_ask": 0.1473,
-      "market_prob": 0.1435,
-      "belief_prob": 0.1894,
-      "ev": 0.2858,
-      "kelly": 0.0123,
-      "swing_edge": 0.0706,
-      "swing_upside_pct": 49.2,
+      "ask": 0.144,
+      "effective_ask": 0.1484,
+      "market_prob": 0.144,
+      "belief_prob": 0.1896,
+      "ev": 0.2776,
+      "kelly": 0.0121,
+      "swing_edge": 0.0701,
+      "swing_upside_pct": 48.7,
       "sell_value": 0.125,
       "prev_scan6h_model_prob": 0.2402,
       "model_prob_6h_change": -0.0261,
@@ -932,16 +960,16 @@
       "prev_model_prob": 0.2402,
       "model_prob_change": -0.0261,
       "model_prob_pct_change": -10.9,
-      "prev_10m_yes_price": 0.14,
-      "yes_price_10m_change": 0.0035,
-      "yes_price_10m_pct_change": 2.5,
+      "prev_10m_yes_price": 0.1435,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 0.3,
       "prev_scan6h_yes_price": 0.146,
-      "yes_price_6h_change": -0.0005,
-      "yes_price_6h_pct_change": -0.3,
+      "yes_price_6h_change": 0.0,
+      "yes_price_6h_pct_change": 0.0,
       "scan6h_yes_price": 0.144,
-      "prev_yes_price": 0.14,
-      "yes_price_change": 0.0035,
-      "yes_price_pct_change": 2.5,
+      "prev_yes_price": 0.1435,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 0.3,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -1103,6 +1131,13 @@
           "mp": 0.2141,
           "bid": 0.125,
           "ask": 0.155
+        },
+        {
+          "t": "2026-11-19T09:57:46Z",
+          "p": 0.144,
+          "mp": 0.2141,
+          "bid": 0.125,
+          "ask": 0.163
         }
       ]
     },
@@ -1113,11 +1148,11 @@
         14.0,
         14.0
       ],
-      "yes_price": 0.523,
+      "yes_price": 0.522,
       "no_price": 0.481,
       "best_bid": 0.502,
-      "best_ask": 0.544,
-      "bid_ask_spread": 0.042,
+      "best_ask": 0.542,
+      "bid_ask_spread": 0.04,
       "volume": 275.0,
       "spread": 0.036,
       "yes_token_id": "96540346215285169985786229784494832633717621756528038980856064213607778009464",
@@ -1125,14 +1160,14 @@
       "model_prob": 0.4195,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.523,
-      "effective_ask": 0.5296,
-      "market_prob": 0.523,
-      "belief_prob": 0.4557,
-      "ev": -0.1395,
+      "ask": 0.522,
+      "effective_ask": 0.5275,
+      "market_prob": 0.522,
+      "belief_prob": 0.4554,
+      "ev": -0.1367,
       "kelly": 0.0,
-      "swing_edge": -0.1035,
-      "swing_upside_pct": -19.8,
+      "swing_edge": -0.1025,
+      "swing_upside_pct": -19.6,
       "sell_value": 0.501,
       "prev_scan6h_model_prob": 0.4353,
       "model_prob_6h_change": -0.0158,
@@ -1144,16 +1179,16 @@
       "prev_model_prob": 0.4353,
       "model_prob_change": -0.0158,
       "model_prob_pct_change": -3.6,
-      "prev_10m_yes_price": 0.5215,
-      "yes_price_10m_change": 0.0015,
-      "yes_price_10m_pct_change": 0.3,
+      "prev_10m_yes_price": 0.523,
+      "yes_price_10m_change": -0.001,
+      "yes_price_10m_pct_change": -0.2,
       "prev_scan6h_yes_price": 0.5155,
-      "yes_price_6h_change": 0.004,
-      "yes_price_6h_pct_change": 0.8,
+      "yes_price_6h_change": 0.003,
+      "yes_price_6h_pct_change": 0.6,
       "scan6h_yes_price": 0.519,
-      "prev_yes_price": 0.5215,
-      "yes_price_change": 0.0015,
-      "yes_price_pct_change": 0.3,
+      "prev_yes_price": 0.523,
+      "yes_price_change": -0.001,
+      "yes_price_pct_change": -0.2,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -1329,6 +1364,13 @@
           "mp": 0.4195,
           "bid": 0.502,
           "ask": 0.541
+        },
+        {
+          "t": "2026-11-19T09:57:46Z",
+          "p": 0.522,
+          "mp": 0.4195,
+          "bid": 0.502,
+          "ask": 0.542
         }
       ]
     },
@@ -1576,6 +1618,13 @@
           "mp": 0.2298,
           "bid": 0.31,
           "ask": 0.32
+        },
+        {
+          "t": "2026-11-19T09:57:46Z",
+          "p": 0.315,
+          "mp": 0.2298,
+          "bid": 0.3,
+          "ask": 0.33
         }
       ]
     },
@@ -1586,11 +1635,11 @@
         16.0,
         16.0
       ],
-      "yes_price": 0.0365,
+      "yes_price": 0.0355,
       "no_price": 0.9635,
-      "best_bid": 0.025,
+      "best_bid": 0.023,
       "best_ask": 0.048,
-      "bid_ask_spread": 0.023,
+      "bid_ask_spread": 0.025,
       "volume": 278.0,
       "spread": 0.023,
       "yes_token_id": "46065480075082902442457467068284981515354674668877066724696757225946426422839",
@@ -1598,14 +1647,14 @@
       "model_prob": 0.0549,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0365,
-      "effective_ask": 0.0365,
-      "market_prob": 0.0365,
-      "belief_prob": 0.0485,
-      "ev": 0.3288,
-      "kelly": 0.0031,
-      "swing_edge": 0.0184,
-      "swing_upside_pct": 50.4,
+      "ask": 0.0355,
+      "effective_ask": 0.0355,
+      "market_prob": 0.0355,
+      "belief_prob": 0.0481,
+      "ev": 0.3549,
+      "kelly": 0.0033,
+      "swing_edge": 0.0194,
+      "swing_upside_pct": 54.6,
       "sell_value": 0.025,
       "prev_scan6h_model_prob": 0.0426,
       "model_prob_6h_change": 0.0123,
@@ -1618,15 +1667,15 @@
       "model_prob_change": 0.0123,
       "model_prob_pct_change": 28.9,
       "prev_10m_yes_price": 0.0365,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
+      "yes_price_10m_change": -0.001,
+      "yes_price_10m_pct_change": -2.7,
       "prev_scan6h_yes_price": 0.037,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
+      "yes_price_6h_change": -0.001,
+      "yes_price_6h_pct_change": -2.7,
       "scan6h_yes_price": 0.0365,
       "prev_yes_price": 0.0365,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_change": -0.001,
+      "yes_price_pct_change": -2.7,
       "price_history": [
         {
           "t": "2026-11-19T02:23:59Z",
@@ -1787,6 +1836,13 @@
           "p": 0.0365,
           "mp": 0.0549,
           "bid": 0.025,
+          "ask": 0.048
+        },
+        {
+          "t": "2026-11-19T09:57:46Z",
+          "p": 0.0355,
+          "mp": 0.0549,
+          "bid": 0.023,
           "ask": 0.048
         }
       ]
@@ -1996,6 +2052,13 @@
         },
         {
           "t": "2026-11-19T09:37:32Z",
+          "p": 0.0085,
+          "mp": 0.0118,
+          "bid": 0.005,
+          "ask": 0.012
+        },
+        {
+          "t": "2026-11-19T09:57:46Z",
           "p": 0.0085,
           "mp": 0.0118,
           "bid": 0.005,
@@ -2212,6 +2275,13 @@
           "mp": 0.0047,
           "bid": 0.003,
           "ask": 0.009
+        },
+        {
+          "t": "2026-11-19T09:57:46Z",
+          "p": 0.006,
+          "mp": 0.0047,
+          "bid": 0.003,
+          "ask": 0.009
         }
       ]
     }
@@ -2243,6 +2313,6 @@
   "confidence": 0.1511,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-19T09:47:34.732580+00:00",
+  "last_price_refresh": "2026-11-19T09:57:45.551628+00:00",
   "last_lite_refresh": "2026-11-19T08:20:53.377812+00:00"
 }
