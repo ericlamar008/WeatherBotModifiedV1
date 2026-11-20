@@ -136,6 +136,13 @@
           "mp": 0.0881,
           "bid": 0.01,
           "ask": 0.01
+        },
+        {
+          "t": "2026-11-20T21:57:32Z",
+          "p": 0.005,
+          "mp": 0.0881,
+          "bid": 0.001,
+          "ask": 0.009
         }
       ],
       "prev_10m_yes_price": 0.005
@@ -180,13 +187,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.195,
       "prev_scan6h_yes_price": 0.195,
-      "prev_yes_price": 0.15,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 3.3,
+      "prev_yes_price": 0.155,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.04,
       "yes_price_6h_pct_change": -20.5,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 3.3,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-20T20:25:51Z",
@@ -231,7 +238,7 @@
           "ask": 0.31
         }
       ],
-      "prev_10m_yes_price": 0.15
+      "prev_10m_yes_price": 0.155
     },
     {
       "question": "Will the lowest temperature in Houston be between 56-57°F on November 20?",
@@ -240,11 +247,11 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.8045,
+      "yes_price": 0.846,
       "no_price": 0.3425,
-      "best_bid": 0.619,
+      "best_bid": 0.702,
       "best_ask": 0.99,
-      "bid_ask_spread": 0.371,
+      "bid_ask_spread": 0.288,
       "volume": 362.0,
       "spread": 0.665,
       "yes_token_id": "58689884033184406280088577763995864786735155609678086834934866821668724088076",
@@ -252,14 +259,14 @@
       "model_prob": 0.5809,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.8045,
-      "effective_ask": 0.8845,
-      "market_prob": 0.8045,
-      "belief_prob": 0.6592,
-      "ev": -0.2547,
+      "ask": 0.846,
+      "effective_ask": 0.926,
+      "market_prob": 0.846,
+      "belief_prob": 0.6737,
+      "ev": -0.2725,
       "kelly": 0.0,
-      "swing_edge": -0.2236,
-      "swing_upside_pct": -27.8,
+      "swing_edge": -0.2651,
+      "swing_upside_pct": -31.3,
       "sell_value": 0.325,
       "scan6h_model_prob": 0.5809,
       "prev_scan6h_model_prob": 0.5809,
@@ -273,13 +280,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.6575,
       "prev_scan6h_yes_price": 0.6575,
-      "prev_yes_price": 0.8585,
-      "yes_price_10m_change": -0.054,
-      "yes_price_10m_pct_change": -6.3,
-      "yes_price_6h_change": 0.147,
-      "yes_price_6h_pct_change": 22.4,
-      "yes_price_change": -0.054,
-      "yes_price_pct_change": -6.3,
+      "prev_yes_price": 0.8045,
+      "yes_price_10m_change": 0.0415,
+      "yes_price_10m_pct_change": 5.2,
+      "yes_price_6h_change": 0.1885,
+      "yes_price_6h_pct_change": 28.7,
+      "yes_price_change": 0.0415,
+      "yes_price_pct_change": 5.2,
       "price_history": [
         {
           "t": "2026-11-20T20:25:51Z",
@@ -336,9 +343,16 @@
           "mp": 0.5809,
           "bid": 0.619,
           "ask": 0.99
+        },
+        {
+          "t": "2026-11-20T21:57:32Z",
+          "p": 0.846,
+          "mp": 0.5809,
+          "bid": 0.702,
+          "ask": 0.99
         }
       ],
-      "prev_10m_yes_price": 0.8585
+      "prev_10m_yes_price": 0.8045
     },
     {
       "question": "Will the lowest temperature in Houston be between 58-59°F on November 20?",
@@ -411,6 +425,13 @@
         },
         {
           "t": "2026-11-20T21:37:33Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-20T21:57:32Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -494,6 +515,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-20T21:57:32Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -526,5 +554,5 @@
   "confidence": 0.5606,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-20T21:47:31.138780+00:00"
+  "last_price_refresh": "2026-11-20T21:57:30.713156+00:00"
 }
