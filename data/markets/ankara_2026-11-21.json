@@ -241,11 +241,11 @@
         13.0,
         13.0
       ],
-      "yes_price": 0.095,
+      "yes_price": 0.1,
       "no_price": 0.905,
       "best_bid": 0.08,
-      "best_ask": 0.11,
-      "bid_ask_spread": 0.03,
+      "best_ask": 0.12,
+      "bid_ask_spread": 0.04,
       "volume": 53.0,
       "spread": 0.03,
       "yes_token_id": "43724072777798290591558212968334904896956131662940186080417289959476177564760",
@@ -253,14 +253,14 @@
       "model_prob": 0.0131,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.095,
-      "effective_ask": 0.095,
-      "market_prob": 0.095,
-      "belief_prob": 0.0418,
-      "ev": -0.56,
+      "ask": 0.1,
+      "effective_ask": 0.1055,
+      "market_prob": 0.1,
+      "belief_prob": 0.0435,
+      "ev": -0.5877,
       "kelly": 0.0,
-      "swing_edge": -0.0819,
-      "swing_upside_pct": -86.2,
+      "swing_edge": -0.0869,
+      "swing_upside_pct": -86.9,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.0131,
       "prev_scan6h_model_prob": 0.0131,
@@ -275,12 +275,12 @@
       "scan6h_yes_price": 0.095,
       "prev_scan6h_yes_price": 0.095,
       "prev_yes_price": 0.095,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 5.3,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 5.3,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 5.3,
       "price_history": [
         {
           "t": "2026-11-20T02:23:49Z",
@@ -295,6 +295,13 @@
           "mp": 0.0131,
           "bid": 0.08,
           "ask": 0.11
+        },
+        {
+          "t": "2026-11-20T02:57:29Z",
+          "p": 0.1,
+          "mp": 0.0131,
+          "bid": 0.08,
+          "ask": 0.12
         }
       ],
       "prev_10m_yes_price": 0.095
@@ -339,13 +346,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.31,
       "prev_scan6h_yes_price": 0.31,
-      "prev_yes_price": 0.31,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.6,
+      "prev_yes_price": 0.305,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.005,
       "yes_price_6h_pct_change": -1.6,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.6,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-20T02:23:49Z",
@@ -362,7 +369,7 @@
           "ask": 0.32
         }
       ],
-      "prev_10m_yes_price": 0.31
+      "prev_10m_yes_price": 0.305
     },
     {
       "question": "Will the highest temperature in Ankara be 15°C on November 21?",
@@ -700,5 +707,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-20T02:47:31.438095+00:00"
+  "last_price_refresh": "2026-11-20T02:57:27.918653+00:00"
 }
