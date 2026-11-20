@@ -3,10 +3,10 @@
   "city_name": "Buenos Aires",
   "date": "2026-11-19",
   "unit": "C",
-  "status": "open",
+  "status": "resolved",
   "created_at": "2026-11-19T02:20:46.413273+00:00",
   "committed_allocation": null,
-  "hours_left": 0.7,
+  "hours_left": 0.0,
   "time_status": "local_day_open",
   "local_day_end_utc": "2026-11-20T03:00:00+00:00",
   "event_end_date": "2026-11-19T12:00:00Z",
@@ -4311,7 +4311,10 @@
       "market_prob": 0.9955,
       "role": "main_signal",
       "units": 30.0,
-      "sell_value": 0.993
+      "sell_value": 0.993,
+      "won": true,
+      "pnl_units": 0.14,
+      "user_entered": false
     }
   ],
   "total_allocated_units": 30.0,
@@ -4324,5 +4327,31 @@
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
   "last_price_refresh": "2026-11-20T02:57:27.918653+00:00",
-  "last_lite_refresh": "2026-11-19T20:20:56.255258+00:00"
+  "last_lite_refresh": "2026-11-20T02:58:28.070141+00:00",
+  "actual_temp": 29.0,
+  "graded_against": "live_fallback",
+  "resolved_outcome": "win",
+  "pnl_units": 0.14,
+  "my_pnl_units": null,
+  "graded_allocation": [
+    {
+      "market_id": "7116427",
+      "question": "Will the highest temperature in Buenos Aires be 29°C on November 19?",
+      "range": [
+        29.0,
+        29.0
+      ],
+      "side": "YES",
+      "price": 0.9955,
+      "model_prob": 0.3945,
+      "ev": -0.3925,
+      "market_prob": 0.9955,
+      "role": "main_signal",
+      "units": 30.0,
+      "sell_value": 0.993,
+      "won": true,
+      "pnl_units": 0.14,
+      "user_entered": false
+    }
+  ]
 }
