@@ -47,10 +47,10 @@
         13.0,
         13.0
       ],
-      "yes_price": 0.09,
+      "yes_price": 0.075,
       "no_price": 0.9,
       "best_bid": null,
-      "best_ask": 0.18,
+      "best_ask": 0.15,
       "bid_ask_spread": 0.0,
       "volume": 5.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.1098,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.09,
-      "effective_ask": 0.09,
-      "market_prob": 0.09,
-      "belief_prob": 0.1029,
-      "ev": 0.1433,
-      "kelly": 0.0035,
-      "swing_edge": 0.0198,
-      "swing_upside_pct": 22.0,
+      "ask": 0.075,
+      "effective_ask": 0.075,
+      "market_prob": 0.075,
+      "belief_prob": 0.0976,
+      "ev": 0.3013,
+      "kelly": 0.0061,
+      "swing_edge": 0.0348,
+      "swing_upside_pct": 46.4,
       "sell_value": null,
       "scan6h_model_prob": 0.1098,
       "prev_scan6h_model_prob": 0.1098,
@@ -81,12 +81,12 @@
       "scan6h_yes_price": 0.1,
       "prev_scan6h_yes_price": 0.1,
       "prev_yes_price": 0.09,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": -0.01,
-      "yes_price_6h_pct_change": -10.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.015,
+      "yes_price_10m_pct_change": -16.7,
+      "yes_price_6h_change": -0.025,
+      "yes_price_6h_pct_change": -25.0,
+      "yes_price_change": -0.015,
+      "yes_price_pct_change": -16.7,
       "price_history": [
         {
           "t": "2026-11-20T08:43:05Z",
@@ -122,6 +122,13 @@
           "mp": 0.1098,
           "bid": null,
           "ask": 0.18
+        },
+        {
+          "t": "2026-11-20T10:07:33Z",
+          "p": 0.075,
+          "mp": 0.1098,
+          "bid": null,
+          "ask": 0.15
         }
       ],
       "prev_10m_yes_price": 0.09
@@ -133,11 +140,11 @@
         14.0,
         14.0
       ],
-      "yes_price": 0.16,
+      "yes_price": 0.104,
       "no_price": 0.8105,
       "best_bid": 0.001,
-      "best_ask": 0.319,
-      "bid_ask_spread": 0.318,
+      "best_ask": 0.207,
+      "bid_ask_spread": 0.206,
       "volume": 209.0,
       "spread": 0.377,
       "yes_token_id": "22047119846339027800316986278992434868223226579693464900228893818790752999501",
@@ -145,14 +152,14 @@
       "model_prob": 0.3279,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.16,
-      "effective_ask": 0.24,
-      "market_prob": 0.16,
-      "belief_prob": 0.2691,
-      "ev": 0.1213,
-      "kelly": 0.0096,
-      "swing_edge": 0.1679,
-      "swing_upside_pct": 104.9,
+      "ask": 0.104,
+      "effective_ask": 0.184,
+      "market_prob": 0.104,
+      "belief_prob": 0.2495,
+      "ev": 0.356,
+      "kelly": 0.0201,
+      "swing_edge": 0.2239,
+      "swing_upside_pct": 215.3,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.3279,
       "prev_scan6h_model_prob": 0.3279,
@@ -166,13 +173,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.1895,
       "prev_scan6h_yes_price": 0.1895,
-      "prev_yes_price": 0.0775,
-      "yes_price_10m_change": 0.0825,
-      "yes_price_10m_pct_change": 106.5,
-      "yes_price_6h_change": -0.0295,
-      "yes_price_6h_pct_change": -15.6,
-      "yes_price_change": 0.0825,
-      "yes_price_pct_change": 106.5,
+      "prev_yes_price": 0.16,
+      "yes_price_10m_change": -0.056,
+      "yes_price_10m_pct_change": -35.0,
+      "yes_price_6h_change": -0.0855,
+      "yes_price_6h_pct_change": -45.1,
+      "yes_price_change": -0.056,
+      "yes_price_pct_change": -35.0,
       "price_history": [
         {
           "t": "2026-11-20T08:43:05Z",
@@ -215,9 +222,16 @@
           "mp": 0.3279,
           "bid": 0.001,
           "ask": 0.319
+        },
+        {
+          "t": "2026-11-20T10:07:33Z",
+          "p": 0.104,
+          "mp": 0.3279,
+          "bid": 0.001,
+          "ask": 0.207
         }
       ],
-      "prev_10m_yes_price": 0.0775
+      "prev_10m_yes_price": 0.16
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 15°C on November 20?",
@@ -405,5 +419,5 @@
   "confidence": 0.5812,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-20T09:57:33.617490+00:00"
+  "last_price_refresh": "2026-11-20T10:07:31.996123+00:00"
 }
