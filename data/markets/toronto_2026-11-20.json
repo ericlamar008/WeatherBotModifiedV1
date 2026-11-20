@@ -819,10 +819,10 @@
         11.0,
         11.0
       ],
-      "yes_price": 0.002,
+      "yes_price": 0.0015,
       "no_price": 0.998,
       "best_bid": null,
-      "best_ask": 0.004,
+      "best_ask": 0.003,
       "bid_ask_spread": 0.0,
       "volume": 59.0,
       "spread": 0.0,
@@ -831,13 +831,13 @@
       "model_prob": 0.0023,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.002,
-      "effective_ask": 0.002,
-      "market_prob": 0.002,
-      "belief_prob": 0.0022,
-      "ev": 0.1,
+      "ask": 0.0015,
+      "effective_ask": 0.0015,
+      "market_prob": 0.0015,
+      "belief_prob": 0.002,
+      "ev": 0.3333,
       "kelly": 0.0001,
-      "swing_edge": 0.0003,
+      "swing_edge": 0.0008,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "prev_scan6h_model_prob": 0.0013,
@@ -850,16 +850,16 @@
       "prev_model_prob": 0.0013,
       "model_prob_change": 0.001,
       "model_prob_pct_change": 76.9,
-      "prev_10m_yes_price": 0.0015,
-      "yes_price_10m_change": 0.0005,
-      "yes_price_10m_pct_change": 33.3,
+      "prev_10m_yes_price": 0.002,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -25.0,
       "prev_scan6h_yes_price": 0.0015,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
+      "yes_price_6h_change": -0.0005,
+      "yes_price_6h_pct_change": -25.0,
       "scan6h_yes_price": 0.002,
-      "prev_yes_price": 0.0015,
-      "yes_price_change": 0.0005,
-      "yes_price_pct_change": 33.3,
+      "prev_yes_price": 0.002,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -25.0,
       "price_history": [
         {
           "t": "2026-11-19T20:25:20Z",
@@ -1885,16 +1885,16 @@
       "prev_model_prob": 0.3152,
       "model_prob_change": -0.0957,
       "model_prob_pct_change": -30.4,
-      "prev_10m_yes_price": 0.0145,
-      "yes_price_10m_change": 0.0045,
-      "yes_price_10m_pct_change": 31.0,
+      "prev_10m_yes_price": 0.019,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.0155,
       "yes_price_6h_change": 0.0005,
       "yes_price_6h_pct_change": 2.7,
       "scan6h_yes_price": 0.0185,
-      "prev_yes_price": 0.0145,
-      "yes_price_change": 0.0045,
-      "yes_price_pct_change": 31.0,
+      "prev_yes_price": 0.019,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-19T17:57:35Z",
@@ -2284,13 +2284,6 @@
       "yes_price_pct_change": 0.0,
       "price_history": [
         {
-          "t": "2026-11-19T19:17:35Z",
-          "p": 0.165,
-          "mp": 0.5326,
-          "bid": 0.15,
-          "ask": 0.18
-        },
-        {
           "t": "2026-11-19T19:37:32Z",
           "p": 0.165,
           "mp": 0.5326,
@@ -2618,6 +2611,13 @@
           "mp": 0.4446,
           "bid": 0.06,
           "ask": 0.09
+        },
+        {
+          "t": "2026-11-20T09:07:32Z",
+          "p": 0.075,
+          "mp": 0.4446,
+          "bid": 0.06,
+          "ask": 0.09
         }
       ]
     },
@@ -2670,13 +2670,6 @@
       "yes_price_change": 0.0,
       "yes_price_pct_change": 0.0,
       "price_history": [
-        {
-          "t": "2026-11-19T20:25:20Z",
-          "p": 0.47,
-          "mp": 0.1251,
-          "bid": 0.46,
-          "ask": 0.48
-        },
         {
           "t": "2026-11-19T20:47:32Z",
           "p": 0.455,
@@ -3001,6 +2994,13 @@
         },
         {
           "t": "2026-11-20T08:47:32Z",
+          "p": 0.455,
+          "mp": 0.2195,
+          "bid": 0.43,
+          "ask": 0.48
+        },
+        {
+          "t": "2026-11-20T09:07:32Z",
           "p": 0.455,
           "mp": 0.2195,
           "bid": 0.43,
@@ -4180,6 +4180,6 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-20T08:57:35.037961+00:00",
+  "last_price_refresh": "2026-11-20T09:07:31.675844+00:00",
   "last_lite_refresh": "2026-11-20T08:38:42.943580+00:00"
 }
