@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.02
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.01
     },
     {
       "question": "Will the highest temperature in Atlanta be between 58-59°F on November 21?",
@@ -150,7 +151,8 @@
           "bid": 0.009,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0095
     },
     {
       "question": "Will the highest temperature in Atlanta be between 60-61°F on November 21?",
@@ -159,11 +161,11 @@
         60.0,
         61.0
       ],
-      "yes_price": 0.1185,
+      "yes_price": 0.139,
       "no_price": 0.8815,
       "best_bid": 0.114,
-      "best_ask": 0.123,
-      "bid_ask_spread": 0.009,
+      "best_ask": 0.164,
+      "bid_ask_spread": 0.05,
       "volume": 1256.0,
       "spread": 0.009,
       "yes_token_id": "56252593551756476708695637996296178225941526458017433692190664960091924532104",
@@ -171,14 +173,14 @@
       "model_prob": 0.0387,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1185,
-      "effective_ask": 0.1185,
-      "market_prob": 0.1185,
-      "belief_prob": 0.0666,
-      "ev": -0.438,
+      "ask": 0.139,
+      "effective_ask": 0.15,
+      "market_prob": 0.139,
+      "belief_prob": 0.0738,
+      "ev": -0.508,
       "kelly": 0.0,
-      "swing_edge": -0.0798,
-      "swing_upside_pct": -67.3,
+      "swing_edge": -0.1003,
+      "swing_upside_pct": -72.2,
       "sell_value": 0.114,
       "scan6h_model_prob": 0.0387,
       "prev_scan6h_model_prob": 0.0387,
@@ -193,12 +195,12 @@
       "scan6h_yes_price": 0.1185,
       "prev_scan6h_yes_price": 0.1185,
       "prev_yes_price": 0.1185,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0205,
+      "yes_price_10m_pct_change": 17.3,
+      "yes_price_6h_change": 0.0205,
+      "yes_price_6h_pct_change": 17.3,
+      "yes_price_change": 0.0205,
+      "yes_price_pct_change": 17.3,
       "price_history": [
         {
           "t": "2026-11-20T02:23:49Z",
@@ -206,8 +208,16 @@
           "mp": 0.0387,
           "bid": 0.114,
           "ask": 0.123
+        },
+        {
+          "t": "2026-11-20T02:37:25Z",
+          "p": 0.139,
+          "mp": 0.0387,
+          "bid": 0.114,
+          "ask": 0.164
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.1185
     },
     {
       "question": "Will the highest temperature in Atlanta be between 62-63°F on November 21?",
@@ -216,11 +226,11 @@
         62.0,
         63.0
       ],
-      "yes_price": 0.26,
+      "yes_price": 0.255,
       "no_price": 0.74,
-      "best_bid": 0.24,
-      "best_ask": 0.28,
-      "bid_ask_spread": 0.04,
+      "best_bid": 0.21,
+      "best_ask": 0.3,
+      "bid_ask_spread": 0.09,
       "volume": 1116.0,
       "spread": 0.04,
       "yes_token_id": "12311951615781812144790200095452959413599668148365079779958858850040102209771",
@@ -228,14 +238,14 @@
       "model_prob": 0.0959,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.26,
-      "effective_ask": 0.2655,
-      "market_prob": 0.26,
-      "belief_prob": 0.1533,
-      "ev": -0.4226,
+      "ask": 0.255,
+      "effective_ask": 0.288,
+      "market_prob": 0.255,
+      "belief_prob": 0.1516,
+      "ev": -0.4736,
       "kelly": 0.0,
-      "swing_edge": -0.1696,
-      "swing_upside_pct": -63.9,
+      "swing_edge": -0.1591,
+      "swing_upside_pct": -62.4,
       "sell_value": 0.24,
       "scan6h_model_prob": 0.0959,
       "prev_scan6h_model_prob": 0.0959,
@@ -250,12 +260,12 @@
       "scan6h_yes_price": 0.26,
       "prev_scan6h_yes_price": 0.26,
       "prev_yes_price": 0.26,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.9,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -1.9,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.9,
       "price_history": [
         {
           "t": "2026-11-20T02:23:49Z",
@@ -263,8 +273,16 @@
           "mp": 0.0959,
           "bid": 0.24,
           "ask": 0.28
+        },
+        {
+          "t": "2026-11-20T02:37:25Z",
+          "p": 0.255,
+          "mp": 0.0959,
+          "bid": 0.21,
+          "ask": 0.3
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.26
     },
     {
       "question": "Will the highest temperature in Atlanta be between 64-65°F on November 21?",
@@ -321,7 +339,8 @@
           "bid": 0.29,
           "ask": 0.31
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.3
     },
     {
       "question": "Will the highest temperature in Atlanta be between 66-67°F on November 21?",
@@ -348,8 +367,8 @@
       "belief_prob": 0.2332,
       "ev": 0.2571,
       "kelly": 0.0146,
-      "swing_edge": 0.0764,
-      "swing_upside_pct": 41.2,
+      "swing_edge": 0.0819,
+      "swing_upside_pct": 45.5,
       "sell_value": 0.16,
       "scan6h_model_prob": 0.2619,
       "prev_scan6h_model_prob": 0.2619,
@@ -378,7 +397,8 @@
           "bid": 0.16,
           "ask": 0.2
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.18
     },
     {
       "question": "Will the highest temperature in Atlanta be between 68-69°F on November 21?",
@@ -435,7 +455,8 @@
           "bid": 0.08,
           "ask": 0.1
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.09
     },
     {
       "question": "Will the highest temperature in Atlanta be between 70-71°F on November 21?",
@@ -444,11 +465,11 @@
         70.0,
         71.0
       ],
-      "yes_price": 0.0495,
+      "yes_price": 0.0555,
       "no_price": 0.9505,
-      "best_bid": 0.043,
-      "best_ask": 0.056,
-      "bid_ask_spread": 0.013,
+      "best_bid": 0.042,
+      "best_ask": 0.069,
+      "bid_ask_spread": 0.027,
       "volume": 1169.0,
       "spread": 0.013,
       "yes_token_id": "78583704990236038662644611372837622858614507900097145832293757230327209235748",
@@ -456,14 +477,14 @@
       "model_prob": 0.1042,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0495,
-      "effective_ask": 0.0495,
-      "market_prob": 0.0495,
-      "belief_prob": 0.0851,
-      "ev": 0.7192,
-      "kelly": 0.0094,
-      "swing_edge": 0.0547,
-      "swing_upside_pct": 110.5,
+      "ask": 0.0555,
+      "effective_ask": 0.0555,
+      "market_prob": 0.0555,
+      "belief_prob": 0.0872,
+      "ev": 0.5712,
+      "kelly": 0.0084,
+      "swing_edge": 0.0487,
+      "swing_upside_pct": 87.7,
       "sell_value": 0.043,
       "scan6h_model_prob": 0.1042,
       "prev_scan6h_model_prob": 0.1042,
@@ -478,12 +499,12 @@
       "scan6h_yes_price": 0.0495,
       "prev_scan6h_yes_price": 0.0495,
       "prev_yes_price": 0.0495,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.006,
+      "yes_price_10m_pct_change": 12.1,
+      "yes_price_6h_change": 0.006,
+      "yes_price_6h_pct_change": 12.1,
+      "yes_price_change": 0.006,
+      "yes_price_pct_change": 12.1,
       "price_history": [
         {
           "t": "2026-11-20T02:23:49Z",
@@ -491,8 +512,16 @@
           "mp": 0.1042,
           "bid": 0.043,
           "ask": 0.056
+        },
+        {
+          "t": "2026-11-20T02:37:25Z",
+          "p": 0.0555,
+          "mp": 0.1042,
+          "bid": 0.042,
+          "ask": 0.069
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0495
     },
     {
       "question": "Will the highest temperature in Atlanta be between 72-73°F on November 21?",
@@ -501,11 +530,11 @@
         72.0,
         73.0
       ],
-      "yes_price": 0.041,
+      "yes_price": 0.0385,
       "no_price": 0.959,
       "best_bid": 0.01,
-      "best_ask": 0.072,
-      "bid_ask_spread": 0.062,
+      "best_ask": 0.067,
+      "bid_ask_spread": 0.057,
       "volume": 79.0,
       "spread": 0.062,
       "yes_token_id": "33186238154104139519363834306424476430267414472796590269472408064615809594506",
@@ -513,14 +542,14 @@
       "model_prob": 0.0425,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.041,
-      "effective_ask": 0.0586,
-      "market_prob": 0.041,
-      "belief_prob": 0.042,
-      "ev": -0.2833,
+      "ask": 0.0385,
+      "effective_ask": 0.0534,
+      "market_prob": 0.0385,
+      "belief_prob": 0.0411,
+      "ev": -0.2303,
       "kelly": 0.0,
-      "swing_edge": -0.0161,
-      "swing_upside_pct": -27.5,
+      "swing_edge": 0.004,
+      "swing_upside_pct": 10.4,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.0425,
       "prev_scan6h_model_prob": 0.0425,
@@ -535,12 +564,12 @@
       "scan6h_yes_price": 0.041,
       "prev_scan6h_yes_price": 0.041,
       "prev_yes_price": 0.041,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0025,
+      "yes_price_10m_pct_change": -6.1,
+      "yes_price_6h_change": -0.0025,
+      "yes_price_6h_pct_change": -6.1,
+      "yes_price_change": -0.0025,
+      "yes_price_pct_change": -6.1,
       "price_history": [
         {
           "t": "2026-11-20T02:23:49Z",
@@ -549,7 +578,8 @@
           "bid": 0.01,
           "ask": 0.072
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.041
     },
     {
       "question": "Will the highest temperature in Atlanta be between 74-75°F on November 21?",
@@ -558,11 +588,11 @@
         74.0,
         75.0
       ],
-      "yes_price": 0.0115,
+      "yes_price": 0.012,
       "no_price": 0.9885,
       "best_bid": 0.005,
-      "best_ask": 0.018,
-      "bid_ask_spread": 0.013,
+      "best_ask": 0.019,
+      "bid_ask_spread": 0.014,
       "volume": 205.0,
       "spread": 0.013,
       "yes_token_id": "2094244362841083486499917598786115833405265393177425805986730810528886212240",
@@ -570,14 +600,14 @@
       "model_prob": 0.0166,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0115,
-      "effective_ask": 0.0115,
-      "market_prob": 0.0115,
-      "belief_prob": 0.0148,
-      "ev": 0.287,
+      "ask": 0.012,
+      "effective_ask": 0.012,
+      "market_prob": 0.012,
+      "belief_prob": 0.015,
+      "ev": 0.25,
       "kelly": 0.0008,
-      "swing_edge": 0.0051,
-      "swing_upside_pct": 44.3,
+      "swing_edge": 0.0046,
+      "swing_upside_pct": 38.3,
       "sell_value": 0.005,
       "scan6h_model_prob": 0.0166,
       "prev_scan6h_model_prob": 0.0166,
@@ -592,12 +622,12 @@
       "scan6h_yes_price": 0.0115,
       "prev_scan6h_yes_price": 0.0115,
       "prev_yes_price": 0.0115,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 4.3,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 4.3,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 4.3,
       "price_history": [
         {
           "t": "2026-11-20T02:23:49Z",
@@ -606,7 +636,8 @@
           "bid": 0.005,
           "ask": 0.018
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0115
     },
     {
       "question": "Will the highest temperature in Atlanta be 76°F or higher on November 21?",
@@ -663,7 +694,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -675,5 +707,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-20T02:37:24.437328+00:00"
 }
