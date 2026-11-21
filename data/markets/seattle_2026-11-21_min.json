@@ -47,11 +47,11 @@
         32.0,
         33.0
       ],
-      "yes_price": 0.925,
+      "yes_price": 0.93,
       "no_price": 0.075,
       "best_bid": 0.9,
-      "best_ask": 0.95,
-      "bid_ask_spread": 0.05,
+      "best_ask": 0.96,
+      "bid_ask_spread": 0.06,
       "volume": 147.0,
       "spread": 0.05,
       "yes_token_id": "33324957433083735239431060648241332646710379037262576657984576035180888888905",
@@ -59,14 +59,14 @@
       "model_prob": 0.7867,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.925,
-      "effective_ask": 0.936,
-      "market_prob": 0.925,
-      "belief_prob": 0.8351,
-      "ev": -0.1078,
+      "ask": 0.93,
+      "effective_ask": 0.9465,
+      "market_prob": 0.93,
+      "belief_prob": 0.8369,
+      "ev": -0.1158,
       "kelly": 0.0,
-      "swing_edge": -0.1493,
-      "swing_upside_pct": -16.0,
+      "swing_edge": -0.1433,
+      "swing_upside_pct": -15.4,
       "sell_value": 0.9,
       "scan6h_model_prob": 0.7867,
       "prev_scan6h_model_prob": 0.7867,
@@ -81,12 +81,12 @@
       "scan6h_yes_price": 0.925,
       "prev_scan6h_yes_price": 0.925,
       "prev_yes_price": 0.925,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 0.5,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 0.5,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 0.5,
       "price_history": [
         {
           "t": "2026-11-21T14:25:37Z",
@@ -94,8 +94,16 @@
           "mp": 0.7867,
           "bid": 0.9,
           "ask": 0.95
+        },
+        {
+          "t": "2026-11-21T14:37:34Z",
+          "p": 0.93,
+          "mp": 0.7867,
+          "bid": 0.9,
+          "ask": 0.96
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.925
     },
     {
       "question": "Will the lowest temperature in Seattle be between 34-35°F on November 21?",
@@ -119,7 +127,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -152,7 +160,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Seattle be between 36-37°F on November 21?",
@@ -176,7 +185,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -209,7 +218,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Seattle be between 38-39°F on November 21?",
@@ -233,7 +243,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -266,7 +276,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -295,5 +306,6 @@
   "success_probability": 0.6167,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-21T14:37:32.540807+00:00"
 }
