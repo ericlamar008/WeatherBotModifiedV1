@@ -66,8 +66,8 @@
       "belief_prob": 0.3089,
       "ev": -0.298,
       "kelly": 0.0,
-      "swing_edge": -0.1586,
-      "swing_upside_pct": -36.0,
+      "swing_edge": -0.0786,
+      "swing_upside_pct": -21.8,
       "sell_value": 0.03,
       "scan6h_model_prob": 0.2814,
       "prev_scan6h_model_prob": 0.2814,
@@ -96,7 +96,8 @@
           "bid": 0.03,
           "ask": 0.69
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.36
     },
     {
       "question": "Will the lowest temperature in Madrid be 10°C on November 21?",
@@ -105,11 +106,11 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.365,
+      "yes_price": 0.45,
       "no_price": 0.635,
-      "best_bid": 0.1,
-      "best_ask": 0.63,
-      "bid_ask_spread": 0.53,
+      "best_bid": 0.22,
+      "best_ask": 0.68,
+      "bid_ask_spread": 0.46,
       "volume": 27.0,
       "spread": 0.53,
       "yes_token_id": "54993604676706433978027973939884925422541091559850731027779358153130674099541",
@@ -117,14 +118,14 @@
       "model_prob": 0.0897,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.365,
-      "effective_ask": 0.445,
-      "market_prob": 0.365,
-      "belief_prob": 0.1861,
-      "ev": -0.5818,
+      "ask": 0.45,
+      "effective_ask": 0.53,
+      "market_prob": 0.45,
+      "belief_prob": 0.2158,
+      "ev": -0.5928,
       "kelly": 0.0,
-      "swing_edge": -0.3553,
-      "swing_upside_pct": -79.8,
+      "swing_edge": -0.3603,
+      "swing_upside_pct": -80.1,
       "sell_value": 0.1,
       "scan6h_model_prob": 0.0897,
       "prev_scan6h_model_prob": 0.0897,
@@ -139,12 +140,12 @@
       "scan6h_yes_price": 0.365,
       "prev_scan6h_yes_price": 0.365,
       "prev_yes_price": 0.365,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.085,
+      "yes_price_10m_pct_change": 23.3,
+      "yes_price_6h_change": 0.085,
+      "yes_price_6h_pct_change": 23.3,
+      "yes_price_change": 0.085,
+      "yes_price_pct_change": 23.3,
       "price_history": [
         {
           "t": "2026-11-21T02:25:40Z",
@@ -152,8 +153,16 @@
           "mp": 0.0897,
           "bid": 0.1,
           "ask": 0.63
+        },
+        {
+          "t": "2026-11-21T02:37:36Z",
+          "p": 0.45,
+          "mp": 0.0897,
+          "bid": 0.22,
+          "ask": 0.68
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.365
     },
     {
       "question": "Will the lowest temperature in Madrid be 12°C on November 21?",
@@ -177,7 +186,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -210,7 +219,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -239,5 +249,6 @@
   "success_probability": 0.3813,
   "confidence": 0.1066,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-21T02:37:35.247445+00:00"
 }

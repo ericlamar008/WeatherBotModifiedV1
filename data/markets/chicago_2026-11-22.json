@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Chicago be between 48-49°F on November 22?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Chicago be between 50-51°F on November 22?",
@@ -207,7 +209,8 @@
           "bid": 0.003,
           "ask": 0.016
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0095
     },
     {
       "question": "Will the highest temperature in Chicago be between 52-53°F on November 22?",
@@ -216,10 +219,10 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.0125,
+      "yes_price": 0.0155,
       "no_price": 0.9875,
-      "best_bid": 0.007,
-      "best_ask": 0.018,
+      "best_bid": 0.01,
+      "best_ask": 0.021,
       "bid_ask_spread": 0.011,
       "volume": 150.0,
       "spread": 0.011,
@@ -228,14 +231,14 @@
       "model_prob": 0.0182,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0125,
-      "effective_ask": 0.0125,
-      "market_prob": 0.0125,
-      "belief_prob": 0.0162,
-      "ev": 0.296,
-      "kelly": 0.0009,
-      "swing_edge": 0.0057,
-      "swing_upside_pct": 45.6,
+      "ask": 0.0155,
+      "effective_ask": 0.0155,
+      "market_prob": 0.0155,
+      "belief_prob": 0.0173,
+      "ev": 0.1161,
+      "kelly": 0.0005,
+      "swing_edge": 0.0027,
+      "swing_upside_pct": 17.4,
       "sell_value": 0.007,
       "scan6h_model_prob": 0.0182,
       "prev_scan6h_model_prob": 0.0182,
@@ -250,12 +253,12 @@
       "scan6h_yes_price": 0.0125,
       "prev_scan6h_yes_price": 0.0125,
       "prev_yes_price": 0.0125,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.003,
+      "yes_price_10m_pct_change": 24.0,
+      "yes_price_6h_change": 0.003,
+      "yes_price_6h_pct_change": 24.0,
+      "yes_price_change": 0.003,
+      "yes_price_pct_change": 24.0,
       "price_history": [
         {
           "t": "2026-11-21T02:23:57Z",
@@ -264,7 +267,8 @@
           "bid": 0.007,
           "ask": 0.018
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0125
     },
     {
       "question": "Will the highest temperature in Chicago be between 54-55°F on November 22?",
@@ -273,11 +277,11 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.045,
+      "yes_price": 0.04,
       "no_price": 0.955,
       "best_bid": 0.03,
-      "best_ask": 0.06,
-      "bid_ask_spread": 0.03,
+      "best_ask": 0.05,
+      "bid_ask_spread": 0.02,
       "volume": 110.0,
       "spread": 0.03,
       "yes_token_id": "1695406379345194119974586644878173209937510661450326595962908427391714696969",
@@ -285,14 +289,14 @@
       "model_prob": 0.0656,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.045,
-      "effective_ask": 0.045,
-      "market_prob": 0.045,
-      "belief_prob": 0.0584,
-      "ev": 0.2978,
-      "kelly": 0.0035,
-      "swing_edge": 0.0206,
-      "swing_upside_pct": 45.8,
+      "ask": 0.04,
+      "effective_ask": 0.04,
+      "market_prob": 0.04,
+      "belief_prob": 0.0566,
+      "ev": 0.415,
+      "kelly": 0.0043,
+      "swing_edge": 0.0256,
+      "swing_upside_pct": 64.0,
       "sell_value": 0.03,
       "scan6h_model_prob": 0.0656,
       "prev_scan6h_model_prob": 0.0656,
@@ -307,12 +311,12 @@
       "scan6h_yes_price": 0.045,
       "prev_scan6h_yes_price": 0.045,
       "prev_yes_price": 0.045,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -11.1,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -11.1,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -11.1,
       "price_history": [
         {
           "t": "2026-11-21T02:23:57Z",
@@ -320,8 +324,16 @@
           "mp": 0.0656,
           "bid": 0.03,
           "ask": 0.06
+        },
+        {
+          "t": "2026-11-21T02:37:36Z",
+          "p": 0.04,
+          "mp": 0.0656,
+          "bid": 0.03,
+          "ask": 0.05
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.045
     },
     {
       "question": "Will the highest temperature in Chicago be between 56-57°F on November 22?",
@@ -330,10 +342,10 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.19,
+      "yes_price": 0.18,
       "no_price": 0.81,
-      "best_bid": 0.17,
-      "best_ask": 0.21,
+      "best_bid": 0.16,
+      "best_ask": 0.2,
       "bid_ask_spread": 0.04,
       "volume": 378.0,
       "spread": 0.04,
@@ -342,14 +354,14 @@
       "model_prob": 0.206,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.19,
-      "effective_ask": 0.1955,
-      "market_prob": 0.19,
-      "belief_prob": 0.2004,
-      "ev": 0.0251,
-      "kelly": 0.0015,
-      "swing_edge": 0.0105,
-      "swing_upside_pct": 5.4,
+      "ask": 0.18,
+      "effective_ask": 0.1855,
+      "market_prob": 0.18,
+      "belief_prob": 0.1969,
+      "ev": 0.0615,
+      "kelly": 0.0035,
+      "swing_edge": 0.026,
+      "swing_upside_pct": 14.4,
       "sell_value": 0.17,
       "scan6h_model_prob": 0.206,
       "prev_scan6h_model_prob": 0.206,
@@ -364,12 +376,12 @@
       "scan6h_yes_price": 0.19,
       "prev_scan6h_yes_price": 0.19,
       "prev_yes_price": 0.19,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.01,
+      "yes_price_10m_pct_change": -5.3,
+      "yes_price_6h_change": -0.01,
+      "yes_price_6h_pct_change": -5.3,
+      "yes_price_change": -0.01,
+      "yes_price_pct_change": -5.3,
       "price_history": [
         {
           "t": "2026-11-21T02:23:57Z",
@@ -377,8 +389,16 @@
           "mp": 0.206,
           "bid": 0.17,
           "ask": 0.21
+        },
+        {
+          "t": "2026-11-21T02:37:36Z",
+          "p": 0.18,
+          "mp": 0.206,
+          "bid": 0.16,
+          "ask": 0.2
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.19
     },
     {
       "question": "Will the highest temperature in Chicago be between 58-59°F on November 22?",
@@ -435,7 +455,8 @@
           "bid": 0.38,
           "ask": 0.4
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.39
     },
     {
       "question": "Will the highest temperature in Chicago be between 60-61°F on November 22?",
@@ -444,11 +465,11 @@
         60.0,
         61.0
       ],
-      "yes_price": 0.29,
+      "yes_price": 0.295,
       "no_price": 0.71,
       "best_bid": 0.27,
-      "best_ask": 0.31,
-      "bid_ask_spread": 0.04,
+      "best_ask": 0.32,
+      "bid_ask_spread": 0.05,
       "volume": 581.0,
       "spread": 0.04,
       "yes_token_id": "26668164589201286294795352067469999243866413164356791181605061409244909932971",
@@ -456,14 +477,14 @@
       "model_prob": 0.237,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.29,
-      "effective_ask": 0.2955,
-      "market_prob": 0.29,
-      "belief_prob": 0.2555,
-      "ev": -0.1354,
+      "ask": 0.295,
+      "effective_ask": 0.306,
+      "market_prob": 0.295,
+      "belief_prob": 0.2573,
+      "ev": -0.1592,
       "kelly": 0.0,
-      "swing_edge": -0.0585,
-      "swing_upside_pct": -19.8,
+      "swing_edge": -0.058,
+      "swing_upside_pct": -19.7,
       "sell_value": 0.27,
       "scan6h_model_prob": 0.237,
       "prev_scan6h_model_prob": 0.237,
@@ -478,12 +499,12 @@
       "scan6h_yes_price": 0.29,
       "prev_scan6h_yes_price": 0.29,
       "prev_yes_price": 0.29,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.7,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 1.7,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.7,
       "price_history": [
         {
           "t": "2026-11-21T02:23:57Z",
@@ -491,8 +512,16 @@
           "mp": 0.237,
           "bid": 0.27,
           "ask": 0.31
+        },
+        {
+          "t": "2026-11-21T02:37:36Z",
+          "p": 0.295,
+          "mp": 0.237,
+          "bid": 0.27,
+          "ask": 0.32
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.29
     },
     {
       "question": "Will the highest temperature in Chicago be between 62-63°F on November 22?",
@@ -501,11 +530,11 @@
         62.0,
         63.0
       ],
-      "yes_price": 0.061,
+      "yes_price": 0.0855,
       "no_price": 0.939,
-      "best_bid": 0.06,
-      "best_ask": 0.062,
-      "bid_ask_spread": 0.002,
+      "best_bid": 0.051,
+      "best_ask": 0.12,
+      "bid_ask_spread": 0.069,
       "volume": 217.0,
       "spread": 0.002,
       "yes_token_id": "63372027306562520828053932867516420981341988196161797359658990786618874205016",
@@ -513,14 +542,14 @@
       "model_prob": 0.0803,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.061,
-      "effective_ask": 0.061,
-      "market_prob": 0.061,
-      "belief_prob": 0.0735,
-      "ev": 0.2049,
-      "kelly": 0.0033,
-      "swing_edge": 0.0193,
-      "swing_upside_pct": 31.6,
+      "ask": 0.0855,
+      "effective_ask": 0.107,
+      "market_prob": 0.0855,
+      "belief_prob": 0.0821,
+      "ev": -0.2327,
+      "kelly": 0.0,
+      "swing_edge": -0.0052,
+      "swing_upside_pct": -6.1,
       "sell_value": 0.06,
       "scan6h_model_prob": 0.0803,
       "prev_scan6h_model_prob": 0.0803,
@@ -535,12 +564,12 @@
       "scan6h_yes_price": 0.061,
       "prev_scan6h_yes_price": 0.061,
       "prev_yes_price": 0.061,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0245,
+      "yes_price_10m_pct_change": 40.2,
+      "yes_price_6h_change": 0.0245,
+      "yes_price_6h_pct_change": 40.2,
+      "yes_price_change": 0.0245,
+      "yes_price_pct_change": 40.2,
       "price_history": [
         {
           "t": "2026-11-21T02:23:57Z",
@@ -548,8 +577,16 @@
           "mp": 0.0803,
           "bid": 0.06,
           "ask": 0.062
+        },
+        {
+          "t": "2026-11-21T02:37:36Z",
+          "p": 0.0855,
+          "mp": 0.0803,
+          "bid": 0.051,
+          "ask": 0.12
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.061
     },
     {
       "question": "Will the highest temperature in Chicago be between 64-65°F on November 22?",
@@ -606,7 +643,8 @@
           "bid": 0.009,
           "ask": 0.019
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.014
     },
     {
       "question": "Will the highest temperature in Chicago be 66°F or higher on November 22?",
@@ -663,7 +701,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -675,5 +714,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-21T02:37:35.247445+00:00"
 }
