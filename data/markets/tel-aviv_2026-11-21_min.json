@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.295,
       "prev_scan6h_yes_price": 0.295,
-      "prev_yes_price": 0.295,
-      "yes_price_10m_change": -0.045,
-      "yes_price_10m_pct_change": -15.3,
+      "prev_yes_price": 0.25,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.045,
       "yes_price_6h_pct_change": -15.3,
-      "yes_price_change": -0.045,
-      "yes_price_pct_change": -15.3,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-21T14:25:37Z",
@@ -103,7 +103,7 @@
           "ask": 0.5
         }
       ],
-      "prev_10m_yes_price": 0.295
+      "prev_10m_yes_price": 0.25
     },
     {
       "question": "Will the lowest temperature in Tel Aviv be 14°C on November 21?",
@@ -275,6 +275,13 @@
         },
         {
           "t": "2026-11-21T14:25:37Z",
+          "p": 0.9695,
+          "mp": 0.5298,
+          "bid": 0.941,
+          "ask": 0.998
+        },
+        {
+          "t": "2026-11-21T14:47:34Z",
           "p": 0.9695,
           "mp": 0.5298,
           "bid": 0.941,
@@ -456,6 +463,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-21T14:47:34Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     },
@@ -633,6 +647,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-21T14:47:34Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     }
@@ -664,5 +685,5 @@
   "confidence": 0.4447,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-21T14:37:32.540807+00:00"
+  "last_price_refresh": "2026-11-21T14:47:33.149478+00:00"
 }
