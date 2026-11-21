@@ -47,10 +47,10 @@
         -999.0,
         47.0
       ],
-      "yes_price": 0.475,
+      "yes_price": 0.465,
       "no_price": 0.535,
       "best_bid": null,
-      "best_ask": 0.95,
+      "best_ask": 0.93,
       "bid_ask_spread": 0.0,
       "volume": 39.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.4706,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.475,
-      "effective_ask": 0.475,
-      "market_prob": 0.475,
-      "belief_prob": 0.4721,
-      "ev": -0.0061,
-      "kelly": 0.0,
-      "swing_edge": -0.0044,
-      "swing_upside_pct": -0.9,
+      "ask": 0.465,
+      "effective_ask": 0.465,
+      "market_prob": 0.465,
+      "belief_prob": 0.4686,
+      "ev": 0.0077,
+      "kelly": 0.0017,
+      "swing_edge": 0.0056,
+      "swing_upside_pct": 1.2,
       "sell_value": null,
       "scan6h_model_prob": 0.4706,
       "prev_scan6h_model_prob": 0.4706,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.465,
       "prev_scan6h_yes_price": 0.465,
-      "prev_yes_price": 0.47,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 1.1,
-      "yes_price_6h_change": 0.01,
-      "yes_price_6h_pct_change": 2.2,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 1.1,
+      "prev_yes_price": 0.475,
+      "yes_price_10m_change": -0.01,
+      "yes_price_10m_pct_change": -2.1,
+      "yes_price_6h_change": 0.0,
+      "yes_price_6h_pct_change": 0.0,
+      "yes_price_change": -0.01,
+      "yes_price_pct_change": -2.1,
       "price_history": [
         {
           "t": "2026-11-21T14:25:38Z",
@@ -115,9 +115,16 @@
           "mp": 0.4706,
           "bid": null,
           "ask": 0.95
+        },
+        {
+          "t": "2026-11-21T15:17:35Z",
+          "p": 0.465,
+          "mp": 0.4706,
+          "bid": null,
+          "ask": 0.93
         }
       ],
-      "prev_10m_yes_price": 0.47
+      "prev_10m_yes_price": 0.475
     },
     {
       "question": "Will the lowest temperature in Austin be between 48-49°F on November 21?",
@@ -418,5 +425,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-21T15:07:47.025830+00:00"
+  "last_price_refresh": "2026-11-21T15:17:33.706607+00:00"
 }
