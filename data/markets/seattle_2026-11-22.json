@@ -46,11 +46,11 @@
         -999.0,
         39.0
       ],
-      "yes_price": 0.025,
+      "yes_price": 0.0245,
       "no_price": 0.9895,
       "best_bid": 0.002,
-      "best_ask": 0.048,
-      "bid_ask_spread": 0.046,
+      "best_ask": 0.047,
+      "bid_ask_spread": 0.045,
       "volume": 5.0,
       "spread": 0.017,
       "yes_token_id": "73523300195096402350468691618415873198622998033456523592824855802657737480180",
@@ -58,14 +58,14 @@
       "model_prob": 0.002,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.025,
-      "effective_ask": 0.0338,
-      "market_prob": 0.025,
-      "belief_prob": 0.01,
-      "ev": -0.7041,
+      "ask": 0.0245,
+      "effective_ask": 0.0328,
+      "market_prob": 0.0245,
+      "belief_prob": 0.0099,
+      "ev": -0.6982,
       "kelly": 0.0,
-      "swing_edge": -0.023,
-      "swing_upside_pct": -92.0,
+      "swing_edge": -0.0225,
+      "swing_upside_pct": -91.8,
       "sell_value": 0.002,
       "scan6h_model_prob": 0.002,
       "prev_scan6h_model_prob": 0.002,
@@ -79,13 +79,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0105,
       "prev_scan6h_yes_price": 0.0105,
-      "prev_yes_price": 0.0245,
-      "yes_price_10m_change": 0.0005,
-      "yes_price_10m_pct_change": 2.0,
-      "yes_price_6h_change": 0.0145,
-      "yes_price_6h_pct_change": 138.1,
-      "yes_price_change": 0.0005,
-      "yes_price_pct_change": 2.0,
+      "prev_yes_price": 0.025,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -2.0,
+      "yes_price_6h_change": 0.014,
+      "yes_price_6h_pct_change": 133.3,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -2.0,
       "price_history": [
         {
           "t": "2026-11-21T20:22:14Z",
@@ -226,9 +226,16 @@
           "mp": 0.002,
           "bid": 0.002,
           "ask": 0.047
+        },
+        {
+          "t": "2026-11-22T02:57:31Z",
+          "p": 0.0245,
+          "mp": 0.002,
+          "bid": 0.002,
+          "ask": 0.047
         }
       ],
-      "prev_10m_yes_price": 0.0245
+      "prev_10m_yes_price": 0.025
     },
     {
       "question": "Will the highest temperature in Seattle be between 40-41°F on November 22?",
@@ -237,11 +244,11 @@
         40.0,
         41.0
       ],
-      "yes_price": 0.0065,
+      "yes_price": 0.008,
       "no_price": 0.9895,
       "best_bid": 0.002,
-      "best_ask": 0.011,
-      "bid_ask_spread": 0.009,
+      "best_ask": 0.014,
+      "bid_ask_spread": 0.012,
       "volume": 75.0,
       "spread": 0.015,
       "yes_token_id": "27167405656326347245258875859913348870432896149290870770247400281354817760227",
@@ -249,13 +256,13 @@
       "model_prob": 0.0036,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0065,
-      "effective_ask": 0.0065,
-      "market_prob": 0.0065,
-      "belief_prob": 0.0046,
-      "ev": -0.2923,
+      "ask": 0.008,
+      "effective_ask": 0.008,
+      "market_prob": 0.008,
+      "belief_prob": 0.0051,
+      "ev": -0.3625,
       "kelly": 0.0,
-      "swing_edge": -0.0029,
+      "swing_edge": -0.0044,
       "swing_upside_pct": 0.0,
       "sell_value": 0.003,
       "scan6h_model_prob": 0.0036,
@@ -270,13 +277,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0105,
       "prev_scan6h_yes_price": 0.0105,
-      "prev_yes_price": 0.0075,
-      "yes_price_10m_change": -0.001,
-      "yes_price_10m_pct_change": -13.3,
-      "yes_price_6h_change": -0.004,
-      "yes_price_6h_pct_change": -38.1,
-      "yes_price_change": -0.001,
-      "yes_price_pct_change": -13.3,
+      "prev_yes_price": 0.0065,
+      "yes_price_10m_change": 0.0015,
+      "yes_price_10m_pct_change": 23.1,
+      "yes_price_6h_change": -0.0025,
+      "yes_price_6h_pct_change": -23.8,
+      "yes_price_change": 0.0015,
+      "yes_price_pct_change": 23.1,
       "price_history": [
         {
           "t": "2026-11-21T20:22:14Z",
@@ -417,9 +424,16 @@
           "mp": 0.0036,
           "bid": 0.002,
           "ask": 0.013
+        },
+        {
+          "t": "2026-11-22T02:57:31Z",
+          "p": 0.008,
+          "mp": 0.0036,
+          "bid": 0.002,
+          "ask": 0.014
         }
       ],
-      "prev_10m_yes_price": 0.0075
+      "prev_10m_yes_price": 0.0065
     },
     {
       "question": "Will the highest temperature in Seattle be between 44-45°F on November 22?",
@@ -636,6 +650,13 @@
           "mp": 0.0575,
           "bid": 0.06,
           "ask": 0.08
+        },
+        {
+          "t": "2026-11-22T02:57:31Z",
+          "p": 0.07,
+          "mp": 0.0575,
+          "bid": 0.06,
+          "ask": 0.08
         }
       ],
       "prev_10m_yes_price": 0.07
@@ -680,13 +701,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.325,
       "prev_scan6h_yes_price": 0.325,
-      "prev_yes_price": 0.395,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 1.3,
+      "prev_yes_price": 0.4,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": 0.075,
       "yes_price_6h_pct_change": 23.1,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 1.3,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-21T20:22:14Z",
@@ -864,7 +885,7 @@
           "ask": 0.42
         }
       ],
-      "prev_10m_yes_price": 0.395
+      "prev_10m_yes_price": 0.4
     },
     {
       "question": "Will the highest temperature in Seattle be between 48-49°F on November 22?",
@@ -1088,6 +1109,13 @@
           "mp": 0.4017,
           "bid": 0.38,
           "ask": 0.42
+        },
+        {
+          "t": "2026-11-22T02:57:31Z",
+          "p": 0.4,
+          "mp": 0.4017,
+          "bid": 0.38,
+          "ask": 0.42
         }
       ],
       "prev_10m_yes_price": 0.4
@@ -1132,13 +1160,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.14,
       "prev_scan6h_yes_price": 0.14,
-      "prev_yes_price": 0.095,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -5.3,
+      "prev_yes_price": 0.09,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.05,
       "yes_price_6h_pct_change": -35.7,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -5.3,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-21T20:22:14Z",
@@ -1302,7 +1330,7 @@
           "ask": 0.11
         }
       ],
-      "prev_10m_yes_price": 0.095
+      "prev_10m_yes_price": 0.09
     },
     {
       "question": "Will the highest temperature in Seattle be between 52-53°F on November 22?",
@@ -1487,6 +1515,13 @@
         },
         {
           "t": "2026-11-22T02:37:41Z",
+          "p": 0.0135,
+          "mp": 0.0575,
+          "bid": 0.009,
+          "ask": 0.018
+        },
+        {
+          "t": "2026-11-22T02:57:31Z",
           "p": 0.0135,
           "mp": 0.0575,
           "bid": 0.009,
@@ -1682,6 +1717,13 @@
           "mp": 0.0133,
           "bid": 0.003,
           "ask": 0.016
+        },
+        {
+          "t": "2026-11-22T02:57:31Z",
+          "p": 0.0095,
+          "mp": 0.0133,
+          "bid": 0.003,
+          "ask": 0.016
         }
       ],
       "prev_10m_yes_price": 0.0095
@@ -1869,6 +1911,13 @@
         },
         {
           "t": "2026-11-22T02:37:41Z",
+          "p": 0.0005,
+          "mp": 0.0036,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-22T02:57:31Z",
           "p": 0.0005,
           "mp": 0.0036,
           "bid": null,
@@ -2064,6 +2113,13 @@
           "mp": 0.002,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-22T02:57:31Z",
+          "p": 0.0005,
+          "mp": 0.002,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -2096,5 +2152,5 @@
   "confidence": 0.0838,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-22T02:47:32.658589+00:00"
+  "last_price_refresh": "2026-11-22T02:57:30.835245+00:00"
 }
