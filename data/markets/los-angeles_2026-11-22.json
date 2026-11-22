@@ -1624,16 +1624,16 @@
       "prev_model_prob": 0.3877,
       "model_prob_change": 0.0167,
       "model_prob_pct_change": 4.3,
-      "prev_10m_yes_price": 0.0225,
-      "yes_price_10m_change": 0.001,
-      "yes_price_10m_pct_change": 4.4,
+      "prev_10m_yes_price": 0.0235,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.0445,
       "yes_price_6h_change": -0.003,
       "yes_price_6h_pct_change": -11.3,
       "scan6h_yes_price": 0.0265,
-      "prev_yes_price": 0.0225,
-      "yes_price_change": 0.001,
-      "yes_price_pct_change": 4.4,
+      "prev_yes_price": 0.0235,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-21T11:07:32Z",
@@ -1980,11 +1980,11 @@
         66.0,
         67.0
       ],
-      "yes_price": 0.655,
+      "yes_price": 0.67,
       "no_price": 0.38,
-      "best_bid": 0.64,
-      "best_ask": 0.67,
-      "bid_ask_spread": 0.03,
+      "best_bid": 0.65,
+      "best_ask": 0.69,
+      "bid_ask_spread": 0.04,
       "volume": 1411.0,
       "spread": 0.06,
       "yes_token_id": "47186836045137245230070492295340081289694250142228501464054406382014076220294",
@@ -1992,14 +1992,14 @@
       "model_prob": 0.2968,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.655,
-      "effective_ask": 0.655,
-      "market_prob": 0.655,
-      "belief_prob": 0.4222,
-      "ev": -0.3554,
+      "ask": 0.67,
+      "effective_ask": 0.6755,
+      "market_prob": 0.67,
+      "belief_prob": 0.4274,
+      "ev": -0.3673,
       "kelly": 0.0,
-      "swing_edge": -0.3582,
-      "swing_upside_pct": -54.7,
+      "swing_edge": -0.3732,
+      "swing_upside_pct": -55.7,
       "sell_value": 0.59,
       "prev_scan6h_model_prob": 0.3231,
       "model_prob_6h_change": -0.0263,
@@ -2011,24 +2011,17 @@
       "prev_model_prob": 0.3231,
       "model_prob_change": -0.0263,
       "model_prob_pct_change": -8.1,
-      "prev_10m_yes_price": 0.67,
-      "yes_price_10m_change": -0.015,
-      "yes_price_10m_pct_change": -2.2,
+      "prev_10m_yes_price": 0.655,
+      "yes_price_10m_change": 0.015,
+      "yes_price_10m_pct_change": 2.3,
       "prev_scan6h_yes_price": 0.625,
-      "yes_price_6h_change": 0.035,
-      "yes_price_6h_pct_change": 5.6,
+      "yes_price_6h_change": 0.05,
+      "yes_price_6h_pct_change": 8.1,
       "scan6h_yes_price": 0.62,
-      "prev_yes_price": 0.67,
-      "yes_price_change": -0.015,
-      "yes_price_pct_change": -2.2,
+      "prev_yes_price": 0.655,
+      "yes_price_change": 0.015,
+      "yes_price_pct_change": 2.3,
       "price_history": [
-        {
-          "t": "2026-11-21T13:37:34Z",
-          "p": 0.63,
-          "mp": 0.339,
-          "bid": 0.61,
-          "ask": 0.65
-        },
         {
           "t": "2026-11-21T13:57:34Z",
           "p": 0.63,
@@ -2357,6 +2350,13 @@
           "mp": 0.2968,
           "bid": 0.64,
           "ask": 0.67
+        },
+        {
+          "t": "2026-11-22T02:07:24Z",
+          "p": 0.67,
+          "mp": 0.2968,
+          "bid": 0.65,
+          "ask": 0.69
         }
       ]
     },
@@ -2409,13 +2409,6 @@
       "yes_price_change": 0.0,
       "yes_price_pct_change": 0.0,
       "price_history": [
-        {
-          "t": "2026-11-21T13:37:34Z",
-          "p": 0.31,
-          "mp": 0.0993,
-          "bid": 0.29,
-          "ask": 0.33
-        },
         {
           "t": "2026-11-21T13:47:38Z",
           "p": 0.315,
@@ -2740,6 +2733,13 @@
         },
         {
           "t": "2026-11-22T01:47:30Z",
+          "p": 0.29,
+          "mp": 0.0779,
+          "bid": 0.28,
+          "ask": 0.3
+        },
+        {
+          "t": "2026-11-22T02:07:24Z",
           "p": 0.29,
           "mp": 0.0779,
           "bid": 0.28,
@@ -4323,6 +4323,6 @@
   "confidence": 0.0043,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-22T01:57:27.694203+00:00",
+  "last_price_refresh": "2026-11-22T02:07:24.187124+00:00",
   "last_lite_refresh": "2026-11-21T20:20:58.444536+00:00"
 }
