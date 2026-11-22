@@ -244,13 +244,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.21,
       "prev_scan6h_yes_price": 0.21,
-      "prev_yes_price": 0.33,
-      "yes_price_10m_change": -0.205,
-      "yes_price_10m_pct_change": -62.1,
+      "prev_yes_price": 0.125,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.085,
       "yes_price_6h_pct_change": -40.5,
-      "yes_price_change": -0.205,
-      "yes_price_pct_change": -62.1,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-21T20:24:13Z",
@@ -379,7 +379,7 @@
           "ask": 0.22
         }
       ],
-      "prev_10m_yes_price": 0.33
+      "prev_10m_yes_price": 0.125
     },
     {
       "question": "Will the lowest temperature in Ankara be 3°C on November 22?",
@@ -388,11 +388,11 @@
         3.0,
         3.0
       ],
-      "yes_price": 0.3,
+      "yes_price": 0.325,
       "no_price": 0.65,
       "best_bid": 0.02,
-      "best_ask": 0.58,
-      "bid_ask_spread": 0.56,
+      "best_ask": 0.65,
+      "bid_ask_spread": 0.0,
       "volume": 179.0,
       "spread": 0.0,
       "yes_token_id": "19003624328695870638004662085413155605966825457418056066332565389590732088676",
@@ -400,14 +400,14 @@
       "model_prob": 0.2299,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.3,
-      "effective_ask": 0.38,
-      "market_prob": 0.3,
-      "belief_prob": 0.2544,
-      "ev": -0.3305,
+      "ask": 0.325,
+      "effective_ask": 0.325,
+      "market_prob": 0.325,
+      "belief_prob": 0.2632,
+      "ev": -0.1902,
       "kelly": 0.0,
-      "swing_edge": -0.0701,
-      "swing_upside_pct": -23.4,
+      "swing_edge": -0.0951,
+      "swing_upside_pct": -29.3,
       "sell_value": null,
       "scan6h_model_prob": 0.2299,
       "prev_scan6h_model_prob": 0.2299,
@@ -421,13 +421,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.35,
       "prev_scan6h_yes_price": 0.35,
-      "prev_yes_price": 0.35,
-      "yes_price_10m_change": -0.05,
-      "yes_price_10m_pct_change": -14.3,
-      "yes_price_6h_change": -0.05,
-      "yes_price_6h_pct_change": -14.3,
-      "yes_price_change": -0.05,
-      "yes_price_pct_change": -14.3,
+      "prev_yes_price": 0.3,
+      "yes_price_10m_change": 0.025,
+      "yes_price_10m_pct_change": 8.3,
+      "yes_price_6h_change": -0.025,
+      "yes_price_6h_pct_change": -7.1,
+      "yes_price_change": 0.025,
+      "yes_price_pct_change": 8.3,
       "price_history": [
         {
           "t": "2026-11-21T20:24:13Z",
@@ -533,9 +533,16 @@
           "mp": 0.2299,
           "bid": 0.02,
           "ask": 0.58
+        },
+        {
+          "t": "2026-11-22T00:47:29Z",
+          "p": 0.325,
+          "mp": 0.2299,
+          "bid": 0.02,
+          "ask": 0.65
         }
       ],
-      "prev_10m_yes_price": 0.35
+      "prev_10m_yes_price": 0.3
     },
     {
       "question": "Will the lowest temperature in Ankara be 4°C on November 22?",
@@ -1140,5 +1147,5 @@
   "confidence": 0.2667,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-22T00:37:24.712884+00:00"
+  "last_price_refresh": "2026-11-22T00:47:27.325502+00:00"
 }
