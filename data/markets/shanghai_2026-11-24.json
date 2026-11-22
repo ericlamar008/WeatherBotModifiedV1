@@ -273,13 +273,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.023,
       "prev_scan6h_yes_price": 0.023,
-      "prev_yes_price": 0.023,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -2.2,
+      "prev_yes_price": 0.0225,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.0005,
       "yes_price_6h_pct_change": -2.2,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -2.2,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-22T20:24:36Z",
@@ -296,7 +296,7 @@
           "ask": 0.034
         }
       ],
-      "prev_10m_yes_price": 0.023
+      "prev_10m_yes_price": 0.0225
     },
     {
       "question": "Will the highest temperature in Shanghai be 13°C on November 24?",
@@ -338,13 +338,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.285,
       "prev_scan6h_yes_price": 0.285,
-      "prev_yes_price": 0.275,
-      "yes_price_10m_change": 0.01,
-      "yes_price_10m_pct_change": 3.6,
+      "prev_yes_price": 0.285,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.01,
-      "yes_price_pct_change": 3.6,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-22T20:24:36Z",
@@ -368,7 +368,7 @@
           "ask": 0.31
         }
       ],
-      "prev_10m_yes_price": 0.275
+      "prev_10m_yes_price": 0.285
     },
     {
       "question": "Will the highest temperature in Shanghai be 14°C on November 24?",
@@ -442,11 +442,11 @@
         15.0,
         15.0
       ],
-      "yes_price": 0.0985,
+      "yes_price": 0.098,
       "no_price": 0.9095,
       "best_bid": 0.077,
-      "best_ask": 0.12,
-      "bid_ask_spread": 0.043,
+      "best_ask": 0.119,
+      "bid_ask_spread": 0.042,
       "volume": 530.0,
       "spread": 0.027,
       "yes_token_id": "106219535296594497429240530132715823947882058447747860767046757037165853859187",
@@ -454,14 +454,14 @@
       "model_prob": 0.5317,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0985,
-      "effective_ask": 0.1057,
-      "market_prob": 0.0985,
-      "belief_prob": 0.3801,
-      "ev": 2.596,
-      "kelly": 0.0767,
-      "swing_edge": 0.4332,
-      "swing_upside_pct": 439.8,
+      "ask": 0.098,
+      "effective_ask": 0.1046,
+      "market_prob": 0.098,
+      "belief_prob": 0.3799,
+      "ev": 2.6319,
+      "kelly": 0.0769,
+      "swing_edge": 0.4337,
+      "swing_upside_pct": 442.6,
       "sell_value": 0.077,
       "scan6h_model_prob": 0.5317,
       "prev_scan6h_model_prob": 0.5317,
@@ -475,13 +475,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0905,
       "prev_scan6h_yes_price": 0.0905,
-      "prev_yes_price": 0.102,
-      "yes_price_10m_change": -0.0035,
-      "yes_price_10m_pct_change": -3.4,
-      "yes_price_6h_change": 0.008,
-      "yes_price_6h_pct_change": 8.8,
-      "yes_price_change": -0.0035,
-      "yes_price_pct_change": -3.4,
+      "prev_yes_price": 0.0985,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -0.5,
+      "yes_price_6h_change": 0.0075,
+      "yes_price_6h_pct_change": 8.3,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -0.5,
       "price_history": [
         {
           "t": "2026-11-22T20:24:36Z",
@@ -496,9 +496,16 @@
           "mp": 0.5317,
           "bid": 0.08,
           "ask": 0.124
+        },
+        {
+          "t": "2026-11-22T20:57:29Z",
+          "p": 0.098,
+          "mp": 0.5317,
+          "bid": 0.077,
+          "ask": 0.119
         }
       ],
-      "prev_10m_yes_price": 0.102
+      "prev_10m_yes_price": 0.0985
     },
     {
       "question": "Will the highest temperature in Shanghai be 16°C on November 24?",
@@ -771,5 +778,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-22T20:47:33.378714+00:00"
+  "last_price_refresh": "2026-11-22T20:57:28.754479+00:00"
 }
