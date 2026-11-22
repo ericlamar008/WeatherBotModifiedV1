@@ -261,11 +261,11 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.041,
+      "yes_price": 0.04,
       "no_price": 0.959,
       "best_bid": 0.035,
-      "best_ask": 0.047,
-      "bid_ask_spread": 0.012,
+      "best_ask": 0.045,
+      "bid_ask_spread": 0.01,
       "volume": 1045.0,
       "spread": 0.012,
       "yes_token_id": "23725378426926567690459502076789943971072505785331836171941939099646110794806",
@@ -273,14 +273,14 @@
       "model_prob": 0.0276,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.041,
-      "effective_ask": 0.041,
-      "market_prob": 0.041,
-      "belief_prob": 0.0323,
-      "ev": -0.2122,
+      "ask": 0.04,
+      "effective_ask": 0.04,
+      "market_prob": 0.04,
+      "belief_prob": 0.0319,
+      "ev": -0.2025,
       "kelly": 0.0,
-      "swing_edge": -0.0134,
-      "swing_upside_pct": -32.7,
+      "swing_edge": -0.0124,
+      "swing_upside_pct": -31.0,
       "sell_value": 0.035,
       "scan6h_model_prob": 0.0276,
       "prev_scan6h_model_prob": 0.0276,
@@ -294,11 +294,11 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.041,
       "prev_scan6h_yes_price": 0.041,
-      "prev_yes_price": 0.042,
+      "prev_yes_price": 0.041,
       "yes_price_10m_change": -0.001,
       "yes_price_10m_pct_change": -2.4,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
+      "yes_price_6h_change": -0.001,
+      "yes_price_6h_pct_change": -2.4,
       "yes_price_change": -0.001,
       "yes_price_pct_change": -2.4,
       "price_history": [
@@ -324,7 +324,7 @@
           "ask": 0.047
         }
       ],
-      "prev_10m_yes_price": 0.042
+      "prev_10m_yes_price": 0.041
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 11°C on November 23?",
@@ -405,10 +405,10 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.515,
+      "yes_price": 0.525,
       "no_price": 0.5,
-      "best_bid": 0.49,
-      "best_ask": 0.54,
+      "best_bid": 0.5,
+      "best_ask": 0.55,
       "bid_ask_spread": 0.05,
       "volume": 2406.0,
       "spread": 0.02,
@@ -417,14 +417,14 @@
       "model_prob": 0.3856,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.515,
-      "effective_ask": 0.526,
-      "market_prob": 0.515,
-      "belief_prob": 0.4309,
-      "ev": -0.1808,
+      "ask": 0.525,
+      "effective_ask": 0.536,
+      "market_prob": 0.525,
+      "belief_prob": 0.4344,
+      "ev": -0.1896,
       "kelly": 0.0,
-      "swing_edge": -0.1294,
-      "swing_upside_pct": -25.1,
+      "swing_edge": -0.1394,
+      "swing_upside_pct": -26.6,
       "sell_value": 0.49,
       "scan6h_model_prob": 0.3856,
       "prev_scan6h_model_prob": 0.3856,
@@ -438,13 +438,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.5,
       "prev_scan6h_yes_price": 0.5,
-      "prev_yes_price": 0.5,
-      "yes_price_10m_change": 0.015,
-      "yes_price_10m_pct_change": 3.0,
-      "yes_price_6h_change": 0.015,
-      "yes_price_6h_pct_change": 3.0,
-      "yes_price_change": 0.015,
-      "yes_price_pct_change": 3.0,
+      "prev_yes_price": 0.515,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 1.9,
+      "yes_price_6h_change": 0.025,
+      "yes_price_6h_pct_change": 5.0,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 1.9,
       "price_history": [
         {
           "t": "2026-11-22T20:24:36Z",
@@ -466,9 +466,16 @@
           "mp": 0.3856,
           "bid": 0.49,
           "ask": 0.54
+        },
+        {
+          "t": "2026-11-22T21:17:30Z",
+          "p": 0.525,
+          "mp": 0.3856,
+          "bid": 0.5,
+          "ask": 0.55
         }
       ],
-      "prev_10m_yes_price": 0.5
+      "prev_10m_yes_price": 0.515
     },
     {
       "question": "Will the highest temperature in Seoul (Incheon) be 13°C on November 23?",
@@ -841,5 +848,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-22T21:07:36.533827+00:00"
+  "last_price_refresh": "2026-11-22T21:17:29.145670+00:00"
 }
