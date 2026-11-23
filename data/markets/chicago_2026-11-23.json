@@ -110,11 +110,11 @@
         36.0,
         37.0
       ],
-      "yes_price": 0.015,
+      "yes_price": 0.0125,
       "no_price": 0.9835,
-      "best_bid": 0.01,
+      "best_bid": 0.005,
       "best_ask": 0.02,
-      "bid_ask_spread": 0.01,
+      "bid_ask_spread": 0.015,
       "volume": 495.0,
       "spread": 0.013,
       "yes_token_id": "64869510894712926342339356921931622989541845943405706908733286906279986744885",
@@ -122,14 +122,14 @@
       "model_prob": 0.0259,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.015,
-      "effective_ask": 0.015,
-      "market_prob": 0.015,
-      "belief_prob": 0.0221,
-      "ev": 0.4733,
-      "kelly": 0.0018,
-      "swing_edge": 0.0109,
-      "swing_upside_pct": 72.7,
+      "ask": 0.0125,
+      "effective_ask": 0.0125,
+      "market_prob": 0.0125,
+      "belief_prob": 0.0212,
+      "ev": 0.696,
+      "kelly": 0.0022,
+      "swing_edge": 0.0134,
+      "swing_upside_pct": 107.2,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.0259,
       "prev_scan6h_model_prob": 0.0259,
@@ -143,13 +143,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0165,
       "prev_scan6h_yes_price": 0.0165,
-      "prev_yes_price": 0.0165,
-      "yes_price_10m_change": -0.0015,
-      "yes_price_10m_pct_change": -9.1,
-      "yes_price_6h_change": -0.0015,
-      "yes_price_6h_pct_change": -9.1,
-      "yes_price_change": -0.0015,
-      "yes_price_pct_change": -9.1,
+      "prev_yes_price": 0.015,
+      "yes_price_10m_change": -0.0025,
+      "yes_price_10m_pct_change": -16.7,
+      "yes_price_6h_change": -0.004,
+      "yes_price_6h_pct_change": -24.2,
+      "yes_price_change": -0.0025,
+      "yes_price_pct_change": -16.7,
       "price_history": [
         {
           "t": "2026-11-23T02:22:59Z",
@@ -166,7 +166,7 @@
           "ask": 0.02
         }
       ],
-      "prev_10m_yes_price": 0.0165
+      "prev_10m_yes_price": 0.015
     },
     {
       "question": "Will the highest temperature in Chicago be between 38-39°F on November 23?",
@@ -294,6 +294,13 @@
           "mp": 0.5758,
           "bid": 0.55,
           "ask": 0.58
+        },
+        {
+          "t": "2026-11-23T02:57:35Z",
+          "p": 0.565,
+          "mp": 0.5758,
+          "bid": 0.55,
+          "ask": 0.58
         }
       ],
       "prev_10m_yes_price": 0.565
@@ -403,13 +410,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0265,
       "prev_scan6h_yes_price": 0.0265,
-      "prev_yes_price": 0.0265,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -1.9,
+      "prev_yes_price": 0.026,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.0005,
       "yes_price_6h_pct_change": -1.9,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -1.9,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-23T02:22:59Z",
@@ -426,7 +433,7 @@
           "ask": 0.034
         }
       ],
-      "prev_10m_yes_price": 0.0265
+      "prev_10m_yes_price": 0.026
     },
     {
       "question": "Will the highest temperature in Chicago be between 46-47°F on November 23?",
@@ -781,5 +788,5 @@
   "confidence": 0.7713,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-23T02:47:32.274752+00:00"
+  "last_price_refresh": "2026-11-23T02:57:34.693924+00:00"
 }
