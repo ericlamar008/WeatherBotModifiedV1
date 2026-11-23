@@ -61,7 +61,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -94,7 +94,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Istanbul be 14°C on November 23?",
@@ -151,7 +152,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Istanbul be 15°C on November 23?",
@@ -208,7 +210,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the highest temperature in Istanbul be 16°C on November 23?",
@@ -265,7 +268,8 @@
           "bid": 0.004,
           "ask": 0.009
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0065
     },
     {
       "question": "Will the highest temperature in Istanbul be 17°C on November 23?",
@@ -274,11 +278,11 @@
         17.0,
         17.0
       ],
-      "yes_price": 0.011,
+      "yes_price": 0.0105,
       "no_price": 0.989,
-      "best_bid": 0.007,
+      "best_bid": 0.006,
       "best_ask": 0.015,
-      "bid_ask_spread": 0.008,
+      "bid_ask_spread": 0.009,
       "volume": 53.0,
       "spread": 0.008,
       "yes_token_id": "33929036028957467513459447825415712396449376174358268053428518179717914580994",
@@ -286,14 +290,14 @@
       "model_prob": 0.0215,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.011,
-      "effective_ask": 0.011,
-      "market_prob": 0.011,
-      "belief_prob": 0.0178,
-      "ev": 0.6182,
-      "kelly": 0.0017,
-      "swing_edge": 0.0105,
-      "swing_upside_pct": 95.5,
+      "ask": 0.0105,
+      "effective_ask": 0.0105,
+      "market_prob": 0.0105,
+      "belief_prob": 0.0176,
+      "ev": 0.6762,
+      "kelly": 0.0018,
+      "swing_edge": 0.011,
+      "swing_upside_pct": 104.8,
       "sell_value": 0.007,
       "scan6h_model_prob": 0.0215,
       "prev_scan6h_model_prob": 0.0215,
@@ -308,12 +312,12 @@
       "scan6h_yes_price": 0.011,
       "prev_scan6h_yes_price": 0.011,
       "prev_yes_price": 0.011,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -4.5,
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -4.5,
       "price_history": [
         {
           "t": "2026-11-23T02:22:59Z",
@@ -322,7 +326,8 @@
           "bid": 0.007,
           "ask": 0.015
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.011
     },
     {
       "question": "Will the highest temperature in Istanbul be 18°C on November 23?",
@@ -379,7 +384,8 @@
           "bid": 0.033,
           "ask": 0.06
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0465
     },
     {
       "question": "Will the highest temperature in Istanbul be 19°C on November 23?",
@@ -436,7 +442,8 @@
           "bid": 0.37,
           "ask": 0.4
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.385
     },
     {
       "question": "Will the highest temperature in Istanbul be 20°C on November 23?",
@@ -493,7 +500,8 @@
           "bid": 0.47,
           "ask": 0.5
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.485
     },
     {
       "question": "Will the highest temperature in Istanbul be 21°C on November 23?",
@@ -550,7 +558,8 @@
           "bid": 0.08,
           "ask": 0.11
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.095
     },
     {
       "question": "Will the highest temperature in Istanbul be 22°C on November 23?",
@@ -607,7 +616,8 @@
           "bid": 0.003,
           "ask": 0.005
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.004
     },
     {
       "question": "Will the highest temperature in Istanbul be 23°C or higher on November 23?",
@@ -664,7 +674,8 @@
           "bid": 0.001,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.002
     }
   ],
   "live_allocation": [],
@@ -676,5 +687,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-23T02:37:26.011516+00:00"
 }

@@ -60,7 +60,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Cape Town be 17°C on November 23?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Cape Town be 18°C on November 23?",
@@ -207,7 +209,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Cape Town be 19°C on November 23?",
@@ -264,7 +267,8 @@
           "bid": 0.002,
           "ask": 0.005
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0035
     },
     {
       "question": "Will the highest temperature in Cape Town be 21°C on November 23?",
@@ -321,7 +325,8 @@
           "bid": 0.12,
           "ask": 0.14
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.13
     },
     {
       "question": "Will the highest temperature in Cape Town be 22°C on November 23?",
@@ -378,7 +383,8 @@
           "bid": 0.39,
           "ask": 0.42
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.405
     },
     {
       "question": "Will the highest temperature in Cape Town be 23°C on November 23?",
@@ -435,7 +441,8 @@
           "bid": 0.36,
           "ask": 0.38
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.37
     },
     {
       "question": "Will the highest temperature in Cape Town be 24°C on November 23?",
@@ -492,7 +499,8 @@
           "bid": 0.1,
           "ask": 0.12
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.11
     },
     {
       "question": "Will the highest temperature in Cape Town be 25°C on November 23?",
@@ -501,11 +509,11 @@
         25.0,
         25.0
       ],
-      "yes_price": 0.0125,
+      "yes_price": 0.0115,
       "no_price": 0.9875,
       "best_bid": 0.004,
-      "best_ask": 0.021,
-      "bid_ask_spread": 0.017,
+      "best_ask": 0.019,
+      "bid_ask_spread": 0.015,
       "volume": 162.0,
       "spread": 0.017,
       "yes_token_id": "34984363438039912646585267467568818207355350883061981327608754764622918181066",
@@ -513,14 +521,14 @@
       "model_prob": 0.0427,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0125,
-      "effective_ask": 0.0125,
-      "market_prob": 0.0125,
-      "belief_prob": 0.0321,
-      "ev": 1.568,
-      "kelly": 0.005,
-      "swing_edge": 0.0302,
-      "swing_upside_pct": 241.6,
+      "ask": 0.0115,
+      "effective_ask": 0.0115,
+      "market_prob": 0.0115,
+      "belief_prob": 0.0318,
+      "ev": 1.7652,
+      "kelly": 0.0051,
+      "swing_edge": 0.0312,
+      "swing_upside_pct": 271.3,
       "sell_value": 0.004,
       "scan6h_model_prob": 0.0427,
       "prev_scan6h_model_prob": 0.0427,
@@ -535,12 +543,12 @@
       "scan6h_yes_price": 0.0125,
       "prev_scan6h_yes_price": 0.0125,
       "prev_yes_price": 0.0125,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.001,
+      "yes_price_10m_pct_change": -8.0,
+      "yes_price_6h_change": -0.001,
+      "yes_price_6h_pct_change": -8.0,
+      "yes_price_change": -0.001,
+      "yes_price_pct_change": -8.0,
       "price_history": [
         {
           "t": "2026-11-23T02:24:57Z",
@@ -549,7 +557,8 @@
           "bid": 0.004,
           "ask": 0.021
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0125
     },
     {
       "question": "Will the highest temperature in Cape Town be 26°C or higher on November 23?",
@@ -606,7 +615,8 @@
           "bid": 0.002,
           "ask": 0.003
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0025
     }
   ],
   "live_allocation": [],
@@ -618,5 +628,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-23T02:37:26.011516+00:00"
 }

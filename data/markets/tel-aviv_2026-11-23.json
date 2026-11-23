@@ -92,7 +92,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 22°C on November 23?",
@@ -149,7 +150,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 23°C on November 23?",
@@ -158,11 +160,11 @@
         23.0,
         23.0
       ],
-      "yes_price": 0.013,
+      "yes_price": 0.014,
       "no_price": 0.987,
       "best_bid": 0.008,
-      "best_ask": 0.018,
-      "bid_ask_spread": 0.01,
+      "best_ask": 0.02,
+      "bid_ask_spread": 0.012,
       "volume": 941.0,
       "spread": 0.01,
       "yes_token_id": "59832391424863506858685280063926782329273946016524740905076873313298833444574",
@@ -170,14 +172,14 @@
       "model_prob": 0.2346,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.013,
-      "effective_ask": 0.013,
-      "market_prob": 0.013,
-      "belief_prob": 0.157,
-      "ev": 11.0769,
-      "kelly": 0.0365,
-      "swing_edge": 0.2216,
-      "swing_upside_pct": 1704.6,
+      "ask": 0.014,
+      "effective_ask": 0.014,
+      "market_prob": 0.014,
+      "belief_prob": 0.1574,
+      "ev": 10.2429,
+      "kelly": 0.0364,
+      "swing_edge": 0.2206,
+      "swing_upside_pct": 1575.7,
       "sell_value": 0.008,
       "scan6h_model_prob": 0.2346,
       "prev_scan6h_model_prob": 0.2346,
@@ -192,12 +194,12 @@
       "scan6h_yes_price": 0.013,
       "prev_scan6h_yes_price": 0.013,
       "prev_yes_price": 0.013,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.001,
+      "yes_price_10m_pct_change": 7.7,
+      "yes_price_6h_change": 0.001,
+      "yes_price_6h_pct_change": 7.7,
+      "yes_price_change": 0.001,
+      "yes_price_pct_change": 7.7,
       "price_history": [
         {
           "t": "2026-11-23T02:24:56Z",
@@ -206,7 +208,8 @@
           "bid": 0.008,
           "ask": 0.018
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.013
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 24°C on November 23?",
@@ -215,11 +218,11 @@
         24.0,
         24.0
       ],
-      "yes_price": 0.33,
+      "yes_price": 0.345,
       "no_price": 0.67,
-      "best_bid": 0.3,
-      "best_ask": 0.36,
-      "bid_ask_spread": 0.06,
+      "best_bid": 0.31,
+      "best_ask": 0.38,
+      "bid_ask_spread": 0.07,
       "volume": 1773.0,
       "spread": 0.06,
       "yes_token_id": "38314883525657396297017943578915130679691760222301385503670880097126334811813",
@@ -227,14 +230,14 @@
       "model_prob": 0.4678,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.33,
-      "effective_ask": 0.3465,
-      "market_prob": 0.33,
-      "belief_prob": 0.4196,
-      "ev": 0.211,
-      "kelly": 0.028,
-      "swing_edge": 0.1213,
-      "swing_upside_pct": 35.0,
+      "ask": 0.345,
+      "effective_ask": 0.367,
+      "market_prob": 0.345,
+      "belief_prob": 0.4248,
+      "ev": 0.1575,
+      "kelly": 0.0228,
+      "swing_edge": 0.1228,
+      "swing_upside_pct": 35.6,
       "sell_value": 0.3,
       "scan6h_model_prob": 0.4678,
       "prev_scan6h_model_prob": 0.4678,
@@ -249,12 +252,12 @@
       "scan6h_yes_price": 0.33,
       "prev_scan6h_yes_price": 0.33,
       "prev_yes_price": 0.33,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.015,
+      "yes_price_10m_pct_change": 4.5,
+      "yes_price_6h_change": 0.015,
+      "yes_price_6h_pct_change": 4.5,
+      "yes_price_change": 0.015,
+      "yes_price_pct_change": 4.5,
       "price_history": [
         {
           "t": "2026-11-23T02:24:56Z",
@@ -262,8 +265,16 @@
           "mp": 0.4678,
           "bid": 0.3,
           "ask": 0.36
+        },
+        {
+          "t": "2026-11-23T02:37:27Z",
+          "p": 0.345,
+          "mp": 0.4678,
+          "bid": 0.31,
+          "ask": 0.38
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.33
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 25°C on November 23?",
@@ -290,8 +301,8 @@
       "belief_prob": 0.3472,
       "ev": -0.4541,
       "kelly": 0.0,
-      "swing_edge": -0.4384,
-      "swing_upside_pct": -68.9,
+      "swing_edge": -0.4274,
+      "swing_upside_pct": -68.4,
       "sell_value": 0.6,
       "scan6h_model_prob": 0.1976,
       "prev_scan6h_model_prob": 0.1976,
@@ -320,7 +331,8 @@
           "bid": 0.6,
           "ask": 0.65
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.625
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 26°C on November 23?",
@@ -329,11 +341,11 @@
         26.0,
         26.0
       ],
-      "yes_price": 0.0415,
+      "yes_price": 0.0445,
       "no_price": 0.9585,
       "best_bid": 0.03,
-      "best_ask": 0.053,
-      "bid_ask_spread": 0.023,
+      "best_ask": 0.059,
+      "bid_ask_spread": 0.029,
       "volume": 1038.0,
       "spread": 0.023,
       "yes_token_id": "60383437429129381978508187775811683331639381226380072171013365964797286470855",
@@ -341,14 +353,14 @@
       "model_prob": 0.0357,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0415,
-      "effective_ask": 0.0415,
-      "market_prob": 0.0415,
-      "belief_prob": 0.0377,
-      "ev": -0.0916,
+      "ask": 0.0445,
+      "effective_ask": 0.0445,
+      "market_prob": 0.0445,
+      "belief_prob": 0.0388,
+      "ev": -0.1281,
       "kelly": 0.0,
-      "swing_edge": -0.0058,
-      "swing_upside_pct": -14.0,
+      "swing_edge": -0.0088,
+      "swing_upside_pct": -19.8,
       "sell_value": 0.03,
       "scan6h_model_prob": 0.0357,
       "prev_scan6h_model_prob": 0.0357,
@@ -363,12 +375,12 @@
       "scan6h_yes_price": 0.0415,
       "prev_scan6h_yes_price": 0.0415,
       "prev_yes_price": 0.0415,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.003,
+      "yes_price_10m_pct_change": 7.2,
+      "yes_price_6h_change": 0.003,
+      "yes_price_6h_pct_change": 7.2,
+      "yes_price_change": 0.003,
+      "yes_price_pct_change": 7.2,
       "price_history": [
         {
           "t": "2026-11-23T02:24:56Z",
@@ -377,7 +389,8 @@
           "bid": 0.03,
           "ask": 0.053
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0415
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 27°C on November 23?",
@@ -434,7 +447,8 @@
           "bid": 0.001,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0015
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 28°C on November 23?",
@@ -491,7 +505,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 29°C on November 23?",
@@ -548,7 +563,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 30°C on November 23?",
@@ -605,7 +621,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Tel Aviv be 31°C or higher on November 23?",
@@ -662,7 +679,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -674,5 +692,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-23T02:37:26.011516+00:00"
 }

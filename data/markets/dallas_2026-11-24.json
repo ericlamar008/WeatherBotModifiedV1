@@ -45,11 +45,11 @@
         -999.0,
         43.0
       ],
-      "yes_price": 0.0175,
+      "yes_price": 0.012,
       "no_price": 0.9825,
       "best_bid": 0.004,
-      "best_ask": 0.031,
-      "bid_ask_spread": 0.027,
+      "best_ask": 0.02,
+      "bid_ask_spread": 0.016,
       "volume": 4.0,
       "spread": 0.027,
       "yes_token_id": "17447230126993920505149343338091387283346743229344093812586881395418064010680",
@@ -57,14 +57,14 @@
       "model_prob": 0.0266,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0175,
-      "effective_ask": 0.0175,
-      "market_prob": 0.0175,
-      "belief_prob": 0.0234,
-      "ev": 0.3371,
-      "kelly": 0.0015,
-      "swing_edge": 0.0091,
-      "swing_upside_pct": 52.0,
+      "ask": 0.012,
+      "effective_ask": 0.012,
+      "market_prob": 0.012,
+      "belief_prob": 0.0215,
+      "ev": 0.7917,
+      "kelly": 0.0024,
+      "swing_edge": 0.0146,
+      "swing_upside_pct": 121.7,
       "sell_value": 0.004,
       "scan6h_model_prob": 0.0266,
       "prev_scan6h_model_prob": 0.0266,
@@ -79,12 +79,12 @@
       "scan6h_yes_price": 0.0175,
       "prev_scan6h_yes_price": 0.0175,
       "prev_yes_price": 0.0175,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0055,
+      "yes_price_10m_pct_change": -31.4,
+      "yes_price_6h_change": -0.0055,
+      "yes_price_6h_pct_change": -31.4,
+      "yes_price_change": -0.0055,
+      "yes_price_pct_change": -31.4,
       "price_history": [
         {
           "t": "2026-11-23T02:22:59Z",
@@ -92,8 +92,16 @@
           "mp": 0.0266,
           "bid": 0.004,
           "ask": 0.031
+        },
+        {
+          "t": "2026-11-23T02:37:27Z",
+          "p": 0.012,
+          "mp": 0.0266,
+          "bid": 0.004,
+          "ask": 0.02
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0175
     },
     {
       "question": "Will the highest temperature in Dallas be between 44-45°F on November 24?",
@@ -102,11 +110,11 @@
         44.0,
         45.0
       ],
-      "yes_price": 0.0595,
+      "yes_price": 0.036,
       "no_price": 0.9405,
-      "best_bid": 0.042,
-      "best_ask": 0.077,
-      "bid_ask_spread": 0.035,
+      "best_bid": 0.016,
+      "best_ask": 0.056,
+      "bid_ask_spread": 0.04,
       "volume": 14.0,
       "spread": 0.035,
       "yes_token_id": "14412549109473200441072104349735811729831545202103400994903950986993496930813",
@@ -114,14 +122,14 @@
       "model_prob": 0.0482,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0595,
-      "effective_ask": 0.0622,
-      "market_prob": 0.0595,
-      "belief_prob": 0.0522,
-      "ev": -0.1608,
-      "kelly": 0.0,
-      "swing_edge": -0.014,
-      "swing_upside_pct": -22.5,
+      "ask": 0.036,
+      "effective_ask": 0.0415,
+      "market_prob": 0.036,
+      "belief_prob": 0.0439,
+      "ev": 0.0578,
+      "kelly": 0.0006,
+      "swing_edge": 0.0122,
+      "swing_upside_pct": 33.9,
       "sell_value": 0.042,
       "scan6h_model_prob": 0.0482,
       "prev_scan6h_model_prob": 0.0482,
@@ -136,12 +144,12 @@
       "scan6h_yes_price": 0.0595,
       "prev_scan6h_yes_price": 0.0595,
       "prev_yes_price": 0.0595,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0235,
+      "yes_price_10m_pct_change": -39.5,
+      "yes_price_6h_change": -0.0235,
+      "yes_price_6h_pct_change": -39.5,
+      "yes_price_change": -0.0235,
+      "yes_price_pct_change": -39.5,
       "price_history": [
         {
           "t": "2026-11-23T02:22:59Z",
@@ -149,8 +157,16 @@
           "mp": 0.0482,
           "bid": 0.042,
           "ask": 0.077
+        },
+        {
+          "t": "2026-11-23T02:37:27Z",
+          "p": 0.036,
+          "mp": 0.0482,
+          "bid": 0.016,
+          "ask": 0.056
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0595
     },
     {
       "question": "Will the highest temperature in Dallas be between 46-47°F on November 24?",
@@ -207,7 +223,8 @@
           "bid": 0.1,
           "ask": 0.13
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.115
     },
     {
       "question": "Will the highest temperature in Dallas be between 48-49°F on November 24?",
@@ -216,10 +233,10 @@
         48.0,
         49.0
       ],
-      "yes_price": 0.2445,
+      "yes_price": 0.2435,
       "no_price": 0.7555,
-      "best_bid": 0.229,
-      "best_ask": 0.26,
+      "best_bid": 0.228,
+      "best_ask": 0.259,
       "bid_ask_spread": 0.031,
       "volume": 768.0,
       "spread": 0.031,
@@ -228,14 +245,14 @@
       "model_prob": 0.2665,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.2445,
-      "effective_ask": 0.245,
-      "market_prob": 0.2445,
-      "belief_prob": 0.2588,
-      "ev": 0.0563,
-      "kelly": 0.0046,
-      "swing_edge": 0.0215,
-      "swing_upside_pct": 8.8,
+      "ask": 0.2435,
+      "effective_ask": 0.244,
+      "market_prob": 0.2435,
+      "belief_prob": 0.2585,
+      "ev": 0.0594,
+      "kelly": 0.0048,
+      "swing_edge": 0.023,
+      "swing_upside_pct": 9.4,
       "sell_value": 0.229,
       "scan6h_model_prob": 0.2665,
       "prev_scan6h_model_prob": 0.2665,
@@ -250,12 +267,12 @@
       "scan6h_yes_price": 0.2445,
       "prev_scan6h_yes_price": 0.2445,
       "prev_yes_price": 0.2445,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.001,
+      "yes_price_10m_pct_change": -0.4,
+      "yes_price_6h_change": -0.001,
+      "yes_price_6h_pct_change": -0.4,
+      "yes_price_change": -0.001,
+      "yes_price_pct_change": -0.4,
       "price_history": [
         {
           "t": "2026-11-23T02:22:59Z",
@@ -264,7 +281,8 @@
           "bid": 0.229,
           "ask": 0.26
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.2445
     },
     {
       "question": "Will the highest temperature in Dallas be between 50-51°F on November 24?",
@@ -273,11 +291,11 @@
         50.0,
         51.0
       ],
-      "yes_price": 0.3445,
+      "yes_price": 0.342,
       "no_price": 0.6555,
-      "best_bid": 0.32,
-      "best_ask": 0.369,
-      "bid_ask_spread": 0.049,
+      "best_bid": 0.316,
+      "best_ask": 0.368,
+      "bid_ask_spread": 0.052,
       "volume": 453.0,
       "spread": 0.049,
       "yes_token_id": "20102324031409912833889197406939861428333761562630948012312880361189185487479",
@@ -285,14 +303,14 @@
       "model_prob": 0.282,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.3445,
-      "effective_ask": 0.3549,
-      "market_prob": 0.3445,
-      "belief_prob": 0.3039,
-      "ev": -0.1437,
+      "ask": 0.342,
+      "effective_ask": 0.3541,
+      "market_prob": 0.342,
+      "belief_prob": 0.303,
+      "ev": -0.1443,
       "kelly": 0.0,
-      "swing_edge": -0.0729,
-      "swing_upside_pct": -20.5,
+      "swing_edge": -0.06,
+      "swing_upside_pct": -17.5,
       "sell_value": 0.32,
       "scan6h_model_prob": 0.282,
       "prev_scan6h_model_prob": 0.282,
@@ -307,12 +325,12 @@
       "scan6h_yes_price": 0.3445,
       "prev_scan6h_yes_price": 0.3445,
       "prev_yes_price": 0.3445,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0025,
+      "yes_price_10m_pct_change": -0.7,
+      "yes_price_6h_change": -0.0025,
+      "yes_price_6h_pct_change": -0.7,
+      "yes_price_change": -0.0025,
+      "yes_price_pct_change": -0.7,
       "price_history": [
         {
           "t": "2026-11-23T02:22:59Z",
@@ -321,7 +339,8 @@
           "bid": 0.32,
           "ask": 0.369
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.3445
     },
     {
       "question": "Will the highest temperature in Dallas be between 52-53°F on November 24?",
@@ -330,11 +349,11 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.174,
+      "yes_price": 0.19,
       "no_price": 0.826,
-      "best_bid": 0.145,
-      "best_ask": 0.203,
-      "bid_ask_spread": 0.058,
+      "best_bid": 0.142,
+      "best_ask": 0.238,
+      "bid_ask_spread": 0.096,
       "volume": 767.0,
       "spread": 0.058,
       "yes_token_id": "103777118385612763421931514870645824072899446754060620519863593070386832464712",
@@ -342,14 +361,14 @@
       "model_prob": 0.1543,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.174,
-      "effective_ask": 0.1894,
-      "market_prob": 0.174,
-      "belief_prob": 0.1612,
-      "ev": -0.1489,
+      "ask": 0.19,
+      "effective_ask": 0.2263,
+      "market_prob": 0.19,
+      "belief_prob": 0.1668,
+      "ev": -0.2629,
       "kelly": 0.0,
-      "swing_edge": -0.0351,
-      "swing_upside_pct": -18.5,
+      "swing_edge": -0.0357,
+      "swing_upside_pct": -18.8,
       "sell_value": 0.145,
       "scan6h_model_prob": 0.1543,
       "prev_scan6h_model_prob": 0.1543,
@@ -364,12 +383,12 @@
       "scan6h_yes_price": 0.174,
       "prev_scan6h_yes_price": 0.174,
       "prev_yes_price": 0.174,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.016,
+      "yes_price_10m_pct_change": 9.2,
+      "yes_price_6h_change": 0.016,
+      "yes_price_6h_pct_change": 9.2,
+      "yes_price_change": 0.016,
+      "yes_price_pct_change": 9.2,
       "price_history": [
         {
           "t": "2026-11-23T02:22:59Z",
@@ -377,8 +396,16 @@
           "mp": 0.1543,
           "bid": 0.145,
           "ask": 0.203
+        },
+        {
+          "t": "2026-11-23T02:37:27Z",
+          "p": 0.19,
+          "mp": 0.1543,
+          "bid": 0.142,
+          "ask": 0.238
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.174
     },
     {
       "question": "Will the highest temperature in Dallas be between 54-55°F on November 24?",
@@ -387,11 +414,11 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.0865,
+      "yes_price": 0.084,
       "no_price": 0.9135,
       "best_bid": 0.071,
-      "best_ask": 0.102,
-      "bid_ask_spread": 0.031,
+      "best_ask": 0.097,
+      "bid_ask_spread": 0.026,
       "volume": 20.0,
       "spread": 0.031,
       "yes_token_id": "88334555417770303865693355977471677792856276025659263697347731238919348132804",
@@ -399,14 +426,14 @@
       "model_prob": 0.0573,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0865,
-      "effective_ask": 0.087,
-      "market_prob": 0.0865,
-      "belief_prob": 0.0675,
-      "ev": -0.2241,
+      "ask": 0.084,
+      "effective_ask": 0.084,
+      "market_prob": 0.084,
+      "belief_prob": 0.0666,
+      "ev": -0.2071,
       "kelly": 0.0,
-      "swing_edge": -0.0297,
-      "swing_upside_pct": -34.1,
+      "swing_edge": -0.0267,
+      "swing_upside_pct": -31.8,
       "sell_value": 0.071,
       "scan6h_model_prob": 0.0573,
       "prev_scan6h_model_prob": 0.0573,
@@ -421,12 +448,12 @@
       "scan6h_yes_price": 0.0865,
       "prev_scan6h_yes_price": 0.0865,
       "prev_yes_price": 0.0865,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0025,
+      "yes_price_10m_pct_change": -2.9,
+      "yes_price_6h_change": -0.0025,
+      "yes_price_6h_pct_change": -2.9,
+      "yes_price_change": -0.0025,
+      "yes_price_pct_change": -2.9,
       "price_history": [
         {
           "t": "2026-11-23T02:22:59Z",
@@ -435,7 +462,8 @@
           "bid": 0.071,
           "ask": 0.102
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0865
     },
     {
       "question": "Will the highest temperature in Dallas be between 56-57°F on November 24?",
@@ -444,11 +472,11 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.0545,
+      "yes_price": 0.0355,
       "no_price": 0.9455,
       "best_bid": 0.014,
-      "best_ask": 0.095,
-      "bid_ask_spread": 0.081,
+      "best_ask": 0.057,
+      "bid_ask_spread": 0.043,
       "volume": 28.0,
       "spread": 0.081,
       "yes_token_id": "90956794076968997647827734119599341000020713781212313565316286754380479586150",
@@ -456,14 +484,14 @@
       "model_prob": 0.0193,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0545,
-      "effective_ask": 0.0826,
-      "market_prob": 0.0545,
-      "belief_prob": 0.0316,
-      "ev": -0.6174,
+      "ask": 0.0355,
+      "effective_ask": 0.0426,
+      "market_prob": 0.0355,
+      "belief_prob": 0.025,
+      "ev": -0.4131,
       "kelly": 0.0,
-      "swing_edge": -0.0633,
-      "swing_upside_pct": -76.6,
+      "swing_edge": -0.0162,
+      "swing_upside_pct": -45.6,
       "sell_value": 0.014,
       "scan6h_model_prob": 0.0193,
       "prev_scan6h_model_prob": 0.0193,
@@ -478,12 +506,12 @@
       "scan6h_yes_price": 0.0545,
       "prev_scan6h_yes_price": 0.0545,
       "prev_yes_price": 0.0545,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.019,
+      "yes_price_10m_pct_change": -34.9,
+      "yes_price_6h_change": -0.019,
+      "yes_price_6h_pct_change": -34.9,
+      "yes_price_change": -0.019,
+      "yes_price_pct_change": -34.9,
       "price_history": [
         {
           "t": "2026-11-23T02:22:59Z",
@@ -491,8 +519,16 @@
           "mp": 0.0193,
           "bid": 0.014,
           "ask": 0.095
+        },
+        {
+          "t": "2026-11-23T02:37:27Z",
+          "p": 0.0355,
+          "mp": 0.0193,
+          "bid": 0.014,
+          "ask": 0.057
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0545
     },
     {
       "question": "Will the highest temperature in Dallas be between 58-59°F on November 24?",
@@ -549,7 +585,8 @@
           "bid": 0.002,
           "ask": 0.02
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.011
     },
     {
       "question": "Will the highest temperature in Dallas be between 60-61°F on November 24?",
@@ -606,7 +643,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Dallas be 62°F or higher on November 24?",
@@ -663,7 +701,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -675,5 +714,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-23T02:37:26.011516+00:00"
 }
