@@ -488,11 +488,11 @@
         54.0,
         55.0
       ],
-      "yes_price": 0.195,
+      "yes_price": 0.2,
       "no_price": 0.875,
       "best_bid": 0.18,
-      "best_ask": 0.21,
-      "bid_ask_spread": 0.03,
+      "best_ask": 0.22,
+      "bid_ask_spread": 0.04,
       "volume": 303.0,
       "spread": 0.05,
       "yes_token_id": "100999529343658921126215540311640617545529490252419516223464543157276133517804",
@@ -500,14 +500,14 @@
       "model_prob": 0.2164,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.195,
-      "effective_ask": 0.195,
-      "market_prob": 0.195,
-      "belief_prob": 0.2089,
-      "ev": 0.0713,
-      "kelly": 0.0043,
-      "swing_edge": 0.0214,
-      "swing_upside_pct": 11.0,
+      "ask": 0.2,
+      "effective_ask": 0.2055,
+      "market_prob": 0.2,
+      "belief_prob": 0.2107,
+      "ev": 0.0253,
+      "kelly": 0.0016,
+      "swing_edge": 0.0164,
+      "swing_upside_pct": 8.2,
       "sell_value": 0.1,
       "scan6h_model_prob": 0.2164,
       "prev_scan6h_model_prob": 0.2164,
@@ -521,13 +521,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.125,
       "prev_scan6h_yes_price": 0.125,
-      "prev_yes_price": 0.2,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -2.5,
-      "yes_price_6h_change": 0.07,
-      "yes_price_6h_pct_change": 56.0,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -2.5,
+      "prev_yes_price": 0.195,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 2.6,
+      "yes_price_6h_change": 0.075,
+      "yes_price_6h_pct_change": 60.0,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 2.6,
       "price_history": [
         {
           "t": "2026-11-24T08:27:47Z",
@@ -605,9 +605,16 @@
           "mp": 0.2164,
           "bid": 0.18,
           "ask": 0.21
+        },
+        {
+          "t": "2026-11-24T10:47:31Z",
+          "p": 0.2,
+          "mp": 0.2164,
+          "bid": 0.18,
+          "ask": 0.22
         }
       ],
-      "prev_10m_yes_price": 0.2
+      "prev_10m_yes_price": 0.195
     },
     {
       "question": "Will the highest temperature in Atlanta be between 60-61°F on November 25?",
@@ -837,5 +844,5 @@
   "confidence": 0.214,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-24T10:37:33.801451+00:00"
+  "last_price_refresh": "2026-11-24T10:47:30.145618+00:00"
 }
