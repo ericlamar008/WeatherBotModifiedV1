@@ -283,10 +283,10 @@
         42.0,
         43.0
       ],
-      "yes_price": 0.595,
+      "yes_price": 0.605,
       "no_price": 0.405,
-      "best_bid": 0.56,
-      "best_ask": 0.63,
+      "best_bid": 0.57,
+      "best_ask": 0.64,
       "bid_ask_spread": 0.07,
       "volume": 94.0,
       "spread": 0.03,
@@ -295,14 +295,14 @@
       "model_prob": 0.5611,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.595,
-      "effective_ask": 0.617,
-      "market_prob": 0.595,
-      "belief_prob": 0.573,
-      "ev": -0.0713,
+      "ask": 0.605,
+      "effective_ask": 0.627,
+      "market_prob": 0.605,
+      "belief_prob": 0.5765,
+      "ev": -0.0805,
       "kelly": 0.0,
-      "swing_edge": -0.0339,
-      "swing_upside_pct": -5.7,
+      "swing_edge": -0.0439,
+      "swing_upside_pct": -7.3,
       "sell_value": 0.58,
       "scan6h_model_prob": 0.5611,
       "prev_scan6h_model_prob": 0.5611,
@@ -317,12 +317,12 @@
       "scan6h_yes_price": 0.595,
       "prev_scan6h_yes_price": 0.595,
       "prev_yes_price": 0.595,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 1.7,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 1.7,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 1.7,
       "price_history": [
         {
           "t": "2026-11-24T03:02:03Z",
@@ -358,6 +358,13 @@
           "mp": 0.5611,
           "bid": 0.56,
           "ask": 0.63
+        },
+        {
+          "t": "2026-11-24T04:07:35Z",
+          "p": 0.605,
+          "mp": 0.5611,
+          "bid": 0.57,
+          "ask": 0.64
         }
       ],
       "prev_10m_yes_price": 0.595
@@ -369,11 +376,11 @@
         44.0,
         45.0
       ],
-      "yes_price": 0.255,
+      "yes_price": 0.23,
       "no_price": 0.755,
       "best_bid": 0.18,
-      "best_ask": 0.33,
-      "bid_ask_spread": 0.15,
+      "best_ask": 0.28,
+      "bid_ask_spread": 0.1,
       "volume": 44.0,
       "spread": 0.07,
       "yes_token_id": "95650852324280516137106595472203398168301375915203256847906010430490208228604",
@@ -381,14 +388,14 @@
       "model_prob": 0.1669,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.255,
-      "effective_ask": 0.321,
-      "market_prob": 0.255,
-      "belief_prob": 0.1977,
-      "ev": -0.3841,
+      "ask": 0.23,
+      "effective_ask": 0.2685,
+      "market_prob": 0.23,
+      "belief_prob": 0.189,
+      "ev": -0.2961,
       "kelly": 0.0,
-      "swing_edge": -0.0881,
-      "swing_upside_pct": -34.5,
+      "swing_edge": -0.0631,
+      "swing_upside_pct": -27.4,
       "sell_value": 0.21,
       "scan6h_model_prob": 0.1669,
       "prev_scan6h_model_prob": 0.1669,
@@ -402,13 +409,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.245,
       "prev_scan6h_yes_price": 0.245,
-      "prev_yes_price": 0.26,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -1.9,
-      "yes_price_6h_change": 0.01,
-      "yes_price_6h_pct_change": 4.1,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -1.9,
+      "prev_yes_price": 0.255,
+      "yes_price_10m_change": -0.025,
+      "yes_price_10m_pct_change": -9.8,
+      "yes_price_6h_change": -0.015,
+      "yes_price_6h_pct_change": -6.1,
+      "yes_price_change": -0.025,
+      "yes_price_pct_change": -9.8,
       "price_history": [
         {
           "t": "2026-11-24T03:02:03Z",
@@ -444,9 +451,16 @@
           "mp": 0.1669,
           "bid": 0.18,
           "ask": 0.33
+        },
+        {
+          "t": "2026-11-24T04:07:35Z",
+          "p": 0.23,
+          "mp": 0.1669,
+          "bid": 0.18,
+          "ask": 0.28
         }
       ],
-      "prev_10m_yes_price": 0.26
+      "prev_10m_yes_price": 0.255
     },
     {
       "question": "Will the highest temperature in Chicago be between 48-49°F on November 25?",
@@ -713,5 +727,5 @@
   "confidence": 0.967,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-24T03:57:31.259361+00:00"
+  "last_price_refresh": "2026-11-24T04:07:34.648076+00:00"
 }
