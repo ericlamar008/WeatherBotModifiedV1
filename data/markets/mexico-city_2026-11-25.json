@@ -94,7 +94,8 @@
           "bid": 0.07,
           "ask": 0.09
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.08
     },
     {
       "question": "Will the highest temperature in Mexico City be 20°C on November 25?",
@@ -151,7 +152,8 @@
           "bid": 0.24,
           "ask": 0.27
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.255
     },
     {
       "question": "Will the highest temperature in Mexico City be 21°C on November 25?",
@@ -208,7 +210,8 @@
           "bid": 0.39,
           "ask": 0.42
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.405
     },
     {
       "question": "Will the highest temperature in Mexico City be 22°C on November 25?",
@@ -265,7 +268,8 @@
           "bid": 0.17,
           "ask": 0.18
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.175
     },
     {
       "question": "Will the highest temperature in Mexico City be 24°C on November 25?",
@@ -274,11 +278,11 @@
         24.0,
         24.0
       ],
-      "yes_price": 0.013,
+      "yes_price": 0.0135,
       "no_price": 0.987,
-      "best_bid": 0.004,
+      "best_bid": 0.005,
       "best_ask": 0.022,
-      "bid_ask_spread": 0.018,
+      "bid_ask_spread": 0.017,
       "volume": 60.0,
       "spread": 0.018,
       "yes_token_id": "47441788691616984651628276189224116393117743819380478747661634501877190638159",
@@ -286,14 +290,14 @@
       "model_prob": 0.0098,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.013,
-      "effective_ask": 0.013,
-      "market_prob": 0.013,
-      "belief_prob": 0.0109,
-      "ev": -0.1615,
+      "ask": 0.0135,
+      "effective_ask": 0.0135,
+      "market_prob": 0.0135,
+      "belief_prob": 0.0111,
+      "ev": -0.1778,
       "kelly": 0.0,
-      "swing_edge": -0.0032,
-      "swing_upside_pct": -24.6,
+      "swing_edge": -0.0037,
+      "swing_upside_pct": -27.4,
       "sell_value": 0.004,
       "scan6h_model_prob": 0.0098,
       "prev_scan6h_model_prob": 0.0098,
@@ -308,12 +312,12 @@
       "scan6h_yes_price": 0.013,
       "prev_scan6h_yes_price": 0.013,
       "prev_yes_price": 0.013,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 3.8,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 3.8,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 3.8,
       "price_history": [
         {
           "t": "2026-11-24T14:26:53Z",
@@ -322,7 +326,8 @@
           "bid": 0.004,
           "ask": 0.022
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.013
     },
     {
       "question": "Will the highest temperature in Mexico City be 25°C on November 25?",
@@ -379,7 +384,8 @@
           "bid": 0.001,
           "ask": 0.019
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.01
     },
     {
       "question": "Will the highest temperature in Mexico City be 26°C or higher on November 25?",
@@ -436,7 +442,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -448,5 +455,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-24T14:37:33.380479+00:00"
 }
