@@ -94,7 +94,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Toronto be 1°C on November 25?",
@@ -151,7 +152,8 @@
           "bid": 0.004,
           "ask": 0.015
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0095
     },
     {
       "question": "Will the highest temperature in Toronto be 3°C on November 25?",
@@ -208,7 +210,8 @@
           "bid": 0.05,
           "ask": 0.08
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.065
     },
     {
       "question": "Will the highest temperature in Toronto be 4°C on November 25?",
@@ -217,11 +220,11 @@
         4.0,
         4.0
       ],
-      "yes_price": 0.39,
+      "yes_price": 0.385,
       "no_price": 0.61,
       "best_bid": 0.37,
-      "best_ask": 0.41,
-      "bid_ask_spread": 0.04,
+      "best_ask": 0.4,
+      "bid_ask_spread": 0.03,
       "volume": 538.0,
       "spread": 0.04,
       "yes_token_id": "98647454338886914238278496603051668491126052449879230945965074762881039765960",
@@ -229,14 +232,14 @@
       "model_prob": 0.5076,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.39,
-      "effective_ask": 0.3955,
-      "market_prob": 0.39,
-      "belief_prob": 0.4664,
-      "ev": 0.1793,
-      "kelly": 0.0293,
-      "swing_edge": 0.1121,
-      "swing_upside_pct": 28.3,
+      "ask": 0.385,
+      "effective_ask": 0.385,
+      "market_prob": 0.385,
+      "belief_prob": 0.4647,
+      "ev": 0.207,
+      "kelly": 0.0324,
+      "swing_edge": 0.1226,
+      "swing_upside_pct": 31.8,
       "sell_value": 0.37,
       "scan6h_model_prob": 0.5076,
       "prev_scan6h_model_prob": 0.5076,
@@ -251,12 +254,12 @@
       "scan6h_yes_price": 0.39,
       "prev_scan6h_yes_price": 0.39,
       "prev_yes_price": 0.39,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -1.3,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -1.3,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -1.3,
       "price_history": [
         {
           "t": "2026-11-24T08:27:47Z",
@@ -264,8 +267,16 @@
           "mp": 0.5076,
           "bid": 0.37,
           "ask": 0.41
+        },
+        {
+          "t": "2026-11-24T08:37:31Z",
+          "p": 0.385,
+          "mp": 0.5076,
+          "bid": 0.37,
+          "ask": 0.4
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.39
     },
     {
       "question": "Will the highest temperature in Toronto be 5°C on November 25?",
@@ -292,8 +303,8 @@
       "belief_prob": 0.3417,
       "ev": -0.233,
       "kelly": 0.0,
-      "swing_edge": -0.1567,
-      "swing_upside_pct": -35.2,
+      "swing_edge": -0.1512,
+      "swing_upside_pct": -34.4,
       "sell_value": 0.42,
       "scan6h_model_prob": 0.2888,
       "prev_scan6h_model_prob": 0.2888,
@@ -322,7 +333,8 @@
           "bid": 0.42,
           "ask": 0.46
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.44
     },
     {
       "question": "Will the highest temperature in Toronto be 6°C on November 25?",
@@ -349,8 +361,8 @@
       "belief_prob": 0.0588,
       "ev": -0.3843,
       "kelly": 0.0,
-      "swing_edge": -0.0535,
-      "swing_upside_pct": -56.0,
+      "swing_edge": -0.048,
+      "swing_upside_pct": -53.3,
       "sell_value": 0.07,
       "scan6h_model_prob": 0.042,
       "prev_scan6h_model_prob": 0.042,
@@ -379,7 +391,8 @@
           "bid": 0.07,
           "ask": 0.11
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.09
     },
     {
       "question": "Will the highest temperature in Toronto be 9°C on November 25?",
@@ -388,11 +401,11 @@
         9.0,
         9.0
       ],
-      "yes_price": 0.008,
+      "yes_price": 0.0095,
       "no_price": 0.992,
-      "best_bid": null,
-      "best_ask": 0.016,
-      "bid_ask_spread": 0.0,
+      "best_bid": 0.005,
+      "best_ask": 0.014,
+      "bid_ask_spread": 0.009,
       "volume": 95.0,
       "spread": 0.0,
       "yes_token_id": "55656474323761081862861382287192731301047690688392132951662052503898816483379",
@@ -400,13 +413,13 @@
       "model_prob": 0.0003,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.008,
-      "effective_ask": 0.008,
-      "market_prob": 0.008,
-      "belief_prob": 0.003,
-      "ev": -0.625,
+      "ask": 0.0095,
+      "effective_ask": 0.0095,
+      "market_prob": 0.0095,
+      "belief_prob": 0.0035,
+      "ev": -0.6316,
       "kelly": 0.0,
-      "swing_edge": -0.0077,
+      "swing_edge": -0.0092,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "scan6h_model_prob": 0.0003,
@@ -422,12 +435,12 @@
       "scan6h_yes_price": 0.008,
       "prev_scan6h_yes_price": 0.008,
       "prev_yes_price": 0.008,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0015,
+      "yes_price_10m_pct_change": 18.8,
+      "yes_price_6h_change": 0.0015,
+      "yes_price_6h_pct_change": 18.8,
+      "yes_price_change": 0.0015,
+      "yes_price_pct_change": 18.8,
       "price_history": [
         {
           "t": "2026-11-24T08:27:47Z",
@@ -436,7 +449,8 @@
           "bid": null,
           "ask": 0.016
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.008
     }
   ],
   "live_allocation": [],
@@ -448,5 +462,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-24T08:37:30.980989+00:00"
 }
