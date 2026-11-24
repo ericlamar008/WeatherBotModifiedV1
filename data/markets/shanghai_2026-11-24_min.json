@@ -219,11 +219,11 @@
         5.0,
         5.0
       ],
-      "yes_price": 0.2425,
+      "yes_price": 0.008,
       "no_price": 0.743,
       "best_bid": 0.001,
-      "best_ask": 0.484,
-      "bid_ask_spread": 0.483,
+      "best_ask": 0.015,
+      "bid_ask_spread": 0.014,
       "volume": 275.0,
       "spread": 0.508,
       "yes_token_id": "104163658191982479023632918935568149168490456168418476642296900574912209445974",
@@ -231,14 +231,14 @@
       "model_prob": 0.0451,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.2425,
-      "effective_ask": 0.3225,
-      "market_prob": 0.2425,
-      "belief_prob": 0.1142,
-      "ev": -0.6459,
-      "kelly": 0.0,
-      "swing_edge": -0.1974,
-      "swing_upside_pct": -81.4,
+      "ask": 0.008,
+      "effective_ask": 0.008,
+      "market_prob": 0.008,
+      "belief_prob": 0.0321,
+      "ev": 3.0125,
+      "kelly": 0.0061,
+      "swing_edge": 0.0371,
+      "swing_upside_pct": 0.0,
       "sell_value": 0.003,
       "scan6h_model_prob": 0.0451,
       "prev_scan6h_model_prob": 0.0451,
@@ -252,13 +252,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.257,
       "prev_scan6h_yes_price": 0.257,
-      "prev_yes_price": 0.034,
-      "yes_price_10m_change": 0.2085,
-      "yes_price_10m_pct_change": 613.2,
-      "yes_price_6h_change": -0.0145,
-      "yes_price_6h_pct_change": -5.6,
-      "yes_price_change": 0.2085,
-      "yes_price_pct_change": 613.2,
+      "prev_yes_price": 0.2425,
+      "yes_price_10m_change": -0.2345,
+      "yes_price_10m_pct_change": -96.7,
+      "yes_price_6h_change": -0.249,
+      "yes_price_6h_pct_change": -96.9,
+      "yes_price_change": -0.2345,
+      "yes_price_pct_change": -96.7,
       "price_history": [
         {
           "t": "2026-11-24T14:27:18Z",
@@ -315,9 +315,16 @@
           "mp": 0.0451,
           "bid": 0.001,
           "ask": 0.484
+        },
+        {
+          "t": "2026-11-24T16:07:35Z",
+          "p": 0.008,
+          "mp": 0.0451,
+          "bid": 0.001,
+          "ask": 0.015
         }
       ],
-      "prev_10m_yes_price": 0.034
+      "prev_10m_yes_price": 0.2425
     },
     {
       "question": "Will the lowest temperature in Shanghai be 6°C on November 24?",
@@ -418,6 +425,13 @@
         },
         {
           "t": "2026-11-24T15:47:32Z",
+          "p": 0.99,
+          "mp": 0.271,
+          "bid": 0.981,
+          "ask": 0.999
+        },
+        {
+          "t": "2026-11-24T16:07:35Z",
           "p": 0.99,
           "mp": 0.271,
           "bid": 0.981,
@@ -702,5 +716,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-24T15:57:33.412376+00:00"
+  "last_price_refresh": "2026-11-24T16:07:33.635203+00:00"
 }
