@@ -638,10 +638,10 @@
         44.0,
         45.0
       ],
-      "yes_price": 0.005,
+      "yes_price": 0.0045,
       "no_price": 0.995,
       "best_bid": null,
-      "best_ask": 0.01,
+      "best_ask": 0.009,
       "bid_ask_spread": 0.0,
       "volume": 63.0,
       "spread": 0.0,
@@ -650,13 +650,13 @@
       "model_prob": 0.016,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.005,
-      "effective_ask": 0.005,
-      "market_prob": 0.005,
-      "belief_prob": 0.0122,
-      "ev": 1.44,
-      "kelly": 0.0018,
-      "swing_edge": 0.011,
+      "ask": 0.0045,
+      "effective_ask": 0.0045,
+      "market_prob": 0.0045,
+      "belief_prob": 0.012,
+      "ev": 1.6667,
+      "kelly": 0.0019,
+      "swing_edge": 0.0115,
       "swing_upside_pct": 0.0,
       "sell_value": null,
       "prev_scan6h_model_prob": 0.016,
@@ -670,15 +670,15 @@
       "model_prob_change": 0.0,
       "model_prob_pct_change": 0.0,
       "prev_10m_yes_price": 0.005,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -10.0,
       "prev_scan6h_yes_price": 0.005,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
+      "yes_price_6h_change": -0.0005,
+      "yes_price_6h_pct_change": -10.0,
       "scan6h_yes_price": 0.005,
       "prev_yes_price": 0.005,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -10.0,
       "price_history": [
         {
           "t": "2026-11-24T02:22:13Z",
@@ -1933,6 +1933,13 @@
           "mp": 0.2829,
           "bid": 0.37,
           "ask": 0.42
+        },
+        {
+          "t": "2026-11-24T07:07:34Z",
+          "p": 0.395,
+          "mp": 0.2829,
+          "bid": 0.37,
+          "ask": 0.42
         }
       ]
     },
@@ -3085,5 +3092,5 @@
   "confidence": 0.0791,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-24T06:57:32.309832+00:00"
+  "last_price_refresh": "2026-11-24T07:07:33.861293+00:00"
 }
