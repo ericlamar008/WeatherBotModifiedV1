@@ -46,11 +46,11 @@
         -999.0,
         20.0
       ],
-      "yes_price": 0.007,
+      "yes_price": 0.0075,
       "no_price": 0.993,
       "best_bid": 0.001,
-      "best_ask": 0.013,
-      "bid_ask_spread": 0.012,
+      "best_ask": 0.014,
+      "bid_ask_spread": 0.013,
       "volume": 136.0,
       "spread": 0.012,
       "yes_token_id": "109762982873811849960992864214769512207849970345151909057082644350485444826948",
@@ -58,13 +58,13 @@
       "model_prob": 0.0037,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.007,
-      "effective_ask": 0.007,
-      "market_prob": 0.007,
-      "belief_prob": 0.0049,
-      "ev": -0.3,
+      "ask": 0.0075,
+      "effective_ask": 0.0075,
+      "market_prob": 0.0075,
+      "belief_prob": 0.005,
+      "ev": -0.3333,
       "kelly": 0.0,
-      "swing_edge": -0.0033,
+      "swing_edge": -0.0038,
       "swing_upside_pct": 0.0,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.0037,
@@ -80,12 +80,12 @@
       "scan6h_yes_price": 0.007,
       "prev_scan6h_yes_price": 0.007,
       "prev_yes_price": 0.007,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 7.1,
       "yes_price_6h_change": 0.0,
       "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 7.1,
       "price_history": [
         {
           "t": "2026-11-25T14:26:41Z",
@@ -94,7 +94,8 @@
           "bid": 0.001,
           "ask": 0.013
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.007
     },
     {
       "question": "Will the highest temperature in Cape Town be 21°C on November 26?",
@@ -151,7 +152,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the highest temperature in Cape Town be 24°C on November 26?",
@@ -178,8 +180,8 @@
       "belief_prob": 0.1157,
       "ev": -0.0781,
       "kelly": 0.0,
-      "swing_edge": -0.0121,
-      "swing_upside_pct": -9.6,
+      "swing_edge": -0.0066,
+      "swing_upside_pct": -5.5,
       "sell_value": 0.1,
       "scan6h_model_prob": 0.1134,
       "prev_scan6h_model_prob": 0.1134,
@@ -208,7 +210,8 @@
           "bid": 0.1,
           "ask": 0.14
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.12
     },
     {
       "question": "Will the highest temperature in Cape Town be 25°C on November 26?",
@@ -235,8 +238,8 @@
       "belief_prob": 0.2486,
       "ev": -0.0672,
       "kelly": 0.0,
-      "swing_edge": -0.0186,
-      "swing_upside_pct": -7.0,
+      "swing_edge": -0.0021,
+      "swing_upside_pct": -0.8,
       "sell_value": 0.22,
       "scan6h_model_prob": 0.2479,
       "prev_scan6h_model_prob": 0.2479,
@@ -265,7 +268,8 @@
           "bid": 0.22,
           "ask": 0.28
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.25
     },
     {
       "question": "Will the highest temperature in Cape Town be 26°C on November 26?",
@@ -292,8 +296,8 @@
       "belief_prob": 0.3031,
       "ev": -0.1006,
       "kelly": 0.0,
-      "swing_edge": -0.0403,
-      "swing_upside_pct": -12.0,
+      "swing_edge": -0.0183,
+      "swing_upside_pct": -5.8,
       "sell_value": 0.28,
       "scan6h_model_prob": 0.2967,
       "prev_scan6h_model_prob": 0.2967,
@@ -322,7 +326,8 @@
           "bid": 0.28,
           "ask": 0.35
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.315
     },
     {
       "question": "Will the highest temperature in Cape Town be 27°C on November 26?",
@@ -349,8 +354,8 @@
       "belief_prob": 0.1906,
       "ev": -0.1566,
       "kelly": 0.0,
-      "swing_edge": -0.0486,
-      "swing_upside_pct": -21.5,
+      "swing_edge": -0.0376,
+      "swing_upside_pct": -17.5,
       "sell_value": 0.19,
       "scan6h_model_prob": 0.1774,
       "prev_scan6h_model_prob": 0.1774,
@@ -379,7 +384,8 @@
           "bid": 0.19,
           "ask": 0.24
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.215
     },
     {
       "question": "Will the highest temperature in Cape Town be 28°C on November 26?",
@@ -436,7 +442,8 @@
           "bid": 0.036,
           "ask": 0.05
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.043
     },
     {
       "question": "Will the highest temperature in Cape Town be 29°C on November 26?",
@@ -493,7 +500,8 @@
           "bid": 0.006,
           "ask": 0.03
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.018
     }
   ],
   "live_allocation": [],
@@ -505,5 +513,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-25T14:37:28.096866+00:00"
 }
