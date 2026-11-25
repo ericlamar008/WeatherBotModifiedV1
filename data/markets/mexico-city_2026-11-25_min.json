@@ -47,9 +47,9 @@
         10.0,
         10.0
       ],
-      "yes_price": 0.53,
+      "yes_price": 0.6,
       "no_price": 0.495,
-      "best_bid": 0.06,
+      "best_bid": 0.2,
       "best_ask": 1.0,
       "bid_ask_spread": 0.0,
       "volume": 15.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.3074,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.53,
-      "effective_ask": 0.53,
-      "market_prob": 0.53,
-      "belief_prob": 0.3853,
-      "ev": -0.273,
+      "ask": 0.6,
+      "effective_ask": 0.6,
+      "market_prob": 0.6,
+      "belief_prob": 0.4098,
+      "ev": -0.317,
       "kelly": 0.0,
-      "swing_edge": -0.2226,
-      "swing_upside_pct": -42.0,
+      "swing_edge": -0.2926,
+      "swing_upside_pct": -48.8,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.3074,
       "prev_scan6h_model_prob": 0.3074,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.505,
       "prev_scan6h_yes_price": 0.505,
-      "prev_yes_price": 0.505,
-      "yes_price_10m_change": 0.025,
-      "yes_price_10m_pct_change": 5.0,
-      "yes_price_6h_change": 0.025,
-      "yes_price_6h_pct_change": 5.0,
-      "yes_price_change": 0.025,
-      "yes_price_pct_change": 5.0,
+      "prev_yes_price": 0.53,
+      "yes_price_10m_change": 0.07,
+      "yes_price_10m_pct_change": 13.2,
+      "yes_price_6h_change": 0.095,
+      "yes_price_6h_pct_change": 18.8,
+      "yes_price_change": 0.07,
+      "yes_price_pct_change": 13.2,
       "price_history": [
         {
           "t": "2026-11-25T14:26:44Z",
@@ -136,9 +136,16 @@
           "mp": 0.3074,
           "bid": 0.06,
           "ask": 1.0
+        },
+        {
+          "t": "2026-11-25T16:37:34Z",
+          "p": 0.6,
+          "mp": 0.3074,
+          "bid": 0.2,
+          "ask": 1.0
         }
       ],
-      "prev_10m_yes_price": 0.505
+      "prev_10m_yes_price": 0.53
     },
     {
       "question": "Will the lowest temperature in Mexico City be 11°C on November 25?",
@@ -218,6 +225,13 @@
         },
         {
           "t": "2026-11-25T16:17:36Z",
+          "p": 0.0005,
+          "mp": 0.2682,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-25T16:37:34Z",
           "p": 0.0005,
           "mp": 0.2682,
           "bid": null,
@@ -308,6 +322,13 @@
           "mp": 0.118,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-25T16:37:34Z",
+          "p": 0.0005,
+          "mp": 0.118,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -390,6 +411,13 @@
         },
         {
           "t": "2026-11-25T16:17:36Z",
+          "p": 0.0005,
+          "mp": 0.038,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-25T16:37:34Z",
           "p": 0.0005,
           "mp": 0.038,
           "bid": null,
@@ -480,6 +508,13 @@
           "mp": 0.0042,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-25T16:37:34Z",
+          "p": 0.0005,
+          "mp": 0.0042,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -512,5 +547,5 @@
   "confidence": 0.4388,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-25T16:17:34.959884+00:00"
+  "last_price_refresh": "2026-11-25T16:37:32.377270+00:00"
 }
