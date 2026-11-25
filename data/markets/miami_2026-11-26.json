@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Miami be between 70-71°F on November 26?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Miami be between 76-77°F on November 26?",
@@ -159,11 +161,11 @@
         76.0,
         77.0
       ],
-      "yes_price": 0.1,
+      "yes_price": 0.095,
       "no_price": 0.9,
-      "best_bid": 0.08,
+      "best_bid": 0.07,
       "best_ask": 0.12,
-      "bid_ask_spread": 0.04,
+      "bid_ask_spread": 0.05,
       "volume": 25.0,
       "spread": 0.04,
       "yes_token_id": "82740676129797366342737139705026509889002155917589424212150462095264988322320",
@@ -171,14 +173,14 @@
       "model_prob": 0.2983,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1,
-      "effective_ask": 0.1055,
-      "market_prob": 0.1,
-      "belief_prob": 0.2289,
-      "ev": 1.1697,
-      "kelly": 0.0345,
-      "swing_edge": 0.1928,
-      "swing_upside_pct": 182.7,
+      "ask": 0.095,
+      "effective_ask": 0.106,
+      "market_prob": 0.095,
+      "belief_prob": 0.2271,
+      "ev": 1.1425,
+      "kelly": 0.0339,
+      "swing_edge": 0.2033,
+      "swing_upside_pct": 214.0,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.2983,
       "prev_scan6h_model_prob": 0.2983,
@@ -193,12 +195,12 @@
       "scan6h_yes_price": 0.1,
       "prev_scan6h_yes_price": 0.1,
       "prev_yes_price": 0.1,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -5.0,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -5.0,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -5.0,
       "price_history": [
         {
           "t": "2026-11-25T02:24:40Z",
@@ -206,8 +208,16 @@
           "mp": 0.2983,
           "bid": 0.08,
           "ask": 0.12
+        },
+        {
+          "t": "2026-11-25T02:37:38Z",
+          "p": 0.095,
+          "mp": 0.2983,
+          "bid": 0.07,
+          "ask": 0.12
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.1
     },
     {
       "question": "Will the highest temperature in Miami be between 78-79°F on November 26?",
@@ -216,11 +226,11 @@
         78.0,
         79.0
       ],
-      "yes_price": 0.635,
+      "yes_price": 0.64,
       "no_price": 0.365,
-      "best_bid": 0.61,
+      "best_bid": 0.62,
       "best_ask": 0.66,
-      "bid_ask_spread": 0.05,
+      "bid_ask_spread": 0.04,
       "volume": 332.0,
       "spread": 0.05,
       "yes_token_id": "93896796256762478785336214373940117349671220814363224339992494867836383142262",
@@ -228,14 +238,14 @@
       "model_prob": 0.4604,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.635,
-      "effective_ask": 0.646,
-      "market_prob": 0.635,
-      "belief_prob": 0.5215,
-      "ev": -0.1927,
+      "ask": 0.64,
+      "effective_ask": 0.6455,
+      "market_prob": 0.64,
+      "belief_prob": 0.5233,
+      "ev": -0.1893,
       "kelly": 0.0,
-      "swing_edge": -0.1856,
-      "swing_upside_pct": -28.7,
+      "swing_edge": -0.1796,
+      "swing_upside_pct": -28.1,
       "sell_value": 0.61,
       "scan6h_model_prob": 0.4604,
       "prev_scan6h_model_prob": 0.4604,
@@ -250,12 +260,12 @@
       "scan6h_yes_price": 0.635,
       "prev_scan6h_yes_price": 0.635,
       "prev_yes_price": 0.635,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 0.8,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 0.8,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 0.8,
       "price_history": [
         {
           "t": "2026-11-25T02:24:40Z",
@@ -263,8 +273,16 @@
           "mp": 0.4604,
           "bid": 0.61,
           "ask": 0.66
+        },
+        {
+          "t": "2026-11-25T02:37:38Z",
+          "p": 0.64,
+          "mp": 0.4604,
+          "bid": 0.62,
+          "ask": 0.66
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.635
     },
     {
       "question": "Will the highest temperature in Miami be between 80-81°F on November 26?",
@@ -275,9 +293,9 @@
       ],
       "yes_price": 0.245,
       "no_price": 0.755,
-      "best_bid": 0.2,
-      "best_ask": 0.29,
-      "bid_ask_spread": 0.09,
+      "best_bid": 0.22,
+      "best_ask": 0.27,
+      "bid_ask_spread": 0.05,
       "volume": 555.0,
       "spread": 0.09,
       "yes_token_id": "68428402372852453923426547673669412893669457313078403437799369511531452386755",
@@ -286,13 +304,13 @@
       "intraday_eliminated": false,
       "side": "YES",
       "ask": 0.245,
-      "effective_ask": 0.278,
+      "effective_ask": 0.256,
       "market_prob": 0.245,
       "belief_prob": 0.1786,
-      "ev": -0.3576,
+      "ev": -0.3023,
       "kelly": 0.0,
-      "swing_edge": -0.1351,
-      "swing_upside_pct": -48.6,
+      "swing_edge": -0.1021,
+      "swing_upside_pct": -41.7,
       "sell_value": 0.2,
       "scan6h_model_prob": 0.1429,
       "prev_scan6h_model_prob": 0.1429,
@@ -321,7 +339,8 @@
           "bid": 0.2,
           "ask": 0.29
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.245
     },
     {
       "question": "Will the highest temperature in Miami be between 86-87°F on November 26?",
@@ -378,7 +397,8 @@
           "bid": 0.001,
           "ask": 0.016
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0085
     }
   ],
   "live_allocation": [
@@ -407,5 +427,6 @@
   "success_probability": 0.5501,
   "confidence": 0.5189,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-25T02:37:36.847003+00:00"
 }
