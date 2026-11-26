@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Tokyo be 13°C on November 27?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.014
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.007
     },
     {
       "question": "Will the highest temperature in Tokyo be 14°C on November 27?",
@@ -207,7 +209,8 @@
           "bid": null,
           "ask": 0.011
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0055
     },
     {
       "question": "Will the highest temperature in Tokyo be 15°C on November 27?",
@@ -216,11 +219,11 @@
         15.0,
         15.0
       ],
-      "yes_price": 0.0165,
+      "yes_price": 0.0195,
       "no_price": 0.9835,
       "best_bid": 0.01,
-      "best_ask": 0.023,
-      "bid_ask_spread": 0.013,
+      "best_ask": 0.029,
+      "bid_ask_spread": 0.019,
       "volume": 261.0,
       "spread": 0.013,
       "yes_token_id": "80182069998749027369856795123094282132023918593117873017962354629287259495879",
@@ -228,14 +231,14 @@
       "model_prob": 0.0237,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0165,
-      "effective_ask": 0.0165,
-      "market_prob": 0.0165,
-      "belief_prob": 0.0212,
-      "ev": 0.2848,
-      "kelly": 0.0012,
-      "swing_edge": 0.0072,
-      "swing_upside_pct": 43.6,
+      "ask": 0.0195,
+      "effective_ask": 0.0195,
+      "market_prob": 0.0195,
+      "belief_prob": 0.0222,
+      "ev": 0.1385,
+      "kelly": 0.0007,
+      "swing_edge": 0.0042,
+      "swing_upside_pct": 21.5,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.0237,
       "prev_scan6h_model_prob": 0.0237,
@@ -250,12 +253,12 @@
       "scan6h_yes_price": 0.0165,
       "prev_scan6h_yes_price": 0.0165,
       "prev_yes_price": 0.0165,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.003,
+      "yes_price_10m_pct_change": 18.2,
+      "yes_price_6h_change": 0.003,
+      "yes_price_6h_pct_change": 18.2,
+      "yes_price_change": 0.003,
+      "yes_price_pct_change": 18.2,
       "price_history": [
         {
           "t": "2026-11-26T02:24:52Z",
@@ -264,7 +267,8 @@
           "bid": 0.01,
           "ask": 0.023
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0165
     },
     {
       "question": "Will the highest temperature in Tokyo be 16°C on November 27?",
@@ -321,7 +325,8 @@
           "bid": 0.15,
           "ask": 0.16
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.155
     },
     {
       "question": "Will the highest temperature in Tokyo be 17°C on November 27?",
@@ -378,7 +383,8 @@
           "bid": 0.42,
           "ask": 0.44
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.43
     },
     {
       "question": "Will the highest temperature in Tokyo be 18°C on November 27?",
@@ -435,7 +441,8 @@
           "bid": 0.32,
           "ask": 0.35
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.335
     },
     {
       "question": "Will the highest temperature in Tokyo be 19°C on November 27?",
@@ -492,7 +499,8 @@
           "bid": 0.05,
           "ask": 0.07
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.06
     },
     {
       "question": "Will the highest temperature in Tokyo be 20°C on November 27?",
@@ -549,7 +557,8 @@
           "bid": 0.004,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.007
     },
     {
       "question": "Will the highest temperature in Tokyo be 21°C on November 27?",
@@ -606,7 +615,8 @@
           "bid": null,
           "ask": 0.006
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.003
     },
     {
       "question": "Will the highest temperature in Tokyo be 22°C or higher on November 27?",
@@ -663,7 +673,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [],
@@ -675,5 +686,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-26T02:37:32.594029+00:00"
 }

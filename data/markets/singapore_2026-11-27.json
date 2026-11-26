@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Singapore be 27°C on November 27?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.005
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0025
     },
     {
       "question": "Will the highest temperature in Singapore be 28°C on November 27?",
@@ -207,7 +209,8 @@
           "bid": 0.003,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0065
     },
     {
       "question": "Will the highest temperature in Singapore be 29°C on November 27?",
@@ -216,11 +219,11 @@
         29.0,
         29.0
       ],
-      "yes_price": 0.022,
+      "yes_price": 0.0195,
       "no_price": 0.978,
-      "best_bid": 0.015,
+      "best_bid": 0.01,
       "best_ask": 0.029,
-      "bid_ask_spread": 0.014,
+      "bid_ask_spread": 0.019,
       "volume": 100.0,
       "spread": 0.014,
       "yes_token_id": "28143321376280503811056026266422103876961423504492424138857418103451343992141",
@@ -228,14 +231,14 @@
       "model_prob": 0.1517,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.022,
-      "effective_ask": 0.022,
-      "market_prob": 0.022,
-      "belief_prob": 0.1063,
-      "ev": 3.8318,
-      "kelly": 0.0215,
-      "swing_edge": 0.1297,
-      "swing_upside_pct": 589.5,
+      "ask": 0.0195,
+      "effective_ask": 0.0195,
+      "market_prob": 0.0195,
+      "belief_prob": 0.1054,
+      "ev": 4.4051,
+      "kelly": 0.0219,
+      "swing_edge": 0.1322,
+      "swing_upside_pct": 677.9,
       "sell_value": 0.015,
       "scan6h_model_prob": 0.1517,
       "prev_scan6h_model_prob": 0.1517,
@@ -250,12 +253,12 @@
       "scan6h_yes_price": 0.022,
       "prev_scan6h_yes_price": 0.022,
       "prev_yes_price": 0.022,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0025,
+      "yes_price_10m_pct_change": -11.4,
+      "yes_price_6h_change": -0.0025,
+      "yes_price_6h_pct_change": -11.4,
+      "yes_price_change": -0.0025,
+      "yes_price_pct_change": -11.4,
       "price_history": [
         {
           "t": "2026-11-26T02:24:52Z",
@@ -264,7 +267,8 @@
           "bid": 0.015,
           "ask": 0.029
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.022
     },
     {
       "question": "Will the highest temperature in Singapore be 30°C on November 27?",
@@ -273,11 +277,11 @@
         30.0,
         30.0
       ],
-      "yes_price": 0.095,
+      "yes_price": 0.09,
       "no_price": 0.905,
       "best_bid": 0.08,
-      "best_ask": 0.11,
-      "bid_ask_spread": 0.03,
+      "best_ask": 0.1,
+      "bid_ask_spread": 0.02,
       "volume": 294.0,
       "spread": 0.03,
       "yes_token_id": "14848312437332264929590478314273922276099535198960917196821630939210253318911",
@@ -285,14 +289,14 @@
       "model_prob": 0.2683,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.095,
-      "effective_ask": 0.095,
-      "market_prob": 0.095,
-      "belief_prob": 0.2076,
-      "ev": 1.1853,
-      "kelly": 0.0311,
-      "swing_edge": 0.1733,
-      "swing_upside_pct": 182.4,
+      "ask": 0.09,
+      "effective_ask": 0.09,
+      "market_prob": 0.09,
+      "belief_prob": 0.2059,
+      "ev": 1.2878,
+      "kelly": 0.0318,
+      "swing_edge": 0.1783,
+      "swing_upside_pct": 198.1,
       "sell_value": 0.08,
       "scan6h_model_prob": 0.2683,
       "prev_scan6h_model_prob": 0.2683,
@@ -307,12 +311,12 @@
       "scan6h_yes_price": 0.095,
       "prev_scan6h_yes_price": 0.095,
       "prev_yes_price": 0.095,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -5.3,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -5.3,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -5.3,
       "price_history": [
         {
           "t": "2026-11-26T02:24:52Z",
@@ -320,8 +324,16 @@
           "mp": 0.2683,
           "bid": 0.08,
           "ask": 0.11
+        },
+        {
+          "t": "2026-11-26T02:37:33Z",
+          "p": 0.09,
+          "mp": 0.2683,
+          "bid": 0.08,
+          "ask": 0.1
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.095
     },
     {
       "question": "Will the highest temperature in Singapore be 31°C on November 27?",
@@ -348,8 +360,8 @@
       "belief_prob": 0.2913,
       "ev": -0.1806,
       "kelly": 0.0,
-      "swing_edge": -0.0958,
-      "swing_upside_pct": -26.9,
+      "swing_edge": -0.0903,
+      "swing_upside_pct": -25.8,
       "sell_value": 0.33,
       "scan6h_model_prob": 0.2597,
       "prev_scan6h_model_prob": 0.2597,
@@ -378,7 +390,8 @@
           "bid": 0.33,
           "ask": 0.37
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.35
     },
     {
       "question": "Will the highest temperature in Singapore be 32°C on November 27?",
@@ -387,11 +400,11 @@
         32.0,
         32.0
       ],
-      "yes_price": 0.425,
+      "yes_price": 0.435,
       "no_price": 0.575,
       "best_bid": 0.42,
-      "best_ask": 0.43,
-      "bid_ask_spread": 0.01,
+      "best_ask": 0.45,
+      "bid_ask_spread": 0.03,
       "volume": 490.0,
       "spread": 0.01,
       "yes_token_id": "95618074576091778116324412058726281673049332269322142074933868954276618746414",
@@ -399,14 +412,14 @@
       "model_prob": 0.1397,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.425,
-      "effective_ask": 0.425,
-      "market_prob": 0.425,
-      "belief_prob": 0.2396,
-      "ev": -0.4362,
+      "ask": 0.435,
+      "effective_ask": 0.435,
+      "market_prob": 0.435,
+      "belief_prob": 0.2431,
+      "ev": -0.4411,
       "kelly": 0.0,
-      "swing_edge": -0.2853,
-      "swing_upside_pct": -67.1,
+      "swing_edge": -0.2953,
+      "swing_upside_pct": -67.9,
       "sell_value": 0.42,
       "scan6h_model_prob": 0.1397,
       "prev_scan6h_model_prob": 0.1397,
@@ -421,12 +434,12 @@
       "scan6h_yes_price": 0.425,
       "prev_scan6h_yes_price": 0.425,
       "prev_yes_price": 0.425,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 2.4,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 2.4,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 2.4,
       "price_history": [
         {
           "t": "2026-11-26T02:24:52Z",
@@ -434,8 +447,16 @@
           "mp": 0.1397,
           "bid": 0.42,
           "ask": 0.43
+        },
+        {
+          "t": "2026-11-26T02:37:33Z",
+          "p": 0.435,
+          "mp": 0.1397,
+          "bid": 0.42,
+          "ask": 0.45
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.425
     },
     {
       "question": "Will the highest temperature in Singapore be 33°C on November 27?",
@@ -462,8 +483,8 @@
       "belief_prob": 0.077,
       "ev": -0.3865,
       "kelly": 0.0,
-      "swing_edge": -0.0716,
-      "swing_upside_pct": -57.1,
+      "swing_edge": -0.0661,
+      "swing_upside_pct": -55.1,
       "sell_value": 0.1,
       "scan6h_model_prob": 0.0539,
       "prev_scan6h_model_prob": 0.0539,
@@ -492,7 +513,8 @@
           "bid": 0.1,
           "ask": 0.14
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.12
     },
     {
       "question": "Will the highest temperature in Singapore be 34°C on November 27?",
@@ -549,7 +571,8 @@
           "bid": 0.012,
           "ask": 0.022
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.017
     },
     {
       "question": "Will the highest temperature in Singapore be 35°C on November 27?",
@@ -606,7 +629,8 @@
           "bid": null,
           "ask": 0.008
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.004
     },
     {
       "question": "Will the highest temperature in Singapore be 36°C or higher on November 27?",
@@ -663,7 +687,8 @@
           "bid": null,
           "ask": 0.004
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.002
     }
   ],
   "live_allocation": [],
@@ -675,5 +700,6 @@
   "success_probability": null,
   "confidence": null,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-26T02:37:32.594029+00:00"
 }
