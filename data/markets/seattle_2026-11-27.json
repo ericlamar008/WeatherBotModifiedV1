@@ -94,7 +94,8 @@
           "bid": null,
           "ask": 0.002
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.001
     },
     {
       "question": "Will the highest temperature in Seattle be between 46-47°F on November 27?",
@@ -103,11 +104,11 @@
         46.0,
         47.0
       ],
-      "yes_price": 0.029,
+      "yes_price": 0.0305,
       "no_price": 0.971,
-      "best_bid": 0.019,
-      "best_ask": 0.039,
-      "bid_ask_spread": 0.02,
+      "best_bid": 0.021,
+      "best_ask": 0.04,
+      "bid_ask_spread": 0.019,
       "volume": 124.0,
       "spread": 0.02,
       "yes_token_id": "267588826714793064442438747719451892040807681060425382368247814676966876558",
@@ -115,14 +116,14 @@
       "model_prob": 0.0229,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.029,
-      "effective_ask": 0.029,
-      "market_prob": 0.029,
-      "belief_prob": 0.025,
-      "ev": -0.1379,
+      "ask": 0.0305,
+      "effective_ask": 0.0305,
+      "market_prob": 0.0305,
+      "belief_prob": 0.0256,
+      "ev": -0.1607,
       "kelly": 0.0,
-      "swing_edge": -0.0061,
-      "swing_upside_pct": -21.0,
+      "swing_edge": -0.0076,
+      "swing_upside_pct": -24.9,
       "sell_value": 0.019,
       "scan6h_model_prob": 0.0229,
       "prev_scan6h_model_prob": 0.0229,
@@ -137,12 +138,12 @@
       "scan6h_yes_price": 0.029,
       "prev_scan6h_yes_price": 0.029,
       "prev_yes_price": 0.029,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0015,
+      "yes_price_10m_pct_change": 5.2,
+      "yes_price_6h_change": 0.0015,
+      "yes_price_6h_pct_change": 5.2,
+      "yes_price_change": 0.0015,
+      "yes_price_pct_change": 5.2,
       "price_history": [
         {
           "t": "2026-11-26T14:24:29Z",
@@ -151,7 +152,8 @@
           "bid": 0.019,
           "ask": 0.039
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.029
     },
     {
       "question": "Will the highest temperature in Seattle be between 48-49°F on November 27?",
@@ -208,7 +210,8 @@
           "bid": 0.21,
           "ask": 0.24
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.225
     },
     {
       "question": "Will the highest temperature in Seattle be between 50-51°F on November 27?",
@@ -265,7 +268,8 @@
           "bid": 0.54,
           "ask": 0.57
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.555
     },
     {
       "question": "Will the highest temperature in Seattle be between 52-53°F on November 27?",
@@ -274,11 +278,11 @@
         52.0,
         53.0
       ],
-      "yes_price": 0.155,
+      "yes_price": 0.16,
       "no_price": 0.845,
-      "best_bid": 0.14,
+      "best_bid": 0.15,
       "best_ask": 0.17,
-      "bid_ask_spread": 0.03,
+      "bid_ask_spread": 0.02,
       "volume": 301.0,
       "spread": 0.03,
       "yes_token_id": "65657419783971001345126808845427063409816943188138946256340200753880451260014",
@@ -286,14 +290,14 @@
       "model_prob": 0.0721,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.155,
-      "effective_ask": 0.155,
-      "market_prob": 0.155,
-      "belief_prob": 0.1011,
-      "ev": -0.3477,
+      "ask": 0.16,
+      "effective_ask": 0.16,
+      "market_prob": 0.16,
+      "belief_prob": 0.1029,
+      "ev": -0.3569,
       "kelly": 0.0,
-      "swing_edge": -0.0829,
-      "swing_upside_pct": -53.5,
+      "swing_edge": -0.0879,
+      "swing_upside_pct": -54.9,
       "sell_value": 0.14,
       "scan6h_model_prob": 0.0721,
       "prev_scan6h_model_prob": 0.0721,
@@ -308,12 +312,12 @@
       "scan6h_yes_price": 0.155,
       "prev_scan6h_yes_price": 0.155,
       "prev_yes_price": 0.155,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 3.2,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 3.2,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 3.2,
       "price_history": [
         {
           "t": "2026-11-26T14:24:29Z",
@@ -321,8 +325,16 @@
           "mp": 0.0721,
           "bid": 0.14,
           "ask": 0.17
+        },
+        {
+          "t": "2026-11-26T14:37:40Z",
+          "p": 0.16,
+          "mp": 0.0721,
+          "bid": 0.15,
+          "ask": 0.17
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.155
     },
     {
       "question": "Will the highest temperature in Seattle be between 54-55°F on November 27?",
@@ -379,7 +391,8 @@
           "bid": 0.006,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.008
     },
     {
       "question": "Will the highest temperature in Seattle be 58°F or higher on November 27?",
@@ -436,7 +449,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -465,5 +479,6 @@
   "success_probability": 0.5939,
   "confidence": 0.3551,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-26T14:37:39.202542+00:00"
 }
