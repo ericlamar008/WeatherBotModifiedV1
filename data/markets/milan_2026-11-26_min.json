@@ -48,10 +48,10 @@
         2.0,
         2.0
       ],
-      "yes_price": 0.27,
+      "yes_price": 0.0025,
       "no_price": 0.65,
       "best_bid": 0.02,
-      "best_ask": 0.54,
+      "best_ask": 0.005,
       "bid_ask_spread": 0.0,
       "volume": 2.0,
       "spread": 0.0,
@@ -60,14 +60,14 @@
       "model_prob": 0.2823,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.27,
-      "effective_ask": 0.27,
-      "market_prob": 0.27,
-      "belief_prob": 0.278,
-      "ev": 0.0296,
-      "kelly": 0.0027,
-      "swing_edge": 0.0123,
-      "swing_upside_pct": 4.6,
+      "ask": 0.0025,
+      "effective_ask": 0.0025,
+      "market_prob": 0.0025,
+      "belief_prob": 0.1844,
+      "ev": 72.76,
+      "kelly": 0.0456,
+      "swing_edge": 0.2798,
+      "swing_upside_pct": 0.0,
       "sell_value": null,
       "scan6h_model_prob": 0.2823,
       "prev_scan6h_model_prob": 0.2823,
@@ -81,13 +81,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.35,
       "prev_scan6h_yes_price": 0.35,
-      "prev_yes_price": 0.055,
-      "yes_price_10m_change": 0.215,
-      "yes_price_10m_pct_change": 390.9,
-      "yes_price_6h_change": -0.08,
-      "yes_price_6h_pct_change": -22.9,
-      "yes_price_change": 0.215,
-      "yes_price_pct_change": 390.9,
+      "prev_yes_price": 0.27,
+      "yes_price_10m_change": -0.2675,
+      "yes_price_10m_pct_change": -99.1,
+      "yes_price_6h_change": -0.3475,
+      "yes_price_6h_pct_change": -99.3,
+      "yes_price_change": -0.2675,
+      "yes_price_pct_change": -99.1,
       "price_history": [
         {
           "t": "2026-11-26T20:24:07Z",
@@ -186,9 +186,16 @@
           "mp": 0.2823,
           "bid": 0.02,
           "ask": 0.54
+        },
+        {
+          "t": "2026-11-26T23:37:36Z",
+          "p": 0.0025,
+          "mp": 0.2823,
+          "bid": 0.02,
+          "ask": 0.005
         }
       ],
-      "prev_10m_yes_price": 0.055
+      "prev_10m_yes_price": 0.27
     },
     {
       "question": "Will the lowest temperature in Milan be 5°C on November 26?",
@@ -296,6 +303,13 @@
         },
         {
           "t": "2026-11-26T23:17:36Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-26T23:37:36Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -414,6 +428,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-26T23:37:36Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -524,6 +545,13 @@
         },
         {
           "t": "2026-11-26T23:17:36Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-26T23:37:36Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -642,6 +670,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-26T23:37:36Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -752,6 +787,13 @@
         },
         {
           "t": "2026-11-26T23:17:36Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-26T23:37:36Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -870,6 +912,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-26T23:37:36Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -902,5 +951,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-26T23:17:34.310222+00:00"
+  "last_price_refresh": "2026-11-26T23:37:34.747388+00:00"
 }
