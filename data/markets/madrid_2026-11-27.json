@@ -501,11 +501,11 @@
         11.0,
         11.0
       ],
-      "yes_price": 0.0875,
+      "yes_price": 0.084,
       "no_price": 0.915,
       "best_bid": 0.07,
-      "best_ask": 0.105,
-      "bid_ask_spread": 0.035,
+      "best_ask": 0.098,
+      "bid_ask_spread": 0.028,
       "volume": 1072.0,
       "spread": 0.036,
       "yes_token_id": "88787242285161725868066892422273971365118537777415331629953810177252536943594",
@@ -513,14 +513,14 @@
       "model_prob": 0.3019,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0875,
-      "effective_ask": 0.0902,
-      "market_prob": 0.0875,
-      "belief_prob": 0.2269,
-      "ev": 1.5155,
-      "kelly": 0.0376,
-      "swing_edge": 0.2144,
-      "swing_upside_pct": 245.0,
+      "ask": 0.084,
+      "effective_ask": 0.084,
+      "market_prob": 0.084,
+      "belief_prob": 0.2256,
+      "ev": 1.6857,
+      "kelly": 0.0386,
+      "swing_edge": 0.2179,
+      "swing_upside_pct": 259.4,
       "sell_value": 0.067,
       "scan6h_model_prob": 0.3019,
       "prev_scan6h_model_prob": 0.3019,
@@ -534,13 +534,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.085,
       "prev_scan6h_yes_price": 0.085,
-      "prev_yes_price": 0.098,
-      "yes_price_10m_change": -0.0105,
-      "yes_price_10m_pct_change": -10.7,
-      "yes_price_6h_change": 0.0025,
-      "yes_price_6h_pct_change": 2.9,
-      "yes_price_change": -0.0105,
-      "yes_price_pct_change": -10.7,
+      "prev_yes_price": 0.0875,
+      "yes_price_10m_change": -0.0035,
+      "yes_price_10m_pct_change": -4.0,
+      "yes_price_6h_change": -0.001,
+      "yes_price_6h_pct_change": -1.2,
+      "yes_price_change": -0.0035,
+      "yes_price_pct_change": -4.0,
       "price_history": [
         {
           "t": "2026-11-26T02:23:33Z",
@@ -564,7 +564,7 @@
           "ask": 0.105
         }
       ],
-      "prev_10m_yes_price": 0.098
+      "prev_10m_yes_price": 0.0875
     },
     {
       "question": "Will the highest temperature in Madrid be 12°C on November 27?",
@@ -575,9 +575,9 @@
       ],
       "yes_price": 0.315,
       "no_price": 0.67,
-      "best_bid": 0.3,
-      "best_ask": 0.33,
-      "bid_ask_spread": 0.03,
+      "best_bid": 0.31,
+      "best_ask": 0.32,
+      "bid_ask_spread": 0.01,
       "volume": 1610.0,
       "spread": 0.04,
       "yes_token_id": "71438418882651534214694998444155474204982123888954681707565580560985455289996",
@@ -627,6 +627,13 @@
           "mp": 0.323,
           "bid": 0.3,
           "ask": 0.33
+        },
+        {
+          "t": "2026-11-26T02:57:47Z",
+          "p": 0.315,
+          "mp": 0.323,
+          "bid": 0.31,
+          "ask": 0.32
         }
       ],
       "prev_10m_yes_price": 0.315
@@ -757,6 +764,13 @@
           "mp": 0.0592,
           "bid": 0.18,
           "ask": 0.22
+        },
+        {
+          "t": "2026-11-26T02:57:47Z",
+          "p": 0.2,
+          "mp": 0.0592,
+          "bid": 0.18,
+          "ask": 0.22
         }
       ],
       "prev_10m_yes_price": 0.2
@@ -772,5 +786,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-26T02:47:32.512980+00:00"
+  "last_price_refresh": "2026-11-26T02:57:46.771281+00:00"
 }
