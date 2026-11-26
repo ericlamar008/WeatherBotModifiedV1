@@ -48,11 +48,11 @@
         2.0,
         2.0
       ],
-      "yes_price": 0.35,
+      "yes_price": 0.36,
       "no_price": 0.65,
-      "best_bid": null,
-      "best_ask": 0.7,
-      "bid_ask_spread": 0.0,
+      "best_bid": 0.06,
+      "best_ask": 0.66,
+      "bid_ask_spread": 0.6,
       "volume": 2.0,
       "spread": 0.0,
       "yes_token_id": "35196882361144584205444856506447330872349755739207712257297659270007332528379",
@@ -60,14 +60,14 @@
       "model_prob": 0.2823,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.35,
-      "effective_ask": 0.35,
-      "market_prob": 0.35,
-      "belief_prob": 0.306,
-      "ev": -0.1257,
+      "ask": 0.36,
+      "effective_ask": 0.44,
+      "market_prob": 0.36,
+      "belief_prob": 0.3095,
+      "ev": -0.2966,
       "kelly": 0.0,
-      "swing_edge": -0.0677,
-      "swing_upside_pct": -19.3,
+      "swing_edge": -0.0777,
+      "swing_upside_pct": -21.6,
       "sell_value": null,
       "scan6h_model_prob": 0.2823,
       "prev_scan6h_model_prob": 0.2823,
@@ -82,12 +82,12 @@
       "scan6h_yes_price": 0.35,
       "prev_scan6h_yes_price": 0.35,
       "prev_yes_price": 0.35,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 2.9,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 2.9,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 2.9,
       "price_history": [
         {
           "t": "2026-11-26T20:24:07Z",
@@ -95,8 +95,16 @@
           "mp": 0.2823,
           "bid": null,
           "ask": 0.7
+        },
+        {
+          "t": "2026-11-26T20:37:34Z",
+          "p": 0.36,
+          "mp": 0.2823,
+          "bid": 0.06,
+          "ask": 0.66
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.35
     },
     {
       "question": "Will the lowest temperature in Milan be 5°C on November 26?",
@@ -120,7 +128,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -153,7 +161,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 6°C on November 26?",
@@ -177,7 +186,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -210,7 +219,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 7°C on November 26?",
@@ -234,7 +244,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -267,7 +277,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 8°C on November 26?",
@@ -291,7 +302,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -324,7 +335,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 9°C on November 26?",
@@ -348,7 +360,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -381,7 +393,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the lowest temperature in Milan be 10°C or higher on November 26?",
@@ -405,7 +418,7 @@
       "ask": 0.0005,
       "effective_ask": 0.0005,
       "market_prob": 0.0005,
-      "belief_prob": 0.0,
+      "belief_prob": 0.0002,
       "ev": -1.0,
       "kelly": 0.0,
       "swing_edge": -0.0005,
@@ -438,7 +451,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     }
   ],
   "live_allocation": [
@@ -467,5 +481,6 @@
   "success_probability": 0.6529,
   "confidence": 1.0,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-26T20:37:32.601596+00:00"
 }
