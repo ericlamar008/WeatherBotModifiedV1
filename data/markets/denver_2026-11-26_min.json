@@ -433,10 +433,10 @@
         26.0,
         27.0
       ],
-      "yes_price": 0.095,
+      "yes_price": 0.1,
       "no_price": 0.75,
       "best_bid": 0.02,
-      "best_ask": 0.19,
+      "best_ask": 0.2,
       "bid_ask_spread": 0.0,
       "volume": 30.0,
       "spread": 0.46,
@@ -445,14 +445,14 @@
       "model_prob": 0.3371,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.095,
-      "effective_ask": 0.095,
-      "market_prob": 0.095,
-      "belief_prob": 0.2524,
-      "ev": 1.6568,
-      "kelly": 0.0435,
-      "swing_edge": 0.2421,
-      "swing_upside_pct": 254.8,
+      "ask": 0.1,
+      "effective_ask": 0.1,
+      "market_prob": 0.1,
+      "belief_prob": 0.2541,
+      "ev": 1.541,
+      "kelly": 0.0428,
+      "swing_edge": 0.2371,
+      "swing_upside_pct": 237.1,
       "sell_value": 0.02,
       "scan6h_model_prob": 0.3371,
       "prev_scan6h_model_prob": 0.3371,
@@ -466,13 +466,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.25,
       "prev_scan6h_yes_price": 0.25,
-      "prev_yes_price": 0.225,
-      "yes_price_10m_change": -0.13,
-      "yes_price_10m_pct_change": -57.8,
-      "yes_price_6h_change": -0.155,
-      "yes_price_6h_pct_change": -62.0,
-      "yes_price_change": -0.13,
-      "yes_price_pct_change": -57.8,
+      "prev_yes_price": 0.095,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 5.3,
+      "yes_price_6h_change": -0.15,
+      "yes_price_6h_pct_change": -60.0,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 5.3,
       "price_history": [
         {
           "t": "2026-11-26T14:24:32Z",
@@ -578,9 +578,16 @@
           "mp": 0.3371,
           "bid": 0.02,
           "ask": 0.19
+        },
+        {
+          "t": "2026-11-26T17:47:45Z",
+          "p": 0.1,
+          "mp": 0.3371,
+          "bid": 0.02,
+          "ask": 0.2
         }
       ],
-      "prev_10m_yes_price": 0.225
+      "prev_10m_yes_price": 0.095
     },
     {
       "question": "Will the lowest temperature in Denver be between 28-29°F on November 26?",
@@ -731,6 +738,6 @@
   "confidence": 0.1307,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-26T17:37:34.191800+00:00",
+  "last_price_refresh": "2026-11-26T17:47:43.578888+00:00",
   "last_lite_refresh": "2026-11-26T14:20:49.532129+00:00"
 }
