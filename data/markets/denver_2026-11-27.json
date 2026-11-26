@@ -193,13 +193,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0135,
       "prev_scan6h_yes_price": 0.0135,
-      "prev_yes_price": 0.012,
-      "yes_price_10m_change": 0.001,
-      "yes_price_10m_pct_change": 8.3,
+      "prev_yes_price": 0.013,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.0005,
       "yes_price_6h_pct_change": -3.7,
-      "yes_price_change": 0.001,
-      "yes_price_pct_change": 8.3,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-26T20:22:08Z",
@@ -265,7 +265,7 @@
           "ask": 0.02
         }
       ],
-      "prev_10m_yes_price": 0.012
+      "prev_10m_yes_price": 0.013
     },
     {
       "question": "Will the highest temperature in Denver be between 60-61°F on November 27?",
@@ -395,11 +395,11 @@
         62.0,
         63.0
       ],
-      "yes_price": 0.4,
+      "yes_price": 0.405,
       "no_price": 0.58,
-      "best_bid": 0.37,
+      "best_bid": 0.38,
       "best_ask": 0.43,
-      "bid_ask_spread": 0.06,
+      "bid_ask_spread": 0.05,
       "volume": 134.0,
       "spread": 0.02,
       "yes_token_id": "88602522411643008790646242490444835919855807089899003937317862189887621878386",
@@ -407,14 +407,14 @@
       "model_prob": 0.2538,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.4,
-      "effective_ask": 0.4165,
-      "market_prob": 0.4,
-      "belief_prob": 0.305,
-      "ev": -0.2677,
+      "ask": 0.405,
+      "effective_ask": 0.416,
+      "market_prob": 0.405,
+      "belief_prob": 0.3067,
+      "ev": -0.2627,
       "kelly": 0.0,
-      "swing_edge": -0.1462,
-      "swing_upside_pct": -36.5,
+      "swing_edge": -0.1512,
+      "swing_upside_pct": -37.3,
       "sell_value": 0.41,
       "scan6h_model_prob": 0.2538,
       "prev_scan6h_model_prob": 0.2538,
@@ -428,13 +428,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.42,
       "prev_scan6h_yes_price": 0.42,
-      "prev_yes_price": 0.41,
-      "yes_price_10m_change": -0.01,
-      "yes_price_10m_pct_change": -2.4,
-      "yes_price_6h_change": -0.02,
-      "yes_price_6h_pct_change": -4.8,
-      "yes_price_change": -0.01,
-      "yes_price_pct_change": -2.4,
+      "prev_yes_price": 0.4,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 1.2,
+      "yes_price_6h_change": -0.015,
+      "yes_price_6h_pct_change": -3.6,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 1.2,
       "price_history": [
         {
           "t": "2026-11-26T20:22:08Z",
@@ -512,9 +512,16 @@
           "mp": 0.2538,
           "bid": 0.37,
           "ask": 0.43
+        },
+        {
+          "t": "2026-11-26T23:07:33Z",
+          "p": 0.405,
+          "mp": 0.2538,
+          "bid": 0.38,
+          "ask": 0.43
         }
       ],
-      "prev_10m_yes_price": 0.41
+      "prev_10m_yes_price": 0.4
     },
     {
       "question": "Will the highest temperature in Denver be between 64-65°F on November 27?",
@@ -1097,5 +1104,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-26T22:57:34.318040+00:00"
+  "last_price_refresh": "2026-11-26T23:07:32.848159+00:00"
 }
