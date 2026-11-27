@@ -177,11 +177,11 @@
         9.0,
         9.0
       ],
-      "yes_price": 0.44,
+      "yes_price": 0.45,
       "no_price": 0.56,
-      "best_bid": 0.19,
+      "best_bid": 0.21,
       "best_ask": 0.69,
-      "bid_ask_spread": 0.5,
+      "bid_ask_spread": 0.48,
       "volume": 434.0,
       "spread": 0.44,
       "yes_token_id": "112861758552143758721060181855604314955350816126963212542851198288915917352533",
@@ -189,14 +189,14 @@
       "model_prob": 0.3419,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.44,
-      "effective_ask": 0.52,
-      "market_prob": 0.44,
-      "belief_prob": 0.3762,
-      "ev": -0.2765,
+      "ask": 0.45,
+      "effective_ask": 0.53,
+      "market_prob": 0.45,
+      "belief_prob": 0.3797,
+      "ev": -0.2836,
       "kelly": 0.0,
-      "swing_edge": -0.0981,
-      "swing_upside_pct": -22.3,
+      "swing_edge": -0.1081,
+      "swing_upside_pct": -24.0,
       "sell_value": 0.22,
       "scan6h_model_prob": 0.3419,
       "prev_scan6h_model_prob": 0.3419,
@@ -210,13 +210,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.44,
       "prev_scan6h_yes_price": 0.44,
-      "prev_yes_price": 0.365,
-      "yes_price_10m_change": 0.075,
-      "yes_price_10m_pct_change": 20.5,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.075,
-      "yes_price_pct_change": 20.5,
+      "prev_yes_price": 0.44,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 2.3,
+      "yes_price_6h_change": 0.01,
+      "yes_price_6h_pct_change": 2.3,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 2.3,
       "price_history": [
         {
           "t": "2026-11-27T20:23:50Z",
@@ -238,9 +238,16 @@
           "mp": 0.3419,
           "bid": 0.19,
           "ask": 0.69
+        },
+        {
+          "t": "2026-11-27T20:57:36Z",
+          "p": 0.45,
+          "mp": 0.3419,
+          "bid": 0.21,
+          "ask": 0.69
         }
       ],
-      "prev_10m_yes_price": 0.365
+      "prev_10m_yes_price": 0.44
     },
     {
       "question": "Will the lowest temperature in Mexico City be 10°C on November 27?",
@@ -400,5 +407,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-27T20:47:38.044028+00:00"
+  "last_price_refresh": "2026-11-27T20:57:34.233104+00:00"
 }
