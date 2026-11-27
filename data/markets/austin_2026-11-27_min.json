@@ -171,6 +171,13 @@
           "mp": 0.0285,
           "bid": null,
           "ask": 0.42
+        },
+        {
+          "t": "2026-11-27T12:17:45Z",
+          "p": 0.21,
+          "mp": 0.0285,
+          "bid": null,
+          "ask": 0.42
         }
       ],
       "prev_10m_yes_price": 0.21
@@ -215,13 +222,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.365,
       "prev_scan6h_yes_price": 0.365,
-      "prev_yes_price": 0.13,
-      "yes_price_10m_change": -0.005,
-      "yes_price_10m_pct_change": -3.8,
+      "prev_yes_price": 0.125,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.24,
       "yes_price_6h_pct_change": -65.8,
-      "yes_price_change": -0.005,
-      "yes_price_pct_change": -3.8,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-27T08:21:31Z",
@@ -336,7 +343,7 @@
           "ask": 0.23
         }
       ],
-      "prev_10m_yes_price": 0.13
+      "prev_10m_yes_price": 0.125
     },
     {
       "question": "Will the lowest temperature in Austin be between 34-35°F on November 27?",
@@ -345,11 +352,11 @@
         34.0,
         35.0
       ],
-      "yes_price": 0.57,
+      "yes_price": 0.51,
       "no_price": 0.665,
-      "best_bid": 0.25,
-      "best_ask": 0.89,
-      "bid_ask_spread": 0.64,
+      "best_bid": 0.14,
+      "best_ask": 0.88,
+      "bid_ask_spread": 0.74,
       "volume": 25.0,
       "spread": 0.65,
       "yes_token_id": "21569542652191612187067729113697766309269485611329966347555358311752860794710",
@@ -357,14 +364,14 @@
       "model_prob": 0.1852,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.57,
-      "effective_ask": 0.65,
-      "market_prob": 0.57,
-      "belief_prob": 0.3199,
-      "ev": -0.5078,
+      "ask": 0.51,
+      "effective_ask": 0.59,
+      "market_prob": 0.51,
+      "belief_prob": 0.2989,
+      "ev": -0.4934,
       "kelly": 0.0,
-      "swing_edge": -0.3848,
-      "swing_upside_pct": -67.5,
+      "swing_edge": -0.3248,
+      "swing_upside_pct": -63.7,
       "sell_value": 0.01,
       "scan6h_model_prob": 0.1852,
       "prev_scan6h_model_prob": 0.1852,
@@ -378,13 +385,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.335,
       "prev_scan6h_yes_price": 0.335,
-      "prev_yes_price": 0.55,
-      "yes_price_10m_change": 0.02,
-      "yes_price_10m_pct_change": 3.6,
-      "yes_price_6h_change": 0.235,
-      "yes_price_6h_pct_change": 70.1,
-      "yes_price_change": 0.02,
-      "yes_price_pct_change": 3.6,
+      "prev_yes_price": 0.57,
+      "yes_price_10m_change": -0.06,
+      "yes_price_10m_pct_change": -10.5,
+      "yes_price_6h_change": 0.175,
+      "yes_price_6h_pct_change": 52.2,
+      "yes_price_change": -0.06,
+      "yes_price_pct_change": -10.5,
       "price_history": [
         {
           "t": "2026-11-27T08:21:31Z",
@@ -518,9 +525,16 @@
           "mp": 0.1852,
           "bid": 0.25,
           "ask": 0.89
+        },
+        {
+          "t": "2026-11-27T12:17:45Z",
+          "p": 0.51,
+          "mp": 0.1852,
+          "bid": 0.14,
+          "ask": 0.88
         }
       ],
-      "prev_10m_yes_price": 0.55
+      "prev_10m_yes_price": 0.57
     },
     {
       "question": "Will the lowest temperature in Austin be between 40-41°F on November 27?",
@@ -653,6 +667,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-27T12:17:45Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ],
       "prev_10m_yes_price": 0.0005
@@ -668,5 +689,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-27T12:07:43.929588+00:00"
+  "last_price_refresh": "2026-11-27T12:17:43.491677+00:00"
 }
