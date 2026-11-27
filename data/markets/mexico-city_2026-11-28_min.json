@@ -46,11 +46,11 @@
         6.0,
         6.0
       ],
-      "yes_price": 0.32,
+      "yes_price": 0.3,
       "no_price": 0.695,
-      "best_bid": 0.14,
+      "best_bid": 0.1,
       "best_ask": 0.5,
-      "bid_ask_spread": 0.36,
+      "bid_ask_spread": 0.4,
       "volume": 56.0,
       "spread": 0.25,
       "yes_token_id": "104781910552760430562685550654044934361784453096343301362937295403490971345075",
@@ -58,14 +58,14 @@
       "model_prob": 0.235,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.32,
-      "effective_ask": 0.4,
-      "market_prob": 0.32,
-      "belief_prob": 0.2647,
-      "ev": -0.3383,
+      "ask": 0.3,
+      "effective_ask": 0.38,
+      "market_prob": 0.3,
+      "belief_prob": 0.2577,
+      "ev": -0.3218,
       "kelly": 0.0,
-      "swing_edge": -0.085,
-      "swing_upside_pct": -26.6,
+      "swing_edge": -0.065,
+      "swing_upside_pct": -21.7,
       "sell_value": 0.18,
       "scan6h_model_prob": 0.235,
       "prev_scan6h_model_prob": 0.235,
@@ -79,13 +79,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.305,
       "prev_scan6h_yes_price": 0.305,
-      "prev_yes_price": 0.36,
-      "yes_price_10m_change": -0.04,
-      "yes_price_10m_pct_change": -11.1,
-      "yes_price_6h_change": 0.015,
-      "yes_price_6h_pct_change": 4.9,
-      "yes_price_change": -0.04,
-      "yes_price_pct_change": -11.1,
+      "prev_yes_price": 0.32,
+      "yes_price_10m_change": -0.02,
+      "yes_price_10m_pct_change": -6.2,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -1.6,
+      "yes_price_change": -0.02,
+      "yes_price_pct_change": -6.2,
       "price_history": [
         {
           "t": "2026-11-27T14:24:34Z",
@@ -170,9 +170,16 @@
           "mp": 0.235,
           "bid": 0.14,
           "ask": 0.5
+        },
+        {
+          "t": "2026-11-27T16:57:40Z",
+          "p": 0.3,
+          "mp": 0.235,
+          "bid": 0.1,
+          "ask": 0.5
         }
       ],
-      "prev_10m_yes_price": 0.36
+      "prev_10m_yes_price": 0.32
     },
     {
       "question": "Will the lowest temperature in Mexico City be 8°C on November 28?",
@@ -291,6 +298,13 @@
           "mp": 0.2101,
           "bid": 0.05,
           "ask": 0.11
+        },
+        {
+          "t": "2026-11-27T16:57:40Z",
+          "p": 0.08,
+          "mp": 0.2101,
+          "bid": 0.05,
+          "ask": 0.11
         }
       ],
       "prev_10m_yes_price": 0.08
@@ -398,6 +412,13 @@
           "mp": 0.063,
           "bid": 0.02,
           "ask": 0.12
+        },
+        {
+          "t": "2026-11-27T16:57:40Z",
+          "p": 0.07,
+          "mp": 0.063,
+          "bid": 0.02,
+          "ask": 0.12
         }
       ],
       "prev_10m_yes_price": 0.07
@@ -413,5 +434,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-27T16:47:33.944611+00:00"
+  "last_price_refresh": "2026-11-27T16:57:38.600596+00:00"
 }
