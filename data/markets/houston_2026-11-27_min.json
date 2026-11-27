@@ -47,10 +47,10 @@
         38.0,
         39.0
       ],
-      "yes_price": 0.1,
+      "yes_price": 0.095,
       "no_price": 0.655,
       "best_bid": null,
-      "best_ask": 0.2,
+      "best_ask": 0.19,
       "bid_ask_spread": 0.0,
       "volume": 40.0,
       "spread": 0.0,
@@ -59,14 +59,14 @@
       "model_prob": 0.1734,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1,
-      "effective_ask": 0.1,
-      "market_prob": 0.1,
-      "belief_prob": 0.1477,
-      "ev": 0.477,
-      "kelly": 0.0132,
-      "swing_edge": 0.0734,
-      "swing_upside_pct": 73.4,
+      "ask": 0.095,
+      "effective_ask": 0.095,
+      "market_prob": 0.095,
+      "belief_prob": 0.146,
+      "ev": 0.5368,
+      "kelly": 0.0141,
+      "swing_edge": 0.0784,
+      "swing_upside_pct": 82.5,
       "sell_value": null,
       "scan6h_model_prob": 0.1734,
       "prev_scan6h_model_prob": 0.1734,
@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.345,
       "prev_scan6h_yes_price": 0.345,
-      "prev_yes_price": 0.09,
-      "yes_price_10m_change": 0.01,
-      "yes_price_10m_pct_change": 11.1,
-      "yes_price_6h_change": -0.245,
-      "yes_price_6h_pct_change": -71.0,
-      "yes_price_change": 0.01,
-      "yes_price_pct_change": 11.1,
+      "prev_yes_price": 0.1,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -5.0,
+      "yes_price_6h_change": -0.25,
+      "yes_price_6h_pct_change": -72.5,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -5.0,
       "price_history": [
         {
           "t": "2026-11-27T14:23:18Z",
@@ -178,9 +178,16 @@
           "mp": 0.1734,
           "bid": null,
           "ask": 0.2
+        },
+        {
+          "t": "2026-11-27T17:47:42Z",
+          "p": 0.095,
+          "mp": 0.1734,
+          "bid": null,
+          "ask": 0.19
         }
       ],
-      "prev_10m_yes_price": 0.09
+      "prev_10m_yes_price": 0.1
     },
     {
       "question": "Will the lowest temperature in Houston be between 40-41°F on November 27?",
@@ -341,16 +348,16 @@
       "prev_model_prob": 0.2413,
       "model_prob_change": 0.1241,
       "model_prob_pct_change": 51.4,
-      "prev_10m_yes_price": 0.896,
-      "yes_price_10m_change": 0.0105,
-      "yes_price_10m_pct_change": 1.2,
+      "prev_10m_yes_price": 0.9065,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "prev_scan6h_yes_price": 0.455,
       "yes_price_6h_change": -0.0535,
       "yes_price_6h_pct_change": -5.6,
       "scan6h_yes_price": 0.96,
-      "prev_yes_price": 0.896,
-      "yes_price_change": 0.0105,
-      "yes_price_pct_change": 1.2,
+      "prev_yes_price": 0.9065,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-27T05:57:41Z",
@@ -1105,5 +1112,5 @@
   "confidence": 0.6374,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-27T17:37:45.870200+00:00"
+  "last_price_refresh": "2026-11-27T17:47:40.635307+00:00"
 }

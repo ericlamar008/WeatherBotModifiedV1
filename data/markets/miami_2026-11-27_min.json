@@ -201,13 +201,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.01,
       "prev_scan6h_yes_price": 0.01,
-      "prev_yes_price": 0.01,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -5.0,
+      "prev_yes_price": 0.0095,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.0005,
       "yes_price_6h_pct_change": -5.0,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -5.0,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-27T14:23:18Z",
@@ -280,7 +280,7 @@
           "ask": 0.019
         }
       ],
-      "prev_10m_yes_price": 0.01
+      "prev_10m_yes_price": 0.0095
     },
     {
       "question": "Will the lowest temperature in Miami be between 56-57°F on November 27?",
@@ -289,11 +289,11 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.015,
+      "yes_price": 0.0195,
       "no_price": 0.9865,
       "best_bid": 0.002,
-      "best_ask": 0.028,
-      "bid_ask_spread": 0.026,
+      "best_ask": 0.037,
+      "bid_ask_spread": 0.035,
       "volume": 110.0,
       "spread": 0.023,
       "yes_token_id": "94959484570237144605276980777142934240073495594025812241109900109965554762001",
@@ -301,14 +301,14 @@
       "model_prob": 0.143,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.015,
-      "effective_ask": 0.015,
-      "market_prob": 0.015,
-      "belief_prob": 0.0982,
-      "ev": 5.5467,
-      "kelly": 0.0211,
-      "swing_edge": 0.128,
-      "swing_upside_pct": 853.3,
+      "ask": 0.0195,
+      "effective_ask": 0.0223,
+      "market_prob": 0.0195,
+      "belief_prob": 0.0998,
+      "ev": 3.4753,
+      "kelly": 0.0198,
+      "swing_edge": 0.1235,
+      "swing_upside_pct": 633.3,
       "sell_value": 0.002,
       "scan6h_model_prob": 0.143,
       "prev_scan6h_model_prob": 0.143,
@@ -322,13 +322,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0135,
       "prev_scan6h_yes_price": 0.0135,
-      "prev_yes_price": 0.0155,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -3.2,
-      "yes_price_6h_change": 0.0015,
-      "yes_price_6h_pct_change": 11.1,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -3.2,
+      "prev_yes_price": 0.015,
+      "yes_price_10m_change": 0.0045,
+      "yes_price_10m_pct_change": 30.0,
+      "yes_price_6h_change": 0.006,
+      "yes_price_6h_pct_change": 44.4,
+      "yes_price_change": 0.0045,
+      "yes_price_pct_change": 30.0,
       "price_history": [
         {
           "t": "2026-11-27T14:23:18Z",
@@ -406,9 +406,16 @@
           "mp": 0.143,
           "bid": 0.002,
           "ask": 0.028
+        },
+        {
+          "t": "2026-11-27T17:47:42Z",
+          "p": 0.0195,
+          "mp": 0.143,
+          "bid": 0.002,
+          "ask": 0.037
         }
       ],
-      "prev_10m_yes_price": 0.0155
+      "prev_10m_yes_price": 0.015
     },
     {
       "question": "Will the lowest temperature in Miami be between 58-59°F on November 27?",
@@ -2188,5 +2195,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-27T17:37:45.870200+00:00"
+  "last_price_refresh": "2026-11-27T17:47:40.635307+00:00"
 }
