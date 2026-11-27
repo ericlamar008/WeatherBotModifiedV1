@@ -569,10 +569,10 @@
         32.0,
         33.0
       ],
-      "yes_price": 0.2,
+      "yes_price": 0.135,
       "no_price": 0.655,
       "best_bid": null,
-      "best_ask": 0.4,
+      "best_ask": 0.27,
       "bid_ask_spread": 0.0,
       "volume": 25.0,
       "spread": 0.0,
@@ -581,14 +581,14 @@
       "model_prob": 0.0488,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.2,
-      "effective_ask": 0.2,
-      "market_prob": 0.2,
-      "belief_prob": 0.1017,
-      "ev": -0.4915,
+      "ask": 0.135,
+      "effective_ask": 0.135,
+      "market_prob": 0.135,
+      "belief_prob": 0.079,
+      "ev": -0.4148,
       "kelly": 0.0,
-      "swing_edge": -0.1512,
-      "swing_upside_pct": -75.6,
+      "swing_edge": -0.0862,
+      "swing_upside_pct": -63.9,
       "sell_value": null,
       "scan6h_model_prob": 0.0488,
       "prev_scan6h_model_prob": 0.0488,
@@ -602,13 +602,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.345,
       "prev_scan6h_yes_price": 0.345,
-      "prev_yes_price": 0.095,
-      "yes_price_10m_change": 0.105,
-      "yes_price_10m_pct_change": 110.5,
-      "yes_price_6h_change": -0.145,
-      "yes_price_6h_pct_change": -42.0,
-      "yes_price_change": 0.105,
-      "yes_price_pct_change": 110.5,
+      "prev_yes_price": 0.2,
+      "yes_price_10m_change": -0.065,
+      "yes_price_10m_pct_change": -32.5,
+      "yes_price_6h_change": -0.21,
+      "yes_price_6h_pct_change": -60.9,
+      "yes_price_change": -0.065,
+      "yes_price_pct_change": -32.5,
       "price_history": [
         {
           "t": "2026-11-27T14:23:18Z",
@@ -672,9 +672,16 @@
           "mp": 0.0488,
           "bid": null,
           "ask": 0.4
+        },
+        {
+          "t": "2026-11-27T16:47:35Z",
+          "p": 0.135,
+          "mp": 0.0488,
+          "bid": null,
+          "ask": 0.27
         }
       ],
-      "prev_10m_yes_price": 0.095
+      "prev_10m_yes_price": 0.2
     },
     {
       "question": "Will the lowest temperature in Austin be between 34-35°F on November 27?",
@@ -1426,5 +1433,5 @@
   "confidence": 0.76,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-27T16:37:35.215639+00:00"
+  "last_price_refresh": "2026-11-27T16:47:33.944611+00:00"
 }
