@@ -339,13 +339,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0245,
       "prev_scan6h_yes_price": 0.0245,
-      "prev_yes_price": 0.0245,
-      "yes_price_10m_change": -0.006,
-      "yes_price_10m_pct_change": -24.5,
+      "prev_yes_price": 0.0185,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.006,
       "yes_price_6h_pct_change": -24.5,
-      "yes_price_change": -0.006,
-      "yes_price_pct_change": -24.5,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-27T02:24:20Z",
@@ -362,7 +362,7 @@
           "ask": 0.026
         }
       ],
-      "prev_10m_yes_price": 0.0245
+      "prev_10m_yes_price": 0.0185
     },
     {
       "question": "Will the highest temperature in Paris be 4°C on November 28?",
@@ -371,11 +371,11 @@
         4.0,
         4.0
       ],
-      "yes_price": 0.1275,
+      "yes_price": 0.124,
       "no_price": 0.8645,
-      "best_bid": 0.12,
+      "best_bid": 0.113,
       "best_ask": 0.135,
-      "bid_ask_spread": 0.015,
+      "bid_ask_spread": 0.022,
       "volume": 3364.0,
       "spread": 0.021,
       "yes_token_id": "89339048604000933769071427754569475576498415181868902220165111211637642016878",
@@ -383,14 +383,14 @@
       "model_prob": 0.365,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1275,
-      "effective_ask": 0.1275,
-      "market_prob": 0.1275,
-      "belief_prob": 0.2819,
-      "ev": 1.211,
-      "kelly": 0.0442,
-      "swing_edge": 0.2375,
-      "swing_upside_pct": 186.3,
+      "ask": 0.124,
+      "effective_ask": 0.124,
+      "market_prob": 0.124,
+      "belief_prob": 0.2806,
+      "ev": 1.2629,
+      "kelly": 0.0447,
+      "swing_edge": 0.241,
+      "swing_upside_pct": 194.4,
       "sell_value": 0.125,
       "scan6h_model_prob": 0.365,
       "prev_scan6h_model_prob": 0.365,
@@ -404,13 +404,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.1355,
       "prev_scan6h_yes_price": 0.1355,
-      "prev_yes_price": 0.136,
-      "yes_price_10m_change": -0.0085,
-      "yes_price_10m_pct_change": -6.2,
-      "yes_price_6h_change": -0.008,
-      "yes_price_6h_pct_change": -5.9,
-      "yes_price_change": -0.0085,
-      "yes_price_pct_change": -6.2,
+      "prev_yes_price": 0.1275,
+      "yes_price_10m_change": -0.0035,
+      "yes_price_10m_pct_change": -2.7,
+      "yes_price_6h_change": -0.0115,
+      "yes_price_6h_pct_change": -8.5,
+      "yes_price_change": -0.0035,
+      "yes_price_pct_change": -2.7,
       "price_history": [
         {
           "t": "2026-11-27T02:24:20Z",
@@ -427,7 +427,7 @@
           "ask": 0.135
         }
       ],
-      "prev_10m_yes_price": 0.136
+      "prev_10m_yes_price": 0.1275
     },
     {
       "question": "Will the highest temperature in Paris be 5°C on November 28?",
@@ -551,6 +551,13 @@
         },
         {
           "t": "2026-11-27T02:37:35Z",
+          "p": 0.36,
+          "mp": 0.099,
+          "bid": 0.35,
+          "ask": 0.37
+        },
+        {
+          "t": "2026-11-27T02:57:31Z",
           "p": 0.36,
           "mp": 0.099,
           "bid": 0.35,
@@ -765,5 +772,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-27T02:47:34.418273+00:00"
+  "last_price_refresh": "2026-11-27T02:57:30.835898+00:00"
 }
