@@ -80,13 +80,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.0105,
       "prev_scan6h_yes_price": 0.0105,
-      "prev_yes_price": 0.0085,
-      "yes_price_10m_change": 0.0005,
-      "yes_price_10m_pct_change": 5.9,
+      "prev_yes_price": 0.009,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.0015,
       "yes_price_6h_pct_change": -14.3,
-      "yes_price_change": 0.0005,
-      "yes_price_pct_change": 5.9,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-26T20:24:07Z",
@@ -192,9 +192,16 @@
           "mp": 0.0273,
           "bid": 0.002,
           "ask": 0.018
+        },
+        {
+          "t": "2026-11-27T01:37:44Z",
+          "p": 0.009,
+          "mp": 0.0273,
+          "bid": 0.002,
+          "ask": 0.018
         }
       ],
-      "prev_10m_yes_price": 0.0085
+      "prev_10m_yes_price": 0.009
     },
     {
       "question": "Will the lowest temperature in Houston be between 36-37°F on November 26?",
@@ -344,6 +351,13 @@
         },
         {
           "t": "2026-11-27T01:17:37Z",
+          "p": 0.05,
+          "mp": 0.3081,
+          "bid": null,
+          "ask": 0.1
+        },
+        {
+          "t": "2026-11-27T01:37:44Z",
           "p": 0.05,
           "mp": 0.3081,
           "bid": null,
@@ -631,6 +645,13 @@
           "mp": 0.496,
           "bid": 0.951,
           "ask": 0.999
+        },
+        {
+          "t": "2026-11-27T01:37:44Z",
+          "p": 0.975,
+          "mp": 0.496,
+          "bid": 0.951,
+          "ask": 0.999
         }
       ]
     },
@@ -909,6 +930,13 @@
         },
         {
           "t": "2026-11-27T01:17:37Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
+        },
+        {
+          "t": "2026-11-27T01:37:44Z",
           "p": 0.0005,
           "mp": 0.0,
           "bid": null,
@@ -1195,6 +1223,13 @@
           "mp": 0.0,
           "bid": null,
           "ask": 0.001
+        },
+        {
+          "t": "2026-11-27T01:37:44Z",
+          "p": 0.0005,
+          "mp": 0.0,
+          "bid": null,
+          "ask": 0.001
         }
       ]
     }
@@ -1226,5 +1261,5 @@
   "confidence": 1.0,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-27T01:17:35.315094+00:00"
+  "last_price_refresh": "2026-11-27T01:37:43.140937+00:00"
 }
