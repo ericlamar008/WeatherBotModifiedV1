@@ -534,13 +534,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.036,
       "prev_scan6h_yes_price": 0.036,
-      "prev_yes_price": 0.015,
-      "yes_price_10m_change": -0.0005,
-      "yes_price_10m_pct_change": -3.3,
+      "prev_yes_price": 0.0145,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.0215,
       "yes_price_6h_pct_change": -59.7,
-      "yes_price_change": -0.0005,
-      "yes_price_pct_change": -3.3,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-28T03:02:43Z",
@@ -655,7 +655,7 @@
           "ask": 0.025
         }
       ],
-      "prev_10m_yes_price": 0.015
+      "prev_10m_yes_price": 0.0145
     },
     {
       "question": "Will the highest temperature in Istanbul be 11°C on November 29?",
@@ -820,11 +820,11 @@
         12.0,
         12.0
       ],
-      "yes_price": 0.51,
+      "yes_price": 0.52,
       "no_price": 0.475,
-      "best_bid": 0.48,
+      "best_bid": 0.5,
       "best_ask": 0.54,
-      "bid_ask_spread": 0.06,
+      "bid_ask_spread": 0.04,
       "volume": 16.0,
       "spread": 0.09,
       "yes_token_id": "112471333573347748867854881989309795717821901708108684637017444173892743727358",
@@ -832,14 +832,14 @@
       "model_prob": 0.4621,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.51,
-      "effective_ask": 0.5265,
-      "market_prob": 0.51,
-      "belief_prob": 0.4789,
-      "ev": -0.0904,
+      "ask": 0.52,
+      "effective_ask": 0.5255,
+      "market_prob": 0.52,
+      "belief_prob": 0.4824,
+      "ev": -0.082,
       "kelly": 0.0,
-      "swing_edge": -0.0479,
-      "swing_upside_pct": -9.4,
+      "swing_edge": -0.0579,
+      "swing_upside_pct": -11.1,
       "sell_value": 0.48,
       "scan6h_model_prob": 0.4621,
       "prev_scan6h_model_prob": 0.4621,
@@ -853,13 +853,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.525,
       "prev_scan6h_yes_price": 0.525,
-      "prev_yes_price": 0.52,
-      "yes_price_10m_change": -0.01,
-      "yes_price_10m_pct_change": -1.9,
-      "yes_price_6h_change": -0.015,
-      "yes_price_6h_pct_change": -2.9,
-      "yes_price_change": -0.01,
-      "yes_price_pct_change": -1.9,
+      "prev_yes_price": 0.51,
+      "yes_price_10m_change": 0.01,
+      "yes_price_10m_pct_change": 2.0,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -1.0,
+      "yes_price_change": 0.01,
+      "yes_price_pct_change": 2.0,
       "price_history": [
         {
           "t": "2026-11-28T03:02:43Z",
@@ -1000,9 +1000,16 @@
           "mp": 0.4621,
           "bid": 0.48,
           "ask": 0.54
+        },
+        {
+          "t": "2026-11-28T07:47:30Z",
+          "p": 0.52,
+          "mp": 0.4621,
+          "bid": 0.5,
+          "ask": 0.54
         }
       ],
-      "prev_10m_yes_price": 0.52
+      "prev_10m_yes_price": 0.51
     },
     {
       "question": "Will the highest temperature in Istanbul be 13°C on November 29?",
@@ -1044,13 +1051,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.285,
       "prev_scan6h_yes_price": 0.285,
-      "prev_yes_price": 0.335,
-      "yes_price_10m_change": 0.005,
-      "yes_price_10m_pct_change": 1.5,
+      "prev_yes_price": 0.34,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": 0.055,
       "yes_price_6h_pct_change": 19.3,
-      "yes_price_change": 0.005,
-      "yes_price_pct_change": 1.5,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-28T03:02:43Z",
@@ -1179,7 +1186,7 @@
           "ask": 0.37
         }
       ],
-      "prev_10m_yes_price": 0.335
+      "prev_10m_yes_price": 0.34
     },
     {
       "question": "Will the highest temperature in Istanbul be 14°C on November 29?",
@@ -1490,5 +1497,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-28T07:37:31.369484+00:00"
+  "last_price_refresh": "2026-11-28T07:47:29.208352+00:00"
 }
