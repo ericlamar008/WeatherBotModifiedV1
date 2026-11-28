@@ -144,13 +144,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.465,
       "prev_scan6h_yes_price": 0.465,
-      "prev_yes_price": 0.465,
-      "yes_price_10m_change": -0.01,
-      "yes_price_10m_pct_change": -2.2,
+      "prev_yes_price": 0.455,
+      "yes_price_10m_change": 0.0,
+      "yes_price_10m_pct_change": 0.0,
       "yes_price_6h_change": -0.01,
       "yes_price_6h_pct_change": -2.2,
-      "yes_price_change": -0.01,
-      "yes_price_pct_change": -2.2,
+      "yes_price_change": 0.0,
+      "yes_price_pct_change": 0.0,
       "price_history": [
         {
           "t": "2026-11-28T02:23:09Z",
@@ -167,7 +167,7 @@
           "ask": 0.46
         }
       ],
-      "prev_10m_yes_price": 0.465
+      "prev_10m_yes_price": 0.455
     },
     {
       "question": "Will the lowest temperature in Seoul (Incheon) be 3°C on November 29?",
@@ -241,11 +241,11 @@
         5.0,
         5.0
       ],
-      "yes_price": 0.047,
+      "yes_price": 0.0405,
       "no_price": 0.954,
       "best_bid": 0.001,
-      "best_ask": 0.093,
-      "bid_ask_spread": 0.092,
+      "best_ask": 0.08,
+      "bid_ask_spread": 0.079,
       "volume": 110.0,
       "spread": 0.09,
       "yes_token_id": "12520899080294245213526797917755351108670570788819459021992960052077546078291",
@@ -253,14 +253,14 @@
       "model_prob": 0.0002,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.047,
-      "effective_ask": 0.0811,
-      "market_prob": 0.047,
-      "belief_prob": 0.0166,
-      "ev": -0.7953,
+      "ask": 0.0405,
+      "effective_ask": 0.0675,
+      "market_prob": 0.0405,
+      "belief_prob": 0.0143,
+      "ev": -0.7881,
       "kelly": 0.0,
-      "swing_edge": -0.0468,
-      "swing_upside_pct": -99.6,
+      "swing_edge": -0.0403,
+      "swing_upside_pct": -99.5,
       "sell_value": 0.001,
       "scan6h_model_prob": 0.0002,
       "prev_scan6h_model_prob": 0.0002,
@@ -274,13 +274,13 @@
       "model_prob_pct_change": 0.0,
       "scan6h_yes_price": 0.046,
       "prev_scan6h_yes_price": 0.046,
-      "prev_yes_price": 0.0365,
-      "yes_price_10m_change": 0.0105,
-      "yes_price_10m_pct_change": 28.8,
-      "yes_price_6h_change": 0.001,
-      "yes_price_6h_pct_change": 2.2,
-      "yes_price_change": 0.0105,
-      "yes_price_pct_change": 28.8,
+      "prev_yes_price": 0.047,
+      "yes_price_10m_change": -0.0065,
+      "yes_price_10m_pct_change": -13.8,
+      "yes_price_6h_change": -0.0055,
+      "yes_price_6h_pct_change": -12.0,
+      "yes_price_change": -0.0065,
+      "yes_price_pct_change": -13.8,
       "price_history": [
         {
           "t": "2026-11-28T02:23:09Z",
@@ -302,9 +302,16 @@
           "mp": 0.0002,
           "bid": 0.001,
           "ask": 0.093
+        },
+        {
+          "t": "2026-11-28T02:57:32Z",
+          "p": 0.0405,
+          "mp": 0.0002,
+          "bid": 0.001,
+          "ask": 0.08
         }
       ],
-      "prev_10m_yes_price": 0.0365
+      "prev_10m_yes_price": 0.047
     },
     {
       "question": "Will the lowest temperature in Seoul (Incheon) be 6°C or higher on November 29?",
@@ -382,5 +389,5 @@
   "confidence": null,
   "balance_units": 100,
   "strategy_version": "auto-10e8fb8cc8948d98",
-  "last_price_refresh": "2026-11-28T02:47:32.084303+00:00"
+  "last_price_refresh": "2026-11-28T02:57:29.378311+00:00"
 }
