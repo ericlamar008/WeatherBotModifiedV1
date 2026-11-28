@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Shanghai be 10°C on November 29?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Shanghai be 11°C on November 29?",
@@ -207,7 +209,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Shanghai be 12°C on November 29?",
@@ -264,7 +267,8 @@
           "bid": null,
           "ask": 0.006
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.003
     },
     {
       "question": "Will the highest temperature in Shanghai be 13°C on November 29?",
@@ -321,7 +325,8 @@
           "bid": 0.006,
           "ask": 0.019
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0125
     },
     {
       "question": "Will the highest temperature in Shanghai be 14°C on November 29?",
@@ -378,7 +383,8 @@
           "bid": 0.08,
           "ask": 0.11
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.095
     },
     {
       "question": "Will the highest temperature in Shanghai be 15°C on November 29?",
@@ -435,7 +441,8 @@
           "bid": 0.69,
           "ask": 0.72
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.705
     },
     {
       "question": "Will the highest temperature in Shanghai be 16°C on November 29?",
@@ -444,11 +451,11 @@
         16.0,
         16.0
       ],
-      "yes_price": 0.1855,
+      "yes_price": 0.186,
       "no_price": 0.8145,
       "best_bid": 0.176,
-      "best_ask": 0.195,
-      "bid_ask_spread": 0.019,
+      "best_ask": 0.196,
+      "bid_ask_spread": 0.02,
       "volume": 1932.0,
       "spread": 0.019,
       "yes_token_id": "74859247443971242220075249833905598440388354235923285822335419020873275169500",
@@ -456,14 +463,14 @@
       "model_prob": 0.0591,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.1855,
-      "effective_ask": 0.1855,
-      "market_prob": 0.1855,
-      "belief_prob": 0.1033,
-      "ev": -0.4431,
+      "ask": 0.186,
+      "effective_ask": 0.186,
+      "market_prob": 0.186,
+      "belief_prob": 0.1035,
+      "ev": -0.4435,
       "kelly": 0.0,
-      "swing_edge": -0.1264,
-      "swing_upside_pct": -68.1,
+      "swing_edge": -0.1269,
+      "swing_upside_pct": -68.2,
       "sell_value": 0.176,
       "scan6h_model_prob": 0.0591,
       "prev_scan6h_model_prob": 0.0591,
@@ -478,12 +485,12 @@
       "scan6h_yes_price": 0.1855,
       "prev_scan6h_yes_price": 0.1855,
       "prev_yes_price": 0.1855,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.0005,
+      "yes_price_10m_pct_change": 0.3,
+      "yes_price_6h_change": 0.0005,
+      "yes_price_6h_pct_change": 0.3,
+      "yes_price_change": 0.0005,
+      "yes_price_pct_change": 0.3,
       "price_history": [
         {
           "t": "2026-11-28T02:23:08Z",
@@ -492,7 +499,8 @@
           "bid": 0.176,
           "ask": 0.195
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.1855
     },
     {
       "question": "Will the highest temperature in Shanghai be 17°C on November 29?",
@@ -549,7 +557,8 @@
           "bid": 0.009,
           "ask": 0.018
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0135
     },
     {
       "question": "Will the highest temperature in Shanghai be 18°C on November 29?",
@@ -606,7 +615,8 @@
           "bid": 0.004,
           "ask": 0.01
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.007
     },
     {
       "question": "Will the highest temperature in Shanghai be 19°C or higher on November 29?",
@@ -663,7 +673,8 @@
           "bid": 0.001,
           "ask": 0.011
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.006
     }
   ],
   "live_allocation": [
@@ -692,5 +703,6 @@
   "success_probability": 0.5578,
   "confidence": 0.1191,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-28T02:37:25.797456+00:00"
 }

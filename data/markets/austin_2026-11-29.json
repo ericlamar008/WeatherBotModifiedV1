@@ -93,7 +93,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Austin be between 54-55°F on November 29?",
@@ -150,7 +151,8 @@
           "bid": null,
           "ask": 0.001
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0005
     },
     {
       "question": "Will the highest temperature in Austin be between 56-57°F on November 29?",
@@ -159,11 +161,11 @@
         56.0,
         57.0
       ],
-      "yes_price": 0.014,
+      "yes_price": 0.01,
       "no_price": 0.986,
-      "best_bid": 0.002,
-      "best_ask": 0.026,
-      "bid_ask_spread": 0.024,
+      "best_bid": 0.003,
+      "best_ask": 0.017,
+      "bid_ask_spread": 0.014,
       "volume": 10.0,
       "spread": 0.024,
       "yes_token_id": "47431675091399429349975589031045327477274354012766880186545092963561166296637",
@@ -171,14 +173,14 @@
       "model_prob": 0.0049,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.014,
-      "effective_ask": 0.014,
-      "market_prob": 0.014,
-      "belief_prob": 0.0081,
-      "ev": -0.4214,
+      "ask": 0.01,
+      "effective_ask": 0.01,
+      "market_prob": 0.01,
+      "belief_prob": 0.0067,
+      "ev": -0.33,
       "kelly": 0.0,
-      "swing_edge": -0.0091,
-      "swing_upside_pct": -65.0,
+      "swing_edge": -0.0051,
+      "swing_upside_pct": -51.0,
       "sell_value": 0.002,
       "scan6h_model_prob": 0.0049,
       "prev_scan6h_model_prob": 0.0049,
@@ -193,12 +195,12 @@
       "scan6h_yes_price": 0.014,
       "prev_scan6h_yes_price": 0.014,
       "prev_yes_price": 0.014,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.004,
+      "yes_price_10m_pct_change": -28.6,
+      "yes_price_6h_change": -0.004,
+      "yes_price_6h_pct_change": -28.6,
+      "yes_price_change": -0.004,
+      "yes_price_pct_change": -28.6,
       "price_history": [
         {
           "t": "2026-11-28T02:23:06Z",
@@ -206,8 +208,16 @@
           "mp": 0.0049,
           "bid": 0.002,
           "ask": 0.026
+        },
+        {
+          "t": "2026-11-28T02:37:26Z",
+          "p": 0.01,
+          "mp": 0.0049,
+          "bid": 0.003,
+          "ask": 0.017
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.014
     },
     {
       "question": "Will the highest temperature in Austin be between 58-59°F on November 29?",
@@ -216,11 +226,11 @@
         58.0,
         59.0
       ],
-      "yes_price": 0.0315,
+      "yes_price": 0.03,
       "no_price": 0.9685,
-      "best_bid": 0.004,
-      "best_ask": 0.059,
-      "bid_ask_spread": 0.055,
+      "best_bid": 0.005,
+      "best_ask": 0.055,
+      "bid_ask_spread": 0.05,
       "volume": 10.0,
       "spread": 0.055,
       "yes_token_id": "54656422435780911904553515606267467116141412120918721398765620779014784564052",
@@ -228,14 +238,14 @@
       "model_prob": 0.0171,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0315,
-      "effective_ask": 0.0452,
-      "market_prob": 0.0315,
-      "belief_prob": 0.0221,
-      "ev": -0.5111,
+      "ask": 0.03,
+      "effective_ask": 0.041,
+      "market_prob": 0.03,
+      "belief_prob": 0.0216,
+      "ev": -0.4732,
       "kelly": 0.0,
-      "swing_edge": -0.0281,
-      "swing_upside_pct": -62.2,
+      "swing_edge": -0.0129,
+      "swing_upside_pct": -43.0,
       "sell_value": 0.004,
       "scan6h_model_prob": 0.0171,
       "prev_scan6h_model_prob": 0.0171,
@@ -250,12 +260,12 @@
       "scan6h_yes_price": 0.0315,
       "prev_scan6h_yes_price": 0.0315,
       "prev_yes_price": 0.0315,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0015,
+      "yes_price_10m_pct_change": -4.8,
+      "yes_price_6h_change": -0.0015,
+      "yes_price_6h_pct_change": -4.8,
+      "yes_price_change": -0.0015,
+      "yes_price_pct_change": -4.8,
       "price_history": [
         {
           "t": "2026-11-28T02:23:06Z",
@@ -264,7 +274,8 @@
           "bid": 0.004,
           "ask": 0.059
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0315
     },
     {
       "question": "Will the highest temperature in Austin be between 60-61°F on November 29?",
@@ -273,11 +284,11 @@
         60.0,
         61.0
       ],
-      "yes_price": 0.049,
+      "yes_price": 0.046,
       "no_price": 0.951,
       "best_bid": 0.018,
-      "best_ask": 0.08,
-      "bid_ask_spread": 0.062,
+      "best_ask": 0.074,
+      "bid_ask_spread": 0.056,
       "volume": 10.0,
       "spread": 0.062,
       "yes_token_id": "111619819073246429153533342636446409185559232825068695177133787721614453908060",
@@ -285,14 +296,14 @@
       "model_prob": 0.0662,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.049,
-      "effective_ask": 0.0666,
-      "market_prob": 0.049,
-      "belief_prob": 0.0602,
-      "ev": -0.0961,
+      "ask": 0.046,
+      "effective_ask": 0.0603,
+      "market_prob": 0.046,
+      "belief_prob": 0.0591,
+      "ev": -0.0199,
       "kelly": 0.0,
-      "swing_edge": -0.0004,
-      "swing_upside_pct": -0.6,
+      "swing_edge": 0.0202,
+      "swing_upside_pct": 43.9,
       "sell_value": 0.018,
       "scan6h_model_prob": 0.0662,
       "prev_scan6h_model_prob": 0.0662,
@@ -307,12 +318,12 @@
       "scan6h_yes_price": 0.049,
       "prev_scan6h_yes_price": 0.049,
       "prev_yes_price": 0.049,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.003,
+      "yes_price_10m_pct_change": -6.1,
+      "yes_price_6h_change": -0.003,
+      "yes_price_6h_pct_change": -6.1,
+      "yes_price_change": -0.003,
+      "yes_price_pct_change": -6.1,
       "price_history": [
         {
           "t": "2026-11-28T02:23:06Z",
@@ -321,7 +332,8 @@
           "bid": 0.018,
           "ask": 0.08
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.049
     },
     {
       "question": "Will the highest temperature in Austin be between 62-63°F on November 29?",
@@ -330,11 +342,11 @@
         62.0,
         63.0
       ],
-      "yes_price": 0.155,
+      "yes_price": 0.15,
       "no_price": 0.845,
-      "best_bid": 0.14,
+      "best_bid": 0.13,
       "best_ask": 0.17,
-      "bid_ask_spread": 0.03,
+      "bid_ask_spread": 0.04,
       "volume": 30.0,
       "spread": 0.03,
       "yes_token_id": "27292706323438700191020786740863206628707799539103064392422961105772194076649",
@@ -342,14 +354,14 @@
       "model_prob": 0.2206,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.155,
-      "effective_ask": 0.155,
-      "market_prob": 0.155,
-      "belief_prob": 0.1976,
-      "ev": 0.2748,
-      "kelly": 0.0126,
-      "swing_edge": 0.0656,
-      "swing_upside_pct": 42.3,
+      "ask": 0.15,
+      "effective_ask": 0.1555,
+      "market_prob": 0.15,
+      "belief_prob": 0.1959,
+      "ev": 0.2598,
+      "kelly": 0.012,
+      "swing_edge": 0.0706,
+      "swing_upside_pct": 47.1,
       "sell_value": 0.14,
       "scan6h_model_prob": 0.2206,
       "prev_scan6h_model_prob": 0.2206,
@@ -364,12 +376,12 @@
       "scan6h_yes_price": 0.155,
       "prev_scan6h_yes_price": 0.155,
       "prev_yes_price": 0.155,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.005,
+      "yes_price_10m_pct_change": -3.2,
+      "yes_price_6h_change": -0.005,
+      "yes_price_6h_pct_change": -3.2,
+      "yes_price_change": -0.005,
+      "yes_price_pct_change": -3.2,
       "price_history": [
         {
           "t": "2026-11-28T02:23:06Z",
@@ -377,8 +389,16 @@
           "mp": 0.2206,
           "bid": 0.14,
           "ask": 0.17
+        },
+        {
+          "t": "2026-11-28T02:37:26Z",
+          "p": 0.15,
+          "mp": 0.2206,
+          "bid": 0.13,
+          "ask": 0.17
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.155
     },
     {
       "question": "Will the highest temperature in Austin be between 64-65°F on November 29?",
@@ -387,11 +407,11 @@
         64.0,
         65.0
       ],
-      "yes_price": 0.55,
+      "yes_price": 0.555,
       "no_price": 0.45,
-      "best_bid": 0.52,
-      "best_ask": 0.58,
-      "bid_ask_spread": 0.06,
+      "best_bid": 0.54,
+      "best_ask": 0.57,
+      "bid_ask_spread": 0.03,
       "volume": 502.0,
       "spread": 0.06,
       "yes_token_id": "9726675856432854824368324941635529554969866894550759582495026543287848904723",
@@ -399,14 +419,14 @@
       "model_prob": 0.3699,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.55,
-      "effective_ask": 0.5665,
-      "market_prob": 0.55,
-      "belief_prob": 0.4329,
-      "ev": -0.2358,
+      "ask": 0.555,
+      "effective_ask": 0.555,
+      "market_prob": 0.555,
+      "belief_prob": 0.4347,
+      "ev": -0.2168,
       "kelly": 0.0,
-      "swing_edge": -0.1966,
-      "swing_upside_pct": -34.7,
+      "swing_edge": -0.1851,
+      "swing_upside_pct": -33.4,
       "sell_value": 0.52,
       "scan6h_model_prob": 0.3699,
       "prev_scan6h_model_prob": 0.3699,
@@ -421,12 +441,12 @@
       "scan6h_yes_price": 0.55,
       "prev_scan6h_yes_price": 0.55,
       "prev_yes_price": 0.55,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": 0.005,
+      "yes_price_10m_pct_change": 0.9,
+      "yes_price_6h_change": 0.005,
+      "yes_price_6h_pct_change": 0.9,
+      "yes_price_change": 0.005,
+      "yes_price_pct_change": 0.9,
       "price_history": [
         {
           "t": "2026-11-28T02:23:06Z",
@@ -434,8 +454,16 @@
           "mp": 0.3699,
           "bid": 0.52,
           "ask": 0.58
+        },
+        {
+          "t": "2026-11-28T02:37:26Z",
+          "p": 0.555,
+          "mp": 0.3699,
+          "bid": 0.54,
+          "ask": 0.57
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.55
     },
     {
       "question": "Will the highest temperature in Austin be between 66-67°F on November 29?",
@@ -462,8 +490,8 @@
       "belief_prob": 0.2266,
       "ev": -0.0378,
       "kelly": 0.0,
-      "swing_edge": -0.0107,
-      "swing_upside_pct": -4.5,
+      "swing_edge": -0.0052,
+      "swing_upside_pct": -2.3,
       "sell_value": 0.21,
       "scan6h_model_prob": 0.2248,
       "prev_scan6h_model_prob": 0.2248,
@@ -492,7 +520,8 @@
           "bid": 0.21,
           "ask": 0.25
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.23
     },
     {
       "question": "Will the highest temperature in Austin be between 68-69°F on November 29?",
@@ -501,11 +530,11 @@
         68.0,
         69.0
       ],
-      "yes_price": 0.0525,
+      "yes_price": 0.052,
       "no_price": 0.9475,
       "best_bid": 0.026,
-      "best_ask": 0.079,
-      "bid_ask_spread": 0.053,
+      "best_ask": 0.078,
+      "bid_ask_spread": 0.052,
       "volume": 5.0,
       "spread": 0.053,
       "yes_token_id": "14628209922238533307262267878094460793208272052052078114775149828170360311239",
@@ -513,14 +542,14 @@
       "model_prob": 0.068,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.0525,
-      "effective_ask": 0.0651,
-      "market_prob": 0.0525,
-      "belief_prob": 0.0626,
-      "ev": -0.0384,
+      "ask": 0.052,
+      "effective_ask": 0.0641,
+      "market_prob": 0.052,
+      "belief_prob": 0.0624,
+      "ev": -0.0265,
       "kelly": 0.0,
-      "swing_edge": 0.0029,
-      "swing_upside_pct": 4.5,
+      "swing_edge": 0.016,
+      "swing_upside_pct": 30.8,
       "sell_value": 0.026,
       "scan6h_model_prob": 0.068,
       "prev_scan6h_model_prob": 0.068,
@@ -535,12 +564,12 @@
       "scan6h_yes_price": 0.0525,
       "prev_scan6h_yes_price": 0.0525,
       "prev_yes_price": 0.0525,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.0005,
+      "yes_price_10m_pct_change": -1.0,
+      "yes_price_6h_change": -0.0005,
+      "yes_price_6h_pct_change": -1.0,
+      "yes_price_change": -0.0005,
+      "yes_price_pct_change": -1.0,
       "price_history": [
         {
           "t": "2026-11-28T02:23:06Z",
@@ -549,7 +578,8 @@
           "bid": 0.026,
           "ask": 0.079
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0525
     },
     {
       "question": "Will the highest temperature in Austin be between 70-71°F on November 29?",
@@ -576,8 +606,8 @@
       "belief_prob": 0.0193,
       "ev": -0.2372,
       "kelly": 0.0,
-      "swing_edge": -0.0077,
-      "swing_upside_pct": -30.4,
+      "swing_edge": -0.0049,
+      "swing_upside_pct": -21.8,
       "sell_value": 0.005,
       "scan6h_model_prob": 0.0176,
       "prev_scan6h_model_prob": 0.0176,
@@ -606,7 +636,8 @@
           "bid": 0.005,
           "ask": 0.04
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.0225
     },
     {
       "question": "Will the highest temperature in Austin be 72°F or higher on November 29?",
@@ -615,11 +646,11 @@
         72.0,
         999.0
       ],
-      "yes_price": 0.017,
+      "yes_price": 0.01,
       "no_price": 0.983,
-      "best_bid": 0.002,
-      "best_ask": 0.032,
-      "bid_ask_spread": 0.03,
+      "best_bid": 0.003,
+      "best_ask": 0.017,
+      "bid_ask_spread": 0.014,
       "volume": 10.0,
       "spread": 0.03,
       "yes_token_id": "19217198518436486244160067435910491406134261678865322887743967159052489522188",
@@ -627,14 +658,14 @@
       "model_prob": 0.008,
       "intraday_eliminated": false,
       "side": "YES",
-      "ask": 0.017,
-      "effective_ask": 0.017,
-      "market_prob": 0.017,
-      "belief_prob": 0.0112,
-      "ev": -0.3412,
+      "ask": 0.01,
+      "effective_ask": 0.01,
+      "market_prob": 0.01,
+      "belief_prob": 0.0087,
+      "ev": -0.13,
       "kelly": 0.0,
-      "swing_edge": -0.009,
-      "swing_upside_pct": -52.9,
+      "swing_edge": -0.002,
+      "swing_upside_pct": -20.0,
       "sell_value": 0.002,
       "scan6h_model_prob": 0.008,
       "prev_scan6h_model_prob": 0.008,
@@ -649,12 +680,12 @@
       "scan6h_yes_price": 0.017,
       "prev_scan6h_yes_price": 0.017,
       "prev_yes_price": 0.017,
-      "yes_price_10m_change": 0.0,
-      "yes_price_10m_pct_change": 0.0,
-      "yes_price_6h_change": 0.0,
-      "yes_price_6h_pct_change": 0.0,
-      "yes_price_change": 0.0,
-      "yes_price_pct_change": 0.0,
+      "yes_price_10m_change": -0.007,
+      "yes_price_10m_pct_change": -41.2,
+      "yes_price_6h_change": -0.007,
+      "yes_price_6h_pct_change": -41.2,
+      "yes_price_change": -0.007,
+      "yes_price_pct_change": -41.2,
       "price_history": [
         {
           "t": "2026-11-28T02:23:06Z",
@@ -662,8 +693,16 @@
           "mp": 0.008,
           "bid": 0.002,
           "ask": 0.032
+        },
+        {
+          "t": "2026-11-28T02:37:26Z",
+          "p": 0.01,
+          "mp": 0.008,
+          "bid": 0.003,
+          "ask": 0.017
         }
-      ]
+      ],
+      "prev_10m_yes_price": 0.017
     }
   ],
   "live_allocation": [
@@ -692,5 +731,6 @@
   "success_probability": 0.4316,
   "confidence": 0.2736,
   "balance_units": 100,
-  "strategy_version": "auto-10e8fb8cc8948d98"
+  "strategy_version": "auto-10e8fb8cc8948d98",
+  "last_price_refresh": "2026-11-28T02:37:25.797456+00:00"
 }
